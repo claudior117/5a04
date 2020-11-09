@@ -1,0 +1,34 @@
+; Field definition file for table: ADORecordset
+id_producto	long		1
+descripcion	string	150	valor de muestra de cadena
+id_grupo	long		1
+id_proveedor	long		1
+precio_ult_compra	number		1.00
+fecha_ult_compra	datetime		Jan 5, 1994 1:23:45 PM
+id_proveedor_ult_compra	long		1
+pu	number		1.00
+cod_tasaiva	short		1
+a2.id_Unidad	long		1
+envase	short		1
+stock	number		1.00
+requeridos	number		1.00
+pedidos	number		1.00
+stock_minimo	number		1.00
+id_marca	long		1
+id_departamento	long		1
+porc_utilidad	number		1.00
+costoreal	number		1.00
+flete_compra	number		1.00
+dto_compra	number		1.00
+cod_barra	number		1.00
+precio_final	number		1.00
+tasa_imp_interno	number		1.00
+tipo_producto	string	1	valor de muestra de cadena
+moneda	string	1	valor de muestra de cadena
+observaciones	string	50	valor de muestra de cadena
+Impuesto	number		1.00
+ultima_venta	string	70	valor de muestra de cadena
+ultima_compra	string	70	valor de muestra de cadena
+fecha_actu_precio_venta	datetime		Jan 5, 1994 1:23:45 PM
+g5.id_Unidad	long		1
+Unidad	string	15	valor de muestra de cadena

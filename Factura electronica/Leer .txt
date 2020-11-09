@@ -1,0 +1,86 @@
+dia 1:
+Para cada cliente se debe generar un certificado digital que le permita al afip estar segura que quien
+dice que es el emisor de la factura sea quien es. Para ello debemos generar una clave privada(archivo 
+de clave priovada)  y la solicitud de certificado digital o CSR
+Para ello debemos hacer:
+
+
+Pasos 1 y 2 se pueden ejecutar en cualquier computadora
+1)descargar programa openssl de www.openssl.org (hay una version para 32 bits y otra para 64). Tambien
+tener en cuenta que puede ser necesario instalar las librerias de c++ 2008 redistribuible(tmabien
+descargable de la misma pagina y para 32 o 64 bits)  Instalar en c:\openssl
+
+En mi pc el paso 1 está hecho, solo me resta modificar el archivo generarcertificado.bat ubicado en c:\openssl\bin
+
+
+2)Ejecutar el crear_certificado.bat (antes modificarlo con los datos del cliente), eso genera dos
+archivos cliente_cp.key(clave privada) y cliente_csr.csr(solicitud de certificado digital-clave publica)
+ 
+
+Ejecutar en la computadora que va realizar la facturacion electronica
+3)Generar certifiado digital para factura electronica:
+	Ir al afip e ingresar con clave fiscal del cliente.
+	Ingresar a "administrar certificado digital", sino existe tenemos que:
+			Ingresar a Administracion de relacion de clave fiscal(Desbloquear pópup)
+			Seleccionar Cuit que va a facturar y Adherir Servicio, Afip, Servicios Interactuivos,
+			Administracion de certificados digitales y agregar.
+			Cerrar sesion e ingresar nuevamente para que aparezca
+	Agregar alias(un ceriticado puede tener varias alias, por ejemplo cuando se renueva)
+	Seleccionar el archivo csr generado anteriormente y listo, ya tenemos el certificado dgital
+	Seleccionar Ver y Descargar en nuestra pc
+
+4) Asociar el web service con el alias generado
+
+	a) Administrador de Relaciones de Clave fiscal
+	b) Adherir al servicio
+	c)afip-webservice-factura electronica
+	d)En representante  poner Buscar
+	e)Computador fiscal Seleccionar el Alias Generado - Confirmar
+
+
+5) Asociar Punto de Venta y Facturacion electonica
+
+	a)Ir al modulo Administracion de punto de ventas y domicilio fiscal. Seleccionar la empresa, si no aparece hay que ir a Administracion relacion de
+		clave fiscal- Afip- Servicios Interctivos y agregar Administracion de punto de venta(para la empresa). Salir de la sesion y volver a entrar
+	b)Agregar , le ponemos ultimo punto de venta + 1, sistema RECE, y domicilio.
+ 
+
+5)Instalar el modulo Pyafipws
+6)Instalar sistema, en c:\5A04\  crear carpetas seg y log, en seg copiar los certyificado y clave descargados, agregar linea en gen.ini con numero de punto de venta,
+  gebnerar punto de venta en el sistema, modificar formato de comprobantes como E, corregir los codigos del afip para los comprobantes, copiar factura4.csv en tools
+
+ 
+
+
+
+
+
+
+Terminos:
+wsaa --> Web Service de autenticacion --> Se accede con un certificado digital y una clave. Devuelve
+                                           un sign y un token con validez de 10 a 12 hs que permite
+                                           acceder al web sevice de facturacion
+wsfev1 -->Web service de Factura Electronica: Permite facturar, hay otros, segun la necesidad.
+   
+
+
+
+
+
+
+
+
+
+
+
+			
+
+
+
+
+
+
+
+
+
+

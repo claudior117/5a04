@@ -1,0 +1,81 @@
+El string a imprimir esta compuesto por :
+ 
+CUIT EMISOR
+Tipo de comprobante segun afip
+Boca emisora
+CAE
+Fecha de vencimiento aaaammdd
+Digito verificador
+
+http://servicios.infoleg.gob.ar/infolegInternet/anexos/95000-99999/96629/texact.htm
+
+
+Fuente:
+
+fuente True Type "PF Interleaved 2 of 5"
+// * ó "PF Interleaved 2 of 5 Wide"
+// * ó "PF Interleaved 2 of 5 Text"   
+
+Calculo:
+C) RUTINA PARA EL CALCULO DEL DIGITO VERIFICADOR
+
+Se considera para efectuar el cálculo el siguiente ejemplo:
+
+01234567890
+
+Etapa 1: Comenzar desde la izquierda, sumar todos los caracteres ubicados en las posiciones impares.
+
+0 + 2 + 4 + 6 + 8 + 0 = 20
+
+Etapa 2: Multiplicar la suma obtenida en la etapa 1 por el número 3.
+
+20 x 3 = 60
+
+Etapa 3: Comenzar desde la izquierda, sumar todos los caracteres que están ubicados en las posiciones pares.
+
+1 + 3 + 5 + 7 + 9 = 25
+
+Etapa 4: Sumar los resultados obtenidos en las etapas 2 y 3.
+
+60 + 25 = 85
+
+Etapa 5: Buscar el menor número que sumado al resultado obtenido en la etapa 4 dé un número múltiplo de 10. Este será el valor del dígito verificador del módulo 10.
+
+85 + 5 = 90
+
+De esta manera se llega a que el número 5 es el dígito verificador módulo 10 para el código 01234567890
+
+Siendo el resultado final:
+
+012345678905
+
+
+-------------------------------------------------------------
+Objeto py125
+
+Objeto PYI25 (interfaz COM)
+
+Objeto: PyI25 (registrar PYI25.DLL)
+
+Métodos:
+
+    DigitoVerificadorModulo10(codigo): recibe el codigo de barras en formato numérico, devuelve el dígito verificador en base 10
+    GenerarImagen(codigo, archivo, anchobase, ancho, alto, extension ): recibe el codigo de barras en formato numérico, nombre de archivo de salida, tamaños y formato de imagen (PNG o JPEG) y genera el codigo de barras especificado. 
+
+Ejemplo de uso (interfaz COM desde visual Basic):
+
+Dim PyI25 As Object
+    
+Set PyI25 = CreateObject("PyI25")
+    
+' cuit, tipo_cbte, punto_vta, cae, fch_venc_cae
+barras = "202675653930240016120303473904220110529"
+' calculo digito verificador:
+barras = barras + PyI25.DigitoVerificadorModulo10(barras)
+
+' genero imagen en png, aspecto 1x para ver en pantalla o por mail
+ok = PyI25.GenerarImagen(barras, "C:\barras.png")
+   
+   
+' formato en jpg, aspecto 3x más ancho para imprimir o incrustar:
+ok = PyI25.GenerarImagen(barras, "c:\barras.jpg", 9, 0, 90, "JPEG")

@@ -1,0 +1,61 @@
+; Field definition file for table: ADORecordset
+vta_02.num_int	long		1
+vta_02.sucursal	short		1
+letra	string	1	valor de muestra de cadena
+id_tipocomp	long		1
+num_comp	long		1
+fecha	datetime		Jan 5, 1994 1:23:45 PM
+vta_02.id_cliente	long		1
+subtotal	number		1.00
+impuestos	number		1.00
+iva	number		1.00
+total	number		1.00
+estado	string	1	valor de muestra de cadena
+descuento	number		1.00
+observaciones	string	100	valor de muestra de cadena
+servicio	string	1	valor de muestra de cadena
+id_cuenta	long		1
+cotizacion_dolar	number		1.00
+total_otra_moneda	number		1.00
+moneda	string	1	valor de muestra de cadena
+vta_02.id_vendedor	long		1
+estado_pago	string	1	valor de muestra de cadena
+cta_cte	string	1	valor de muestra de cadena
+stock	string	1	valor de muestra de cadena
+grabado	string	1	valor de muestra de cadena
+recibo_pago	string	20	valor de muestra de cadena
+fecha_pago	datetime		Jan 5, 1994 1:23:45 PM
+id_transporte	long		1
+perc_iva	number		1.00
+perc_gan	number		1.00
+perc_ib	number		1.00
+vta_02.ID_USUARIO	long		1
+venta	string	1	valor de muestra de cadena
+contado	string	1	valor de muestra de cadena
+vta_04.num_int	long		1
+secuencia	short		1
+id_formapago	short		1
+formapago	string	10	valor de muestra de cadena
+num_ch	long		1
+fecha_dif	datetime		Jan 5, 1994 1:23:45 PM
+detalle_banco	string	80	valor de muestra de cadena
+vta_04.sucursal	string	50	valor de muestra de cadena
+titular	string	50	valor de muestra de cadena
+importe	number		1.00
+num_int_fp	long		1
+vta_01.id_cliente	long		1
+Denominacion	string	80	valor de muestra de cadena
+direccion	string	80	valor de muestra de cadena
+cp	string	20	valor de muestra de cadena
+provincia	string	50	valor de muestra de cadena
+localidad	string	50	valor de muestra de cadena
+te	string	40	valor de muestra de cadena
+cuit	string	16	valor de muestra de cadena
+id_tipoiva	short		1
+email	string	80	valor de muestra de cadena
+vta_01.id_vendedor	long		1
+id_proveedor	long		1
+limite_credito	number		1.00
+g1.ID_USUARIO	long		1
+USUARIO	string	50	valor de muestra de cadena
+GRUPO	short		1

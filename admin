@@ -1,0 +1,213 @@
+VERSION 5.00
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Begin VB.Form admin 
+   BackColor       =   &H00E0E0E0&
+   BorderStyle     =   4  'Fixed ToolWindow
+   Caption         =   "ADMINISTRADOR GENERAL SISTEMA "
+   ClientHeight    =   1890
+   ClientLeft      =   105
+   ClientTop       =   345
+   ClientWidth     =   3900
+   KeyPreview      =   -1  'True
+   LinkTopic       =   "Form1"
+   MaxButton       =   0   'False
+   PaletteMode     =   1  'UseZOrder
+   ScaleHeight     =   1890
+   ScaleWidth      =   3900
+   StartUpPosition =   1  'CenterOwner
+   Begin VB.Frame Frame2 
+      BackColor       =   &H00E0E0E0&
+      Height          =   615
+      Left            =   240
+      TabIndex        =   5
+      Top             =   1200
+      Width           =   3495
+      Begin VB.CommandButton Command2 
+         Caption         =   "&Salir"
+         Height          =   255
+         Left            =   2160
+         TabIndex        =   7
+         Top             =   240
+         Width           =   1095
+      End
+      Begin VB.CommandButton Command1 
+         Caption         =   "&Ingresar"
+         Height          =   255
+         Left            =   240
+         TabIndex        =   6
+         Top             =   240
+         Width           =   1455
+      End
+   End
+   Begin VB.Frame Frame1 
+      BackColor       =   &H00E0E0E0&
+      Height          =   975
+      Left            =   240
+      TabIndex        =   0
+      Top             =   120
+      Width           =   3495
+      Begin VB.TextBox T_password 
+         Height          =   285
+         IMEMode         =   3  'DISABLE
+         Left            =   1560
+         PasswordChar    =   "*"
+         TabIndex        =   2
+         Top             =   600
+         Width           =   1215
+      End
+      Begin VB.ComboBox c_usuario 
+         Height          =   315
+         ItemData        =   "admin.frx":0000
+         Left            =   1560
+         List            =   "admin.frx":000A
+         Style           =   2  'Dropdown List
+         TabIndex        =   1
+         Top             =   240
+         Width           =   1575
+      End
+      Begin VB.Label Label1 
+         BackColor       =   &H00C0C0C0&
+         BorderStyle     =   1  'Fixed Single
+         Caption         =   "Usuario"
+         Height          =   255
+         Left            =   240
+         TabIndex        =   4
+         Top             =   240
+         Width           =   1215
+      End
+      Begin VB.Label Label2 
+         BackColor       =   &H00C0C0C0&
+         BorderStyle     =   1  'Fixed Single
+         Caption         =   "Password"
+         Height          =   255
+         Left            =   240
+         TabIndex        =   3
+         Top             =   600
+         Width           =   1215
+      End
+   End
+   Begin MSComctlLib.ImageList ImageList1 
+      Left            =   4560
+      Top             =   0
+      _ExtentX        =   1005
+      _ExtentY        =   1005
+      BackColor       =   -2147483643
+      ImageWidth      =   32
+      ImageHeight     =   32
+      MaskColor       =   12632256
+      _Version        =   393216
+      BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
+         NumListImages   =   7
+         BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "admin.frx":001D
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "admin.frx":08B1
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage3 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "admin.frx":1145
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage4 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "admin.frx":19D9
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage5 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "admin.frx":226D
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage6 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "admin.frx":2B01
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage7 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "admin.frx":2E21
+            Key             =   ""
+         EndProperty
+      EndProperty
+   End
+End
+Attribute VB_Name = "admin"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = False
+
+
+
+
+Private Sub c_usuario_KeyPress(KeyAscii As Integer)
+If KeyAscii = 13 Then
+ If c_usuario.ListIndex > -1 Then
+   T_password.Enabled = True
+   T_password.SetFocus
+ End If
+End If
+End Sub
+
+Private Sub Command1_Click()
+If abrirconexion(c_usuario, T_password) = True Then
+   'On Error GoTo e1
+   Call activacampaña
+   inicio.Show
+End If
+End Sub
+
+Private Sub Command2_Click()
+End
+End Sub
+
+Private Sub Form_Load()
+Call LEEINI
+Call INICIALIZA
+X = Shell(App.Path & "\tools\confreg.exe")
+End Sub
+Sub LEEINI()
+Open App.Path & "\GEN\5a04.INI" For Input As #1
+Line Input #1, l
+glo.nombrecli = l
+Line Input #1, l
+glo.direccioncli = l
+Line Input #1, l
+glo.TECLI = l
+Line Input #1, l
+glo.cuit = l
+Line Input #1, l
+glo.SERIAL = l
+
+Close #1
+
+End Sub
+Private Sub Form_Unload(Cancel As Integer)
+End
+End Sub
+Sub INICIALIZA()
+Call SACARSERIAL
+Open "c:\temp.txt" For Input As #1
+Line Input #1, t
+Close #1
+If t <> glo.SERIAL Then
+  MsgBox ("Operacion no Permitida, llame al servicio tecnico")
+  End
+Else
+ ' p1 = GetDeviceCaps(HDC, horres)
+ ' p2 = GetDeviceCaps(HDC, verres)
+
+  'If p1 < 800 Or p2 < 600 Then
+  ' MsgBox ("Su resolucion de Pantalla actual es de " & p1 & "x" & p2 & " el Sistema solo funcion en 800x600")
+  ' End
+  'End If
+End If
+End Sub
+Sub inicia()
+      T_usuario = ""
+      T_password = ""
+End Sub
+
+Private Sub T_password_KeyPress(KeyAscii As Integer)
+If KeyAscii = 13 Then
+ Command1.SetFocus
+End If
+End Sub

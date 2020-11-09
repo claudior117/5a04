@@ -1,0 +1,7 @@
+Los identificadores digitales (Digital IDs) hacen uso de una tecnología conocida como Criptografía de Clave Pública Pública (Public Key Cryptography), que utliza archivo de Clave Pública y de Clave Privada.
+
+La Clave Pública, también conocida como Solicitud de Firma de Certificado (CSR), es la clave que será enviada a Thawte, certificados que vendemos directamente nosotros. La Clave Pública es generada desde tu servidor y valida información específica del equipo, del servidor web y la organización a la que perteneces, y se entrega a la casa generadora del certificado para que lo emita.
+
+La Clave Privada se queda en el servidor y no debe nunca hacerse pública. Thawte no tiene acceso a la Clave Privada. Por lo general, se encuentra ubicada en el servidor y nunca transmitida hacia Thawte. La integridad de tus ID digitales depende de que la Clave Privada sea administrada únicamente por ti.
+
+Un CSR no puede ser generado sin generar un archivo de Clave Privada. De manera similar, un archivo de Clave Privada no puede generarse sin generar un archivo CSR. En cierto tipo de plataformas, como Microsoft IIS, ambos archivos se generan simultáneamente a través del Wizard del servidor web.

@@ -1,0 +1,1082 @@
+VERSION 5.00
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Begin VB.Form vta_cambia_estado_pago 
+   BackColor       =   &H00E0E0E0&
+   Caption         =   "CAMBIA DATOS EN COMPROBANTES DE VENTA"
+   ClientHeight    =   7590
+   ClientLeft      =   75
+   ClientTop       =   360
+   ClientWidth     =   8535
+   KeyPreview      =   -1  'True
+   LinkTopic       =   "Form1"
+   PaletteMode     =   1  'UseZOrder
+   ScaleHeight     =   7590
+   ScaleWidth      =   8535
+   StartUpPosition =   1  'CenterOwner
+   Begin VB.Frame Frame7 
+      BackColor       =   &H00E0E0E0&
+      Caption         =   "Cambia Estado Cancelacion Proforma"
+      Height          =   1095
+      Left            =   120
+      TabIndex        =   51
+      Top             =   2400
+      Width           =   8175
+      Begin VB.TextBox t_newestadoc 
+         Appearance      =   0  'Flat
+         BorderStyle     =   0  'None
+         Height          =   285
+         Left            =   1560
+         MaxLength       =   1
+         TabIndex        =   53
+         ToolTipText     =   "[N] Sin Cancelar  -  [P] Cancelada"
+         Top             =   240
+         Width           =   495
+      End
+      Begin VB.CommandButton Command5 
+         Caption         =   "Cambia estado Cancelacion"
+         Height          =   255
+         Left            =   2760
+         TabIndex        =   52
+         Top             =   240
+         Width           =   2535
+      End
+      Begin VB.Label Label20 
+         BackColor       =   &H00C0FFFF&
+         Caption         =   "N --> Sin Cancelar       P --> Cancelada"
+         Height          =   255
+         Left            =   2880
+         TabIndex        =   55
+         Top             =   600
+         Width           =   3975
+      End
+      Begin VB.Label Label21 
+         Appearance      =   0  'Flat
+         BackColor       =   &H00800000&
+         Caption         =   "EstadoCancelacion"
+         ForeColor       =   &H00FFFFFF&
+         Height          =   375
+         Left            =   120
+         TabIndex        =   54
+         Top             =   240
+         Width           =   1335
+      End
+   End
+   Begin VB.Frame Frame6 
+      BackColor       =   &H00E0E0E0&
+      Height          =   1335
+      Left            =   120
+      TabIndex        =   41
+      Top             =   4920
+      Width           =   7455
+      Begin VB.CommandButton Command4 
+         Caption         =   "Modifica Datos"
+         Height          =   255
+         Left            =   4680
+         TabIndex        =   42
+         Top             =   240
+         Width           =   2415
+      End
+      Begin VB.TextBox t_subtotal 
+         Appearance      =   0  'Flat
+         BorderStyle     =   0  'None
+         Height          =   285
+         Left            =   120
+         MaxLength       =   8
+         TabIndex        =   7
+         Top             =   960
+         Width           =   1215
+      End
+      Begin VB.TextBox t_moneda 
+         Appearance      =   0  'Flat
+         BorderStyle     =   0  'None
+         Height          =   285
+         Left            =   1440
+         MaxLength       =   1
+         TabIndex        =   5
+         ToolTipText     =   "[P] pesos  -  [D] Dolares"
+         Top             =   240
+         Width           =   495
+      End
+      Begin VB.TextBox t_cotizacion 
+         Appearance      =   0  'Flat
+         BorderStyle     =   0  'None
+         Height          =   285
+         Left            =   3480
+         MaxLength       =   10
+         TabIndex        =   6
+         ToolTipText     =   "mayor o igual a  1"
+         Top             =   240
+         Width           =   975
+      End
+      Begin VB.TextBox t_nograv 
+         Appearance      =   0  'Flat
+         BorderStyle     =   0  'None
+         Height          =   285
+         Left            =   1560
+         MaxLength       =   8
+         TabIndex        =   8
+         Top             =   960
+         Width           =   1215
+      End
+      Begin VB.TextBox t_iva 
+         Appearance      =   0  'Flat
+         BorderStyle     =   0  'None
+         Height          =   285
+         Left            =   3000
+         MaxLength       =   8
+         TabIndex        =   9
+         Top             =   960
+         Width           =   1215
+      End
+      Begin VB.TextBox t_total 
+         Appearance      =   0  'Flat
+         BorderStyle     =   0  'None
+         Height          =   285
+         Left            =   4440
+         MaxLength       =   8
+         TabIndex        =   10
+         Top             =   960
+         Width           =   1215
+      End
+      Begin VB.TextBox t_total2 
+         Appearance      =   0  'Flat
+         BorderStyle     =   0  'None
+         Height          =   285
+         Left            =   5880
+         MaxLength       =   8
+         TabIndex        =   11
+         Top             =   960
+         Width           =   1215
+      End
+      Begin VB.Label Label18 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BackColor       =   &H00800000&
+         Caption         =   "Subtotal"
+         ForeColor       =   &H00FFFFFF&
+         Height          =   255
+         Left            =   120
+         TabIndex        =   49
+         Top             =   720
+         Width           =   1215
+      End
+      Begin VB.Label Label11 
+         Appearance      =   0  'Flat
+         BackColor       =   &H00800000&
+         Caption         =   "Moneda:"
+         ForeColor       =   &H00FFFFFF&
+         Height          =   495
+         Left            =   120
+         TabIndex        =   48
+         Top             =   240
+         Width           =   1215
+      End
+      Begin VB.Label Label13 
+         Appearance      =   0  'Flat
+         BackColor       =   &H00800000&
+         Caption         =   "Cotizacion:"
+         ForeColor       =   &H00FFFFFF&
+         Height          =   255
+         Left            =   2280
+         TabIndex        =   47
+         Top             =   240
+         Width           =   1095
+      End
+      Begin VB.Label Label14 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BackColor       =   &H00800000&
+         Caption         =   "No Gravado"
+         ForeColor       =   &H00FFFFFF&
+         Height          =   255
+         Left            =   1560
+         TabIndex        =   46
+         Top             =   720
+         Width           =   1215
+      End
+      Begin VB.Label Label15 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BackColor       =   &H00800000&
+         Caption         =   "Iva"
+         ForeColor       =   &H00FFFFFF&
+         Height          =   255
+         Left            =   3000
+         TabIndex        =   45
+         Top             =   720
+         Width           =   1215
+      End
+      Begin VB.Label Label16 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BackColor       =   &H00800000&
+         Caption         =   "Total"
+         ForeColor       =   &H00FFFFFF&
+         Height          =   255
+         Left            =   4440
+         TabIndex        =   44
+         Top             =   720
+         Width           =   1215
+      End
+      Begin VB.Label Label17 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BackColor       =   &H00800080&
+         Caption         =   "Total 2"
+         ForeColor       =   &H00FFFFFF&
+         Height          =   255
+         Left            =   5880
+         TabIndex        =   43
+         Top             =   720
+         Width           =   1215
+      End
+   End
+   Begin VB.Frame Frame5 
+      BackColor       =   &H00E0E0E0&
+      Caption         =   "Otros cambios"
+      Height          =   735
+      Left            =   120
+      TabIndex        =   38
+      Top             =   4200
+      Width           =   8175
+      Begin VB.CommandButton Command3 
+         Caption         =   "Cambia "
+         Height          =   255
+         Left            =   7080
+         TabIndex        =   40
+         Top             =   240
+         Width           =   975
+      End
+      Begin VB.TextBox t_obs 
+         Appearance      =   0  'Flat
+         BorderStyle     =   0  'None
+         Height          =   285
+         Left            =   1560
+         MaxLength       =   80
+         TabIndex        =   4
+         ToolTipText     =   "Ingrese los digitos del 4 al 7 del cod. de barra de algun articulo de la marca"
+         Top             =   240
+         Width           =   5295
+      End
+      Begin VB.Label Label9 
+         Appearance      =   0  'Flat
+         BackColor       =   &H00800000&
+         Caption         =   "Observaciones"
+         ForeColor       =   &H00FFFFFF&
+         Height          =   255
+         Left            =   120
+         TabIndex        =   39
+         Top             =   240
+         Width           =   1335
+      End
+   End
+   Begin VB.Frame Frame4 
+      BackColor       =   &H00E0E0E0&
+      Caption         =   "Cambia estado facturacion"
+      Height          =   735
+      Left            =   120
+      TabIndex        =   35
+      Top             =   3480
+      Width           =   8175
+      Begin VB.CommandButton Command2 
+         Caption         =   "Cambia estado Facturacion"
+         Height          =   255
+         Left            =   2760
+         TabIndex        =   37
+         Top             =   240
+         Width           =   2535
+      End
+      Begin VB.TextBox t_newestado2 
+         Appearance      =   0  'Flat
+         BorderStyle     =   0  'None
+         Height          =   285
+         Left            =   1560
+         MaxLength       =   1
+         TabIndex        =   3
+         ToolTipText     =   "[F] Facturado  -  [S] Sin Facturar"
+         Top             =   240
+         Width           =   495
+      End
+      Begin VB.Label Label12 
+         Appearance      =   0  'Flat
+         BackColor       =   &H00800000&
+         Caption         =   "Estado facturcion"
+         ForeColor       =   &H00FFFFFF&
+         Height          =   375
+         Left            =   120
+         TabIndex        =   36
+         Top             =   240
+         Width           =   1335
+      End
+   End
+   Begin VB.Frame Frame3 
+      BackColor       =   &H00E0E0E0&
+      Caption         =   "Cambia Estado pago"
+      Height          =   1095
+      Left            =   120
+      TabIndex        =   26
+      Top             =   2400
+      Width           =   8175
+      Begin VB.CommandButton Command1 
+         Caption         =   "Cambia estado pago"
+         Height          =   255
+         Left            =   2760
+         TabIndex        =   34
+         Top             =   240
+         Width           =   2535
+      End
+      Begin VB.TextBox t_numcomp 
+         Appearance      =   0  'Flat
+         BorderStyle     =   0  'None
+         Height          =   285
+         Left            =   2400
+         MaxLength       =   8
+         TabIndex        =   2
+         ToolTipText     =   "Ingrese los digitos del 4 al 7 del cod. de barra de algun articulo de la marca"
+         Top             =   720
+         Width           =   1215
+      End
+      Begin VB.TextBox t_sucursal 
+         Appearance      =   0  'Flat
+         BorderStyle     =   0  'None
+         Height          =   285
+         Left            =   1560
+         MaxLength       =   4
+         TabIndex        =   1
+         ToolTipText     =   "Ingrese los digitos del 4 al 7 del cod. de barra de algun articulo de la marca"
+         Top             =   720
+         Width           =   735
+      End
+      Begin VB.TextBox T_newestado 
+         Appearance      =   0  'Flat
+         BorderStyle     =   0  'None
+         Height          =   285
+         Left            =   1560
+         MaxLength       =   1
+         TabIndex        =   0
+         ToolTipText     =   "[N] Sin Pagar  -  [P] Pagado"
+         Top             =   240
+         Width           =   495
+      End
+      Begin VB.Label Label7 
+         Appearance      =   0  'Flat
+         BackColor       =   &H00800000&
+         Caption         =   "Num. Recibo"
+         ForeColor       =   &H00FFFFFF&
+         Height          =   255
+         Left            =   120
+         TabIndex        =   28
+         Top             =   720
+         Width           =   1335
+      End
+      Begin VB.Label Label6 
+         Appearance      =   0  'Flat
+         BackColor       =   &H00800000&
+         Caption         =   "Estado Pago"
+         ForeColor       =   &H00FFFFFF&
+         Height          =   495
+         Left            =   120
+         TabIndex        =   27
+         Top             =   240
+         Width           =   1335
+      End
+   End
+   Begin VB.Frame Frame2 
+      BackColor       =   &H00E0E0E0&
+      Caption         =   "Estado Actual del Comprobante"
+      Height          =   2295
+      Left            =   120
+      TabIndex        =   18
+      Top             =   120
+      Width           =   8295
+      Begin VB.TextBox t_idtipocomp 
+         Appearance      =   0  'Flat
+         BorderStyle     =   0  'None
+         Enabled         =   0   'False
+         Height          =   285
+         Left            =   7080
+         Locked          =   -1  'True
+         MaxLength       =   5
+         TabIndex        =   33
+         TabStop         =   0   'False
+         Top             =   720
+         Width           =   855
+      End
+      Begin VB.TextBox t_estado2 
+         Appearance      =   0  'Flat
+         BorderStyle     =   0  'None
+         Height          =   285
+         Left            =   2160
+         Locked          =   -1  'True
+         MaxLength       =   150
+         TabIndex        =   30
+         TabStop         =   0   'False
+         ToolTipText     =   "[N] Sin Pagar  -  [P] Pagado "
+         Top             =   1800
+         Width           =   495
+      End
+      Begin VB.TextBox T_IDPROV 
+         Appearance      =   0  'Flat
+         BorderStyle     =   0  'None
+         Enabled         =   0   'False
+         Height          =   285
+         Left            =   7080
+         Locked          =   -1  'True
+         MaxLength       =   5
+         TabIndex        =   29
+         TabStop         =   0   'False
+         Top             =   1080
+         Width           =   855
+      End
+      Begin VB.TextBox t_prov 
+         Appearance      =   0  'Flat
+         BorderStyle     =   0  'None
+         Height          =   285
+         Left            =   2160
+         Locked          =   -1  'True
+         MaxLength       =   150
+         TabIndex        =   23
+         TabStop         =   0   'False
+         Top             =   1080
+         Width           =   4575
+      End
+      Begin VB.TextBox t_estado 
+         Appearance      =   0  'Flat
+         BorderStyle     =   0  'None
+         Height          =   285
+         Left            =   2160
+         Locked          =   -1  'True
+         MaxLength       =   150
+         TabIndex        =   13
+         TabStop         =   0   'False
+         ToolTipText     =   "[N] Sin Pagar  -  [P] Pagado "
+         Top             =   1440
+         Width           =   495
+      End
+      Begin VB.TextBox t_id 
+         Appearance      =   0  'Flat
+         BorderStyle     =   0  'None
+         Enabled         =   0   'False
+         Height          =   285
+         Left            =   2160
+         Locked          =   -1  'True
+         MaxLength       =   10
+         TabIndex        =   19
+         TabStop         =   0   'False
+         Top             =   360
+         Width           =   1455
+      End
+      Begin VB.TextBox t_descripcion 
+         Appearance      =   0  'Flat
+         BorderStyle     =   0  'None
+         Height          =   285
+         Left            =   2160
+         Locked          =   -1  'True
+         MaxLength       =   150
+         TabIndex        =   12
+         TabStop         =   0   'False
+         Top             =   720
+         Width           =   4575
+      End
+      Begin VB.Label Label10 
+         Caption         =   "[A] Activo     -    [F] Facturado  -  [S] Sin Factrurar"
+         Height          =   255
+         Left            =   2880
+         TabIndex        =   32
+         Top             =   1800
+         Width           =   3735
+      End
+      Begin VB.Label Label8 
+         Appearance      =   0  'Flat
+         BackColor       =   &H00800080&
+         Caption         =   "Estado Facturacion"
+         ForeColor       =   &H00FFFFFF&
+         Height          =   255
+         Left            =   480
+         TabIndex        =   31
+         Top             =   1800
+         Width           =   1575
+      End
+      Begin VB.Label Label5 
+         Caption         =   "[N] Sin Pagar     -    [P] Pagado"
+         Height          =   255
+         Left            =   2880
+         TabIndex        =   25
+         Top             =   1440
+         Width           =   3735
+      End
+      Begin VB.Label Label4 
+         Appearance      =   0  'Flat
+         BackColor       =   &H00800080&
+         Caption         =   "Cliente:"
+         ForeColor       =   &H00FFFFFF&
+         Height          =   375
+         Left            =   480
+         TabIndex        =   24
+         Top             =   1080
+         Width           =   1575
+      End
+      Begin VB.Label Label1 
+         Appearance      =   0  'Flat
+         BackColor       =   &H00800080&
+         Caption         =   "Estado Pago Actual"
+         ForeColor       =   &H00FFFFFF&
+         Height          =   375
+         Left            =   480
+         TabIndex        =   22
+         Top             =   1440
+         Width           =   1575
+      End
+      Begin VB.Label Label2 
+         Appearance      =   0  'Flat
+         BackColor       =   &H00800080&
+         Caption         =   "Num. Interno"
+         ForeColor       =   &H00FFFFFF&
+         Height          =   375
+         Left            =   480
+         TabIndex        =   21
+         Top             =   360
+         Width           =   1575
+      End
+      Begin VB.Label Label3 
+         Appearance      =   0  'Flat
+         BackColor       =   &H00800080&
+         Caption         =   "Comprobante"
+         ForeColor       =   &H00FFFFFF&
+         Height          =   375
+         Left            =   480
+         TabIndex        =   20
+         Top             =   720
+         Width           =   1575
+      End
+   End
+   Begin VB.Frame Frame1 
+      BackColor       =   &H00E0E0E0&
+      Caption         =   "Funciones"
+      Height          =   975
+      Left            =   6840
+      TabIndex        =   15
+      Top             =   6360
+      Width           =   1575
+      Begin VB.CommandButton btnsale 
+         Height          =   615
+         Left            =   840
+         Picture         =   "vta023.frx":0000
+         Style           =   1  'Graphical
+         TabIndex        =   17
+         ToolTipText     =   "Salir sin Modificar"
+         Top             =   240
+         UseMaskColor    =   -1  'True
+         Width           =   615
+      End
+      Begin VB.CommandButton btnacepta 
+         Height          =   615
+         Left            =   120
+         Picture         =   "vta023.frx":0882
+         Style           =   1  'Graphical
+         TabIndex        =   16
+         ToolTipText     =   "Renueva Lista de Clientes"
+         Top             =   240
+         UseMaskColor    =   -1  'True
+         Width           =   615
+      End
+   End
+   Begin MSComctlLib.StatusBar StatusBar1 
+      Align           =   2  'Align Bottom
+      Height          =   255
+      Left            =   0
+      TabIndex        =   14
+      Top             =   7335
+      Width           =   8535
+      _ExtentX        =   15055
+      _ExtentY        =   450
+      _Version        =   393216
+      BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
+         NumPanels       =   4
+         BeginProperty Panel1 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
+            Alignment       =   1
+            Object.Width           =   7056
+            MinWidth        =   7056
+            Text            =   "Cliente"
+            TextSave        =   "Cliente"
+         EndProperty
+         BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
+            Alignment       =   1
+            Object.Width           =   8820
+            MinWidth        =   8820
+            Text            =   "Sistema"
+            TextSave        =   "Sistema"
+         EndProperty
+         BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
+            Style           =   6
+            Alignment       =   1
+            TextSave        =   "27/06/2014"
+         EndProperty
+         BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
+            Style           =   5
+            Alignment       =   1
+            TextSave        =   "16:54"
+         EndProperty
+      EndProperty
+      OLEDropMode     =   1
+   End
+   Begin VB.Label Label19 
+      BackColor       =   &H0080FFFF&
+      Caption         =   $"vta023.frx":1104
+      ForeColor       =   &H000000FF&
+      Height          =   615
+      Left            =   120
+      TabIndex        =   50
+      Top             =   6360
+      Width           =   6255
+   End
+End
+Attribute VB_Name = "vta_cambia_estado_pago"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = False
+'FIXIT: Utilice Option Explicit para evitar la creación implícita de variables de tipo Variant.     FixIT90210ae-R383-H1984
+Private EXISTE As String
+
+
+
+Private Sub btnacepta_Click()
+  Call graba
+End Sub
+
+Sub graba()
+J = MsgBox("Confirma Valores para Grabar", 4)
+If J = 6 Then
+   'On Error GoTo ERRORGRABA
+   If Check1 = 1 Then
+      If T_newestado = "S" Then
+        'verifico existencia del recibo
+         Set rs = New ADODB.Recordset
+         q = "select * from vta_02 where [sucursal] = " & Val(t_sucursal) & " and [num_comp] = " & Val(t_numcomp) & " and [letra] = 'R' and [id_tipocomp] = 50  and [id_cliente] = " & Val(T_IDPROV)
+         rs.Open q, cn1
+         If Not rs.BOF And Not rs.EOF Then
+             nir = rs("num_int")
+             Call cambia(nir)
+         Else
+             Y = MsgBox("El Recibo No existe o No pertenece al Cliente. Desea continuar con el cambio de estado", 4)
+             If Y = 6 Then
+               nir = 0
+               Call cambia(nir)
+             End If
+         End If
+         Set rs = Nothing
+       Else
+        Call cambia(0)
+       End If
+   Else
+     Call cambia(0)
+   End If
+
+
+   
+
+Unload Me
+      
+      
+End If
+
+Exit Sub
+ERRORGRABA:
+  MsgBox ("Error de Actualizacion. Verifique los datos o sus permisos")
+  
+End Sub
+Sub cambia(ByVal nio As Long)
+ 'On Error GoTo ERRORGRABA
+Set rs1 = New ADODB.Recordset
+q = "select * from vta_02 where [num_int] = " & Val(t_id)
+rs1.Open q, cn1, adOpenDynamic, adLockOptimistic, 1
+If Not rs1.BOF And Not rs1.EOF Then
+          If T_newestado = "N" Then
+            MsgBox ("Se pondran los pagos parciales del comprobante en cero por lo que debera cancelarlo totalmente nuevamente")
+            r = "0000-00000000"
+           'pone el comprobante como no pago
+            If rs1("moneda") = "P" Then
+                t = rs1("total")
+            Else
+                t = rs1("total_otra_moneda")
+            End If
+            rs1("saldo_impago02") = t
+             
+             'limpio todas la op del comp vta_010
+             Set rs2 = New ADODB.Recordset
+             q = "select * from vta_010 where [num_int_comp] = " & rs1("num_int")
+             rs2.Open q, cn1, adOpenDynamic, adLockOptimistic
+             While Not rs2.EOF
+               rs2.Delete
+               rs2.MoveNext
+             Wend
+             Set rs2 = Nothing
+           
+           
+           
+           Else
+                          
+              MsgBox ("Se cancelara totalmente el comprobante")
+             
+              Set rs2 = New ADODB.Recordset
+              q = "select * from vta_010"
+              rs2.Open q, cn1, adOpenDynamic, adLockOptimistic
+              rs2.AddNew
+                rs2("num_int_comp") = rs1("num_int")
+                rs2("num_int_rbo") = nio
+                rs2("importe_pagado") = rs1("saldo_impago02")
+                rs2("saldo_comprobante") = 0
+              rs2.Update
+              Set rs2 = Nothing
+           
+              rs1("saldo_impago02") = 0
+              r = Format$(Val(t_sucursal), "0000") & "-" & Format$(Val(t_numcomp), "00000000")
+          End If
+          rs1("estado_pago") = T_newestado
+          rs1("recibo_pago") = r
+        rs1.Update
+        
+        QUERY = "INSERT INTO g11([detalle], [id_usuario], [modulo], [num_int_comp], [fecha_hora], [obs], [id_operacion], [id_clipro])"
+        QUERY = QUERY & " VALUES ('Cambia estado pago NI:" & t_id & "', " & para.id_usuario & ", 'V', " & Val(t_id) & ", '" & Now & "', 'Nuevo estado " & T_newestado & "', 3, " & Val(T_IDPROV) & ")"
+        cn1.BeginTrans
+         cn1.Execute QUERY
+        cn1.CommitTrans
+  End If
+  Set rs1 = Nothing
+ 
+ 
+ 
+ MsgBox ("Operacion Terminada")
+
+Exit Sub
+ERRORGRABA:
+  MsgBox ("Error de Actualizacion. Verifique los datos o sus permisos")
+
+End Sub
+Sub cambia4()
+ 'On Error GoTo ERRORGRABA
+Set rs1 = New ADODB.Recordset
+q = "select * from vta_02 where [num_int] = " & Val(t_id)
+rs1.Open q, cn1, adOpenDynamic, adLockOptimistic, 1
+If Not rs1.BOF And Not rs1.EOF Then
+          rs1("estado_pago") = t_newestadoc
+          rs1.Update
+        
+        QUERY = "INSERT INTO g11([detalle], [id_usuario], [modulo], [num_int_comp], [fecha_hora], [obs], [id_operacion], [id_clipro])"
+        QUERY = QUERY & " VALUES ('Cambia estado Cancelacion Pro forma NI:" & t_id & "', " & para.id_usuario & ", 'V', " & Val(t_id) & ", '" & Now & "', 'Nuevo estado " & t_newestadoc & "', 3, " & Val(T_IDPROV) & ")"
+        cn1.BeginTrans
+         cn1.Execute QUERY
+        cn1.CommitTrans
+End If
+Set rs1 = Nothing
+ 
+ 
+ 
+ MsgBox ("Operacion Terminada")
+
+Exit Sub
+ERRORGRABA:
+  MsgBox ("Error de Actualizacion. Verifique los datos o sus permisos")
+
+End Sub
+
+Sub cambia2(ByVal nio)
+ 'On Error GoTo ERRORGRABA
+Set rs1 = New ADODB.Recordset
+q = "select * from vta_02 where [num_int] = " & Val(t_id)
+rs1.Open q, cn1, adOpenDynamic, adLockOptimistic, 1
+If Not rs1.BOF And Not rs1.EOF Then
+      If t_newestado2 = "S" Then
+            MsgBox ("Se pondran las cantidades totales originales del comprobante como pendientes para facturar nuevamente")
+            
+             Set rs2 = New ADODB.Recordset
+             q = "select * from vta_03 where [num_int] = " & rs1("num_int")
+             rs2.Open q, cn1, adOpenDynamic, adLockOptimistic
+             While Not rs2.EOF
+               rs2("cantidad") = rs2("cantidad_original")
+               rs2.Update
+               rs2.MoveNext
+             Wend
+             Set rs2 = Nothing
+           
+       Else
+         If t_newestado2 = "F" Then
+             MsgBox ("Se pondran las cantidades pendientes de facturar para el comprobate en cero")
+             Set rs2 = New ADODB.Recordset
+             q = "select * from vta_03 where [num_int] = " & rs1("num_int")
+             rs2.Open q, cn1, adOpenDynamic, adLockOptimistic
+             While Not rs2.EOF
+               rs2("cantidad") = 0
+               rs2.Update
+               rs2.MoveNext
+             Wend
+             Set rs2 = Nothing
+                    
+         End If
+       End If
+       rs1("estado") = t_newestado2
+       rs1.Update
+ 
+       
+       QUERY = "INSERT INTO g11([detalle], [id_usuario], [modulo], [num_int_comp], [fecha_hora], [obs], [id_operacion], [id_clipro])"
+       QUERY = QUERY & " VALUES ('Cambia estado facturacion NI:" & t_id & "', " & para.id_usuario & ", 'V', " & Val(t_id) & ", '" & Now & "', 'Nuevo estado " & t_newestado2 & "', 3, " & Val(T_IDPROV) & ")"
+       cn1.BeginTrans
+       cn1.Execute QUERY
+       cn1.CommitTrans
+       
+ 
+ End If
+ Set rs1 = Nothing
+ MsgBox ("Operacion Terminada")
+
+Exit Sub
+ERRORGRABA:
+  MsgBox ("Error de Actualizacion. Verifique los datos o sus permisos")
+
+End Sub
+
+
+Private Sub btnsale_Click()
+Unload Me
+End Sub
+
+
+
+Private Sub Command1_Click()
+J = MsgBox("Confirma cambiar estado de pago", 4)
+If J = 6 Then
+   'On Error GoTo ERRORGRABA
+      If T_newestado = "P" Then
+        'comprobate pago
+        'verifico existencia del recibo
+         Set rs = New ADODB.Recordset
+         q = "select * from vta_02 where [sucursal] = " & Val(t_sucursal) & " and [num_comp] = " & Val(t_numcomp) & " and [letra] = 'R' and [id_tipocomp] = 50  and [id_cliente] = " & Val(T_IDPROV)
+         rs.Open q, cn1
+         If Not rs.BOF And Not rs.EOF Then
+             nir = rs("num_int")
+             Call cambia(nir)
+         Else
+             MsgBox ("El Recibo No existe o No pertenece al Cliente. ")
+         End If
+         Set rs = Nothing
+       Else
+        Call cambia(0)
+       End If
+End If
+
+
+   
+
+Unload Me
+      
+End Sub
+
+Private Sub Command2_Click()
+J = MsgBox("Confirma cambiar estado de facturacion", 4)
+If J = 6 Then
+   Call cambia2(nir)
+End If
+
+
+   
+
+Unload Me
+
+End Sub
+
+Private Sub Command3_Click()
+J = MsgBox("Confirma cambiar datos del cmprobante ", 4)
+If J = 6 Then
+  Set rs1 = New ADODB.Recordset
+  q = "select * from vta_02 where [num_int] = " & Val(t_id)
+  rs1.Open q, cn1, adOpenDynamic, adLockOptimistic, 1
+  If Not rs1.BOF And Not rs1.EOF Then
+       rs1("observaciones") = t_obs
+       rs1.Update
+   
+       QUERY = "INSERT INTO g11([detalle], [id_usuario], [modulo], [num_int_comp], [fecha_hora], [obs], [id_operacion], [id_clipro])"
+       QUERY = QUERY & " VALUES ('Cambia estado (obs) NI:" & t_id & "', " & para.id_usuario & ", 'V', " & Val(t_id) & ", '" & Now & "', '" & Left$(t_obs, 50) & "', 3, " & Val(T_IDPROV) & ")"
+
+       cn1.BeginTrans
+       cn1.Execute QUERY
+       cn1.CommitTrans
+   
+   End If
+   Set rs1 = Nothing
+   MsgBox ("Operacion Terminada")
+  
+End If
+Unload Me
+
+End Sub
+
+Private Sub Command4_Click()
+Call cambia3
+End Sub
+
+Private Sub Command5_Click()
+J = MsgBox("Confirma cambiar estado de Cancelacion de Pro Forma de Venta", 4)
+If J = 6 Then
+   'On Error GoTo ERRORGRABA
+    Call cambia4
+    
+End If
+
+
+   
+
+Unload Me
+      
+
+End Sub
+
+Private Sub Form_Activate()
+If t_moneda = "P" Then
+  Label16 = "Total $"
+  Label17 = "Total U$$"
+Else
+  Label17 = "Total $"
+  Label16 = "Total U$$"
+
+End If
+
+If t_idtipocomp = 25 Then
+  Frame7.Visible = True
+  Frame3.Visible = False
+Else
+  Frame7.Visible = False
+  Frame3.Visible = True
+
+End If
+
+End Sub
+
+Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
+Select Case KeyCode
+   Case Is = vbKeyUp
+     Call tabup(Me)
+   Case Is = vbKeyF9
+     Call graba
+         
+End Select
+
+End Sub
+Sub cambia3()
+J = MsgBox("Confirma Modificar Datos del Comprobante", 4)
+If J = 6 Then
+   m = 0
+   If verificaperiodo(t_fechaa) = "A" Then
+      'modifico datos
+       m = 1
+   Else
+      MsgBox ("El periodo del comprobante esta Cerrado")
+   End If
+   If m = 1 Then
+   
+    Set rs = New ADODB.Recordset
+    q = "select [moneda], [cotizacion_dolar], [subtotal], [iva], [impuestos], [total], [total_otra_moneda]  from vta_02 where [num_int] = " & Val(t_id)
+    rs.Open q, cn1, adOpenDynamic, adLockOptimistic
+    If Not rs.BOF And Not rs.EOF Then
+       rs("moneda") = t_moneda
+       rs("cotizacion_dolar") = Val(t_cotizacion)
+       rs("iva") = Val(t_iva)
+       rs("impuestos") = Val(t_nograv)
+       rs("total") = Val(t_total)
+       rs("total_otra_moneda") = Val(t_total2)
+       rs.Update
+    End If
+    Set rs = Nothing
+ 
+       QUERY = "INSERT INTO g11([detalle], [id_usuario], [modulo], [num_int_comp], [fecha_hora], [obs], [id_operacion], [id_clipro])"
+       QUERY = QUERY & " VALUES ('Cambia Importes facturacion NI:" & t_id & "', " & para.id_usuario & ", 'V', " & Val(t_id) & ", '" & Now & "', ' ', 22, " & Val(T_IDPROV) & ")"
+       cn1.BeginTrans
+       cn1.Execute QUERY
+       cn1.CommitTrans
+
+    
+     'Call grabausuario
+    
+    MsgBox ("Tarea Finalizada")
+   
+   End If
+End If
+
+End Sub
+Private Sub Form_KeyPress(KeyAscii As Integer)
+Select Case KeyAscii
+  Case Is = 13
+    Call TabEnter2(Me, 11)
+  Case Is = 27
+        Unload Me
+End Select
+End Sub
+
+Private Sub Form_Load()
+Call barraesag(Me)
+End Sub
+
+
+Private Sub t_cotizacion_LostFocus()
+If Val(t_cotizacion) < 1 Then
+  t_cotizacion = 1
+End If
+End Sub
+
+Private Sub t_descripcion_LostFocus()
+If t_descripcion = "" Then
+  t_descripcion = "Null"
+End If
+End Sub
+
+
+
+Private Sub t_moneda_LostFocus()
+t_moneda = Format$(t_moneda, ">@")
+Select Case t_moneda
+ Case Is = "P", Is = "D"
+ Case Else
+   t_moneda = "P"
+End Select
+If t_moneda = "P" Then
+  Label16 = "Total $"
+  Label17 = "Total U$$"
+Else
+  Label17 = "Total $"
+  Label16 = "Total U$$"
+End If
+
+End Sub
+
+Private Sub T_newestado_LostFocus()
+'FIXIT: Reemplazar la función 'UCase' con la función 'UCase$'.                             FixIT90210ae-R9757-R1B8ZE
+T_newestado = UCase(T_newestado)
+If T_newestado <> "N" And T_newestado <> "P" Then
+   T_newestado = "N"
+End If
+
+End Sub
+
+Private Sub t_newestado2_LostFocus()
+t_newestado2 = UCase(t_newestado2)
+If t_newestado2 <> "A" And t_newestado2 <> "F" And t_newestado2 <> "S" Then
+   t_newestado2 = t_estado2
+End If
+
+End Sub
+
+Private Sub t_numcomp_LostFocus()
+t_numcomp = Format$(Val(t_numcomp), "00000000")
+
+End Sub
+
+Private Sub t_obs_KeyPress(KeyAscii As Integer)
+If KeyAscii = 13 Then
+  btnacepta.SetFocus
+End If
+End Sub
+
+Private Sub t_sucursal_LostFocus()
+t_sucursal = Format$(Val(t_sucursal), "0000")
+
+End Sub

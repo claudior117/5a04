@@ -1,0 +1,62 @@
+; Field definition file for table: ADORecordset
+a5.num_int	long		1
+a5.sucursal	short		1
+NUM_COMPROBANTE	long		1
+LETRA	string	1	valor de muestra de cadena
+ID_TIPOCOMP	short		1
+a5.id_proveedor	long		1
+FECHA	date		Jan 5, 1994
+a5.ID_USUARIO	long		1
+SUBTOTAL	number		1.00
+IVA	number		1.00
+NO_GRABADO	number		1.00
+PERCEP_RET	number		1.00
+TOTAL	number		1.00
+fecha_prob_entrega	date		Jan 5, 1994
+fecha_recepcion	date		Jan 5, 1994
+estado	string	1	valor de muestra de cadena
+a5.id_codretgan	long		1
+id_cuenta	long		1
+stock	string	1	valor de muestra de cadena
+ctacte	string	1	valor de muestra de cadena
+grabado	string	1	valor de muestra de cadena
+estado_pago	string	1	valor de muestra de cadena
+num_op	string	25	valor de muestra de cadena
+compra	string	1	valor de muestra de cadena
+obs	string	80	valor de muestra de cadena
+id_obra	long		1
+ret_gan	number		1.00
+ret_ib	number		1.00
+a5.id_codretib	short		1
+total_d	number		1.00
+a7.num_int	long		1
+secuencia	short		1
+id_formapago	short		1
+formapago	string	20	valor de muestra de cadena
+num_ch	long		1
+detalle_banco	string	25	valor de muestra de cadena
+a7.sucursal	string	25	valor de muestra de cadena
+titular	string	25	valor de muestra de cadena
+importe	number		1.00
+fecha_dif	date		Jan 5, 1994
+num_int_fp	long		1
+a1.id_proveedor	long		1
+Denominacion	string	100	valor de muestra de cadena
+Direccion	string	100	valor de muestra de cadena
+te	string	50	valor de muestra de cadena
+Localidad	string	50	valor de muestra de cadena
+cp	string	20	valor de muestra de cadena
+Provincia	string	50	valor de muestra de cadena
+email	string	150	valor de muestra de cadena
+cuit	string	13	valor de muestra de cadena
+cod_tipoiva	short		1
+a1.id_codretgan	short		1
+inscripto_gan	string	1	valor de muestra de cadena
+id_tipoib	short		1
+num_ib	string	30	valor de muestra de cadena
+fecha_vto_exepcion_ib	date		Jan 5, 1994
+id_prov_anterior	long		1
+a1.id_codretib	long		1
+g1.ID_USUARIO	long		1
+USUARIO	string	50	valor de muestra de cadena
+GRUPO	string	6	valor de muestra de cadena

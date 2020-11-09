@@ -1,0 +1,1146 @@
+Attribute VB_Name = "Module1"
+'modulo 1 global   Version 2.10
+'3.0 modif. : se agreo func.  suma_msflexgrid
+
+Declare Function getmoduleusage% Lib "kernel" (ByVal hmodule%)
+
+Declare Function GetDeviceCaps Lib "GDI" (ByVal HDC As Integer, ByVal nIndex As Integer) As Integer
+Const horres = 8 ' resolución horizontal en pixels
+Const verres = 10 ' resolución vertical en pixels
+
+Public gconexion As String 'definicion de la var. gloval de conexion
+
+Public Type varudt 'se crea una estructura para los parametros
+   nombrecli As String 'cliente
+   direccioncli As String
+   sistema As String 'descripcion del sistema
+   sepdec As String
+   sucursal As Integer
+   CUIT As String
+   version As String
+   usuario As String
+   conexion As String
+   SERIAL As String 'NUMERO DE SERIE
+   TECLI As String 'TE
+   maxlineascompvta As Integer
+   maxlineasrep1 As Integer
+   maxlineasrep2 As Integer
+End Type
+
+Public glo As varudt 'define la variable para con estruct. varudt
+
+Public cn1 As ADODB.Connection 'conexion a base de datos
+Public cn3 As ADODB.Connection 'conexion a base de datos
+Public rs As Recordset
+Public rs1 As Recordset
+
+Sub TabEnter(p_form As Form, tabindexstop As Integer)
+'avanza un campo cuando presionamos enter hasta el tabindex del ultimo campo(tabindexstoop)
+
+Dim w_ctl As Control
+Dim w_Activo As Integer
+Dim ctrl As Boolean
+On Error Resume Next
+w_Activo = (p_form.ActiveControl.TabIndex) + 1
+If TypeOf p_form.ActiveControl Is ComboBox Then
+    ctrl = False
+Else
+    ctrl = True
+End If
+
+
+While ctrl
+  For Each w_ctl In p_form
+   If w_ctl.Enabled = True Then
+    
+    
+    
+    
+    
+    
+    If TypeOf w_ctl Is TextBox Or TypeOf w_ctl Is ListBox Or TypeOf w_ctl Is CheckBox Then
+        If w_Activo = tabindexstop + 1 Then
+            'w_Activo = 0
+            w_Activo = w_Activo - 1
+        End If
+        If w_ctl.TabIndex = w_Activo Then
+            
+            w_ctl.Enabled = True
+            w_ctl.SetFocus
+            ctrl = False
+            Exit For
+       
+       End If
+    
+    
+    
+    
+    
+    End If
+  End If
+ Next
+ w_Activo = w_Activo + 1
+ Wend
+End Sub
+
+Sub TabEnter2(p_form As Form, tabindexstop As Integer)
+'avanza un campo cuando presionamos enter hasta el tabindex del ultimo campo(tabindexstoop)
+
+Dim w_ctl As Control
+Dim w_Activo As Integer
+Dim ctrl As Boolean
+On Error Resume Next
+w_Activo = (p_form.ActiveControl.TabIndex) + 1
+ctrl = True
+While ctrl
+  For Each w_ctl In p_form
+       If w_ctl.Enabled = True Then
+        
+
+  If TypeOf w_ctl Is TextBox Or TypeOf w_ctl Is ListBox Or TypeOf w_ctl Is CheckBox Or TypeOf w_ctl Is ComboBox Or TypeOf w_ctl Is OptionButton Or TypeOf w_ctl Is MSFlexGrid Then
+        If w_Activo = tabindexstop + 1 Then
+            'w_Activo = 0
+            w_Activo = w_Activo - 1
+        End If
+        If w_ctl.TabIndex = w_Activo Then
+            w_ctl.Enabled = True
+            w_ctl.SetFocus
+            
+            
+            
+            ctrl = False
+            
+            Exit For
+        
+        End If
+     
+     
+     
+     End If
+   End If
+ Next
+ 
+ w_Activo = w_Activo + 1
+ Wend
+End Sub
+Sub TABESC(f As Form)
+Dim w_ctl As Control
+Dim w_Activo As Integer
+Dim ctrl As Boolean
+On Error Resume Next
+If f.ActiveControl.TabIndex > 0 Then
+  w_Activo = (f.ActiveControl.TabIndex) - 1
+Else
+  w_Activo = 0
+End If
+If TypeOf f.ActiveControl Is ComboBox Then
+    ctrl = True
+Else
+    ctrl = False
+End If
+
+While ctrl
+  For Each w_ctl In f
+        If w_Activo = 0 Then
+            w_Activo = 0
+        End If
+        If w_ctl.TabIndex = w_Activo And w_ctl.Enabled = True Then
+            w_ctl.SetFocus
+            ctrl = False
+            
+            Exit For
+        End If
+  Next
+ w_Activo = w_Activo - 1
+ Wend
+End Sub
+Sub inicializalistview(lv As ListView, r As Integer, pr As Boolean)
+'inicializa un liustview lv con un nro de renglones r y pr determina si pone el nro. de renlon en la primer columna o nada
+For i = 1 To r
+  If pr Then
+   Set li = lv.ListItems.Add(i, , i & " ")
+  Else
+   Set li = lv.ListItems.Add(i, , " ")
+  End If
+Next i
+End Sub
+
+Sub ERROR1(wc As Control)
+     MsgBox ("ERROR!. Valor No Encontrado")
+     wc.Enabled = True
+     wc.SetFocus
+End Sub
+
+Sub tabup(p_form As Form)
+'retrocede un campo cuando presionamos la tecla up
+
+Dim w_ctl As Control
+Dim w_Activo As Integer
+Dim ctrl As Boolean
+On Error Resume Next
+If p_form.ActiveControl.TabIndex > 0 Then
+  w_Activo = (p_form.ActiveControl.TabIndex) - 1
+Else
+  w_Activo = 0
+End If
+If TypeOf p_form.ActiveControl Is ComboBox Then
+    ctrl = False
+Else
+    ctrl = True
+End If
+
+While ctrl
+  For Each w_ctl In p_form
+     If TypeOf w_ctl Is TextBox Or TypeOf w_ctl Is ComboBox Or TypeOf w_ctl Is ListBox Or TypeOf w_ctl Is CheckBox Then
+        
+        If w_Activo = 0 Then
+            w_Activo = 0
+        End If
+        If w_ctl.TabIndex = w_Activo And w_ctl.Enabled = True Then
+            w_ctl.SetFocus
+            ctrl = False
+            
+            Exit For
+       End If
+    End If
+ Next
+ w_Activo = w_Activo - 1
+ Wend
+End Sub
+
+Sub tabup2(p_form As Form)
+'retrocede un campo cuando presionamos la tecla up
+
+Dim w_ctl As Control
+Dim w_Activo As Integer
+Dim ctrl As Boolean
+On Error Resume Next
+If p_form.ActiveControl.TabIndex > 0 Then
+  w_Activo = (p_form.ActiveControl.TabIndex) - 1
+Else
+  w_Activo = 0
+End If
+    
+If TypeOf w_ctl Is ListBox Then
+ ctrl = False
+Else
+ ctrl = True
+End If
+While ctrl
+  For Each w_ctl In p_form
+     If TypeOf w_ctl Is TextBox Or TypeOf w_ctl Is ComboBox Or TypeOf w_ctl Is CheckBox Then
+        
+        If w_Activo = 0 Then
+            w_Activo = 0
+        End If
+        If w_ctl.TabIndex = w_Activo And w_ctl.Enabled = True Then
+            w_ctl.SetFocus
+            ctrl = False
+            
+            Exit For
+       End If
+    End If
+ Next
+ w_Activo = w_Activo - 1
+ Wend
+End Sub
+
+Public Sub INICIALIZA(FRM As Form)
+'proc. que limpia controles textbox
+    Dim CTL As Control
+    On Error Resume Next
+    For Each CTL In FRM.Controls
+        If TypeOf CTL Is TextBox Then
+          If CTL.TabIndex <> 0 Then
+            CTL.Enabled = False
+          Else
+            CTL.Enabled = True
+            CTL.SetFocus
+          End If
+          CTL.Text = ""
+
+        End If
+        
+        If TypeOf CTL Is ComboBox Then
+           CTL.clear
+           CTL.Enabled = False
+        End If
+    Next
+    FRM.btnacepta.Enabled = False
+End Sub
+
+Public Sub INICIALIZA2(FRM As Form)
+
+'proc. que limpia controles textbox
+    Dim CTL As Control
+    On Error Resume Next
+    For Each CTL In FRM.Controls
+        If TypeOf CTL Is TextBox Then
+            CTL.Text = ""
+        End If
+        
+     '   If TypeOf CTL Is ComboBox Then
+     '      CTL.clear
+     '      CTL.Enabled = False
+     '   End If
+    Next
+End Sub
+
+Public Sub unlocked(FRM As Form)
+'proc. que pone la propidad locked en falso
+    Dim CTL As Control
+    On Error Resume Next
+    For Each CTL In FRM.Controls
+            CTL.Locked = False
+    Next
+    
+End Sub
+Public Function llena_combo(rstabla As ADODB.Recordset, campodescripcion As String, campoclave As String, cboname As Object, clear As Boolean) As Object
+  'funcion para el llenado de un combo
+  'parametros:  rstabla -> Recordset con datos
+  '             campodescripcion -> Nombre del campo con el que se desea llenar el combo
+  '             campoclave -> campo indice del recrodset
+  '             comboname -> nombre del combo
+  '             clear -> true si se desea limpiar el combo antes del llenado
+    
+    If clear Then
+        cboname.clear
+    End If
+    
+    Do Until rstabla.EOF
+        If Not IsNull(rstabla.Fields(campodescripcion).Value) Then
+            cboname.AddItem rstabla.Fields(campodescripcion).Value
+            cboname.ItemData(cboname.NewIndex) = rstabla.Fields(campoclave).Value
+        End If
+        
+        rstabla.MoveNext
+        
+    Loop
+    
+    Set llena_combo = cboname
+    
+    rstabla.Close
+    Set rstabla = Nothing
+End Function
+
+Public Sub carga_provincia(c As Object)
+  't = 1 muestra <Todos>
+  c.clear
+  c.AddItem "Buenos Aires", 0
+  c.AddItem "Capital Federal", 1
+  c.AddItem "Catamarca", 2
+  c.AddItem "Cordoba", 3
+  c.AddItem "Corrientes", 4
+  c.AddItem "Chaco", 5
+  c.AddItem "Chubut", 6
+  c.AddItem "Entre Rios", 7
+  c.AddItem "Formosa", 8
+  c.AddItem "Jujuy", 9
+  c.AddItem "La Pampa", 10
+  c.AddItem "La Rioja", 11
+  c.AddItem "Mendoza", 12
+  c.AddItem "Misiones", 13
+  c.AddItem "Neuquen", 14
+  c.AddItem "Rio Negro", 15
+  c.AddItem "Salta", 16
+  c.AddItem "San Juan", 17
+  c.AddItem "San Luis", 18
+  c.AddItem "Santa Cruz", 19
+  c.AddItem "Santa Fe", 20
+  c.AddItem "Santiago del Estero", 21
+  c.AddItem "Tierra del Fuego", 22
+  c.AddItem "Tucuman", 23
+  c.AddItem "Otras", 24
+    c.ListIndex = 0
+  
+End Sub
+
+Public Sub carga_tipodoc(c As Object)
+  c.clear
+  c.AddItem "DNI", 0
+  c.AddItem "CDI", 1
+  c.AddItem "LC", 2
+  c.AddItem "LE", 3
+  c.AddItem "PTE", 4
+  c.AddItem "OTRO", 5
+  c.ListIndex = 0
+
+End Sub
+
+Public Sub solonum(KeyAscii As Integer, dec As Integer)
+'nro es keyascii de la tecla pulsada
+'dec 0 --> no permite el sep decimal
+'    1 --> permite el sep. decimal
+If dec = 1 Then
+   If (KeyAscii < Asc("0") Or KeyAscii > Asc("9")) And KeyAscii <> Asc(".") Then
+     Beep
+     KeyAscii = 0
+   End If
+      
+Else
+   If (KeyAscii < Asc("0") Or KeyAscii > Asc("9")) Then
+     Beep
+     KeyAscii = 0
+   End If
+End If
+
+End Sub
+
+Public Sub solofecha(fecha As Control)
+If Not IsDate(fecha) Then
+   MsgBox ("Formato de Fecha Incorrecto")
+   fecha.Enabled = True
+   fecha.SetFocus
+End If
+   
+    
+End Sub
+
+Sub keypresscombo(k As Integer, ccombo As Control, ctext As Control)
+If k = 13 Then
+  If ccombo.ListIndex > -1 Then
+     ctext = ccombo.ItemData(ccombo.ListIndex)
+     ctext.Enabled = True
+     ctext.SetFocus
+     ccombo.Enabled = False
+  End If
+End If
+
+If k = 27 Then
+     ctext.Enabled = True
+     ctext.SetFocus
+     ccombo.Enabled = False
+End If
+
+End Sub
+
+Sub activapanel(p_form As Form)
+Dim w_ctl As Control
+For Each w_ctl In p_form
+       If TypeOf w_ctl Is TextBox Or TypeOf w_ctl Is ComboBox Or TypeOf w_ctl Is ListBox Or TypeOf w_ctl Is CheckBox Or TypeOf w_ctl Is OptionButton Then
+            w_ctl.Enabled = False
+       Else
+         If TypeOf w_ctl Is CommandButton Then
+            w_ctl.Enabled = True
+         End If
+       End If
+ Next
+
+End Sub
+
+
+Sub sucursal0(tipo As Integer)
+'tipo es el tipo de apertura  0 solo lectura
+'                             1 para modificacion
+Set rs = New ADODB.Recordset
+QUERY = "select * from G000 where sucursal = 0"
+If tipo = 0 Then
+   rs.Open QUERY, cn1, adOpenForwardOnly, adLockReadOnly, 1
+Else
+   rs.Open QUERY, cn1, adOpenStatic, adLockOptimistic, 1
+End If
+If Not rs.EOF And Not rs.BOF Then
+    
+Else
+    MsgBox ("Error 000a en Base de Datos de parametros")
+    End
+End If
+
+End Sub
+
+
+
+Sub barra(p_form As Form)
+'BARRA ESTADO
+p_form.StatusBar1.Panels.Item(1) = "Usuario: " & glo.usuario
+p_form.StatusBar1.Panels.Item(2) = "[ENTER] Avanza - [Up] Regresa - [ESC] Regresa - [F4] Despliega"
+End Sub
+Sub BARRA2(p_form As Form)
+'BARRA ESTADO
+p_form.StatusBar1.Panels.Item(1) = "Usuario: " & glo.usuario
+p_form.StatusBar1.Panels.Item(2) = "[ENTER] Avanza - [Up] Regresa - [ESC] Cancela - [F9] Graba"
+
+End Sub
+Sub titulos(f As Form)
+f!Text1 = glo.nombrecli
+f!Text2 = glo.direccioncli
+f!Text3 = glo.TECLI
+f!Text4 = glo.CUIT
+End Sub
+
+
+Sub barracombo(p_form As Form)
+'BARRA ESTADO
+p_form.StatusBar1.Panels.Item(1) = "LISTA DE OPCIONES"
+p_form.StatusBar1.Panels.Item(2) = "F4 Abre - ENTER Selecciona - Up-Down Desplaza - ESC Termina"
+
+End Sub
+
+
+Public Function buscaindice(c As Object, ByVal V As Double) As Double
+'BUSCA LA POSICION DENTRO DE UN COMBO DEL INDICE
+i = 0
+li = -1
+Do While i < c.ListCount
+  
+  If c.ItemData(i) = V Then
+      buscaindice = i
+      li = i
+      Exit Do
+  End If
+  i = i + 1
+Loop
+
+If li <> -1 Then
+  c.ListIndex = i
+Else
+  c.ListIndex = 0
+End If
+
+End Function
+
+Public Function buscavalor(c As Object, ByVal V As String) As Double
+'BUSCA LA un valor dentro del combo y devuelve el indice
+i = 0
+li = -1
+Do While i < c.ListCount
+  
+  If c.List(i) = V Then
+      buscavalor = i
+      li = i
+      Exit Do
+  End If
+  i = i + 1
+Loop
+
+If li <> -1 Then
+  c.ListIndex = i
+Else
+  c.ListIndex = 0
+End If
+
+End Function
+
+Public Function opmultiples(AR As Variant, t As Object) As Integer
+  encontro = 0
+  For i = LBound(AR) To UBound(AR)
+    If t = AR(i) Then
+      encontro = 1
+      i = UBound(AR)
+      opmultiples = 1
+    End If
+  
+  Next i
+  If encontro = 0 Then
+    opmultiples = 0
+    t.SetFocus
+  End If
+End Function
+
+
+Public Sub cabeceralist(l As Object)
+'agrega la cabecera -nombre empresa y direccion en un objeto list-
+'l --> objeto list
+l.AddItem glo.nombrecli
+l.AddItem glo.direccioncli
+
+End Sub
+
+
+
+Public Sub imprimeempresa(tf As Single)
+  On Error GoTo errorimp
+  Printer.FontName = "Times New Roman"
+  Printer.FontBold = True
+  Printer.FontSize = tf
+  Printer.Print glo.nombrecli
+  Printer.FontBold = False
+  Printer.FontSize = tf - 3
+  Printer.Print glo.direccioncli & "  Te:" & glo.TECLI
+  Printer.Print "Cuit: " & glo.CUIT
+  Printer.Print
+  
+  Exit Sub
+  
+errorimp:
+  j = MsgBox("Error de Impresion. ¿Continua?", 4)
+  If j = 6 Then
+     Resume
+  Else
+     Exit Sub
+  End If
+End Sub
+
+Public Sub imprimetitulo(ByVal p As Integer, titulo As String)
+     Call imprimelinea("", 8, False, False, 1)
+     Call imprimelinea(titulo, 10, True, True, 2)
+     Call imprimelinea("", 8, False, False, 1)
+     Text = Space$(80) & " Hoja Nro.:" & p
+     Call imprimelinea(Text, 8, False, False, 1)
+     Text = Space$(80) & " Fecha Imp.:" & Format$(Now, "dd/mm/yyyy")
+     Call imprimelinea(Text, 8, False, False, 1)
+
+End Sub
+Public Sub imprimelistview(lv As ListView, empresa As Boolean, ByVal tf As Integer, ByVal titulo As String)
+     
+     fuente = tf
+     'cuerpo
+     fila = 1
+     Printer.Print titulo
+     Printer.Print
+     
+     While fila <= lv.ListItems.Count
+       Text = ""
+       For col = 1 To lv.ColumnHeaders.Count   'columnas
+         tamañocol = Int(lv.ColumnHeaders.Item(col).Width / 100)
+         Item = Space$(tamañocol)
+         e = Space$(100)
+         alineacion = lv.ColumnHeaders.Item(col).Alignment
+         If col = 1 Then
+           If alineacion <> 1 Then
+            LSet Item = lv.ListItems(fila).Text
+           Else
+            RSet Item = lv.ListItems(fila).Text
+           End If
+            Text = Text & Item
+         Else
+           If alineacion <> 1 Then
+            LSet Item = lv.ListItems(fila).ListSubItems(col - 1).Text
+           Else
+            RSet Item = lv.ListItems(fila).ListSubItems(col - 1).Text
+           End If
+            Text = Text & Item
+         End If
+       Next col
+      Call imprimelinea(Text, fuente, False, False, 1)
+      fila = fila + 1
+     Wend
+     Printer.EndDoc
+End Sub
+
+Sub imprimelistview2(lv As ListView, ByVal titulo As String, ByVal linea1 As String, ByVal linea2 As String, ByVal linea3 As String, ByVal lph As Integer, ByVal ic As Boolean, ByVal ie As Boolean, ByVal tf As Integer)
+ 'imprime listview lv
+ 'titulo del listado
+ 'lph = lineas por hoja
+ 'ie = imprime empresa
+ 'ic = imprime cabecera
+ 'LINEA1 = IMPRIME PRIMERA LINEA PARAMETROS
+ 'LINEA2 = IMPRIME PRIMERA LINEA PARAMETROS
+ 'LINEA3 = IMPRIME PRIMERA LINEA PARAMETROS
+     fuente = tf
+     'cuerpo
+     linea = 2
+     If ie = True Then
+       Call imprimeempresa(14)
+       linea = linea + 5
+     End If
+     Printer.FontSize = fuente + 2
+     Printer.Print
+     Printer.Print titulo
+     Printer.Print
+     Printer.FontSize = fuente
+     Printer.Print linea1
+     Printer.Print linea2
+     Printer.Print linea3
+     If ic = True Then
+       Call imprimecablistview(lv, fuente, "")
+       linea = linea + 2
+     End If
+     
+     nh = 1
+     fila = 1
+     linea = linea + 3
+
+    While fila <= lv.ListItems.Count
+      If linea <= lph Then
+       Text = ""
+       For col = 1 To lv.ColumnHeaders.Count   'columnas
+         tamañocol = Int(lv.ColumnHeaders.Item(col).Width / 100)
+         Item = Space$(tamañocol)
+         e = Space$(100)
+         alineacion = lv.ColumnHeaders.Item(col).Alignment
+         If col = 1 Then
+           If alineacion <> 1 Then
+            LSet Item = lv.ListItems(fila).Text
+           Else
+            RSet Item = lv.ListItems(fila).Text
+           End If
+            Text = Text & Item
+         Else
+           If alineacion <> 1 Then
+            LSet Item = lv.ListItems(fila).ListSubItems(col - 1).Text
+           Else
+            RSet Item = lv.ListItems(fila).ListSubItems(col - 1).Text
+           End If
+            Text = Text & Item
+         End If
+       Next col
+      Call imprimelinea(Text, fuente, False, False, 1)
+      fila = fila + 1
+      linea = linea + 1
+     Else
+       Printer.Print "________________________________________________________________"
+       Printer.Print "Fecha Imp." & Format$(Now, "dd/mm/yyyy") & "   Nro.Hoja: " & Format$(nh, "000") & "     Emitido por: " & glo.usuario
+       Printer.NewPage
+       nh = nh + 1
+       fuente = tf
+       'cuerpo
+       linea = 2
+       If ie = True Then
+         Call imprimeempresa(14)
+         linea = linea + 5
+        End If
+       Printer.FontSize = fuente + 2
+       Printer.Print
+       Printer.Print titulo
+       Printer.Print
+       Printer.FontSize = fuente
+       Printer.Print linea1
+       Printer.Print linea2
+       Printer.Print linea3
+       If ic = True Then
+         Call imprimecablistview(lv, fuente, "")
+         linea = linea + 2
+       End If
+      End If
+     Wend
+     Printer.EndDoc
+ 
+ End Sub
+
+Sub imprimegrid(g As MSFlexGrid, c() As Double, ByVal titulo As String, ByVal linea1 As String, ByVal linea2 As String, ByVal linea3 As String, lph As Integer, tf As Integer, ie As Boolean, ic As Boolean)
+ 
+ 'imprime msfkex grid g
+ 'titulo del listado
+ 'lph = lineas por hoja
+ 'ie = imprime empresa
+ 'ic = imprime cabecera
+ 'LINEA1 = IMPRIME PRIMERA LINEA PARAMETROS
+ 'LINEA2 = IMPRIME PRIMERA LINEA PARAMETROS
+ 'LINEA3 = IMPRIME PRIMERA LINEA PARAMETROS
+ 
+ 'c es un array de integer que indica el orden de las columnas c(0) = 3 indica q' la primera col a imprimir es la col 3 del msfg
+ 'c tiene como maximo 15 columnas 0-14
+     
+ 'en el grid los valores numericos tienen que tener alineacion = 1 y los de texto = 9
+     
+    On Error GoTo errifg
+     fuente = tf
+     'cuerpo
+     linea = 2
+     If ie = True Then
+       Call imprimeempresa(14)
+       linea = linea + 5
+     End If
+     Printer.FontSize = fuente + 2
+     Printer.Print
+     Printer.Print titulo
+     Printer.Print
+     Printer.FontSize = fuente
+     Printer.Print linea1
+     Printer.Print linea2
+     Printer.Print linea3
+     If ic = True Then
+       'Call imprimecabgrid(g, fuente)
+       linea = linea + 2
+     End If
+     
+     nh = 1
+     fila = 0
+     linea = linea + 3
+    cab = 0
+    t = "____________________________________________________________________________________________________"
+    While fila < g.Rows
+      If linea <= lph Then
+       Text = ""
+       For col = 0 To 14   'columnas
+         If c(col) >= 0 Then 'las coloumnas que no salen llevan -1
+           tamañocol = Int(g.ColWidth(c(col)) / 100)
+           Item = Space$(tamañocol)
+           e = Space$(100)
+           alineacion = g.ColAlignment(c(col))
+           
+           'If col = 1 Then
+             If alineacion = 1 Then
+              LSet Item = g.TextMatrix(fila, c(col))
+             Else
+              RSet Item = g.TextMatrix(fila, c(col))
+             End If
+           Text = Text & Item
+         End If
+       Next col
+       If cab = 0 Then
+          If fila = 0 Then
+             t = "_"
+             For i = 1 To Len(Text)
+                t = t & "_"
+             Next i
+             primera = Text
+             fila = fila + 1
+          End If
+          Call imprimelinea(t, fuente, False, False, 1)
+          Call imprimelinea(primera, fuente, False, False, 1)
+          Call imprimelinea(t, fuente, False, False, 1)
+          cab = 1
+       Else
+          Call imprimelinea(Text, fuente, False, False, 1)
+          fila = fila + 1
+          linea = linea + 1
+       End If
+     Else
+       Printer.Print "________________________________________________________________"
+       Printer.Print "Fecha Imp." & Format$(Now, "dd/mm/yyyy") & "   Nro.Hoja: " & Format$(nh, "000") & "     Emitido por: " & glo.usuario
+       Printer.NewPage
+       nh = nh + 1
+       fuente = tf
+       'cuerpo
+       linea = 2
+       If ie = True Then
+         Call imprimeempresa(14)
+         linea = linea + 5
+        End If
+       Printer.FontSize = fuente + 2
+       Printer.Print
+       Printer.Print titulo
+       Printer.Print
+       Printer.FontSize = fuente
+       Printer.Print linea1
+       Printer.Print linea2
+       Printer.Print linea3
+       cab = 0
+      End If
+     Wend
+     
+     
+     For i = linea To lph
+        Printer.Print
+     Next i
+     Printer.Print "________________________________________________________________"
+     Printer.Print "Fecha Imp." & Format$(Now, "dd/mm/yyyy") & "   Nro.Hoja: " & Format$(nh, "000") & "     Emitido por: " & glo.usuario
+
+     Printer.EndDoc
+
+Exit Sub
+errifg:
+g = MsgBox("Error de Impresion. Continua?", 4)
+If g = 6 Then
+   Resume
+Else
+   Printer.KillDoc
+   Exit Sub
+End If
+End Sub
+
+Public Sub imprimecablistview(lv As ListView, ByVal tf As Integer, ByVal titulo As String)
+'lv listview
+'tf  furnte
+'titulo As titulo
+'cabecera
+     f = tf
+     Call imprimelinea(titulo, f + 2, False, False, 1)
+     'Call imprimelinea(" ", f + 2, False, False, 1)
+
+     Text = "______________________________________________________________________________________________________________________________"
+     Call imprimelinea(Text, f, False, False, 1)
+     Text = ""
+     For col = 1 To lv.ColumnHeaders.Count   'columnas
+         tamañocol = Int(lv.ColumnHeaders.Item(col).Width / 100)
+         Item = Space$(tamañocol)
+         LSet Item = lv.ColumnHeaders.Item(col).Text
+         Text = Text & Item
+     Next col
+     Call imprimelinea(Text, f, False, False, 1)
+     Text = "______________________________________________________________________________________________________________________________"
+     Call imprimelinea(Text, f, False, False, 1)
+     Call imprimelinea(" ", f, False, False, 1)
+     
+     'fin cabecera
+
+End Sub
+
+
+Public Sub imprimelinea(ByVal l As String, ByVal tf As Integer, ByVal bf As Boolean, ByVal sf As Boolean, ByVal nf)
+  'imprime un texto recibido en l
+  'tf as tamaño fuente
+  'bf es truee si es resaltado
+  'sf as true si es subrayado
+  'nf as codigo nombre letra
+  On Error GoTo errorimp
+  Select Case nf
+     Case Is = 1
+        Printer.FontName = "Courier New"
+     Case Is = 2
+        Printer.FontName = "Times New Roman"
+    Case Else
+        Printer.FontName = "Arial"
+  End Select
+  Printer.FontSize = tf
+  Printer.FontBold = bf
+  Printer.FontUnderline = sf
+  Printer.Print l
+  
+  
+  Exit Sub
+  
+errorimp:
+  j = MsgBox("Error de Impresion. ¿Continua?", 4)
+  If j = 6 Then
+     Resume
+  Else
+     Exit Sub
+  End If
+
+
+End Sub
+
+Public Function agregaPORC(i As Double, t As Double) As Double
+   'agrega el iva o cualquier proc a un valor donde: i --> Importe, t --> tasa
+   agregaPORC = i + (i * t / 100)
+   
+End Function
+
+Public Function convierte(ByVal nro As Double) As String
+'Dim numero As Double
+'format 000000.00
+Static u(10) As String
+Static d(10) As String
+Static d2(30) As String
+Static c(10) As String
+
+u(0) = ""
+u(1) = "Uno"
+u(2) = "Dos"
+u(3) = "Tres"
+u(4) = "Cuatro"
+u(5) = "Cinco"
+u(6) = "Seis"
+u(7) = "Siete"
+u(8) = "Ocho"
+u(9) = "Nueve"
+
+d(0) = ""
+d(1) = ""
+d(2) = ""
+d(3) = "Treinta"
+d(4) = "Cuarenta"
+d(5) = "Cincuenta"
+d(6) = "Sesenta"
+d(7) = "Setenta"
+d(8) = "Ochenta"
+d(9) = "Noventa"
+
+d2(0) = ""
+d2(1) = "Uno"
+d2(2) = "Dos"
+d2(3) = "Tres"
+d2(4) = "Cuatro"
+d2(5) = "Cinco"
+d2(6) = "Seis"
+d2(7) = "Siete"
+d2(8) = "Ocho"
+d2(9) = "Nueve"
+d2(10) = "Diez"
+d2(11) = "Once"
+d2(12) = "Doce"
+d2(13) = "Trece"
+d2(14) = "Catorce"
+d2(15) = "Quince"
+d2(16) = "Dieciseis"
+d2(17) = "Diecisiete"
+d2(18) = "Dieciocho"
+d2(19) = "Diecinueve"
+d2(20) = "Veinte"
+d2(21) = "Veintiuno"
+d2(22) = "Veintidos"
+d2(23) = "Veintitres"
+d2(24) = "Veinticuatro"
+d2(25) = "Veinticinco"
+d2(26) = "Veintiseis"
+d2(27) = "Veintisiete"
+d2(28) = "Veintiocho"
+d2(29) = "Veintinueve"
+
+
+c(0) = ""
+c(1) = "Ciento"
+c(2) = "Doscientos"
+c(3) = "Trescientos"
+c(4) = "Cuatrocientos"
+c(5) = "Quinientos"
+c(6) = "Seiscientos"
+c(7) = "Setecientos"
+c(8) = "Ochocientos"
+c(9) = "Novecientos"
+
+numero = Format$(nro, "000000.00")
+LETRAS = ""
+'EVALUA CENTENA
+n = Mid$(numero, 1, 3)
+
+If Val(n) > 0 Then
+ n = Mid$(numero, 1, 1)
+ If Val(n) = 1 Then
+    h = Mid$(numero, 2, 2)
+    If Val(h) > 0 Then
+       LETRAS = LETRAS & " " & c(Val(n))
+    Else
+       LETRAS = LETRAS & " " & "Cien"
+    End If
+ Else
+  If Val(n) > 0 Then
+    LETRAS = LETRAS & " " & c(Val(n))
+  End If
+ End If
+
+'EVALUA DECENA
+ n = Mid$(numero, 2, 1)
+ If Val(n) > 0 Then
+  If Val(n) <= 2 Then
+    n = Mid$(numero, 2, 2)
+    LETRAS = LETRAS & " " & d2(Val(n))
+    unidad = "N"
+  Else
+    LETRAS = LETRAS & " " & d(Val(n))
+    unidad = "S"
+  End If
+ Else
+  unidad = "S"
+ End If
+
+ 'EVALUA UNIDAD
+ If unidad = "S" Then
+   n = Mid$(numero, 3, 1)
+   If Val(n) > 1 Then
+     LETRAS = LETRAS & " " & u(Val(n))
+   End If
+ End If
+
+ LETRAS = LETRAS & " " & "Mil"
+End If
+
+
+
+'EVALUA CENTENA
+n = Mid$(numero, 4, 3)
+
+If Val(n) > 0 Then
+ n = Mid$(numero, 4, 1)
+ If Val(n) = 1 Then
+    h = Mid$(numero, 5, 2)
+    If Val(h) > 0 Then
+       LETRAS = LETRAS & " " & c(Val(n))
+    Else
+       LETRAS = LETRAS & " " & "Cien"
+    End If
+ Else
+    LETRAS = LETRAS & " " & c(Val(n))
+ End If
+
+
+'EVALUA DECENA
+ n = Mid$(numero, 5, 1)
+ If Val(n) > 0 Then
+  If Val(n) <= 2 Then
+    n = Mid$(numero, 5, 2)
+    LETRAS = LETRAS & " " & d2(Val(n))
+    unidad = "N"
+  Else
+    LETRAS = LETRAS & " " & d(Val(n))
+    h = Mid$(numero, 6, 1)
+    If Val(h) > 0 Then
+      LETRAS = LETRAS & " y "
+    End If
+    unidad = "S"
+  End If
+ Else
+  unidad = "S"
+ End If
+
+ 'EVALUA UNIDAD
+ If unidad = "S" Then
+   n = Mid$(numero, 6, 1)
+   If Val(n) > 0 Then
+     LETRAS = LETRAS & " " & u(Val(n))
+   End If
+ End If
+End If
+
+n = Mid$(numero, 8, 2)
+If Val(n) > 0 Then
+   LETRAS = LETRAS & " " & "con " & n & " centavos"
+End If
+convierte = LETRAS
+
+End Function
+
+Public Function asteriscos(V As String, e As Integer) As String
+  'v es el numero formateado como format$(xx, "0.00")
+  ' e es la cantidad de digitos del numero incluido asteriscos+enteros+sep. decimal+decimales
+  n = ""
+  For i = Len(V) To e - 1
+    n = n & "*"
+  Next i
+  asteriscos = n & V
+End Function
+
+Public Sub conectaradodc(adc As Object, ByVal fd As String, conexion As Object)
+   'adc nombre del cvontrol adodc
+   'fd = fuente de datos comando sql
+   'sc = string de conexion
+   On Error GoTo err1
+   adc.CursorLocation = adUseClient
+   adc.CursorType = adOpenStatic
+   adc.LockType = adLockOptimistic
+
+   adc.CommandType = adCmdText
+   adc.RecordSource = fd
+   adc.ConnectionString = conexion
+   adc.Refresh
+
+Exit Sub
+err1:
+Resume Next
+
+ 
+End Sub
+ 
+Public Function muevefecha(sv As Object, c As Object) As String
+'El procedimiento permite cambiar la fecha avanzando con un scroll var por dia, mes o año dependiendo donde esta el cursor
+'donde sv es un scroll var
+       'c el campo de texto donde esta la fecha
+       f = Format$(c, "dd/mm/yyyy")
+       
+       
+       
+End Function
+
+Public Function suma_msflexgrid(g As MSFlexGrid, ByVal col As Integer) As Double
+ 'suma una columna de un msflexgrid
+ t = 0
+ For i = 1 To g.Rows - 1
+      r = Val(g.TextMatrix(i, col))
+      t = t + r
+ Next i
+ suma_msflexgrid = t
+End Function
+
+Public Sub fm(t As TextBox)
+'asigna al campo formato moneda
+  t = Format$(t, "######0.00")
+End Sub
+
+Sub definefont(tf As String, negrita As String, tamaño As Single)
+'tf = nombre de la letra
+'negrita "N" False  "S" true
+'tamaño es el tamaño de la letra
+Printer.FontName = tf
+Printer.FontSize = tamaño
+If negrita = "N" Then
+   Printer.FontBold = False
+Else
+   Printer.FontBold = True
+End If
+  
+
+End Sub
+

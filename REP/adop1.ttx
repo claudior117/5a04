@@ -1,0 +1,21 @@
+; Field definition file for table: ADORecordset
+num_int_item	long		1
+id_producto	long		1
+detalle	string	50	valor de muestra de cadena
+cantidad	number		1.00
+a11.id_obra	long		1
+observaciones	string	50	valor de muestra de cadena
+a11.estado	string	1	valor de muestra de cadena
+cantidad_oc	number		1.00
+cantidad_ingresada	number		1.00
+fecha_pedido	datetime		Jan 5, 1994 1:23:45 PM
+fecha_esperado	datetime		Jan 5, 1994 1:23:45 PM
+a11.ID_USUARIO	short		1
+num_oc	long		1
+g1.ID_USUARIO	long		1
+USUARIO	string	50	valor de muestra de cadena
+GRUPO	string	6	valor de muestra de cadena
+a4.id_obra	long		1
+descripcion	string	150	valor de muestra de cadena
+a4.estado	string	1	valor de muestra de cadena
+obs	string	150	valor de muestra de cadena

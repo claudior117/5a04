@@ -1,0 +1,542 @@
+VERSION 5.00
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Begin VB.Form vet_historia1 
+   BackColor       =   &H00E0E0E0&
+   BorderStyle     =   1  'Fixed Single
+   Caption         =   "DATOS TIPOS MASCOTAS"
+   ClientHeight    =   7425
+   ClientLeft      =   60
+   ClientTop       =   345
+   ClientWidth     =   11910
+   KeyPreview      =   -1  'True
+   LinkTopic       =   "Form1"
+   MaxButton       =   0   'False
+   MinButton       =   0   'False
+   PaletteMode     =   1  'UseZOrder
+   ScaleHeight     =   7425
+   ScaleWidth      =   11910
+   StartUpPosition =   1  'CenterOwner
+   Begin VB.Frame Frame6 
+      Height          =   1335
+      Left            =   0
+      TabIndex        =   23
+      Top             =   120
+      Width           =   8295
+      Begin VB.TextBox Text4 
+         Alignment       =   2  'Center
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
+         Left            =   240
+         TabIndex        =   25
+         Text            =   "Text4"
+         Top             =   915
+         Width           =   7575
+      End
+      Begin VB.TextBox Text3 
+         Alignment       =   2  'Center
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   18
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H000000FF&
+         Height          =   615
+         Left            =   240
+         TabIndex        =   24
+         Text            =   "Text3"
+         Top             =   240
+         Width           =   7575
+      End
+   End
+   Begin VB.Frame Frame5 
+      BackColor       =   &H00E0E0E0&
+      Height          =   855
+      Left            =   3480
+      TabIndex        =   21
+      Top             =   6120
+      Width           =   3855
+      Begin VB.TextBox t_importe 
+         Appearance      =   0  'Flat
+         BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   405
+         Left            =   2160
+         MaxLength       =   12
+         TabIndex        =   5
+         Top             =   240
+         Width           =   1455
+      End
+      Begin VB.Label Label6 
+         Appearance      =   0  'Flat
+         BackColor       =   &H000000FF&
+         Caption         =   "Importe:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00FFFFFF&
+         Height          =   375
+         Left            =   240
+         TabIndex        =   22
+         Top             =   240
+         Width           =   1815
+      End
+   End
+   Begin VB.Frame Frame4 
+      Caption         =   "Consulta"
+      Height          =   1815
+      Left            =   0
+      TabIndex        =   20
+      Top             =   4200
+      Width           =   11535
+      Begin VB.TextBox t_diagnostico 
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   1455
+         Left            =   0
+         MaxLength       =   255
+         MultiLine       =   -1  'True
+         TabIndex        =   4
+         Top             =   240
+         Width           =   11415
+      End
+   End
+   Begin VB.Frame Frame3 
+      BackColor       =   &H00E0E0E0&
+      Height          =   735
+      Left            =   9120
+      TabIndex        =   14
+      Top             =   120
+      Width           =   2535
+      Begin VB.TextBox t_funcion 
+         Enabled         =   0   'False
+         Height          =   405
+         Left            =   1680
+         MaxLength       =   1
+         TabIndex        =   15
+         Top             =   240
+         Width           =   615
+      End
+      Begin VB.Label Label10 
+         BackColor       =   &H000000C0&
+         BorderStyle     =   1  'Fixed Single
+         Caption         =   "Funcion"
+         ForeColor       =   &H00FFFFFF&
+         Height          =   375
+         Left            =   120
+         TabIndex        =   16
+         Top             =   240
+         Width           =   1335
+      End
+   End
+   Begin VB.Frame Frame2 
+      BackColor       =   &H00E0E0E0&
+      Height          =   2655
+      Left            =   0
+      TabIndex        =   11
+      Top             =   1440
+      Width           =   11535
+      Begin VB.TextBox Text2 
+         Appearance      =   0  'Flat
+         BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   405
+         Left            =   2520
+         MaxLength       =   5
+         TabIndex        =   3
+         Top             =   2160
+         Width           =   1455
+      End
+      Begin VB.TextBox Text1 
+         Appearance      =   0  'Flat
+         BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   405
+         Left            =   2520
+         MaxLength       =   5
+         TabIndex        =   2
+         Top             =   1680
+         Width           =   2655
+      End
+      Begin VB.TextBox t_fecha 
+         Appearance      =   0  'Flat
+         BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   405
+         Left            =   2520
+         MaxLength       =   5
+         TabIndex        =   1
+         Top             =   1200
+         Width           =   1455
+      End
+      Begin VB.TextBox t_descripcion 
+         Appearance      =   0  'Flat
+         BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   405
+         Left            =   2520
+         MaxLength       =   100
+         TabIndex        =   0
+         Top             =   720
+         Width           =   8775
+      End
+      Begin VB.TextBox t_id 
+         Appearance      =   0  'Flat
+         BorderStyle     =   0  'None
+         Enabled         =   0   'False
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   405
+         Left            =   2520
+         Locked          =   -1  'True
+         MaxLength       =   5
+         TabIndex        =   6
+         TabStop         =   0   'False
+         Top             =   240
+         Width           =   1455
+      End
+      Begin VB.Label Label5 
+         Appearance      =   0  'Flat
+         BackColor       =   &H00800080&
+         Caption         =   "Peso(kgms):"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00FFFFFF&
+         Height          =   375
+         Left            =   120
+         TabIndex        =   19
+         Top             =   2160
+         Width           =   2295
+      End
+      Begin VB.Label Label4 
+         Appearance      =   0  'Flat
+         BackColor       =   &H00800080&
+         Caption         =   "Edad:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00FFFFFF&
+         Height          =   495
+         Left            =   120
+         TabIndex        =   18
+         Top             =   1680
+         Width           =   2295
+      End
+      Begin VB.Label Label1 
+         Appearance      =   0  'Flat
+         BackColor       =   &H00800080&
+         Caption         =   "Fecha Consulta:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00FFFFFF&
+         Height          =   495
+         Left            =   120
+         TabIndex        =   17
+         Top             =   1200
+         Width           =   2295
+      End
+      Begin VB.Label Label2 
+         Appearance      =   0  'Flat
+         BackColor       =   &H00800080&
+         Caption         =   "Nro. Int.Consulta"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00FFFFFF&
+         Height          =   495
+         Left            =   120
+         TabIndex        =   13
+         Top             =   240
+         Width           =   2295
+      End
+      Begin VB.Label Label3 
+         Appearance      =   0  'Flat
+         BackColor       =   &H00800080&
+         Caption         =   "Diagnostico Breve:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00FFFFFF&
+         Height          =   495
+         Left            =   120
+         TabIndex        =   12
+         Top             =   720
+         Width           =   2295
+      End
+   End
+   Begin VB.Frame Frame1 
+      BackColor       =   &H00E0E0E0&
+      Caption         =   "Funciones"
+      Height          =   975
+      Left            =   9960
+      TabIndex        =   8
+      Top             =   6120
+      Width           =   1575
+      Begin VB.CommandButton btnsale 
+         Height          =   615
+         Left            =   840
+         Picture         =   "vet004.frx":0000
+         Style           =   1  'Graphical
+         TabIndex        =   10
+         ToolTipText     =   "Salir sin Modificar"
+         Top             =   240
+         UseMaskColor    =   -1  'True
+         Width           =   615
+      End
+      Begin VB.CommandButton btnacepta 
+         Height          =   615
+         Left            =   120
+         Picture         =   "vet004.frx":0882
+         Style           =   1  'Graphical
+         TabIndex        =   9
+         ToolTipText     =   "Renueva Lista de Clientes"
+         Top             =   240
+         UseMaskColor    =   -1  'True
+         Width           =   615
+      End
+   End
+   Begin MSComctlLib.StatusBar StatusBar1 
+      Align           =   2  'Align Bottom
+      Height          =   255
+      Left            =   0
+      TabIndex        =   7
+      Top             =   7170
+      Width           =   11910
+      _ExtentX        =   21008
+      _ExtentY        =   450
+      _Version        =   393216
+      BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
+         NumPanels       =   4
+         BeginProperty Panel1 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
+            Alignment       =   1
+            Object.Width           =   7056
+            MinWidth        =   7056
+            Text            =   "Cliente"
+            TextSave        =   "Cliente"
+         EndProperty
+         BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
+            Alignment       =   1
+            Object.Width           =   8820
+            MinWidth        =   8820
+            Text            =   "Sistema"
+            TextSave        =   "Sistema"
+         EndProperty
+         BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
+            Style           =   6
+            Alignment       =   1
+            TextSave        =   "04/05/2012"
+         EndProperty
+         BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
+            Style           =   5
+            Alignment       =   1
+            TextSave        =   "06:53 p.m."
+         EndProperty
+      EndProperty
+      OLEDropMode     =   1
+   End
+End
+Attribute VB_Name = "vet_historia1"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = False
+'FIXIT: Utilice Option Explicit para evitar la creación implícita de variables de tipo Variant.     FixIT90210ae-R383-H1984
+Private EXISTE As String
+
+
+
+Private Sub btnacepta_Click()
+Call graba
+End Sub
+
+Sub graba()
+J = MsgBox("Confirma Valores para Grabar", 4)
+If J = 6 Then
+   
+   On Error GoTo ERRORGRABA
+    
+   Select Case t_funcion
+      
+   Case "A"
+      QUERY = "INSERT INTO vet_04([raza], [id_tipo] )"
+      QUERY = QUERY & " VALUES ('" & t_descripcion & "', " & c_tipo.ItemData(c_tipo.ListIndex) & ")"
+      cn1.BeginTrans
+      cn1.Execute QUERY
+      
+      cn1.CommitTrans
+   
+   
+   Case "M"
+   
+      QUERY = "update vet_04 set  [raza]='" & t_descripcion & "', [id_tipo]=" & c_tipo.ItemData(c_tipo.ListIndex)
+      QUERY = QUERY & " where [id_raza]= " & Val(t_id)
+      cn1.BeginTrans
+      cn1.Execute QUERY
+      cn1.CommitTrans
+      
+      
+      
+   Case "B"
+      
+   
+   End Select
+   
+   
+   vet_ABM_raza.Show
+   Me.Hide
+    
+End If
+
+Exit Sub
+
+ERRORGRABA:
+  cn1.RollbackTrans
+  MsgBox ("Error de Actualizacion. Verifique los datos o sus permisos")
+  
+End Sub
+
+Private Sub btnsale_Click()
+Me.Hide
+End Sub
+
+
+
+
+Private Sub c_tipo_KeyPress(KeyAscii As Integer)
+If KeyAscii = 13 Then
+  btnacepta.SetFocus
+End If
+
+End Sub
+
+Private Sub Form_Activate()
+If t_funcion = "B" Then
+  btnacepta.Enabled = True
+  btnacepta.SetFocus
+Else
+  t_descripcion.SetFocus
+End If
+End Sub
+
+Private Sub Form_KeyPress(KeyAscii As Integer)
+Select Case KeyAscii
+  Case Is = 13
+    Call TabEnter2(Me, 5)
+  
+  End Select
+End Sub
+
+Private Sub Form_Load()
+Call barraesag(Me)
+
+End Sub
+
+Private Sub t_descripcion_LostFocus()
+Call NULOS(t_descripcion)
+End Sub
+
+
+

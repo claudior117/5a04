@@ -1,0 +1,19 @@
+; Field definition file for table: ADORecordset
+id_proveedor	long		1
+Denominacion	string	100	valor de muestra de cadena
+Direccion	string	100	valor de muestra de cadena
+te	string	50	valor de muestra de cadena
+Localidad	string	50	valor de muestra de cadena
+cp	string	20	valor de muestra de cadena
+Provincia	string	50	valor de muestra de cadena
+email	string	150	valor de muestra de cadena
+cuit	string	13	valor de muestra de cadena
+a1.cod_tipoiva	short		1
+id_codretgan	short		1
+inscripto_gan	string	1	valor de muestra de cadena
+g3.cod_tipoiva	short		1
+Descripcion	string	50	valor de muestra de cadena
+Abreviatura	string	10	valor de muestra de cadena
+letra_prov	string	1	valor de muestra de cadena
+letra_cliente	string	1	valor de muestra de cadena
+descrimina_cliente	string	1	valor de muestra de cadena

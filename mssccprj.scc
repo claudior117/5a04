@@ -1,0 +1,12 @@
+SCC=This is a Source Code Control file
+
+[5A04.vbp]
+SCC_Aux_Path=C:\ARCHIVOS DE PROGRAMA\MICROSOFT VISUAL STUDIO\COMMON\VSS,
+SCC_Project_Name="$/5A04/Sistema de Requisiciones Fabrimac", SABAAAAA
+
+[Proyecto1.vbp]
+SCC_Project_Name=this project is not under source code control
+SCC_Aux_Path=<This is an empty string for the mssccprj.scc file>
+[5A04_ACTU.vbp]
+SCC_Project_Name=this project is not under source code control
+SCC_Aux_Path=<This is an empty string for the mssccprj.scc file>

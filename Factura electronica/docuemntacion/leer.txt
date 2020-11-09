@@ -1,0 +1,8 @@
+Existen 2 metodos para emitir factura electronica, RCEL o RECE:
+RCEL es comprobantes en lineas hecho directamente en la pagina del afip
+y RECE es comprobantes en linea a traves de un software. En ambos hay
+que empradonarse(Modulo Regimen de facturacion y registracion del afip).
+
+1)Empadronarse (seguir documento EmpadronamientoRECE.pdf)
+2)Dar de alta el punto de venta(seleccionar RECE)
+
