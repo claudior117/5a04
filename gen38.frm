@@ -88,6 +88,13 @@ Select Case t_llamada
    gen_citicom.t_carpeta = t_carpeta
  Case Is = "3"
    gen_asistencia.t_carpeta = t_carpeta
+   
+  Case Is = "4"
+   gen_libroivadigitalV.t_carpeta = t_carpeta
+   
+   Case Is = "5"
+   gen_libroivadigitalC.t_carpeta = t_carpeta
+   
 End Select
 End Sub
 

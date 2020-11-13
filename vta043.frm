@@ -1,7 +1,7 @@
 VERSION 5.00
 Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCT2.OCX"
 Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "Mscomctl.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form vta_vencimientos 
    BackColor       =   &H00E0E0E0&
    Caption         =   "VENCIMIENTOS"
@@ -90,14 +90,14 @@ Begin VB.Form vta_vencimientos
       Left            =   4080
       TabIndex        =   10
       Top             =   2040
-      Width           =   2700
-      _ExtentX        =   4763
+      Width           =   2595
+      _ExtentX        =   4577
       _ExtentY        =   4180
       _Version        =   393216
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   188940289
+      StartOfWeek     =   189464577
       CurrentDate     =   38803
    End
    Begin VB.Frame Frame4 
@@ -215,12 +215,12 @@ Begin VB.Form vta_vencimientos
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "1/10/2020"
+            TextSave        =   "09/11/2020"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:21 a. m."
+            TextSave        =   "11:42 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1

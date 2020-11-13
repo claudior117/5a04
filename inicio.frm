@@ -455,12 +455,12 @@ Begin VB.Form inicio
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "17/06/2020"
+            TextSave        =   "13/11/2020"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "20:24"
+            TextSave        =   "10:09 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -612,6 +612,12 @@ Begin VB.Form inicio
          End
          Begin VB.Menu m_programa 
             Caption         =   "Programa Asistencia Trabajo y Produccion"
+         End
+         Begin VB.Menu M_lidv 
+            Caption         =   "Libro Iva Digital Ventas"
+         End
+         Begin VB.Menu M_lidc 
+            Caption         =   "Libro Iva Digital Compras(No Bienes de Uso)"
          End
       End
       Begin VB.Menu M_borrar 
@@ -1267,6 +1273,24 @@ Else
 End If
 
 
+End Sub
+
+Private Sub M_lidc_Click()
+ Call nivel_acceso(1)
+  If para.id_grupo_modulo_actual > 6 Then
+    gen_libroivadigitalC.Show
+  Else
+    Call sinpermisos
+  End If
+End Sub
+
+Private Sub M_lidv_Click()
+Call nivel_acceso(1)
+If para.id_grupo_modulo_actual > 6 Then
+  gen_libroivadigitalV.Show
+Else
+  Call sinpermisos
+End If
 End Sub
 
 Private Sub M_membrete_Click()
