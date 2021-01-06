@@ -1,6 +1,6 @@
 VERSION 5.00
 Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomctl.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form vta_facte1 
    BackColor       =   &H00E0E0E0&
    Caption         =   "IMPORTAR FACTURAS ELECTRONICAS DESDE DUPLICADO DIGITAL (R.G. 1361)"
@@ -11,8 +11,8 @@ Begin VB.Form vta_facte1
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
    PaletteMode     =   1  'UseZOrder
-   ScaleHeight     =   11115
-   ScaleWidth      =   20370
+   ScaleHeight     =   9480
+   ScaleWidth      =   12105
    StartUpPosition =   1  'CenterOwner
    Begin VB.Frame Frame5 
       BackColor       =   &H00E0E0E0&
@@ -164,9 +164,9 @@ Begin VB.Form vta_facte1
       Height          =   255
       Left            =   0
       TabIndex        =   0
-      Top             =   10860
-      Width           =   20370
-      _ExtentX        =   35930
+      Top             =   9225
+      Width           =   12105
+      _ExtentX        =   21352
       _ExtentY        =   450
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
@@ -340,7 +340,7 @@ If FileColl.Count > 0 Then
        
         'busco si el comprobante no fue cargado
         q = "select * from vta_02 where [id_tipocomp] = " & cc & " and [letra] = '" & letra & "' and [sucursal] = " & Val(suc) & " and [num_comp] = " & NUM
-        Set rs = New ADODB.Recordset
+        Set rs = New adodb.Recordset
         rs.Open q, cn1
         If Not rs.EOF And Not rs.BOF Then
             estado = "ERR"
@@ -351,7 +351,7 @@ If FileColl.Count > 0 Then
         
         
         CUIT = Mid$(l, 38, 11)
-        Set rs = New ADODB.Recordset
+        Set rs = New adodb.Recordset
         q = "select * from vta_01 where [cuit] = '" & CUIT & "'" ' "' or [cuit] = '" & Format$(CUIT, "@@-@@@@@@@@-@") & "'"
         rs.Open q, cn1
         If Not rs.EOF And Not rs.BOF Then
@@ -507,7 +507,7 @@ Sub graba(ByVal r As Integer)
         Close #1
        
         CUIT = Mid$(l, 38, 11)
-        Set rs = New ADODB.Recordset
+        Set rs = New adodb.Recordset
         q = "select * from vta_01 where [cuit] = '" & CUIT & "'" ' "' or [cuit] = '" & Format$(CUIT, "@@-@@@@@@@@-@") & "'"
         rs.Open q, cn1
         If Not rs.EOF And Not rs.BOF Then
@@ -553,7 +553,7 @@ Sub graba(ByVal r As Integer)
   moneda = "P"
       
       
-  Set rs = New ADODB.Recordset
+  Set rs = New adodb.Recordset
   q = "select * from g8 where [id_actividad] = " & c_actividad.ItemData(c_actividad.ListIndex)
   rs.Open q, cn1
   If Not rs.EOF And Not rs.BOF Then
@@ -604,13 +604,13 @@ QUERY = QUERY & " VALUES (" & numint & ", " & Val(suc) & ", " & Val(NUM) & ", '"
    Line Input #1, m
    cantidad = Val(Mid$(m, 32, 7) & "." & Mid$(m, 39, 5))
    codunidad = Val(Mid$(m, 44, 2))
-   Set rs = New ADODB.Recordset
+   Set rs = New adodb.Recordset
    q = "select * from g5 where [cod_afip] = " & codunidad
    rs.Open q, cn1
    If Not rs.EOF And Not rs.BOF Then
-     unidad = rs("unidad")
+     unidad3 = rs("unidad")
    Else
-     unidad = "Unidad"
+     unidad3 = "Unidad"
    End If
    Set rs = Nothing
    pu = Val(Mid$(m, 46, 13) & "." & Mid$(m, 59, 3))
@@ -636,7 +636,7 @@ QUERY = QUERY & " VALUES (" & numint & ", " & Val(suc) & ", " & Val(NUM) & ", '"
    Wend
    
    If Val(cp) > 0 Then
-     Set rs = New ADODB.Recordset
+     Set rs = New adodb.Recordset
      q = "select * from a2 where [id_producto] = " & Val(cp)
      rs.MaxRecords = 1
      rs.Open q, cn1
@@ -652,7 +652,7 @@ QUERY = QUERY & " VALUES (" & numint & ", " & Val(suc) & ", " & Val(NUM) & ", '"
    End If
      
    QUERY = "INSERT INTO vta_03([num_int], [RENGLON], [id_producto], [descripcion], [cantidad], [pu], [importe], [tasaiva], [impuesto], [costo], [cantidad_original], [tunidad], [pu_final])"
-   QUERY = QUERY & " VALUES (" & numint & ", " & r & ", " & codprod & ", '" & Left$(RTrim$(texto), 50) & " ', " & cantidad & ", " & pu & ", " & importe & ", " & tasaiva & ", 0, 0, " & cantidad & ", '" & Left$(unidad, 8) & "', " & puf & ")"
+   QUERY = QUERY & " VALUES (" & numint & ", " & r & ", " & codprod & ", '" & Left$(RTrim$(texto), 50) & " ', " & cantidad & ", " & pu & ", " & importe & ", " & tasaiva & ", 0, 0, " & cantidad & ", '" & Left$(unidad3, 8) & "', " & puf & ")"
   
    cn1.Execute QUERY
   

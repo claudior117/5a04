@@ -274,7 +274,7 @@ Begin VB.Form vta_saldoscli
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   189464577
+      StartOfWeek     =   110886913
       CurrentDate     =   38803
    End
    Begin VB.Frame Frame2 
@@ -414,12 +414,12 @@ Begin VB.Form vta_saldoscli
          BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "09/11/2020"
+            TextSave        =   "06/01/2021"
          EndProperty
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "11:40 a.m."
+            TextSave        =   "07:59 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -895,7 +895,7 @@ End Sub
 
 
 Private Sub msf1_GotFocus()
-Me.StatusBar1.Panels.Item(1) = "[F7] Imprime - [F10] Ajuste Ctacte - [F11] Excel -[ENTER] Estado Cuenta - [esp] Selecciona - [F5] Todos -[F2] Resumen Cta "
+Me.StatusBar1.Panels.item(1) = "[F7] Imprime - [F10] Ajuste Ctacte - [F11] Excel -[ENTER] Estado Cuenta - [esp] Selecciona - [F5] Todos -[F2] Resumen Cta "
 End Sub
 
 Private Sub msf1_KeyDown(KeyCode As Integer, Shift As Integer)

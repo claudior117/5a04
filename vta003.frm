@@ -15,6 +15,7 @@ Begin VB.Form vta_facturacion1
    PaletteMode     =   1  'UseZOrder
    ScaleHeight     =   2175
    ScaleWidth      =   11910
+   StartUpPosition =   1  'CenterOwner
    Begin VB.Frame Frame4 
       BackColor       =   &H00C0C0C0&
       Height          =   1695
@@ -253,12 +254,12 @@ Begin VB.Form vta_facturacion1
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "10/4/2019"
+            TextSave        =   "01/01/2006"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "14:42"
+            TextSave        =   "12:39 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -318,7 +319,7 @@ For i = 0 To 9
 Next i
 c_tasa.ListIndex = 0
 
-Set rs = New ADODB.Recordset
+Set rs = New adodb.Recordset
 q = "select [recargo_cc] from g0 where [sucursal] = 0"
 rs.Open q, cn1
 If Not rs.BOF And Not rs.EOF Then
@@ -331,7 +332,7 @@ End Sub
 
 
 Private Sub t_basico_GotFocus()
-Me.StatusBar1.Panels.Item(2) = "[ENTER] Acepta - [ESC] Sale - [F6] Dto1 - [F7] Dto2 - [F8]Lista Precios  "
+Me.StatusBar1.Panels.item(2) = "[ENTER] Acepta - [ESC] Sale - [F6] Dto1 - [F7] Dto2 - [F8]Lista Precios  "
 
 t_detalle.Enabled = False
 If para.producto_sel > 0 Then
@@ -345,7 +346,7 @@ If KeyCode = vbKeyF8 Then
 End If
 
 If KeyCode = vbKeyF6 And t_renglon = "" Then
-  Set rs = New ADODB.Recordset
+  Set rs = New adodb.Recordset
   q = "select * from g0 where [sucursal] = 0"
   rs.Open q, cn1
   d1 = rs("descuento1")
@@ -362,7 +363,7 @@ If KeyCode = vbKeyF6 And t_renglon = "" Then
 End If
 
 If KeyCode = vbKeyF7 And t_renglon = "" Then
-  Set rs = New ADODB.Recordset
+  Set rs = New adodb.Recordset
   q = "select * from g0 where [sucursal] = 0"
   rs.Open q, cn1
   d2 = rs("descuento2")
@@ -418,7 +419,7 @@ End If
 End Sub
 Sub busca(tipo As String)
 'tipo = I por id_producto tipo = B por cod_barra
-Set rs = New ADODB.Recordset
+Set rs = New adodb.Recordset
 q = "select * from a2, g5, g12 where a2.[id_unidad] = g5.[id_unidad] and a2.[id_tasaib] = g12.[id_tasaib] "
 If tipo = "I" Then
   q = q & " and [id_producto] = " & Val(t_basico)
@@ -553,7 +554,7 @@ t_unidad = ""
 End Sub
 
 Private Sub T_detalle_GotFocus()
-Me.StatusBar1.Panels.Item(2) = "[ENTER] Acepta - [ESC] Sale - [F3] Descripcion extra   "
+Me.StatusBar1.Panels.item(2) = "[ENTER] Acepta - [ESC] Sale - [F3] Descripcion extra   "
 End Sub
 
 Private Sub t_detalle_KeyDown(KeyCode As Integer, Shift As Integer)
@@ -563,7 +564,7 @@ End If
 End Sub
 
 Private Sub t_detalle_LostFocus()
-Me.StatusBar1.Panels.Item(2) = "[ENTER] Acepta - [ESC] Sale "
+Me.StatusBar1.Panels.item(2) = "[ENTER] Acepta - [ESC] Sale "
 End Sub
 
 Private Sub t_importe_GotFocus()
@@ -588,3 +589,27 @@ Else
 End If
 End Sub
 
+Private Sub t_pu_GotFocus()
+Me.StatusBar1.Panels.item(2) = "[ENTER] Acepta - [F6] Dto % - [F7] Dto $ - "
+End Sub
+
+Private Sub t_pu_KeyDown(KeyCode As Integer, Shift As Integer)
+If KeyCode = vbKeyF6 Then
+  d = InputBox("Ingrese % descuento", "Descuento")
+  If Val(d) > 0 Then
+     pd = Format(Val(t_pu) * Val(d) / 100, "######0.00")
+     t_pu = Val(t_pu) - pd
+  End If
+End If
+  
+
+
+
+If KeyCode = vbKeyF7 Then
+  d = InputBox("Ingrese descuento en pesos", "Descuento $")
+  If Val(d) > 0 Then
+     pd = Format(Val(d), "######0.00")
+     t_pu = Val(t_pu) - pd
+  End If
+End If
+End Sub

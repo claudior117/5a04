@@ -40,6 +40,39 @@ Private mvarCODNC As String 'copia local
 Private mvarcaracteresmax As Integer 'copia local
 'variables locales para almacenar los valores de las propiedades
 Private mvarultimo_z As Long 'copia local
+'variables locales para almacenar los valores de las propiedades
+Private mvaridmodelo As Integer 'copia local
+Private mvarbaudios As Long 'copia local
+Public Property Let baudios(ByVal vData As Long)
+'se usa al asignar un valor a la propiedad, en la parte izquierda de una asignación.
+'Syntax: X.baudios = 5
+    mvarbaudios = vData
+End Property
+
+
+Public Property Get baudios() As Long
+'se usa al recuperar un valor de una propiedad, en la parte derecha de una asignación.
+'Syntax: Debug.Print X.baudios
+    baudios = mvarbaudios
+End Property
+
+
+
+Public Property Let idmodelo(ByVal vData As Integer)
+'se usa al asignar un valor a la propiedad, en la parte izquierda de una asignación.
+'Syntax: X.idmodelo = 5
+    mvaridmodelo = vData
+End Property
+
+
+Public Property Get idmodelo() As Integer
+'se usa al recuperar un valor de una propiedad, en la parte derecha de una asignación.
+'Syntax: Debug.Print X.idmodelo
+    idmodelo = mvaridmodelo
+End Property
+
+
+
 Public Property Let ultimo_z(ByVal vData As Long)
 'se usa al asignar un valor a la propiedad, en la parte izquierda de una asignación.
 'Syntax: X.ultimo_z = 5
@@ -206,7 +239,7 @@ End Property
 
 
 Public Sub carga(ByVal suc As Integer)
-Set rsF = New ADODB.Recordset
+Set rsF = New adodb.Recordset
 q = "select * from fsc_001 where [sucursal_fiscal] = " & suc
 rsF.Open q, cn1
 If Not rsF.EOF And Not rsF.BOF Then
@@ -230,6 +263,8 @@ If Not rsF.EOF And Not rsF.BOF Then
    Me.CODRTO = rsF("cod_rto")
    Me.caracteresmax = rsF("caracteres_max")
    Me.ultimo_z = rsF("ult_z")
+   Me.idmodelo = rsF("id_modelo")
+   Me.baudios = rsF("baudios")
  Else
    Me.id = 0
    Me.sucursalfiscal = 0

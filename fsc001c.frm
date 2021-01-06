@@ -216,7 +216,7 @@ Sub iniciagraba()
 J = MsgBox("Cierra Tique (S/N", 4)
    If J = 6 Then
      
-      fsc_tique.cierratique
+      fsc_tique.cierratique2
       fsc_tique.Label2 = "Cerrando Tique"
       Me.Hide
    

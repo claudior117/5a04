@@ -1,0 +1,329 @@
+unit IFUniversal_TLB;
+
+// ************************************************************************ //
+// WARNING
+// -------
+// The types declared in this file were generated from data read from a
+// Type Library. If this type library is explicitly or indirectly (via
+// another type library referring to this type library) re-imported, or the
+// 'Refresh' command of the Type Library Editor activated while editing the
+// Type Library, the contents of this file will be regenerated and all
+// manual modifications will be lost.
+// ************************************************************************ //
+
+// $Rev: 52393 $
+// File generated on 18/3/2016 13:44:40 from Type Library described below.
+
+// ************************************************************************  //
+// Type Lib: C:\Users\Abel\Documents\Embarcadero\Studio\Projects\IFUniversal\IFUniversal (1)
+// LIBID: {AF121C69-AB27-444F-9DB9-4260A7CBB41E}
+// LCID: 0
+// Helpfile:
+// HelpString:
+// DepndLst:
+//   (1) v2.0 stdole, (C:\Windows\SysWOW64\stdole2.tlb)
+// SYS_KIND: SYS_WIN32
+// ************************************************************************ //
+{$TYPEDADDRESS OFF} // Unit must be compiled without type-checked pointers.
+{$WARN SYMBOL_PLATFORM OFF}
+{$WRITEABLECONST ON}
+{$VARPROPSETTER ON}
+{$ALIGN 4}
+
+interface
+
+uses Windows, Classes, Variants, StdVCL, Graphics, OleServer, ActiveX;
+
+
+// *********************************************************************//
+// GUIDS declared in the TypeLibrary. Following prefixes are used:
+//   Type Libraries     : LIBID_xxxx
+//   CoClasses          : CLASS_xxxx
+//   DISPInterfaces     : DIID_xxxx
+//   Non-DISP interfaces: IID_xxxx
+// *********************************************************************//
+const
+  // TypeLibrary Major and minor versions
+  IFUniversalMajorVersion = 1;
+  IFUniversalMinorVersion = 0;
+
+  LIBID_IFUniversal: TGUID = '{AF121C69-AB27-444F-9DB9-4260A7CBB41E}';
+
+  IID_IDriver: TGUID = '{00AA0FC3-6850-4F18-BB90-9FE15E32ACBD}';
+  CLASS_Driver: TGUID = '{536413FB-C017-4B59-8923-AE79800E3BB4}';
+
+// *********************************************************************//
+// Declaration of Enumerations defined in Type Library
+// *********************************************************************//
+// Constants for enum TipoDeComprobante
+type
+  TipoDeComprobante = TOleEnum;
+const
+  tcNo_Fiscal = $00000000;
+  tcFactura_A = $00000001;
+  tcFactura_B = $00000002;
+  tcFactura_C = $00000003;
+  tcNota_Debito_A = $00000004;
+  tcNota_Debito_B = $00000005;
+  tcNota_Debito_C = $00000006;
+  tcNota_Credito_A = $00000007;
+  tcNota_Credito_B = $00000008;
+  tcNota_Credito_C = $00000009;
+  tcTique = $0000000A;
+  tcRemito = $0000000B;
+
+// Constants for enum PuertoCOM
+type
+  PuertoCOM = TOleEnum;
+const
+  pcCOM1 = $00000001;
+  pcCOM2 = $00000002;
+  pcCOM3 = $00000003;
+  pcCOM4 = $00000004;
+  pcCOM5 = $00000005;
+  pcCOM6 = $00000006;
+  pcCOM7 = $00000007;
+  pcCOM8 = $00000008;
+  pcCOM9 = $00000009;
+
+// Constants for enum Baudio
+type
+  Baudio = TOleEnum;
+const
+  bd2400 = $00000960;
+  bd4800 = $000012C0;
+  bd9600 = $00002580;
+  bd19200 = $00004B00;
+  bd38400 = $00009600;
+  bd57600 = $0000E100;
+  bd115200 = $0001C200;
+
+// Constants for enum ErrorNro
+type
+  ErrorNro = TOleEnum;
+const
+  errNoError = $00000000;
+  errControladorNoDisponible = $00000001;
+  errComandoInvalido = $00000002;
+  errParametroInvalido = $00000003;
+  errExcepcion = $00000004;
+  errMemoriaFiscal = $00000005;
+  errMemoriaTrabajo = $00000006;
+  errBateriaBaja = $00000007;
+  errComandoDesconocido = $00000008;
+  errDesbordamientoTotales = $00000009;
+  errMemoriaFiscalLlena = $0000000A;
+  errMemoriaFiscalCasiLlena = $0000000B;
+  errFallaImpresora = $0000000D;
+  errImpresoraFueraLinea = $0000000E;
+  errFaltaPapelDiario = $0000000F;
+  errFaltaPapelTicket = $00000010;
+  errTapaImpresoraAbierta = $00000012;
+  errCajonCerradoOAusente = $00000013;
+  errCampoDatosInvalido = $00000014;
+
+// Constants for enum ModeloPrn
+type
+  ModeloPrn = TOleEnum;
+const
+  modHasar715 = $00000000;
+  modHasar715v2 = $00000002;
+  modHasar615 = $00000003;
+  modHasar320 = $00000004;
+  modHasarPR4F = $00000005;
+  modHasarPR5F = $00000006;
+  modHasar950 = $00000007;
+  modHasar951 = $00000008;
+  modHasar441 = $00000009;
+  modHasar321 = $0000000A;
+  modHasar322 = $0000000B;
+  modHasar322v2 = $0000000C;
+  modHasar330 = $0000000D;
+  modHasar1120 = $0000000E;
+  modHasarPL8F = $0000000F;
+  modHasarPL8Fv2 = $00000010;
+  modHasarPL23 = $00000011;
+  modEpsonTM300AF = $00000012;
+  modEpsonTMU220AF = $00000013;
+  modEpsonTM2000 = $00000014;
+  modEpsonTM2000AFPlus = $00000015;
+
+// Constants for enum TipoDeDocumento
+type
+  TipoDeDocumento = TOleEnum;
+const
+  tdCUIT = $00000000;
+  tdDNI = $00000001;
+  tdPasaporte = $00000002;
+  tdCedula = $00000003;
+
+// Constants for enum ResponsabilidadIVA
+type
+  ResponsabilidadIVA = TOleEnum;
+const
+  riResponsableInscripto = $00000000;
+  riMonotributo = $00000001;
+  riExento = $00000003;
+  riConsumidorFinal = $00000004;
+
+type
+
+// *********************************************************************//
+// Forward declaration of types defined in TypeLibrary
+// *********************************************************************//
+  IDriver = interface;
+  IDriverDisp = dispinterface;
+
+// *********************************************************************//
+// Declaration of CoClasses defined in Type Library
+// (NOTE: Here we map each CoClass to its Default Interface)
+// *********************************************************************//
+  Driver = IDriver;
+
+
+// *********************************************************************//
+// Interface: IDriver
+// Flags:     (4416) Dual OleAutomation Dispatchable
+// GUID:      {00AA0FC3-6850-4F18-BB90-9FE15E32ACBD}
+// *********************************************************************//
+  IDriver = interface(IDispatch)
+    ['{00AA0FC3-6850-4F18-BB90-9FE15E32ACBD}']
+    function Get_Error: ErrorNro; safecall;
+    function Get_ErrorDesc: WideString; safecall;
+    function Get_Puerto: PuertoCOM; safecall;
+    procedure Set_Puerto(Value: PuertoCOM); safecall;
+    function Get_Baudios: Baudio; safecall;
+    procedure Set_Baudios(Value: Baudio); safecall;
+    function Get_Modelo: ModeloPrn; safecall;
+    procedure Set_Modelo(Value: ModeloPrn); safecall;
+    function AbrirComprobante(aTipoDeComprobante: TipoDeComprobante): OLE_CANCELBOOL; safecall;
+    function ImprimirItem(const aDescripcion: WideString; aCantidad: Double; aPrecio: Double;
+                          aIVA: Double; aImpuestosInternos: Double): OLE_CANCELBOOL; safecall;
+    function ImprimirDescuentoGeneral(const aDescripcion: WideString; aMonto: Double): OLE_CANCELBOOL; safecall;
+    function ImprimirPago(const aDescripcion: WideString; aMonto: Double): OLE_CANCELBOOL; safecall;
+    procedure CerrarComprobante; safecall;
+    function DatosCliente(const aNombre: WideString; aTipoDeDocumento: TipoDeDocumento;
+                          const aDocumento: WideString; aResponsIVA: ResponsabilidadIVA;
+                          const aDireccion: WideString): OLE_CANCELBOOL; safecall;
+    procedure CancelarComprobante; safecall;
+    function Inicializar: OLE_CANCELBOOL; safecall;
+    function Get_TotalDocFiscales: Double; safecall;
+    function CierreX: OLE_CANCELBOOL; safecall;
+    function CierreZ: OLE_CANCELBOOL; safecall;
+    function ImprimirTextoFiscal(const aTexto: WideString): OLE_CANCELBOOL; safecall;
+    function InformarPercepcionGlobal(const aDescripcion: WideString; aMonto: Double): OLE_CANCELBOOL; safecall;
+    function InformarPercepcionIVA(const aDescripcion: WideString; aMonto: Double; aAlicuota: Double): OLE_CANCELBOOL; safecall;
+    function Get_CbteEsFiscal: OLE_CANCELBOOL; safecall;
+    function DocumentoDeReferencia(const aDocumento: WideString): OLE_CANCELBOOL; safecall;
+    function UltimoComprobante(aTipoComprobante: TipoDeComprobante): Integer; safecall;
+    function UltimoComprobanteCancelado: OLE_CANCELBOOL; safecall;
+    function Get_ErroresEnExcepciones: OLE_CANCELBOOL; safecall;
+    procedure Set_ErroresEnExcepciones(Value: OLE_CANCELBOOL); safecall;
+    function Finalizar: OLE_CANCELBOOL; safecall;
+    function DNFHFarmacias(const ObraSocial: WideString; const Coseguro1: WideString;
+                           const Coseguro2: WideString; const Coseguro3: WideString;
+                           const NroAfiliado: WideString; const NombreAfiliado: WideString;
+                           const FechaVencimientoCarnet: WideString;
+                           const DomicilioVend1: WideString; const DomicilioVend2: WideString;
+                           const NombreEstablecimiento: WideString; const NroInterno: WideString;
+                           const Nota1: WideString; const Nota2: WideString): OLE_CANCELBOOL; safecall;
+    function CortarPapel: OLE_CANCELBOOL; safecall;
+    function ImprimirTextoNoFiscal(const texto: WideString): OLE_CANCELBOOL; safecall;
+    function ImprimirDescuentoUltimoItem(const Descripcion: WideString; Monto: Double): OLE_CANCELBOOL; safecall;
+    function ReporteZFechas(const FechaInicio: WideString; const FechaFin: WideString;
+                            Detallado: OLE_CANCELBOOL): OLE_CANCELBOOL; safecall;
+    function ReporteZNumeros(NroInicio: Integer; NroFin: Integer; Detallado: OLE_CANCELBOOL): OLE_CANCELBOOL; safecall;
+    function EspecificarEncabezado(Linea: Integer; const Texto: WideString): OLE_CANCELBOOL; safecall;
+    function EspecificarPie(Linea: Integer; const Texto: WideString): OLE_CANCELBOOL; safecall;
+    function CerrarComprobanteNumero(out Numero: Integer): OLE_CANCELBOOL; safecall;
+    property Error: ErrorNro read Get_Error;
+    property ErrorDesc: WideString read Get_ErrorDesc;
+    property Puerto: PuertoCOM read Get_Puerto write Set_Puerto;
+    property Baudios: Baudio read Get_Baudios write Set_Baudios;
+    property Modelo: ModeloPrn read Get_Modelo write Set_Modelo;
+    property TotalDocFiscales: Double read Get_TotalDocFiscales;
+    property CbteEsFiscal: OLE_CANCELBOOL read Get_CbteEsFiscal;
+    property ErroresEnExcepciones: OLE_CANCELBOOL read Get_ErroresEnExcepciones write Set_ErroresEnExcepciones;
+  end;
+
+// *********************************************************************//
+// DispIntf:  IDriverDisp
+// Flags:     (4416) Dual OleAutomation Dispatchable
+// GUID:      {00AA0FC3-6850-4F18-BB90-9FE15E32ACBD}
+// *********************************************************************//
+  IDriverDisp = dispinterface
+    ['{00AA0FC3-6850-4F18-BB90-9FE15E32ACBD}']
+    property Error: ErrorNro readonly dispid 203;
+    property ErrorDesc: WideString readonly dispid 204;
+    property Puerto: PuertoCOM dispid 201;
+    property Baudios: Baudio dispid 205;
+    property Modelo: ModeloPrn dispid 206;
+    function AbrirComprobante(aTipoDeComprobante: TipoDeComprobante): OLE_CANCELBOOL; dispid 202;
+    function ImprimirItem(const aDescripcion: WideString; aCantidad: Double; aPrecio: Double;
+                          aIVA: Double; aImpuestosInternos: Double): OLE_CANCELBOOL; dispid 207;
+    function ImprimirDescuentoGeneral(const aDescripcion: WideString; aMonto: Double): OLE_CANCELBOOL; dispid 208;
+    function ImprimirPago(const aDescripcion: WideString; aMonto: Double): OLE_CANCELBOOL; dispid 209;
+    procedure CerrarComprobante; dispid 210;
+    function DatosCliente(const aNombre: WideString; aTipoDeDocumento: TipoDeDocumento;
+                          const aDocumento: WideString; aResponsIVA: ResponsabilidadIVA;
+                          const aDireccion: WideString): OLE_CANCELBOOL; dispid 211;
+    procedure CancelarComprobante; dispid 212;
+    function Inicializar: OLE_CANCELBOOL; dispid 213;
+    property TotalDocFiscales: Double readonly dispid 214;
+    function CierreX: OLE_CANCELBOOL; dispid 215;
+    function CierreZ: OLE_CANCELBOOL; dispid 216;
+    function ImprimirTextoFiscal(const aTexto: WideString): OLE_CANCELBOOL; dispid 217;
+    function InformarPercepcionGlobal(const aDescripcion: WideString; aMonto: Double): OLE_CANCELBOOL; dispid 218;
+    function InformarPercepcionIVA(const aDescripcion: WideString; aMonto: Double; aAlicuota: Double): OLE_CANCELBOOL; dispid 219;
+    property CbteEsFiscal: OLE_CANCELBOOL readonly dispid 220;
+    function DocumentoDeReferencia(const aDocumento: WideString): OLE_CANCELBOOL; dispid 221;
+    function UltimoComprobante(aTipoComprobante: TipoDeComprobante): Integer; dispid 222;
+    function UltimoComprobanteCancelado: OLE_CANCELBOOL; dispid 223;
+    property ErroresEnExcepciones: OLE_CANCELBOOL dispid 224;
+    function Finalizar: OLE_CANCELBOOL; dispid 225;
+    function DNFHFarmacias(const ObraSocial: WideString; const Coseguro1: WideString;
+                           const Coseguro2: WideString; const Coseguro3: WideString;
+                           const NroAfiliado: WideString; const NombreAfiliado: WideString;
+                           const FechaVencimientoCarnet: WideString;
+                           const DomicilioVend1: WideString; const DomicilioVend2: WideString;
+                           const NombreEstablecimiento: WideString; const NroInterno: WideString;
+                           const Nota1: WideString; const Nota2: WideString): OLE_CANCELBOOL; dispid 226;
+    function CortarPapel: OLE_CANCELBOOL; dispid 227;
+    function ImprimirTextoNoFiscal(const texto: WideString): OLE_CANCELBOOL; dispid 228;
+    function ImprimirDescuentoUltimoItem(const Descripcion: WideString; Monto: Double): OLE_CANCELBOOL; dispid 229;
+    function ReporteZFechas(const FechaInicio: WideString; const FechaFin: WideString;
+                            Detallado: OLE_CANCELBOOL): OLE_CANCELBOOL; dispid 230;
+    function ReporteZNumeros(NroInicio: Integer; NroFin: Integer; Detallado: OLE_CANCELBOOL): OLE_CANCELBOOL; dispid 231;
+    function EspecificarEncabezado(Linea: Integer; const Texto: WideString): OLE_CANCELBOOL; dispid 232;
+    function EspecificarPie(Linea: Integer; const Texto: WideString): OLE_CANCELBOOL; dispid 233;
+    function CerrarComprobanteNumero(out Numero: Integer): OLE_CANCELBOOL; dispid 234;
+  end;
+
+// *********************************************************************//
+// The Class CoDriver provides a Create and CreateRemote method to
+// create instances of the default interface IDriver exposed by
+// the CoClass Driver. The functions are intended to be used by
+// clients wishing to automate the CoClass objects exposed by the
+// server of this typelibrary.
+// *********************************************************************//
+  CoDriver = class
+    class function Create: IDriver;
+    class function CreateRemote(const MachineName: string): IDriver;
+  end;
+
+implementation
+
+uses ComObj;
+
+class function CoDriver.Create: IDriver;
+begin
+  Result := CreateComObject(CLASS_Driver) as IDriver;
+end;
+
+class function CoDriver.CreateRemote(const MachineName: string): IDriver;
+begin
+  Result := CreateRemoteComObject(MachineName, CLASS_Driver) as IDriver;
+end;
+
+end.
+

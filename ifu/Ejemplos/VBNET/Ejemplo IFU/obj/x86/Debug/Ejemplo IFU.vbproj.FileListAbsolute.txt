@@ -1,0 +1,9 @@
+C:\xampp\bitingenieria.com.ar\ifu\Ejemplos\VBNET\Ejemplo IFU\obj\x86\Debug\Interop.IFUniversal.dll
+C:\xampp\bitingenieria.com.ar\ifu\Ejemplos\VBNET\Ejemplo IFU\obj\x86\Debug\Ejemplo IFU.vbproj.ResolveComReference.cache
+C:\xampp\bitingenieria.com.ar\ifu\Ejemplos\VBNET\Ejemplo IFU\obj\x86\Debug\Ejemplo_IFU.Form1.resources
+C:\xampp\bitingenieria.com.ar\ifu\Ejemplos\VBNET\Ejemplo IFU\obj\x86\Debug\Ejemplo_IFU.Resources.resources
+C:\xampp\bitingenieria.com.ar\ifu\Ejemplos\VBNET\Ejemplo IFU\obj\x86\Debug\Ejemplo IFU.vbproj.GenerateResource.Cache
+C:\xampp\bitingenieria.com.ar\ifu\Ejemplos\VBNET\Ejemplo IFU\bin\Debug\Ejemplo IFU.exe
+C:\xampp\bitingenieria.com.ar\ifu\Ejemplos\VBNET\Ejemplo IFU\bin\Debug\Ejemplo IFU.pdb
+C:\xampp\bitingenieria.com.ar\ifu\Ejemplos\VBNET\Ejemplo IFU\obj\x86\Debug\Ejemplo IFU.exe
+C:\xampp\bitingenieria.com.ar\ifu\Ejemplos\VBNET\Ejemplo IFU\obj\x86\Debug\Ejemplo IFU.pdb

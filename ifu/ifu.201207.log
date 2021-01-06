@@ -1,0 +1,126 @@
+M00 | P00 | 2020-12-07 10:35:35 | InitModule | 171D0000 | OK
+M00 | P00 | 2020-12-07 10:35:35 | Version | 1.1.79.0 | OK
+M22 | P00 | 2020-12-07 10:35:35 | SetModelo | 22 | OK
+M22 | P00 | 2020-12-07 10:35:35 | CargarLicencia | nyiSQeu/vr... | OK
+M22 | P01 | 2020-12-07 10:35:35 | SetPuerto | 1 | OK
+M22 | P01 | 2020-12-07 10:35:35 | SetBaudios | 9600 | OK
+M00 | P00 | 2020-12-07 10:35:38 | InitModule | 171D0000 | OK
+M00 | P00 | 2020-12-07 10:35:38 | Version | 1.1.79.0 | OK
+M22 | P00 | 2020-12-07 10:35:38 | SetModelo | 22 | OK
+M22 | P00 | 2020-12-07 10:35:38 | CargarLicencia | nyiSQeu/vr... | OK
+M22 | P01 | 2020-12-07 10:35:38 | SetPuerto | 1 | OK
+M22 | P01 | 2020-12-07 10:35:38 | SetBaudios | 9600 | OK
+M22 | P01 | 2020-12-07 10:36:12 | Inicializar | OK
+M22 | P01 | 2020-12-07 10:36:13 | CancelarComprobante | OK
+M00 | P00 | 2020-12-07 10:36:51 | InitModule | 171D0000 | OK
+M00 | P00 | 2020-12-07 10:36:51 | Version | 1.1.79.0 | OK
+M22 | P00 | 2020-12-07 10:36:51 | SetModelo | 22 | OK
+M22 | P00 | 2020-12-07 10:36:51 | CargarLicencia | nyiSQeu/vr... | OK
+M22 | P01 | 2020-12-07 10:36:51 | SetPuerto | 1 | OK
+M22 | P01 | 2020-12-07 10:36:51 | SetBaudios | 9600 | OK
+M22 | P01 | 2020-12-07 10:37:24 | Inicializar | OK
+M22 | P01 | 2020-12-07 10:37:25 | CancelarComprobante | OK
+M00 | P00 | 2020-12-07 10:41:05 | InitModule | 171D0000 | OK
+M00 | P00 | 2020-12-07 10:41:05 | Version | 1.1.79.0 | OK
+M22 | P00 | 2020-12-07 10:41:05 | SetModelo | 22 | OK
+M22 | P00 | 2020-12-07 10:41:05 | CargarLicencia | nyiSQeu/vr... | OK
+M22 | P01 | 2020-12-07 10:41:05 | SetPuerto | 1 | OK
+M22 | P01 | 2020-12-07 10:41:05 | SetBaudios | 9600 | OK
+M22 | P01 | 2020-12-07 10:41:31 | Inicializar | OK
+M22 | P01 | 2020-12-07 10:41:31 | CancelarComprobante | OK
+M22 | P01 | 2020-12-07 10:41:31 | DatosCliente | RAVAGNAN CLAUDIO  | 0 | 20202956034 | 0 | FERNANDO DE ROJAS 624    | OK
+M22 | P01 | 2020-12-07 10:41:32 | ObtenerDatosDeInicializacion | OK
+M22 | P01 | 2020-12-07 10:41:33 | AbrirComprobante | 14 | OK
+M22 | P01 | 2020-12-07 10:41:33 | ImprimirItem2g | Pago Fact. | 1 | 1 | 1 | 0 | 7 | 0 | 1 |  |  | 0 | ERROR: Comando no válido para el estado fiscal
+M00 | P00 | 2020-12-07 10:44:41 | InitModule | 171D0000 | OK
+M00 | P00 | 2020-12-07 10:44:41 | Version | 1.1.79.0 | OK
+M22 | P00 | 2020-12-07 10:44:41 | SetModelo | 22 | OK
+M22 | P00 | 2020-12-07 10:44:41 | CargarLicencia | nyiSQeu/vr... | OK
+M22 | P01 | 2020-12-07 10:44:41 | SetPuerto | 1 | OK
+M22 | P01 | 2020-12-07 10:44:41 | SetBaudios | 9600 | OK
+M22 | P01 | 2020-12-07 10:45:00 | Inicializar | OK
+M22 | P01 | 2020-12-07 10:45:01 | CancelarComprobante | OK
+M22 | P01 | 2020-12-07 10:45:01 | DatosCliente | RAVAGNAN CLAUDIO  | 0 | 20202956034 | 0 | FERNANDO DE ROJAS 624    | OK
+M22 | P01 | 2020-12-07 10:45:02 | ObtenerDatosDeInicializacion | OK
+M22 | P01 | 2020-12-07 10:45:03 | AbrirComprobante | 14 | OK
+M22 | P01 | 2020-12-07 10:45:03 | ImprimirItem2g | Pago Fact. | 0 | 1 | 1 | 0 | 7 | 0 | 1 |  |  | 0 | ERROR: Comando no válido para el estado fiscal
+M00 | P00 | 2020-12-07 10:51:15 | InitModule | 171D0000 | OK
+M00 | P00 | 2020-12-07 10:51:15 | Version | 1.1.79.0 | OK
+M22 | P00 | 2020-12-07 10:51:15 | SetModelo | 22 | OK
+M22 | P00 | 2020-12-07 10:51:15 | CargarLicencia | nyiSQeu/vr... | OK
+M22 | P01 | 2020-12-07 10:51:15 | SetPuerto | 1 | OK
+M22 | P01 | 2020-12-07 10:51:15 | SetBaudios | 9600 | OK
+M22 | P01 | 2020-12-07 10:51:32 | Inicializar | OK
+M22 | P01 | 2020-12-07 10:51:33 | CancelarComprobante | OK
+M22 | P01 | 2020-12-07 10:51:33 | DatosCliente | RAVAGNAN CLAUDIO  | 0 | 20202956034 | 0 | FERNANDO DE ROJAS 624    | OK
+M22 | P01 | 2020-12-07 10:51:34 | ObtenerDatosDeInicializacion | OK
+M22 | P01 | 2020-12-07 10:51:35 | AbrirComprobante | 14 | OK
+M22 | P01 | 2020-12-07 10:51:35 | ImprimirItem2g | Pago Fact. | 1 | 1 | 0 | 0 | 7 | 0 | 1 |  |  | 0 | ERROR: Comando no válido para el estado fiscal
+M00 | P00 | 2020-12-07 11:08:03 | InitModule | 171D0000 | OK
+M00 | P00 | 2020-12-07 11:08:03 | Version | 1.1.79.0 | OK
+M22 | P00 | 2020-12-07 11:08:03 | SetModelo | 22 | OK
+M22 | P00 | 2020-12-07 11:08:03 | CargarLicencia | nyiSQeu/vr... | OK
+M22 | P01 | 2020-12-07 11:08:03 | SetPuerto | 1 | OK
+M22 | P01 | 2020-12-07 11:08:03 | SetBaudios | 9600 | OK
+M22 | P01 | 2020-12-07 11:08:20 | Inicializar | OK
+M22 | P01 | 2020-12-07 11:08:22 | CancelarComprobante | OK
+M22 | P01 | 2020-12-07 11:08:22 | DatosCliente | RAVAGNAN CLAUDIO  | 0 | 20202956034 | 0 | FERNANDO DE ROJAS 624    | OK
+M22 | P01 | 2020-12-07 11:08:22 | ObtenerDatosDeInicializacion | OK
+M22 | P01 | 2020-12-07 11:08:23 | AbrirComprobante | 14 | OK
+M22 | P01 | 2020-12-07 11:08:24 | ImprimirItem2g | Pago Fact. | 1 | 2 | 0 | 0 | 1 | 0 | 1 |  |  | 0 | ERROR: Comando no válido para el estado fiscal
+M00 | P00 | 2020-12-07 11:24:52 | InitModule | 171D0000 | OK
+M00 | P00 | 2020-12-07 11:24:52 | Version | 1.1.79.0 | OK
+M22 | P00 | 2020-12-07 11:24:52 | SetModelo | 22 | OK
+M22 | P00 | 2020-12-07 11:24:52 | CargarLicencia | nyiSQeu/vr... | OK
+M22 | P01 | 2020-12-07 11:24:52 | SetPuerto | 1 | OK
+M22 | P01 | 2020-12-07 11:24:52 | SetBaudios | 9600 | OK
+M22 | P01 | 2020-12-07 11:25:12 | Inicializar | OK
+M22 | P01 | 2020-12-07 11:25:14 | CancelarComprobante | OK
+M22 | P01 | 2020-12-07 11:25:14 | DatosCliente | RAVAGNAN CLAUDIO  | 0 | 20202956034 | 0 | FERNANDO DE ROJAS 624    | OK
+M22 | P01 | 2020-12-07 11:25:14 | ObtenerDatosDeInicializacion | OK
+M22 | P01 | 2020-12-07 11:25:16 | AbrirComprobante | 14 | OK
+M22 | P01 | 2020-12-07 11:25:16 | ImprimirItem2g |  | 1 | 2 | 0 | 0 | 1 | 0 | 1 |  |  | 0 | ERROR: Comando no válido para el estado fiscal
+M00 | P00 | 2020-12-07 11:49:36 | InitModule | D600000 | OK
+M00 | P00 | 2020-12-07 11:49:36 | Version | 1.1.79.0 | OK
+M00 | P00 | 2020-12-07 11:49:36 | SetModelo | 0 | OK
+M00 | P00 | 2020-12-07 11:49:36 | CargarLicencia | nyiSQeu/vr... | OK
+M00 | P00 | 2020-12-07 11:49:36 | SetPuerto | 0 | OK
+M00 | P00 | 2020-12-07 11:49:36 | SetBaudios | 0 | OK
+M00 | P00 | 2020-12-07 11:49:56 | Inicializar | ERROR: Error de apertura (transporte) (El sistema no puede hallar el archivo especificado. [\\.\COM0])
+M00 | P00 | 2020-12-07 11:49:56 | Finalizar | OK
+M00 | P00 | 2020-12-07 11:55:09 | InitModule | 17930000 | OK
+M00 | P00 | 2020-12-07 11:55:09 | Version | 1.1.79.0 | OK
+M22 | P00 | 2020-12-07 11:55:09 | SetModelo | 22 | OK
+M22 | P00 | 2020-12-07 11:55:09 | CargarLicencia | nyiSQeu/vr... | OK
+M22 | P01 | 2020-12-07 11:55:09 | SetPuerto | 1 | OK
+M22 | P01 | 2020-12-07 11:55:09 | SetBaudios | 9600 | OK
+M22 | P01 | 2020-12-07 11:55:20 | Inicializar | OK
+M22 | P01 | 2020-12-07 11:55:22 | CancelarComprobante | OK
+M22 | P01 | 2020-12-07 11:55:22 | Finalizar | OK
+M00 | P00 | 2020-12-07 11:57:54 | InitModule | 17830000 | OK
+M00 | P00 | 2020-12-07 11:57:54 | Version | 1.1.79.0 | OK
+M22 | P00 | 2020-12-07 11:57:54 | SetModelo | 22 | OK
+M22 | P00 | 2020-12-07 11:57:54 | CargarLicencia | nyiSQeu/vr... | OK
+M22 | P01 | 2020-12-07 11:57:54 | SetPuerto | 1 | OK
+M22 | P01 | 2020-12-07 11:57:54 | SetBaudios | 9600 | OK
+M22 | P01 | 2020-12-07 11:58:18 | Inicializar | OK
+M22 | P01 | 2020-12-07 11:58:19 | CancelarComprobante | OK
+M22 | P01 | 2020-12-07 11:58:19 | Finalizar | OK
+M00 | P00 | 2020-12-07 12:01:32 | InitModule | 17830000 | OK
+M00 | P00 | 2020-12-07 12:01:32 | Version | 1.1.79.0 | OK
+M22 | P00 | 2020-12-07 12:01:32 | SetModelo | 22 | OK
+M22 | P00 | 2020-12-07 12:01:32 | CargarLicencia | nyiSQeu/vr... | OK
+M22 | P01 | 2020-12-07 12:01:32 | SetPuerto | 1 | OK
+M22 | P01 | 2020-12-07 12:01:32 | SetBaudios | 9600 | OK
+M22 | P01 | 2020-12-07 12:01:49 | Inicializar | OK
+M22 | P01 | 2020-12-07 12:01:50 | CancelarComprobante | OK
+M22 | P01 | 2020-12-07 12:01:50 | Finalizar | OK
+M00 | P00 | 2020-12-07 12:02:01 | InitModule | 17830000 | OK
+M00 | P00 | 2020-12-07 12:02:01 | Version | 1.1.79.0 | OK
+M22 | P00 | 2020-12-07 12:02:01 | SetModelo | 22 | OK
+M22 | P00 | 2020-12-07 12:02:01 | CargarLicencia | nyiSQeu/vr... | OK
+M22 | P01 | 2020-12-07 12:02:01 | SetPuerto | 1 | OK
+M22 | P01 | 2020-12-07 12:02:01 | SetBaudios | 9600 | OK
+M22 | P01 | 2020-12-07 12:02:21 | Inicializar | OK
+M22 | P01 | 2020-12-07 12:02:22 | CancelarComprobante | OK
+M22 | P01 | 2020-12-07 12:02:22 | Finalizar | OK

@@ -95,7 +95,7 @@ Begin VB.Form gen_libroivadigitalV
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   107347969
+      StartOfWeek     =   69337089
       CurrentDate     =   38750
    End
    Begin VB.Frame Frame3 
@@ -207,12 +207,12 @@ Begin VB.Form gen_libroivadigitalV
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "13/11/2020"
+            TextSave        =   "23/11/2020"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:38 a.m."
+            TextSave        =   "07:43 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -343,7 +343,7 @@ Sub carga()
        c5 = rs("cotizacion_dolar")
        moneda = "DOL"
      End If
-     cambio = Format$(c5, "###0.0000")
+     cambio2 = Format$(c5, "###0.0000")
      If rs("vta_02.id_tipocomp") <> 101 Then 'retencion de iva
          t = Format$(rs("total"), "######0.00")
          i = Format$(rs("VTA_02.iva"), "######0.00")
@@ -389,9 +389,9 @@ Sub carga()
         ti = Format$(rs2("tasa_iva"), "#######0.00")
         
         If p = r Then
-           msf1.AddItem er & Chr$(9) & F & Chr(9) & rs("cliente02") & Chr(9) & cic & Chr$(9) & nic & Chr$(9) & tc & Chr$(9) & PtV & Chr$(9) & nc & Chr(9) & t & Chr(9) & "" & Chr$(9) & n & Chr(9) & ti & Chr(9) & iv & Chr(9) & r & Chr(9) & rs("num_int") & Chr(9) & obserr & Chr(9) & moneda & Chr(9) & cambio & Chr(9) & tio & Chr(9) & pin & Chr(9) & pip & Chr(9) & FVto & Chr(9) & rs("grabado")
+           msf1.AddItem er & Chr$(9) & F & Chr(9) & rs("cliente02") & Chr(9) & cic & Chr$(9) & nic & Chr$(9) & tc & Chr$(9) & PtV & Chr$(9) & nc & Chr(9) & t & Chr(9) & "" & Chr$(9) & n & Chr(9) & ti & Chr(9) & iv & Chr(9) & r & Chr(9) & rs("num_int") & Chr(9) & obserr & Chr(9) & moneda & Chr(9) & cambio2 & Chr(9) & tio & Chr(9) & pin & Chr(9) & pip & Chr(9) & FVto & Chr(9) & rs("grabado")
         Else
-           msf1.AddItem er & Chr$(9) & F & Chr(9) & rs("cliente02") & Chr(9) & cic & Chr$(9) & nic & Chr$(9) & tc & Chr$(9) & PtV & Chr$(9) & nc & Chr(9) & "" & Chr(9) & "" & Chr$(9) & n & Chr(9) & ti & Chr(9) & iv & Chr(9) & r & Chr(9) & rs("num_int") & Chr(9) & obserr & Chr(9) & moneda & Chr(9) & cambio & Chr(9) & tio & Chr(9) & pin & Chr(9) & pip & Chr(9) & FVto & Chr(9) & rs("grabado")
+           msf1.AddItem er & Chr$(9) & F & Chr(9) & rs("cliente02") & Chr(9) & cic & Chr$(9) & nic & Chr$(9) & tc & Chr$(9) & PtV & Chr$(9) & nc & Chr(9) & "" & Chr(9) & "" & Chr$(9) & n & Chr(9) & ti & Chr(9) & iv & Chr(9) & r & Chr(9) & rs("num_int") & Chr(9) & obserr & Chr(9) & moneda & Chr(9) & cambio2 & Chr(9) & tio & Chr(9) & pin & Chr(9) & pip & Chr(9) & FVto & Chr(9) & rs("grabado")
         End If
         p = p + 1
        rs2.MoveNext
@@ -562,7 +562,7 @@ End Sub
 
 
 Private Sub msf1_GotFocus()
-Me.StatusBar1.Panels.Item(2) = "[ESPACIO] Selecciona - [F2] Todos - [F3] Cambia DNI/Cuit - [F5] Exporta -  [F7] Imprime - [F11] Excel"
+Me.StatusBar1.Panels.item(2) = "[ESPACIO] Selecciona - [F2] Todos - [F3] Cambia DNI/Cuit - [F5] Exporta -  [F7] Imprime - [F11] Excel"
 
 End Sub
 

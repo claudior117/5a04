@@ -85,7 +85,7 @@ Begin VB.Form cyb_cajadiaria
       ForeColor       =   -2147483630
       BackColor       =   12632256
       Appearance      =   1
-      StartOfWeek     =   189464577
+      StartOfWeek     =   110886913
       CurrentDate     =   38750
    End
    Begin VB.Frame Frame6 
@@ -350,12 +350,12 @@ Begin VB.Form cyb_cajadiaria
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "09/11/2020"
+            TextSave        =   "06/01/2021"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "11:40 a.m."
+            TextSave        =   "07:59 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -613,7 +613,7 @@ End If
 End Sub
 
 Private Sub Form_Load()
-Me.StatusBar1.Panels.Item(2) = "[F7] Imprime - [F12] Herramientas"
+Me.StatusBar1.Panels.item(2) = "[F7] Imprime - [F12] Herramientas"
 t_fecha = Format$(Now, "dd/mm/yyyy")
 cal1.Visible = False
 Call carga
@@ -627,10 +627,10 @@ End Sub
 
 Private Sub List1_KeyPress(KeyAscii As Integer)
 If KeyAscii = 13 Then
-  fp = Val(Mid$(List1, 2, 3))
-  If fp > 0 Then
+  FP = Val(Mid$(List1, 2, 3))
+  If FP > 0 Then
     Load CYB_cc_detalle
-    CYB_cc_detalle.t_idfp = fp
+    CYB_cc_detalle.t_idfp = FP
     CYB_cc_detalle.t_fp = Mid$(List1, 7, 20)
     CYB_cc_detalle.t_op = "A"
     CYB_cc_detalle.t_fecha = t_fecha
@@ -645,10 +645,10 @@ End Sub
 
 Private Sub List2_KeyPress(KeyAscii As Integer)
 If KeyAscii = 13 Then
-  fp = Val(Mid$(List2, 2, 3))
-  If fp > 0 Then
+  FP = Val(Mid$(List2, 2, 3))
+  If FP > 0 Then
     Load CYB_cc_detalle
-    CYB_cc_detalle.t_idfp = fp
+    CYB_cc_detalle.t_idfp = FP
     CYB_cc_detalle.t_fp = Mid$(List2, 7, 20)
     CYB_cc_detalle.t_op = "E"
     CYB_cc_detalle.t_fecha = t_fecha
@@ -664,10 +664,10 @@ End Sub
 
 Private Sub List3_KeyPress(KeyAscii As Integer)
 If KeyAscii = 13 Then
-  fp = Val(Mid$(List3, 2, 3))
-  If fp > 0 Then
+  FP = Val(Mid$(List3, 2, 3))
+  If FP > 0 Then
     Load CYB_cc_detalle
-    CYB_cc_detalle.t_idfp = fp
+    CYB_cc_detalle.t_idfp = FP
     CYB_cc_detalle.t_fp = Mid$(List3, 7, 20)
     CYB_cc_detalle.t_op = "S"
     CYB_cc_detalle.t_fecha = t_fecha
@@ -683,10 +683,10 @@ End Sub
 
 Private Sub List4_KeyPress(KeyAscii As Integer)
 If KeyAscii = 13 Then
-  fp = Val(Mid$(List4, 2, 3))
-  If fp > 0 Then
+  FP = Val(Mid$(List4, 2, 3))
+  If FP > 0 Then
     Load CYB_cc_detalle
-    CYB_cc_detalle.t_idfp = fp
+    CYB_cc_detalle.t_idfp = FP
     CYB_cc_detalle.t_fp = Mid$(List4, 7, 20)
     CYB_cc_detalle.t_op = "D"
     CYB_cc_detalle.t_fecha = t_fecha
@@ -702,10 +702,10 @@ End Sub
 
 Private Sub List5_KeyPress(KeyAscii As Integer)
 If KeyAscii = 13 Then
-  fp = Val(Mid$(List5, 2, 3))
-  If fp > 0 Then
+  FP = Val(Mid$(List5, 2, 3))
+  If FP > 0 Then
     Load CYB_cc_detalle
-    CYB_cc_detalle.t_idfp = fp
+    CYB_cc_detalle.t_idfp = FP
     CYB_cc_detalle.t_fp = Mid$(List5, 7, 20)
     CYB_cc_detalle.t_op = "T"
     CYB_cc_detalle.t_fecha = t_fecha

@@ -50,7 +50,7 @@ End Property
 
 Public Sub cargar(ByVal numint As Long)
 'On Error GoTo err1
-Set rs = New ADODB.Recordset
+Set rs = New adodb.Recordset
 q = "select * from cyb_03 where [num_interno] = " & numint
 rs.Open q, cn1
 If Not rs.EOF And Not rs.BOF Then

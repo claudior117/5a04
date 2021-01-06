@@ -316,7 +316,7 @@ Begin VB.Form cja_cajadiaria
       BackColor       =   14737632
       BorderStyle     =   1
       Appearance      =   1
-      StartOfWeek     =   189464577
+      StartOfWeek     =   110886913
       CurrentDate     =   39157
    End
    Begin VB.Frame Frame2 
@@ -469,12 +469,12 @@ Begin VB.Form cja_cajadiaria
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "09/11/2020"
+            TextSave        =   "06/01/2021"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "11:40 a.m."
+            TextSave        =   "07:59 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -1237,7 +1237,7 @@ Call barra
 End Sub
 
 Sub barra()
-Me.StatusBar1.Panels.Item(2) = "[F1] AGREGA INGRESOS - [F5] AGREGA EGRESOS - [F7] Imprime"
+Me.StatusBar1.Panels.item(2) = "[F1] AGREGA INGRESOS - [F5] AGREGA EGRESOS - [F7] Imprime"
 
 End Sub
 Private Sub Form_Unload(Cancel As Integer)
@@ -1246,7 +1246,7 @@ End Sub
 
 
 Private Sub msf1_GotFocus()
-Me.StatusBar1.Panels.Item(2) = "[F1] Ingresos - [F5] Egresos  - [F7] Imprime - [F8] Borra Mov. - [ENTER] Modifica - [F9] Abre/Cierra "
+Me.StatusBar1.Panels.item(2) = "[F1] Ingresos - [F5] Egresos  - [F7] Imprime - [F8] Borra Mov. - [ENTER] Modifica - [F9] Abre/Cierra "
 
 End Sub
 
@@ -1318,7 +1318,7 @@ Call barra
 End Sub
 
 Private Sub msf2_GotFocus()
-Me.StatusBar1.Panels.Item(2) = "[F1] Ingresos - [F5] Egresos  - [F7] Imprime - [F8] Borra Mov. - [ENTER] Modifica - [F9] Abre-Cierra"
+Me.StatusBar1.Panels.item(2) = "[F1] Ingresos - [F5] Egresos  - [F7] Imprime - [F8] Borra Mov. - [ENTER] Modifica - [F9] Abre-Cierra"
 
 End Sub
 

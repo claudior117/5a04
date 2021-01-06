@@ -1,0 +1,2 @@
+C:\xampp\bitingenieria.com.ar\ifu\Ejemplos\VBNET\Ejemplo IFU\obj\x86\Debug\Interop.IFUniversal.dll
+C:\xampp\bitingenieria.com.ar\ifu\Ejemplos\VBNET\Ejemplo IFU\obj\x86\Debug\Ejemplo IFU.Converted.vbproj.ResolveComReference.cache

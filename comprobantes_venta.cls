@@ -541,17 +541,17 @@ Public Sub carga_datos_cot(ByVal id_comp As Double)
 
 End Sub
 
-Public Property Let tipoimpresora(ByVal vData As String)
+Public Property Let tipoImpresora(ByVal vData As String)
 'se usa al asignar un valor a la propiedad, en la parte izquierda de una asignación.
 'Syntax: X.tipoimpresora = 5
     mvartipoimpresora = vData
 End Property
 
 
-Public Property Get tipoimpresora() As String
+Public Property Get tipoImpresora() As String
 'se usa al recuperar un valor de una propiedad, en la parte derecha de una asignación.
 'Syntax: Debug.Print X.tipoimpresora
-    tipoimpresora = mvartipoimpresora
+    tipoImpresora = mvartipoimpresora
 End Property
 
 
@@ -1306,7 +1306,7 @@ If Not rs.EOF And Not rs.BOF Then
    Else
       Me.valor_declarado = 0
    End If
-   Me.tipoimpresora = rs("tipo_impresora")
+   Me.tipoImpresora = rs("tipo_impresora")
    If Not IsNull(rs("contado")) Then
       Me.contado = rs("contado")
    Else
@@ -1697,14 +1697,14 @@ If Val(l) > 0 And Val(l) <= 5 Then
    i = Space$(10)
    While Not rs.EOF
     ifp = Format$(rs("id_formapago"), "000")
-    fp = Format$(Left$(rs("formapago"), 12), "@@@@@@@@@@@@!")
+    FP = Format$(Left$(rs("formapago"), 12), "@@@@@@@@@@@@!")
     nch = Format$(rs("num_ch"), "0000000000")
     db = Format$(Left$(rs("detalle_Banco") & " ", 27), "@@@@@@@@@@@@@@@@@@@@@@@@@@@!")
     s = Format$(Left$(rs("sucursal") & " ", 10), "@@@@@@@@@@!")
     fd = Format$(rs("fecha_dif"), "dd/mm/yyyy")
     RSet i = Format$(rs("importe"), "######0.00")
 'FIXIT: El Asistente para actualización no actualiza el objeto Printer ni la colección Printers a Visual Basic .NET.     FixIT90210ae-R5481-H1984
-    Printer.Print Tab(10); "(" & ifp & ") " & fp & "  " & nch & " " & db & " " & fd & " " & i & " " & s
+    Printer.Print Tab(10); "(" & ifp & ") " & FP & "  " & nch & " " & db & " " & fd & " " & i & " " & s
     rs.MoveNext
     linea = linea + 1
    Wend
@@ -1910,13 +1910,13 @@ If Val(l) > 0 And Val(l) <= 5 Then
    i = Space$(10)
    While Not rs.EOF
     ifp = Format$(rs("id_formapago"), "000")
-    fp = Format$(Left$(rs("formapago"), 12), "@@@@@@@@@@@@!")
+    FP = Format$(Left$(rs("formapago"), 12), "@@@@@@@@@@@@!")
     nch = Format$(rs("num_ch"), "0000000000")
     db = Format$(Left$(rs("detalle_Banco") & " ", 27), "@@@@@@@@@@@@@@@@@@@@@@@@@@@!")
     s = Format$(Left$(rs("sucursal") & " ", 10), "@@@@@@@@@@!")
     fd = Format$(rs("fecha_dif"), "dd/mm/yyyy")
     RSet i = Format$(rs("importe"), "######0.00")
-    Printer.Print Tab(10); "(" & ifp & ") " & fp & "  " & nch & " " & db & " " & fd & " " & i & " " & s
+    Printer.Print Tab(10); "(" & ifp & ") " & FP & "  " & nch & " " & db & " " & fd & " " & i & " " & s
     rs.MoveNext
     linea = linea + 1
    Wend
@@ -2021,13 +2021,13 @@ If Val(l) > 0 And Val(l) <= 5 Then
    i = Space$(10)
    While Not rs.EOF
     ifp = Format$(rs("id_formapago"), "000")
-    fp = Format$(Left$(rs("formapago"), 12), "@@@@@@@@@@@@!")
+    FP = Format$(Left$(rs("formapago"), 12), "@@@@@@@@@@@@!")
     nch = Format$(rs("num_ch"), "0000000000")
     db = Format$(Left$(rs("detalle_Banco") & " ", 27), "@@@@@@@@@@@@@@@@@@@@@@@@@@@!")
     s = Format$(Left$(rs("sucursal") & " ", 10), "@@@@@@@@@@!")
     fd = Format$(rs("fecha_dif"), "dd/mm/yyyy")
     RSet i = Format$(rs("importe"), "######0.00")
-    Printer.Print Tab(10); "(" & ifp & ") " & fp & "  " & nch & " " & db & " " & fd & " " & i & " " & s
+    Printer.Print Tab(10); "(" & ifp & ") " & FP & "  " & nch & " " & db & " " & fd & " " & i & " " & s
     rs.MoveNext
    Wend
    Set rs = Nothing
@@ -2226,13 +2226,13 @@ If Val(l) > 0 And Val(l) <= 5 Then
    i = Space$(10)
    While Not rs.EOF
     ifp = Format$(rs("id_formapago"), "000")
-    fp = Format$(Left$(rs("formapago"), 12), "@@@@@@@@@@@@!")
+    FP = Format$(Left$(rs("formapago"), 12), "@@@@@@@@@@@@!")
     nch = Format$(rs("num_ch"), "0000000000")
     db = Format$(Left$(rs("detalle_Banco") & " ", 27), "@@@@@@@@@@@@@@@@@@@@@@@@@@@!")
     s = Format$(Left$(rs("sucursal") & " ", 10), "@@@@@@@@@@!")
     fd = Format$(rs("fecha_dif"), "dd/mm/yyyy")
     RSet i = Format$(rs("importe"), "######0.00")
-    Printer.Print Tab(13); "(" & ifp & ") " & fp & "  " & nch & " " & db & " " & fd & " " & i & " " & s
+    Printer.Print Tab(13); "(" & ifp & ") " & FP & "  " & nch & " " & db & " " & fd & " " & i & " " & s
     rs.MoveNext
    Wend
    Set rs = Nothing
@@ -2502,7 +2502,7 @@ If Val(l) > 0 And Val(l) <= 5 Then
    i = Space$(10)
    While Not rs.EOF
     ifp = Format$(rs("id_formapago"), "000")
-    fp = Format$(Left$(rs("formapago"), 12), "@@@@@@@@@@@@!")
+    FP = Format$(Left$(rs("formapago"), 12), "@@@@@@@@@@@@!")
     nch = Format$(rs("num_ch"), "0000000000")
     db = Format$(Left$(rs("detalle_Banco") & " ", 27), "@@@@@@@@@@@@@@@@@@@@@@@@@@@!")
     s = Format$(Left$(rs("sucursal") & " ", 11), "@@@@@@@@@@@!")
@@ -2510,7 +2510,7 @@ If Val(l) > 0 And Val(l) <= 5 Then
     nix = Format$(rs("num_int_fp"), "000000")
     RSet i = Format$(rs("importe"), "######0.00")
 'FIXIT: El Asistente para actualización no actualiza el objeto Printer ni la colección Printers a Visual Basic .NET.     FixIT90210ae-R5481-H1984
-    Printer.Print Tab(12); "(" & ifp & ") " & fp & "  " & nch & " " & db & " " & fd & " " & i & " " & s & " " & nix
+    Printer.Print Tab(12); "(" & ifp & ") " & FP & "  " & nch & " " & db & " " & fd & " " & i & " " & s & " " & nix
     rs.MoveNext
    Wend
    Set rs = Nothing
@@ -2820,7 +2820,7 @@ Printer.PaintPicture gen_logo.Picture1.Picture, 0, 0
    While Not rs.EOF
     
     ifp = Format$(rs("id_formapago"), "000")
-    fp = Format$(Left$(rs("formapago"), 12), "@@@@@@@@@@@@!")
+    FP = Format$(Left$(rs("formapago"), 12), "@@@@@@@@@@@@!")
     nch = Format$(rs("num_ch"), "0000000000")
     db = Format$(Left$(rs("detalle_Banco") & " ", 50), "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@!")
     s = Format$(Left$(rs("sucursal") & " ", 11), "@@@@@@@@@@@!")
@@ -2829,7 +2829,7 @@ Printer.PaintPicture gen_logo.Picture1.Picture, 0, 0
     
     RSet i = Format$(rs("importe"), "######0.00")
 'FIXIT: El Asistente para actualización no actualiza el objeto Printer ni la colección Printers a Visual Basic .NET.     FixIT90210ae-R5481-H1984
-    Printer.Print Tab(12); "(" & ifp & ") " & fp & "  " & nch & " " & db & " " & fd & " " & i
+    Printer.Print Tab(12); "(" & ifp & ") " & FP & "  " & nch & " " & db & " " & fd & " " & i
     linea = linea + 1
     rs.MoveNext
    Wend
@@ -6619,14 +6619,14 @@ If Val(l) > 0 And Val(l) <= 5 Then
    i = Space$(10)
    While Not rs.EOF
     ifp = Format$(rs("id_formapago"), "000")
-    fp = Format$(Left$(rs("formapago"), 12), "@@@@@@@@@@@@!")
+    FP = Format$(Left$(rs("formapago"), 12), "@@@@@@@@@@@@!")
     nch = Format$(rs("num_ch"), "0000000000")
     db = Format$(Left$(rs("detalle_Banco") & " ", 27), "@@@@@@@@@@@@@@@@@@@@@@@@@@@!")
     s = Format$(Left$(rs("sucursal") & " ", 10), "@@@@@@@@@@!")
     fd = Format$(rs("fecha_dif"), "dd/mm/yyyy")
     RSet i = Format$(rs("importe"), "######0.00")
 'FIXIT: El Asistente para actualización no actualiza el objeto Printer ni la colección Printers a Visual Basic .NET.     FixIT90210ae-R5481-H1984
-    Printer.Print Tab(12); "(" & ifp & ") " & fp & "  " & nch & " " & db & " " & fd & " " & i & " " & s
+    Printer.Print Tab(12); "(" & ifp & ") " & FP & "  " & nch & " " & db & " " & fd & " " & i & " " & s
     rs.MoveNext
    Wend
    Set rs = Nothing
@@ -10476,7 +10476,7 @@ Public Sub actual(ByVal TIPOCOMP As Integer)
      Me.venta = rs("venta")
      Me.PROPIO = rs("PROPIO")
      Me.contabilidad = rs("contabilidad")
-     Me.tipoimpresora = rs("tipo_impresora")
+     Me.tipoImpresora = rs("tipo_impresora")
      Me.cant_lineas = rs("cant_lineas")
      Me.imprimedescextra = rs("imprime_desc_extra")
      Me.cod_afip_a = rs("cod_afip_a")
@@ -10490,7 +10490,7 @@ Public Sub actual(ByVal TIPOCOMP As Integer)
   Me.venta = "N"
   Me.PROPIO = "S"
   Me.contabilidad = "N"
-  Me.tipoimpresora = "N"
+  Me.tipoImpresora = "N"
   Me.cant_lineas = 0
   Me.imprimedescextra = "N"
   Me.cod_afip_a = 1
@@ -10520,7 +10520,7 @@ Public Sub actual2(ByVal TIPOCOMP As Integer, ByVal suc As Integer)
      Me.venta = rs("venta")
      Me.PROPIO = rs("PROPIO")
      Me.contabilidad = rs("contabilidad")
-     Me.tipoimpresora = rs("tipo_impresora")
+     Me.tipoImpresora = rs("tipo_impresora")
      Me.cant_lineas = rs("cant_lineas")
      Me.imprimedescextra = rs("imprime_desc_extra")
      Me.cod_afip_a = rs("cod_afip_a")
@@ -10536,7 +10536,7 @@ Public Sub actual2(ByVal TIPOCOMP As Integer, ByVal suc As Integer)
   Me.venta = "N"
   Me.PROPIO = "S"
   Me.contabilidad = "N"
-  Me.tipoimpresora = "N"
+  Me.tipoImpresora = "N"
   Me.cant_lineas = 0
   Me.imprimedescextra = "N"
   Me.cod_afip_a = 1

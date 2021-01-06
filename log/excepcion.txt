@@ -1,0 +1,372 @@
+SSLError: ('The read operation timed out',)
+
+Traceback (most recent call last):
+  File "utils.pyc", line 157, in capturar_errores_wrapper
+  File "wsfev1.pyc", line 125, in Dummy
+  File "pysimplesoap\client.pyc", line 148, in <lambda>
+  File "pysimplesoap\client.pyc", line 352, in wsdl_call
+  File "pysimplesoap\client.pyc", line 219, in call
+  File "pysimplesoap\client.pyc", line 264, in send
+  File "httplib2\__init__.pyc", line 1613, in request
+  File "httplib2\__init__.pyc", line 1355, in _request
+  File "pysimplesoap\transport.pyc", line 133, in _conn_request
+  File "pysimplesoap\transport.pyc", line 117, in _conn_request
+  File "httplib2\__init__.pyc", line 1311, in _conn_request
+  File "httplib.pyc", line 1136, in getresponse
+  File "httplib.pyc", line 453, in begin
+  File "httplib.pyc", line 409, in _read_status
+  File "socket.pyc", line 480, in readline
+  File "ssl.pyc", line 756, in recv
+  File "ssl.pyc", line 643, in read
+SSLError: ('The read operation timed out',)
+
+<?xml version="1.0" encoding="UTF-8"?><soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<soap:Header/>
+<soap:Body>
+    
+</soap:Body>
+</soap:Envelope>
+
+ns1:cms.cert.expired: Certificado expirado
+
+<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:ser="https://wsaa.afip.gov.ar/ws/services/LoginCms" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+<soapenv:Header/>
+<soapenv:Body>
+    <ser:loginCms>
+    <in0>MIIG7wYJKoZIhvcNAQcCoIIG4DCCBtwCAQExDzANBglghkgBZQMEAgEFADCCAR8G
+CSqGSIb3DQEHAaCCARAEggEMPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0i
+VVRGLTgiPz48bG9naW5UaWNrZXRSZXF1ZXN0IHZlcnNpb249IjEuMCI+PGhlYWRl
+cj48dW5pcXVlSWQ+MTU5NDY3NTA0NjwvdW5pcXVlSWQ+PGdlbmVyYXRpb25UaW1l
+PjIwMjAtMDctMTNUMDg6MTc6MjY8L2dlbmVyYXRpb25UaW1lPjxleHBpcmF0aW9u
+VGltZT4yMDIwLTA3LTE0VDA0OjE3OjI2PC9leHBpcmF0aW9uVGltZT48L2hlYWRl
+cj48c2VydmljZT53c2ZlPC9zZXJ2aWNlPjwvbG9naW5UaWNrZXRSZXF1ZXN0PqCC
+A0wwggNIMIICMKADAgECAgg/VTUlv85B8DANBgkqhkiG9w0BAQ0FADAzMRUwEwYD
+VQQDDAxDb21wdXRhZG9yZXMxDTALBgNVBAoMBEFGSVAxCzAJBgNVBAYTAkFSMB4X
+DTE4MDcxNDE1MTExNloXDTIwMDcxMzE1MTExNlowMzEWMBQGA1UEAwwNZmFjdGVf
+Y2xhdWRpbzEZMBcGA1UEBRMQQ1VJVCAyMDIwMjk1NjAzNDCCASIwDQYJKoZIhvcN
+AQEBBQADggEPADCCAQoCggEBAMSTD7DXD+yeeH7/2z1TNn0mXDFrGWYBj2baq/sf
+BkHw7+b0ZWEqkEqtc8b6sm7VCzt1fxauxULktEK5Y1Q137Iq0yQB2uyAcLw/KoMs
+tZoXiFIKxvH+GI67nwPAvDzsNRCtqAKqQUqE4yZS10P/UXlpS4kBuqCV6mR0D7f2
+wTDS7eMPKfhABfn/lMwLoJOx0gDfrWdTcm6ctIEdyil9UKES5BaA5O9Zrr/YyIZj
+KfCzoHiqKWs1bjvaBEJpXfikaIYpFHNRjnAOI/zZ5ZdLjMNQujXsJItie8rEcMXt
+EYj59RxzZJh5TgHYlOLe8vNxJYQ2G1IP3O6ttCemEgZFjHUCAwEAAaNgMF4wDAYD
+VR0TAQH/BAIwADAfBgNVHSMEGDAWgBRbQFEw58MqtpxWnJOF40KAsFDr9jAdBgNV
+HQ4EFgQUxLCFRI8J1qJR2+3zxKU+7pyvLs4wDgYDVR0PAQH/BAQDAgXgMA0GCSqG
+SIb3DQEBDQUAA4IBAQBNG7DYVsC9R2I/ytdumFKCaL/az5bITDeaj0q3jFsG31Ja
+dTdYOkBOGysldezYte4K8IHOLWlR7Ns8p9vJ7uipbFj80m4h7YyE+rW0zaxwoPVw
+Muhku9n3FaBol5c9m4Enoq+suP0VnZGCYj2ypZv5zt4PBMLH9PtUwLN3oI6qQCnM
+UWRU1rPkX7l3bGWhr0iByeahrydX3dSZSihE2CdgLeH5gWy3SUel+W+yNja+mVSl
+AbtJgI9jljeM0fwKDJOhOvohcqZwuLQzoC9DGGx5xe26zUY5IJqIGZ0of9B/erx4
+6GtXghEyg3d8VFtj0FnkMmy/0fvl2XV46hb9VwyxMYICUTCCAk0CAQEwPzAzMRUw
+EwYDVQQDDAxDb21wdXRhZG9yZXMxDTALBgNVBAoMBEFGSVAxCzAJBgNVBAYTAkFS
+Agg/VTUlv85B8DANBglghkgBZQMEAgEFAKCB5DAYBgkqhkiG9w0BCQMxCwYJKoZI
+hvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0yMDA3MTMyMTE3MjdaMC8GCSqGSIb3DQEJ
+BDEiBCDX7j/fzdZNAdwwNNNqYpYboXEDJLqi1J/9+HOjICQtIDB5BgkqhkiG9w0B
+CQ8xbDBqMAsGCWCGSAFlAwQBKjALBglghkgBZQMEARYwCwYJYIZIAWUDBAECMAoG
+CCqGSIb3DQMHMA4GCCqGSIb3DQMCAgIAgDANBggqhkiG9w0DAgIBQDAHBgUrDgMC
+BzANBggqhkiG9w0DAgIBKDANBgkqhkiG9w0BAQEFAASCAQA77fojwoZrVtBa20Yg
+9Cc3Mu1ANn6XmnWlZVW360Kndt1+aefExtYcFn6BVR4c2Zl0OL982yuJO/Ctdt9B
+t1G+kq2Y3RNtiFwObvAific4lKQhdkPtjrx2IuUg1muRYWbIDIe6OHYmuPAvkQMH
+//19B86vbafDfyZeANt7+SPHKuf2bYvm8RbHxL6XO/BPUAGl73hSYh8+lHnXau9e
+wxbP98KiD8lgusy6y5kcPeijqv5MZR62YjtRZHKgQ+h+xNhHCLsyi01+3LY2rjCN
+pf/P1fLdGd4m9x5vaA2/d1IcrrBobKvGWtdL4Bb95d1HWOJ01GIU7wyVCqWHTZwR
+9Qk4
+
+</in0></ser:loginCms>
+</soapenv:Body>
+</soapenv:Envelope>
+<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><soapenv:Body><soapenv:Fault><faultcode xmlns:ns1="http://xml.apache.org/axis/">ns1:cms.cert.expired</faultcode><faultstring>Certificado expirado</faultstring><detail><ns2:exceptionName xmlns:ns2="http://xml.apache.org/axis/">gov.afip.desein.dvadac.sua.view.wsaa.LoginFault</ns2:exceptionName><ns3:hostname xmlns:ns3="http://xml.apache.org/axis/">auth0.afip.gov.ar</ns3:hostname></detail></soapenv:Fault></soapenv:Body></soapenv:Envelope>
+ns1:cms.cert.expired: Certificado expirado
+
+<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:ser="https://wsaa.afip.gov.ar/ws/services/LoginCms" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+<soapenv:Header/>
+<soapenv:Body>
+    <ser:loginCms>
+    <in0>MIIG7wYJKoZIhvcNAQcCoIIG4DCCBtwCAQExDzANBglghkgBZQMEAgEFADCCAR8G
+CSqGSIb3DQEHAaCCARAEggEMPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0i
+VVRGLTgiPz48bG9naW5UaWNrZXRSZXF1ZXN0IHZlcnNpb249IjEuMCI+PGhlYWRl
+cj48dW5pcXVlSWQ+MTU5NDY3NTA3MjwvdW5pcXVlSWQ+PGdlbmVyYXRpb25UaW1l
+PjIwMjAtMDctMTNUMDg6MTc6NTI8L2dlbmVyYXRpb25UaW1lPjxleHBpcmF0aW9u
+VGltZT4yMDIwLTA3LTE0VDA0OjE3OjUyPC9leHBpcmF0aW9uVGltZT48L2hlYWRl
+cj48c2VydmljZT53c2ZlPC9zZXJ2aWNlPjwvbG9naW5UaWNrZXRSZXF1ZXN0PqCC
+A0wwggNIMIICMKADAgECAgg/VTUlv85B8DANBgkqhkiG9w0BAQ0FADAzMRUwEwYD
+VQQDDAxDb21wdXRhZG9yZXMxDTALBgNVBAoMBEFGSVAxCzAJBgNVBAYTAkFSMB4X
+DTE4MDcxNDE1MTExNloXDTIwMDcxMzE1MTExNlowMzEWMBQGA1UEAwwNZmFjdGVf
+Y2xhdWRpbzEZMBcGA1UEBRMQQ1VJVCAyMDIwMjk1NjAzNDCCASIwDQYJKoZIhvcN
+AQEBBQADggEPADCCAQoCggEBAMSTD7DXD+yeeH7/2z1TNn0mXDFrGWYBj2baq/sf
+BkHw7+b0ZWEqkEqtc8b6sm7VCzt1fxauxULktEK5Y1Q137Iq0yQB2uyAcLw/KoMs
+tZoXiFIKxvH+GI67nwPAvDzsNRCtqAKqQUqE4yZS10P/UXlpS4kBuqCV6mR0D7f2
+wTDS7eMPKfhABfn/lMwLoJOx0gDfrWdTcm6ctIEdyil9UKES5BaA5O9Zrr/YyIZj
+KfCzoHiqKWs1bjvaBEJpXfikaIYpFHNRjnAOI/zZ5ZdLjMNQujXsJItie8rEcMXt
+EYj59RxzZJh5TgHYlOLe8vNxJYQ2G1IP3O6ttCemEgZFjHUCAwEAAaNgMF4wDAYD
+VR0TAQH/BAIwADAfBgNVHSMEGDAWgBRbQFEw58MqtpxWnJOF40KAsFDr9jAdBgNV
+HQ4EFgQUxLCFRI8J1qJR2+3zxKU+7pyvLs4wDgYDVR0PAQH/BAQDAgXgMA0GCSqG
+SIb3DQEBDQUAA4IBAQBNG7DYVsC9R2I/ytdumFKCaL/az5bITDeaj0q3jFsG31Ja
+dTdYOkBOGysldezYte4K8IHOLWlR7Ns8p9vJ7uipbFj80m4h7YyE+rW0zaxwoPVw
+Muhku9n3FaBol5c9m4Enoq+suP0VnZGCYj2ypZv5zt4PBMLH9PtUwLN3oI6qQCnM
+UWRU1rPkX7l3bGWhr0iByeahrydX3dSZSihE2CdgLeH5gWy3SUel+W+yNja+mVSl
+AbtJgI9jljeM0fwKDJOhOvohcqZwuLQzoC9DGGx5xe26zUY5IJqIGZ0of9B/erx4
+6GtXghEyg3d8VFtj0FnkMmy/0fvl2XV46hb9VwyxMYICUTCCAk0CAQEwPzAzMRUw
+EwYDVQQDDAxDb21wdXRhZG9yZXMxDTALBgNVBAoMBEFGSVAxCzAJBgNVBAYTAkFS
+Agg/VTUlv85B8DANBglghkgBZQMEAgEFAKCB5DAYBgkqhkiG9w0BCQMxCwYJKoZI
+hvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0yMDA3MTMyMTE3NTJaMC8GCSqGSIb3DQEJ
+BDEiBCCC/GpKJKeB93IxbQJ2sRcQVDV7HQleysIliQ8Z7IUdoDB5BgkqhkiG9w0B
+CQ8xbDBqMAsGCWCGSAFlAwQBKjALBglghkgBZQMEARYwCwYJYIZIAWUDBAECMAoG
+CCqGSIb3DQMHMA4GCCqGSIb3DQMCAgIAgDANBggqhkiG9w0DAgIBQDAHBgUrDgMC
+BzANBggqhkiG9w0DAgIBKDANBgkqhkiG9w0BAQEFAASCAQA7eijiP1H8oDvC7uV8
+36dlKKbnCVeQ9bf4uBlzsacJjGqgp3hHvYFWGtkh+825wLMtLg+q2eqqvE0VQSA0
+AJLeX9YAAyKY0aB9ogMkqYeLuWWm9MAALNoSfZMFYt00uGEqvwLtjCWhkAZnEiVg
+U5c06WqNsNPh1pLGufEXjKjayB/BRXg3myzkUgT2TV8PzUeMrUChcXpI4RinQqA+
+hwbeAE1N8HG0vERWpBGli/p+NbhvZp3hagKj90u8ePokUoF64oDNCqiiXVAoViH8
+vGNWq440tUIg5zbxy/N8qgHcqa/Em454r0BlX0ucpq7K8Pb3AJznEsMRcYuLJyHJ
+Zc2n
+
+</in0></ser:loginCms>
+</soapenv:Body>
+</soapenv:Envelope>
+<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><soapenv:Body><soapenv:Fault><faultcode xmlns:ns1="http://xml.apache.org/axis/">ns1:cms.cert.expired</faultcode><faultstring>Certificado expirado</faultstring><detail><ns2:exceptionName xmlns:ns2="http://xml.apache.org/axis/">gov.afip.desein.dvadac.sua.view.wsaa.LoginFault</ns2:exceptionName><ns3:hostname xmlns:ns3="http://xml.apache.org/axis/">auth0.afip.gov.ar</ns3:hostname></detail></soapenv:Fault></soapenv:Body></soapenv:Envelope>
+ns1:cms.cert.expired: Certificado expirado
+
+<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:ser="https://wsaa.afip.gov.ar/ws/services/LoginCms" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+<soapenv:Header/>
+<soapenv:Body>
+    <ser:loginCms>
+    <in0>MIIG7wYJKoZIhvcNAQcCoIIG4DCCBtwCAQExDzANBglghkgBZQMEAgEFADCCAR8G
+CSqGSIb3DQEHAaCCARAEggEMPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0i
+VVRGLTgiPz48bG9naW5UaWNrZXRSZXF1ZXN0IHZlcnNpb249IjEuMCI+PGhlYWRl
+cj48dW5pcXVlSWQ+MTU5NDY3NTEzMjwvdW5pcXVlSWQ+PGdlbmVyYXRpb25UaW1l
+PjIwMjAtMDctMTNUMDg6MTg6NTI8L2dlbmVyYXRpb25UaW1lPjxleHBpcmF0aW9u
+VGltZT4yMDIwLTA3LTE0VDA0OjE4OjUyPC9leHBpcmF0aW9uVGltZT48L2hlYWRl
+cj48c2VydmljZT53c2ZlPC9zZXJ2aWNlPjwvbG9naW5UaWNrZXRSZXF1ZXN0PqCC
+A0wwggNIMIICMKADAgECAgg/VTUlv85B8DANBgkqhkiG9w0BAQ0FADAzMRUwEwYD
+VQQDDAxDb21wdXRhZG9yZXMxDTALBgNVBAoMBEFGSVAxCzAJBgNVBAYTAkFSMB4X
+DTE4MDcxNDE1MTExNloXDTIwMDcxMzE1MTExNlowMzEWMBQGA1UEAwwNZmFjdGVf
+Y2xhdWRpbzEZMBcGA1UEBRMQQ1VJVCAyMDIwMjk1NjAzNDCCASIwDQYJKoZIhvcN
+AQEBBQADggEPADCCAQoCggEBAMSTD7DXD+yeeH7/2z1TNn0mXDFrGWYBj2baq/sf
+BkHw7+b0ZWEqkEqtc8b6sm7VCzt1fxauxULktEK5Y1Q137Iq0yQB2uyAcLw/KoMs
+tZoXiFIKxvH+GI67nwPAvDzsNRCtqAKqQUqE4yZS10P/UXlpS4kBuqCV6mR0D7f2
+wTDS7eMPKfhABfn/lMwLoJOx0gDfrWdTcm6ctIEdyil9UKES5BaA5O9Zrr/YyIZj
+KfCzoHiqKWs1bjvaBEJpXfikaIYpFHNRjnAOI/zZ5ZdLjMNQujXsJItie8rEcMXt
+EYj59RxzZJh5TgHYlOLe8vNxJYQ2G1IP3O6ttCemEgZFjHUCAwEAAaNgMF4wDAYD
+VR0TAQH/BAIwADAfBgNVHSMEGDAWgBRbQFEw58MqtpxWnJOF40KAsFDr9jAdBgNV
+HQ4EFgQUxLCFRI8J1qJR2+3zxKU+7pyvLs4wDgYDVR0PAQH/BAQDAgXgMA0GCSqG
+SIb3DQEBDQUAA4IBAQBNG7DYVsC9R2I/ytdumFKCaL/az5bITDeaj0q3jFsG31Ja
+dTdYOkBOGysldezYte4K8IHOLWlR7Ns8p9vJ7uipbFj80m4h7YyE+rW0zaxwoPVw
+Muhku9n3FaBol5c9m4Enoq+suP0VnZGCYj2ypZv5zt4PBMLH9PtUwLN3oI6qQCnM
+UWRU1rPkX7l3bGWhr0iByeahrydX3dSZSihE2CdgLeH5gWy3SUel+W+yNja+mVSl
+AbtJgI9jljeM0fwKDJOhOvohcqZwuLQzoC9DGGx5xe26zUY5IJqIGZ0of9B/erx4
+6GtXghEyg3d8VFtj0FnkMmy/0fvl2XV46hb9VwyxMYICUTCCAk0CAQEwPzAzMRUw
+EwYDVQQDDAxDb21wdXRhZG9yZXMxDTALBgNVBAoMBEFGSVAxCzAJBgNVBAYTAkFS
+Agg/VTUlv85B8DANBglghkgBZQMEAgEFAKCB5DAYBgkqhkiG9w0BCQMxCwYJKoZI
+hvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0yMDA3MTMyMTE4NTJaMC8GCSqGSIb3DQEJ
+BDEiBCClWS4jgygc9A0f/KeMwHz1eFAAKhjMjSwwHrLryT6EUDB5BgkqhkiG9w0B
+CQ8xbDBqMAsGCWCGSAFlAwQBKjALBglghkgBZQMEARYwCwYJYIZIAWUDBAECMAoG
+CCqGSIb3DQMHMA4GCCqGSIb3DQMCAgIAgDANBggqhkiG9w0DAgIBQDAHBgUrDgMC
+BzANBggqhkiG9w0DAgIBKDANBgkqhkiG9w0BAQEFAASCAQAE4FpXwXfsLpbdh/mt
+SCOxV06sXLu+t9m8t2cWCfFszDF0/HAtrIvjngAxF4n7Jb5bEQubQ10tHJIEfs+y
+p7cseE2BvZ2aV8vtI96KXpTuQUSDdZxvk9+7K7iOoFhj+rzamPmBYkTOyYmgOj1d
+SPPIDlHQ7NLE6CSbc66xP+q0pqJSUv2JoO3i5JXVQQrJUl/G5QX21rhJLUMhORbp
+hogL75IHXhkTLuT4l0li88y9npDQsUqSZVJ/n1heRKhu2rBWMsvQJB35fZfba8MU
+IbSRVhMFYvKpEwdYuzfzbNf9rluigV+TXkL91udIuQmSjETGdL/5d1LpWR9C45Ix
+xBg8
+
+</in0></ser:loginCms>
+</soapenv:Body>
+</soapenv:Envelope>
+<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><soapenv:Body><soapenv:Fault><faultcode xmlns:ns1="http://xml.apache.org/axis/">ns1:cms.cert.expired</faultcode><faultstring>Certificado expirado</faultstring><detail><ns2:exceptionName xmlns:ns2="http://xml.apache.org/axis/">gov.afip.desein.dvadac.sua.view.wsaa.LoginFault</ns2:exceptionName><ns3:hostname xmlns:ns3="http://xml.apache.org/axis/">auth1.afip.gov.ar</ns3:hostname></detail></soapenv:Fault></soapenv:Body></soapenv:Envelope>
+ns1:cms.cert.expired: Certificado expirado
+
+<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:ser="https://wsaa.afip.gov.ar/ws/services/LoginCms" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+<soapenv:Header/>
+<soapenv:Body>
+    <ser:loginCms>
+    <in0>MIIG7wYJKoZIhvcNAQcCoIIG4DCCBtwCAQExDzANBglghkgBZQMEAgEFADCCAR8G
+CSqGSIb3DQEHAaCCARAEggEMPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0i
+VVRGLTgiPz48bG9naW5UaWNrZXRSZXF1ZXN0IHZlcnNpb249IjEuMCI+PGhlYWRl
+cj48dW5pcXVlSWQ+MTU5NDY3NjUyNzwvdW5pcXVlSWQ+PGdlbmVyYXRpb25UaW1l
+PjIwMjAtMDctMTNUMDg6NDI6MDc8L2dlbmVyYXRpb25UaW1lPjxleHBpcmF0aW9u
+VGltZT4yMDIwLTA3LTE0VDA0OjQyOjA3PC9leHBpcmF0aW9uVGltZT48L2hlYWRl
+cj48c2VydmljZT53c2ZlPC9zZXJ2aWNlPjwvbG9naW5UaWNrZXRSZXF1ZXN0PqCC
+A0wwggNIMIICMKADAgECAgg/VTUlv85B8DANBgkqhkiG9w0BAQ0FADAzMRUwEwYD
+VQQDDAxDb21wdXRhZG9yZXMxDTALBgNVBAoMBEFGSVAxCzAJBgNVBAYTAkFSMB4X
+DTE4MDcxNDE1MTExNloXDTIwMDcxMzE1MTExNlowMzEWMBQGA1UEAwwNZmFjdGVf
+Y2xhdWRpbzEZMBcGA1UEBRMQQ1VJVCAyMDIwMjk1NjAzNDCCASIwDQYJKoZIhvcN
+AQEBBQADggEPADCCAQoCggEBAMSTD7DXD+yeeH7/2z1TNn0mXDFrGWYBj2baq/sf
+BkHw7+b0ZWEqkEqtc8b6sm7VCzt1fxauxULktEK5Y1Q137Iq0yQB2uyAcLw/KoMs
+tZoXiFIKxvH+GI67nwPAvDzsNRCtqAKqQUqE4yZS10P/UXlpS4kBuqCV6mR0D7f2
+wTDS7eMPKfhABfn/lMwLoJOx0gDfrWdTcm6ctIEdyil9UKES5BaA5O9Zrr/YyIZj
+KfCzoHiqKWs1bjvaBEJpXfikaIYpFHNRjnAOI/zZ5ZdLjMNQujXsJItie8rEcMXt
+EYj59RxzZJh5TgHYlOLe8vNxJYQ2G1IP3O6ttCemEgZFjHUCAwEAAaNgMF4wDAYD
+VR0TAQH/BAIwADAfBgNVHSMEGDAWgBRbQFEw58MqtpxWnJOF40KAsFDr9jAdBgNV
+HQ4EFgQUxLCFRI8J1qJR2+3zxKU+7pyvLs4wDgYDVR0PAQH/BAQDAgXgMA0GCSqG
+SIb3DQEBDQUAA4IBAQBNG7DYVsC9R2I/ytdumFKCaL/az5bITDeaj0q3jFsG31Ja
+dTdYOkBOGysldezYte4K8IHOLWlR7Ns8p9vJ7uipbFj80m4h7YyE+rW0zaxwoPVw
+Muhku9n3FaBol5c9m4Enoq+suP0VnZGCYj2ypZv5zt4PBMLH9PtUwLN3oI6qQCnM
+UWRU1rPkX7l3bGWhr0iByeahrydX3dSZSihE2CdgLeH5gWy3SUel+W+yNja+mVSl
+AbtJgI9jljeM0fwKDJOhOvohcqZwuLQzoC9DGGx5xe26zUY5IJqIGZ0of9B/erx4
+6GtXghEyg3d8VFtj0FnkMmy/0fvl2XV46hb9VwyxMYICUTCCAk0CAQEwPzAzMRUw
+EwYDVQQDDAxDb21wdXRhZG9yZXMxDTALBgNVBAoMBEFGSVAxCzAJBgNVBAYTAkFS
+Agg/VTUlv85B8DANBglghkgBZQMEAgEFAKCB5DAYBgkqhkiG9w0BCQMxCwYJKoZI
+hvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0yMDA3MTMyMTQyMDdaMC8GCSqGSIb3DQEJ
+BDEiBCAbCp0Ms/tfSd2nBWi55Nw9mXTiIuzhIMBzjzz9qYUDaTB5BgkqhkiG9w0B
+CQ8xbDBqMAsGCWCGSAFlAwQBKjALBglghkgBZQMEARYwCwYJYIZIAWUDBAECMAoG
+CCqGSIb3DQMHMA4GCCqGSIb3DQMCAgIAgDANBggqhkiG9w0DAgIBQDAHBgUrDgMC
+BzANBggqhkiG9w0DAgIBKDANBgkqhkiG9w0BAQEFAASCAQBCo6Nzmt8SZSoJ2WMb
+H6SK3FIHe9s16Hy38+/62MZxmR6Ex2gKhCfWaHT0lxN9DJYSzzcIhnKfFX6BBrZF
+TJC5g/j0O4JJ4oFBawnPzZa9lewcHVtk4P5A38C6ua1RrWK4xUG+0I0HlvnFYvBM
+GzFiU6s3KZR0jMQmOlVdLY1WrTaAKhmdIOgQCa9fY+OIg3G19GO+anuTT60pnaka
+nlWNcMZJ9PoqSIAjL5iunEjo4Zo5bWAENNVdIEXZVIOPZ0OhTW8RY/0mrztAB1It
+8i4TpCwCgPm6Sc2p5h4IkzzKsNWBWP4tgqJYnqdAKH7uGHb7G09q+pZ89DozWkH6
+EOEg
+
+</in0></ser:loginCms>
+</soapenv:Body>
+</soapenv:Envelope>
+<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><soapenv:Body><soapenv:Fault><faultcode xmlns:ns1="http://xml.apache.org/axis/">ns1:cms.cert.expired</faultcode><faultstring>Certificado expirado</faultstring><detail><ns2:exceptionName xmlns:ns2="http://xml.apache.org/axis/">gov.afip.desein.dvadac.sua.view.wsaa.LoginFault</ns2:exceptionName><ns3:hostname xmlns:ns3="http://xml.apache.org/axis/">auth2.afip.gov.ar</ns3:hostname></detail></soapenv:Fault></soapenv:Body></soapenv:Envelope>
+ns1:cms.cert.expired: Certificado expirado
+
+<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:ser="https://wsaa.afip.gov.ar/ws/services/LoginCms" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+<soapenv:Header/>
+<soapenv:Body>
+    <ser:loginCms>
+    <in0>MIIG7wYJKoZIhvcNAQcCoIIG4DCCBtwCAQExDzANBglghkgBZQMEAgEFADCCAR8G
+CSqGSIb3DQEHAaCCARAEggEMPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0i
+VVRGLTgiPz48bG9naW5UaWNrZXRSZXF1ZXN0IHZlcnNpb249IjEuMCI+PGhlYWRl
+cj48dW5pcXVlSWQ+MTU5NDY4NzcxMjwvdW5pcXVlSWQ+PGdlbmVyYXRpb25UaW1l
+PjIwMjAtMDctMTNUMTE6NDg6MzI8L2dlbmVyYXRpb25UaW1lPjxleHBpcmF0aW9u
+VGltZT4yMDIwLTA3LTE0VDA3OjQ4OjMyPC9leHBpcmF0aW9uVGltZT48L2hlYWRl
+cj48c2VydmljZT53c2ZlPC9zZXJ2aWNlPjwvbG9naW5UaWNrZXRSZXF1ZXN0PqCC
+A0wwggNIMIICMKADAgECAgg/VTUlv85B8DANBgkqhkiG9w0BAQ0FADAzMRUwEwYD
+VQQDDAxDb21wdXRhZG9yZXMxDTALBgNVBAoMBEFGSVAxCzAJBgNVBAYTAkFSMB4X
+DTE4MDcxNDE1MTExNloXDTIwMDcxMzE1MTExNlowMzEWMBQGA1UEAwwNZmFjdGVf
+Y2xhdWRpbzEZMBcGA1UEBRMQQ1VJVCAyMDIwMjk1NjAzNDCCASIwDQYJKoZIhvcN
+AQEBBQADggEPADCCAQoCggEBAMSTD7DXD+yeeH7/2z1TNn0mXDFrGWYBj2baq/sf
+BkHw7+b0ZWEqkEqtc8b6sm7VCzt1fxauxULktEK5Y1Q137Iq0yQB2uyAcLw/KoMs
+tZoXiFIKxvH+GI67nwPAvDzsNRCtqAKqQUqE4yZS10P/UXlpS4kBuqCV6mR0D7f2
+wTDS7eMPKfhABfn/lMwLoJOx0gDfrWdTcm6ctIEdyil9UKES5BaA5O9Zrr/YyIZj
+KfCzoHiqKWs1bjvaBEJpXfikaIYpFHNRjnAOI/zZ5ZdLjMNQujXsJItie8rEcMXt
+EYj59RxzZJh5TgHYlOLe8vNxJYQ2G1IP3O6ttCemEgZFjHUCAwEAAaNgMF4wDAYD
+VR0TAQH/BAIwADAfBgNVHSMEGDAWgBRbQFEw58MqtpxWnJOF40KAsFDr9jAdBgNV
+HQ4EFgQUxLCFRI8J1qJR2+3zxKU+7pyvLs4wDgYDVR0PAQH/BAQDAgXgMA0GCSqG
+SIb3DQEBDQUAA4IBAQBNG7DYVsC9R2I/ytdumFKCaL/az5bITDeaj0q3jFsG31Ja
+dTdYOkBOGysldezYte4K8IHOLWlR7Ns8p9vJ7uipbFj80m4h7YyE+rW0zaxwoPVw
+Muhku9n3FaBol5c9m4Enoq+suP0VnZGCYj2ypZv5zt4PBMLH9PtUwLN3oI6qQCnM
+UWRU1rPkX7l3bGWhr0iByeahrydX3dSZSihE2CdgLeH5gWy3SUel+W+yNja+mVSl
+AbtJgI9jljeM0fwKDJOhOvohcqZwuLQzoC9DGGx5xe26zUY5IJqIGZ0of9B/erx4
+6GtXghEyg3d8VFtj0FnkMmy/0fvl2XV46hb9VwyxMYICUTCCAk0CAQEwPzAzMRUw
+EwYDVQQDDAxDb21wdXRhZG9yZXMxDTALBgNVBAoMBEFGSVAxCzAJBgNVBAYTAkFS
+Agg/VTUlv85B8DANBglghkgBZQMEAgEFAKCB5DAYBgkqhkiG9w0BCQMxCwYJKoZI
+hvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0yMDA3MTQwMDQ4MzJaMC8GCSqGSIb3DQEJ
+BDEiBCACbCYWgI0C704j0tSmcnMO23cCxgqIptPdj62TpLjyBjB5BgkqhkiG9w0B
+CQ8xbDBqMAsGCWCGSAFlAwQBKjALBglghkgBZQMEARYwCwYJYIZIAWUDBAECMAoG
+CCqGSIb3DQMHMA4GCCqGSIb3DQMCAgIAgDANBggqhkiG9w0DAgIBQDAHBgUrDgMC
+BzANBggqhkiG9w0DAgIBKDANBgkqhkiG9w0BAQEFAASCAQCoPguLOI6B9c4OpEij
+ESe7Bfnghy78DBdIIE9epvirnLFIjHmFiRae0d79hc91HOgd0ZNsCMQUefgIsDvm
+9gUewFYvUFv2PtDfdnT2omFGUPUeRNhX3BB0PobvbkcS+AP4GD3/BarwgXTTC95+
+HqTyEPL/4RJ+Vm4pCvlROqC88WyfQGlRT+BPlMK2MdvRZWWgUmJD+F4vH0hD7vqQ
+oDip4DsnCk8/NJrtahHZi7GMv3ElR+qdMSSVOrkKC8UvSfayVKMkt+f3kjOP1rg7
+fXLTn5jG5pknO43p3cv7kDkeSGl35olMF9FgLvEg+wXbF9VuxSDyddrbwlu0UuDL
+fDGv
+
+</in0></ser:loginCms>
+</soapenv:Body>
+</soapenv:Envelope>
+<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><soapenv:Body><soapenv:Fault><faultcode xmlns:ns1="http://xml.apache.org/axis/">ns1:cms.cert.expired</faultcode><faultstring>Certificado expirado</faultstring><detail><ns2:exceptionName xmlns:ns2="http://xml.apache.org/axis/">gov.afip.desein.dvadac.sua.view.wsaa.LoginFault</ns2:exceptionName><ns3:hostname xmlns:ns3="http://xml.apache.org/axis/">auth1.afip.gov.ar</ns3:hostname></detail></soapenv:Fault></soapenv:Body></soapenv:Envelope>
+ns1:cms.cert.expired: Certificado expirado
+
+<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:ser="https://wsaa.afip.gov.ar/ws/services/LoginCms" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+<soapenv:Header/>
+<soapenv:Body>
+    <ser:loginCms>
+    <in0>MIIG7wYJKoZIhvcNAQcCoIIG4DCCBtwCAQExDzANBglghkgBZQMEAgEFADCCAR8G
+CSqGSIb3DQEHAaCCARAEggEMPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0i
+VVRGLTgiPz48bG9naW5UaWNrZXRSZXF1ZXN0IHZlcnNpb249IjEuMCI+PGhlYWRl
+cj48dW5pcXVlSWQ+MTU5NDY4NzgxNjwvdW5pcXVlSWQ+PGdlbmVyYXRpb25UaW1l
+PjIwMjAtMDctMTNUMTE6NTA6MTY8L2dlbmVyYXRpb25UaW1lPjxleHBpcmF0aW9u
+VGltZT4yMDIwLTA3LTE0VDA3OjUwOjE2PC9leHBpcmF0aW9uVGltZT48L2hlYWRl
+cj48c2VydmljZT53c2ZlPC9zZXJ2aWNlPjwvbG9naW5UaWNrZXRSZXF1ZXN0PqCC
+A0wwggNIMIICMKADAgECAgg/VTUlv85B8DANBgkqhkiG9w0BAQ0FADAzMRUwEwYD
+VQQDDAxDb21wdXRhZG9yZXMxDTALBgNVBAoMBEFGSVAxCzAJBgNVBAYTAkFSMB4X
+DTE4MDcxNDE1MTExNloXDTIwMDcxMzE1MTExNlowMzEWMBQGA1UEAwwNZmFjdGVf
+Y2xhdWRpbzEZMBcGA1UEBRMQQ1VJVCAyMDIwMjk1NjAzNDCCASIwDQYJKoZIhvcN
+AQEBBQADggEPADCCAQoCggEBAMSTD7DXD+yeeH7/2z1TNn0mXDFrGWYBj2baq/sf
+BkHw7+b0ZWEqkEqtc8b6sm7VCzt1fxauxULktEK5Y1Q137Iq0yQB2uyAcLw/KoMs
+tZoXiFIKxvH+GI67nwPAvDzsNRCtqAKqQUqE4yZS10P/UXlpS4kBuqCV6mR0D7f2
+wTDS7eMPKfhABfn/lMwLoJOx0gDfrWdTcm6ctIEdyil9UKES5BaA5O9Zrr/YyIZj
+KfCzoHiqKWs1bjvaBEJpXfikaIYpFHNRjnAOI/zZ5ZdLjMNQujXsJItie8rEcMXt
+EYj59RxzZJh5TgHYlOLe8vNxJYQ2G1IP3O6ttCemEgZFjHUCAwEAAaNgMF4wDAYD
+VR0TAQH/BAIwADAfBgNVHSMEGDAWgBRbQFEw58MqtpxWnJOF40KAsFDr9jAdBgNV
+HQ4EFgQUxLCFRI8J1qJR2+3zxKU+7pyvLs4wDgYDVR0PAQH/BAQDAgXgMA0GCSqG
+SIb3DQEBDQUAA4IBAQBNG7DYVsC9R2I/ytdumFKCaL/az5bITDeaj0q3jFsG31Ja
+dTdYOkBOGysldezYte4K8IHOLWlR7Ns8p9vJ7uipbFj80m4h7YyE+rW0zaxwoPVw
+Muhku9n3FaBol5c9m4Enoq+suP0VnZGCYj2ypZv5zt4PBMLH9PtUwLN3oI6qQCnM
+UWRU1rPkX7l3bGWhr0iByeahrydX3dSZSihE2CdgLeH5gWy3SUel+W+yNja+mVSl
+AbtJgI9jljeM0fwKDJOhOvohcqZwuLQzoC9DGGx5xe26zUY5IJqIGZ0of9B/erx4
+6GtXghEyg3d8VFtj0FnkMmy/0fvl2XV46hb9VwyxMYICUTCCAk0CAQEwPzAzMRUw
+EwYDVQQDDAxDb21wdXRhZG9yZXMxDTALBgNVBAoMBEFGSVAxCzAJBgNVBAYTAkFS
+Agg/VTUlv85B8DANBglghkgBZQMEAgEFAKCB5DAYBgkqhkiG9w0BCQMxCwYJKoZI
+hvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0yMDA3MTQwMDUwMTZaMC8GCSqGSIb3DQEJ
+BDEiBCB2Ed7GzjRO/hxrj5OHY0cOX7RPwPrRXLbAXYUawg9ejzB5BgkqhkiG9w0B
+CQ8xbDBqMAsGCWCGSAFlAwQBKjALBglghkgBZQMEARYwCwYJYIZIAWUDBAECMAoG
+CCqGSIb3DQMHMA4GCCqGSIb3DQMCAgIAgDANBggqhkiG9w0DAgIBQDAHBgUrDgMC
+BzANBggqhkiG9w0DAgIBKDANBgkqhkiG9w0BAQEFAASCAQAAiFt3EPEeJ1A40P6n
+KHzUBUt6HGyHeziB49JHu9CDXCNb9FO32vJws+sMHZfgl0AgjKPtU9wpV55VDrGj
+saA/7RwXcn4vqUO3rAy1WEw/hGQhM1lhXfnYbOcp0VMP6B234h/p3jj0XfsR3dSx
+iaUJUnEKNJjJ2+rbAiDal9Iqtdvm4DKxzDQ1B3JT2R1bOpd5vrQmRieJqzz1U6D7
+VTAbO+Kx1yDi88W1iME0Mgg3hcH4I5h5jxjqG2gF4ayqEEdiksgBVYtrE+1D6zUc
+x+v+mixkKqHg+LGdiODL9rZBER6+vOUqumu1TcJH5rZXcGw1dSQ1CV1hJubtgVZB
+EJaF
+
+</in0></ser:loginCms>
+</soapenv:Body>
+</soapenv:Envelope>
+<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><soapenv:Body><soapenv:Fault><faultcode xmlns:ns1="http://xml.apache.org/axis/">ns1:cms.cert.expired</faultcode><faultstring>Certificado expirado</faultstring><detail><ns2:exceptionName xmlns:ns2="http://xml.apache.org/axis/">gov.afip.desein.dvadac.sua.view.wsaa.LoginFault</ns2:exceptionName><ns3:hostname xmlns:ns3="http://xml.apache.org/axis/">auth2.afip.gov.ar</ns3:hostname></detail></soapenv:Fault></soapenv:Body></soapenv:Envelope>
+ns1:cms.cert.expired: Certificado expirado
+
+<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:ser="https://wsaa.afip.gov.ar/ws/services/LoginCms" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+<soapenv:Header/>
+<soapenv:Body>
+    <ser:loginCms>
+    <in0>MIIG7wYJKoZIhvcNAQcCoIIG4DCCBtwCAQExDzANBglghkgBZQMEAgEFADCCAR8G
+CSqGSIb3DQEHAaCCARAEggEMPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0i
+VVRGLTgiPz48bG9naW5UaWNrZXRSZXF1ZXN0IHZlcnNpb249IjEuMCI+PGhlYWRl
+cj48dW5pcXVlSWQ+MTU5NDcyODYyOTwvdW5pcXVlSWQ+PGdlbmVyYXRpb25UaW1l
+PjIwMjAtMDctMTNUMjM6MTA6Mjk8L2dlbmVyYXRpb25UaW1lPjxleHBpcmF0aW9u
+VGltZT4yMDIwLTA3LTE0VDE5OjEwOjI5PC9leHBpcmF0aW9uVGltZT48L2hlYWRl
+cj48c2VydmljZT53c2ZlPC9zZXJ2aWNlPjwvbG9naW5UaWNrZXRSZXF1ZXN0PqCC
+A0wwggNIMIICMKADAgECAgg/VTUlv85B8DANBgkqhkiG9w0BAQ0FADAzMRUwEwYD
+VQQDDAxDb21wdXRhZG9yZXMxDTALBgNVBAoMBEFGSVAxCzAJBgNVBAYTAkFSMB4X
+DTE4MDcxNDE1MTExNloXDTIwMDcxMzE1MTExNlowMzEWMBQGA1UEAwwNZmFjdGVf
+Y2xhdWRpbzEZMBcGA1UEBRMQQ1VJVCAyMDIwMjk1NjAzNDCCASIwDQYJKoZIhvcN
+AQEBBQADggEPADCCAQoCggEBAMSTD7DXD+yeeH7/2z1TNn0mXDFrGWYBj2baq/sf
+BkHw7+b0ZWEqkEqtc8b6sm7VCzt1fxauxULktEK5Y1Q137Iq0yQB2uyAcLw/KoMs
+tZoXiFIKxvH+GI67nwPAvDzsNRCtqAKqQUqE4yZS10P/UXlpS4kBuqCV6mR0D7f2
+wTDS7eMPKfhABfn/lMwLoJOx0gDfrWdTcm6ctIEdyil9UKES5BaA5O9Zrr/YyIZj
+KfCzoHiqKWs1bjvaBEJpXfikaIYpFHNRjnAOI/zZ5ZdLjMNQujXsJItie8rEcMXt
+EYj59RxzZJh5TgHYlOLe8vNxJYQ2G1IP3O6ttCemEgZFjHUCAwEAAaNgMF4wDAYD
+VR0TAQH/BAIwADAfBgNVHSMEGDAWgBRbQFEw58MqtpxWnJOF40KAsFDr9jAdBgNV
+HQ4EFgQUxLCFRI8J1qJR2+3zxKU+7pyvLs4wDgYDVR0PAQH/BAQDAgXgMA0GCSqG
+SIb3DQEBDQUAA4IBAQBNG7DYVsC9R2I/ytdumFKCaL/az5bITDeaj0q3jFsG31Ja
+dTdYOkBOGysldezYte4K8IHOLWlR7Ns8p9vJ7uipbFj80m4h7YyE+rW0zaxwoPVw
+Muhku9n3FaBol5c9m4Enoq+suP0VnZGCYj2ypZv5zt4PBMLH9PtUwLN3oI6qQCnM
+UWRU1rPkX7l3bGWhr0iByeahrydX3dSZSihE2CdgLeH5gWy3SUel+W+yNja+mVSl
+AbtJgI9jljeM0fwKDJOhOvohcqZwuLQzoC9DGGx5xe26zUY5IJqIGZ0of9B/erx4
+6GtXghEyg3d8VFtj0FnkMmy/0fvl2XV46hb9VwyxMYICUTCCAk0CAQEwPzAzMRUw
+EwYDVQQDDAxDb21wdXRhZG9yZXMxDTALBgNVBAoMBEFGSVAxCzAJBgNVBAYTAkFS
+Agg/VTUlv85B8DANBglghkgBZQMEAgEFAKCB5DAYBgkqhkiG9w0BCQMxCwYJKoZI
+hvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0yMDA3MTQxMjEwMjlaMC8GCSqGSIb3DQEJ
+BDEiBCDE3M7HcAcMlF8JhjUgHI17yGItK1iMA90llQeZMqeh1zB5BgkqhkiG9w0B
+CQ8xbDBqMAsGCWCGSAFlAwQBKjALBglghkgBZQMEARYwCwYJYIZIAWUDBAECMAoG
+CCqGSIb3DQMHMA4GCCqGSIb3DQMCAgIAgDANBggqhkiG9w0DAgIBQDAHBgUrDgMC
+BzANBggqhkiG9w0DAgIBKDANBgkqhkiG9w0BAQEFAASCAQC3ceopkSgF+ay3NPmu
+psWdugO/KE2bJzI9BiVEOiA4EZ70zq1aj4NViH+uwDscCdVUlYYDhMydSoHqtDXG
+FfbSAE1jj8SZbmtn7WOYMSqPtiiVbQeB0fGpqWFs8mMiK/UUTMfVhe2TPauMeFMY
+VRwZgniH20b2Cn6n20NY2ZIrPi6eQHfqxkdIRnXZ81g3QSLkDgdk+sE9f0uFTVNE
+SsfCdY+Lhy7q3ASZyBjgzLyB6XJj3fkCsTjJZiL2HbNePvJvtkyCesduxUDyesco
+9FLaxeHNYCXclWY5s5Qr0f1q6D9b7h0ZHHFxXsGHrdkPr+hpKycbuI8oWSLLfuab
+oQ8z
+
+</in0></ser:loginCms>
+</soapenv:Body>
+</soapenv:Envelope>
+<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><soapenv:Body><soapenv:Fault><faultcode xmlns:ns1="http://xml.apache.org/axis/">ns1:cms.cert.expired</faultcode><faultstring>Certificado expirado</faultstring><detail><ns2:exceptionName xmlns:ns2="http://xml.apache.org/axis/">gov.afip.desein.dvadac.sua.view.wsaa.LoginFault</ns2:exceptionName><ns3:hostname xmlns:ns3="http://xml.apache.org/axis/">auth2.afip.gov.ar</ns3:hostname></detail></soapenv:Fault></soapenv:Body></soapenv:Envelope>

@@ -95,6 +95,9 @@ Select Case t_llamada
    Case Is = "5"
    gen_libroivadigitalC.t_carpeta = t_carpeta
    
+   Case Is = "6"
+   gen_cf.t_carpeta = t_carpeta
+   
 End Select
 End Sub
 

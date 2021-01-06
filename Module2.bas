@@ -45,7 +45,7 @@ Public Type varudt 'se crea una estructura para los parametros
    muestraagenda As String
    tipoprecioventa As Integer 'define el tipo de precio venta a utilizar 0 pu  1 pf
    password_adm  As String
-   fiscal As Integer ' 0 NO  1 SI
+   Fiscal As Integer ' 0 NO  1 SI
    IMPRESORA_PREDETERMINADA As String
    impresora_actual As String
    cuenta_compras_varias As Long
@@ -93,7 +93,7 @@ Public cl_chterc As chterceros
 Public cl_banco As bancos
 Public cl_padronib As padron_ib
 Public cl_stock As STOCK
-Public cl_fiscal As fiscal
+Public cl_fiscal As Fiscal
 
 
 
@@ -103,6 +103,13 @@ Public cnrep As adodb.Connection
 
 'factura electronica
 Dim WSAA As Object, WSFEv1 As Object
+
+'controlador fiscal nuevo protocolo (2020)
+Public Fiscal As Driver
+Public cMODELO As Integer
+Public cPUERTO As Integer
+Public cBAUDIOS As Long
+
 
 Public Function busca_saldos_prov(ByVal cp As Long, ByVal m As String, ByVal F As Date) As Double
     'busca saldos  cp a= cod. proveedor   m = moneda p pesos d dolares f = fecha hasta

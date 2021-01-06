@@ -1,7 +1,7 @@
 VERSION 5.00
 Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
 Object = "{0A6BE9FC-5039-11D5-98EC-0800460222F0}#1.0#0"; "IFEpson.ocx"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "Mscomctl.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form vta_facturacion 
    BackColor       =   &H00E0E0E0&
    Caption         =   "FACTURACION"
@@ -11,8 +11,8 @@ Begin VB.Form vta_facturacion
    ClientWidth     =   11880
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
-   ScaleHeight     =   10935
-   ScaleWidth      =   20250
+   ScaleHeight     =   8490
+   ScaleWidth      =   11880
    Begin VB.TextBox t_cae_vence 
       Height          =   285
       Left            =   12240
@@ -785,9 +785,9 @@ Begin VB.Form vta_facturacion
       Height          =   255
       Left            =   0
       TabIndex        =   22
-      Top             =   10680
-      Width           =   20250
-      _ExtentX        =   35719
+      Top             =   8235
+      Width           =   11880
+      _ExtentX        =   20955
       _ExtentY        =   450
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
@@ -809,12 +809,12 @@ Begin VB.Form vta_facturacion
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "1/10/2020"
+            TextSave        =   "10/12/2020"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:05 a. m."
+            TextSave        =   "10:40 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -838,6 +838,8 @@ Dim cuentaact As Long
 Dim abreviatura As String
 Dim cantlineas As Integer
 Dim ubicacionctacte As String
+
+Dim Fiscaltf As Driver
 
 Sub electronica()
 
@@ -898,18 +900,18 @@ Sub electronica()
                 tipo_cbte = cl_compvta.cod_afip_b
              End If
              punto_vta = glo.sucursale
-             Cbte_Nro = WSFEv1.CompUltimoAutorizado(tipo_cbte, punto_vta)
+             cbte_nro = WSFEv1.CompUltimoAutorizado(tipo_cbte, punto_vta)
              ControlarExcepcion_fe WSFEv1
             
-             If Cbte_Nro = "" Then
-                Cbte_Nro = 0                ' no hay comprobantes emitidos
+             If cbte_nro = "" Then
+                cbte_nro = 0                ' no hay comprobantes emitidos
              Else
-                Cbte_Nro = CLng(Cbte_Nro)   ' convertir a entero largo
+                cbte_nro = CLng(cbte_nro)   ' convertir a entero largo
              End If
-             Cbte_Nro = Cbte_Nro + 1
+             cbte_nro = cbte_nro + 1
              
              ' hacer esto solo si los numeros comprobantes coinciden
-             If Cbte_Nro = Val(t_numcomp) Then
+             If cbte_nro = Val(t_numcomp) Then
              
                      fecha = Format(t_fecha, "yyyymmdd")
                      concepto = c_tipoop.ListIndex + 1
@@ -926,8 +928,8 @@ Sub electronica()
                         End If
                      End If
                      
-                     cbt_desde = Cbte_Nro
-                     cbt_hasta = Cbte_Nro
+                     cbt_desde = cbte_nro
+                     cbt_hasta = cbte_nro
                      imp_total = t_total
                      imp_tot_conc = t_nograbado
                      imp_neto = t_subtotal
@@ -1062,7 +1064,7 @@ Sub electronica()
      
      Else 'else si los numeros de comprobantes no coinciden
        
-          MsgBox ("Los numeros de comprobantes entre el sistema y el AFIP no coinciden. Último comprobante del AFIP: " & Cbte_Nro - 1 & " Ultimo comprobante del sistema: " & Val(t_numcomp) - 1 & " Verifique antes de continuar!!")
+          MsgBox ("Los numeros de comprobantes entre el sistema y el AFIP no coinciden. Último comprobante del AFIP: " & cbte_nro - 1 & " Ultimo comprobante del sistema: " & Val(t_numcomp) - 1 & " Verifique antes de continuar!!")
         
         
      End If
@@ -1519,7 +1521,16 @@ If Option4 = True Then
   
   seguir = True
   While seguir
-    If imprime_facturafiscal Then
+    Set cl_fiscal = New fiscal
+    cl_fiscal.carga (glo.sucursalf)
+     If cl_fiscal.idmodelo = 24 Then 'tm-900 then
+             resulta = imprime_facturafiscal2
+       Else
+             resulta = imprime_facturafiscal
+       End If
+    Set cl_fiscal = Nothing
+      
+    If resulta Then
         espere.ProgressBar1.Value = 5
         espere.Label1 = "Espere... Grabando Comprobante Fiscal"
         If Val(t_total) <= 0 Or Val(t_numcomp) <= 0 Then
@@ -1585,7 +1596,6 @@ End If
 Call libera_comp
 End Sub
 
-
 Sub bloquea_comp()
 Frame3.Enabled = False
 Frame5.Enabled = False
@@ -1598,6 +1608,280 @@ Frame5.Enabled = True
 Frame2.Enabled = True
 Frame6.Enabled = True
 End Sub
+Function imprime_facturafiscal2() As Boolean
+Dim a(5) As String
+
+Dim CUIT As String
+Dim identifica As String
+Dim tpago As String
+Dim t  As String
+Dim de1 As String
+Dim tipocompfz As String
+Dim tv2 As String
+Dim td As String
+Dim cliz As String
+Dim dirz As String
+Dim locz As String
+Dim de1z As String
+Dim tivacz As String
+Dim letraz As String
+Dim rk As Boolean
+Dim remitosz As String
+Dim remitosz2 As String
+'Dim r As Boolean
+Set cl_fiscal = New fiscal
+cl_fiscal.carga (glo.sucursalf)
+para.z_actual = cl_fiscal.ultimo_z + 1
+Select Case c_tipocomp.ItemData(c_tipocomp.ListIndex)
+Case Is = 1
+   If t_letra = "A" Then
+     tipocompfz = 1  'fact A
+   Else
+      tipocompfz = 2 'fact b
+   End If
+Case Is = 2
+    If cl_fiscal.imprimend = "S" Then
+       If t_letra = "A" Then
+          tipocompfz = 4 'nd A
+       Else
+          tipocompfz = 5 'nd B
+       End If
+    Else
+        MsgBox ("La impresora fiscal no puede imprimir ND")
+        imprime_facturafiscal2 = False
+        Exit Function
+    End If
+ Case Is = 3
+    If cl_fiscal.imprimenc = "S" Then
+       If t_letra = "A" Then
+           tipocompfz = 7
+       Else
+           tipocompfz = 8
+       End If
+    Else
+        MsgBox ("La impresora fiscal no puede imprimir NC")
+        imprime_facturafiscal2 = False
+         Exit Function
+    End If
+ Case Else
+    para.z_actual = 0
+    imprime_facturafiscal2 = False
+    Exit Function
+End Select
+caracteresmax = cl_fiscal.caracteresmax
+Set cl_fiscal = Nothing
+
+
+
+
+espere.Show
+espere.Refresh
+espere.ProgressBar1.Min = 0
+espere.ProgressBar1.Max = 6
+espere.ProgressBar1.Value = 1
+espere.Label1 = "Espere... Comprobando Impresora"
+'abrir factura
+If vta_clientes.c_iva.ItemData(vta_clientes.c_iva.ListIndex) <> 3 Then
+   identifica = 0 'cuit
+   'CUIT = Mid$(vta_clientes.t_cuit, 1, 11) '& Mid$(vta_clientes.t_cuit, 4, 8) & Mid$(vta_clientes.t_cuit, 13, 1)
+    CUIT = RTrim$(vta_clientes.t_cuit)
+ Else
+   identifica = 1 'dni
+   CUIT = RTrim$(vta_clientes.t_cuit)
+ End If
+ 
+ If Option1 = True Then
+    tpago = "Cta.Cte. Nro. " & Format$(c_prov.ItemData(c_prov.ListIndex), "00000")
+ Else
+    tpago = "CONTADO"
+ End If
+
+   tv2 = " "
+
+ espere.ProgressBar1.Value = 2
+ espere.Label1 = "Espere... Abriendo Comprobante Fiscal:" & c_tipocomp
+ 
+remitosz = " "
+remitosz2 = " "
+
+For i = 1 To vta_selremitos.msf1.Rows - 1
+   If vta_selremitos.msf1.TextMatrix(i, 0) = "**" Then
+       remitosz = remitosz & "#" & Val(Mid$(vta_selremitos.msf1.TextMatrix(i, 1), 6, 8))
+   End If
+Next i
+      
+ 
+ 'On Error GoTo errf
+ cliz = textofiscal(Left$(vta_clientes.t_cli & " ", caracteresmax))
+ dirz = textofiscal(Left$(vta_clientes.t_direccion & " ", caracteresmax))
+ locz = textofiscal(Left$(vta_clientes.t_localidad & " ", caracteresmax))
+ letraz = t_letra
+ tivacz = vta_clientes.t_codfiscal2
+ 
+ 
+ 'abrir factura
+ 
+ On Error GoTo DepuraErrores
+ If Not Fiscaltf.Inicializar Then
+    Err.Raise Fiscaltf.Error, "", Fiscaltf.ErrorDesc
+  End If
+  
+  Fiscaltf.CancelarComprobante
+    
+  
+  
+ 'datos del cliente
+ If Not Fiscaltf.DatosCliente(cliz, identifica, CUIT, tivacz, dirz) Then
+      Err.Raise Fiscaltf.Error, "", Fiscaltf.ErrorDesc
+ End If
+     
+  If remitosz <> " " Then
+       If Not Fiscaltf.ImprimirTextoNoFiscal("Rtos:" & remitosz) Then
+          Err.Raise Fiscaltf.Error, "", Fiscaltf.ErrorDesc
+       End If
+  End If
+  
+  
+  
+  If Not Fiscaltf.AbrirComprobante(tipocompfz) Then
+     Err.Raise Fiscaltf.Error, "", Fiscaltf.ErrorDesc
+  End If
+  
+  
+   
+'envia items a facturar
+espere.ProgressBar1.Value = 3
+espere.Label1 = "Espere... Imprimiendo Productos"
+ 
+ i = 1
+ While i < msf1.Rows
+     
+        
+         If Val(msf1.TextMatrix(i, 0)) = 0 Then
+          If Check2 = 1 Then 'tiene desc extra
+            de1 = " "
+            dex = msf1.TextMatrix(i, 2)
+            
+            Call lee_desc_extra(a, dex)
+            
+            For k = 0 To 2
+             If a(k) <> "%%" Then
+                 de1 = Left$(a(k), caracteresmax)
+                 de1z = textofiscal(de1)
+                 If Not Fiscaltf.ImprimirTextoFiscal(delz) Then
+                   Err.Raise Fiscaltf.Error, "", Fiscaltf.ErrorDesc
+                 End If
+                
+             Else
+               k = 2
+             End If
+           Next k
+          End If
+        Else
+          de1z = textofiscal(Left$(msf1.TextMatrix(i, 2), caracteresmax))
+          
+          If t_letra = "A" Then
+            precio = Val(msf1.TextMatrix(i, 5))
+          Else
+            precio = Val(msf1.TextMatrix(i, 8))
+          End If
+          
+          If Not Fiscaltf.ImprimirItem2g(de1z, Val(msf1.TextMatrix(i, 3)), precio, Val(msf1.TextMatrix(i, 6)), 0, IFUniversal.Gravado, 0, 1, msf1.TextMatrix(i, 1), "", 0) Then
+             Err.Raise Fiscaltf.Error, "", Fiscaltf.ErrorDesc
+          End If
+        End If
+      
+     
+   i = i + 1
+ Wend
+ 
+ 
+ 'pagos
+  espere.Label1 = "Espere... Grabando Pagos"
+  
+  
+  t_subtotal = Fiscaltf.subtotal.MontoNeto
+  t_iva = Fiscaltf.subtotal.MontoIVA
+  t_total = Fiscaltf.subtotal.MontoVentas
+ 
+  
+  
+  If Option2 = True Then 'contado
+  
+    resto = Val(t_total)
+  For i = 1 To fsc_formapago.msf2.Rows - 1
+     td = Left$(RTrim$(fsc_formapago.msf2.TextMatrix(i, 2)), 15)
+     mp = Format$(Val(fsc_formapago.msf2.TextMatrix(i, 6)), "######0.00")
+     dp = "T"
+        
+     Set rs2 = New Recordset
+     q = "select * from cyb_01 where [id_forma_pago] = " & Val(fsc_formapago.msf2.TextMatrix(i, 0))
+     rs2.Open q, cn1
+     If Not rs2.EOF And Not rs2.BOF Then
+        codpago = rs2("codigo_driver_fiscal")
+     Else
+       codpago = 8
+     End If
+     Set rs2 = Nothing
+        
+     If Not Fiscaltf.ImprimirPago2g(td, mp, "", codpago, 1, "", "") Then
+       Err.Raise Fiscaltf.Error, "", Fiscaltf.ErrorDesc
+     End If
+     
+     resto = resto - mp
+   Next i
+
+  
+  If resto > 0 Then
+      If Not Fiscaltf.ImprimirPago2g("Pago", Format$(resto, "######0.00"), "", IFUniversal.CuentaCorriente, 1, "", "") Then
+       Err.Raise Fiscaltf.Error, "", Fiscaltf.ErrorDesc
+      End If
+     
+  End If
+    
+    
+  
+  Else
+    td = "Cta. Cte. Nro. " & Format$(c_prov.ItemData(c_prov.ListIndex), "00000")
+    mp = Val(t_total)
+    dp = "T"
+    If Not Fiscaltf.ImprimirPago2g(td, Format$(mp, "######0.00"), "", IFUniversal.CuentaCorriente, 1, "", "") Then
+       Err.Raise Fiscaltf.Error, "", Fiscaltf.ErrorDesc
+    End If
+     
+    
+    
+  End If
+  
+ 'subtotal para obtener el importe neto, iva y total impreso en la factura
+espere.ProgressBar1.Value = 4
+espere.Label1 = "Espere... Cerrando Comprobante Fiscal"
+
+      
+      
+      
+ 
+  espere.Label1 = "Espere Cerrando Tique...."
+  espere.Label1.Refresh
+  Fiscaltf.CerrarComprobante
+  
+  t_numcomp = Format$(Fiscaltf.UltimoComprobante(tipocompfz), "00000000")
+  Fiscaltf.Finalizar
+  
+  imprime_facturafiscal2 = True
+ 
+    
+ Exit Function
+DepuraErrores:
+  'Fiscaltf.Finalizar
+  MsgBox Fiscaltf.ErrorDesc
+  imprime_facturafiscal2 = False
+  Exit Function
+   
+End Function
+
+
+
 Function imprime_facturafiscal() As Boolean
 Dim a(5) As String
 
@@ -2462,7 +2746,14 @@ gcuit = "0"
 
 Set cl_fiscal = New fiscal
 cl_fiscal.carga (glo.sucursalf)
-epson1.PortNumber = cl_fiscal.puerto
+If cl_fiscal.idmodelo <> 24 Then
+  epson1.PortNumber = cl_fiscal.puerto
+Else
+  Set Fiscaltf = New Driver
+  Fiscaltf.Modelo = cMODELO
+  Fiscaltf.puerto = cPUERTO
+  Fiscaltf.baudios = cBAUDIOS
+End If
 Set cl_fiscal = Nothing
 
 
@@ -2478,6 +2769,10 @@ Set rs = Nothing
 
 
 c_sucursal.ListIndex = buscaindice(c_sucursal, para.punto_venta_usuario)
+
+
+
+
 End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
@@ -2489,7 +2784,7 @@ Unload vta_facturacion2
 End Sub
 
 Private Sub msf1_GotFocus()
-Me.StatusBar1.Panels.Item(2) = "[INS] Agrega - [ENTER] Modifica - [F3] Descipcion extra - [F5] Saca Renglon - [F7] Costo - [F9] Graba "
+Me.StatusBar1.Panels.item(2) = "[INS] Agrega - [ENTER] Modifica - [F3] Descipcion extra - [F5] Saca Renglon - [F7] Costo - [F9] Graba "
 If msf1.Rows > 1 Then
   msf1.FocusRect = flexFocusNone
 Else

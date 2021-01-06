@@ -1,0 +1,205 @@
+! TipoDeComprobante
+
+tcNo_Fiscal = 0
+tcFactura_A = 1
+tcFactura_B = 2
+tcFactura_C = 3
+tcNota_Debito_A = 4
+tcNota_Debito_B = 5
+tcNota_Debito_C = 6
+tcNota_Credito_A = 7
+tcNota_Credito_B = 8
+tcNota_Credito_C = 9
+tcTicket = 10
+
+! Puertos
+
+pcCOM1 = 1
+pcCOM2 = 2
+pcCOM3 = 3
+pcCOM4 = 4
+pcCOM5 = 5
+pcCOM6 = 6
+pcCOM7 = 7
+pcCOM8 = 8
+pcCOM9 = 9
+
+
+! codigos de error
+
+errNoError = 0
+errControladorNoDisponible = 1
+errComandoInvalido = 2
+errParametroInvalido = 3
+errExcepcion = 4
+errMemoriaFiscal = 5
+errMemoriaTrabajo = 6
+errBateriaBaja = 7
+errComandoDesconocido = 8
+errDesbordamientoTotales = 9
+errMemoriaFiscalLlena = 10
+errMemoriaFiscalCasiLlena = 11
+errFallaImpresora = 13
+errImpresoraFueraLinea = 14
+errFaltaPapelDiario = 15
+errFaltaPapelTicket = 16
+errTapaImpresoraAbierta = 18
+errCajonCerradoOAusente = 19
+errCampoDatosInvalido = 20
+
+! Modelos de impresora
+
+modHasar715 = 0
+modHasar715v2 = 2
+modHasar615 = 3
+modHasar320 = 4
+modHasarPR4F = 5
+modHasarPR5F = 6
+modHasar950 = 7
+modHasar951 = 8
+modHasar441 = 9
+modHasar321 = 10
+modHasar322 = 11
+modHasar322v2 = 12
+modHasar330 = 13
+modHasar1120 = 14
+modHasarPL8F = 15
+modHasarPL8Fv2 = 16
+modHasarPL23 = 17
+modEpsonTM300AF = 18
+modEpsonTMU220AF = 19
+modEpsonTM2000 = 20
+modEpsonTM2000AFPlus = 21
+modEpsonLX300 = 22
+modHasarPT1000F = 23
+modEpsonTM900FA = 24	 
+
+! Tipos de documento
+
+tdCUIT = 0
+tdDNI = 1
+tdPasaporte = 2
+tdCedula = 3
+
+! Responsabilidad ante IVA
+
+riResponsableInscripto = 0
+riMonotributo = 1
+riExento = 3
+riConsumidorFinal = 4
+
+! Tipos de Tributos
+
+SinImpuesto = 0;
+ImpuestosNacionales = 1;
+ImpuestosProvinciales = 2;
+ImpuestosMunicipales = 3;
+ImpuestosInternos = 4;
+IIBB = 5;
+PercepcionIVA = 6;
+PercepcionIIBB = 7;
+PercepcionImpuestosMunicipales = 8;
+OtrasPercepciones = 9;
+ImpuestoInternoItem = 10;
+OtrosTributos = 11;
+
+! Condiciones de IVA
+
+NoGravado = 1;
+Exento = 2;
+Gravado = 7;
+
+! Unidades de medida
+
+SinDescripcion = 0;
+Kilo = 1;
+Metro = 2;
+MetroCuadrado = 3;
+MetroCubico = 4;
+Litro = 5;
+KWH = 6;
+Unidad = 7;
+Par = 8;
+Docena = 9;
+Quilate = 10;
+Millar = 11;
+MegaUInterActAntib = 12;
+UnidadInternaActInmung = 13;
+Gramo = 14;
+Milimetro = 15;
+MilimetroCubico = 16;
+Kilometro = 17;
+Hectolitro = 18;
+MegaUnidadIntActInmung = 19;
+Centimetro = 20;
+KilogramoActivo = 21;
+GramoActivo = 22;
+GramoBase = 23;
+UIACTHOR = 24;
+JuegoPaqueteMazoNaipes = 25;
+MUIACTHOR = 26;
+CentimetroCubico = 27;
+UIACTANT = 28;
+Tonelada = 29;
+DecametroCubico = 30;
+HectometroCubico = 31;
+KilometroCubico = 32;
+Microgramo = 33;
+Nanogramo = 34;
+Picogramo = 35;
+MUIACTANT = 36;
+UIACTIG = 37;
+Miligramo = 41;
+Mililitro = 47;
+Curie = 48;
+Milicurie = 49;
+Microcurie = 50;
+UInterActHormonal = 51;
+MegaUInterActHor = 52;
+KilogramoBase = 53;
+Gruesa = 54;
+MUIACTIG = 55;
+KilogramoBruto = 61;
+Pack = 62;
+Horma = 63;
+Donacion = 90;
+Ajustes = 91;
+Anulacion = 96;
+SenasAnticipos = 97;
+OtrasUnidades = 98;
+Bonificacion = 99;
+
+! Medios de pago
+
+Cambio = 0;
+CartaDeCreditoDocumentario = 1;
+CartaDeCreditoSimple = 2;
+Cheque = 3;
+ChequeCancelatorios = 4;
+CreditoDocumentario = 5;
+CuentaCorriente = 6;
+Deposito = 7;
+Efectivo = 8;
+EndosoDeCheque = 9;
+FacturaDeCredito = 10;
+GarantiaBancaria = 11;
+Giro = 12;
+LetraDeCambio = 13;
+MedioDePagoDeComercioExterior = 14;
+OrdenDePagoDocumentaria = 15;
+OrdenDePagoSimple = 16;
+PagoContraReembolso = 17;
+RemesaDocumentaria = 18;
+RemesaSimple = 19;
+TarjetaDeCredito = 20;
+TarjetaDeDebito = 21;
+Ticket = 22;
+TransferenciaBancaria = 23;
+TransferenciaNoBancaria = 24;
+OtrosMediosPago = 99;
+
+! Tipos de impuestointerno
+
+tiFijo = 0;
+tiPorcentaje = 1;
+

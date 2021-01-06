@@ -26,7 +26,7 @@ Begin VB.Form con_busca_comp_apoc
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   189464577
+      StartOfWeek     =   110886913
       CurrentDate     =   38754
    End
    Begin MSFlexGridLib.MSFlexGrid msf1 
@@ -158,12 +158,12 @@ Begin VB.Form con_busca_comp_apoc
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "09/11/2020"
+            TextSave        =   "06/01/2021"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "11:42 a.m."
+            TextSave        =   "07:59 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -209,10 +209,10 @@ Sub carga()
          i = rs1("total")
          c = rs1("cuit05")
          cp = rs1("letra") & Format$(rs1("sucursal"), "0000") & "-" & Format$(rs1("num_comprobante"), "00000000")
-         fp = rs("fecha_publicacion")
+         FP = rs("fecha_publicacion")
          ni = rs1("num_int")
          p = rs1("proveedor05")
-         msf1.AddItem F & Chr(9) & cp & Chr(9) & c & Chr(9) & p & Chr(9) & i & Chr(9) & fp & Chr(9) & "" & Chr(9) & ni
+         msf1.AddItem F & Chr(9) & cp & Chr(9) & c & Chr(9) & p & Chr(9) & i & Chr(9) & FP & Chr(9) & "" & Chr(9) & ni
          rs1.MoveNext
       Wend
       rs.MoveNext
@@ -315,7 +315,7 @@ Private Sub Form_Unload(Cancel As Integer)
 End Sub
 
 Private Sub msf1_GotFocus()
-Me.StatusBar1.Panels.Item(2) = "[F7] Imprime - [F11] Excel  "
+Me.StatusBar1.Panels.item(2) = "[F7] Imprime - [F11] Excel  "
 If msf1.Rows > 1 Then
   msf1.FocusRect = flexFocusNone
 Else

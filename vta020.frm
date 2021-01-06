@@ -16,6 +16,14 @@ Begin VB.Form vta_clientes
    PaletteMode     =   1  'UseZOrder
    ScaleHeight     =   7380
    ScaleWidth      =   6210
+   Begin VB.TextBox t_codfiscal2 
+      Height          =   285
+      Left            =   2160
+      TabIndex        =   44
+      Top             =   6360
+      Visible         =   0   'False
+      Width           =   735
+   End
    Begin VB.TextBox t_percibeib 
       Height          =   285
       Left            =   1320
@@ -541,6 +549,7 @@ If Val(t_id) > 0 Then
      t_idvend = cl_cli.idvendedor
      t_letrafact = cl_cli.letra
      t_codfiscal = cl_cli.codfiscal
+     t_codfiscal2 = cl_cli.codfiscal2
      t_dirlocal = cl_cli.direccion_local
      t_percibeib = cl_cli.perciveib
      t_idproveedor = cl_cli.idproveedor
@@ -569,7 +578,7 @@ End Sub
 Private Sub Form_Load()
 Call carga_tipoiva(c_iva)
 c_iva.ListIndex = 0
-Me.StatusBar1.Panels.Item(1) = "[F9] Cambia y sale - [ESC] Sale sin cambios - "
+Me.StatusBar1.Panels.item(1) = "[F9] Cambia y sale - [ESC] Sale sin cambios - "
 
 End Sub
 

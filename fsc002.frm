@@ -27,7 +27,9 @@ Begin VB.Form fsc_errorfiscal
       End
       Begin VB.ComboBox c_tipo 
          Height          =   315
+         ItemData        =   "fsc002.frx":0000
          Left            =   120
+         List            =   "fsc002.frx":0002
          TabIndex        =   0
          Text            =   "Combo1"
          Top             =   240
@@ -163,7 +165,7 @@ Begin VB.Form fsc_errorfiscal
       Begin VB.Image Image1 
          Height          =   780
          Left            =   120
-         Picture         =   "fsc002.frx":0000
+         Picture         =   "fsc002.frx":0004
          Top             =   240
          Width           =   795
       End
@@ -184,23 +186,30 @@ End Sub
 Private Sub Command1_Click()
 Set cl_fiscal = New fiscal
 cl_fiscal.carga (glo.sucursalf)
-epson2.PortNumber = cl_fiscal.puerto
-Select Case c_tipo.ListIndex
- Case Is = 0
-    'normal
-    Call verifica
-  Case Is = 1
-    'controlador
-    Call controlador
-  Case Is = 2
-   'contribuyente
-    Call contribuyente
-  Case Is = 3
-   'contribuyente
-    Call contadores
-    
+If cl_fiscal.idmodelo <> 24 Then 'tm-900 then
 
-End Select
+        epson2.PortNumber = cl_fiscal.puerto
+        Select Case c_tipo.ListIndex
+         Case Is = 0
+            'normal
+            Call verifica
+          Case Is = 1
+            'controlador
+            Call controlador
+          Case Is = 2
+           'contribuyente
+            Call contribuyente
+          Case Is = 3
+           'contribuyente
+            Call contadores
+            
+        
+        End Select
+
+Else
+  MsgBox ("Este controlador fiscal no tiene implementada esta funcion")
+End If
+Set cl_fiscal = Nothing
 
  
 

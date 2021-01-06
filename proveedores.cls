@@ -329,7 +329,7 @@ End Property
 Public Sub carga(ByVal ip As Long)
 'On Error GoTo er_carga
 q = "select [id_proveedor], [denominacion], [direccion], [localidad], [provincia], [cp], [cuit], [email], [te], [id_codretgan], [inscripto_gan], [fecha_vto_exepcion_ib], [num_ib], [contacto], [te_contacto], [email_contacto], [id_codretib], a1.[cod_tipoiva], a1.[id_tipoib], [alicuota_retib], [id_cuenta_a1], [calcula_ret_ib], [calcula_ret_gan], [letra_prov], [retiene]    from a1, g3, g6 where a1.[id_proveedor] = " & ip & " and a1.[cod_tipoiva] = g3.[cod_tipoiva]  and a1.[id_tipoib] = g6.[id_tipoib] "
-Set rs = New ADODB.Recordset
+Set rs = New adodb.Recordset
 rs.MaxRecords = 1
 rs.Open q, cn1
 If Not rs.BOF And Not rs.EOF Then
@@ -563,7 +563,7 @@ Public Function saldo(menoreigual As Boolean, F As String, p As Boolean, zona As
     Dim tp As Double
     Dim td As Double
  
-    Set rs = New ADODB.Recordset
+    Set rs = New adodb.Recordset
     If menoreigual Then
        QUERY = "SELECT * FROM A5 where [id_proveedor] = " & idprov
        QUERY = QUERY & " and datevalue(fecha) <= " & "DateValue('" & F & "') "
@@ -630,7 +630,7 @@ Public Function saldov(menoreigual As Boolean, F As String, p As Boolean, zona A
     Dim tp As Double
     Dim td As Double
  
-    Set rs = New ADODB.Recordset
+    Set rs = New adodb.Recordset
     If menoreigual Then
        QUERY = "SELECT * FROM A5 where [id_proveedor] = " & idprov
        QUERY = QUERY & " and datevalue([fecha_vto]) <= " & "DateValue('" & F & "') "
@@ -711,7 +711,7 @@ Public Function saldoentrefechas(f1 As String, f2 As String, p As Boolean, zona 
 
     saldoant = saldo(False, f1, p, zona)
     
-    Set rs = New ADODB.Recordset
+    Set rs = New adodb.Recordset
     QUERY = "SELECT * FROM A5 where [id_proveedor] = " & idprov
     QUERY = QUERY & " and datevalue(fecha) >= " & "DateValue('" & f1 & "') "
     QUERY = QUERY & " and datevalue(fecha) <= " & "DateValue('" & f2 & "') "
@@ -809,7 +809,7 @@ Public Function saldoentrefechasv(f1 As String, f2 As String, p As Boolean, zona
 
     saldoant = saldo(False, f1, p, zona)
     
-    Set rs = New ADODB.Recordset
+    Set rs = New adodb.Recordset
     QUERY = "SELECT * FROM A5 where [id_proveedor] = " & idprov
     QUERY = QUERY & " and datevalue([fecha_vto]) >= " & "DateValue('" & f1 & "') "
     QUERY = QUERY & " and datevalue([fecha_vto]) <= " & "DateValue('" & f2 & "') "

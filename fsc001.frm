@@ -4,17 +4,18 @@ Begin VB.Form fsc_tique1
    BackColor       =   &H00C0C0FF&
    BorderStyle     =   1  'Fixed Single
    Caption         =   "INGRESO DE ARTICULOS"
-   ClientHeight    =   1410
+   ClientHeight    =   1605
    ClientLeft      =   165
-   ClientTop       =   315
-   ClientWidth     =   11910
+   ClientTop       =   435
+   ClientWidth     =   12150
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    PaletteMode     =   1  'UseZOrder
-   ScaleHeight     =   1410
-   ScaleWidth      =   11910
+   ScaleHeight     =   1605
+   ScaleWidth      =   12150
+   StartUpPosition =   1  'CenterOwner
    Begin VB.TextBox t_tasaib 
       BorderStyle     =   0  'None
       Enabled         =   0   'False
@@ -29,7 +30,7 @@ Begin VB.Form fsc_tique1
    Begin VB.Frame Frame4 
       BackColor       =   &H00C0C0FF&
       Height          =   975
-      Left            =   120
+      Left            =   240
       TabIndex        =   8
       Top             =   120
       Width           =   11775
@@ -343,13 +344,13 @@ Begin VB.Form fsc_tique1
    End
    Begin MSComctlLib.StatusBar StatusBar1 
       Align           =   2  'Align Bottom
-      Height          =   255
+      Height          =   375
       Left            =   0
       TabIndex        =   7
-      Top             =   1155
-      Width           =   11910
-      _ExtentX        =   21008
-      _ExtentY        =   450
+      Top             =   1230
+      Width           =   12150
+      _ExtentX        =   21431
+      _ExtentY        =   661
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
          NumPanels       =   4
@@ -370,12 +371,12 @@ Begin VB.Form fsc_tique1
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "03/02/2020"
+            TextSave        =   "01/01/2006"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "18:24"
+            TextSave        =   "12:27 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -387,6 +388,7 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 'FIXIT: Utilice Option Explicit para evitar la creación implícita de variables de tipo Variant.     FixIT90210ae-R383-H1984
+Dim Fiscaltq As Driver
 
 
 
@@ -442,7 +444,7 @@ End Sub
 
 
 Private Sub t_basico_GotFocus()
-Me.StatusBar1.Panels.Item(2) = "[ENTER] Acepta - [ESC] Sale - [F3] Cantidad - [F6] Dto1 - [F7] Dto2  "
+Me.StatusBar1.Panels.item(2) = "[ENTER] Acepta - [ESC] Sale - [F3] Cantidad - [F6]Dto1 - [F7]Dto2"
 
 t_detalle.Enabled = False
 If para.producto_sel > 0 Then
@@ -562,7 +564,7 @@ If Not rs.BOF And Not rs.EOF Then
      If Val(fsc_tique.t_total) + Val(t_importe) >= Val(fsc_tique.t_limite) Then 'cl_fiscal.limitetique Then
        MsgBox ("El importe del comprobante supera el limite establecido para la impresora. Cierre el tique actual y abra uno nuevo para seguir cargando")
      Else
-       Call cargarenglon("A")
+       Call fsc_tique.cargarenglon2("A")
      End If
      Call limpia
      t_basico.SetFocus
@@ -583,63 +585,7 @@ Private Sub t_cantidad_KeyPress(KeyAscii As Integer)
    Call solonum(KeyAscii, 1)
 End Sub
 
-Sub cargarenglon(t As String)
 
-  ip = Val(t_ip)
-  d = t_detalle
-  cu = Format$(Val(t_cantidad), "#####0.000")
-  ti = Format$(c_tasa, "####0.00")
-  u = RTrim$(t_unidad)
-  puf = Format$(Val(t_pu), "#####0.00")
-  pu = Format$(Val(puf) / (1 + Val(c_tasa) / 100), "#####0.000")
-  im = Format$(Val(puf) * Val(cu), "#####0.00")
-  If u = "" Then
-    u = " "
-  End If
-  
-If t_tipo = "F" Then
- seguir = True
- exito = 0
- While seguir
-  r = fsc_tique.epson1.SendTicketItem(Left$(RTrim$(d), 20), Format$(Val(cu) * 1000, "00000000"), Format$(Val(puf) * 100, "000000000"), Format$(Val(ti) * 100, "0000"), "M", "0", "0")
-  If r Then
-    seguir = False
-    exito = 1
-  Else
-    J = MsgBox("Verifique Impresion del Item. Estado Fiscal: " & fsc_tique.epson1.FiscalStatus & " Estado Impresor: " & fsc_tique.epson1.PrinterStatus & " ¿Impresion Correcta?", 4)
-    If J = 6 Then
-       seguir = False
-       exito = 1
-    Else
-      J = MsgBox("¿Reenvia Item?", 4)
-      If J <> 6 Then
-        seguir = False
-        exito = 0
-      End If
-    End If
-   End If
- Wend
-Else
-  exito = 1
-End If
-
-If exito = 1 Then
-  If t = "A" Then
-    r = fsc_tique.msf1.Rows
-    fsc_tique.msf1.AddItem r & Chr(9) & Format$(ip, "00000") & Chr(9) & d & Chr(9) & cu & Chr(9) & u & Chr$(9) & puf & Chr(9) & ti & Chr(9) & im & Chr(9) & pu & Chr(9) & (puf - pu) & Chr$(9) & t_tasaib
-    
-  Else
-    r = t_renglon
-    fsc_tique.msf1.AddItem r & Chr(9) & Format$(ip, "00000") & Chr(9) & d & Chr(9) & cu & Chr$(9) & u & Chr$(9) & puf & Chr(9) & ti & Chr(9) & im & Chr(9) & pu & Chr(9) & (puf - pu) & Chr(9) & t_tasaib, r
-    fsc_tique.msf1.RemoveItem r + 1
-  End If
-   
-  fsc_tique.CALCULATOTALES
-  fsc_tique.sacatotales
-  para.producto_sel = 0
-End If
-End Sub
- 
   
 Sub limpia()
 t_cantidad = ""
@@ -661,7 +607,7 @@ If KeyAscii = 13 Then
    If Val(fsc_tique.t_total) + Val(t_importe) >= Val(fsc_tique.t_limite) Then 'cl_fiscal.limitetique Then
      MsgBox ("El importe del comprobante supera el limite establecido para la impresora. Cierre el tique actual y abra uno nuevo para seguir cargando")
    Else
-     Call cargarenglon("A")
+     Call fsc_tique.cargarenglon2("A")
    End If
   End If
   Call limpia
@@ -671,3 +617,30 @@ Else
 End If
 End Sub
 
+
+Private Sub t_pu_GotFocus()
+Me.StatusBar1.Panels.item(2) = "[ENTER] Acepta - [F6]Dto % - [F7]Dto $"
+
+End Sub
+
+Private Sub t_pu_KeyDown(KeyCode As Integer, Shift As Integer)
+If KeyCode = vbKeyF6 Then
+  d = InputBox("Ingrese % descuento", "Descuento")
+  If Val(d) > 0 Then
+     pd = Format(Val(t_pu) * Val(d) / 100, "######0.00")
+     t_pu = Val(t_pu) - pd
+  End If
+End If
+  
+
+
+
+If KeyCode = vbKeyF7 Then
+  d = InputBox("Ingrese descuento en pesos", "Descuento $")
+  If Val(d) > 0 Then
+     pd = Format(Val(d), "######0.00")
+     t_pu = Val(t_pu) - pd
+  End If
+End If
+  
+End Sub

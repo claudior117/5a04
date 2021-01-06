@@ -1,0 +1,37 @@
+INSTALACION
+
+- Ejecute Registrar.bat con privilegios elevados (click derecho -> Ejecutar como administrador).
+- Explore los ejemplos segun el lenguaje.
+- El driver IF Universal es compatible con puertos seriales, no asi con USB. Para conectar con impresoras USB utilice cables conversores de tipo Manhattan o en caso de las Epson utilice la herramienta Virtual Port Driver (https://download.epson-biz.com/modules/pos/index.php?page=single_soft&cid=5485&scat=36&pcat=3).
+
+EMULADOR
+
+Puede descargar el emulador Hasar de 2da generación enel siguiente enlace www.bitingenieria.com.ar/emuladorhasar.zip
+
+EJEMPLOS
+
+Los ejemplos para cada lenguaje estan disponibles en la carpeta incluida en el paquete.
+Si no encuentra el ejemplo que necesita solicitelo a soporte@bitingenieria.com.ar 
+
+Para impresoras Epson de primera generacion se requiere instalar el paquete vb runtime.
+https://sourceforge.net/projects/vb6extendedruntime/files/latest/download
+
+EPSON TM-U220AF y EPSON TM-T900 IMPORTANTE!! 
+Estos modelos de impresora deben inicializar los datos del establecimiento para poder imprimir.
+Se requiere usar la herramienta de epson FPTerminal, usando los metodos SET de configuracion de establecimiento.
+
+https://ftp.epson.com/drivers/FPTerminal.zip
+
+***************SOLO PARA EJEMPLO EN HTML*********************
+El ejemplo de html esta concebido para aplicaciones webs. 
+Las mismas pueden conectarse tanto a impresoras localmente 
+en el punto de venta como impresoras conectadas remotamente 
+en servidores o puestos dentro de la red.
+
+Para visualizar online y descargar el driver demo visitar
+
+http://bitingenieria.com.ar/javascriptfiscal
+*****************************************************************
+
+Agradecemos las sugerencias para mejorar la utilidad de nuestros productos.
+Para consultas contactar a través de www.bitingenieria.com.ar/contact

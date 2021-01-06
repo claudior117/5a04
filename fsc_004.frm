@@ -1,6 +1,6 @@
 VERSION 5.00
 Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form fsc_formapago 
    BackColor       =   &H00E0E0E0&
    Caption         =   "Forma de pago"
@@ -142,13 +142,7 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 
-Private Sub btnacepta_Click()
-Me.Hide
-End Sub
 
-Private Sub btnsale_Click()
-Me.Hide
-End Sub
 
 Private Sub Form_Load()
 Call armagrid2
@@ -156,7 +150,7 @@ End Sub
 Sub armagrid2()
 msf2.clear
 msf2.Rows = 1
-msf2.Cols = 11
+msf2.Cols = 12
 msf2.ColWidth(0) = 600
 msf2.ColWidth(1) = 1200
 msf2.ColWidth(2) = 1200
@@ -168,6 +162,7 @@ msf2.ColWidth(7) = 1000
 msf2.ColWidth(8) = 1000
 msf2.ColWidth(9) = 1000
 msf2.ColWidth(10) = 1000
+msf2.ColWidth(11) = 500
 
 msf2.TextMatrix(0, 0) = "Cod."
 msf2.TextMatrix(0, 1) = "Forma Pago"
@@ -180,6 +175,7 @@ msf2.TextMatrix(0, 7) = "Fecha Dif."
 msf2.TextMatrix(0, 8) = "Num.Int."
 msf2.TextMatrix(0, 9) = "Cuenta"
 msf2.TextMatrix(0, 10) = "Operacion"
+msf2.TextMatrix(0, 11) = "Cod"
 
 t_diferencia = ""
 t_ingresado = ""
@@ -187,7 +183,7 @@ t_ingresado = ""
 End Sub
 
 Private Sub msf2_GotFocus()
-Me.StatusBar1.Panels.Item(1) = "[F1] Ch.Terc.  - [F2] TRansferncias - [F3] Otras formas pago - [ENTER] Continua "
+Me.StatusBar1.Panels.item(1) = "[F1] Ch.Terc.  - [F2] TRansferncias - [F3] Otras formas pago - [ENTER] Continua "
 If msf2.Rows > 0 Then
   msf2.FocusRect = flexFocusNone
 Else

@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form vta_recibo3 
    BackColor       =   &H00C0C0C0&
    BorderStyle     =   1  'Fixed Single
@@ -140,12 +140,12 @@ Begin VB.Form vta_recibo3
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "17/11/2014"
+            TextSave        =   "23/11/2020"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:47"
+            TextSave        =   "10:08 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -172,7 +172,7 @@ Sub modifrenglon()
   Else
     ip = Format$(c_fp.ItemData(c_fp.ListIndex), "000")
   End If
-  Set rs = New ADODB.Recordset
+  Set rs = New adodb.Recordset
   q = "select * from cyb_01  where [id_forma_pago] = " & Val(ip)
   rs.MaxRecords = 1
   rs.Open q, cn1

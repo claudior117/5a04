@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form vta_listaprecios3 
    BackColor       =   &H00C0C0C0&
    BorderStyle     =   1  'Fixed Single
@@ -151,10 +151,10 @@ Begin VB.Form vta_listaprecios3
    Begin VB.Frame Frame7 
       BackColor       =   &H00C0C0C0&
       Caption         =   "Etiquetas"
-      Height          =   855
+      Height          =   615
       Left            =   8280
       TabIndex        =   54
-      Top             =   3600
+      Top             =   3960
       Width           =   3375
       Begin VB.ComboBox c_etiquetas 
          Appearance      =   0  'Flat
@@ -378,11 +378,21 @@ Begin VB.Form vta_listaprecios3
    Begin VB.Frame Frame5 
       BackColor       =   &H00C0C0C0&
       Caption         =   "Modificaciones Varios"
-      Height          =   3375
+      Height          =   3735
       Left            =   8280
       TabIndex        =   12
       Top             =   120
       Width           =   3255
+      Begin VB.TextBox t_stock 
+         Appearance      =   0  'Flat
+         BorderStyle     =   0  'None
+         Height          =   285
+         Left            =   1080
+         MaxLength       =   10
+         TabIndex        =   78
+         Top             =   3240
+         Width           =   975
+      End
       Begin VB.ComboBox c_vigente 
          Appearance      =   0  'Flat
          Height          =   315
@@ -464,6 +474,16 @@ Begin VB.Form vta_listaprecios3
          Text            =   "Combo1"
          Top             =   240
          Width           =   1935
+      End
+      Begin VB.Label Label25 
+         BackColor       =   &H00800080&
+         Caption         =   "Stock"
+         ForeColor       =   &H00FFFFFF&
+         Height          =   375
+         Left            =   120
+         TabIndex        =   79
+         Top             =   3240
+         Width           =   855
       End
       Begin VB.Label Label23 
          BackColor       =   &H00800080&
@@ -751,12 +771,12 @@ Begin VB.Form vta_listaprecios3
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "12/03/2014"
+            TextSave        =   "03/01/2006"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "20:19"
+            TextSave        =   "01:35 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -884,7 +904,7 @@ If h = 6 Then
     
     
       If idprod > 1 Then
-         Set rs = New ADODB.Recordset
+         Set rs = New adodb.Recordset
          q = "select * from a2, g4 where [id_producto] = " & idprod & " and [cod_tasaiva] = [id_tasaiva]"
          rs.MaxRecords = 1
          rs.Open q, cn1, adOpenStatic, adLockOptimistic
@@ -1114,6 +1134,11 @@ If h = 6 Then
           If c_vigente.ListIndex > 0 Then
             rs("vigente") = vig
           End If
+          
+          If t_stock <> "" Then
+            rs("stock") = Val(t_stock)
+          End If
+          
           rs.Update
           Set rs = Nothing
         End If
@@ -1169,7 +1194,7 @@ If h = 6 Then
     
     
       If idprod > 1 Then
-         Set rs = New ADODB.Recordset
+         Set rs = New adodb.Recordset
          q = "select * from a2, g4 where [id_producto] = " & idprod & " and [cod_tasaiva] = [id_tasaiva]"
          rs.MaxRecords = 1
          rs.Open q, cn1, adOpenStatic, adLockOptimistic

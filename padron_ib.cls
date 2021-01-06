@@ -77,7 +77,7 @@ End Property
 
 
 Public Sub inicia()
- Set rsp1 = New ADODB.Recordset
+ Set rsp1 = New adodb.Recordset
  q = "select [fecha_desde], [fecha_hasta] from i1 where [id_padron] = 1"
  rsp1.MaxRecords = 1
  rsp1.Open q, cnib
@@ -163,7 +163,7 @@ If Len(Me.cuit_texto) = 11 Or Len(Me.cuit_texto) = 13 Then
   Me.CUIT = Val(Me.cuit_texto)
  End If
   If Me.CUIT > 0 Then
-   Set rscl1 = New ADODB.Recordset
+   Set rscl1 = New adodb.Recordset
    q = "select [tasa_perc], [tasa_ret] from i2 where [id_padron] = 1 and [cuit] = " & Me.CUIT
    rscl1.MaxRecords = 1
    rscl1.Open q, cnib
@@ -175,7 +175,7 @@ If Len(Me.cuit_texto) = 11 Or Len(Me.cuit_texto) = 13 Then
      'no encontrado carga tasa maxcima
      Me.estado_consulta = "NO"
      
-     Set rs7 = New ADODB.Recordset
+     Set rs7 = New adodb.Recordset
      q = "select * from i_01 where [id_impuesto] = 50 "
      rs7.Open q, cn1
      If Not rs7.EOF And Not rs7.BOF Then
@@ -187,7 +187,7 @@ If Len(Me.cuit_texto) = 11 Or Len(Me.cuit_texto) = 13 Then
    End If
    Set rscl1 = Nothing
   
-   Set rscl1 = New ADODB.Recordset
+   Set rscl1 = New adodb.Recordset
    q = "select [fecha] from e1 where [cuit] = " & Me.CUIT
    rscl1.MaxRecords = 1
    rscl1.Open q, cnib
@@ -224,7 +224,7 @@ If Len(Me.cuit_texto) = 11 Or Len(Me.cuit_texto) = 13 Then
   Me.CUIT = Val(Me.cuit_texto)
  End If
   If Me.CUIT > 0 Then
-   Set rscl1 = New ADODB.Recordset
+   Set rscl1 = New adodb.Recordset
    q = "select [tasa_perc] from i3 where [id_padron] = 1 and [cuit] = " & Me.CUIT
    rscl1.MaxRecords = 1
    rscl1.Open q, cnib
@@ -233,7 +233,7 @@ If Len(Me.cuit_texto) = 11 Or Len(Me.cuit_texto) = 13 Then
      Me.estado_consulta = "OK"
    Else
      Me.estado_consulta = "NO"
-     Set rs7 = New ADODB.Recordset
+     Set rs7 = New adodb.Recordset
      q = "select * from i_01 where [id_impuesto] = 1 "
      rs7.Open q, cn1
      If Not rs7.EOF And Not rs7.BOF Then

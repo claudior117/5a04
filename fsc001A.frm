@@ -1,6 +1,5 @@
 VERSION 5.00
 Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
-Object = "{0A6BE9FC-5039-11D5-98EC-0800460222F0}#1.0#0"; "IFEpson.ocx"
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form fsc_tique 
    BackColor       =   &H00E0E0E0&
@@ -12,6 +11,7 @@ Begin VB.Form fsc_tique
    LinkTopic       =   "Form1"
    ScaleHeight     =   8490
    ScaleWidth      =   11880
+   StartUpPosition =   2  'CenterScreen
    Begin VB.Frame Frame5 
       BackColor       =   &H00E0E0E0&
       Caption         =   "Datos Complementarios"
@@ -57,12 +57,6 @@ Begin VB.Form fsc_tique
          Top             =   600
          Width           =   1335
       End
-   End
-   Begin EPSON_Impresora_Fiscal.PrinterFiscal epson1 
-      Left            =   10200
-      Top             =   960
-      _ExtentX        =   847
-      _ExtentY        =   847
    End
    Begin VB.Frame Frame2 
       BackColor       =   &H00E0E0E0&
@@ -180,9 +174,10 @@ Begin VB.Form fsc_tique
       BackColor       =   &H00E0E0E0&
       Caption         =   "Parciales"
       Height          =   855
-      Left            =   0
+      Left            =   360
       TabIndex        =   14
-      Top             =   7680
+      Top             =   7320
+      Visible         =   0   'False
       Width           =   6135
       Begin VB.TextBox t_limite 
          Height          =   285
@@ -459,6 +454,12 @@ Dim numint As Long
 Dim cuentaact As Long
 Dim gprueba As Integer '0 fiscal   '1 prueba
 Dim gsucursalprueba As Integer
+
+Dim Fiscaltq As Driver
+
+
+
+
 Sub limpia()
    Call armagrid
    t_subtotal = ""
@@ -476,7 +477,7 @@ Sub grabaformapago()
          If Val(fsc_formapago.msf2.TextMatrix(i, 0)) = 3 Then
                 'ch. terceros
                 q = "select * from cyb_03"
-                Set rs = New ADODB.Recordset
+                Set rs = New adodb.Recordset
                 rs.Open q, cn1, adOpenDynamic, adLockOptimistic
                 rs.AddNew
                  rs("fecha_emision") = t_fecha
@@ -512,7 +513,7 @@ Sub grabaformapago()
          
          If Val(fsc_formapago.msf2.TextMatrix(i, 0)) = 4 Then
                 q = "select * from cyb_04"
-                Set rs = New ADODB.Recordset
+                Set rs = New adodb.Recordset
                 rs.Open q, cn1, adOpenDynamic, adLockOptimistic
                 rs.AddNew
                  rs("id_banco") = Val(fsc_formapago.msf2.TextMatrix(i, 8))
@@ -535,7 +536,7 @@ Sub grabaformapago()
          
          
          q = "select * from cyb_01 where [id_forma_pago] = " & Val(fsc_formapago.msf2.TextMatrix(i, 0))
-         Set rs = New ADODB.Recordset
+         Set rs = New adodb.Recordset
          rs.Open q, cn1
          If Not rs.EOF And Not rs.BOF Then
           If rs("CAJA") = "S" Then
@@ -710,6 +711,58 @@ End Select
 
 End Sub
 
+
+Sub cargarenglon2(t As String)
+
+  ip = "(" & fsc_tique1.t_ip & ")"
+  d = fsc_tique1.t_detalle
+  cu = Format$(Val(fsc_tique1.t_cantidad), "#####0.000")
+  ti = Format$(fsc_tique1.c_tasa, "####0.00")
+  u = RTrim$(fsc_tique1.t_unidad)
+  puf = Format$(Val(fsc_tique1.t_pu), "#####0.00")
+  pu = Format$(Val(puf) / (1 + Val(fsc_tique1.c_tasa) / 100), "#####0.000")
+  im = Format$(Val(puf) * Val(cu), "#####0.00")
+  If u = "" Then
+    u = " "
+  End If
+  
+If fsc_tique1.t_tipo = "F" Then
+ seguir = True
+ exito = 1
+ If Val(im) > 0 Then
+   If Not Fiscaltq.ImprimirItem2g(d, cu, puf, ti, 0, IFUniversal.Gravado, "0", 1, ip, "", IFUniversal.unidad) Then
+     Err.Raise Fiscaltq.Error, "", Fiscaltq.ErrorDesc
+     exito = 0
+   End If
+ Else
+   'descuento
+    If Not Fiscaltq.ImprimirDescuentoUltimoItem(d, Format$(-Val(im), "######0.00")) Then
+                 Err.Raise Fiscaltq.Error, "", Fiscaltq.ErrorDesc
+    End If
+ End If
+Else
+  exito = 1
+
+End If
+
+If exito = 1 Then
+  'If fsc_tique1.t = "A" Then
+    r = msf1.Rows
+    msf1.AddItem r & Chr(9) & Format$(ip, "00000") & Chr(9) & d & Chr(9) & cu & Chr(9) & u & Chr$(9) & puf & Chr(9) & ti & Chr(9) & im & Chr(9) & pu & Chr(9) & (puf - pu) & Chr$(9) & t_tasaib
+    
+  'Else
+  '  r = t_renglon
+  '  msf1.AddItem r & Chr(9) & Format$(ip, "00000") & Chr(9) & d & Chr(9) & cu & Chr$(9) & u & Chr$(9) & puf & Chr(9) & ti & Chr(9) & im & Chr(9) & pu & Chr(9) & (puf - pu) & Chr(9) & t_tasaib, r
+  '  msf1.RemoveItem r + 1
+  'End If
+   
+  CALCULATOTALES
+  sacatotales
+  para.producto_sel = 0
+End If
+End Sub
+ 
+
 Private Sub Form_KeyPress(KeyAscii As Integer)
 If KeyAscii = 13 Then
   Call TabEnter2(Me, 19)
@@ -738,11 +791,16 @@ Load fsc_formapago
 
 Set cl_fiscal = New fiscal
 cl_fiscal.carga (glo.sucursalf)
-epson1.PortNumber = cl_fiscal.puerto
 t_limite = cl_fiscal.limitetique
 t_limite.Tag = cl_fiscal.limitetique
 Set cl_fiscal = Nothing
 
+
+Set Fiscaltq = New Driver
+Fiscaltq.Modelo = cMODELO
+Fiscaltq.puerto = cPUERTO
+Fiscaltq.baudios = cBAUDIOS
+  
 
 End Sub
 
@@ -755,7 +813,7 @@ Unload fsc_formapago
 End Sub
 
 Private Sub msf1_GotFocus()
-Me.StatusBar1.Panels.Item(1) = "[INS] Agrega Fiscal - [F5] Revierte - [F6] Bonif. en % - [F7] Bonific.en $ - [F9] Cerrar Tique - [F4] Saca - [F3] Agrega No fiscal  "
+Me.StatusBar1.Panels.item(1) = "[INS] Agrega Fiscal - [F6] Bonif. Final en % - [F9] Cerrar Tique - [F4] Cancela Tique  "
 If msf1.Rows > 1 Then
   msf1.FocusRect = flexFocusNone
 Else
@@ -767,26 +825,7 @@ End Sub
 Function verificafechafiscal() As Boolean
 'verifica horario fiscal
 If para.fiscal <> 0 Then
-  r = epson1.SetGetDateTime("G")
-  If r = True Then
-     F = epson1.AnswerField_3
-     h = epson1.AnswerField_4
-     ff = Format$(Mid$(F, 5, 2), "00") & "/" & Format$(Mid$(F, 3, 2), "00") & "/" & Format$(Mid$(F, 1, 2), "00")
-    ' hf = Format$(Mid$(h, 1, 2), "00") & ":" & Format$(Mid$(h, 3, 2), "00") & ":" & Format$(Mid$(h, 5, 2), "00")
-     If DateValue(ff) <> DateValue(t_fecha) Then
-       g = MsgBox("La fecha de la impresora fiscal y del comprobante son diferentes. Fecha impreso fiscal " & ff & ". Continua sin correjir", 4)
-       If g = 6 Then
-          verificafechafiscal = True
-       Else
-          verificafechafiscal = False
-       End If
-     Else
        verificafechafiscal = True
-     End If
-  Else
-   MsgBox ("La Impresora Fiscal esta desconectada o no se encuentra. Verifique y vuelva a intentar")
-   verificafechafiscal = False
-  End If
 End If
 End Function
 Private Sub msf1_KeyDown(KeyCode As Integer, Shift As Integer)
@@ -836,15 +875,12 @@ End If
 
 If KeyCode = vbKeyF4 Then
  If msf1.Rows > 1 Then
-   J = MsgBox("Esta por quitar un articulo del tique. Use esta opcion UNICAMENTE para quitar aquellos Items que no fueron recibidos por la fiscal. Para quitar un item registrado en la Fiscal utilice la REVERSION. Confirma (S/N)", 4)
+   J = MsgBox("Confirma cancelar el tique actual(S/N)", 4)
    If J = 6 Then
-     If msf1.Rows > 2 Then
-        msf1.RemoveItem (msf1.Row)
-      Else
-        Call armagrid
-      End If
+     Call anulatique
+   
    End If
-   Call CALCULATOTALES
+   
  End If
 End If
 
@@ -866,41 +902,25 @@ If KeyCode = vbKeyF9 Then
 End If
 
 
-If KeyCode = vbKeyF7 Then
- If msf1.Rows > 1 Then
-   J = InputBox$("Ingrese importe a Bonificar", "BONICICACION", "")
-   If Val(J) > 0 And Val(J) < Val(t_total) Then
-        seguir = True
-        While seguir
-          If gprueba = 0 Then
-             r = epson1.SendTicketItem("BONIFICACION", Format$(1 * 1000, "00000000"), Format$(Val(J) * 100, "000000000"), Format$(21 * 100, "0000"), "R", "1", "0")
-          Else
-             r = True
-          End If
-          If r Then
-            seguir = False
-          Else
-            X = MsgBox("Imposible aplicar bonificacion. Reintenta?", 4)
-            If X <> 6 Then
-               seguir = False
-            End If
-          End If
-        Wend
-   End If
-   Call CALCULATOTALES
- End If
-End If
+
  
 If KeyCode = vbKeyF6 Then
  If msf1.Rows > 1 And Val(t_total) > 0 Then
-   J = InputBox$("Ingrese % a  Bonificar", " % BONICICACION", "")
+   J = InputBox$("Ingrese % a  bonificar, luego el tique se cerrará", " % BONICICACION", "")
    If Val(J) > 0 And Val(J) < 100 Then
         seguir = True
         While seguir
-          dto = (Val(t_total) * Val(J)) / 100
+          dto = (Fiscaltq.subtotal.MontoVentas * Val(J)) / 100
           If gprueba = 0 Then
-             r = epson1.SendTicketItem("BONIFICACION", Format$(1 * 1000, "00000000"), Format$(dto * 100, "000000000"), Format$(21 * 100, "0000"), "R", "1", "0")
-          Else
+              If Not Fiscaltq.ImprimirDescuentoGeneral(J & " % BONIFICACION", Format$(Val(dto), "######0.00")) Then
+                 Err.Raise Fiscaltq.Error, "", Fiscaltq.ErrorDesc
+              End If
+              
+              r = msf1.Rows
+              msf1.AddItem r & Chr(9) & Format$(1, "00000") & Chr(9) & "Bonificación " & J & "%" & Chr(9) & 1 & Chr(9) & "" & Chr$(9) & Format$(-Val(dto), "######0.00") & Chr(9) & 0 & Chr(9) & Format$(-Val(dto), "######0.00") & Chr(9) & Format$(-Val(dto), "######0.00") & Chr(9) & 0 & Chr$(9) & 0
+              SendKeys "{F9}" 'cierra el tique
+              
+   Else
              r = True
           End If
           If r Then
@@ -930,7 +950,9 @@ Next i
 
 
 End Sub
-Sub cierratique()
+
+
+Sub cierratique2()
 Dim r As Boolean
 If estadotique = "A" And Val(t_total) > 0 Then
   'cierro tique
@@ -941,18 +963,11 @@ If estadotique = "A" And Val(t_total) > 0 Then
  If gprueba = 0 Then
   If verificafechafiscal() = True Then
   
-  r = epson1.GetTicketSubtotal("N", "xx")
-  If r Then
-      seguir = True
-      t_subtotal = Format$(Val(epson1.AnswerField_10) / 100, "######0.00")
-      t_iva = Format$(Val(epson1.AnswerField_6) / 100, "####0.00")
-      t_total = Format$(Val(epson1.AnswerField_5) / 100, "######0.00")
-      t_nograbado = Format$(Val(t_total) - Val(t_subtotal) - Val(t_iva), "######0.00")
-      
-  Else
-      MsgBox ("Error F007 al recibir totales. Comando SUBTOTAL . Estado Fiscal: " & epson1.FiscalStatus & "  Estado Impresor. " & epson1.PrinterStatus)
-      seguir = False
-  End If
+      t_subtotal = Format$(Val(Fiscaltq.subtotal.MontoNeto), "######0.00")
+      t_iva = Format$(Val(Fiscaltq.subtotal.MontoIVA), "####0.00")
+      t_total = Format$(Val(Fiscaltq.subtotal.MontoVentas), "######0.00")
+      t_nograbado = Format$(Fiscaltq.subtotal.MontoImpuestosInternos, "######0.00")
+         
   
   espere.Label1 = "Espere Ingresando Forma Pago...."
   espere.Label1.Refresh
@@ -960,71 +975,70 @@ If estadotique = "A" And Val(t_total) > 0 Then
   resto = Val(t_total)
   For i = 1 To fsc_formapago.msf2.Rows - 1
      td = Left$(RTrim$(fsc_formapago.msf2.TextMatrix(i, 2)), 15)
-     mp = Format$(Val(fsc_formapago.msf2.TextMatrix(i, 3)) * 100, "00000000")
+     mp = Format$(Val(fsc_formapago.msf2.TextMatrix(i, 6)), "######0.00")
      dp = "T"
-     If r Then
-         'r = epson1.SendInvoicePayment(Left$(RTrim$(fsc_formapago.msf2.TextMatrix(i, 10)), 10), Format$(Val(fsc_formapago.msf2.TextMatrix(i, 6)) * 100, "00000000"), "T")
-         r = epson1.SendInvoicePayment("Efectivo", "000000000001", "T")
-         resto = Val(epson1.AnswerField_3)
-      Else
-        If i = 1 Then
-          MsgBox ("Error F003 al procesar Item.  Comando InvoiceItem. Estado Fiscal: " & epson1.FiscalStatus & "  Estado Impresor. " & epson1.PrinterStatus)
-        Else
-          MsgBox ("Error F004 al procesar Pago.  Comando InvoiceItem. Estado Fiscal: " & epson1.FiscalStatus & "  Estado Impresor. " & epson1.PrinterStatus)
-        End If
-        i = fsc_formapago.msf2.Rows - 1
-      End If
+        
+     Set rs2 = New Recordset
+     q = "select * from cyb_01 where [id_forma_pago] = " & Val(fsc_formapago.msf2.TextMatrix(i, 0))
+     rs2.Open q, cn1
+     If Not rs2.EOF And Not rs2.BOF Then
+        codpago = rs2("codigo_driver_fiscal")
+     Else
+       codpago = 8
+     End If
+     Set rs2 = Nothing
+        
+     If Not Fiscaltq.ImprimirPago2g(td, mp, "", codpago, 1, "", "") Then
+       Err.Raise Fiscaltq.Error, "", Fiscaltq.ErrorDesc
+     End If
+     
+     resto = resto - mp
    Next i
 
   
-  If resto > 0 And seguir = True Then
-     r = epson1.SendInvoicePayment("Pago", Format$(resto * 100, "00000000"), "T")
-     If r Then
-       seguir = True
-     Else
-       seguir = False
-       exito = 0
-     End If
+  If resto > 0 Then
+      If Not Fiscaltq.ImprimirPago2g("Pago", Format$(resto, "######0.00"), "", IFUniversal.CuentaCorriente, 1, "", "") Then
+       Err.Raise fiscal.Error, "", fiscal.ErrorDesc
+      End If
+     
   End If
   
   
   espere.Label1 = "Espere Cerrando Tique...."
   espere.Label1.Refresh
-  While seguir
-          r = epson1.CloseTicket()
-          If r Then
-            seguir = False
-            exito = 1
-            estadotique = "C"
-            Label2.Visible = False
-            t_numcomp = Format$(Val(epson1.AnswerField_3), "00000000")
+  Fiscaltq.CerrarComprobante
+  
+  t_numcomp = Format$(Fiscaltq.UltimoComprobante(10), "00000000")
+  Fiscaltq.Finalizar
+  
+  seguir = False
+  exito = 1
+  estadotique = "C"
+  Label2.Visible = False
+  't_numcomp = Format$(Fiscaltq.UltimoComprobante(10), "00000000")
           
-          Else
-            J = MsgBox("Error al Cerrar el Tique. Verifique el estado del Impresor Fiscal y reintente. ¿Reintenta?", 4)
-            If J <> 6 Then
-                seguir = False
-            End If
-          End If
-   Wend
   End If 'fin verificafecha
  Else
   'tique prueba
    Label2.Visible = False
-  exito = 1
-  estadotique = "C"
+   exito = 1
+   estadotique = "C"
+ End If
+ 
  End If
   
-   If exito = 1 Then
+ If exito = 1 Then
      espere.Label1 = "Espere Grabando Tique...."
      espere.Label1.Refresh
      Call graba
-   End If
+   
    Unload espere
  Else
-   MsgBox ("No Existe Tique Abierto o el tique esta en cero")
+   MsgBox ("No Existe Tique Abierto")
  End If
 
 End Sub
+
 Sub graba()
    'On Error GoTo ERRORGRABA
    
@@ -1067,7 +1081,7 @@ Sub graba()
       moneda = "P"
  
       
-      Set rs = New ADODB.Recordset
+      Set rs = New adodb.Recordset
       q = "select * from g8 where [id_actividad] = " & c_actividad.ItemData(c_actividad.ListIndex)
       rs.Open q, cn1
       If Not rs.EOF And Not rs.BOF Then
@@ -1169,7 +1183,7 @@ Sub graba()
            u2 = "D"
          End If
          
-         Set rs = New ADODB.Recordset
+         Set rs = New adodb.Recordset
          q = "select * from c_01 where [id_cuenta] = " & cta
          rs.Open q, cn1
          If Not rs.EOF And Not rs.BOF Then
@@ -1328,11 +1342,8 @@ End Sub
 Sub anulatique()
  'anula tique
  If gprueba = 0 Then
-  r = epson1.SendTicketPayment("Cancelacion", "1", "C")
-  If r Then
-  Else
-    MsgBox ("Error al anular el tique")
-  End If
+  Fiscaltq.CancelarComprobante
+ 
  End If
  Label2.Visible = False
  estadotique = "C"
@@ -1368,16 +1379,28 @@ End Sub
 
 
 Private Sub t_numcomp_GotFocus()
-Me.StatusBar1.Panels.Item(1) = "[F9] Abre Tique - [ESC] Sale Tique "
+Me.StatusBar1.Panels.item(1) = "[F9] Abre Tique - [ESC] Sale Tique "
 
 End Sub
 
 Private Sub t_numcomp_KeyDown(KeyCode As Integer, Shift As Integer)
 If KeyCode = vbKeyF9 Then
-   'abre tique
+      'abre tique
       t_limite = t_limite.Tag
       t_sucursal = Format$(glo.sucursalf, "0000")
-   Call abretique
+      Call abretique2
+      
+      If gprueba = 0 Then
+     fsc_tique1.t_tipo = "F"
+   Else
+     fsc_tique1.t_tipo = "N"
+   End If
+   fsc_tique1.t_renglon = ""
+   fsc_tique1.t_cantidad = ""
+   fsc_tique1.t_pu = ""
+   fsc_tique1.t_importe = ""
+   fsc_tique1.Show
+      
 End If
 
 If KeyCode = vbKeyF11 Then
@@ -1385,7 +1408,7 @@ If KeyCode = vbKeyF11 Then
    t_limite = t_limite.Tag
    gprueba = 1
    q = "select [sucursal_prueba] from g0 where [sucursal] = 0"
-   Set rs = New ADODB.Recordset
+   Set rs = New adodb.Recordset
    rs.Open q, cn1
    If Not rs.EOF And Not rs.BOF Then
      gsucursalprueba = rs("sucursal_prueba")
@@ -1393,7 +1416,7 @@ If KeyCode = vbKeyF11 Then
    Set rs = Nothing
    t_sucursal = Format$(gsucursalprueba, "0000")
    q = "select * from vta_06 where [sucursal] = " & gsucursalprueba & " and [id_tipocomp] = 310"
-   Set rs = New ADODB.Recordset
+   Set rs = New adodb.Recordset
    rs.Open q, cn1
    If Not rs.EOF And Not rs.BOF Then
       If gsucursalprueba <> glo.sucursalf Then
@@ -1405,6 +1428,13 @@ If KeyCode = vbKeyF11 Then
            msf1.Enabled = True
            msf1.SetFocus
            t_numcomp.Enabled = False
+           
+           
+            fsc_tique1.t_renglon = ""
+            fsc_tique1.t_cantidad = ""
+            fsc_tique1.t_pu = ""
+            fsc_tique1.t_importe = ""
+            fsc_tique1.Show
        Else
            MsgBox ("El punto de Venta para pruebas  NO puede ser el mismo que el punto de venta fiscal")
        End If
@@ -1418,61 +1448,51 @@ End If
 
 End Sub
 
-Sub abretique()
-Dim r As Boolean
-If estadotique = "C" Then
-  'abro tique
-  espere.Show
-  espere.Label1 = "Espere Abriendo Tique...."
-  espere.Label1.Refresh
-  On Error GoTo error21
-  seguir = True
-  gprueba = 0
-  While seguir
-     espere.Label1 = "Espere... Comprobando Impresora"
-     espere.Label1.Refresh
-     r = epson1.Status()
-     If r Then 'estado correcto
-          espere.Label1 = "Espere... Abriendo Comprobante Fiscal:" & c_tipocomp
-          r = epson1.OpenTicket()
-           
-          If r Then
-            seguir = False
-            estadotique = "A"
-            Label2 = "Tique Abierto"
-            Label2.Visible = True
+Sub abretique2()
+  
+  On Error GoTo DepuraErrores
+ 
+  If Not Fiscaltq.Inicializar Then
+    Err.Raise Fiscaltq.Error, "", Fiscaltq.ErrorDesc
+  End If
+  
+  Fiscaltq.CancelarComprobante
+    
+  
+  If Not Fiscaltq.AbrirComprobante(10) Then
+     Err.Raise Fiscaltq.Error, "", Fiscaltq.ErrorDesc
+  End If
+  
+  estadotique = "A"
+  msf1.SetFocus
+  
+  Exit Sub
 
-          Else
-            J = MsgBox("Error al Abrir el Tique. Verifique el estado del Impresor Fiscal y reintente. ¿Reintenta?", 4)
-            If J <> 6 Then
-                seguir = False
-            End If
-          End If
-     Else
-       J = MsgBox("Error en la Impresora. Estado Fiscal: " & epson1.FiscalStatus & "  Estado Impresor: " & epson1.PrinterStatus & " [Verifique y continue o Cancele] ¿Continua?", 4)
-       If J <> 6 Then
-             seguir = False
-             Unload espere
-       End If
-     End If
-     Wend
-  
-   If estadotique = "A" Then
-     msf1.Enabled = True
-     msf1.SetFocus
-     t_numcomp.Enabled = False
-   End If
- Else
-   MsgBox ("Existe un Tique Abierto")
- End If
-  
-Exit Sub
-error21:
-  MsgBox ("Error al mandar comando fiscal")
-  Unload espere
-  Call iniciatique
-  
+DepuraErrores:
+  Fiscaltq.Finalizar
+  MsgBox Fiscaltq.ErrorDesc
 End Sub
+
+Sub item()
+If Not fiscal.ImprimirItem2g("Item 1", 1, 0.1, 21, 0, IFUniversal.Gravado, "0", 1, "7790001001054", "", IFUniversal.unidad) Then
+     Err.Raise fiscal.Error, "", fiscal.ErrorDesc
+  End If
+  
+  If Not fiscal.ImprimirDescuentoGeneral("Descuento General", 0.01) Then
+     Err.Raise fiscal.Error, "", fiscal.ErrorDesc
+  End If
+  
+  If Not fiscal.ImprimirPago2g("Efectivo", 5, "", IFUniversal.Efectivo, 1, "", "") Then
+     Err.Raise fiscal.Error, "", fiscal.ErrorDesc
+  End If
+  
+  fiscal.CerrarComprobante
+  
+  fiscal.Finalizar
+  
+  MsgBox ("Comprobante impreso exitosamente")
+End Sub
+
 Private Sub t_numcomp_KeyPress(KeyAscii As Integer)
 If KeyAscii = 27 Then
     Unload Me

@@ -677,12 +677,12 @@ Begin VB.Form vta_recibo
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "01/06/2020"
+            TextSave        =   "01/01/2006"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "16:44"
+            TextSave        =   "12:11 a.m."
          EndProperty
       EndProperty
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -704,6 +704,9 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 'FIXIT: Utilice Option Explicit para evitar la creación implícita de variables de tipo Variant.     FixIT90210ae-R383-H1984
 Dim EXISTE As String
+
+Dim Fiscalrnc As Driver
+
 
 
 
@@ -804,12 +807,25 @@ If estadocaja(t_fecha) = "A" Then
     If Val(sucursal) = glo.sucursalf Then
       Set cl_fiscal = New fiscal
       cl_fiscal.carga (Val(sucursal))
-      epson1.PortNumber = cl_fiscal.puerto
+      
+      
+      
       If cl_fiscal.imprimerbo = "S" Then
          'Rbo como doc fiscal
-          seguir = True
-          While seguir
-            If imprime_rbofiscal2 Then
+          
+          Select Case cl_fiscal.idmodelo
+            Case Is = 21 'tm-2000
+               resulta = imprime_rbofiscal2
+            
+            Case Is = 22 'lx300
+               resulta = imprime_rbofiscal2
+               
+            Case Is = 24 'tm-900 nuevo
+               resulta = imprime_rbofiscal22 'nofiscal
+            
+            End Select
+            
+            If resulta Then
                If Val(t_numop) > 0 Then
                  espere.ProgressBar1.Value = 5
                  espere.Label1 = "Espere... Grabando Comprobante Fiscal"
@@ -820,20 +836,29 @@ If estadocaja(t_fecha) = "A" Then
                  seguir = False
                End If
              Else
-               J = MsgBox("Error(34) al Imprimir el Comprobante. Verifique la Impresora para continuar.  Reintente o Cancele", 5)
-               If J = 4 Then
-                  seguir = True
-               Else
-                  seguir = False
-               End If
+               MsgBox ("Error al Imprimir el Comprobante.")
+              
              End If
              Unload espere
-          Wend
-        Else
+     Else
           'recibo como doc no fiscal
-           seguir = True
-          While seguir
-            If imprime_rbofiscal Then
+           Select Case cl_fiscal.idmodelo
+            Case Is = 21 'tm-2000
+               resulta = imprime_rbofiscal
+            
+            Case Is = 22 'lx300
+               resulta = imprime_rbofiscal
+               
+            Case Is = 24 'tm-900 nuevo
+               resulta = imprime_rbofiscal22 'nofiscal
+            
+            End Select
+             
+            
+            
+            
+            
+            If resulta Then
              If Val(t_numop) > 0 Then
                espere.ProgressBar1.Value = 5
                espere.Label1 = "Espere... Grabando Comprobante Fiscal"
@@ -844,15 +869,10 @@ If estadocaja(t_fecha) = "A" Then
                 seguir = False
              End If
             Else
-               J = MsgBox("Error al Imprimir el Comprobante. Verifique la Impresora para continuar.  Reintente o Cancele", 5)
-               If J = 4 Then
-                  seguir = True
-               Else
-                  seguir = False
-               End If
+               MsgBox ("Error al Imprimir el Comprobante.")
              End If
              Unload espere
-          Wend
+          
       End If
       Set cl_fiscal = Nothing
    Else
@@ -873,7 +893,11 @@ If estadocaja(t_fecha) = "A" Then
         
         If Val(sucursal) = glo.sucursalf Then
            t_sucnc = Format$(glo.sucursalf, "0000")
-           Call FISCAL2
+           
+           
+           Call fiscal2
+        
+        
         Else
           t_sucnc = Format$(Val(c_sucursal), "0000")
           t_subtotalnc = Format$(Val(t_diferencia) / (1 + (para.tasageneral / 100)), "#####0.00")
@@ -931,6 +955,134 @@ t_numop.SetFocus
 
 End Sub
 
+
+Function imprime_rbofiscal22()
+Dim CUIT As String
+Dim identifica As String
+Dim tpago As String
+Dim t As String
+Dim cliz As String
+Dim dirz As String
+Dim locz As String
+Dim de1z As String
+
+espere.Show
+espere.Refresh
+espere.ProgressBar1.Min = 0
+espere.ProgressBar1.Max = 6
+espere.ProgressBar1.Value = 1
+espere.Label1 = "Espere... Comprobando Impresora"
+
+Set cl_fiscal = New fiscal
+cl_fiscal.carga (glo.sucursalf)
+caracteresmax = cl_fiscal.caracteresmax
+Set cl_fiscal = Nothing
+
+If vta_clientes.c_iva.ItemData(vta_clientes.c_iva.ListIndex) <> 3 Then
+   identifica = 0 'cuit
+   CUIT = RTrim$(vta_clientes.t_cuit)
+ Else
+   identifica = 1 'dni
+   CUIT = RTrim$(vta_clientes.t_cuit)
+ End If
+ 
+tpago = "Cta.Cte. Nro: " & Format$(denominACION.ItemData(denominACION.ListIndex), "00000")
+ 
+ef = 0
+ch = ""
+For i = 1 To msf2.Rows - 1
+  Select Case Val(msf2.TextMatrix(i, 0))
+    Case Is = 1
+       ef = ef + Val(msf2.TextMatrix(i, 6))
+    Case Is = 3
+       ch = ch & RTrim$(msf2.TextMatrix(i, 2)) & " "
+  End Select
+Next i
+
+' Call NULOS(t_remito)
+ espere.ProgressBar1.Value = 2
+ espere.Label1 = "Espere... Abriendo Comprobante Fiscal:" & c_tipocomp
+ 
+ tipocompfz = 14 ' recibo
+ 
+ 'On Error GoTo errf
+ cliz = textofiscal(Left$(vta_clientes.t_cli & " ", caracteresmax))
+ dirz = textofiscal(Left$(vta_clientes.t_direccion & " ", caracteresmax))
+ locz = textofiscal(Left$(vta_clientes.t_localidad & " ", caracteresmax))
+ tivacz = vta_clientes.t_codfiscal
+ 
+ 
+ 'abrir recibo
+ 
+ On Error GoTo DepuraErrores
+ If Not Fiscalrnc.Inicializar Then
+    Err.Raise Fiscalrnc.Error, "", Fiscalrnc.ErrorDesc
+  End If
+  
+  Fiscalrnc.CancelarComprobante
+
+
+  'datos del cliente
+ If Not Fiscalrnc.DatosCliente(cliz, identifica, CUIT, tivacz, dirz) Then
+      Err.Raise Fiscalrnc.Error, "", Fiscalrnc.ErrorDesc
+ End If
+ 
+ If Not Fiscalrnc.AbrirComprobante(tipocompfz) Then
+     Err.Raise Fiscalrnc.Error, "", Fiscalrnc.ErrorDesc
+  End If
+  
+ 'envia items a facturar
+espere.ProgressBar1.Value = 3
+espere.Label1 = "Espere... Imprimiendo Pago"
+ 
+'If Not Fiscalrnc.ImprimirTextoNoFiscal("Forma de Pago") Then
+'      Err.Raise Fiscalrnc.Error, "", Fiscalrnc.ErrorDesc
+' End If
+   
+   pf = "Pago Fact."
+   For i = 1 To msf1.Rows - 1
+      pf = pf & msf1.TextMatrix(i, 1) & " "
+   Next i
+    
+    
+   de1z = textofiscal(Left$(pf, caracteresmax))
+          
+   precio = Val(total)
+          
+   If Not Fiscalrnc.ImprimirItem2g("", 1, precio, 0, 0, 1, "0", 1, "", "", 0) Then
+             Err.Raise Fiscalrnc.Error, "", Fiscalrnc.ErrorDesc
+    End If
+    
+    If Not Fiscalrnc.ImprimirConceptoRecibo("A cargo " & tpago) Then
+     Err.Raise Fiscalrnc.Error, "", Fiscalrnc.ErrorDesc
+    End If
+    
+    
+    't_subtotal = Fiscalrnc.subtotal.MontoNeto
+    't_iva = Fiscalrnc.subtotal.MontoIVA
+     t_total = Fiscalrnc.subtotal.MontoVentas
+ 
+ espere.ProgressBar1.Value = 4
+  espere.Label1 = "Espere... Cerrando Comprobante Fiscal"
+
+  Fiscalrnc.CerrarComprobante
+  
+  t_numcomp = Format$(Fiscalrnc.UltimoComprobante(tipocompfz), "00000000")
+  Fiscalrnc.Finalizar
+  
+  imprime_facturafiscal2 = True
+ 
+    
+ Exit Function
+DepuraErrores:
+  'Fiscalrnc.Finalizar
+  MsgBox Fiscalrnc.ErrorDesc
+  imprime_facturafiscal2 = False
+  Exit Function
+ 
+
+ 
+End Function
 Sub bloquea_comp()
 Frame1.Enabled = False
 Frame3.Enabled = False
@@ -1516,6 +1668,25 @@ Load vta_recibo4
 fdolar = para.cotizacion
 Load vta_clientes
 
+
+Set cl_fiscal = New fiscal
+cl_fiscal.carga (glo.sucursalf)
+If cl_fiscal.idmodelo <> 24 Then
+  epson1.PortNumber = cl_fiscal.puerto
+Else
+ 
+   Set Fiscalrnc = New Driver
+  Fiscalrnc.Modelo = cMODELO
+  Fiscalrnc.puerto = cPUERTO
+  Fiscalrnc.baudios = cBAUDIOS
+End If
+Set cl_fiscal = Nothing
+
+
+ 
+
+
+
 End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
@@ -1531,7 +1702,7 @@ End Sub
 
 
 Private Sub msf1_GotFocus()
-Me.StatusBar1.Panels.Item(2) = "[INS] Agrega - [ENTER] Continua - [F5] Elimina - "
+Me.StatusBar1.Panels.item(2) = "[INS] Agrega - [ENTER] Continua - [F5] Elimina - "
 If msf1.Rows > 0 Then
   msf1.FocusRect = flexFocusNone
 Else
@@ -1584,7 +1755,7 @@ Private Sub msf1_LostFocus()
 End Sub
 
 Private Sub msf2_GotFocus()
-Me.StatusBar1.Panels.Item(2) = "[F1] Ch.Terc.  - [F2] TRansferncias - [F3] Otras formas pago - [F5] Borra - [ENTER] Continua  "
+Me.StatusBar1.Panels.item(2) = "[F1] Ch.Terc.  - [F2] TRansferncias - [F3] Otras formas pago - [F5] Borra - [ENTER] Continua  "
 If msf2.Rows > 0 Then
   msf2.FocusRect = flexFocusNone
 Else
@@ -1818,11 +1989,20 @@ t_totald = Format$(Val(total) / Val(fdolar), "#####0.00")
 End Sub
 
 
-Sub FISCAL2()
+Sub fiscal2()
     'formato fiscal
+            
+Set cl_fiscal = New fiscal
+cl_fiscal.carga (Val(sucursal))
+      
             seguir = True
             While seguir
-              If imprime_NCf2 Then
+              If cl_fiscal.idmodelo <> 24 Then 'tm-900
+                resulta = imprime_NCf2
+              Else
+                resulta = imprime_NCf22 'nuevo protocolo
+              End If
+              If resulta Then
                 seguir = False
               Else
                 J = MsgBox("Error al Imprimir el Comprobante. Verifique la Impresora para continuar.  Reintente o Cancele", 5)
@@ -1834,9 +2014,182 @@ Sub FISCAL2()
               End If
               Unload espere
             Wend
+Set cl_fiscal = Nothing
 
 
 End Sub
+Function imprime_NCf22() As Boolean
+  'nuevo protocolo
+  
+  Dim a(5) As String
+
+Dim CUIT As String
+Dim identifica As String
+Dim tpago As String
+Dim t  As String
+Dim de1 As String
+Dim tipocompfz As String
+Dim tv2 As String
+Dim td As String
+Dim cliz As String
+Dim dirz As String
+Dim locz As String
+Dim de1z As String
+Dim tivacz As String
+Dim letraz As String
+Dim rk As Boolean
+Dim remitosz As String
+Dim remitosz2 As String
+'Dim r As Boolean
+Set cl_fiscal = New fiscal
+cl_fiscal.carga (glo.sucursalf)
+para.z_actual = cl_fiscal.ultimo_z + 1
+   If cl_fiscal.imprimenc = "S" Then
+       If t_letra = "A" Then
+           tipocompfz = 7
+       Else
+           tipocompfz = 8
+       End If
+    Else
+        MsgBox ("La impresora fiscal no puede imprimir NC")
+        imprime_NCf22 = False
+         Exit Function
+    End If
+
+caracteresmax = cl_fiscal.caracteresmax
+Set cl_fiscal = Nothing
+
+
+
+
+espere.Show
+espere.Refresh
+espere.ProgressBar1.Min = 0
+espere.ProgressBar1.Max = 6
+espere.ProgressBar1.Value = 1
+espere.Label1 = "Espere... Comprobando Impresora"
+'abrir factura
+If vta_clientes.c_iva.ItemData(vta_clientes.c_iva.ListIndex) <> 3 Then
+   identifica = 0 'cuit
+   'CUIT = Mid$(vta_clientes.t_cuit, 1, 11) '& Mid$(vta_clientes.t_cuit, 4, 8) & Mid$(vta_clientes.t_cuit, 13, 1)
+    CUIT = RTrim$(vta_clientes.t_cuit)
+ Else
+   identifica = 1 'dni
+   CUIT = RTrim$(vta_clientes.t_cuit)
+ End If
+ 
+ If Option1 = True Then
+    tpago = "Cta.Cte. Nro. " & Format$(vta_clientes.t_id, "00000")
+ Else
+    tpago = "CONTADO"
+ End If
+
+   tv2 = " "
+
+ espere.ProgressBar1.Value = 2
+ espere.Label1 = "Espere... Abriendo Comprobante Fiscal:"
+ 
+remitosz = " "
+remitosz2 = " "
+
+
+
+      
+ 
+ 'On Error GoTo errf
+ cliz = textofiscal(Left$(vta_clientes.t_cli & " ", caracteresmax))
+ dirz = textofiscal(Left$(vta_clientes.t_direccion & " ", caracteresmax))
+ locz = textofiscal(Left$(vta_clientes.t_localidad & " ", caracteresmax))
+ letraz = vta_clientes.t_letrafact
+ tivacz = vta_clientes.t_codfiscal2
+ 
+ 
+ 'abrir factura
+ 
+ On Error GoTo DepuraErrores
+ If Not Fiscalrnc.Inicializar Then
+    Err.Raise Fiscalrnc.Error, "", Fiscalrnc.ErrorDesc
+  End If
+  
+  Fiscalrnc.CancelarComprobante
+    
+  
+  
+ 'datos del cliente
+ If Not Fiscalrnc.DatosCliente(cliz, identifica, CUIT, tivacz, dirz) Then
+      Err.Raise Fiscalrnc.Error, "", Fiscalrnc.ErrorDesc
+ End If
+     
+ 
+  
+  
+  
+  If Not Fiscalrnc.AbrirComprobante(tipocompfz) Then
+     Err.Raise Fiscalrnc.Error, "", Fiscalrnc.ErrorDesc
+  End If
+  
+  
+   
+'envia items a facturar
+espere.ProgressBar1.Value = 3
+espere.Label1 = "Espere... Imprimiendo Productos"
+ 
+
+ If letraz = "A" Then
+      pu = Val(t_diferencia) / (1 + (para.tasageneral / 100))
+  Else
+      pu = Val(t_diferencia)
+  End If
+  
+   If Not Fiscalrnc.ImprimirItem2g("Descuento", 1, pu, para.tasageneral, 0, IFUniversal.Gravado, 0, 1, "", "", 0) Then
+             Err.Raise Fiscalrnc.Error, "", Fiscalrnc.ErrorDesc
+    End If
+  
+ 'pagos
+  espere.Label1 = "Espere... Grabando Pagos"
+  
+  
+  
+ 
+ 
+      t_subtotalnc = Fiscalrnc.subtotal.MontoNeto
+      t_ivanc = Fiscalrnc.subtotal.MontoIVA
+      t_totalnc = Fiscalrnc.subtotal.MontoVentas
+      
+
+ 
+ td = "Cta. Cte. Nro. " & Format$(denominACION.ItemData(denominACION.ListIndex), "00000")
+mp = Val(t_total)
+dp = "T"
+If Not Fiscalrnc.ImprimirPago2g(td, Format$(mp, "######0.00"), "", IFUniversal.CuentaCorriente, 1, "", "") Then
+       Err.Raise Fiscalrnc.Error, "", Fiscalrnc.ErrorDesc
+End If
+
+
+  
+ 'subtotal para obtener el importe neto, iva y total impreso en la factura
+espere.ProgressBar1.Value = 4
+espere.Label1 = "Espere... Cerrando Comprobante Fiscal"
+
+  espere.Label1.Refresh
+  Fiscalrnc.CerrarComprobante
+  
+ 
+  t_numnc = Format$(Fiscalrnc.UltimoComprobante(tipocompfz), "00000000")
+  Fiscalrnc.Finalizar
+  
+  imprime_NCf22 = True
+ 
+    
+ Exit Function
+DepuraErrores:
+  'Fiscalrnc.Finalizar
+  MsgBox Fiscalrnc.ErrorDesc
+  imprime_NCf22 = False
+  Exit Function
+   
+End Function
+
 
 Function imprime_NCf2() As Boolean
 Dim a(5) As String

@@ -1,0 +1,12 @@
+M00 | P00 | 2020-12-10 10:58:16 | InitModule | D500000 | OK
+M00 | P00 | 2020-12-10 10:58:16 | Version | 1.1.79.0 | OK
+M22 | P00 | 2020-12-10 10:58:17 | SetModelo | 22 | OK
+M22 | P00 | 2020-12-10 10:58:17 | CargarLicencia | nyiSQeu/vr... | OK
+M22 | P01 | 2020-12-10 10:58:17 | SetPuerto | 1 | OK
+M22 | P01 | 2020-12-10 10:58:17 | SetBaudios | 9600 | OK
+M00 | P00 | 2020-12-10 10:58:37 | InitModule | D500000 | OK
+M00 | P00 | 2020-12-10 10:58:37 | Version | 1.1.79.0 | OK
+M22 | P00 | 2020-12-10 10:58:37 | SetModelo | 22 | OK
+M22 | P00 | 2020-12-10 10:58:37 | CargarLicencia | nyiSQeu/vr... | OK
+M22 | P01 | 2020-12-10 10:58:37 | SetPuerto | 1 | OK
+M22 | P01 | 2020-12-10 10:58:37 | SetBaudios | 9600 | OK

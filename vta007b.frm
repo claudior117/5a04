@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form vta_recibo2 
    BackColor       =   &H00C0C0C0&
    BorderStyle     =   1  'Fixed Single
@@ -224,12 +224,12 @@ Begin VB.Form vta_recibo2
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "17/11/2014"
+            TextSave        =   "23/11/2020"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:44"
+            TextSave        =   "09:56 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -336,10 +336,10 @@ Sub modificarenglon()
  Case Is = "Q"
    If t_fp <> "" Then
      r = Val(t_fp)
-     fsc_formapago.msf2.AddItem ip & Chr(9) & d & Chr(9) & Format$(T_NUMCH, "0000000000") & Chr(9) & Left$(t_banco, 49) & " " & Chr(9) & Left$(t_sucursal, 49) & " " & Chr(9) & Left$(t_titular, 49) & " " & Chr(9) & Format$(t_importe, "######0.00") & Chr(9) & t_fechad & Chr$(9) & Chr(9) & para.cuenta_valores_terceros & Chr(9) & "Ch. " & Format$(T_NUMCH, "0000000000"), r
+     fsc_formapago.msf2.AddItem ip & Chr(9) & d & Chr(9) & Format$(T_NUMCH, "0000000000") & Chr(9) & Left$(t_banco, 49) & " " & Chr(9) & Left$(t_sucursal, 49) & " " & Chr(9) & Left$(t_titular, 49) & " " & Chr(9) & Format$(t_importe, "######0.00") & Chr(9) & t_fechad & Chr$(9) & Chr(9) & para.cuenta_valores_terceros & Chr(9) & "Ch. " & Format$(T_NUMCH, "0000000000") & 3, r
      fsc_formapago.msf2.RemoveItem r + 1
    Else
-     fsc_formapago.msf2.AddItem ip & Chr(9) & d & Chr(9) & Format$(T_NUMCH, "0000000000") & Chr(9) & Left$(t_banco, 49) & " " & Chr(9) & Left$(t_sucursal, 49) & " " & Chr(9) & Left$(t_titular, 49) & " " & Chr(9) & Format$(t_importe, "######0.00") & Chr(9) & t_fechad & Chr$(9) & Chr(9) & para.cuenta_valores_terceros & Chr(9) & "Ch. " & Format$(T_NUMCH, "0000000000")
+     fsc_formapago.msf2.AddItem ip & Chr(9) & d & Chr(9) & Format$(T_NUMCH, "0000000000") & Chr(9) & Left$(t_banco, 49) & " " & Chr(9) & Left$(t_sucursal, 49) & " " & Chr(9) & Left$(t_titular, 49) & " " & Chr(9) & Format$(t_importe, "######0.00") & Chr(9) & t_fechad & Chr$(9) & Chr(9) & para.cuenta_valores_terceros & Chr(9) & "Ch. " & Format$(T_NUMCH, "0000000000") & 3
    End If
   
   End Select

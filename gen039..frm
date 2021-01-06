@@ -103,14 +103,14 @@ Begin VB.Form gen_asistencia
       Left            =   1920
       TabIndex        =   9
       Top             =   120
-      Width           =   2700
-      _ExtentX        =   4763
+      Width           =   2595
+      _ExtentX        =   4577
       _ExtentY        =   4180
       _Version        =   393216
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   216727553
+      StartOfWeek     =   61931521
       CurrentDate     =   38750
    End
    Begin VB.Frame Frame3 
@@ -222,12 +222,12 @@ Begin VB.Form gen_asistencia
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "14/04/2020"
+            TextSave        =   "23/11/2020"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "21:09"
+            TextSave        =   "07:52 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -319,7 +319,7 @@ Sub carga()
        c5 = rs("cotizacion_dolar")
        moneda = "DOL"
      End If
-         cambio = Format$(c5, "###0.0000")
+         cambio2 = Format$(c5, "###0.0000")
          pin = (rs("perc_iva") + rs("perc_gan")) * c5
          pip = rs("perc_ib") * c5
          impuestos = pin + pip + rs("VTA_02.iva") + rs("impuestos")
@@ -462,7 +462,7 @@ End Sub
 
 
 Private Sub msf1_GotFocus()
-Me.StatusBar1.Panels.Item(2) = "[F5] Exporta -  [F7] Imprime "
+Me.StatusBar1.Panels.item(2) = "[F5] Exporta -  [F7] Imprime "
 
 End Sub
 

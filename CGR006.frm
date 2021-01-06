@@ -1,7 +1,7 @@
 VERSION 5.00
 Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCT2.OCX"
 Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "Mscomctl.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form abm_asientos 
    BackColor       =   &H00E0E0E0&
    Caption         =   "ASIENTOS CONTABLES"
@@ -471,12 +471,12 @@ Begin VB.Form abm_asientos
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "19/10/2020"
+            TextSave        =   "23/11/2020"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:08 a. m."
+            TextSave        =   "05:17 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -506,7 +506,7 @@ End Sub
 Sub graba()
 J = MsgBox("Confirma Valores para Grabar", 4)
 If J = 6 Then
-   On Error GoTo ERRORGRABA
+   'On Error GoTo ERRORGRABA
    If verifica Then
      Select Case t_funcion
      Case Is = "A", Is = "M"
@@ -557,7 +557,7 @@ If J = 6 Then
       
       For i = 1 To msf2.Rows - 1
         QUERY = "INSERT INTO c_12([id_asiento], [secuencia], [id_cuenta], [importe], [descripcion], [ubicacion])"
-        QUERY = QUERY & " VALUES (" & nic & ", " & s & ", " & Val(msf2.TextMatrix(i, 1)) & ", " & Val(msf2.TextMatrix(i, 3)) & ", '" & Left$(msf1.TextMatrix(i, 2) & " " & msf1.TextMatrix(i, 5), 80) & "', 'H')"
+        QUERY = QUERY & " VALUES (" & nic & ", " & s & ", " & Val(msf2.TextMatrix(i, 1)) & ", " & Val(msf2.TextMatrix(i, 3)) & ", '" & Left$(msf2.TextMatrix(i, 2) & " " & msf2.TextMatrix(i, 5), 80) & "', 'H')"
         cn1.Execute QUERY
         s = s + 1
       Next i
@@ -619,7 +619,7 @@ Sub armagrid()
 'armar grilla
 msf1.clear
 msf1.Rows = 1
-msf1.Cols = 5
+msf1.Cols = 6
 msf1.AllowUserResizing = flexResizeNone
 msf1.FixedCols = 0
 msf1.SelectionMode = flexSelectionByRow
@@ -629,11 +629,13 @@ msf1.ColWidth(1) = 800
 msf1.ColWidth(2) = 2200
 msf1.ColWidth(3) = 1000
 msf1.ColWidth(4) = 1600
+msf1.ColWidth(5) = 1600
 msf1.TextMatrix(0, 0) = ""
 msf1.TextMatrix(0, 1) = "Id.Cuenta"
 msf1.TextMatrix(0, 2) = "Descripcion"
 msf1.TextMatrix(0, 3) = "Importe"
 msf1.TextMatrix(0, 4) = "Desc. Cuenta"
+msf1.TextMatrix(0, 5) = "Obs"
 For i = 0 To 4
  msf1.ColAlignment(i) = 1 'izq
 Next i
@@ -723,7 +725,7 @@ End Sub
 Sub armagrid2()
 msf2.clear
 msf2.Rows = 1
-msf2.Cols = 5
+msf2.Cols = 6
 msf2.AllowUserResizing = flexResizeNone
 msf2.FixedCols = 0
 msf2.SelectionMode = flexSelectionByRow
@@ -733,12 +735,13 @@ msf2.ColWidth(1) = 800
 msf2.ColWidth(2) = 2200
 msf2.ColWidth(3) = 1000
 msf2.ColWidth(4) = 1600
+msf2.ColWidth(5) = 1600
 msf2.TextMatrix(0, 0) = ""
 msf2.TextMatrix(0, 1) = "Cuenta"
 msf2.TextMatrix(0, 2) = "Descripcion"
 msf2.TextMatrix(0, 3) = "Importe"
 msf2.TextMatrix(0, 4) = "Desc.Cuenta"
-
+msf2.TextMatrix(0, 5) = "Obs"
 For i = 0 To 4
  msf2.ColAlignment(i) = 1 'izq
 Next i
@@ -824,7 +827,7 @@ Unload abm_asientos2
 End Sub
 
 Private Sub msf1_GotFocus()
-Me.StatusBar1.Panels.Item(2) = "[INS] Agrega - [ENTER] Modifica - [F5] Elimina - [F9] Graba - "
+Me.StatusBar1.Panels.item(2) = "[INS] Agrega - [ENTER] Modifica - [F5] Elimina - [F9] Graba - "
 msf1.FocusRect = flexFocusHeavy
 End Sub
 
@@ -882,7 +885,7 @@ msf1.FocusRect = flexFocusNone
 End Sub
 
 Private Sub msf2_GotFocus()
-Me.StatusBar1.Panels.Item(2) = "[INS] Agrega - [ENTER] Modifica - [F5] Elimina - [F9] Graba - "
+Me.StatusBar1.Panels.item(2) = "[INS] Agrega - [ENTER] Modifica - [F5] Elimina - [F9] Graba - "
 msf1.FocusRect = flexFocusHeavy
 End Sub
 

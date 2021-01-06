@@ -40,7 +40,7 @@ Public Sub borrar(ByVal idproducto As Long)
 'verifico en ventas
 b = 1
 q = "select [id_producto] from vta_03 where [id_producto] = " & idproducto
-Set rs = New ADODB.Recordset
+Set rs = New adodb.Recordset
 rs.Open q, cn1
 If Not rs.EOF And Not rs.BOF Then
   b = 0
@@ -49,7 +49,7 @@ Set rs = Nothing
 
 'verifico en comprs
 q = "select [id_producto] from a6 where [id_producto] = " & idproducto
-Set rs = New ADODB.Recordset
+Set rs = New adodb.Recordset
 rs.Open q, cn1
 If Not rs.EOF And Not rs.BOF Then
   b = 0
@@ -57,7 +57,7 @@ End If
 Set rs = Nothing
 
 If b = 1 Then
-  Set rs = New ADODB.Recordset
+  Set rs = New adodb.Recordset
   q = "select * from a2 where [id_producto] = " & idproducto
   rs.Open q, cn1, adOpenDynamic, adLockOptimistic
   If Not rs.EOF And Not rs.BOF Then
@@ -165,7 +165,7 @@ End Property
 
 Public Function stock_anterior(ByVal idprod As Long, ByVal fecha As Date) As Double
 'devuelve el stock anterior a la fecha del producto
-Set rs = New ADODB.Recordset
+Set rs = New adodb.Recordset
 q = "select * from stk_01 where [id_producto] = " & idprod & " and datevalue([fecha]) < datevalue('" & fecha & "')"
 rs.Open q, cn1
 s = 0
@@ -183,7 +183,7 @@ End Function
 
 Public Function stock_anterior_por_cliente(ByVal idprod As Long, ByVal fecha As Date, ByVal idcli As Long) As Double
 'devuelve el stock anterior a la fecha del producto
-Set rs = New ADODB.Recordset
+Set rs = New adodb.Recordset
 q = "select * from stk_01 where [id_producto] = " & idprod & " and [id_cliente]= " & idcli & "  and datevalue([fecha]) < datevalue('" & fecha & "')"
 rs.Open q, cn1
 s = 0
@@ -217,7 +217,7 @@ End Property
 Public Sub actualizar(ByVal ip As Long, ByVal STOCK As Double, ByVal requerido As Double, ByVal pedido As Double)
 'actualiza campos stock, requeridos o pediddos.
 ' si un campo no se tiene que actualizar se pasa 0
-Set rs = New ADODB.Recordset
+Set rs = New adodb.Recordset
 q = "select * from a2 where [id_producto] = " & ip
 rs.Open q, cn1, adOpenDynamic, adLockOptimistic
 If Not rs.EOF And Not rs.BOF Then
@@ -231,7 +231,7 @@ Set rs = Nothing
 End Sub
 
 Public Sub cargar(ByVal ip As Long)
-Set rsc = New ADODB.Recordset
+Set rsc = New adodb.Recordset
 q = "select * from a2, g5, g4 where [id_producto] = " & ip & " and a2.[id_unidad] = g5.[id_unidad] and [id_tasaiva] = [cod_tasaiva]"
 rsc.Open q, cn1
 If Not rsc.EOF And Not rsc.BOF Then
@@ -257,7 +257,7 @@ End Sub
 Public Sub cargafaltante(ByVal ip As Long, ByVal cant As Double, ByVal idprov As Long)
           Me.cargar (ip)
           If Me.idproducto > 0 Then
-            Set rs1 = New ADODB.Recordset
+            Set rs1 = New adodb.Recordset
             q = "select * from a6 where [num_int] = " & para.numint_regfaltante
             rs1.Open q, cn1, adOpenDynamic, adLockOptimistic
             If Not rs1.EOF And Not rs1.BOF Then
@@ -286,7 +286,7 @@ Public Sub cargafaltante(ByVal ip As Long, ByVal cant As Double, ByVal idprov As
             rs1.Update
             Set rs1 = Nothing
             
-            Set rs1 = New ADODB.Recordset
+            Set rs1 = New adodb.Recordset
             q = "select * from a2 where [id_producto] = " & ip
             rs1.Open q, cn1, adOpenDynamic, adLockOptimistic
             If Not rs1.EOF And Not rs1.BOF Then
@@ -301,7 +301,7 @@ End Sub
 Public Sub modificafaltante(ByVal r As Integer, ByVal cant As Double, ByVal idprov As Long)
       'modifica un articulo ingresado en el registro de faltantes en el renglo r y la nueva canticac cant
       
-            Set rs1 = New ADODB.Recordset
+            Set rs1 = New adodb.Recordset
             q = "select * from a6 where [num_int] = " & para.numint_regfaltante & " and [renglon] = " & r
             rs1.Open q, cn1, adOpenDynamic, adLockOptimistic
             If Not rs1.EOF And Not rs1.BOF Then
@@ -315,7 +315,7 @@ Public Sub modificafaltante(ByVal r As Integer, ByVal cant As Double, ByVal idpr
             End If
             Set rs1 = Nothing
             
-           Set rs1 = New ADODB.Recordset
+           Set rs1 = New adodb.Recordset
            q = "select * from a2 where [id_producto] = " & ip
            rs1.Open q, cn1, adOpenDynamic, adLockOptimistic
            If Not rs1.EOF And Not rs1.BOF Then
@@ -328,7 +328,7 @@ End Sub
 
 
 Public Sub sacafaltante(ByVal r As Double)
-            Set rs1 = New ADODB.Recordset
+            Set rs1 = New adodb.Recordset
             q = "select * from a6 where [num_int] = " & para.numint_regfaltante & " and [renglon] = " & r
             rs1.Open q, cn1, adOpenDynamic, adLockOptimistic
             c = 0
@@ -341,7 +341,7 @@ Public Sub sacafaltante(ByVal r As Double)
             rs1.Update
             Set rs1 = Nothing
             
-            Set rs1 = New ADODB.Recordset
+            Set rs1 = New adodb.Recordset
             q = "select * from a2 where [id_producto] = " & ip
             rs1.Open q, cn1, adOpenDynamic, adLockOptimistic
             If Not rs1.EOF And Not rs1.BOF Then
@@ -354,7 +354,7 @@ Public Sub sacafaltante(ByVal r As Double)
 Public Sub borraprodfaltante(ByVal idproducto As Long)
 
 q = "select * from a6 where [num_int] = " & para.numint_regfaltante & " and [id_producto] = " & idproducto
-Set rsx = New ADODB.Recordset
+Set rsx = New adodb.Recordset
 rsx.Open q, cn1, adOpenDynamic, adLockOptimistic
 While Not rsx.EOF
   rsx.Delete
@@ -362,7 +362,7 @@ While Not rsx.EOF
 Wend
 Set rsx = Nothing
 
-Set rsx = New ADODB.Recordset
+Set rsx = New adodb.Recordset
 q = "select * from a2 where [id_producto] = " & idproducto
 rsx.Open q, cn1, adOpenDynamic, adLockOptimistic
 If Not rsx.EOF And Not rsx.BOF Then

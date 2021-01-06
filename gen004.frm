@@ -23,6 +23,14 @@ Begin VB.Form gen_migrardatos
       TabIndex        =   1
       Top             =   120
       Width           =   6135
+      Begin VB.CommandButton Command10 
+         Caption         =   "wemec2"
+         Height          =   495
+         Left            =   5640
+         TabIndex        =   31
+         Top             =   2760
+         Width           =   615
+      End
       Begin VB.CommandButton Command9 
          Caption         =   "Genera clientes"
          Height          =   495
@@ -261,12 +269,12 @@ Begin VB.Form gen_migrardatos
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "11/7/2018"
+            TextSave        =   "23/11/2020"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "18:07"
+            TextSave        =   "07:11 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -316,14 +324,14 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 'FIXIT: Utilice Option Explicit para evitar la creación implícita de variables de tipo Variant.     FixIT90210ae-R383-H1984
-Dim cncac As ADODB.Connection
-Dim cncap As ADODB.Connection
-Dim cnstk As ADODB.Connection
-Dim cnf As ADODB.Connection
-Dim cnf2 As ADODB.Connection
-Dim cnfb As ADODB.Connection
-Dim cne As ADODB.Connection
-Dim cncgr As ADODB.Connection
+Dim cncac As adodb.Connection
+Dim cncap As adodb.Connection
+Dim cnstk As adodb.Connection
+Dim cnf As adodb.Connection
+Dim cnf2 As adodb.Connection
+Dim cnfb As adodb.Connection
+Dim cne As adodb.Connection
+Dim cncgr As adodb.Connection
 
 Sub corrigevarios()
 'Set rs = New ADODB.Recordset
@@ -337,7 +345,7 @@ Sub corrigevarios()
 'Wend
 
 
-Set rs = New ADODB.Recordset
+Set rs = New adodb.Recordset
 q = "select * from a2 "
 rs.Open q, cn1, adOpenDynamic, adLockOptimistic
 While Not rs.EOF
@@ -357,15 +365,15 @@ Private Sub Command1_Click()
 J = InputBox$("Ingrese Clave de Administrador General")
 If J = "0969" Then
   'On Error GoTo errtemp
-  Set cnf = New ADODB.Connection
+  Set cnf = New adodb.Connection
   gconexion = "Provider=Microsoft.Jet.oledb.4.0;Data Source=" & App.Path & "\temp\cac.mdb;User id=claudio" & ";password=0969" & ";" & "Jet OLEDB:System database=" & App.Path & "\SEG\system1.mdw;"
   cnf.Open gconexion
   
-  Set cnf2 = New ADODB.Connection
+  Set cnf2 = New adodb.Connection
   gconexion = "Provider=Microsoft.Jet.oledb.4.0;Data Source=" & App.Path & "\temp\cap.mdb;User id=claudio" & ";password=0969" & ";" & "Jet OLEDB:System database=" & App.Path & "\SEG\system1.mdw;"
   cnf2.Open gconexion
    
-  Set cnstk = New ADODB.Connection
+  Set cnstk = New adodb.Connection
   gconexion = "Provider=Microsoft.Jet.oledb.4.0;Data Source=" & App.Path & "\temp\stk.mdb;User id=claudio" & ";password=0969" & ";" & "Jet OLEDB:System database=" & App.Path & "\SEG\system1.mdw;"
   cnstk.Open gconexion
   
@@ -376,7 +384,7 @@ If J = "0969" Then
      
       
       'clientes
-     Set rs = New ADODB.Recordset
+     Set rs = New adodb.Recordset
      q = "select * from a1" 'exma
      rs.Open q, cnf
      
@@ -387,7 +395,7 @@ If J = "0969" Then
      While Not rs.EOF
        Label3 = u
        Label3.Refresh
-       Set rs1 = New ADODB.Recordset
+       Set rs1 = New adodb.Recordset
        q = "select * from  vta_01 where [id_cliente] = " & rs("cod-cliente") '5a
        rs1.Open q, cn1, adOpenDynamic, adLockOptimistic
        If Not rs1.EOF And Not rs1.BOF Then
@@ -455,7 +463,7 @@ If J = "0969" Then
    
  If Check3 = 1 Then 'proveedores
        
-     Set rs = New ADODB.Recordset
+     Set rs = New adodb.Recordset
      q = "select * from a19" 'exma
      rs.Open q, cnf2
      
@@ -466,7 +474,7 @@ If J = "0969" Then
      While Not rs.EOF
       Label3 = u
       Label3.Refresh
-      Set rs1 = New ADODB.Recordset
+      Set rs1 = New adodb.Recordset
       q = "select * from  a1 where [id_proveedor] = " & rs("cod-proveedor") '5a
       rs1.Open q, cn1, adOpenDynamic, adLockOptimistic
       If Not rs1.EOF And Not rs.BOF Then
@@ -521,8 +529,8 @@ If J = "0969" Then
 
 
 If Check2 = 1 Then
-  Call productos   'solo marcas / deptos y grupos
-  'Call productos2  'importa productos mantenienfo codifos que ya deben estar generados con genera dodigos(antes ejecutado productos)
+  'Call productos   'solo marcas / deptos y grupos
+  Call productos2  'importa productos mantenienfo codifos que ya deben estar generados con genera dodigos(antes ejecutado productos)
   'Call productos3 'productos con codigos nuevos (antes ejecutado productos)
   'Call productos4 'productos con codigos nuevos (antes ejecutado productos) comparando codigos de barra
 
@@ -591,22 +599,23 @@ End Sub
 Sub productos2()
   'migro productos para mantener los codigos
   'los codigos ya deben estar generados y las marcas, grupos, etc importados
-  
+  'usar precio-unitario porc-utilidad y precio-final para tomar precios publico
+  'usar precio-unitario2 porc-utilidad2 y precio-final2 para tomar precios mayorista
   
    'productos
-  Set rs = New ADODB.Recordset
+  Set rs = New adodb.Recordset
   q = "select * from a2" 'exma
   rs.Open q, cnf
      
   While Not rs.EOF
-    Set rs1 = New ADODB.Recordset
+    Set rs1 = New adodb.Recordset
     q = "select * from  a2 where [id_producto] = " & rs("basico")
     rs1.Open q, cn1, adOpenDynamic, adLockOptimistic
     If Not rs1.EOF And Not rs1.BOF Then
        
          rs1("Descripcion") = rs("descripcion") & " "
          
-         Set rs2 = New ADODB.Recordset
+         Set rs2 = New adodb.Recordset
          q = "select * from a8 where [id_anterior] = " & rs("tipo-producto")
          rs2.Open q, cn1
          If Not rs2.EOF And Not rs2.BOF Then
@@ -619,7 +628,7 @@ Sub productos2()
          rs1("id_grupo") = cg
          
          q = "select * from a9 where [id_anterior] = " & rs("cod-depto")
-         Set rs2 = New ADODB.Recordset
+         Set rs2 = New adodb.Recordset
          rs2.Open q, cn1
          If Not rs2.EOF And Not rs2.BOF Then
            CDep = rs2("id_departamento")
@@ -630,7 +639,7 @@ Sub productos2()
          rs1("id_departamento") = CDep
          
          q = "select * from a10 where [id_anterior] = " & rs("cod-marca")
-         Set rs2 = New ADODB.Recordset
+         Set rs2 = New adodb.Recordset
          rs2.Open q, cn1
          If Not rs2.EOF And Not rs2.BOF Then
            cmar = rs2("id_marca")
@@ -642,7 +651,7 @@ Sub productos2()
          
          
          q = "select * from a1 where [id_prov_anterior] = " & rs("cod-proveedor")
-         Set rs2 = New ADODB.Recordset
+         Set rs2 = New adodb.Recordset
          rs2.Open q, cn1
          If Not rs2.EOF And Not rs2.BOF Then
            cprov = rs2("id_proveedor")
@@ -717,33 +726,33 @@ Sub productos()
   'a11 Grupos migro
    
    
-  Set rs = New ADODB.Recordset
+  Set rs = New adodb.Recordset
   q = "select * from a22" 'exma
   rs.Open q, cnf
      
-  Set rs1 = New ADODB.Recordset
+  Set rs1 = New adodb.Recordset
   q = "select * from  a9" 'departamentos
   rs1.Open q, cn1, adOpenDynamic, adLockOptimistic
   While Not rs.EOF
        rs1.AddNew
          rs1("Descripcion") = rs("depto") & " "
-        'rs1("id_anterior") = rs("cod-depto")
+         rs1("id_anterior") = rs("cod-depto")
        rs1.Update
        rs.MoveNext
   Wend
   Set rs = Nothing
   
- Set rs = New ADODB.Recordset
+ Set rs = New adodb.Recordset
  q = "select * from a20" 'marcas exma
  rs.Open q, cnf
      
- Set rs1 = New ADODB.Recordset
+ Set rs1 = New adodb.Recordset
  q = "select * from  a10" '5a
  rs1.Open q, cn1, adOpenDynamic, adLockOptimistic
  While Not rs.EOF
        rs1.AddNew
         rs1("Descripcion") = rs("marca") & " "
-        'rs1("id_anterior") = rs("cod-marca")
+        rs1("id_anterior") = rs("cod-marca")
        rs1("cod_barra") = 0
        rs1.Update
        rs.MoveNext
@@ -751,11 +760,11 @@ Sub productos()
   Set rs = Nothing
   
   
-   Set rs = New ADODB.Recordset
+   Set rs = New adodb.Recordset
    q = "select * from a11" 'grupos
    rs.Open q, cnf
   While Not rs.EOF
-   Set rs1 = New ADODB.Recordset
+   Set rs1 = New adodb.Recordset
    q = "select * from  a8 where [id_grupo] = " & rs("tipo-producto") 'grupos
    rs1.Open q, cn1, adOpenDynamic, adLockOptimistic
    If Not rs1.EOF And Not rs1.BOF Then
@@ -776,11 +785,11 @@ Sub productos()
   Set rs = Nothing
   
   
-   Set rs = New ADODB.Recordset
+   Set rs = New adodb.Recordset
    q = "select * from a21" 'grupos
    rs.Open q, cnf
      
-  Set rs1 = New ADODB.Recordset
+  Set rs1 = New adodb.Recordset
   q = "select * from  a18" 'paises
   rs1.Open q, cn1, adOpenDynamic, adLockOptimistic
   While Not rs.EOF
@@ -804,11 +813,11 @@ Sub productos4()
  ca = 0
  cr = 0
   
-  Set rs = New ADODB.Recordset
+  Set rs = New adodb.Recordset
   q = "select * from a2" 'exma
   rs.Open q, cnf
      
-  Set rs1 = New ADODB.Recordset
+  Set rs1 = New adodb.Recordset
   q = "select * from A2 "
   rs1.Open q, cn1, adOpenDynamic, adLockOptimistic
   While Not rs.EOF
@@ -820,7 +829,7 @@ Sub productos4()
          ca = ca + 1
          rs1("Descripcion") = rs("descripcion") & " "
          
-         Set rs2 = New ADODB.Recordset
+         Set rs2 = New adodb.Recordset
          q = "select * from a8 where [id_anterior] = " & rs("tipo-producto")
          rs2.Open q, cn1
          If Not rs2.EOF And Not rs2.BOF Then
@@ -833,7 +842,7 @@ Sub productos4()
          rs1("id_grupo") = cg
          
          q = "select * from a9 where [id_anterior] = " & rs("cod-depto")
-         Set rs2 = New ADODB.Recordset
+         Set rs2 = New adodb.Recordset
          rs2.Open q, cn1
          If Not rs2.EOF And Not rs2.BOF Then
            CDep = rs2("id_departamento")
@@ -844,7 +853,7 @@ Sub productos4()
          rs1("id_departamento") = CDep
          
          q = "select * from a10 where [id_anterior] = " & rs("cod-marca")
-         Set rs2 = New ADODB.Recordset
+         Set rs2 = New adodb.Recordset
          rs2.Open q, cn1
          If Not rs2.EOF And Not rs2.BOF Then
            cmar = rs2("id_marca")
@@ -923,11 +932,11 @@ Sub productos4()
 End Sub
 Sub corrigeprecios()
   'productos
-  Set rs = New ADODB.Recordset
+  Set rs = New adodb.Recordset
   q = "select * from a2 where [descuento] <> 0 " 'exma
   rs.Open q, cnf
   While Not rs.EOF
-    Set rs1 = New ADODB.Recordset
+    Set rs1 = New adodb.Recordset
     q = "select * from  a2 where [id_anterior] = " & rs("cod-producto")
     rs1.MaxRecords = 1
     rs1.Open q, cn1, adOpenDynamic, adLockOptimistic
@@ -947,18 +956,18 @@ End Sub
 Sub productos3()
   'migro productos generando nuevos codigos, previo hay que ejecutar productos para crear marcas deptos, etc
    'productos
-  Set rs = New ADODB.Recordset
+  Set rs = New adodb.Recordset
   q = "select * from a2" 'exma
   rs.Open q, cnf
      
-  Set rs1 = New ADODB.Recordset
+  Set rs1 = New adodb.Recordset
   q = "select * from  a2" '5a
   rs1.Open q, cn1, adOpenDynamic, adLockOptimistic
   While Not rs.EOF
        rs1.AddNew
          rs1("Descripcion") = rs("descripcion") & " "
          
-         Set rs2 = New ADODB.Recordset
+         Set rs2 = New adodb.Recordset
          q = "select * from a8 where [id_anterior] = " & rs("tipo-producto")
          rs2.Open q, cn1
          If Not rs2.EOF And Not rs2.BOF Then
@@ -971,7 +980,7 @@ Sub productos3()
          rs1("id_grupo") = cg
          
          q = "select * from a9 where [id_anterior] = " & rs("cod-depto")
-         Set rs2 = New ADODB.Recordset
+         Set rs2 = New adodb.Recordset
          rs2.Open q, cn1
          If Not rs2.EOF And Not rs2.BOF Then
            CDep = rs2("id_departamento")
@@ -982,7 +991,7 @@ Sub productos3()
          rs1("id_departamento") = CDep
          
          q = "select * from a10 where [id_anterior] = " & rs("cod-marca")
-         Set rs2 = New ADODB.Recordset
+         Set rs2 = New adodb.Recordset
          rs2.Open q, cn1
          If Not rs2.EOF And Not rs2.BOF Then
            cmar = rs2("id_marca")
@@ -994,7 +1003,7 @@ Sub productos3()
          
          
          q = "select * from a1 where [id_prov_anterior] = " & rs("cod-proveedor")
-         Set rs2 = New ADODB.Recordset
+         Set rs2 = New adodb.Recordset
          rs2.Open q, cn1
          If Not rs2.EOF And Not rs2.BOF Then
            cprov = rs2("id_proveedor")
@@ -1086,7 +1095,7 @@ Sub corrigeventas()
 'Set rs = Nothing
     
     
- Set rs = New ADODB.Recordset
+ Set rs = New adodb.Recordset
 q = "select * from vta_03  "
 rs.Open q, cn1, adOpenDynamic, adLockOptimistic
 While Not rs.EOF
@@ -1103,7 +1112,7 @@ Sub plan()
 
 ns = 0
 u = 0
-Set rs1 = New ADODB.Recordset
+Set rs1 = New adodb.Recordset
 q = "select * from c_01"
 rs1.Open q, cn1, adOpenDynamic, adLockOptimistic, 1
 'borro plan
@@ -1115,7 +1124,7 @@ While Not rs1.EOF
   u = u + 1
 Wend
 
-Set rs = New ADODB.Recordset
+Set rs = New adodb.Recordset
 q = "select * from a3"
 rs.Open q, cncgr
 
@@ -1141,7 +1150,7 @@ Wend
 Set rs = Nothing
 
 
-Set rs = New ADODB.Recordset
+Set rs = New adodb.Recordset
 q = "select * from a4"
 rs.Open q, cncgr
 
@@ -1166,7 +1175,7 @@ Wend
 Set rs = Nothing
 
 
-Set rs = New ADODB.Recordset
+Set rs = New adodb.Recordset
 q = "select * from a5"
 rs.Open q, cncgr
 
@@ -1190,7 +1199,7 @@ While Not rs.EOF
 Wend
 Set rs = Nothing
 
-Set rs = New ADODB.Recordset
+Set rs = New adodb.Recordset
 q = "select * from a2"
 rs.Open q, cncgr
 u = 0
@@ -1220,7 +1229,7 @@ Sub corrigecompras()
  'On Error GoTo err3
      
     q = "select * from a5 "
-    Set rs1 = New ADODB.Recordset
+    Set rs1 = New adodb.Recordset
     rs1.Open q, cn1, adOpenDynamic, adLockOptimistic, 1
     While Not rs1.EOF
        rs1("fecha_vto") = rs1("fecha")
@@ -1234,11 +1243,11 @@ End Sub
 Sub empleados()
 ' On Error GoTo err2
 
-Set rs = New ADODB.Recordset
+Set rs = New adodb.Recordset
 q = "select * from a2"
 rs.Open q, cne
 
-Set rs1 = New ADODB.Recordset
+Set rs1 = New adodb.Recordset
 q = "select * from emp_02"
 rs1.Open q, cn1, adOpenDynamic, adLockOptimistic, 1
 ns = 0
@@ -1275,12 +1284,12 @@ End Sub
 
 Sub compras()
  'On Error GoTo err3
- Set rs = New ADODB.Recordset
+ Set rs = New adodb.Recordset
  q = "select * from a20"
  rs.Open q, cnf2
   
  q = "select * from a5 "
- Set rs1 = New ADODB.Recordset
+ Set rs1 = New adodb.Recordset
  rs1.Open q, cn1, adOpenDynamic, adLockOptimistic, 1
 
 
@@ -1310,7 +1319,7 @@ While Not rs.EOF
  '       rs1("cotiz_dolar") = cot
  'End If
      
- Set rs2 = New ADODB.Recordset
+ Set rs2 = New adodb.Recordset
  q = "select * from a1 where [id_prov_anterior] = " & rs("cod-proveedor")
  rs2.Open q, cn1
  If Not rs2.EOF And Not rs2.BOF Then
@@ -1477,7 +1486,7 @@ Set rs1 = Nothing
 
 
  q = "select * from g0"
- Set rs = New ADODB.Recordset
+ Set rs = New adodb.Recordset
  rs.Open q, cn1, adOpenDynamic, adLockOptimistic
  If Not rs.EOF And Not rs.BOF Then
     rs("ult_num_int_comp") = ns + 100
@@ -1488,18 +1497,18 @@ Set rs1 = Nothing
 
 
 'productos en comprobantes
- Set rs = New ADODB.Recordset
+ Set rs = New adodb.Recordset
  q = "select * from a5 "
  rs.Open q, cn1, adOpenDynamic, adLockOptimistic
 
-Set rs1 = New ADODB.Recordset
+Set rs1 = New adodb.Recordset
 q = "select * from a6"
 rs1.Open q, cn1, adOpenDynamic, adLockOptimistic
 
 u = 0
 While Not rs.EOF
  q = "select * from a21 where [num-mov-stk] = " & rs("num_int")
- Set rs2 = New ADODB.Recordset
+ Set rs2 = New adodb.Recordset
  rs2.Open q, cnf2
  r = 1
  While Not rs2.EOF
@@ -1510,7 +1519,7 @@ While Not rs.EOF
      rs1("num_int") = rs2("num-mov-stk")
      rs1("renglon") = r
      If rs2("cod-producto") > 0 Then
-       Set rs3 = New ADODB.Recordset
+       Set rs3 = New adodb.Recordset
        q = "select * FROM a2 where [id_anterior] = " & rs2("cod-producto")
        rs3.Open q, cn1
        ip = 1
@@ -1644,12 +1653,12 @@ End Sub
 Sub bancos()
  'On Error GoTo err3
  
- Set rs = New ADODB.Recordset
+ Set rs = New adodb.Recordset
  q = "select * from a09"
  rs.Open q, cnfb
   
  q = "select * from cyb_07 "
- Set rs1 = New ADODB.Recordset
+ Set rs1 = New adodb.Recordset
  rs1.Open q, cn1, adOpenDynamic, adLockOptimistic, 1
 
 
@@ -1669,7 +1678,7 @@ Wend
 Set rs = Nothing
 
 
-Set rs = New ADODB.Recordset
+Set rs = New adodb.Recordset
  q = "select * from a10"
  rs.Open q, cnfb
  
@@ -1687,11 +1696,11 @@ Set rs1 = Nothing
  
  
 'mov- bancos
- Set rs = New ADODB.Recordset
+ Set rs = New adodb.Recordset
  q = "select * from A05"
  rs.Open q, cnfb
 
-Set rs1 = New ADODB.Recordset
+Set rs1 = New adodb.Recordset
 q = "select * from cyb_04"
 rs1.Open q, cn1, adOpenDynamic, adLockOptimistic, 1
 
@@ -1743,11 +1752,11 @@ Set rs1 = Nothing
  
 
 'Ch. Propios
- Set rs = New ADODB.Recordset
+ Set rs = New adodb.Recordset
  q = "select * from A03"
  rs.Open q, cnf
 
-Set rs1 = New ADODB.Recordset
+Set rs1 = New adodb.Recordset
 q = "select * from cyb_02"
 rs1.Open q, cn1, adOpenDynamic, adLockOptimistic, 1
 
@@ -1762,7 +1771,7 @@ While Not rs.EOF
      cb = 51
    End If
    
-   Set rs2 = New ADODB.Recordset
+   Set rs2 = New adodb.Recordset
    q = "select * from cyb_04 where [num_mov_banco_ant] = " & rs("num-mov-banco")
    rs2.Open q, cn1
    If Not rs2.EOF And Not rs2.BOF Then
@@ -1800,11 +1809,11 @@ err3:
 End Sub
 Sub bancos2()
 'Ch. Terc
- Set rs = New ADODB.Recordset
+ Set rs = New adodb.Recordset
  q = "select * from A04"
  rs.Open q, cnfb
 
-Set rs1 = New ADODB.Recordset
+Set rs1 = New adodb.Recordset
 q = "select * from cyb_03"
 rs1.Open q, cn1, adOpenDynamic, adLockOptimistic, 1
 
@@ -1814,7 +1823,7 @@ While Not rs.EOF
    Label3.Refresh
    
    If rs("num-mov-banco-i") > 0 Then
-     Set rs2 = New ADODB.Recordset
+     Set rs2 = New adodb.Recordset
      q = "select * from cyb_04 where [num_mov_banco_ant] = " & rs("num-mov-banco-i")
      rs2.Open q, cn1
      If Not rs2.EOF And Not rs2.BOF Then
@@ -1829,7 +1838,7 @@ While Not rs.EOF
    
       
    If rs("num-mov-banco-e") > 0 Then
-     Set rs2 = New ADODB.Recordset
+     Set rs2 = New adodb.Recordset
      q = "select * from cyb_04 where [num_mov_banco_ant] = " & rs("num-mov-banco-e")
      rs2.Open q, cn1
      If Not rs2.EOF And Not rs2.BOF Then
@@ -1963,11 +1972,11 @@ Sub STOCK()
 
 
 'On Error GoTo err2
-Set rs = New ADODB.Recordset
+Set rs = New adodb.Recordset
 q = "select * from A1 "
 rs.Open q, cnstk
 
-Set rs1 = New ADODB.Recordset
+Set rs1 = New adodb.Recordset
 q = "select * from stk_01"
 rs1.Open q, cn1, adOpenDynamic, adLockOptimistic, 1
 u = 0
@@ -1978,7 +1987,7 @@ While Not rs.EOF
    rs1.AddNew
        rs1("fecha") = rs("fecha")
        If Len(rs("cod-producto")) > 5 Then
-         Set rs2 = New ADODB.Recordset
+         Set rs2 = New adodb.Recordset
          q = "select * from a2 where [cod_barra] = " & rs("cod-producto")
          rs2.Open q, cn1
          If Not rs2.EOF And Not rs2.BOF Then
@@ -1988,7 +1997,7 @@ While Not rs.EOF
          End If
          Set rs2 = Nothing
        Else
-         Set rs2 = New ADODB.Recordset
+         Set rs2 = New adodb.Recordset
          q = "select * from a2 where [id_anterior] = " & rs("cod-producto")
          rs2.Open q, cn1
          If Not rs2.EOF And Not rs2.BOF Then
@@ -2001,7 +2010,7 @@ While Not rs.EOF
        rs1("id_producto") = cv
        rs1("cantidad") = rs("cantidad")
        rs1("ubicacion") = rs("ubicacion")
-       Set rs2 = New ADODB.Recordset
+       Set rs2 = New adodb.Recordset
        Select Case rs("origen")
         Case Is = "C"
           'compras
@@ -2061,7 +2070,7 @@ End Sub
 Sub stock2()
 'ventas
 q = "select * from vta_02, vta_03, vta_06 where vta_02.[num_int] = vta_03.[num_int] and vta_02.[id_tipocomp] = vta_06.[id_tipocomp] and  [id_producto] > 1 and vta_06.[stock] <> 'N'"
-Set rs = New ADODB.Recordset
+Set rs = New adodb.Recordset
 rs.Open q, cn1, adOpenDynamic, adLockOptimistic
 While Not rs.EOF
  comp = Left$(rs("abreviatura"), 5) & " " & rs("letra") & Format$(rs("vta_02.sucursal"), "0000") & "-" & Format$(rs("num_comp"), "00000000")
@@ -2082,7 +2091,7 @@ Wend
 
 'COMPRAS
 q = "select * from A5, A6, G2, a1 where A5.[num_int] = A6.[num_int] and [id_tipocomp] = [id_tipo_comp] and  [id_producto] > 1 and g2.[stock] <> 'N' and a5.[id_proveedor] = a1.[id_proveedor] "
-Set rs = New ADODB.Recordset
+Set rs = New adodb.Recordset
 rs.Open q, cn1, adOpenDynamic, adLockOptimistic
 While Not rs.EOF
  comp = Left$(rs("abreviatura"), 5) & " " & rs("letra") & Format$(rs("sucursal"), "0000") & "-" & Format$(rs("num_comprobante"), "00000000")
@@ -2102,16 +2111,28 @@ Wend
 
 
 End Sub
+
+Private Sub Command10_Click()
+  Set rs1 = New adodb.Recordset
+  q = "select * from vta_01 where id_tipoiva = 3"
+  rs1.Open q, cn1, adOpenDynamic, adLockOptimistic, 1
+  While Not rs1.EOF
+     rs1("cuit") = "0"
+     rs1.Update
+     rs1.MoveNext
+  Wend
+End Sub
+
 Private Sub Command2_Click()
 Unload Me
 End Sub
 Sub movventas()
 ' On Error GoTo err2
- Set rs = New ADODB.Recordset
+ Set rs = New adodb.Recordset
  q = "select * from A6 where [estado] <> 'B'"
  rs.Open q, cnf
 
-Set rs1 = New ADODB.Recordset
+Set rs1 = New adodb.Recordset
 q = "select * from vta_02"
 rs1.Open q, cn1, adOpenDynamic, adLockOptimistic, 1
 
@@ -2315,7 +2336,7 @@ While Not rs.EOF
      
      
      If rs("cod-cliente") <> 99999 Then
-       Set rs2 = New ADODB.Recordset
+       Set rs2 = New adodb.Recordset
        q = "select * FROM vta_01 where [id_cliente_ANTERIOR] = " & rs("cod-cliente")
        rs2.Open q, cn1
        If Not rs2.EOF And Not rs2.BOF Then
@@ -2343,7 +2364,7 @@ While Not rs.EOF
  Set rs1 = Nothing
  
  q = "select * from g0"
- Set rs = New ADODB.Recordset
+ Set rs = New adodb.Recordset
  rs.Open q, cn1, adOpenDynamic, adLockOptimistic
  If Not rs.EOF And Not rs.BOF Then
     rs("ult_num_int_vta") = nz + 100
@@ -2355,20 +2376,20 @@ While Not rs.EOF
 'productos
 
 
-Set rs1 = New ADODB.Recordset
+Set rs1 = New adodb.Recordset
 q = "select * from vta_03"
 rs1.Open q, cn1, adOpenDynamic, adLockOptimistic, 1
 
  
  
-Set rs2 = New ADODB.Recordset
+Set rs2 = New adodb.Recordset
 q = "select * from vta_02"
  
 rs2.Open q, cn1
 
 While Not rs2.EOF
 
- Set rs = New ADODB.Recordset
+ Set rs = New adodb.Recordset
  q = "select * from A7 where [num-mov-stk] = " & rs2("num_int")
  rs.Open q, cnf
  r = 1
@@ -2378,7 +2399,7 @@ While Not rs2.EOF
      rs1("num_int") = rs2("num_int")
      rs1("renglon") = r
      If rs("basico") > 0 Then
-       Set rs3 = New ADODB.Recordset
+       Set rs3 = New adodb.Recordset
        q = "select * FROM a2 where [id_anterior] = " & rs("basico")
        rs3.Open q, cn1
        If Not rs3.EOF And Not rs3.BOF Then
@@ -2494,7 +2515,7 @@ End Sub
 Private Sub Command3_Click()
 i = InputBox("Ingrese cantidad de codigos consecutivos a generar", , 0)
 If Val(i) > 0 Then
-    Set rs = New ADODB.Recordset
+    Set rs = New adodb.Recordset
     q = "select * from a2"
     rs.Open q, cn1, adOpenDynamic, adLockOptimistic
     For i = 0 To Val(i)
@@ -2509,7 +2530,7 @@ End Sub
 Private Sub Command4_Click()
 J = MsgBox("Confirma depurar productos", 4)
 If J = 6 Then
-  Set rs = New ADODB.Recordset
+  Set rs = New adodb.Recordset
   q = "select * from a2 "
   rs.Open q, cn1, adOpenDynamic, adLockOptimistic
   While Not rs.EOF
@@ -2525,16 +2546,16 @@ End Sub
 
 Private Sub Command5_Click()
  'clientes
-     Set cnf = New ADODB.Connection
+     Set cnf = New adodb.Connection
   gconexion = "Provider=Microsoft.Jet.oledb.4.0;Data Source=" & App.Path & "\temp\cac.mdb;User id=claudio" & ";password=0969" & ";" & "Jet OLEDB:System database=" & App.Path & "\SEG\system1.mdw;"
   cnf.Open gconexion
   
   
-     Set rs = New ADODB.Recordset
+     Set rs = New adodb.Recordset
      q = "select * from a1" 'exma
      rs.Open q, cnf
      
-     Set rs1 = New ADODB.Recordset
+     Set rs1 = New adodb.Recordset
      q = "select * from  vta_01" '5a
      rs1.Open q, cn1, adOpenDynamic, adLockOptimistic
      
@@ -2542,7 +2563,7 @@ Private Sub Command5_Click()
      'despues cuando se migre vendedores y proveedores hay que actualizarlos
      u = 0
      While Not rs.EOF
-       Set rs1 = New ADODB.Recordset
+       Set rs1 = New adodb.Recordset
        q = "select * from  vta_01 where [id_cliente_anterior] = " & rs("cod-cliente")
        rs1.Open q, cn1, adOpenDynamic, adLockOptimistic
       
@@ -2563,11 +2584,11 @@ Private Sub Command6_Click()
 J = MsgBox("confirma actualizar tablka iva", 4)
 If J = 6 Then
   q = "select * from vta_02 where datevalue([fecha]) >= datevalue('01/10/2010') and datevalue([fecha]) <= datevalue('31/10/2010')"
-  Set rs = New ADODB.Recordset
+  Set rs = New adodb.Recordset
   rs.Open q, cn1
   
   While Not rs.EOF
-       Set rs1 = New ADODB.Recordset
+       Set rs1 = New adodb.Recordset
        q = "select * from vta_09 where [num_int] = " & rs("num_int")
        rs1.Open q, cn1, adOpenDynamic, adLockOptimistic
        If Not rs1.EOF And Not rs1.BOF Then
@@ -2596,11 +2617,11 @@ J = InputBox$("Ingrese Clave de Administrador General")
 If J = "0969" Then
   'On Error GoTo errtemp
   
-  Set rs = New ADODB.Recordset
+  Set rs = New adodb.Recordset
   q = "select * from ferro" 'aca va la tabla vinculada
   rs.Open q, cn1
   
-  Set rs1 = New ADODB.Recordset
+  Set rs1 = New adodb.Recordset
   q = "select * from  a2" '5a
   rs1.Open q, cn1, adOpenDynamic, adLockOptimistic
   l = 0
@@ -2679,15 +2700,15 @@ Private Sub Command8_Click()
 J = InputBox$("Ingrese Clave de Administrador General")
 If J = "0969" Then
   'On Error GoTo errtemp
-  Set cnf = New ADODB.Connection
+  Set cnf = New adodb.Connection
   gconexion = "Provider=Microsoft.Jet.oledb.4.0;Data Source=" & App.Path & "\temp\laloma2.mdb;User id=claudio" & ";password=0969" & ";" & "Jet OLEDB:System database=" & App.Path & "\SEG\system1.mdw;"
   cnf.Open gconexion
 
-  Set rs = New ADODB.Recordset
+  Set rs = New adodb.Recordset
   q = "select * from a2" 'laloma
   rs.Open q, cnf
      
-  Set rs1 = New ADODB.Recordset
+  Set rs1 = New adodb.Recordset
   q = "select * from  a2" '5a
   rs1.Open q, cn1, adOpenDynamic, adLockOptimistic
   l = 0
@@ -2747,7 +2768,7 @@ End Sub
 Private Sub Command9_Click()
 i = InputBox("Ingrese cantidad de grupos consecutivos a generar", , 0)
 If Val(i) > 0 Then
-    Set rs = New ADODB.Recordset
+    Set rs = New adodb.Recordset
     q = "select * from vta_01"
     rs.Open q, cn1, adOpenDynamic, adLockOptimistic
     For i = 0 To Val(i)

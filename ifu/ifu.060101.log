@@ -1,0 +1,8 @@
+2006-01-01 01:10:26 | InitModule | 400000 | OK
+2006-01-01 01:10:26 | Version | 0.0.0.18408032 | OK
+2006-01-01 01:10:26 | SetModelo | 22 | OK
+2006-01-01 01:10:26 | CargarLicencia | nyiSQeu/vr... | OK
+2006-01-01 01:10:26 | SetPuerto | 1 | OK
+2006-01-01 01:10:26 | SetBaudios | 9600 | OK
+2006-01-01 01:10:28 | Inicializar | OK
+2006-01-01 01:10:29 | ObtenerDatosDeInicializacion | OK

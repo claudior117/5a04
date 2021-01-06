@@ -59,8 +59,8 @@ Begin VB.Form inicio_vta
          Width           =   2775
          _ExtentX        =   4895
          _ExtentY        =   1535
-         ButtonWidth     =   2117
-         ButtonHeight    =   1429
+         ButtonWidth     =   2037
+         ButtonHeight    =   1376
          Appearance      =   1
          ImageList       =   "ImageList1"
          _Version        =   393216
@@ -157,7 +157,7 @@ Begin VB.Form inicio_vta
    End
    Begin VB.Frame Frame3 
       BackColor       =   &H00E0E0E0&
-      Caption         =   "EMISION DE COMPROBANTES FISCALES"
+      Caption         =   "EMISION DE COMPROBANTES FISCALES GEN1"
       Height          =   1095
       Left            =   3360
       TabIndex        =   21
@@ -340,8 +340,8 @@ Begin VB.Form inicio_vta
          Width           =   2760
          _ExtentX        =   4868
          _ExtentY        =   1535
-         ButtonWidth     =   2249
-         ButtonHeight    =   1429
+         ButtonWidth     =   2170
+         ButtonHeight    =   1376
          Appearance      =   1
          ImageList       =   "ImageList1"
          _Version        =   393216
@@ -380,8 +380,8 @@ Begin VB.Form inicio_vta
          Width           =   8655
          _ExtentX        =   15266
          _ExtentY        =   1561
-         ButtonWidth     =   2328
-         ButtonHeight    =   1455
+         ButtonWidth     =   2143
+         ButtonHeight    =   1402
          Appearance      =   1
          ImageList       =   "ImageList2"
          _Version        =   393216
@@ -570,12 +570,12 @@ Begin VB.Form inicio_vta
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "13/02/2020"
+            TextSave        =   "19/11/2020"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "08:08"
+            TextSave        =   "05:52 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -1041,7 +1041,11 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 'FIXIT: Utilice Option Explicit para evitar la creación implícita de variables de tipo Variant.     FixIT90210ae-R383-H1984
 
-
+ 'nuevo codigo driver IF Universal
+     
+       
+  
+       
 
 Private Sub b_facte_Click()
  vta_facturacion.Show
@@ -1077,7 +1081,47 @@ Unload Me
 End Sub
 
 
+Function conectarFiscalGen2()
+    Dim retorno As Long
+    Dim Port As Integer
+    Dim myPort As String
+        
+     Set cl_fiscal = New Fiscal
+     cl_fiscal.carga (glo.sucursalf)
 
+    'Call SetData(cmbProtocolo.ListIndex, cmbEquipo.ListIndex) 'Opcional solo para efectos demostrativos en el ejemplo
+
+
+    Do While (True)
+
+        'retorno = FP.ConfigurarVelocidad(115200)
+        'If Not (retorno = ERROR_NONE) Then
+        '    MsgBox ("Error al conectar impresora fiscal")
+        '    Exit Do
+        'End If
+
+        'retorno = FP.ConfigurarPuerto(cl_fiscal.puerto)
+        'If Not (retorno = ERROR_NONE) Then
+        '    MsgBox ("Error al conectar impresora fiscal")
+        '    Exit Do
+        'End If
+
+        'retorno = FP.ConfigurarProtocolo(cmbProtocolo.ListIndex)
+        'If Not (retorno = ERROR_NONE) Then
+        '    Exit Do
+        'End If
+
+        retorno = FP.NewConectar()
+        If Not (retorno = ERROR_NONE) Then
+            MsgBox ("Error al conectar impresora fiscal")
+            Exit Do
+        End If
+
+        Exit Do
+    Loop
+
+    ConectarFiscal = retorno
+End Function
 
 
 
@@ -1094,10 +1138,20 @@ End Sub
 
 Private Sub Form_Activate()
 Call barraesag(Me)
-If para.fiscal = 0 Then
+If para.Fiscal = 0 Then
    Frame3.Visible = False
 Else
-   Frame3.Visible = True
+   Set cl_fiscal = New Fiscal
+   cl_fiscal.carga (glo.sucursalf)
+   If cl_fiscal.id > 0 Then
+      cMODELO = cl_fiscal.idmodelo
+      cPUERTO = cl_fiscal.puerto
+      cBAUDIOS = cl_fiscal.baudios
+      Set Fiscal = New Driver
+      Frame3.Visible = True
+   Else
+      MsgBox ("Impresora Fiscal No definida")
+   End If
 End If
 
 If glo.sucursale = 0 Then
@@ -1116,7 +1170,7 @@ Case Is = 1912
                Frame8.Visible = True
                Frame11.Visible = False
                Frame10.Visible = False
-               Frame3.Visible = True
+               'Frame3.Visible = True
                
                
 Case Is = 7422 'agropecuarias
@@ -1125,7 +1179,7 @@ Case Is = 7422 'agropecuarias
 Case Is = 1723 'veterinarias
     
 Case Is = 1722 'électrinica
-    Frame3.Visible = True
+    'Frame3.Visible = True
     Frame11.Visible = False
     Toolbar4.Buttons(2).Visible = False
     Toolbar4.Buttons(3).Visible = False
@@ -1148,7 +1202,7 @@ Label7 = para.impresora_actual
 End Sub
 Sub actu_fe()
   q = "select * from fe_01 where id= 1"
-  Set rs = New ADODB.Recordset
+  Set rs = New adodb.Recordset
   rs.Open q, cn1
   If Not rs.EOF And Not rs.BOF Then
     para.facte_token = rs("token")
@@ -1177,6 +1231,10 @@ End If
 End Sub
 
 Private Sub Form_Load()
+
+Dim retorno As Long
+Dim cmd As String
+
 Call titulos(Me)
 
 
@@ -1201,7 +1259,7 @@ End Select
 
 
 q = "SELECT * FROM G1 WHERE id_usuario = " & para.id_usuario
-Set rs = New ADODB.Recordset
+Set rs = New adodb.Recordset
 rs.Open q, cn1
 If Not rs.EOF And Not rs.BOF Then
   para.tipoprecioventa = rs("tipo_precio_venta")
@@ -1287,7 +1345,7 @@ h = MsgBox("Formatea(numerico sin guines de longitud 11) los cuit de los Cliente
 If h = 6 Then
 espere.Show
 espere.Refresh
-Set rs = New ADODB.Recordset
+Set rs = New adodb.Recordset
 q = "select * from vta_01"
 rs.Open q, cn1, adOpenStatic, adLockOptimistic
 a = 1
@@ -1317,7 +1375,7 @@ h = MsgBox("verifca Cuit en Comprobates   . ¿Esta seguro que quiere actualizar? 
 If h = 6 Then
 espere.Show
 espere.Refresh
-Set rs = New ADODB.Recordset
+Set rs = New adodb.Recordset
 q = "select * from vta_02, vta_01 where vta_02.[id_cliente] > 1 and vta_02.[id_cliente] = vta_01.[id_cliente]"
 rs.Open q, cn1, adOpenStatic, adLockOptimistic
 a = 1
@@ -1519,7 +1577,7 @@ If b = 1 Then
     f2 = d & "/" & Mid$(p, 1, 2) & "/" & Mid$(p, 3, 4)
  
 
-    Set rs = New ADODB.Recordset
+    Set rs = New adodb.Recordset
     espere.Show
     espere.Label1 = "Espere...... Actualizando Listado de Iva"
     espere.Refresh
@@ -1610,7 +1668,7 @@ If J = para.password_adm Then
   s = InputBox("Ingrese numero de sucursal a habilitar. CUIDADO si ingresa una sucursal existente se regneraran todos los parametros")
   If Val(s) > 0 Then
    If Val(s) <> glo.sucursal Then
-     Set rs = New ADODB.Recordset
+     Set rs = New adodb.Recordset
      q = "select * from vta_06 where [sucursal] = " & Val(s)
      rs.Open q, cn1, adOpenDynamic, adLockOptimistic
      While Not rs.EOF
@@ -1620,11 +1678,11 @@ If J = para.password_adm Then
      Set rs = Nothing
      
     
-    Set rs = New ADODB.Recordset
+    Set rs = New adodb.Recordset
     q = "select * from vta_06 where [sucursal] = " & glo.sucursal
     rs.Open q, cn1
     While Not rs.EOF
-      Set rs1 = New ADODB.Recordset
+      Set rs1 = New adodb.Recordset
       q = "select * from vta_06 where [sucursal] = " & Val(s) & " and [id_tipocomp] = " & rs("id_tipocomp")
       rs1.Open q, cn1, adOpenStatic, adLockOptimistic
       If rs1.EOF And rs1.BOF Then
@@ -1815,7 +1873,7 @@ End Sub
 Private Sub Toolbar4_ButtonClick(ByVal Button As MSComctlLib.Button)
 Dim impf As String
 'If glo.sucursalf > 0 Then
- Set cl_fiscal = New fiscal
+ Set cl_fiscal = New Fiscal
  cl_fiscal.carga (glo.sucursalf)
  If cl_fiscal.id > 0 Then
   Select Case Button.Key
@@ -1882,18 +1940,38 @@ Private Sub Toolbar5_ButtonClick(ByVal Button As MSComctlLib.Button)
 If glo.sucursalf > 0 Then
  Select Case Button.Key
   Case Is = "B1"
+   
+    
     J = MsgBox("Confirma la Emision del Cierre X", 4)
     If J = 6 Then
        espere.Show
        espere.Refresh
        espere.Label1 = "Espere.... Emitiendo Cierre X"
-       r = epson4.CloseJournal("X", "P")
-       Unload espere
-       If r Then
-           MsgBox ("Cierre X Emitido")
-       Else
-          MsgBox ("Error al generar Cierre X ")
-       End If
+      
+      'nuevo codigo driver IF Universal
+       'Dim Fiscal As Driver
+       Set Fiscal = New Driver
+  
+       Fiscal.Modelo = cMODELO
+       Fiscal.puerto = cPUERTO
+       Fiscal.baudios = cBAUDIOS
+  
+       
+  
+        If Fiscal.Inicializar Then
+  
+            Fiscal.CancelarComprobante
+            If Fiscal.CierreX Then
+                MsgBox ("Cierre realizado exitosamente")
+            Else
+                MsgBox (Fiscal.ErrorDesc)
+            End If
+    
+            Fiscal.Finalizar
+        Else
+            MsgBox (Fiscal.ErrorDesc)
+        End If
+        Unload espere
        
     End If
     
@@ -1952,6 +2030,72 @@ End Select
 End Sub
 
 
+Private Sub Toolbar7_ButtonClick(ByVal Button As MSComctlLib.Button)
+Dim impf As String
+'If glo.sucursalf > 0 Then
+ Set cl_fiscal = New Fiscal
+ cl_fiscal.carga (glo.sucursalf)
+ If cl_fiscal.id > 0 Then
+  Select Case Button.Key
+  Case Is = "B1"
+   If para.id_grupo_modulo_actual >= 4 Then
+     If cl_fiscal.imprimetique = "S" Then
+       impf = cl_fiscal.impresora
+       fsc_tique.Show
+       fsc_tique.t_impfiscal = impf
+     Else
+       MsgBox ("La Impresora Fiscal Definida no Imprime Tique")
+     End If
+    Else
+     Call sinpermisos
+    End If
+    
+
+  Case Is = "B2"
+    If para.id_grupo_modulo_actual >= 4 Then
+     If cl_fiscal.imprimetf = "S" Or cl_fiscal.imprimefact = "S" Then
+          vta_facturacion.Show
+          vta_facturacion.t_sucursal = Format$(glo.sucursalf, "0000")
+          vta_facturacion.c_sucursal.ListIndex = buscaindice(vta_facturacion.c_sucursal, glo.sucursalf)
+          vta_facturacion.t_cae = "0"
+          vta_facturacion.t_cae_vence = "01/01/2000"
+    Else
+       MsgBox ("La Impresora Fiscal Definida no Imprime Tique Factura / Factura ")
+     End If
+    Else
+     Call sinpermisos
+    End If
+  Case Is = "B3"
+    If para.id_grupo_modulo_actual >= 6 Then
+        vta_remitos.Show
+        vta_remitos.t_sucursal = Format$(glo.sucursalf, "0000")
+        vta_remitos.c_sucursal.ListIndex = buscaindice(vta_remitos.c_sucursal, glo.sucursalf)
+    Else
+     Call sinpermisos
+    End If
+    
+  Case Is = "B4"
+    If para.id_grupo_modulo_actual >= 6 Then
+       vta_recibo.Show
+       vta_recibo.sucursal = Format$(glo.sucursalf, "0000")
+       vta_recibo.c_sucursal.ListIndex = buscaindice(vta_recibo.c_sucursal, glo.sucursalf)
+    Else
+     Call sinpermisos
+    End If
+    
+End Select
+
+Else
+ MsgBox ("Error en la definicion de la Impresora Fiscal")
+End If
+Set cl_fiscal = Nothing
+
+'Else
+'  MsgBox ("Impresora Fiscal No inicializada")
+'End If
+
+End Sub
+
 Private Sub Toolbar8_ButtonClick(ByVal Button As MSComctlLib.Button)
 Select Case Button.Key
 
@@ -1978,4 +2122,49 @@ Case Is = "B2"
 
 End Select
 
+End Sub
+
+Private Sub Toolbar9_ButtonClick(ByVal Button As MSComctlLib.Button)
+
+If glo.sucursalf > 0 Then
+ Select Case Button.Key
+  Case Is = "B1"
+    J = MsgBox("Confirma la Emision del Cierre X", 4)
+    If J = 6 Then
+       espere.Show
+       espere.Refresh
+       espere.Label1 = "Espere.... Emitiendo Cierre X"
+       
+       
+       cmd = X_REPORT
+       retorno = FP.EnviarComando(cmd)
+       Unload espere
+       MsgBox ("Cierre X Emitido --> Estado: " & retono)
+       
+       
+    End If
+    
+   Case Is = "B2"
+     J = MsgBox("Confirma la Emision del Cierre Z", 4)
+     If J = 6 Then
+       espere.Show
+       espere.Refresh
+       espere.Label1 = "Espere.... Emitiendo Cierre Z"
+       
+       
+       cmd = Z_REPORT
+       retorno = FP.EnviarComando(cmd)
+       Unload espere
+       MsgBox ("Cierre Z Emitido --> Estado: " & retono)
+       
+       
+    End If
+   Case Is = "B3"
+     fsc_errorfiscal.Show
+
+ End Select
+
+Else
+  MsgBox ("Impresora Fiscal No Inicializada")
+End If
 End Sub

@@ -1,20 +1,13 @@
 VERSION 5.00
-Object = "{0A6BE9FC-5039-11D5-98EC-0800460222F0}#1.0#0"; "IFEpson.ocx"
 Begin VB.Form fsc_cierrez 
    Caption         =   "CIERRE Z"
-   ClientHeight    =   1995
+   ClientHeight    =   2565
    ClientLeft      =   3150
    ClientTop       =   2955
    ClientWidth     =   8730
    LinkTopic       =   "Form1"
-   ScaleHeight     =   1995
+   ScaleHeight     =   2565
    ScaleWidth      =   8730
-   Begin EPSON_Impresora_Fiscal.PrinterFiscal EPSON6 
-      Left            =   120
-      Top             =   720
-      _ExtentX        =   847
-      _ExtentY        =   847
-   End
    Begin VB.Frame Frame1 
       Height          =   1695
       Left            =   600
@@ -45,39 +38,39 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+Dim Fiscalz As Driver
+
 
 Private Sub Command1_Click()
        espere.Show
        espere.Refresh
        espere.Label1 = "Espere.... Emitiendo Cierre Z"
-       'EPSON6.PortNumber = 1
-       r = EPSON6.Status("N")
-       If r Then
-                   
-      '   QUERY = "INSERT INTO fsc_002([ult_comp], [fecha_inicio_jornada], [hora_inicio_jornada], [ultimo_cierre], [auditoria_parcial], [auditoria_total], [texto_auditoria_impresor], [texto_auditoria])"
-      '   QUERY = QUERY & " VALUES (" & Val(epson3.AnswerField_3) & ", '" & epson3.AnswerField_4 & "', '" & epson3.AnswerField_5 & "', " & Val(epson3.AnswerField_6) & ", " & Val(epson3.AnswerField_7) & ", " & Val(epson3.AnswerField_8) & ", '" & epson3.AnswerField_9 & "', '" & epson3.AnswerField_10 & "')"
-      '   cn1.Execute QUERY
-          
-       Else
-          MsgBox ("Error al generar datos para el cierre Z")
-       End If
        
-       
+       If Fiscalz.Inicializar Then
+  
+            Fiscalz.CancelarComprobante
+            If Fiscalz.CierreZ Then
+                Call grabaz2
             
-       r = EPSON6.CloseJournal("Z", "P")
-       
-       Unload espere
-       If r Then
-           Call grabaz
-           MsgBox ("Cierre Z Emitido")
-       Else
-           MsgBox ("Error al Emitir el Cierre Z")
-       End If
+            
+                MsgBox ("Cierre realizado exitosamente")
+            Else
+                MsgBox (Fiscalz.ErrorDesc)
+            End If
     
+            Fiscalz.Finalizar
+        Else
+            MsgBox (Fiscalz.ErrorDesc)
+        End If
+        Unload espere
+       
+           
+        
     
 End Sub
 
-Sub grabaz()
+
+Sub grabaz2()
   On Error GoTo ERRORGRABA
   numint = saca_ultnumero_int_comp("V")
   
@@ -90,11 +83,11 @@ Sub grabaz()
   contado = "S"
   cl_compvta.ctacte = "N"
   moneda = "P"
-  numcomp = EPSON6.AnswerField_3
-  iva = Val(Mid$(EPSON6.AnswerField_11, 1, Len(EPSON6.AnswerField_11) - 2) & "." & Mid$(EPSON6.AnswerField_11, Len(EPSON6.AnswerField_11) - 1, 2))
-  total = Val(Mid$(EPSON6.AnswerField_10, 1, Len(EPSON6.AnswerField_10) - 2) & "." & Mid$(EPSON6.AnswerField_10, Len(EPSON6.AnswerField_10) - 1, 2))
+  numcomp = Fiscalz.CierreZTotales.NroCierre
+  iva = Fiscalz.CierreZTotales.FNDTotalIVA
+  total = Fiscalz.CierreZTotales.FNDTotalVentas
   subtotal = total - iva
-  nograbado = 0
+  nograbado = Fiscalz.CierreZTotales.FNDTotalOtrosTributos
   If para.cotizacion > 0 Then
     total2 = total / para.cotizacion
   Else
@@ -127,4 +120,9 @@ ERRORGRABA:
 
 End Sub
 
-
+Private Sub Form_Load()
+Set Fiscalz = New Driver
+Fiscalz.Modelo = cMODELO
+Fiscalz.puerto = cPUERTO
+Fiscalz.baudios = cBAUDIOS
+End Sub

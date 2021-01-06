@@ -327,12 +327,12 @@ Begin VB.Form cyb_chpropios
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "09/11/2020"
+            TextSave        =   "06/01/2021"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "11:40 a.m."
+            TextSave        =   "07:59 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -349,7 +349,7 @@ Begin VB.Form cyb_chpropios
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   189464577
+      StartOfWeek     =   110886913
       CurrentDate     =   38754
    End
    Begin MSFlexGridLib.MSFlexGrid msf1 
@@ -606,7 +606,7 @@ End Sub
   
 
 Private Sub msf1_GotFocus()
-Me.StatusBar1.Panels.Item(2) = "[ENTER] Administrador Cheque - [F7] Imprime - [F11] Excel"
+Me.StatusBar1.Panels.item(2) = "[ENTER] Administrador Cheque - [F7] Imprime - [F11] Excel"
 
 End Sub
 

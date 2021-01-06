@@ -1,0 +1,82 @@
+M00 | P00 | 2020-12-09 16:36:40 | InitModule | CCE0000 | OK
+M00 | P00 | 2020-12-09 16:36:40 | Version | 1.1.79.0 | OK
+M22 | P00 | 2020-12-09 16:36:40 | SetModelo | 22 | OK
+M22 | P00 | 2020-12-09 16:36:40 | CargarLicencia | nyiSQeu/vr... | OK
+M22 | P01 | 2020-12-09 16:36:40 | SetPuerto | 1 | OK
+M22 | P01 | 2020-12-09 16:36:40 | SetBaudios | 9600 | OK
+M22 | P01 | 2020-12-09 16:36:41 | Inicializar | OK
+M22 | P01 | 2020-12-09 16:36:42 | CancelarComprobante | OK
+M22 | P01 | 2020-12-09 16:36:48 | CierreZ | OK
+M22 | P01 | 2020-12-09 16:36:53 | Finalizar | OK
+M00 | P00 | 2020-12-09 16:38:59 | InitModule | CCE0000 | OK
+M00 | P00 | 2020-12-09 16:38:59 | Version | 1.1.79.0 | OK
+M22 | P00 | 2020-12-09 16:38:59 | SetModelo | 22 | OK
+M22 | P00 | 2020-12-09 16:38:59 | CargarLicencia | nyiSQeu/vr... | OK
+M22 | P01 | 2020-12-09 16:38:59 | SetPuerto | 1 | OK
+M22 | P01 | 2020-12-09 16:38:59 | SetBaudios | 9600 | OK
+M00 | P00 | 2020-12-09 18:23:52 | InitModule | DE60000 | OK
+M00 | P00 | 2020-12-09 18:23:52 | Version | 1.1.79.0 | OK
+M22 | P00 | 2020-12-09 18:23:52 | SetModelo | 22 | OK
+M22 | P00 | 2020-12-09 18:23:52 | CargarLicencia | nyiSQeu/vr... | OK
+M22 | P01 | 2020-12-09 18:23:52 | SetPuerto | 1 | OK
+M22 | P01 | 2020-12-09 18:23:52 | SetBaudios | 9600 | OK
+M22 | P01 | 2020-12-09 18:24:22 | Inicializar | OK
+M22 | P01 | 2020-12-09 18:24:23 | CancelarComprobante | OK
+M22 | P01 | 2020-12-09 18:24:23 | DatosCliente | Ravagnan Claudio   | 0 | 20202956034 | 0 | Rojas   | OK
+M22 | P01 | 2020-12-09 18:24:23 | ObtenerDatosDeInicializacion | OK
+M22 | P01 | 2020-12-09 18:24:29 | AbrirComprobante | 1 | OK
+M22 | P01 | 2020-12-09 18:24:31 | ImprimirItem2g | prueba fiscal | 1 | 1 | 21 | 0 | 7 | 0 | 1 | 00001 |  | 0 | OK
+M22 | P01 | 2020-12-09 18:24:31 | Subtotal | OK
+M22 | P01 | 2020-12-09 18:24:32 | Subtotal | OK
+M22 | P01 | 2020-12-09 18:24:32 | Subtotal | OK
+M22 | P01 | 2020-12-09 18:24:33 | ImprimirPago2g | Cta. Cte. Nro. 00305 | 1.21 |  | 6 | 1 |  |  | OK
+M22 | P01 | 2020-12-09 18:24:44 | CerrarComprobante | OK
+M22 | P01 | 2020-12-09 18:24:44 | UltimoComprobante | 1 | OK
+M22 | P01 | 2020-12-09 18:24:44 | Finalizar | OK
+M00 | P00 | 2020-12-09 18:25:32 | InitModule | DE60000 | OK
+M00 | P00 | 2020-12-09 18:25:32 | Version | 1.1.79.0 | OK
+M22 | P00 | 2020-12-09 18:25:32 | SetModelo | 22 | OK
+M22 | P00 | 2020-12-09 18:25:32 | CargarLicencia | nyiSQeu/vr... | OK
+M22 | P01 | 2020-12-09 18:25:32 | SetPuerto | 1 | OK
+M22 | P01 | 2020-12-09 18:25:32 | SetBaudios | 9600 | OK
+M00 | P00 | 2020-12-09 18:26:05 | InitModule | DE60000 | OK
+M00 | P00 | 2020-12-09 18:26:05 | Version | 1.1.79.0 | OK
+M22 | P00 | 2020-12-09 18:26:05 | SetModelo | 22 | OK
+M22 | P00 | 2020-12-09 18:26:05 | CargarLicencia | nyiSQeu/vr... | OK
+M22 | P01 | 2020-12-09 18:26:05 | SetPuerto | 1 | OK
+M22 | P01 | 2020-12-09 18:26:05 | SetBaudios | 9600 | OK
+M00 | P00 | 2020-12-09 18:26:28 | InitModule | DE60000 | OK
+M00 | P00 | 2020-12-09 18:26:28 | Version | 1.1.79.0 | OK
+M22 | P00 | 2020-12-09 18:26:28 | SetModelo | 22 | OK
+M22 | P00 | 2020-12-09 18:26:28 | CargarLicencia | nyiSQeu/vr... | OK
+M22 | P01 | 2020-12-09 18:26:28 | SetPuerto | 1 | OK
+M22 | P01 | 2020-12-09 18:26:28 | SetBaudios | 9600 | OK
+M22 | P01 | 2020-12-09 18:27:01 | Inicializar | OK
+M22 | P01 | 2020-12-09 18:27:02 | CancelarComprobante | OK
+M22 | P01 | 2020-12-09 18:27:02 | DatosCliente | Ravagnan Claudio   | 0 | 20202956034 | 0 | Rojas   | OK
+M22 | P01 | 2020-12-09 18:27:02 | ObtenerDatosDeInicializacion | OK
+M22 | P01 | 2020-12-09 18:27:02 | AbrirComprobante | 7 | ERROR: Campo de datos inválido
+M00 | P00 | 2020-12-09 18:40:23 | InitModule | D770000 | OK
+M00 | P00 | 2020-12-09 18:40:23 | Version | 1.1.79.0 | OK
+M22 | P00 | 2020-12-09 18:40:23 | SetModelo | 22 | OK
+M22 | P00 | 2020-12-09 18:40:23 | CargarLicencia | nyiSQeu/vr... | OK
+M22 | P01 | 2020-12-09 18:40:23 | SetPuerto | 1 | OK
+M22 | P01 | 2020-12-09 18:40:23 | SetBaudios | 9600 | OK
+M22 | P01 | 2020-12-09 18:40:52 | Inicializar | OK
+M22 | P01 | 2020-12-09 18:40:53 | CancelarComprobante | OK
+M22 | P01 | 2020-12-09 18:40:53 | DatosCliente | Ravagnan Claudio   | 0 | 20202956034 | 0 | Rojas   | OK
+M22 | P01 | 2020-12-09 18:40:54 | ObtenerDatosDeInicializacion | OK
+M22 | P01 | 2020-12-09 18:40:59 | AbrirComprobante | 4 | OK
+M22 | P01 | 2020-12-09 18:41:01 | ImprimirItem2g | intereses | 1 | 1 | 21 | 0 | 7 | 0 | 1 | 00001 |  | 0 | OK
+M22 | P01 | 2020-12-09 18:41:02 | Subtotal | OK
+M22 | P01 | 2020-12-09 18:41:02 | Subtotal | OK
+M22 | P01 | 2020-12-09 18:41:03 | Subtotal | OK
+M22 | P01 | 2020-12-09 18:41:04 | ImprimirPago2g | Cta. Cte. Nro. 00305 | 1.21 |  | 6 | 1 |  |  | OK
+M22 | P01 | 2020-12-09 18:41:14 | CerrarComprobante | OK
+M22 | P01 | 2020-12-09 18:41:15 | UltimoComprobante | 4 | OK
+M22 | P01 | 2020-12-09 18:41:15 | Finalizar | OK
+M22 | P01 | 2020-12-09 18:42:22 | Inicializar | OK
+M22 | P01 | 2020-12-09 18:42:23 | CancelarComprobante | OK
+M22 | P01 | 2020-12-09 18:42:23 | DatosCliente | Ravagnan Claudio   | 0 | 20202956034 | 0 | Rojas   | OK
+M22 | P01 | 2020-12-09 18:42:23 | ObtenerDatosDeInicializacion | OK
+M22 | P01 | 2020-12-09 18:42:23 | AbrirComprobante | 7 | ERROR: Campo de datos inválido
