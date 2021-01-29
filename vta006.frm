@@ -1058,8 +1058,15 @@ Sub muestra2()
 End Sub
 
 
+Private Sub msf1_DblClick()
+
+If para.id_grupo_modulo_actual > 6 Then
+     Call muestra2
+  End If
+End Sub
+
 Private Sub msf1_GotFocus()
-Me.StatusBar1.Panels.Item(1) = "[F1]P.F - [F2]Sel. - [F3]A Faltantes - [F4]Saca - [F5]Grupal - [F6]Op.  - [F7]Imprime - [F10]Imp. Etiq. - [F11]Marca Etiq. - [ENTER] Detalle  - [F12] Excel"
+Me.StatusBar1.Panels.item(1) = "[F1]P.F - [F2]Sel. - [F3]A Faltantes - [F4]Saca - [F5]Grupal - [F6]Op.  - [F7]Imprime - [F10]Imp. Etiq. - [F11]Marca Etiq. - [ENTER] Detalle  - [F12] Excel"
 
 End Sub
 

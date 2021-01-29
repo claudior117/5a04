@@ -59,8 +59,8 @@ Begin VB.Form inicio_vta
          Width           =   2775
          _ExtentX        =   4895
          _ExtentY        =   1535
-         ButtonWidth     =   2037
-         ButtonHeight    =   1376
+         ButtonWidth     =   2170
+         ButtonHeight    =   1429
          Appearance      =   1
          ImageList       =   "ImageList1"
          _Version        =   393216
@@ -340,8 +340,8 @@ Begin VB.Form inicio_vta
          Width           =   2760
          _ExtentX        =   4868
          _ExtentY        =   1535
-         ButtonWidth     =   2170
-         ButtonHeight    =   1376
+         ButtonWidth     =   2275
+         ButtonHeight    =   1429
          Appearance      =   1
          ImageList       =   "ImageList1"
          _Version        =   393216
@@ -380,8 +380,8 @@ Begin VB.Form inicio_vta
          Width           =   8655
          _ExtentX        =   15266
          _ExtentY        =   1561
-         ButtonWidth     =   2143
-         ButtonHeight    =   1402
+         ButtonWidth     =   2328
+         ButtonHeight    =   1455
          Appearance      =   1
          ImageList       =   "ImageList2"
          _Version        =   393216
@@ -570,12 +570,12 @@ Begin VB.Form inicio_vta
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "19/11/2020"
+            TextSave        =   "27/01/2021"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "05:52 p.m."
+            TextSave        =   "10:01 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -1086,7 +1086,7 @@ Function conectarFiscalGen2()
     Dim Port As Integer
     Dim myPort As String
         
-     Set cl_fiscal = New Fiscal
+     Set cl_fiscal = New fiscal
      cl_fiscal.carga (glo.sucursalf)
 
     'Call SetData(cmbProtocolo.ListIndex, cmbEquipo.ListIndex) 'Opcional solo para efectos demostrativos en el ejemplo
@@ -1138,16 +1138,16 @@ End Sub
 
 Private Sub Form_Activate()
 Call barraesag(Me)
-If para.Fiscal = 0 Then
+If para.fiscal = 0 Then
    Frame3.Visible = False
 Else
-   Set cl_fiscal = New Fiscal
+   Set cl_fiscal = New fiscal
    cl_fiscal.carga (glo.sucursalf)
    If cl_fiscal.id > 0 Then
       cMODELO = cl_fiscal.idmodelo
       cPUERTO = cl_fiscal.puerto
       cBAUDIOS = cl_fiscal.baudios
-      Set Fiscal = New Driver
+      Set fiscal = New Driver
       Frame3.Visible = True
    Else
       MsgBox ("Impresora Fiscal No definida")
@@ -1873,7 +1873,7 @@ End Sub
 Private Sub Toolbar4_ButtonClick(ByVal Button As MSComctlLib.Button)
 Dim impf As String
 'If glo.sucursalf > 0 Then
- Set cl_fiscal = New Fiscal
+ Set cl_fiscal = New fiscal
  cl_fiscal.carga (glo.sucursalf)
  If cl_fiscal.id > 0 Then
   Select Case Button.Key
@@ -1950,26 +1950,26 @@ If glo.sucursalf > 0 Then
       
       'nuevo codigo driver IF Universal
        'Dim Fiscal As Driver
-       Set Fiscal = New Driver
+       Set fiscal = New Driver
   
-       Fiscal.Modelo = cMODELO
-       Fiscal.puerto = cPUERTO
-       Fiscal.baudios = cBAUDIOS
+       fiscal.Modelo = cMODELO
+       fiscal.puerto = cPUERTO
+       fiscal.baudios = cBAUDIOS
   
        
   
-        If Fiscal.Inicializar Then
+        If fiscal.Inicializar Then
   
-            Fiscal.CancelarComprobante
-            If Fiscal.CierreX Then
+            fiscal.CancelarComprobante
+            If fiscal.CierreX Then
                 MsgBox ("Cierre realizado exitosamente")
             Else
-                MsgBox (Fiscal.ErrorDesc)
+                MsgBox (fiscal.ErrorDesc)
             End If
     
-            Fiscal.Finalizar
+            fiscal.Finalizar
         Else
-            MsgBox (Fiscal.ErrorDesc)
+            MsgBox (fiscal.ErrorDesc)
         End If
         Unload espere
        
@@ -2033,7 +2033,7 @@ End Sub
 Private Sub Toolbar7_ButtonClick(ByVal Button As MSComctlLib.Button)
 Dim impf As String
 'If glo.sucursalf > 0 Then
- Set cl_fiscal = New Fiscal
+ Set cl_fiscal = New fiscal
  cl_fiscal.carga (glo.sucursalf)
  If cl_fiscal.id > 0 Then
   Select Case Button.Key
