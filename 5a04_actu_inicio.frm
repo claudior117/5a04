@@ -120,7 +120,7 @@ Begin VB.Form actu_inicio
    Begin VB.Label Label3 
       Alignment       =   2  'Center
       BackColor       =   &H0000FFFF&
-      Caption         =   "213"
+      Caption         =   "215"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   18
@@ -308,6 +308,8 @@ Case Is = 211
     Call actu212
  Case Is = 213
     Call actu213
+Case Is = 215
+    Call actu215
  
  Case Is = 999
    Call actu999
@@ -2162,6 +2164,37 @@ err1:
 Resume Next
 End Sub
 
+Sub actu215()
+h = MsgBox("Actualizacion 215 . ¿Esta seguro que quiere actualizar?  ", 4)
+If h = 6 Then
+  
+  MsgBox ("Reemplazar tabla Fsc_001. Si el cliente tiene controlador fiscal verificar prametros impresora")
+  espere.Show
+  espere.Refresh
+    
+    
+   cn1.BeginTrans
+  q = "update g0 set  [actualizacion]=215"
+  q = q & " where [sucursal]=0 "
+  
+   cn1.Execute q
+    
+  cn1.CommitTrans
+  
+  
+ 
+   MsgBox ("Operación cerrada")
+   
+ Unload espere
+  
+End If
+
+Exit Sub
+
+
+err1:
+Resume Next
+End Sub
 
 
 
