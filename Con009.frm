@@ -54,7 +54,7 @@ Begin VB.Form con_retperc
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   111738881
+      StartOfWeek     =   172097537
       CurrentDate     =   38750
    End
    Begin VB.Frame Frame3 
@@ -166,12 +166,12 @@ Begin VB.Form con_retperc
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "23/02/2021"
+            TextSave        =   "08/04/2021"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "11:28 a.m."
+            TextSave        =   "06:45 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -221,7 +221,7 @@ Sub ret()
 msf1.AddItem "" & Chr$(9) & "************ RETENCIONES ************"
 msf1.AddItem ""
 
-Set rs1 = New adodb.Recordset
+Set rs1 = New ADODB.Recordset
 q = "select * from g2 where [id_tipo_comp] >= 95 and [id_tipo_comp] < 100"
 rs1.Open q, cn1
 tr = 0
@@ -236,7 +236,7 @@ While Not rs1.EOF
      q = q & c & " datevalue([fecha]) <= datevalue('" & t_fecha2 & "')"
  End If
  q = q & " order by [fecha]"
- Set rs = New adodb.Recordset
+ Set rs = New ADODB.Recordset
  rs.Open q, cn1
  tt = 0
  While Not rs.EOF
@@ -276,7 +276,7 @@ Sub perc()
 msf1.AddItem "" & Chr$(9) & "************ PERCEPCIONES ************"
 msf1.AddItem ""
 
-Set rs1 = New adodb.Recordset
+Set rs1 = New ADODB.Recordset
 q = "select * from A12 where [tipo12] = 'P' and [impuesto12] = 'I'"
 rs1.Open q, cn1
 tr = 0
@@ -291,7 +291,7 @@ While Not rs1.EOF
      q = q & c & " datevalue([fecha]) <= datevalue('" & t_fecha2 & "')"
  End If
  q = q & " order by [fecha]"
- Set rs = New adodb.Recordset
+ Set rs = New ADODB.Recordset
  rs.Open q, cn1
  tt = 0
  While Not rs.EOF

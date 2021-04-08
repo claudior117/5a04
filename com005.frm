@@ -80,7 +80,7 @@ Begin VB.Form com_vencimientos
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   111738881
+      StartOfWeek     =   172097537
       CurrentDate     =   38803
    End
    Begin VB.Frame Frame4 
@@ -198,12 +198,12 @@ Begin VB.Form com_vencimientos
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "23/02/2021"
+            TextSave        =   "08/04/2021"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "11:28 a.m."
+            TextSave        =   "06:45 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -286,7 +286,7 @@ espere.Show
     q = q & " order by [fecha_vto], [proveedor05]"
  End If
  
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   rs.Open q, cn1
   t = 0
   tsi = 0

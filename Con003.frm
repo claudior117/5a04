@@ -44,7 +44,7 @@ Begin VB.Form con_ivacompras
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   111738881
+      StartOfWeek     =   172097537
       CurrentDate     =   38750
    End
    Begin VB.Frame Frame3 
@@ -176,12 +176,12 @@ Begin VB.Form con_ivacompras
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "23/02/2021"
+            TextSave        =   "08/04/2021"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "11:28 a.m."
+            TextSave        =   "06:45 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -220,7 +220,7 @@ Sub carga()
   
   q = q & " order by [fecha]"
   
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   rs.Open q, cn1
   tt = 0
   ti = 0
@@ -241,7 +241,7 @@ Sub carga()
      
      If rs("percep_ret") <> 0 Then
         q = "select * from a13, a12 where a13.[id_percepcion] = a12.[id_percepcion] and [num_int] = " & rs("num_int")
-        Set rs1 = New adodb.Recordset
+        Set rs1 = New ADODB.Recordset
         rs1.Open q, cn1
         perc_iva = 0
         perc_otras = 0
@@ -332,7 +332,7 @@ Sub portasa()
   End If
   
   q = q & " order by [tasa_iva]"
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   rs.Open q, cn1
   nt = 0
   nd = 0
@@ -421,7 +421,7 @@ Sub portasa()
   
   
   q = q & " order by [tasa_iva]"
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   rs.Open q, cn1
   nt = 0
   nd = 0

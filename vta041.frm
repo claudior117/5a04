@@ -87,7 +87,7 @@ Begin VB.Form vta_retyperc_realizadas
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   111738881
+      StartOfWeek     =   172097537
       CurrentDate     =   38750
    End
    Begin VB.Frame Frame3 
@@ -199,12 +199,12 @@ Begin VB.Form vta_retyperc_realizadas
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "23/02/2021"
+            TextSave        =   "08/04/2021"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "11:28 a.m."
+            TextSave        =   "06:45 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -255,7 +255,7 @@ If (c_comp.ListIndex = 0 Or c_comp.ListIndex = 1) And (c_imp.ListIndex = 0 Or c_
   q = q & " and perc_ib <> 0"
   q = q & " order by [fecha]"
   
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   rs.Open q, cn1
   tr = 0
   ti = 0
@@ -314,7 +314,7 @@ If (c_comp.ListIndex = 0 Or c_comp.ListIndex = 1) And (c_imp.ListIndex = 0 Or c_
   q = q & " and perc_iva <> 0"
   q = q & " order by [fecha]"
   
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   rs.Open q, cn1
   tr = 0
   ti = 0
@@ -367,7 +367,7 @@ If (c_comp.ListIndex = 0 Or c_comp.ListIndex = 1) And (c_imp.ListIndex = 0 Or c_
   q = q & " and perc_gan <> 0"
   q = q & " order by [fecha]"
   
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   rs.Open q, cn1
   tr = 0
   ti = 0
@@ -425,7 +425,7 @@ If (c_comp.ListIndex = 0 Or c_comp.ListIndex = 2) And (c_imp.ListIndex = 0 Or c_
   q = q & " and vta_02.[id_tipocomp] = 100"
   q = q & " order by [fecha]"
   
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   rs.Open q, cn1
   tr = 0
   ti = 0
@@ -459,7 +459,7 @@ If (c_comp.ListIndex = 0 Or c_comp.ListIndex = 2) And (c_imp.ListIndex = 0 Or c_
   Wend
   Set rs = Nothing
     
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   q = "select * from a12, vta_012, vta_02, vta_06 where [impuesto12] = 'B' and [tipo12] = 'R' and [id_retencion] = [id_percepcion] and vta_012.[num_int] = vta_02.[num_int] and vta_02.[id_tipocomp] = vta_06.[id_tipocomp] and vta_02.[sucursal] = vta_06.[sucursal] "
   c = " and "
   If IsDate(t_fecha) Then
@@ -518,7 +518,7 @@ If (c_comp.ListIndex = 0 Or c_comp.ListIndex = 2) And (c_imp.ListIndex = 0 Or c_
   q = q & " and vta_02.[id_tipocomp] = 101"
   q = q & " order by [fecha]"
   
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   rs.Open q, cn1
   tr = 0
   ti = 0
@@ -551,7 +551,7 @@ If (c_comp.ListIndex = 0 Or c_comp.ListIndex = 2) And (c_imp.ListIndex = 0 Or c_
   Set rs = Nothing
 
 
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   q = "select * from a12, vta_012, vta_02, vta_06 where [impuesto12] = 'I' and [tipo12] = 'R' and [id_retencion] = [id_percepcion] and vta_012.[num_int] = vta_02.[num_int] and vta_02.[id_tipocomp] = vta_06.[id_tipocomp] and vta_02.[sucursal] = vta_06.[sucursal] "
   c = " and "
   If IsDate(t_fecha) Then
@@ -611,7 +611,7 @@ If (c_comp.ListIndex = 0 Or c_comp.ListIndex = 2) And (c_imp.ListIndex = 0 Or c_
   q = q & " and vta_02.[id_tipocomp] = 102"
   q = q & " order by [fecha]"
   
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   rs.Open q, cn1
   tr = 0
   ti = 0
@@ -644,7 +644,7 @@ If (c_comp.ListIndex = 0 Or c_comp.ListIndex = 2) And (c_imp.ListIndex = 0 Or c_
   Set rs = Nothing
 
 
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   q = "select * from a12, vta_012, vta_02, vta_06 where [impuesto12] = 'G' and [tipo12] = 'R' and [id_retencion] = [id_percepcion] and vta_012.[num_int] = vta_02.[num_int] and vta_02.[id_tipocomp] = vta_06.[id_tipocomp] and vta_02.[sucursal] = vta_06.[sucursal] "
   c = " and "
   If IsDate(t_fecha) Then
@@ -705,7 +705,7 @@ If (c_comp.ListIndex = 0 Or c_comp.ListIndex = 2) And (c_imp.ListIndex = 0 Or c_
   q = q & " and vta_02.[id_tipocomp] = 103"
   q = q & " order by [fecha]"
   
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   rs.Open q, cn1
   tr = 0
   ti = 0
@@ -738,7 +738,7 @@ If (c_comp.ListIndex = 0 Or c_comp.ListIndex = 2) And (c_imp.ListIndex = 0 Or c_
   Set rs = Nothing
 
 
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
   q = "select * from a12, vta_012, vta_02, vta_06 where [impuesto12] = 'S' and [tipo12] = 'R' and [id_retencion] = [id_percepcion] and vta_012.[num_int] = vta_02.[num_int] and vta_02.[id_tipocomp] = vta_06.[id_tipocomp] and vta_02.[sucursal] = vta_06.[sucursal] "
   c = " and "
   If IsDate(t_fecha) Then

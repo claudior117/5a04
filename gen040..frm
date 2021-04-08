@@ -18,10 +18,10 @@ Begin VB.Form gen_libroivadigitalV
    StartUpPosition =   3  'Windows Default
    Begin VB.Frame Frame5 
       Caption         =   "Salida:"
-      Height          =   615
+      Height          =   735
       Left            =   0
       TabIndex        =   16
-      Top             =   7680
+      Top             =   7440
       Width           =   9975
       Begin VB.CommandButton Command2 
          Caption         =   "Carpeta destino:"
@@ -95,7 +95,7 @@ Begin VB.Form gen_libroivadigitalV
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   69337089
+      StartOfWeek     =   107479041
       CurrentDate     =   38750
    End
    Begin VB.Frame Frame3 
@@ -207,12 +207,12 @@ Begin VB.Form gen_libroivadigitalV
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "23/11/2020"
+            TextSave        =   "23/02/2021"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "07:43 p.m."
+            TextSave        =   "08:12 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -226,6 +226,15 @@ Begin VB.Form gen_libroivadigitalV
       _ExtentX        =   20981
       _ExtentY        =   10398
       _Version        =   393216
+   End
+   Begin VB.Label Label4 
+      Caption         =   "IMPORTANTE: Al importar los archivos en la página del AFIP seleccionar importes expresados en $ argentinos"
+      ForeColor       =   &H000000FF&
+      Height          =   375
+      Left            =   600
+      TabIndex        =   19
+      Top             =   8280
+      Width           =   9255
    End
 End
 Attribute VB_Name = "gen_libroivadigitalV"

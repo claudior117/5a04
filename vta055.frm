@@ -220,7 +220,7 @@ Begin VB.Form vta_informevta5
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   111738881
+      StartOfWeek     =   172097537
       CurrentDate     =   38750
    End
    Begin VB.Frame Frame3 
@@ -332,12 +332,12 @@ Begin VB.Form vta_informevta5
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "23/02/2021"
+            TextSave        =   "08/04/2021"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "11:28 a.m."
+            TextSave        =   "06:45 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -410,7 +410,7 @@ Sub carga()
      q = q & " order by [descripcion]"
   End If
 
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   rs.Open q, cn1
   ttsi = 0
   ttf = 0
@@ -443,14 +443,14 @@ Sub carga()
          q = q & c & " vta_02.[Id_vendedor] = " & c_vend.ItemData(c_vend.ListIndex)
       End If
         
-      Set rs2 = New adodb.Recordset
+      Set rs2 = New ADODB.Recordset
       rs2.Open q, cn1
       tsi = 0
       tf = 0
       tc = 0
       tcosto = 0
       While Not rs2.EOF
-            Set rs1 = New adodb.Recordset
+            Set rs1 = New ADODB.Recordset
             q = "select [venta] from vta_06 where [sucursal] = " & rs2("sucursal_ingreso") & " and [id_tipocomp] = " & rs2("id_tipocomp")
             rs1.Open q, cn1
             If Not rs1.EOF And Not rs1.BOF Then
@@ -537,7 +537,7 @@ Sub carga2()
      q = q & " order by [denominacion]"
   End If
 
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   rs.Open q, cn1
   ttsi = 0
   ttf = 0
@@ -582,7 +582,7 @@ Sub carga2()
        c = " and "
      End If
         
-      Set rs2 = New adodb.Recordset
+      Set rs2 = New ADODB.Recordset
       rs2.Open q, cn1
       tsi = 0
       tf = 0
@@ -590,7 +590,7 @@ Sub carga2()
       tcosto = 0
       
       While Not rs2.EOF
-            Set rs1 = New adodb.Recordset
+            Set rs1 = New ADODB.Recordset
             q = "select [venta] from vta_06 where [sucursal] = " & rs2("sucursal_ingreso") & " and [id_tipocomp] = " & rs2("id_tipocomp")
             rs1.Open q, cn1
             If Not rs1.EOF And Not rs1.BOF Then
@@ -667,7 +667,7 @@ Sub carga9()
  
 Call armagrid
   'selecciono puntos de venta
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   q = "select * from vta_06 order by [SUCURSAL]"
   rs.Open q, cn1
   p = 0
@@ -692,7 +692,7 @@ Set rs = Nothing
   
   
 
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   rs.Open q, cn1
   ttsi = 0
   ttf = 0
@@ -740,7 +740,7 @@ Set rs = Nothing
        c = " and "
      End If
         
-      Set rs2 = New adodb.Recordset
+      Set rs2 = New ADODB.Recordset
       rs2.Open q, cn1
       tsi = 0
       tf = 0
@@ -748,7 +748,7 @@ Set rs = Nothing
       tcosto = 0
       
       While Not rs2.EOF
-            Set rs1 = New adodb.Recordset
+            Set rs1 = New ADODB.Recordset
             q = "select [venta] from vta_06 where [sucursal] = " & rs2("sucursal_ingreso") & " and [id_tipocomp] = " & rs2("id_tipocomp")
             rs1.Open q, cn1
             If Not rs1.EOF And Not rs1.BOF Then
@@ -834,7 +834,7 @@ Sub carga3()
      q = q & " order by [denominacion]"
   End If
 
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   rs.Open q, cn1
   ttsi = 0
   ttf = 0
@@ -879,14 +879,14 @@ Sub carga3()
        c = " and "
      End If
         
-      Set rs2 = New adodb.Recordset
+      Set rs2 = New ADODB.Recordset
       rs2.Open q, cn1
       tsi = 0
       tf = 0
       tc = 0
       
       While Not rs2.EOF
-            Set rs1 = New adodb.Recordset
+            Set rs1 = New ADODB.Recordset
             q = "select [venta] from vta_06 where [sucursal] = " & rs2("sucursal_ingreso") & " and [id_tipocomp] = " & rs2("id_tipocomp")
             rs1.Open q, cn1
             If Not rs1.EOF And Not rs1.BOF Then
@@ -960,7 +960,7 @@ Sub carga6()
      q = q & " order by [descripcion]"
   End If
 
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   rs.Open q, cn1
   ttsi = 0
   ttf = 0
@@ -970,7 +970,7 @@ Sub carga6()
   While Not rs.EOF
     'buscoproductos del grupo
     q = "select * from a2 where [id_grupo] = " & rs("id_grupo")
-    Set rs3 = New adodb.Recordset
+    Set rs3 = New ADODB.Recordset
     rs3.Open q, cn1
     
      tsi = 0
@@ -1012,13 +1012,13 @@ Sub carga6()
   
     
         
-      Set rs2 = New adodb.Recordset
+      Set rs2 = New ADODB.Recordset
      
       rs2.Open q, cn1
      
       
       While Not rs2.EOF
-            Set rs1 = New adodb.Recordset
+            Set rs1 = New ADODB.Recordset
             q = "select [venta] from vta_06 where [sucursal] = " & rs2("sucursal_ingreso") & " and [id_tipocomp] = " & rs2("id_tipocomp")
             rs1.Open q, cn1
             If Not rs1.EOF And Not rs1.BOF Then
@@ -1106,7 +1106,7 @@ Sub carga7()
      q = q & " order by [descripcion]"
   End If
 
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   rs.Open q, cn1
   ttsi = 0
   ttf = 0
@@ -1116,7 +1116,7 @@ Sub carga7()
   While Not rs.EOF
     'buscoproductos del grupo
     q = "select * from a2 where [id_departamento] = " & rs("id_departamento")
-    Set rs3 = New adodb.Recordset
+    Set rs3 = New ADODB.Recordset
     rs3.Open q, cn1
     
      tsi = 0
@@ -1158,13 +1158,13 @@ Sub carga7()
   
     
         
-      Set rs2 = New adodb.Recordset
+      Set rs2 = New ADODB.Recordset
      
       rs2.Open q, cn1
      
       
       While Not rs2.EOF
-            Set rs1 = New adodb.Recordset
+            Set rs1 = New ADODB.Recordset
             q = "select [venta] from vta_06 where [sucursal] = " & rs2("sucursal_ingreso") & " and [id_tipocomp] = " & rs2("id_tipocomp")
             rs1.Open q, cn1
             If Not rs1.EOF And Not rs1.BOF Then
@@ -1251,7 +1251,7 @@ Sub carga8()
      q = q & " order by [descripcion]"
   End If
 
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   rs.Open q, cn1
   ttsi = 0
   ttf = 0
@@ -1261,7 +1261,7 @@ Sub carga8()
   While Not rs.EOF
     'buscoproductos del grupo
     q = "select * from a2 where [id_marca] = " & rs("id_marca")
-    Set rs3 = New adodb.Recordset
+    Set rs3 = New ADODB.Recordset
     rs3.Open q, cn1
     
      tsi = 0
@@ -1303,13 +1303,13 @@ Sub carga8()
   
     
         
-      Set rs2 = New adodb.Recordset
+      Set rs2 = New ADODB.Recordset
      
       rs2.Open q, cn1
      
       
       While Not rs2.EOF
-            Set rs1 = New adodb.Recordset
+            Set rs1 = New ADODB.Recordset
             q = "select [venta] from vta_06 where [sucursal] = " & rs2("sucursal_ingreso") & " and [id_tipocomp] = " & rs2("id_tipocomp")
             rs1.Open q, cn1
             If Not rs1.EOF And Not rs1.BOF Then

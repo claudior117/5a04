@@ -1,6 +1,6 @@
 VERSION 5.00
 Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form vta_selremitos 
    BackColor       =   &H00E0E0E0&
    BorderStyle     =   1  'Fixed Single
@@ -309,7 +309,7 @@ Unload vta_cc_detalle
 End Sub
 
 Private Sub msf1_GotFocus()
-Me.StatusBar1.Panels.Item(1) = "[Barra] Marca - [F5] Todos - [F9] Arma Factura - "
+Me.StatusBar1.Panels.item(1) = "[Barra] Marca - [F5] Todos - [F9] Arma Factura - "
 If msf1.Rows > 1 Then
   msf1.FocusRect = flexFocusNone
 Else

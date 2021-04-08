@@ -809,12 +809,12 @@ Begin VB.Form vta_facturacion
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "10/12/2020"
+            TextSave        =   "08/04/2021"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:40 a.m."
+            TextSave        =   "06:36 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -859,6 +859,18 @@ Sub electronica()
     
     Debug.Print ("Tiquet correcto")
     
+    
+    If c_tipocomp.ItemData(c_tipocomp.ListIndex) = 3 Then
+       If vta_selcomp.t_seleccionados = 0 Then
+           MsgBox ("Para realizar NC es necesario que seleccione la factura asociada")
+           seguir = False
+       End If
+    End If
+    
+       
+    
+    
+    
     If seguir Then
       'se va a emitir el comprobante
        Debug.Print ("Ingreso a la generacion del comprobante")
@@ -870,7 +882,8 @@ Sub electronica()
         WSFEv1.Sign = para.facte_sign
     
         ' CUIT del emisor (debe estar registrado en la AFIP)
-        WSFEv1.CUIT = Mid$(glo.CUIT, 1, 2) & Mid$(glo.CUIT, 4, 8) & Mid$(glo.CUIT, 13, 1)
+        cuitemisor = Mid$(glo.CUIT, 1, 2) & Mid$(glo.CUIT, 4, 8) & Mid$(glo.CUIT, 13, 1)
+        WSFEv1.CUIT = cuitemisor
         
         WSFEv1.LanzarExcepciones = False
     
@@ -972,12 +985,27 @@ Sub electronica()
                         moneda_id, moneda_ctz)
             
                   ' Agrego los comprobantes asociados:
-                  'If False Then ' solo nc/nd
-                  '  tipo = 19
-                  '  pto_vta = 2
-                'nro = 1234
-                'ok = WSFEv1.AgregarCmpAsoc(tipo, pto_vta, nro)
-                  'End If
+                  If c_tipocomp.ItemData(c_tipocomp.ListIndex) = 3 Then  ' solo nc/nd
+                     F = vta_selcomp.msf1.Rows - 1
+                     For i = 1 To F
+                        If vta_selcomp.msf1.TextMatrix(i, 0) = "**" Then
+                             tipo_cbte_asoc_1 = Val(vta_selcomp.msf1.TextMatrix(i, 4))
+                             punto_vta_asoc_1 = Val(vta_selcomp.msf1.TextMatrix(i, 1))
+                             cbte_nro_asoc_1 = Val(vta_selcomp.msf1.TextMatrix(i, 2))
+                             cuit_cbte_asoc_1 = cuitemisor  'RTrim$(vta_clientes.t_cuit)
+                             fecha_cbte_asoc_1 = vta_selcomp.msf1.TextMatrix(i, 3)
+                             
+                             i = F
+                         End If
+                    Next i
+                    
+                    
+                    
+                    ok = WSFEv1.AgregarCmpAsoc(tipo_cbte_asoc_1, punto_vta_asoc_1, cbte_nro_asoc_1, cuit_cbte_asoc_1, fecha_cbte_asoc_1)
+                    
+                  End If
+                
+                
                 
                  ' Agrego percepcion ib
             If Val(t_perc) > 0 Then
@@ -1111,7 +1139,7 @@ Sub ControlarExcepcion_fe(obj As Object)
 End Sub
 
 Sub iniciacomp()
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select [imprime_desc_extra], [cant_lineas] from vta_06 where [sucursal] = " & Val(t_sucursal) & " and [id_tipocomp] = " & c_tipocomp.ItemData(c_tipocomp.ListIndex)
 rs.Open q, cn1
 If Not rs.EOF And Not rs.BOF Then
@@ -1181,7 +1209,7 @@ Frame11.Visible = True
 
 End Sub
 Sub carga()
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   q = "select [fecha], [fecha_vto], [cotizacion_dolar], [id_cliente], [num_int], [id_vendedor], [subtotal], [impuestos], [total], [perc_ib], [perc_gan], [perc_iva], [iva], " & _
   " [contado], [cliente02], [direccion02], [cuit02], [localidad02], [id_tipo_iva02], [observaciones] from vta_02 where [sucursal] = " & Val(t_sucursal) & " and letra = '" & t_letra & "' and [id_tipocomp] = " & c_tipocomp.ItemData(c_tipocomp.ListIndex) & " and [num_comp] = " & Val(t_numcomp)
   rs.MaxRecords = 1
@@ -1195,7 +1223,7 @@ Sub carga()
      
      c_prov.ListIndex = buscaindice(c_prov, rs("id_cliente"))
      
-     Set rs1 = New adodb.Recordset
+     Set rs1 = New ADODB.Recordset
      q = "select [id_producto], [descripcion], [cantidad], [unidad], [pu], [tasaiva], [importe], [pu_final], [tasaib], [num_int], [renglon] from vta_03 where [num_int] = " & rs("num_int")
      rs1.Open q, cn1
      Call armagrid
@@ -1203,7 +1231,7 @@ Sub carga()
         r = msf1.Rows
         msf1.AddItem r & Chr(9) & Format$(rs1("id_producto"), "00000") & Chr(9) & rs1("descripcion") & Chr(9) & rs1("cantidad") & Chr(9) & rs1("unidad") & Chr$(9) & Format$(rs1("pu"), "######0.00") & Chr(9) & rs1("tasaiva") & Chr(9) & rs1("importe") & Chr(9) & rs1("pu_final") & Chr(9) & rs1("tasaib")
         
-        Set rs2 = New adodb.Recordset
+        Set rs2 = New ADODB.Recordset
         q = "select [desc_ext], [cant_lineas] from vta_015 where [num_int] = " & rs1("num_int") & " and [renglon] = " & rs1("renglon")
         rs2.Open q, cn1
         If Not rs2.EOF And Not rs2.BOF Then
@@ -1256,7 +1284,7 @@ Sub carga()
 End Sub
 
 Sub carga2()
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   If para.numeracion_comun_Fact_nc = "S" Then
       q = "select [num_int], [letra], [sucursal], [id_tipocomp] from vta_02 where  [id_tipocomp] < 10 and [sucursal]= " & Val(t_sucursal) & " and [letra]= '" & t_letra & "' and [num_comp]= " & Val(t_numcomp)
   Else
@@ -1274,7 +1302,7 @@ Sub carga2()
  If ni <> 0 Then
      MsgBox ("Comprobante Existente")
      EXISTE = "S"
-     Set rs = New adodb.Recordset
+     Set rs = New ADODB.Recordset
      q = "select [fecha], [fecha_vto], [cotizacion_dolar], [id_cliente], [num_int], [id_vendedor], [subtotal], [impuestos], [total], [perc_ib], [perc_gan], [perc_iva], [iva], " & _
      " [contado], [cliente02], [direccion02], [cuit02], [localidad02], [id_tipo_iva02], [observaciones] from vta_02 where [num_int] = " & ni
      rs.MaxRecords = 1
@@ -1286,7 +1314,7 @@ Sub carga2()
      
      c_prov.ListIndex = buscaindice(c_prov, rs("id_cliente"))
      
-     Set rs1 = New adodb.Recordset
+     Set rs1 = New ADODB.Recordset
      q = "select [id_producto], [descripcion], [cantidad], [tunidad], [pu], [tasaiva], [importe], [pu_final], [tasaib], [num_int], [renglon] from vta_03 where [num_int] = " & rs("num_int")
      rs1.Open q, cn1
      Call armagrid
@@ -1294,7 +1322,7 @@ Sub carga2()
         r = msf1.Rows
         msf1.AddItem r & Chr(9) & Format$(rs1("id_producto"), "00000") & Chr(9) & rs1("descripcion") & Chr(9) & rs1("cantidad") & Chr(9) & rs1("tunidad") & Chr$(9) & Format$(rs1("pu"), "######0.00") & Chr(9) & rs1("tasaiva") & Chr(9) & rs1("importe") & Chr(9) & rs1("pu_final") & Chr(9) & rs1("tasaib")
         
-        Set rs2 = New adodb.Recordset
+        Set rs2 = New ADODB.Recordset
         q = "select [desc_ext], [cant_lineas] from vta_015 where [num_int] = " & rs1("num_int") & " and [renglon] = " & rs1("renglon")
         rs2.Open q, cn1
         If Not rs2.EOF And Not rs2.BOF Then
@@ -1537,7 +1565,7 @@ If Option4 = True Then
           seguir = False
           estadograba = 1
         Else
-            Set rs = New adodb.Recordset
+            Set rs = New ADODB.Recordset
             q = " select * from vta_02 where [sucursal] = " & Val(t_sucursal) & " and letra = '" & t_letra & "' and [id_tipocomp] = " & c_tipocomp.ItemData(c_tipocomp.ListIndex) & " and [num_comp] = " & Val(t_numcomp)
             rs.Open q, cn1
             If Not rs.BOF And Not rs.EOF Then
@@ -1566,7 +1594,7 @@ If Option4 = True Then
   End If
 Else
   'graba pero no emite
-   Set rs = New adodb.Recordset
+   Set rs = New ADODB.Recordset
    q = " select * from vta_02 where [sucursal] = " & Val(t_sucursal) & " and letra = '" & t_letra & "' and [id_tipocomp] = " & c_tipocomp.ItemData(c_tipocomp.ListIndex) & " and [num_comp] = " & Val(t_numcomp)
    rs.Open q, cn1
    If Not rs.BOF And Not rs.EOF Then
@@ -2129,7 +2157,7 @@ End Function
 
 
 Sub normal()
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   q = "select * from vta_02 where [sucursal] = " & Val(t_sucursal) & " and letra = '" & t_letra & "' and [id_tipocomp] = " & c_tipocomp.ItemData(c_tipocomp.ListIndex) & " and [num_comp] = " & Val(t_numcomp)
   rs.Open q, cn1
   If Not rs.BOF And Not rs.EOF Then
@@ -2316,7 +2344,7 @@ End If
 End Sub
 
 Private Sub Check2_LostFocus()
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select [imprime_desc_extra] from vta_06 where [sucursal] = " & Val(t_sucursal) & " and [id_tipocomp] = " & c_tipocomp.ItemData(c_tipocomp.ListIndex)
 rs.Open q, cn1, adOpenDynamic, adLockOptimistic
 If Not rs.EOF And Not rs.BOF Then
@@ -2353,13 +2381,20 @@ c_prov.ListIndex = 0
 End Sub
 
 Private Sub Command3_Click()
-Set cl_compvta = New comprobantes_venta
-cl_compvta.sucursal = Val(c_sucursal)
-cl_compvta.actual (1)
-vta_selremitos.t_r2 = cl_compvta.cant_lineas
-Set cl_compvta = Nothing
-vta_selremitos.carga
-vta_selremitos.Show
+If c_tipocomp.ItemData(c_tipocomp.ListIndex) <> 3 Then
+    Set cl_compvta = New comprobantes_venta
+    cl_compvta.sucursal = Val(c_sucursal)
+    cl_compvta.actual (1)
+    vta_selremitos.t_r2 = cl_compvta.cant_lineas
+    Set cl_compvta = Nothing
+    vta_selremitos.carga
+    vta_selremitos.Show
+Else
+
+    vta_selcomp.carga
+    vta_selcomp.Show
+
+End If
 End Sub
 
 Private Sub Command4_Click()
@@ -2402,7 +2437,7 @@ Sub grabaformapago()
          If Val(vta_formapago.msf2.TextMatrix(i, 0)) = 3 Then
                 'ch. terceros
                 q = "select * from cyb_03"
-                Set rs = New adodb.Recordset
+                Set rs = New ADODB.Recordset
                 rs.Open q, cn1, adOpenDynamic, adLockOptimistic
                 rs.AddNew
                  rs("fecha_emision") = t_fecha
@@ -2438,7 +2473,7 @@ Sub grabaformapago()
          
          If Val(vta_formapago.msf2.TextMatrix(i, 0)) = 4 Then
                 q = "select * from cyb_04"
-                Set rs = New adodb.Recordset
+                Set rs = New ADODB.Recordset
                 rs.Open q, cn1, adOpenDynamic, adLockOptimistic
                 rs.AddNew
                  rs("id_banco") = Val(vta_formapago.msf2.TextMatrix(i, 8))
@@ -2461,7 +2496,7 @@ Sub grabaformapago()
          
          
          q = "select * from cyb_01 where [id_forma_pago] = " & Val(vta_formapago.msf2.TextMatrix(i, 0))
-         Set rs = New adodb.Recordset
+         Set rs = New ADODB.Recordset
          rs.Open q, cn1
          If Not rs.EOF And Not rs.BOF Then
           If rs("CAJA") = "S" Then
@@ -2506,6 +2541,12 @@ Sub iniciacli()
    End If
  End If
  
+ If c_tipocomp.ItemData(c_tipocomp.ListIndex) = 3 Then
+    Command3.Caption = "Facturas"
+ Else
+    Command3.Caption = "Remitos"
+ End If
+ 
 End Sub
 Sub actualizaremitos()
 For J = 1 To msf1.Rows - 1
@@ -2517,12 +2558,12 @@ For J = 1 To msf1.Rows - 1
    If vta_selremitos.msf1.TextMatrix(i, 0) = "**" Then
      nir = Val(vta_selremitos.msf1.TextMatrix(i, 4))
      q = "SELECT * FROM VTA_02 WHERE [NUM_INT] = " & nir
-     Set rs = New adodb.Recordset
+     Set rs = New ADODB.Recordset
      rs.Open q, cn1, adOpenDynamic, adLockOptimistic
      If Not rs.EOF And Not rs.BOF Then
         'busco el producto en el remito
         q = "select * from vta_03 where [num_int] = " & nir & " and [id_producto] = " & codprodant
-        Set rs1 = New adodb.Recordset
+        Set rs1 = New ADODB.Recordset
         rs1.Open q, cn1, adOpenDynamic, adLockOptimistic
         While Not rs1.EOF
              'si encontre el producto en el remito
@@ -2566,7 +2607,7 @@ Next J
           nir = Val(vta_selremitos.msf1.TextMatrix(i, 4))
           If verificaremito(nir) = 0 Then
              q = "SELECT * FROM VTA_02 WHERE [NUM_INT] = " & nir
-             Set rs = New adodb.Recordset
+             Set rs = New ADODB.Recordset
              rs.Open q, cn1, adOpenDynamic, adLockOptimistic
              If Not rs.EOF And Not rs.BOF Then
                 rs("estado") = "F"
@@ -2583,7 +2624,7 @@ Next J
 End Sub
 Function verificaremito(ByVal n As Long) As Integer
 q = "select * from vta_03 where [num_int] = " & n
-Set rs1 = New adodb.Recordset
+Set rs1 = New ADODB.Recordset
 rs1.Open q, cn1
 p = 0
 While Not rs1.EOF
@@ -2706,7 +2747,7 @@ Call carga_SUCURSALES(c_sucursal)
 
 
 
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select * from vta_06 where [sucursal] = " & glo.sucursal & " and  [id_tipocomp] <= 40 order by descripcion"
 rs.Open q, cn1
 Call llena_combo(rs, "descripcion", "id_tipocomp", c_tipocomp, True)
@@ -2717,7 +2758,7 @@ Set rs = Nothing
 
 c_tipocomp.ListIndex = buscaindice(c_tipocomp, 1)
 
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select * from vta_05 order by [denominacion]"
 rs.Open q, cn1
 Call llena_combo(rs, "denominacion", "id_vendedor", c_vend, True)
@@ -2734,6 +2775,7 @@ End If
 t_sucursal = Format$(para.punto_venta_usuario, "0000")
 Load vta_facturacion1
 Load vta_selremitos
+Load vta_selcomp
 Load vta_facturacion2
 Frame11.Visible = False
 
@@ -2757,7 +2799,7 @@ End If
 Set cl_fiscal = Nothing
 
 
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select [tipo_control_limite_credito] from g0 where [sucursal] = 0"
 rs.Open q, cn1
 If Not rs.EOF And Not rs.BOF Then
@@ -2781,6 +2823,7 @@ Unload vta_facturacion2
    Unload vta_selremitos
     Unload vta_clientes
     Unload vta_formapago
+    Unload vta_selcomp
 End Sub
 
 Private Sub msf1_GotFocus()
@@ -2919,7 +2962,7 @@ Sub graba()
       End If
       
       
-      Set rs = New adodb.Recordset
+      Set rs = New ADODB.Recordset
       q = "select * from g8 where [id_actividad] = " & c_actividad.ItemData(c_actividad.ListIndex)
       rs.Open q, cn1
       If Not rs.EOF And Not rs.BOF Then
@@ -3474,7 +3517,7 @@ If Option3 = True Then
  End If
 
 q = "select * from i_01 where [id_impuesto] = 1"
-Set rs2 = New adodb.Recordset
+Set rs2 = New ADODB.Recordset
 rs2.Open q, cn1
 If Not rs2.EOF And Not rs2.BOF Then
  impmin = rs2("importe_minimo_sujeto_ret")
@@ -3503,7 +3546,7 @@ Set rs2 = Nothing
 
 If Check1 = 1 Then
   'calcula perciva rg 2459
-   Set rs2 = New adodb.Recordset
+   Set rs2 = New ADODB.Recordset
    q = "select * from  i_01, i_02 where i_01.[id_impuesto] = i_02.[id_impuesto] and i_01.[id_impuesto] = 2"
    rs2.Open q, cn1
    If Not rs2.EOF And Not rs2.BOF Then

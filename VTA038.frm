@@ -102,7 +102,7 @@ Begin VB.Form vta_citi
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   111738881
+      StartOfWeek     =   172097537
       CurrentDate     =   38750
    End
    Begin VB.Frame Frame3 
@@ -214,12 +214,12 @@ Begin VB.Form vta_citi
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "23/02/2021"
+            TextSave        =   "08/04/2021"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "11:28 a.m."
+            TextSave        =   "06:45 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -267,7 +267,7 @@ Sub carga()
   
  q = q & c & "  (vta_02.[id_tipocomp] < 10 or vta_02.[id_tipocomp] > 200)"
   q = q & " order by [fecha], [letra], [num_comp]"
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   
   rs.Open q, cn1
   tt = 0
@@ -358,7 +358,7 @@ Sub carga()
      End If
    
      q = "select * from vta_09 where [num_int] = " & rs("num_int")
-     Set rs2 = New adodb.Recordset
+     Set rs2 = New ADODB.Recordset
      rs2.Open q, cn1
      If Not rs2.EOF And Not rs2.BOF Then
            cr = rs2.GetRows
@@ -449,7 +449,7 @@ End If
 If c_sucursal.ListIndex > 0 Then
     qm = qm & c & " and [sucursal_ingreso] = " & Val(c_sucursal)
 End If
-Set rs2 = New adodb.Recordset
+Set rs2 = New ADODB.Recordset
 rs2.Open qm, cn1
 a = 1
 While Not rs2.EOF

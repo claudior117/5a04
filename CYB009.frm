@@ -113,7 +113,7 @@ Begin VB.Form cyb_estadocuenta
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   111738881
+      StartOfWeek     =   172097537
       CurrentDate     =   38754
    End
    Begin MSFlexGridLib.MSFlexGrid msf1 
@@ -267,12 +267,12 @@ Begin VB.Form cyb_estadocuenta
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "23/02/2021"
+            TextSave        =   "08/04/2021"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "11:28 a.m."
+            TextSave        =   "06:45 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -314,7 +314,7 @@ Sub carga()
       q = q & " and [entro] = 'S'"
     End Select
     
-    Set rs = New adodb.Recordset
+    Set rs = New ADODB.Recordset
     rs.Open q, cn1
     While Not rs.EOF
      If rs("ubicacion") = "D" Then
@@ -378,7 +378,7 @@ Sub carga()
    End If
 
     
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   rs.Open q, cn1
   s = sa
   While Not rs.EOF
@@ -591,12 +591,12 @@ End If
 
 If KeyCode = vbKeyF3 Then
     q = "select * from cyb_04 where [num_mov_banco] = " & Val(msf1.TextMatrix(msf1.Row, 10))
-    Set rs = New adodb.Recordset
+    Set rs = New ADODB.Recordset
     rs.Open q, cn1
     If Not rs.EOF And Not rs.BOF Then
        If rs("modulo") = "C" And rs("num_mov_int") > 0 Then
           q = "select * from a5 where [num_int] = " & rs("num_mov_int")
-          Set rs1 = New adodb.Recordset
+          Set rs1 = New ADODB.Recordset
           rs1.Open q, cn1
           If Not rs1.EOF And Not rs1.BOF Then
             If rs1("id_tipocomp") = 50 Then

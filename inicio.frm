@@ -236,15 +236,15 @@ Begin VB.Form inicio
       Top             =   240
       Width           =   8415
       Begin MSComctlLib.Toolbar Toolbar1 
-         Height          =   1620
+         Height          =   1680
          Left            =   240
          TabIndex        =   14
          Top             =   360
          Width           =   7920
          _ExtentX        =   13970
-         _ExtentY        =   2858
-         ButtonWidth     =   2461
-         ButtonHeight    =   1376
+         _ExtentY        =   2963
+         ButtonWidth     =   2672
+         ButtonHeight    =   1429
          Appearance      =   1
          ImageList       =   "ImageList1"
          _Version        =   393216
@@ -455,12 +455,12 @@ Begin VB.Form inicio
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "07/12/2020"
+            TextSave        =   "07/03/2021"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "12:02 p.m."
+            TextSave        =   "01:11 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -717,7 +717,7 @@ If Val(Mid$(rs("habilitacion"), 5, 2)) = sc Then
        Toolbar1.Buttons.item(9).Visible = True
        Toolbar1.Buttons.item(10).Visible = True
        
-       para.Fiscal = 0
+       para.fiscal = 0
    Case Is = 1795 'sin produccion y sin fiscal y exportacion
        Toolbar1.Buttons.item(1).Visible = True
        Toolbar1.Buttons.item(2).Visible = True
@@ -730,7 +730,7 @@ If Val(Mid$(rs("habilitacion"), 5, 2)) = sc Then
        Toolbar1.Buttons.item(9).Visible = False
        Toolbar1.Buttons.item(10).Visible = True
        
-       para.Fiscal = 0
+       para.fiscal = 0
    Case Is = 1595 ' fiscal
      
        Toolbar1.Buttons.item(1).Visible = True
@@ -745,9 +745,9 @@ If Val(Mid$(rs("habilitacion"), 5, 2)) = sc Then
        Toolbar1.Buttons.item(10).Visible = True
        
      If glo.sucursalf > 0 Then
-       para.Fiscal = 1
+       para.fiscal = 1
      Else
-       para.Fiscal = 0
+       para.fiscal = 0
      End If
      
       Case Is = 1912 ' fiscal sin ventas normales
@@ -764,9 +764,9 @@ If Val(Mid$(rs("habilitacion"), 5, 2)) = sc Then
        Toolbar1.Buttons.item(10).Visible = True
        
      If glo.sucursalf > 0 Then
-       para.Fiscal = 1
+       para.fiscal = 1
      Else
-       para.Fiscal = 0
+       para.fiscal = 0
      End If
 
    Case Is = 1320 ' solo caja
@@ -796,7 +796,7 @@ If Val(Mid$(rs("habilitacion"), 5, 2)) = sc Then
        Toolbar1.Buttons.item(10).Visible = False
        
    
-       para.Fiscal = 0
+       para.fiscal = 0
    
    Case Is = 8574 'solo cmpras
        Toolbar1.Buttons.item(1).Visible = False
@@ -825,7 +825,11 @@ If Val(Mid$(rs("habilitacion"), 5, 2)) = sc Then
        Toolbar1.Buttons.item(9).Visible = True
        Toolbar1.Buttons.item(10).Visible = True
        
-       para.Fiscal = 1
+       If glo.sucursalf > 0 Then
+       para.fiscal = 1
+     Else
+       para.fiscal = 0
+     End If
    
    Case Is = 1922 ' ventas, compras, caja, bancos
        Toolbar1.Buttons.item(1).Visible = True
@@ -839,7 +843,7 @@ If Val(Mid$(rs("habilitacion"), 5, 2)) = sc Then
        Toolbar1.Buttons.item(9).Visible = False
        Toolbar1.Buttons.item(10).Visible = False
               
-       para.Fiscal = 0
+       para.fiscal = 0
    
    Case Is = 7422 ' todo sin fiscal
        Toolbar1.Buttons.item(1).Visible = True
@@ -853,7 +857,7 @@ If Val(Mid$(rs("habilitacion"), 5, 2)) = sc Then
        Toolbar1.Buttons.item(9).Visible = False
        Toolbar1.Buttons.item(10).Visible = False
        
-       para.Fiscal = 0
+       para.fiscal = 0
    
    Case Else
        MsgBox ("Error Inesperado de Habilitacion: E1001 ")

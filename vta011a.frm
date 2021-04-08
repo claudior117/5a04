@@ -19,7 +19,7 @@ Begin VB.Form vta_COMPVARIOS
       BackColor       =   &H00E0E0E0&
       Height          =   495
       Left            =   10080
-      TabIndex        =   56
+      TabIndex        =   57
       Top             =   1440
       Width           =   1455
       Begin VB.CheckBox Check1 
@@ -27,7 +27,7 @@ Begin VB.Form vta_COMPVARIOS
          Caption         =   "Moneda Unica"
          Height          =   315
          Left            =   120
-         TabIndex        =   57
+         TabIndex        =   58
          Top             =   120
          Width           =   1215
       End
@@ -36,7 +36,7 @@ Begin VB.Form vta_COMPVARIOS
       BackColor       =   &H00E0E0E0&
       Height          =   735
       Left            =   10080
-      TabIndex        =   39
+      TabIndex        =   40
       Top             =   720
       Width           =   1455
       Begin VB.OptionButton Option4 
@@ -44,7 +44,7 @@ Begin VB.Form vta_COMPVARIOS
          Caption         =   "Pesos"
          Height          =   255
          Left            =   120
-         TabIndex        =   41
+         TabIndex        =   42
          Top             =   120
          Width           =   975
       End
@@ -53,7 +53,7 @@ Begin VB.Form vta_COMPVARIOS
          Caption         =   "U$s"
          Height          =   255
          Left            =   120
-         TabIndex        =   40
+         TabIndex        =   41
          Top             =   360
          Width           =   855
       End
@@ -62,7 +62,7 @@ Begin VB.Form vta_COMPVARIOS
       BackColor       =   &H00E0E0E0&
       Height          =   735
       Left            =   10080
-      TabIndex        =   36
+      TabIndex        =   37
       Top             =   0
       Width           =   1455
       Begin VB.OptionButton Option2 
@@ -70,7 +70,7 @@ Begin VB.Form vta_COMPVARIOS
          Caption         =   "Contado "
          Height          =   255
          Left            =   120
-         TabIndex        =   38
+         TabIndex        =   39
          Top             =   360
          Width           =   1215
       End
@@ -79,7 +79,7 @@ Begin VB.Form vta_COMPVARIOS
          Caption         =   "Cta.Cte."
          Height          =   255
          Left            =   120
-         TabIndex        =   37
+         TabIndex        =   38
          Top             =   120
          Width           =   1215
       End
@@ -88,7 +88,7 @@ Begin VB.Form vta_COMPVARIOS
       BackColor       =   &H00E0E0E0&
       Height          =   735
       Left            =   9120
-      TabIndex        =   33
+      TabIndex        =   34
       Top             =   5880
       Visible         =   0   'False
       Width           =   2535
@@ -97,7 +97,7 @@ Begin VB.Form vta_COMPVARIOS
          Height          =   405
          Left            =   1680
          MaxLength       =   1
-         TabIndex        =   34
+         TabIndex        =   35
          Top             =   240
          Width           =   615
       End
@@ -108,7 +108,7 @@ Begin VB.Form vta_COMPVARIOS
          ForeColor       =   &H00FFFFFF&
          Height          =   375
          Left            =   120
-         TabIndex        =   35
+         TabIndex        =   36
          Top             =   240
          Width           =   1335
       End
@@ -118,13 +118,22 @@ Begin VB.Form vta_COMPVARIOS
       Caption         =   "Totales del Comprobante"
       Height          =   2415
       Left            =   240
-      TabIndex        =   27
+      TabIndex        =   28
       Top             =   5760
       Width           =   8775
+      Begin VB.TextBox t_cae 
+         BorderStyle     =   0  'None
+         Height          =   285
+         Left            =   6600
+         MaxLength       =   30
+         TabIndex        =   10
+         Top             =   600
+         Width           =   2055
+      End
       Begin VB.ComboBox c_vend 
          Height          =   315
          Left            =   1680
-         TabIndex        =   11
+         TabIndex        =   12
          Text            =   "c_cuenta"
          Top             =   1320
          Width           =   6015
@@ -139,7 +148,7 @@ Begin VB.Form vta_COMPVARIOS
       Begin VB.ComboBox c_cuenta 
          Height          =   315
          Left            =   1680
-         TabIndex        =   10
+         TabIndex        =   11
          Text            =   "c_cuenta"
          Top             =   960
          Width           =   6015
@@ -151,14 +160,14 @@ Begin VB.Form vta_COMPVARIOS
          MaxLength       =   50
          TabIndex        =   9
          Top             =   600
-         Width           =   6015
+         Width           =   3255
       End
       Begin VB.TextBox T_total2 
          BorderStyle     =   0  'None
          Height          =   285
          Left            =   6840
          MaxLength       =   10
-         TabIndex        =   43
+         TabIndex        =   44
          Top             =   2040
          Width           =   1095
       End
@@ -176,7 +185,7 @@ Begin VB.Form vta_COMPVARIOS
          Height          =   285
          Left            =   5520
          MaxLength       =   10
-         TabIndex        =   16
+         TabIndex        =   17
          Top             =   2040
          Width           =   1095
       End
@@ -185,7 +194,7 @@ Begin VB.Form vta_COMPVARIOS
          Height          =   285
          Left            =   4200
          MaxLength       =   10
-         TabIndex        =   15
+         TabIndex        =   16
          Top             =   2040
          Width           =   1095
       End
@@ -194,7 +203,7 @@ Begin VB.Form vta_COMPVARIOS
          Height          =   285
          Left            =   2880
          MaxLength       =   10
-         TabIndex        =   14
+         TabIndex        =   15
          Top             =   2040
          Width           =   1095
       End
@@ -203,7 +212,7 @@ Begin VB.Form vta_COMPVARIOS
          Height          =   285
          Left            =   1560
          MaxLength       =   10
-         TabIndex        =   13
+         TabIndex        =   14
          Top             =   2040
          Width           =   1095
       End
@@ -212,9 +221,20 @@ Begin VB.Form vta_COMPVARIOS
          Height          =   285
          Left            =   240
          MaxLength       =   10
-         TabIndex        =   12
+         TabIndex        =   13
          Top             =   2040
          Width           =   1095
+      End
+      Begin VB.Label Label19 
+         Alignment       =   1  'Right Justify
+         BackColor       =   &H00800080&
+         Caption         =   "CAE"
+         ForeColor       =   &H00FFFFFF&
+         Height          =   255
+         Left            =   5160
+         TabIndex        =   59
+         Top             =   600
+         Width           =   1335
       End
       Begin VB.Label Label18 
          Alignment       =   1  'Right Justify
@@ -223,7 +243,7 @@ Begin VB.Form vta_COMPVARIOS
          ForeColor       =   &H00FFFFFF&
          Height          =   375
          Left            =   240
-         TabIndex        =   54
+         TabIndex        =   55
          Top             =   1320
          Width           =   1335
       End
@@ -234,7 +254,7 @@ Begin VB.Form vta_COMPVARIOS
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   2880
-         TabIndex        =   48
+         TabIndex        =   49
          Top             =   240
          Width           =   1335
       End
@@ -245,7 +265,7 @@ Begin VB.Form vta_COMPVARIOS
          ForeColor       =   &H00FFFFFF&
          Height          =   375
          Left            =   240
-         TabIndex        =   47
+         TabIndex        =   48
          Top             =   960
          Width           =   1335
       End
@@ -256,7 +276,7 @@ Begin VB.Form vta_COMPVARIOS
          ForeColor       =   &H00FFFFFF&
          Height          =   375
          Left            =   240
-         TabIndex        =   45
+         TabIndex        =   46
          Top             =   600
          Width           =   1335
       End
@@ -267,7 +287,7 @@ Begin VB.Form vta_COMPVARIOS
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   6840
-         TabIndex        =   44
+         TabIndex        =   45
          Top             =   1800
          Width           =   1095
       End
@@ -278,7 +298,7 @@ Begin VB.Form vta_COMPVARIOS
          ForeColor       =   &H00FFFFFF&
          Height          =   375
          Left            =   240
-         TabIndex        =   42
+         TabIndex        =   43
          Top             =   240
          Width           =   1335
       End
@@ -289,7 +309,7 @@ Begin VB.Form vta_COMPVARIOS
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   5520
-         TabIndex        =   32
+         TabIndex        =   33
          Top             =   1800
          Width           =   1095
       End
@@ -300,7 +320,7 @@ Begin VB.Form vta_COMPVARIOS
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   4200
-         TabIndex        =   31
+         TabIndex        =   32
          Top             =   1800
          Width           =   1095
       End
@@ -311,7 +331,7 @@ Begin VB.Form vta_COMPVARIOS
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   2880
-         TabIndex        =   30
+         TabIndex        =   31
          Top             =   1800
          Width           =   1095
       End
@@ -322,7 +342,7 @@ Begin VB.Form vta_COMPVARIOS
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   1560
-         TabIndex        =   29
+         TabIndex        =   30
          Top             =   1800
          Width           =   1095
       End
@@ -333,7 +353,7 @@ Begin VB.Form vta_COMPVARIOS
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   240
-         TabIndex        =   28
+         TabIndex        =   29
          Top             =   1800
          Width           =   1095
       End
@@ -352,14 +372,14 @@ Begin VB.Form vta_COMPVARIOS
       BackColor       =   &H00E0E0E0&
       Height          =   1935
       Left            =   240
-      TabIndex        =   22
+      TabIndex        =   23
       Top             =   0
       Width           =   9375
       Begin VB.CommandButton Command3 
          Caption         =   " Remitos"
          Height          =   375
          Left            =   8160
-         TabIndex        =   55
+         TabIndex        =   56
          TabStop         =   0   'False
          Top             =   1440
          Width           =   1095
@@ -370,14 +390,14 @@ Begin VB.Form vta_COMPVARIOS
          Left            =   7560
          List            =   "vta011a.frx":0002
          Style           =   2  'Dropdown List
-         TabIndex        =   52
+         TabIndex        =   53
          Top             =   240
          Width           =   1695
       End
       Begin VB.TextBox t_propio 
          Height          =   285
          Left            =   5640
-         TabIndex        =   51
+         TabIndex        =   52
          Text            =   "Text1"
          Top             =   240
          Visible         =   0   'False
@@ -388,7 +408,7 @@ Begin VB.Form vta_COMPVARIOS
          Left            =   8880
          Picture         =   "vta011a.frx":0004
          Style           =   1  'Graphical
-         TabIndex        =   50
+         TabIndex        =   51
          Top             =   720
          Width           =   255
       End
@@ -406,7 +426,7 @@ Begin VB.Form vta_COMPVARIOS
          Left            =   8040
          Picture         =   "vta011a.frx":0376
          Style           =   1  'Graphical
-         TabIndex        =   46
+         TabIndex        =   47
          Top             =   720
          Width           =   735
       End
@@ -425,7 +445,7 @@ Begin VB.Form vta_COMPVARIOS
          Left            =   2160
          Locked          =   -1  'True
          MaxLength       =   1
-         TabIndex        =   17
+         TabIndex        =   18
          Top             =   1200
          Width           =   375
       End
@@ -497,7 +517,7 @@ Begin VB.Form vta_COMPVARIOS
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   6000
-         TabIndex        =   53
+         TabIndex        =   54
          Top             =   240
          Width           =   1455
       End
@@ -508,7 +528,7 @@ Begin VB.Form vta_COMPVARIOS
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   4320
-         TabIndex        =   49
+         TabIndex        =   50
          Top             =   1560
          Width           =   1935
       End
@@ -519,7 +539,7 @@ Begin VB.Form vta_COMPVARIOS
          ForeColor       =   &H00FFFFFF&
          Height          =   495
          Left            =   120
-         TabIndex        =   26
+         TabIndex        =   27
          Top             =   240
          Width           =   1935
       End
@@ -530,7 +550,7 @@ Begin VB.Form vta_COMPVARIOS
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   120
-         TabIndex        =   25
+         TabIndex        =   26
          Top             =   1560
          Width           =   1935
       End
@@ -541,7 +561,7 @@ Begin VB.Form vta_COMPVARIOS
          ForeColor       =   &H00FFFFFF&
          Height          =   375
          Left            =   120
-         TabIndex        =   24
+         TabIndex        =   25
          Top             =   1200
          Width           =   1935
       End
@@ -552,7 +572,7 @@ Begin VB.Form vta_COMPVARIOS
          ForeColor       =   &H00FFFFFF&
          Height          =   495
          Left            =   120
-         TabIndex        =   23
+         TabIndex        =   24
          Top             =   720
          Width           =   1935
       End
@@ -562,7 +582,7 @@ Begin VB.Form vta_COMPVARIOS
       Caption         =   "Funciones"
       Height          =   975
       Left            =   9720
-      TabIndex        =   19
+      TabIndex        =   20
       Top             =   7200
       Width           =   1575
       Begin VB.CommandButton btnsale 
@@ -571,7 +591,7 @@ Begin VB.Form vta_COMPVARIOS
          Left            =   840
          Picture         =   "vta011a.frx":047B
          Style           =   1  'Graphical
-         TabIndex        =   21
+         TabIndex        =   22
          ToolTipText     =   "Salir sin Modificar"
          Top             =   240
          UseMaskColor    =   -1  'True
@@ -582,7 +602,7 @@ Begin VB.Form vta_COMPVARIOS
          Left            =   120
          Picture         =   "vta011a.frx":0CFD
          Style           =   1  'Graphical
-         TabIndex        =   20
+         TabIndex        =   21
          ToolTipText     =   "Renueva Lista de Clientes"
          Top             =   240
          UseMaskColor    =   -1  'True
@@ -593,7 +613,7 @@ Begin VB.Form vta_COMPVARIOS
       Align           =   2  'Align Bottom
       Height          =   255
       Left            =   0
-      TabIndex        =   18
+      TabIndex        =   19
       Top             =   8265
       Width           =   11760
       _ExtentX        =   20743
@@ -618,12 +638,12 @@ Begin VB.Form vta_COMPVARIOS
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "12/8/2018"
+            TextSave        =   "08/04/2021"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "19:36"
+            TextSave        =   "06:54 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -1070,7 +1090,7 @@ End Sub
 
 Private Sub Form_KeyPress(KeyAscii As Integer)
 If KeyAscii = 13 Then
- Call TabEnter2(Me, 16)
+ Call TabEnter2(Me, 17)
 End If
 
 
@@ -1119,7 +1139,7 @@ Unload vta_selremitos2
 End Sub
 
 Private Sub msf1_GotFocus()
-Me.StatusBar1.Panels.Item(2) = "[INS] Agrega - [ENTER] Modifica - [F5] Elimina - [F9] Graba"
+Me.StatusBar1.Panels.item(2) = "[INS] Agrega - [ENTER] Modifica - [F5] Elimina - [F9] Graba"
 If msf1.Rows > 1 Then
   msf1.FocusRect = flexFocusNone
 Else
@@ -1247,6 +1267,8 @@ Sub graba()
       Wend
       Set rs = Nothing
       
+      fvcae = Format$(DateValue(t_fecha) + 10, "dd/mm/yyyy")
+      
       QUERY = "INSERT INTO vta_02([num_int], [sucursal], [num_comp], [letra], [id_tipocomp], [id_cliente], [fecha], [id_usuario], [subtotal], [impuestos], [iva], [total], [estado], " & _
 " [id_cuenta], [stock], [cta_cte], [grabado], [estado_pago], [recibo_Pago], [observaciones], [cotizacion_dolar], [total_otra_moneda], [moneda], [id_vendedor], [VENTA], [CONTADO], " & _
 " [id_actividad], [alicuota_ib],[alicuota_perc_iva], [canje_cereal], [fecha_vto], [total_bultos], [valor_declarado], [transporte], [direccion_transp], [cuit_transp], [perc_ss], [sucursal_ingreso], " & _
@@ -1256,7 +1278,7 @@ c_prov.ItemData(c_prov.ListIndex) & ", '" & t_fecha & "', " & para.id_usuario & 
 para.cuenta_ventas & ", '" & cl_compvta.STOCK & "', '" & cl_compvta.ctacte & "', '" & cl_compvta.grabado & "', '" & ep & "', '" & cp & "', '" & t_observaciones & " ', " & Val(t_cotizacion) & ", " & _
 tom & ", '" & moneda & "'," & c_vend.ItemData(c_vend.ListIndex) & ", '" & cl_compvta.venta & "', '" & contado & "', " & codact & ", " & alicuotaib & ", 0, 0, '" & t_fechavto & _
 "', 0, 0, ' ', ' ', ' ', 0, " & Val(c_sucursal) & ", '" & Left$(vta_clientes.t_cli, 50) & "', '" & Left$(vta_clientes.t_direccion, 50) & "', '" & Left$(vta_clientes.t_cuit, 20) & "', '" & Left$(vta_clientes.t_localidad, 50) & "', " & tiporespiva & _
-", ' ', ' ', ' ', " & ssi & ", 1, 0, " & numz & ", 'u2', '01/01/2018', 1)"
+", ' ', ' ', ' ', " & ssi & ", 1, 0, " & numz & ", '" & t_cae & "', '" & fvcae & "', 1)"
       
       
      'MsgBox (QUERY)

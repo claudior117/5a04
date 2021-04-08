@@ -70,7 +70,7 @@ Begin VB.Form vta_retyperc
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   111738881
+      StartOfWeek     =   172097537
       CurrentDate     =   38750
    End
    Begin VB.Frame Frame3 
@@ -182,12 +182,12 @@ Begin VB.Form vta_retyperc
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "23/02/2021"
+            TextSave        =   "08/04/2021"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "11:28 a.m."
+            TextSave        =   "06:45 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -303,7 +303,7 @@ SACAret = ttr
 End Function
 Function buscaperc(ByVal t As String) As Double
 
-Set rs1 = New adodb.Recordset
+Set rs1 = New ADODB.Recordset
 q = "select * from a12 where [tipo12] = 'P' and [impuesto12] = '" & t & "'"
 rs1.Open q, cn1
 totperc = 0
@@ -332,7 +332,7 @@ While Not rs1.EOF
  End If
  q = q & " order by [fecha]"
  'MsgBox (q)
- Set rs = New adodb.Recordset
+ Set rs = New ADODB.Recordset
  rs.Open q, cn1
  tt = 0
  While Not rs.EOF
@@ -407,7 +407,7 @@ End If
 q = q & " and (vta_02.[id_tipocomp] = " & cc & " or (vta_02.[id_tipocomp] >= 205 and vta_02.[id_tipocomp] <= 207)" & " or (vta_02.[id_tipocomp] = 400))"
 q = q & " order by [fecha]"
   
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 rs.Open q, cn1
 tt = 0
 p = 0
@@ -431,7 +431,7 @@ While Not rs.EOF
        
             'busco retencions
             q = "select * from vta_012, a12 where [id_retencion] = [id_percepcion] and [num_int] = " & rs("num_int") & " and [impuesto12] = '" & t & "'"
-            Set rs1 = New adodb.Recordset
+            Set rs1 = New ADODB.Recordset
             rs1.Open q, cn1
             ret = 0
             While Not rs1.EOF
