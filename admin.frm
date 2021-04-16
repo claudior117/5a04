@@ -177,7 +177,7 @@ If c_usuario.ListIndex >= 0 Then
  
  If abrirconexion(c_usuario, T_password) = True Then
    para.id_usuario = c_usuario.ItemData(c_usuario.ListIndex)
-   Set rs = New adodb.Recordset
+   Set rs = New ADODB.Recordset
    q = "select * from g1 where [id_usuario] = " & para.id_usuario
    rs.Open q, cn1
    If Not rs.EOF And Not rs.BOF Then
@@ -194,7 +194,7 @@ If c_usuario.ListIndex >= 0 Then
      para.imprime_cabecera_reportes = rs("imprime_cabecera_reportes")
      
      
-     Set rs = New adodb.Recordset
+     Set rs = New ADODB.Recordset
      q = "select * from g0 where [sucursal] = 0"
      rs.Open q, cn1
      If Not rs.BOF And Not rs.EOF Then
@@ -236,7 +236,7 @@ If c_usuario.ListIndex >= 0 Then
        para.numero_ib = rs("numero_ingresos_brutos")
        para.idsistema = rs("id_sistema")
         
-        Set rs1 = New adodb.Recordset
+        Set rs1 = New ADODB.Recordset
         q = "select * from cyb_01 where [id_forma_pago] = 1"
         rs1.Open q, cn1
         If Not rs1.BOF And Not rs1.EOF Then
@@ -245,7 +245,7 @@ If c_usuario.ListIndex >= 0 Then
         Set rs1 = Nothing
      
      
-        Set rs1 = New adodb.Recordset
+        Set rs1 = New ADODB.Recordset
         q = "select * from cyb_01 where [id_forma_pago] = 3"
         rs1.Open q, cn1
         If Not rs1.BOF And Not rs1.EOF Then
@@ -255,7 +255,7 @@ If c_usuario.ListIndex >= 0 Then
         End If
         Set rs1 = Nothing
 
-        Set rs1 = New adodb.Recordset
+        Set rs1 = New ADODB.Recordset
         q = "select * from i_01 where [id_impuesto] = 1" 'percepcion ib
         rs1.Open q, cn1
         If Not rs1.EOF And Not rs1.BOF Then
@@ -265,7 +265,7 @@ If c_usuario.ListIndex >= 0 Then
         End If
         Set rs1 = Nothing
         
-        Set rs1 = New adodb.Recordset
+        Set rs1 = New ADODB.Recordset
         q = "select * from i_01 where [id_impuesto] = 50" 'ret ib
         rs1.Open q, cn1
         If Not rs1.EOF And Not rs1.BOF Then
@@ -275,7 +275,7 @@ If c_usuario.ListIndex >= 0 Then
         End If
         Set rs1 = Nothing
         
-        Set rs = New adodb.Recordset
+        Set rs = New ADODB.Recordset
         q = "select * from a5 where [id_tipocomp] = 60"
         rs.MaxRecords = 1
         rs.Open q, cn1
@@ -288,7 +288,7 @@ If c_usuario.ListIndex >= 0 Then
         End If
         Set rs = Nothing
      
-        Set rs1 = New adodb.Recordset
+        Set rs1 = New ADODB.Recordset
         q = "select * from g12 where [id_tasaib] = 1"
         rs1.Open q, cn1
         If Not rs1.BOF And Not rs1.EOF Then

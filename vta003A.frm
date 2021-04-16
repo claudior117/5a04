@@ -809,12 +809,12 @@ Begin VB.Form vta_facturacion
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "08/04/2021"
+            TextSave        =   "16/04/2021"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "06:36 p.m."
+            TextSave        =   "05:18 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -861,7 +861,7 @@ Sub electronica()
     
     
     If c_tipocomp.ItemData(c_tipocomp.ListIndex) = 3 Then
-       If vta_selcomp.t_seleccionados = 0 Then
+       If Val(vta_selcomp.t_seleccionados) = 0 Then
            MsgBox ("Para realizar NC es necesario que seleccione la factura asociada")
            seguir = False
        End If
@@ -930,14 +930,14 @@ Sub electronica()
                      concepto = c_tipoop.ListIndex + 1
                      If vta_clientes.c_iva.ItemData(vta_clientes.c_iva.ListIndex) <> 3 Then
                        tipo_doc = 80
-                       CUIT = RTrim$(vta_clientes.t_cuit)
+                       CUIT2 = RTrim$(vta_clientes.t_cuit)
                      Else
                         If Val(t_total) < 1000 Then
                             tipo_doc = 99
-                            CUIT = "0"
+                            CUIT2 = "0"
                         Else
                             tipo_doc = 96
-                            CUIT = RTrim$(vta_clientes.t_cuit)
+                            CUIT2 = RTrim$(vta_clientes.t_cuit)
                         End If
                      End If
                      
@@ -978,7 +978,7 @@ Sub electronica()
                    
                     
         
-                    ok = WSFEv1.CrearFactura(concepto, tipo_doc, CUIT, tipo_cbte, punto_vta, _
+                    ok = WSFEv1.CrearFactura(concepto, tipo_doc, CUIT2, tipo_cbte, punto_vta, _
                         cbt_desde, cbt_hasta, imp_total, imp_tot_conc, imp_neto, _
                         imp_iva, imp_trib, imp_op_ex, fecha_cbte, fecha_venc_pago, _
                         fecha_serv_desde, fecha_serv_hasta, _
@@ -987,14 +987,16 @@ Sub electronica()
                   ' Agrego los comprobantes asociados:
                   If c_tipocomp.ItemData(c_tipocomp.ListIndex) = 3 Then  ' solo nc/nd
                      F = vta_selcomp.msf1.Rows - 1
+                     compasocnc = ""
                      For i = 1 To F
                         If vta_selcomp.msf1.TextMatrix(i, 0) = "**" Then
-                             tipo_cbte_asoc_1 = Val(vta_selcomp.msf1.TextMatrix(i, 4))
-                             punto_vta_asoc_1 = Val(vta_selcomp.msf1.TextMatrix(i, 1))
-                             cbte_nro_asoc_1 = Val(vta_selcomp.msf1.TextMatrix(i, 2))
-                             cuit_cbte_asoc_1 = cuitemisor  'RTrim$(vta_clientes.t_cuit)
+                             tipo_cbte_asoc_1 = CInt(vta_selcomp.msf1.TextMatrix(i, 4))
+                             punto_vta_asoc_1 = CInt(vta_selcomp.msf1.TextMatrix(i, 1))
+                             cbte_nro_asoc_1 = CLng(vta_selcomp.msf1.TextMatrix(i, 2))
+                             cuit_cbte_asoc_1 = cuitemisor 'RTrim$(vta_clientes.t_cuit) 'cuitemisor  ´
                              fecha_cbte_asoc_1 = vta_selcomp.msf1.TextMatrix(i, 3)
-                             
+                             'MsgBox (tipo_cbte_asoc_1 & " " & punto_vta_asoc_1 & " " & cbte_nro_asoc_1 & " " & cuit_cbte_asoc_1 & " " & fecha_cbte_asoc_1)
+                             compasocnc = vta_selcomp.msf1.TextMatrix(i, 1) & "-" & vta_selcomp.msf1.TextMatrix(i, 2)
                              i = F
                          End If
                     Next i
@@ -1002,6 +1004,9 @@ Sub electronica()
                     
                     
                     ok = WSFEv1.AgregarCmpAsoc(tipo_cbte_asoc_1, punto_vta_asoc_1, cbte_nro_asoc_1, cuit_cbte_asoc_1, fecha_cbte_asoc_1)
+                    'ok = WSFEv1.AgregarCmpAsoc(tipo_cbte_asoc_1, punto_vta_asoc_1, cbte_nro_asoc_1, cuitemisor)
+                    'ok = WSFEv1.AgregarCmpAsoc(tipo_cbte_asoc_1, punto_vta_asoc_1, cbte_nro_asoc_1)
+                    
                     
                   End If
                 
@@ -1092,8 +1097,10 @@ Sub electronica()
      
      Else 'else si los numeros de comprobantes no coinciden
        
-          MsgBox ("Los numeros de comprobantes entre el sistema y el AFIP no coinciden. Último comprobante del AFIP: " & cbte_nro - 1 & " Ultimo comprobante del sistema: " & Val(t_numcomp) - 1 & " Verifique antes de continuar!!")
-        
+         
+                  
+            MsgBox ("Los numeros de comprobantes entre el sistema y el AFIP no coinciden. Último comprobante del AFIP: " & cbte_nro - 1 & " Ultimo comprobante del sistema: " & Val(t_numcomp) - 1 & " Verifique antes de continuar!!")
+         
         
      End If
  Else
@@ -2995,6 +3002,22 @@ Sub graba()
         T2 = Val(T_total2)
       End If
       
+      
+        'COMPROBATES ASOCIADOS A nc LO GRABO EN CHOFER2
+       compasocnc = ""
+       If c_tipocomp.ItemData(c_tipocomp.ListIndex) = 3 Then  ' solo nc/nd
+          F = vta_selcomp.msf1.Rows - 1
+          
+          For i = 1 To F
+            If vta_selcomp.msf1.TextMatrix(i, 0) = "**" Then
+               compasocnc = vta_selcomp.msf1.TextMatrix(i, 1) & "-" & vta_selcomp.msf1.TextMatrix(i, 2)
+               i = F
+            End If
+          Next i
+      End If
+      
+      
+      
       cn1.BeginTrans
        
        QUERY = ""
@@ -3012,7 +3035,7 @@ QUERY = QUERY & " VALUES (" & numint & ", " & Val(t_sucursal) & ", " & Val(t_num
 " ', " & Val(t_cotizacion) & ", " & T2 & ", '" & moneda & "', " & c_vend.ItemData(c_vend.ListIndex) & ", '" & cl_compvta.venta & "', '" & contado & "', " & Val(t_perc)
 
 query2 = ", 0, " & Val(t_perciva) & ", " & codact & ", " & Val(t_alicuotaib) & ", " & Val(t_alicuotaperciva) & ", " & Check1 & ", '" & t_fechavto & "', 0, 0, ' ', ' ', ' ', 0, " & Val(c_sucursal) & _
-", '" & Left$(vta_clientes.t_cli, 50) & "', '" & Left$(vta_clientes.t_direccion, 50) & "', '" & Left$(vta_clientes.t_cuit, 20) & "', '" & Left$(vta_clientes.t_localidad, 50) & "', " & tiporespiva & ", ' ', ' ', ' ', " & ssi & ", " & para.z_actual & ", '" & t_cae & "', '" & Format(t_cae_vence, "@@@@/@@/@@") & "', " & c_tipoop.ListIndex + 1 & ")"
+", '" & Left$(vta_clientes.t_cli, 50) & "', '" & Left$(vta_clientes.t_direccion, 50) & "', '" & Left$(vta_clientes.t_cuit, 20) & "', '" & Left$(vta_clientes.t_localidad, 50) & "', " & tiporespiva & ", '" & compasocnc & "', ' ', ' ', " & ssi & ", " & para.z_actual & ", '" & t_cae & "', '" & Format(t_cae_vence, "@@@@/@@/@@") & "', " & c_tipoop.ListIndex + 1 & ")"
 
                                                                                                                                                                                                                                                             
 cn1.Execute QUERY & query2
