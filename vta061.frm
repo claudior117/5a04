@@ -181,22 +181,24 @@ Sub armagrid()
 'armar grilla
 msf1.clear
 msf1.Rows = 1
-msf1.Cols = 6
+msf1.Cols = 7
 msf1.AllowUserResizing = flexResizeNone
 msf1.FixedCols = 0
 msf1.SelectionMode = flexSelectionByRow
 msf1.FocusRect = flexFocusNone
 msf1.ColWidth(0) = 300
-msf1.ColWidth(1) = 1400
-msf1.ColWidth(2) = 1400
-msf1.ColWidth(3) = 1400
-msf1.ColWidth(4) = 800
-msf1.ColWidth(5) = 1200
+msf1.ColWidth(1) = 1100
+msf1.ColWidth(2) = 1100
+msf1.ColWidth(3) = 1100
+msf1.ColWidth(4) = 500
+msf1.ColWidth(5) = 1100
+msf1.ColWidth(6) = 1200
 msf1.TextMatrix(0, 1) = "Punto venta"
 msf1.TextMatrix(0, 2) = "Num. Comp"
 msf1.TextMatrix(0, 3) = "Fecha"
 msf1.TextMatrix(0, 4) = "Tipo"
-msf1.TextMatrix(0, 5) = "Nro. Interno"
+msf1.TextMatrix(0, 5) = "Total"
+msf1.TextMatrix(0, 6) = "Nro. Interno"
 For i = 0 To 3
  msf1.ColAlignment(i) = 1 'izq
 Next i
@@ -231,7 +233,7 @@ Sub carga()
      
      nc = Format$(rs("sucursal"), "0000") & "-" & Format$(rs("num_comp"), "00000000")
      F = Format$(rs("fecha"), "yyyymmdd")
-     msf1.AddItem "" & Chr$(9) & Format$(rs("sucursal"), "0000") & Chr$(9) & Format$(rs("num_comp"), "00000000") & Chr$(9) & F & Chr$(9) & t & Chr$(9) & rs("num_int")
+     msf1.AddItem "" & Chr$(9) & Format$(rs("sucursal"), "0000") & Chr$(9) & Format$(rs("num_comp"), "00000000") & Chr$(9) & F & Chr$(9) & t & Chr$(9) & rs("total") & Chr$(9) & rs("num_int")
      rs.MoveNext
    Wend
    
@@ -276,6 +278,12 @@ If KeyCode = vbKeyF5 Then
  
 End If
 
+
+If KeyCode = vbKeyF9 Then
+    Call cuenta
+    Me.Hide
+End If
+
 End Sub
 Sub cuenta()
  If msf1.Rows > 1 Then
@@ -302,8 +310,8 @@ End Sub
 Private Sub msf1_KeyPress(KeyAscii As Integer)
 If KeyAscii = 13 Then
   If msf1.Rows > 1 Then
-    If Val(msf1.TextMatrix(msf1.Row, 4)) > 0 Then
-       vta_cc_detalle.t_numint = msf1.TextMatrix(msf1.Row, 4)
+    If Val(msf1.TextMatrix(msf1.Row, 6)) > 0 Then
+       vta_cc_detalle.t_numint = msf1.TextMatrix(msf1.Row, 6)
        vta_cc_detalle.Show
     End If
   End If

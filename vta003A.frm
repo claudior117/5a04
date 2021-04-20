@@ -809,12 +809,12 @@ Begin VB.Form vta_facturacion
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "16/04/2021"
+            TextSave        =   "20/04/2021"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "05:18 p.m."
+            TextSave        =   "04:40 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -860,9 +860,9 @@ Sub electronica()
     Debug.Print ("Tiquet correcto")
     
     
-    If c_tipocomp.ItemData(c_tipocomp.ListIndex) = 3 Then
+    If c_tipocomp.ItemData(c_tipocomp.ListIndex) >= 2 And c_tipocomp.ItemData(c_tipocomp.ListIndex) <= 3 Then
        If Val(vta_selcomp.t_seleccionados) = 0 Then
-           MsgBox ("Para realizar NC es necesario que seleccione la factura asociada")
+           MsgBox ("Para realizar NC/ND es necesario que seleccione la factura asociada")
            seguir = False
        End If
     End If
@@ -985,7 +985,7 @@ Sub electronica()
                         moneda_id, moneda_ctz)
             
                   ' Agrego los comprobantes asociados:
-                  If c_tipocomp.ItemData(c_tipocomp.ListIndex) = 3 Then  ' solo nc/nd
+                  If c_tipocomp.ItemData(c_tipocomp.ListIndex) >= 2 And c_tipocomp.ItemData(c_tipocomp.ListIndex) <= 3 Then  ' solo nc/nd
                      F = vta_selcomp.msf1.Rows - 1
                      compasocnc = ""
                      For i = 1 To F
@@ -2388,7 +2388,7 @@ c_prov.ListIndex = 0
 End Sub
 
 Private Sub Command3_Click()
-If c_tipocomp.ItemData(c_tipocomp.ListIndex) <> 3 Then
+If c_tipocomp.ItemData(c_tipocomp.ListIndex) = 1 Or c_tipocomp.ItemData(c_tipocomp.ListIndex) > 3 Then
     Set cl_compvta = New comprobantes_venta
     cl_compvta.sucursal = Val(c_sucursal)
     cl_compvta.actual (1)
@@ -2397,10 +2397,9 @@ If c_tipocomp.ItemData(c_tipocomp.ListIndex) <> 3 Then
     vta_selremitos.carga
     vta_selremitos.Show
 Else
-
     vta_selcomp.carga
     vta_selcomp.Show
-
+ 
 End If
 End Sub
 
@@ -2548,10 +2547,11 @@ Sub iniciacli()
    End If
  End If
  
- If c_tipocomp.ItemData(c_tipocomp.ListIndex) = 3 Then
-    Command3.Caption = "Facturas"
- Else
+ If c_tipocomp.ItemData(c_tipocomp.ListIndex) = 1 Or c_tipocomp.ItemData(c_tipocomp.ListIndex) > 3 Then
     Command3.Caption = "Remitos"
+ Else
+    Command3.Caption = "Facturas"
+    
  End If
  
 End Sub
@@ -3005,7 +3005,7 @@ Sub graba()
       
         'COMPROBATES ASOCIADOS A nc LO GRABO EN CHOFER2
        compasocnc = ""
-       If c_tipocomp.ItemData(c_tipocomp.ListIndex) = 3 Then  ' solo nc/nd
+       If c_tipocomp.ItemData(c_tipocomp.ListIndex) >= 2 And c_tipocomp.ItemData(c_tipocomp.ListIndex) <= 3 Then  ' solo nc/nd
           F = vta_selcomp.msf1.Rows - 1
           
           For i = 1 To F

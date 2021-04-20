@@ -2942,14 +2942,7 @@ End Sub
 Public Sub generapdf(ByVal c As Integer)
     
  If c > 0 And c < 4 Then
-    
-   
-   
-   
-   
-    
-    
-    
+  
     
     Set rs = New ADODB.Recordset
     q = "select dias_pago_cc, path_facturas from fe_01 where id = 1"
@@ -3171,7 +3164,7 @@ While Not rs.EOF
     
     
     
-    If Me.idtipocomp = 1 Or Me.idtipocomp = 6 Then
+    If Me.idtipocomp = 1 Then
         ' Agrego remiros asociados en facturas:
         
         'BUSCO REMITOS
@@ -3196,9 +3189,13 @@ While Not rs.EOF
        
        'BUSCO COMPROBANTRE ASOCIADO A NC y ND
        
+     If Me.idtipocomp >= 2 And Me.idtipocomp <= 3 Then
        tr = Me.CHOFER
        TEXTOAMOSTRAR = "COMPROBANTE ASOCIADO:"
-       
+     Else
+       tr = " "
+       TEXTOAMOSTRAR = " "
+     End If
        
    End If
                 
