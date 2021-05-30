@@ -638,12 +638,12 @@ Begin VB.Form vta_COMPVARIOS
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "08/04/2021"
+            TextSave        =   "30/05/2021"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "06:54 p.m."
+            TextSave        =   "11:22 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -905,7 +905,25 @@ If Not rs.EOF And Not rs.BOF Then
 Else
   t_propio = "S"
 End If
+Call buscacuentacomp
 Set rs = Nothing
+End Sub
+Sub buscacuentacomp()
+Select Case c_tipocomp.ItemData(c_tipocomp.ListIndex)
+    Case Is = 100
+        c = para.cuenta_retibbav
+    Case Is = 101
+        c = para.cuenta_retivav
+    Case Is = 102
+        c = para.cuenta_retganv
+    Case Is = 103
+        c = para.cuenta_retsussv
+        
+End Select
+c_cuenta.ListIndex = buscaindice(c_cuenta, c)
+   
+   
+ 
 End Sub
 
 Private Sub Command2_Click()

@@ -1,17 +1,17 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form gen_padronibp 
    BackColor       =   &H00E0E0E0&
    Caption         =   "PROCESO DE ACTUALIZACION DEL PADRON DE PERCEPCIONES DE INGRESOS BRUTOS"
    ClientHeight    =   5160
    ClientLeft      =   75
    ClientTop       =   420
-   ClientWidth     =   7785
+   ClientWidth     =   8820
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
    PaletteMode     =   1  'UseZOrder
    ScaleHeight     =   5160
-   ScaleWidth      =   7785
+   ScaleWidth      =   8820
    StartUpPosition =   1  'CenterOwner
    Begin VB.Frame Frame4 
       BackColor       =   &H00E0E0E0&
@@ -127,8 +127,8 @@ Begin VB.Form gen_padronibp
       Left            =   0
       TabIndex        =   0
       Top             =   4905
-      Width           =   7785
-      _ExtentX        =   13732
+      Width           =   8820
+      _ExtentX        =   15558
       _ExtentY        =   450
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
@@ -236,7 +236,7 @@ Label2 = ""
 End Sub
 Function verifica() As Boolean
 verifica = True
-On Error GoTo errorib
+'On Error GoTo errorib
 Open t_camino For Input As #1
 Line Input #1, l
 If Len(l) <> 55 Then

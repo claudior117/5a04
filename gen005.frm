@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form gen_padronib 
    BackColor       =   &H00E0E0E0&
    Caption         =   "PROCESO DE ACTUALIZACION DEL PADRON DE INGRESOS BRUTOS"
@@ -236,7 +236,7 @@ Label2 = ""
 End Sub
 Function verifica() As Boolean
 verifica = True
-On Error GoTo errorib
+'On Error GoTo errorib
 Open t_camino For Input As #1
 Line Input #1, l
 If Len(l) <> 55 Then
