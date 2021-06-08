@@ -157,14 +157,14 @@ Begin VB.Form con_saldosprov
       Left            =   4440
       TabIndex        =   13
       Top             =   2040
-      Width           =   2595
-      _ExtentX        =   4577
+      Width           =   2490
+      _ExtentX        =   4392
       _ExtentY        =   4180
       _Version        =   393216
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   218103809
+      StartOfWeek     =   43778049
       CurrentDate     =   38803
    End
    Begin VB.Frame Frame2 
@@ -311,12 +311,12 @@ Begin VB.Form con_saldosprov
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "30/05/2021"
+            TextSave        =   "31/05/2021"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "11:28 a.m."
+            TextSave        =   "10:27 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -425,7 +425,7 @@ If Not rs1.EOF And Not rs1.BOF Then
    cl_prov.carga (rs1("id_proveedor"))
    saldoant = cl_prov.saldo(False, t_fecha, O_pesos, c_zona.ListIndex)
    saldoact = cl_prov.saldoentrefechas(t_fecha, t_fecha2, O_pesos, c_zona.ListIndex)
-   If Val(Format$(saldoact, "######0.00")) = 0 Then
+   If Val(Format$(saldoact, "######0.00")) = 0 And Val(Format$(saldoant, "######0.00")) = 0 And cl_prov.DEBE = 0 And cl_prov.HABER = 0 Then
      If O_cero = True Then
         Call agrega(r)
         r = r + 1

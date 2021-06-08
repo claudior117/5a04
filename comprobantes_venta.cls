@@ -3151,7 +3151,7 @@ While Not rs.EOF
     ok = PyFEPDF.AgregarDato("IIBB", "IIBB " & para.numero_ib)
     ok = PyFEPDF.AgregarDato("IVA", "IVA Responsable Inscripto")
     ok = PyFEPDF.AgregarDato("INICIO", "Inicio de Actividad: " & para.fecha_inicio_actividades)
-    ok = PyFEPDF.AgregarDato("ObservacionesGenerales1", "Nota al pie1")
+    ok = PyFEPDF.AgregarDato("ObservacionesGenerales1", "Mensaje Monotributos")
     ok = PyFEPDF.AgregarDato("ObservacionesGenerales2", "CBU para Transferencias ")
     ok = PyFEPDF.AgregarDato("ObservacionesGenerales3", "")
 
@@ -3200,6 +3200,7 @@ While Not rs.EOF
    End If
                 
                 
+    'remitos
     nombre = "remitos": tipo = "T"           ' "T" texto, "L" lineas, "I" imagen, etc.
     X1 = 8.7: Y1 = 247: X2 = 300: Y2 = 251   ' coordenadas (en milimetros)
     Font = "Arial": Size = 7: Bold = 0: Italic = 0: Underline = 0 ' tipo de letra
@@ -3212,10 +3213,22 @@ While Not rs.EOF
                     foreground, background, _
                     Align, Text, Priority)
  
+    'mensaje monotributos
     
-    
-    
-    
+    If Me.idtipoiva = 4 Then
+        nombre = "monotributo": tipo = "T"           ' "T" texto, "L" lineas, "I" imagen, etc.
+        X1 = 8.7: Y1 = 247: X2 = 300: Y2 = 254   ' coordenadas (en milimetros)
+        Font = "Arial": Size = 6: Bold = 0: Italic = 0: Underline = 0 ' tipo de letra
+        foreground = "000000": background = "FFFFFF"    ' colores de frente y fondo
+        Align = "I" ' Alineación: Centrado, Izquierda, Derecha
+        prioridad = 2 ' Orden Z, menor prioridad se dibuja primero (para superposiciones)
+        Text = "El credito fiscal de este comprobante solo podrá ser computado a los efectos del Reg de Sost. e Incl. Fiscal para pequeños contribuyentes de la ley 27618"
+        ok = PyFEPDF.AgregarCampo(nombre, tipo, X1, Y1, X2, Y2, _
+                        Font, Size, Bold, Italic, Underline, _
+                        foreground, background, _
+                        Align, Text, Priority)
+        
+    End If
     
     
     
