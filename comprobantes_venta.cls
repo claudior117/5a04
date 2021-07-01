@@ -3217,12 +3217,12 @@ While Not rs.EOF
     
     If Me.idtipoiva = 4 Then
         nombre = "monotributo": tipo = "T"           ' "T" texto, "L" lineas, "I" imagen, etc.
-        X1 = 8.7: Y1 = 247: X2 = 300: Y2 = 254   ' coordenadas (en milimetros)
+        X1 = 8.7: Y1 = 252: X2 = 300: Y2 = 256   ' coordenadas (en milimetros)
         Font = "Arial": Size = 6: Bold = 0: Italic = 0: Underline = 0 ' tipo de letra
         foreground = "000000": background = "FFFFFF"    ' colores de frente y fondo
         Align = "I" ' Alineación: Centrado, Izquierda, Derecha
         prioridad = 2 ' Orden Z, menor prioridad se dibuja primero (para superposiciones)
-        Text = "El credito fiscal de este comprobante solo podrá ser computado a los efectos del Reg de Sost. e Incl. Fiscal para pequeños contribuyentes de la ley 27618"
+        Text = "El crédito fiscal discriminado en el presente comprobante solo podrá ser computado a los efectos del Régimen de Sostenimiento e Inclusión Fiscal para pequeños contribuyentes de la ley 27618"
         ok = PyFEPDF.AgregarCampo(nombre, tipo, X1, Y1, X2, Y2, _
                         Font, Size, Bold, Italic, Underline, _
                         foreground, background, _
@@ -3235,7 +3235,7 @@ While Not rs.EOF
     If Me.moneda = "D" Then
         ' Agrego campos manualmente (opcional):
         nombre = "moneda": tipo = "T"           ' "T" texto, "L" lineas, "I" imagen, etc.
-        X1 = 8.7: Y1 = 254: X2 = 300: Y2 = 258   ' coordenadas (en milimetros)
+        X1 = 8.7: Y1 = 258: X2 = 300: Y2 = 262   ' coordenadas (en milimetros)
         Font = "Arial": Size = 7: Bold = 1: Italic = 0: Underline = 0 ' tipo de letra
         foreground = "000000": background = "FFFFFF"    ' colores de frente y fondo
         Align = "I" ' Alineación: Centrado, Izquierda, Derecha
@@ -3250,7 +3250,7 @@ While Not rs.EOF
     
     ' Agrego campos manualmente (opcional):
     nombre = "cbu": tipo = "T"           ' "T" texto, "L" lineas, "I" imagen, etc.
-    X1 = 100: Y1 = 261: X2 = 250: Y2 = 266   ' coordenadas (en milimetros)
+    X1 = 100: Y1 = 263: X2 = 250: Y2 = 266   ' coordenadas (en milimetros)
     Font = "Arial": Size = 8: Bold = 1: Italic = 0: Underline = 0 ' tipo de letra
     foreground = "000000": background = "FFFFFF"    ' colores de frente y fondo
     Align = "I" ' Alineación: Centrado, Izquierda, Derecha

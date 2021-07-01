@@ -809,12 +809,12 @@ Begin VB.Form vta_facturacion
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "20/04/2021"
+            TextSave        =   "27/06/2021"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "04:40 p.m."
+            TextSave        =   "10:04 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -1993,15 +1993,15 @@ If vta_clientes.c_iva.ItemData(vta_clientes.c_iva.ListIndex) <> 3 Then
     tpago = "CONTADO"
  End If
 
-'If vta_clientes.c_iva.ItemData(vta_clientes.c_iva.ListIndex) = 3 Then
-'   If caracteresmax > 37 Then
-'      tv2 = "Orientacion al consumidor 08002229042"
-'   Else
-'      tv2 = "Orient.Cons. 08002229042"
-'   End If
-'Else
+If vta_clientes.c_iva.ItemData(vta_clientes.c_iva.ListIndex) = 4 Then
+   If caracteresmax > 37 Then
+      tv2 = "Receptor del comprobante: Responsable Monotributo"
+   Else
+      tv2 = "Receptor: Monotributo"
+   End If
+Else
    tv2 = " "
-'End If
+End If
 
  'Call NULOS(t_remito)
  espere.ProgressBar1.Value = 2
@@ -2027,7 +2027,7 @@ Next i
  locz = textofiscal(Left$(vta_clientes.t_localidad & " ", caracteresmax))
  letraz = t_letra
  tivacz = vta_clientes.t_codfiscal
- rk = epson1.OpenInvoice(tipocompfz, "C", letraz, "1", "P", "17", "I", tivacz, cliz, " ", identifica, CUIT, "N", dirz, locz, tpago, Left$("Remitos:" & remitosz, caracteresmax), remitosz2, "C")
+ rk = epson1.OpenInvoice(tipocompfz, "C", letraz, "1", "P", "17", "I", tivacz, cliz, " ", identifica, CUIT, "N", dirz, locz, tpago, Left$("Remitos:" & remitosz, caracteresmax), tv2, "C")
  
  'rk = epson1.OpenInvoice(tipocompfz, "C", letraz, "1", "P", "17", "I", "I", cliz, "otro", identifica, "20202956034", "N", "Pellegrini 304", "dir2", "dir3", "001", "002", "C")
  If rk Then

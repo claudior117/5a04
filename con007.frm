@@ -157,14 +157,14 @@ Begin VB.Form con_saldosprov
       Left            =   4440
       TabIndex        =   13
       Top             =   2040
-      Width           =   2490
-      _ExtentX        =   4392
+      Width           =   2595
+      _ExtentX        =   4577
       _ExtentY        =   4180
       _Version        =   393216
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   43778049
+      StartOfWeek     =   111869953
       CurrentDate     =   38803
    End
    Begin VB.Frame Frame2 
@@ -311,12 +311,12 @@ Begin VB.Form con_saldosprov
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "31/05/2021"
+            TextSave        =   "27/06/2021"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:27 p.m."
+            TextSave        =   "10:06 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
