@@ -638,12 +638,12 @@ Begin VB.Form vta_COMPVARIOS
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "30/05/2021"
+            TextSave        =   "19/08/2021"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "11:22 a.m."
+            TextSave        =   "11:05 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -860,7 +860,21 @@ cl_compvta.sucursal = Val(c_sucursal)
 cl_compvta.actual (c_tipocomp.ItemData(c_tipocomp.ListIndex))
 If cl_compvta.PROPIO = "N" Then
   'comprobantes ingresados por el cliente
-   t_letra = "X"
+   If cl_compvta.idtipocomp >= 60 And cl_compvta.idtipocomp <= 65 Then
+     'liquidaciones por terceros llevan letra A, B
+     Set cl_cli = New Clientes
+     cl_cli.carga (c_prov.ItemData(c_prov.ListIndex))
+     If cl_cli.id > 0 Then
+       t_letra = cl_cli.letra
+       cl_compvta.letra = t_letra
+      Else
+       MsgBox ("Error. No se puedo Inicializa el Cliente")
+     End If
+     Set cl_cli = Nothing
+   Else
+     'otros comprobantes de terceros llevan letra X
+      t_letra = "X"
+   End If
 Else
      Set cl_cli = New Clientes
      cl_cli.carga (c_prov.ItemData(c_prov.ListIndex))

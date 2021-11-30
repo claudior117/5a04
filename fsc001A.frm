@@ -477,7 +477,7 @@ Sub grabaformapago()
          If Val(fsc_formapago.msf2.TextMatrix(i, 0)) = 3 Then
                 'ch. terceros
                 q = "select * from cyb_03"
-                Set rs = New adodb.Recordset
+                Set rs = New ADODB.Recordset
                 rs.Open q, cn1, adOpenDynamic, adLockOptimistic
                 rs.AddNew
                  rs("fecha_emision") = t_fecha
@@ -513,7 +513,7 @@ Sub grabaformapago()
          
          If Val(fsc_formapago.msf2.TextMatrix(i, 0)) = 4 Then
                 q = "select * from cyb_04"
-                Set rs = New adodb.Recordset
+                Set rs = New ADODB.Recordset
                 rs.Open q, cn1, adOpenDynamic, adLockOptimistic
                 rs.AddNew
                  rs("id_banco") = Val(fsc_formapago.msf2.TextMatrix(i, 8))
@@ -536,7 +536,7 @@ Sub grabaformapago()
          
          
          q = "select * from cyb_01 where [id_forma_pago] = " & Val(fsc_formapago.msf2.TextMatrix(i, 0))
-         Set rs = New adodb.Recordset
+         Set rs = New ADODB.Recordset
          rs.Open q, cn1
          If Not rs.EOF And Not rs.BOF Then
           If rs("CAJA") = "S" Then
@@ -1081,7 +1081,7 @@ Sub graba()
       moneda = "P"
  
       
-      Set rs = New adodb.Recordset
+      Set rs = New ADODB.Recordset
       q = "select * from g8 where [id_actividad] = " & c_actividad.ItemData(c_actividad.ListIndex)
       rs.Open q, cn1
       If Not rs.EOF And Not rs.BOF Then
@@ -1183,7 +1183,7 @@ Sub graba()
            u2 = "D"
          End If
          
-         Set rs = New adodb.Recordset
+         Set rs = New ADODB.Recordset
          q = "select * from c_01 where [id_cuenta] = " & cta
          rs.Open q, cn1
          If Not rs.EOF And Not rs.BOF Then
@@ -1372,6 +1372,10 @@ Call sacatotales
 
 End Sub
 
+Private Sub t_letra_Change()
+
+End Sub
+
 Private Sub t_nograbado_LostFocus()
 Call sacatotales
 
@@ -1408,7 +1412,7 @@ If KeyCode = vbKeyF11 Then
    t_limite = t_limite.Tag
    gprueba = 1
    q = "select [sucursal_prueba] from g0 where [sucursal] = 0"
-   Set rs = New adodb.Recordset
+   Set rs = New ADODB.Recordset
    rs.Open q, cn1
    If Not rs.EOF And Not rs.BOF Then
      gsucursalprueba = rs("sucursal_prueba")
@@ -1416,7 +1420,7 @@ If KeyCode = vbKeyF11 Then
    Set rs = Nothing
    t_sucursal = Format$(gsucursalprueba, "0000")
    q = "select * from vta_06 where [sucursal] = " & gsucursalprueba & " and [id_tipocomp] = 310"
-   Set rs = New adodb.Recordset
+   Set rs = New ADODB.Recordset
    rs.Open q, cn1
    If Not rs.EOF And Not rs.BOF Then
       If gsucursalprueba <> glo.sucursalf Then

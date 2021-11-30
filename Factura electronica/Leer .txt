@@ -52,6 +52,11 @@ Ejecutar en la computadora que va realizar la facturacion electronica
  
 
 
+Puntos de Vneta y Certificados
+
+SE genera un certificado digital unicamente por empresa(sistema). Se pueden generar comprobantes con ese certificado de todos los puntios de ventas
+que se necesiten.
+
 
 
 

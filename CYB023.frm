@@ -116,7 +116,7 @@ Begin VB.Form cyb_concilia2
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   111869953
+      StartOfWeek     =   107347969
       CurrentDate     =   38754
    End
    Begin MSFlexGridLib.MSFlexGrid msf1 
@@ -289,12 +289,12 @@ Begin VB.Form cyb_concilia2
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "27/06/2021"
+            TextSave        =   "30/11/2021"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:06 p.m."
+            TextSave        =   "10:24 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1

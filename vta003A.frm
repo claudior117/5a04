@@ -809,12 +809,12 @@ Begin VB.Form vta_facturacion
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "27/06/2021"
+            TextSave        =   "09/07/2021"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:04 p.m."
+            TextSave        =   "10:53 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -1298,7 +1298,7 @@ Sub carga2()
       q = "select [num_int], [letra], [sucursal], [id_tipocomp] from vta_02 where  [id_tipocomp] = " & c_tipocomp.ItemData(c_tipocomp.ListIndex) & " and [sucursal]= " & Val(t_sucursal) & " and [letra]= '" & t_letra & "' and [num_comp]= " & Val(t_numcomp)
  End If
  
-  rs.MaxRecords = 1
+ rs.MaxRecords = 1
  rs.Open q, cn1
  
  ni = 0
@@ -3450,7 +3450,7 @@ If Not IsDate(t_fecha) Then
 Else
   t_fecha = Format$(t_fecha, "dd/mm/yyyy")
 End If
-Call verifica_fechacorte(t_fecha)
+'Call verifica_fechacorte(t_fecha)
 End Sub
 
 

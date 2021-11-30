@@ -120,7 +120,7 @@ Begin VB.Form actu_inicio
    Begin VB.Label Label3 
       Alignment       =   2  'Center
       BackColor       =   &H0000FFFF&
-      Caption         =   "215"
+      Caption         =   "216"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   18
@@ -310,7 +310,8 @@ Case Is = 211
     Call actu213
 Case Is = 215
     Call actu215
- 
+ Case Is = 216
+    Call actu216
  Case Is = 999
    Call actu999
    
@@ -2197,7 +2198,42 @@ Resume Next
 End Sub
 
 
+Sub actu216()
+'mofidica el ancho del campo descripcion a 80 en tabla c_12
+'modifica descripcion en asientos
+h = MsgBox("Actualizacion 216 . ¿Esta seguro que quiere actualizar?  ", 4)
+If h = 6 Then
+  
+  espere.Show
+  espere.Refresh
+    
+    
+   
+   cn1.BeginTrans
+     q = "alter table c_12 alter column [descripcion] string(80)  "
+     cn1.Execute q
+   
+  q = "update g0 set  [actualizacion]=216"
+  q = q & " where [sucursal]=0 "
+  
+   cn1.Execute q
+    
+  cn1.CommitTrans
+  
+  
+ 
+   MsgBox ("Operación cerrada")
+   
+ Unload espere
+  
+End If
 
+Exit Sub
+
+
+err1:
+Resume Next
+End Sub
 
 Sub actu167()
 

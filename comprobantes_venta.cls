@@ -3330,6 +3330,7 @@ Public Sub imprimir()
 '6 Agrosumma
 'A andreoli
 'W la calera (fotos)
+'T tique no fiscal
 
 Set rs = New ADODB.Recordset
 q = "select * from vta_06 where [sucursal] = " & Me.sucursal & " and  [id_tipocomp] = " & Me.idtipocomp
@@ -3388,6 +3389,10 @@ Select Case Me.idtipocomp
     Case Is = "W"
          Call imprimerboW(copias) 'La calera 2
          
+    Case Is = "T"
+       
+         Call imprimerboT(1) 'tique no fiscal
+         
     End Select
   Case Is <= 10
      Call imprimefact(copias, formato)
@@ -3424,6 +3429,8 @@ Select Case Me.idtipocomp
          Call imprimirrtoW(copias) 'la calera
       Case Is = "E"
          Call imprimirrtoE(copias)   'electronico
+      Case Is = "T"
+         Call imprimirrtoT(copias)   'tiquetera no fiscal
       
       End Select
   
@@ -3533,6 +3540,10 @@ Case Is = "W"
     'Idem Y pero sin cabecera (la calera 2)
     Call formatoW(c) 'fact a y b juntas
 
+Case Is = "T"
+    'tique no fiscal
+    Call formatoT(c) 'fact a y b juntas
+
 Case Is = "Z"
     'Idem a Y pero sin membrete(superkarr)
     Call formatoZ(c) 'fact a y b juntas
@@ -3546,6 +3557,309 @@ Case Is = "A"
   
   
 End Sub
+
+Sub formatoT(c As Integer)
+'tiquetera no fiscal
+'Idem a Y pero sin membrete(quitado todo el espacio)
+ 
+ 'arma lista de remitos
+  rtos = ""
+  Set rs2 = New ADODB.Recordset
+  q = "select * from vta_08, vta_02 where id_factura = " & Me.numint & " and id_remito = num_int"
+  rs2.Open q, cn1
+  While Not rs2.EOF
+    rtos = rtos & Format$(rs2("num_comp"), "000000") & "-"
+    rs2.MoveNext
+  Wend
+  Set rs2 = Nothing
+ 
+ If Me.idtipocomp <> 3 Then
+   comp = "PRESUPUESTO  "
+ Else
+   comp = "DEVOLUCION  "
+ End If
+ 
+lc = InputBox("Indique cantidad de Copias", , c)
+If Val(lc) > 0 And Val(lc) <= 6 Then
+ 
+For Y = 1 To Val(lc)
+ 
+ Printer.FontName = "Times New Roman"
+ cc = Space$(5)
+ cp = Space$(9)
+ cant = Space$(8)
+ pu = Space$(9)
+ dtop = Space$(7)
+ pp = Space$(10)
+ im = Space$(10)
+ s = Space$(10)
+ s2 = Space$(10)
+ dto = Space$(7)
+ i1 = Space$(9)
+ I2 = Space$(9)
+ tot = Space$(10)
+ RSet cc = Format$(Me.idcliente, "0000")
+ n = Format$(Me.razonsocial, "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@!")
+ d = Format$(Me.direccion, "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@!")
+'d22 = Format$(Me.di, "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@!")
+ 
+ l = Format$(Me.localidad, "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@!")
+ di = Format$(Me.abreviatura_tipoiva, "@@@@@@@@@@!")
+ nc = Format$(Me.CUIT, "@@@@@@@@@@@@@@@@!")
+ Printer.FontSize = 14
+ Printer.Print comp
+ Printer.FontSize = 8
+ Printer.Print
+ Printer.Print Spc(30); " Fecha.....: " & Format$(Me.fecha)
+ Printer.Print Spc(30); " Nro.......: "; Me.letra; Spc(1); Format$(Me.sucursal, "0000"); "-"; Format$(Me.numcomp, "00000000")
+ Printer.Print
+ Printer.FontSize = 8
+ Printer.FontBold = False
+ Printer.FontUnderline = True
+ Printer.Print "Cliente:";
+ Printer.FontUnderline = False
+ Printer.Print "["; cc; "]"
+ Printer.FontBold = True
+ Printer.Print n
+ Printer.FontBold = False
+ Printer.FontUnderline = True
+ Printer.Print "Direccion:"
+ Printer.FontBold = False
+ Printer.FontUnderline = False
+ Printer.Print direccion
+ Printer.FontUnderline = True
+ Printer.Print "Localidad:"
+ Printer.FontBold = False
+ Printer.FontUnderline = False
+ Printer.Print localidad
+ Printer.Print "_______________________________"
+ If Me.contado = "S" Then
+   condicion = " CONTADO"
+ Else
+   condicion = " CUENTA CORRIENTE"
+ End If
+ Printer.Print condicion
+ Printer.Print "_______________________________"
+ Printer.Print
+ Printer.FontSize = 8
+ Printer.FontUnderline = True
+ Printer.Print "Observaciones.:  "
+ Printer.FontBold = False
+ Printer.FontUnderline = False
+  Printer.Print rtos
+ Printer.FontName = "Courier New"
+ Printer.FontSize = 7
+ Printer.Print "================================================================================================="
+ Printer.Print "  Cant. Uni Codigo Articulo"
+ Printer.Print Tab(30); "P.U    IMPORTE"
+ Printer.Print "================================================================================================="
+ Set rs = New ADODB.Recordset
+ q = "Select * from vta_03 where [num_int] = " & Me.numint
+ rs.Open q, cn1
+ l = 0
+ While Not rs.EOF
+    d = Format$(Left$(rs("descripcion") & " ", 40), "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@!")
+    pu = Space$(8)
+    i = Space$(9)
+    cant = Space$(7)
+    cp2 = Space$(5)
+    tu = Space$(3)
+    If rs("cantidad_original") > 0 Then
+      RSet cant = Format$(rs("cantidad_original"), "###0.00")
+      RSet cp2 = Format$(rs("id_producto"), "00000")
+      tu = Format$(Left$(rs("tunidad"), 3), "@@@!")
+      RSet pu = Format$(rs("PU_FINAL"), "####0.00")
+      RSet i = Format$(rs("PU_FINAL") * rs("cantidad_original"), "######0.00")
+    
+    End If
+    Printer.Print cant; " "; tu; " "; cp2; Spc(2);
+    Printer.FontBold = True
+    Printer.Print d
+    Printer.FontBold = False
+    Printer.Print Tab(27); pu; " "; i
+    
+    rs.MoveNext
+    l = l + 1
+ Wend
+ Set rs = Nothing
+ 
+Printer.Print
+Printer.Print
+Printer.Print
+Printer.FontSize = 8
+Printer.Print Tab(15); "****************************"
+Printer.Print Tab(20); "TOTAL ";
+Printer.FontBold = True
+Printer.Print asteriscos(Format$(Me.total, "######0.00"), 15)
+Printer.FontBold = False
+Printer.Print Tab(15); "****************************"
+Printer.Print
+Printer.Print
+Printer.FontSize = 6
+Printer.Print Tab(11); "(Documento no valido como Factura)"
+
+
+Printer.FontSize = 8
+If Y < Val(lc) Then
+      Printer.NewPage
+End If
+Next Y
+ 
+Printer.EndDoc
+End If
+
+End Sub
+
+Sub imprimertoT(c As Integer)
+
+End Sub
+
+Sub imprimerboT(c As Integer)
+l = InputBox("Indique cantidad de Copias", , c)
+If Val(l) > 0 And Val(l) <= 5 Then
+ 
+ For Y = 1 To Val(l)
+   Printer.Print
+   Printer.FontName = "Times New Roman"
+   Printer.FontSize = 10
+   Printer.FontUnderline = True
+   Printer.FontBold = True
+   Printer.Print "RECIBO"
+   Printer.FontSize = 8
+   Printer.Print Tab(30); "Numero:";
+   Printer.FontUnderline = False
+   Printer.FontBold = False
+   Printer.FillStyle = False
+   Printer.Print "  " & Format$(Me.sucursal, "0000") & "-" & Format$(Me.numcomp, "00000000")
+   Printer.FontUnderline = True
+   Printer.FontBold = True
+   Printer.Print Tab(30); "Fecha:";
+   Printer.FontUnderline = False
+   Printer.FontBold = False
+   Printer.Print "  " & Format$(Me.fecha, "dd/mm/yyyy")
+   Printer.FontUnderline = True
+   Printer.FontBold = True
+   Printer.Print
+   Printer.Print Tab(3); "Cliente:"
+   Printer.FontUnderline = False
+   Printer.FontBold = False
+   Set cl_cli = New Clientes
+   cl_cli.carga (Me.idcliente)
+   If cl_cli.id > 0 Then
+      Printer.Print Tab(3); cl_cli.razonsocial
+   Else
+      Printer.Print "  "
+   End If
+   Printer.FontUnderline = True
+   Printer.FontBold = True
+   Printer.Print Tab(3); "Direccion:"
+   Printer.FontUnderline = False
+   Printer.FontBold = False
+   Printer.Print Tab(3); cl_cli.direccion
+   Printer.FontUnderline = True
+   Printer.FontBold = True
+   Printer.Print Tab(3); "Localidad:"
+   Printer.FontUnderline = False
+   Printer.FontBold = False
+   Printer.Print Tab(3); cl_cli.localidad
+   Printer.Print "___________________________________________________________________________________________________"
+   Printer.Print
+   Printer.FontSize = 8
+   Printer.Print "Recibí/mos de " & Left$(cl_cli.razonsocial, 60)
+   Printer.FontSize = 10
+   Printer.Print "___________________________________________________________________________________________________"
+   Printer.Print " "
+   Printer.Print Tab(7); "Son $ "; asteriscos(Format$(Me.total, "######0.00"), 12)
+   Printer.Print " "
+   Printer.FontSize = 5
+   Printer.Print "Pesos: *" & convierte(Me.total) & "*"
+   
+   Printer.FontSize = 8
+   Printer.Print
+   Printer.FontBold = True
+   Printer.Print Tab(3); "Forma de Pago"
+   Printer.FontBold = False
+   Printer.FontName = "Courier new"
+   Printer.FontSize = 6
+   linea = 1
+   Printer.Print "---------------------------------------------------------------"
+   Printer.Print "Tipo       Num.Ch.    Detalle/Banco   Fecha Dif. Importe  "
+   Printer.Print "---------------------------------------------------------------"
+   Set rs = New ADODB.Recordset
+   q = "Select * from vta_04 where [num_int] = " & Me.numint
+   rs.Open q, cn1
+   i = Space$(10)
+   While Not rs.EOF
+    ifp = Format$(rs("id_formapago"), "000")
+    FP = Format$(Left$(rs("formapago"), 5), "@@@@@!")
+    nch = Format$(rs("num_ch"), "0000000000")
+    db = Format$(Left$(rs("detalle_Banco") & " ", 15), "@@@@@@@@@@@@@@@!")
+    fd = Format$(rs("fecha_dif"), "dd/mm/yy")
+    RSet i = Format$(rs("importe"), "######0.00")
+    Printer.Print "(" & ifp & ")" & FP & " " & nch & " " & db & " " & fd & " " & i
+    rs.MoveNext
+    linea = linea + 1
+   Wend
+   Set rs = Nothing
+   
+   Printer.FontSize = 8
+   Printer.Print
+   Printer.FontBold = True
+   Printer.Print Tab(3); "Comprobantes Aplicados"
+   Printer.FontBold = False
+   Printer.FontName = "Courier new"
+   Printer.FontSize = 6
+   Printer.Print "-------------------------------------------------------"
+   Printer.Print "Fecha        Comprobante            Importe   Obs."
+   Printer.Print "-------------------------------------------------------"
+   Set rs = New ADODB.Recordset
+   q = "Select * from vta_02 where [estado_pago] = 'P' and [recibo_pago] = '" & Format$(Me.sucursal, "0000") & "-" & Format$(Me.numcomp, "00000000") & "' AND [ID_TIPOCOMP] <= 10 "
+   rs.Open q, cn1
+   TCOMP = 0
+   While Not rs.EOF
+    Set rs1 = New ADODB.Recordset
+    q = "select * from vta_06 where [id_tipocomp] = " & rs("id_tipocomp") & " and [sucursal] = " & rs("sucursal_INGRESO")
+    rs1.Open q, cn1
+    If Not rs1.EOF And Not rs1.BOF Then
+      d = rs1("abreviatura")
+    Else
+      d = " "
+    End If
+    Set rs1 = Nothing
+    nc = "[" & Format$(rs("id_tipocomp"), "000") & "] " & rs("letra") & Format$(rs("sucursal"), "0000") & "-" & Format$(rs("num_comp"), "00000000")
+    fd = Format$(rs("fecha"), "dd/mm/yyyy")
+    RSet i = Format$(rs("total"), "######0.00")
+    Printer.Print fd & "  " & nc & "  " & i & "  " & d
+    
+    If rs("cta_cte") = "D" Then
+      TCOMP = TCOMP + rs("total")
+    Else
+       TCOMP = TCOMP - rs("total")
+    End If
+       
+    rs.MoveNext
+    linea = linea + 1
+   Wend
+   Set rs = Nothing
+   
+   'saldo = cl_cli.saldo(True, Now, True)
+   'Printer.FontName = "Times New Roman"
+   'Printer.FontSize = 10
+   Printer.Print
+   'Printer.Print " **** Su saldo a la fecha a quedado de --> "; Format$(saldo, "#####0.00"); " ****"
+   Printer.Print "                                                                                                "; "                                       ________________________"
+   Printer.Print "***Comprobante no válido como factura**"
+   Set cl_cli = Nothing
+   If Y < Val(l) Then
+      Printer.NewPage
+   End If
+  Next Y
+  Printer.EndDoc
+End If
+
+End Sub
+
+
 Sub formato7(c As Integer)
   'FORMATO HUGO DIAZ TEXTO
 Dim puerto As String
@@ -6109,7 +6423,130 @@ End If
 
 End Sub
 
+Sub imprimirrtoT(ByVal c As Integer)
 
+'tiquetera no fiscal
+'Idem a Y pero sin membrete(quitado todo el espacio)
+ 
+ If Me.idtipocomp = 45 Then
+   comp = "REMITO  "
+ Else
+   comp = "DEVOLUCION  "
+ End If
+ 
+ 
+lc = InputBox("Indique cantidad de Copias", , c)
+If Val(lc) > 0 And Val(lc) <= 6 Then
+ 
+For Y = 1 To Val(lc)
+ 
+ Printer.FontName = "Times New Roman"
+ cc = Space$(5)
+ cp = Space$(9)
+ cant = Space$(8)
+ pu = Space$(9)
+ dtop = Space$(7)
+ pp = Space$(10)
+ im = Space$(10)
+ s = Space$(10)
+ s2 = Space$(10)
+ dto = Space$(7)
+ i1 = Space$(9)
+ I2 = Space$(9)
+ tot = Space$(10)
+ RSet cc = Format$(Me.idcliente, "0000")
+ n = Format$(Me.razonsocial, "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@!")
+ d = Format$(Me.direccion, "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@!")
+'d22 = Format$(Me.di, "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@!")
+ 
+ l = Format$(Me.localidad, "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@!")
+ di = Format$(Me.abreviatura_tipoiva, "@@@@@@@@@@!")
+ nc = Format$(Me.CUIT, "@@@@@@@@@@@@@@@@!")
+ Printer.FontSize = 14
+ Printer.Print comp
+ Printer.FontSize = 8
+ Printer.Print
+ Printer.Print Spc(30); " Fecha.....: " & Format$(Me.fecha)
+ Printer.Print Spc(30); " Nro.......: "; Me.letra; Spc(1); Format$(Me.sucursal, "0000"); "-"; Format$(Me.numcomp, "00000000")
+ Printer.Print
+ Printer.FontSize = 8
+ Printer.FontBold = False
+ Printer.FontUnderline = True
+ Printer.Print "Cliente:";
+ Printer.FontUnderline = False
+ Printer.Print "["; cc; "]"
+ Printer.FontBold = True
+ Printer.Print n
+ Printer.FontBold = False
+ Printer.FontUnderline = True
+ Printer.Print "Direccion:"
+ Printer.FontBold = False
+ Printer.FontUnderline = False
+ Printer.Print direccion
+ Printer.FontUnderline = True
+ Printer.Print "Localidad:"
+ Printer.FontBold = False
+ Printer.FontUnderline = False
+ Printer.Print localidad
+ Printer.Print
+ Printer.FontName = "Courier New"
+ Printer.FontSize = 7
+ Printer.Print "================================================================================================="
+ Printer.Print "  Cant. Uni Codigo Articulo"
+ Printer.Print "================================================================================================="
+ Set rs = New ADODB.Recordset
+ q = "Select * from vta_03 where [num_int] = " & Me.numint
+ rs.Open q, cn1
+ l = 0
+ While Not rs.EOF
+    d = Format$(Left$(rs("descripcion") & " ", 40), "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@!")
+    pu = Space$(8)
+    i = Space$(9)
+    cant = Space$(7)
+    cp2 = Space$(5)
+    tu = Space$(3)
+    If rs("cantidad_original") > 0 Then
+      RSet cant = Format$(rs("cantidad_original"), "###0.00")
+      RSet cp2 = Format$(rs("id_producto"), "00000")
+      tu = Format$(Left$(rs("tunidad"), 3), "@@@!")
+      
+    End If
+    Printer.Print cant; " "; tu; " "; cp2; Spc(2);
+    Printer.FontBold = True
+    Printer.Print d
+    Printer.FontBold = False
+    
+    rs.MoveNext
+    l = l + 1
+ Wend
+ Set rs = Nothing
+ 
+Printer.Print
+Printer.Print
+Printer.Print "Observaciones.: "
+Printer.Print Me.observaciones
+Printer.Print
+Printer.Print
+Printer.FontSize = 6
+Printer.Print Tab(11); "(Documento no valido como Factura)"
+
+
+Printer.FontSize = 8
+Printer.Print
+Printer.Print
+Printer.Print
+
+
+Next Y
+ 
+Printer.EndDoc
+End If
+
+
+
+
+
+End Sub
 Sub imprimirrtoY(ByVal c As Integer)
 'formato en hoja A4 en blanco grafica  2 x hoja
  

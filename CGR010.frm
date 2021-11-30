@@ -1,6 +1,6 @@
 VERSION 5.00
 Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form cgr_admasientos 
    BackColor       =   &H00E0E0E0&
    Caption         =   "ADMINISTRADOR GENERAL DE ASIENTOS AUTOMATICOS"
@@ -441,7 +441,7 @@ End Sub
 
 
 Private Sub msf1_GotFocus()
-Me.StatusBar1.Panels.Item(1) = "[F3] Asiento Resumen.  - [F4]Saca As. - [F5]Marca Todos -  [F6]Marca As. -  [F8]Borra As. -[F7] Imprime   "
+Me.StatusBar1.Panels.item(1) = "[F3] Asiento Resumen.  - [F4]Saca As. - [F5]Marca Todos -  [F6]Marca As. -  [F8]Borra As. -[F7] Imprime   "
 msf1.FocusRect = flexFocusHeavy
 End Sub
 
@@ -694,15 +694,16 @@ q = "SELECT * FROM c_01, C_02, C_03 WHERE C_02.[num_interno] = " & idas & " and 
 rs.Open q, cn1
 While Not rs.EOF
   cod = rs("c_03.id_cuenta")
-  Detalle = rs("c_03.descripcion")
+  Detalle = rs("c_02.descripcion")
   importe = rs("c_03.importe")
   cuenta = rs("c_01.descripcion")
+  o = rs("observaciones")
   If rs("ubicacion") = "D" Then
        'debe
-       abm_asientos.msf1.AddItem abm_asientos.msf1.Rows & Chr$(9) & cod & Chr$(9) & Detalle & Chr$(9) & Format$(importe, "######0.00") & Chr$(9) & cuenta
+       abm_asientos.msf1.AddItem abm_asientos.msf1.Rows & Chr$(9) & cod & Chr$(9) & Detalle & Chr$(9) & Format$(importe, "######0.00") & Chr$(9) & cuenta & Chr$(9) & o
   Else
        'haber
-       abm_asientos.msf2.AddItem abm_asientos.msf2.Rows & Chr$(9) & cod & Chr$(9) & Detalle & Chr$(9) & Format$(importe, "######0.00") & Chr$(9) & cuenta
+       abm_asientos.msf2.AddItem abm_asientos.msf2.Rows & Chr$(9) & cod & Chr$(9) & Detalle & Chr$(9) & Format$(importe, "######0.00") & Chr$(9) & cuenta & Chr$(9) & o
   End If
   rs.MoveNext
 Wend

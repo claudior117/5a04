@@ -473,7 +473,7 @@ Private Sub c_iva_LostFocus()
 Call cambiacli
 End Sub
 Sub cambiacli()
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select * from g3 where [cod_tipoiva] = " & c_iva.ItemData(c_iva.ListIndex)
 rs.Open q, cn1
 If Not rs.EOF And Not rs.BOF Then

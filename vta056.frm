@@ -79,14 +79,14 @@ Begin VB.Form vta_afip_citi
       Left            =   4800
       TabIndex        =   9
       Top             =   120
-      Width           =   2700
-      _ExtentX        =   4763
+      Width           =   2595
+      _ExtentX        =   4577
       _ExtentY        =   4180
       _Version        =   393216
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   174981121
+      StartOfWeek     =   167706625
       CurrentDate     =   38750
    End
    Begin VB.Frame Frame3 
@@ -211,12 +211,12 @@ Begin VB.Form vta_afip_citi
          BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "12/8/2018"
+            TextSave        =   "16/07/2021"
          EndProperty
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "20:03"
+            TextSave        =   "10:48 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -448,7 +448,7 @@ End Sub
 
 
 Private Sub msf1_GotFocus()
-Me.StatusBar1.Panels.Item(1) = "[F2] Modifica Celda - [F4] Saca Fila - [F5] Archivo Exportacion - [F7] Imprime - [F11] Excel -"
+Me.StatusBar1.Panels.item(1) = "[F2] Modifica Celda - [F4] Saca Fila - [F5] Archivo Exportacion - [F7] Imprime - [F11] Excel -"
 
 End Sub
 
