@@ -423,10 +423,10 @@ Begin VB.Form inicio_vta
                ImageIndex      =   9
             EndProperty
             BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-               Caption         =   "FACT.FLETES"
+               Caption         =   "Tique NF"
                Key             =   "B6"
                Object.ToolTipText     =   "Facturacion de Fletes"
-               ImageIndex      =   8
+               ImageIndex      =   10
             EndProperty
          EndProperty
          OLEDropMode     =   1
@@ -570,12 +570,12 @@ Begin VB.Form inicio_vta
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "16/07/2021"
+            TextSave        =   "03/12/2021"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:21 a.m."
+            TextSave        =   "11:44 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -591,7 +591,7 @@ Begin VB.Form inicio_vta
       MaskColor       =   12632256
       _Version        =   393216
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
-         NumListImages   =   9
+         NumListImages   =   10
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
             Picture         =   "inicio_vta.frx":31FE
             Key             =   ""
@@ -628,6 +628,10 @@ Begin VB.Form inicio_vta
             Picture         =   "inicio_vta.frx":5740
             Key             =   ""
          EndProperty
+         BeginProperty ListImage10 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "inicio_vta.frx":5BCD
+            Key             =   ""
+         EndProperty
       EndProperty
    End
    Begin MSComctlLib.ImageList ImageList1 
@@ -643,27 +647,27 @@ Begin VB.Form inicio_vta
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
          NumListImages   =   6
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "inicio_vta.frx":5BCD
+            Picture         =   "inicio_vta.frx":687F
             Key             =   ""
          EndProperty
          BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "inicio_vta.frx":5EE7
+            Picture         =   "inicio_vta.frx":6B99
             Key             =   ""
          EndProperty
          BeginProperty ListImage3 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "inicio_vta.frx":6201
+            Picture         =   "inicio_vta.frx":6EB3
             Key             =   ""
          EndProperty
          BeginProperty ListImage4 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "inicio_vta.frx":743D
+            Picture         =   "inicio_vta.frx":80EF
             Key             =   ""
          EndProperty
          BeginProperty ListImage5 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "inicio_vta.frx":7757
+            Picture         =   "inicio_vta.frx":8409
             Key             =   ""
          EndProperty
          BeginProperty ListImage6 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "inicio_vta.frx":7C39
+            Picture         =   "inicio_vta.frx":88EB
             Key             =   ""
          EndProperty
       EndProperty
@@ -681,23 +685,23 @@ Begin VB.Form inicio_vta
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
          NumListImages   =   5
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "inicio_vta.frx":8157
+            Picture         =   "inicio_vta.frx":8E09
             Key             =   ""
          EndProperty
          BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "inicio_vta.frx":8785
+            Picture         =   "inicio_vta.frx":9437
             Key             =   ""
          EndProperty
          BeginProperty ListImage3 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "inicio_vta.frx":8DD9
+            Picture         =   "inicio_vta.frx":9A8B
             Key             =   ""
          EndProperty
          BeginProperty ListImage4 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "inicio_vta.frx":93EB
+            Picture         =   "inicio_vta.frx":A09D
             Key             =   ""
          EndProperty
          BeginProperty ListImage5 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "inicio_vta.frx":9A4A
+            Picture         =   "inicio_vta.frx":A6FC
             Key             =   ""
          EndProperty
       EndProperty
@@ -715,19 +719,19 @@ Begin VB.Form inicio_vta
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
          NumListImages   =   4
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "inicio_vta.frx":A075
+            Picture         =   "inicio_vta.frx":AD27
             Key             =   ""
          EndProperty
          BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "inicio_vta.frx":A2DF
+            Picture         =   "inicio_vta.frx":AF91
             Key             =   ""
          EndProperty
          BeginProperty ListImage3 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "inicio_vta.frx":A529
+            Picture         =   "inicio_vta.frx":B1DB
             Key             =   ""
          EndProperty
          BeginProperty ListImage4 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "inicio_vta.frx":A730
+            Picture         =   "inicio_vta.frx":B3E2
             Key             =   ""
          EndProperty
       EndProperty
@@ -745,31 +749,31 @@ Begin VB.Form inicio_vta
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
          NumListImages   =   7
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "inicio_vta.frx":A991
+            Picture         =   "inicio_vta.frx":B643
             Key             =   "B2"
          EndProperty
          BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "inicio_vta.frx":B0DB
+            Picture         =   "inicio_vta.frx":BD8D
             Key             =   "B1"
          EndProperty
          BeginProperty ListImage3 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "inicio_vta.frx":B778
+            Picture         =   "inicio_vta.frx":C42A
             Key             =   "B3"
          EndProperty
          BeginProperty ListImage4 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "inicio_vta.frx":BEA8
+            Picture         =   "inicio_vta.frx":CB5A
             Key             =   "B4"
          EndProperty
          BeginProperty ListImage5 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "inicio_vta.frx":C590
+            Picture         =   "inicio_vta.frx":D242
             Key             =   ""
          EndProperty
          BeginProperty ListImage6 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "inicio_vta.frx":CAE5
+            Picture         =   "inicio_vta.frx":D797
             Key             =   ""
          EndProperty
          BeginProperty ListImage7 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "inicio_vta.frx":CE8A
+            Picture         =   "inicio_vta.frx":DB3C
             Key             =   ""
          EndProperty
       EndProperty
@@ -787,23 +791,23 @@ Begin VB.Form inicio_vta
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
          NumListImages   =   5
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "inicio_vta.frx":DADC
+            Picture         =   "inicio_vta.frx":E78E
             Key             =   ""
          EndProperty
          BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "inicio_vta.frx":E229
+            Picture         =   "inicio_vta.frx":EEDB
             Key             =   ""
          EndProperty
          BeginProperty ListImage3 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "inicio_vta.frx":E9B2
+            Picture         =   "inicio_vta.frx":F664
             Key             =   ""
          EndProperty
          BeginProperty ListImage4 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "inicio_vta.frx":F14C
+            Picture         =   "inicio_vta.frx":FDFE
             Key             =   ""
          EndProperty
          BeginProperty ListImage5 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "inicio_vta.frx":F8E4
+            Picture         =   "inicio_vta.frx":10596
             Key             =   ""
          EndProperty
       EndProperty
@@ -1845,7 +1849,7 @@ Select Case Button.Key
 
 Case Is = "B6"
     If para.id_grupo_modulo_actual >= 5 Then
-      vta_fact_viaje.Show
+      fsc_tiqueNF.Show
     Else
       Call sinpermisos
     End If
@@ -1902,6 +1906,9 @@ Dim impf As String
        fsc_tique.t_impfiscal = impf
      Else
        MsgBox ("La Impresora Fiscal Definida no Imprime Tique")
+         
+         
+     
      End If
     Else
      Call sinpermisos
@@ -1917,7 +1924,7 @@ Dim impf As String
           vta_facturacion.t_cae = "0"
           vta_facturacion.t_cae_vence = "01/01/2000"
     Else
-       MsgBox ("La Impresora Fiscal Definida no Imprime Tique Factura / Factura ")
+         MsgBox ("Impresora Fiscal no emite facturas")
      End If
     Else
      Call sinpermisos

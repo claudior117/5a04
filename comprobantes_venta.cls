@@ -3700,9 +3700,10 @@ Printer.Print Tab(11); "(Documento no valido como Factura)"
 
 
 Printer.FontSize = 8
-If Y < Val(lc) Then
-      Printer.NewPage
-End If
+Printer.Print
+Printer.Print
+Printer.Print
+
 Next Y
  
 Printer.EndDoc
@@ -3850,9 +3851,12 @@ If Val(l) > 0 And Val(l) <= 5 Then
    Printer.Print "                                                                                                "; "                                       ________________________"
    Printer.Print "***Comprobante no válido como factura**"
    Set cl_cli = Nothing
-   If Y < Val(l) Then
-      Printer.NewPage
-   End If
+   
+   Printer.FontSize = 8
+Printer.Print
+Printer.Print
+Printer.Print
+
   Next Y
   Printer.EndDoc
 End If
