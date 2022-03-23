@@ -1,6 +1,6 @@
 VERSION 5.00
 Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form con_verprod 
    BackColor       =   &H00E0E0E0&
    Caption         =   "PRODUCTOS INGRESADOS"
@@ -198,12 +198,12 @@ Begin VB.Form con_verprod
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "27/02/2015"
+            TextSave        =   "11/03/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "09:43"
+            TextSave        =   "08:51 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -349,8 +349,8 @@ Call carga_proveedores(c_prov)
 c_prov.AddItem "<Todos>", 0
 c_prov.ListIndex = 0
 
-Call carga_productos(c_prod)
-c_prod.ListIndex = 0
+'Call carga_productos(c_prod)
+'c_prod.ListIndex = 0
 
 Call carga_tipocomp(c_tipocomp)
 c_tipocomp.AddItem "<Todos>", 0
@@ -363,7 +363,7 @@ Call barraesag(Me)
 End Sub
 
 Private Sub msf1_GotFocus()
-Me.StatusBar1.Panels.Item(2) = "[F7] Imprime - [ENTER] Visualiza Comprobante - [F6] Exporta "
+Me.StatusBar1.Panels.item(2) = "[F7] Imprime - [ENTER] Visualiza Comprobante - [F6] Exporta "
 If msf1.Rows > 1 Then
   msf1.FocusRect = flexFocusNone
 Else
@@ -421,7 +421,7 @@ Private Sub msf1_KeyPress(KeyAscii As Integer)
 If KeyAscii = 13 Then
   If msf1.Row > 0 Then
     Load cc_detalle
-    cc_detalle.T_IDPROV = msf1.TextMatrix(msf1.Row, 1)
+    cc_detalle.t_idprov = msf1.TextMatrix(msf1.Row, 1)
     cc_detalle.t_prov = msf1.TextMatrix(msf1.Row, 2)
     cc_detalle.t_sucursal = Mid$(msf1.TextMatrix(msf1.Row, 5), 3, 4)
     cc_detalle.t_letra = Mid$(msf1.TextMatrix(msf1.Row, 5), 1, 1)

@@ -1,4 +1,5 @@
 Attribute VB_Name = "mo_vta"
+
 Sub verifica_tasa_iva(ByVal ni)
 'verifica y corrige los acumulados de tasa de iva para cada comprobante
 Set rs1 = New ADODB.Recordset
@@ -151,4 +152,15 @@ End If
 Set rs = Nothing
 End Function
 
+Public Function sacaalias() As String
+q = "select cbu from g0 where  [sucursal] = 0"
+Set rs = New ADODB.Recordset
+rs.Open q, cn1
+If Not rs.EOF And Not rs.BOF Then
+  sacaalias = rs("alias")
+Else
+  sacaalias = " "
+End If
+Set rs = Nothing
+End Function
 

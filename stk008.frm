@@ -53,7 +53,7 @@ Begin VB.Form stk_vercomp
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   190971905
+      StartOfWeek     =   111869953
       CurrentDate     =   38754
    End
    Begin MSFlexGridLib.MSFlexGrid msf1 
@@ -271,12 +271,12 @@ Begin VB.Form stk_vercomp
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "03/12/2021"
+            TextSave        =   "23/03/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "12:14 p.m."
+            TextSave        =   "03:12 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -512,7 +512,7 @@ Call carga_obras(c_vend, "A")
 c_vend.AddItem "<Todas>", 0
 c_vend.ListIndex = 0
 
-Call carga_productos(c_prod)
+'Call carga_productos(c_prod)
 c_prod.AddItem "<Todos>", 0
 c_prod.ListIndex = 0
 

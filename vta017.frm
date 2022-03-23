@@ -1,6 +1,6 @@
 VERSION 5.00
+Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
-Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "msflxgrd.ocx"
 Begin VB.Form vta_verremitos 
    BackColor       =   &H00E0E0E0&
    Caption         =   "INFORME DE REMITOS y NOTAS DEVOLUCION"
@@ -353,12 +353,12 @@ Begin VB.Form vta_verremitos
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "31/03/2012"
+            TextSave        =   "11/03/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "07:43 p.m."
+            TextSave        =   "08:51 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -443,7 +443,7 @@ Sub carga()
   tfa = 0
   tpe = 0
   While Not rs.EOF
-     f = rs("fecha")
+     F = rs("fecha")
      CTC = Format$(rs("vta_02.ID_TIPOCOMP"), "000")
      tc = rs("abreviatura")
      nc = rs("letra") & " " & Format$(rs("vta_02.sucursal"), "0000") & "-" & Format$(rs("num_comp"), "00000000")
@@ -488,7 +488,7 @@ Sub carga()
   Else
        t = t - Val(d)
   End If
-  msf1.AddItem f & Chr(9) & cp & Chr(9) & p & Chr(9) & CTC & Chr(9) & tc & Chr(9) & nc & Chr(9) & d & Chr(9) & Format$(fa, "#####0.00") & Chr$(9) & Format$(pe, "#####0.00") & Chr(9) & rs("estado") & Chr(9) & rs("num_int") & Chr(9) & m & Chr(9) & rs("vta_02.observaciones")
+  msf1.AddItem F & Chr(9) & cp & Chr(9) & p & Chr(9) & CTC & Chr(9) & tc & Chr(9) & nc & Chr(9) & d & Chr(9) & Format$(fa, "#####0.00") & Chr$(9) & Format$(pe, "#####0.00") & Chr(9) & rs("estado") & Chr(9) & rs("num_int") & Chr(9) & m & Chr(9) & rs("vta_02.observaciones")
   reg = reg + 1
   Label9 = reg
   Label9.Refresh
@@ -621,7 +621,7 @@ Call carga_clientes(c_prov)
 c_prov.AddItem "<Todos>", 0
 c_prov.ListIndex = 0
 
-Call carga_productos(c_prod)
+'Call carga_productos(c_prod)
 c_prod.AddItem "<Todos>", 0
 c_prod.ListIndex = 0
 
@@ -629,7 +629,7 @@ Call carga_vendedores(c_vend)
 c_vend.AddItem "<Todos>", 0
 c_vend.ListIndex = 0
 
-t_prod = ""
+T_prod = ""
 
 c_estado.ListIndex = 0
 
@@ -655,7 +655,7 @@ End Sub
 
 
 Private Sub msf1_GotFocus()
-Me.StatusBar1.Panels.Item(2) = "[F7] Imprime - [ENTER] Detalla - [F11] Excel"
+Me.StatusBar1.Panels.item(2) = "[F7] Imprime - [ENTER] Detalla - [F11] Excel"
 If msf1.Rows > 1 Then
   msf1.FocusRect = flexFocusNone
 Else
@@ -699,13 +699,13 @@ Private Sub msf1_KeyPress(KeyAscii As Integer)
 If KeyAscii = 13 Then
   If msf1.Row > 0 Then
     Load vta_cc_detalle
-    vta_cc_detalle.T_IDPROV = msf1.TextMatrix(msf1.Row, 1)
+    vta_cc_detalle.t_idprov = msf1.TextMatrix(msf1.Row, 1)
     vta_cc_detalle.t_prov = msf1.TextMatrix(msf1.Row, 2)
     vta_cc_detalle.t_sucursal = Mid$(msf1.TextMatrix(msf1.Row, 5), 3, 4)
     vta_cc_detalle.t_letra = Mid$(msf1.TextMatrix(msf1.Row, 5), 1, 1)
     vta_cc_detalle.t_numcomp = Mid$(msf1.TextMatrix(msf1.Row, 5), 8, 8)
     vta_cc_detalle.t_tipocomp = msf1.TextMatrix(msf1.Row, 3)
-    vta_cc_detalle.t_NUMINT = msf1.TextMatrix(msf1.Row, 10)
+    vta_cc_detalle.t_numint = msf1.TextMatrix(msf1.Row, 10)
     vta_cc_detalle.Show
   End If
 End If
@@ -742,5 +742,5 @@ t_obs = ""
 End Sub
 
 Private Sub t_prod_GotFocus()
-t_prod = ""
+T_prod = ""
 End Sub

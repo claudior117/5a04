@@ -1,6 +1,6 @@
 VERSION 5.00
 Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form stk_pedidos 
    BackColor       =   &H00E0E0E0&
    BorderStyle     =   1  'Fixed Single
@@ -260,12 +260,12 @@ Begin VB.Form stk_pedidos
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "27/02/2015"
+            TextSave        =   "11/03/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "09:43"
+            TextSave        =   "08:51 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -415,7 +415,7 @@ c_prov.AddItem "<Todas>", 0
 c_prov.ListIndex = 0
 t_sucursal = Format$(glo.sucursal, "0000")
 
-Call carga_productos(c_prod)
+'Call carga_productos(c_prod)
 c_prod.AddItem "<Todos>", 0
 c_prod.ListIndex = 0
 
@@ -442,7 +442,7 @@ Unload cc_detalle
 End Sub
 
 Private Sub msf1_GotFocus()
-Me.StatusBar1.Panels.Item(2) = "[INS] Agrega - [ENTER] Modifica - [F5] Elimina - [F9] Ingresa O.C. - [F4] Ver O.C."
+Me.StatusBar1.Panels.item(2) = "[INS] Agrega - [ENTER] Modifica - [F5] Elimina - [F9] Ingresa O.C. - [F4] Ver O.C."
 If msf1.Rows > 1 Then
   msf1.FocusRect = flexFocusNone
 Else

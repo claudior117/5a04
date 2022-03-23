@@ -1,6 +1,6 @@
 VERSION 5.00
 Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form exp_prodreintegro 
    BackColor       =   &H00E0E0E0&
    BorderStyle     =   1  'Fixed Single
@@ -20,7 +20,7 @@ Begin VB.Form exp_prodreintegro
       Caption         =   "Registros"
       Height          =   735
       Left            =   120
-      TabIndex        =   15
+      TabIndex        =   14
       Top             =   7200
       Width           =   1335
       Begin VB.TextBox t_encontrados 
@@ -40,7 +40,7 @@ Begin VB.Form exp_prodreintegro
          Left            =   120
          Locked          =   -1  'True
          MaxLength       =   13
-         TabIndex        =   16
+         TabIndex        =   15
          Top             =   240
          Width           =   1095
       End
@@ -49,20 +49,20 @@ Begin VB.Form exp_prodreintegro
       BackColor       =   &H00E0E0E0&
       Height          =   1095
       Left            =   120
-      TabIndex        =   10
+      TabIndex        =   9
       Top             =   120
       Width           =   7695
       Begin VB.ComboBox c_vend 
          Height          =   315
          Left            =   1440
-         TabIndex        =   14
+         TabIndex        =   13
          Top             =   600
          Width           =   6015
       End
       Begin VB.ComboBox c_prov 
          Height          =   315
          Left            =   1440
-         TabIndex        =   12
+         TabIndex        =   11
          Top             =   240
          Width           =   6015
       End
@@ -72,7 +72,7 @@ Begin VB.Form exp_prodreintegro
          ForeColor       =   &H00FFFFFF&
          Height          =   375
          Left            =   120
-         TabIndex        =   13
+         TabIndex        =   12
          Top             =   600
          Width           =   1215
       End
@@ -82,7 +82,7 @@ Begin VB.Form exp_prodreintegro
          ForeColor       =   &H00FFFFFF&
          Height          =   375
          Left            =   120
-         TabIndex        =   11
+         TabIndex        =   10
          Top             =   240
          Width           =   1215
       End
@@ -92,7 +92,7 @@ Begin VB.Form exp_prodreintegro
       Enabled         =   0   'False
       Height          =   1455
       Left            =   8040
-      TabIndex        =   6
+      TabIndex        =   5
       Top             =   120
       Width           =   3615
       Begin VB.TextBox t_numop 
@@ -100,7 +100,7 @@ Begin VB.Form exp_prodreintegro
          Height          =   285
          Left            =   1680
          MaxLength       =   10
-         TabIndex        =   17
+         TabIndex        =   16
          Top             =   240
          Width           =   1335
       End
@@ -129,7 +129,7 @@ Begin VB.Form exp_prodreintegro
          ForeColor       =   &H00FFFFFF&
          Height          =   375
          Left            =   120
-         TabIndex        =   18
+         TabIndex        =   17
          Top             =   240
          Width           =   1455
       End
@@ -140,7 +140,7 @@ Begin VB.Form exp_prodreintegro
          ForeColor       =   &H00FFFFFF&
          Height          =   375
          Left            =   120
-         TabIndex        =   8
+         TabIndex        =   7
          Top             =   960
          Width           =   1455
       End
@@ -151,7 +151,7 @@ Begin VB.Form exp_prodreintegro
          ForeColor       =   &H00FFFFFF&
          Height          =   375
          Left            =   120
-         TabIndex        =   7
+         TabIndex        =   6
          Top             =   600
          Width           =   1455
       End
@@ -161,7 +161,7 @@ Begin VB.Form exp_prodreintegro
       Caption         =   "Funciones"
       Height          =   975
       Left            =   9720
-      TabIndex        =   3
+      TabIndex        =   2
       Top             =   7320
       Width           =   1575
       Begin VB.CommandButton btnsale 
@@ -170,7 +170,7 @@ Begin VB.Form exp_prodreintegro
          Left            =   840
          Picture         =   "exp002.frx":0000
          Style           =   1  'Graphical
-         TabIndex        =   5
+         TabIndex        =   4
          ToolTipText     =   "Salir sin Modificar"
          Top             =   240
          UseMaskColor    =   -1  'True
@@ -181,18 +181,29 @@ Begin VB.Form exp_prodreintegro
          Left            =   120
          Picture         =   "exp002.frx":0882
          Style           =   1  'Graphical
-         TabIndex        =   4
+         TabIndex        =   3
          ToolTipText     =   "Renueva Lista de Clientes"
          Top             =   240
          UseMaskColor    =   -1  'True
          Width           =   615
       End
    End
+   Begin MSFlexGridLib.MSFlexGrid msf1 
+      Height          =   5295
+      Left            =   120
+      TabIndex        =   8
+      Top             =   1680
+      Width           =   11895
+      _ExtentX        =   20981
+      _ExtentY        =   9340
+      _Version        =   393216
+      Enabled         =   -1  'True
+   End
    Begin MSComctlLib.StatusBar StatusBar1 
       Align           =   2  'Align Bottom
       Height          =   255
       Left            =   0
-      TabIndex        =   2
+      TabIndex        =   19
       Top             =   8415
       Width           =   12240
       _ExtentX        =   21590
@@ -217,26 +228,15 @@ Begin VB.Form exp_prodreintegro
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "27/02/2015"
+            TextSave        =   "19/03/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "09:40"
+            TextSave        =   "11:51 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
-   End
-   Begin MSFlexGridLib.MSFlexGrid msf1 
-      Height          =   5295
-      Left            =   120
-      TabIndex        =   9
-      Top             =   1680
-      Width           =   11895
-      _ExtentX        =   20981
-      _ExtentY        =   9340
-      _Version        =   393216
-      Enabled         =   -1  'True
    End
    Begin VB.Label Label6 
       BackColor       =   &H00FFFFFF&
@@ -253,7 +253,7 @@ Begin VB.Form exp_prodreintegro
       ForeColor       =   &H000000FF&
       Height          =   495
       Left            =   3840
-      TabIndex        =   19
+      TabIndex        =   18
       Top             =   7320
       Width           =   4335
    End
@@ -512,7 +512,7 @@ Unload exp_productos
 End Sub
 
 Private Sub msf1_GotFocus()
-Me.StatusBar1.Panels.Item(2) = "[INS] Agrega - [F8] Borra - [F7] Imprime - [F11] Excel -  "
+Me.StatusBar1.Panels.item(2) = "[INS] Agrega - [F8] Borra - [F7] Imprime - [F11] Excel -  "
 
 End Sub
 

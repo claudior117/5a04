@@ -41,7 +41,7 @@ Begin VB.Form vta_COMPVARIOS1
          MaxLength       =   50
          TabIndex        =   1
          Top             =   840
-         Width           =   5535
+         Width           =   5415
       End
       Begin VB.TextBox t_basico 
          BorderStyle     =   0  'None
@@ -55,11 +55,11 @@ Begin VB.Form vta_COMPVARIOS1
       Begin VB.TextBox t_importe 
          BorderStyle     =   0  'None
          Height          =   405
-         Left            =   10440
-         MaxLength       =   8
+         Left            =   10320
+         MaxLength       =   10
          TabIndex        =   5
          Top             =   840
-         Width           =   975
+         Width           =   1215
       End
       Begin VB.ComboBox c_tasa 
          BeginProperty Font 
@@ -76,25 +76,25 @@ Begin VB.Form vta_COMPVARIOS1
          Style           =   2  'Dropdown List
          TabIndex        =   4
          Top             =   840
-         Width           =   1215
+         Width           =   1095
       End
       Begin VB.TextBox t_pu 
          BorderStyle     =   0  'None
          Height          =   405
-         Left            =   8160
-         MaxLength       =   8
+         Left            =   7920
+         MaxLength       =   10
          TabIndex        =   3
          Top             =   840
-         Width           =   855
+         Width           =   1095
       End
       Begin VB.TextBox t_cantidad 
          BorderStyle     =   0  'None
          Height          =   405
-         Left            =   7200
+         Left            =   7080
          MaxLength       =   8
          TabIndex        =   2
          Top             =   840
-         Width           =   855
+         Width           =   735
       End
       Begin VB.TextBox t_renglon 
          BorderStyle     =   0  'None
@@ -127,7 +127,7 @@ Begin VB.Form vta_COMPVARIOS1
          Left            =   10320
          TabIndex        =   13
          Top             =   240
-         Width           =   1095
+         Width           =   1215
       End
       Begin VB.Label Label4 
          Alignment       =   2  'Center
@@ -203,12 +203,12 @@ Begin VB.Form vta_COMPVARIOS1
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "21/06/2012"
+            TextSave        =   "23/03/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "11:27 a.m."
+            TextSave        =   "09:51 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1

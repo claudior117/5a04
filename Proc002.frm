@@ -1,7 +1,7 @@
 VERSION 5.00
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomctl.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form ver_PROD_oc 
    BackColor       =   &H00E0E0E0&
    Caption         =   "VER PRODUCTOS PENDIENTES EN ORDEN DE COMPRA"
@@ -497,12 +497,12 @@ Begin VB.Form ver_PROD_oc
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "20/11/2015"
+            TextSave        =   "11/03/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "06:27 p.m."
+            TextSave        =   "08:47 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -530,7 +530,7 @@ End Sub
 
 
 Private Sub DataGrid1_GotFocus()
-Me.StatusBar1.Panels.Item(2) = "[F9] Recepcion - "
+Me.StatusBar1.Panels.item(2) = "[F9] Recepcion - "
 
 End Sub
 Sub ARMARECEP()
@@ -604,7 +604,7 @@ End Sub
 Private Sub DataGrid1_KeyPress(KeyAscii As Integer)
 If KeyAscii = 13 Then
     Load cc_detalle
-    cc_detalle.T_IDPROV = DataGrid1.Columns(8).CellValue(DataGrid1.Bookmark)
+    cc_detalle.t_idprov = DataGrid1.Columns(8).CellValue(DataGrid1.Bookmark)
     cc_detalle.t_prov = DataGrid1.Columns(2).CellValue(DataGrid1.Bookmark)
     cc_detalle.t_sucursal = glo.sucursal
     cc_detalle.t_letra = "O"
@@ -684,7 +684,7 @@ End Sub
 
 Private Sub Form_Load()
 
-Call carga_productos(c_prod)
+'Call carga_productos(c_prod)
 c_prod.AddItem "<Todos>", 0
 c_prod.ListIndex = 0
 

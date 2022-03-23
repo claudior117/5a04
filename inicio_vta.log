@@ -1,1 +1,14 @@
-Línea 811: no se puede cargar el control epson4.
+Línea 54: la clase MSComctlLib.Toolbar del control Toolbar8 no era una clase de control cargada.
+Línea 91: la clase MSComctlLib.Toolbar del control Toolbar6 no era una clase de control cargada.
+Línea 166: la clase MSComctlLib.Toolbar del control Toolbar4 no era una clase de control cargada.
+Línea 210: la clase MSComctlLib.Toolbar del control Toolbar5 no era una clase de control cargada.
+Línea 254: la clase MSComctlLib.Toolbar del control Toolbar3 no era una clase de control cargada.
+Línea 335: la clase MSComctlLib.Toolbar del control Toolbar1 no era una clase de control cargada.
+Línea 375: la clase MSComctlLib.Toolbar del control Toolbar2 no era una clase de control cargada.
+Línea 544: la clase MSComctlLib.StatusBar del control StatusBar1 no era una clase de control cargada.
+Línea 583: la clase MSComctlLib.ImageList del control ImageList2 no era una clase de control cargada.
+Línea 637: la clase MSComctlLib.ImageList del control ImageList1 no era una clase de control cargada.
+Línea 675: la clase MSComctlLib.ImageList del control ImageList3 no era una clase de control cargada.
+Línea 709: la clase MSComctlLib.ImageList del control ImageList4 no era una clase de control cargada.
+Línea 739: la clase MSComctlLib.ImageList del control ImageList5 no era una clase de control cargada.
+Línea 781: la clase MSComctlLib.ImageList del control ImageList6 no era una clase de control cargada.

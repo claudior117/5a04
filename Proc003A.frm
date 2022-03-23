@@ -724,12 +724,12 @@ Begin VB.Form ABM_COMP_COMPRA
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "19/08/2020"
+            TextSave        =   "19/03/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "17:06"
+            TextSave        =   "11:44 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -773,7 +773,7 @@ Sub limpia()
    t_nograbado = ""
    t_perc = ""
    t_iva = ""
-   t_total = ""
+   T_TOTAL = ""
    
    
   
@@ -829,7 +829,7 @@ Sub carga()
    If k = 6 Then
      EXISTE = "S"
      t_ni = cl_comp.numint
-     Set rs = New adodb.Recordset
+     Set rs = New ADODB.Recordset
      q = "select * from a6 where [num_int] = " & cl_comp.numint & " order by [renglon]"
      t_fecha = cl_comp.fecha
      t_fechavto = cl_comp.fechavto
@@ -848,10 +848,10 @@ Sub carga()
      t_nograbado = Format$(cl_comp.nograbado, "######0.00")
      t_perc = Format$(cl_comp.percep, "######0.00")
      t_iva = Format$(cl_comp.iva, "######0.00")
-     t_total = Format$(cl_comp.total, "######0.00")
-     totalcompexiste = Val(t_total)
+     T_TOTAL = Format$(cl_comp.total, "######0.00")
+     totalcompexiste = Val(T_TOTAL)
      nicompexiste = cl_comp.numint
-     c_cliente.ListIndex = buscaindice(c_cliente, cl_comp.idcliente)
+     C_CLIENTE.ListIndex = buscaindice(C_CLIENTE, cl_comp.idcliente)
      
      
      
@@ -868,7 +868,7 @@ Sub carga()
      End If
      
      'cargo percepciones
-     Set rs = New adodb.Recordset
+     Set rs = New ADODB.Recordset
      q = "select * from a13, a12 where a13.[id_percepcion] = a12.[id_percepcion] and [num_int] = " & cl_comp.numint
      rs.Open q, cn1
      ABM_COMP_COMPRA2.msf1.clear
@@ -882,7 +882,7 @@ Sub carga()
      
      
      'cargo iva
-     Set rs = New adodb.Recordset
+     Set rs = New ADODB.Recordset
      q = "select * from a23 where [num_int] = " & cl_comp.numint
      rs.Open q, cn1
      Call ABM_COMP_COMPRA5.armagrid
@@ -931,7 +931,7 @@ If Option2 = True Then
            J = MsgBox("No ha ingresado forma de pago, acepta pago total en Efectivo", 4)
            If J = 6 Then
               'pone forma de pago efectivo
-              com_formapago.msf2.AddItem "001" & Chr(9) & 1 & Chr(9) & "-" & Chr(9) & "Efectivo $" & Chr(9) & "-" & Chr(9) & "-" & Chr(9) & Format$(Val(t_total), "######0.00") & Chr(9) & Format$(t_fecha, "DD/MM/YYYY") & Chr(9) & "" & Chr(9) & para.cuenta_caja
+              com_formapago.msf2.AddItem "001" & Chr(9) & 1 & Chr(9) & "-" & Chr(9) & "Efectivo $" & Chr(9) & "-" & Chr(9) & "-" & Chr(9) & Format$(Val(T_TOTAL), "######0.00") & Chr(9) & Format$(t_fecha, "DD/MM/YYYY") & Chr(9) & "" & Chr(9) & para.cuenta_caja
               If c_tipocomp.ItemData(c_tipocomp.ListIndex) <> 5 Then
                 abm_comp_compra3.Show
               Else
@@ -965,11 +965,11 @@ End If
 End Sub
 Function verifica() As Boolean
 v = True
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select * from a15 where [num_int_comp] = " & nicompexiste
 rs.Open q, cn1
 If Not rs.EOF And Not rs.BOF Then
-  If Val(t_total) <> totalcompexiste Then
+  If Val(T_TOTAL) <> totalcompexiste Then
     MsgBox ("El comrpobante tiene asiganadas OP y no pùede modifcarse el importe total del mismo")
     v = False
   End If
@@ -1043,8 +1043,8 @@ Call sacatotales
 End Sub
 
 Private Sub C_cliente_LostFocus()
-If c_cliente.ListIndex < 0 Then
-  c_cliente.ListIndex = 0
+If C_CLIENTE.ListIndex < 0 Then
+  C_CLIENTE.ListIndex = 0
 End If
 End Sub
 
@@ -1148,7 +1148,7 @@ End Sub
 
 Private Sub Command4_Click()
   com_formapago.Show
-  com_formapago.t_total = t_total
+  com_formapago.T_TOTAL = T_TOTAL
 
 End Sub
 
@@ -1178,6 +1178,8 @@ If para.cuenta_sel > 0 Then
   c_cuenta.ListIndex = buscaindice(c_cuenta, para.cuenta_sel)
   para.cuenta_sel = 0
 End If
+
+
 End Sub
 
 Sub mensaje()
@@ -1209,7 +1211,7 @@ Sub grabaformapago()
 
         
        If Val(com_formapago.msf2.TextMatrix(i, 0)) = 3 Then 'ch. terceros
-        Set rs = New adodb.Recordset
+        Set rs = New ADODB.Recordset
         q = "select [estado], [destino], [num_int_op], [fecha_salida], [tipo_salida] from cyb_03 where [num_interno] = " & Val(com_formapago.msf2.TextMatrix(i, 8))
         rs.MaxRecords = 1
         rs.Open q, cn1, adOpenDynamic, adLockOptimistic
@@ -1243,7 +1245,7 @@ Sub grabaformapago()
       
       If Val(com_formapago.msf2.TextMatrix(i, 0)) >= 50 Then 'ch. propios
          
-        Set rs = New adodb.Recordset
+        Set rs = New ADODB.Recordset
         q = "select [estado], [fecha_dif], [fecha_emision], [destino], [importe], [num_int_op] from cyb_02 where [id_banco] = " & Val(com_formapago.msf2.TextMatrix(i, 0)) & " and [num_cheque] = " & Val(com_formapago.msf2.TextMatrix(i, 2))
         rs.MaxRecords = 1
         rs.Open q, cn1, adOpenDynamic, adLockOptimistic
@@ -1288,7 +1290,7 @@ Sub grabaformapago()
       cuentacontra = c_cuenta.ItemData(c_cuenta.ListIndex)
       
       
-      Set rs = New adodb.Recordset
+      Set rs = New ADODB.Recordset
       q = "select [caja] from cyb_01 where [id_forma_pago] = " & Val(com_formapago.msf2.TextMatrix(i, 0))
       rs.MaxRecords = 1
       rs.Open q, cn1
@@ -1339,9 +1341,9 @@ Call carga_cuentas_cont(c_cuenta, "C", "D")
 c_cuenta.AddItem "Sin Imputacion", 0
 c_cuenta.ListIndex = buscaindice(c_cuenta, para.cuenta_inventario)
 
-Call carga_clientes(c_cliente)
-c_cliente.AddItem "<Todos>", 0
-c_cliente.ListIndex = 0
+Call carga_clientes(C_CLIENTE)
+C_CLIENTE.AddItem "<Todos>", 0
+C_CLIENTE.ListIndex = 0
 
 
 
@@ -1376,7 +1378,7 @@ c_zona.ListIndex = 0
 Load com_seloc
 com_seloc.limpia
 
-Load ABM_COMP_COMPRA5
+'Load ABM_COMP_COMPRA5
 
 End Sub
 
@@ -1389,7 +1391,7 @@ Unload com_seloc
 End Sub
 
 Private Sub msf1_GotFocus()
-Me.StatusBar1.Panels.Item(2) = "[INS] Agrega - [ENTER] Modifica - [F5] Elimina - [F9] Continua - [F3] Pendientes "
+Me.StatusBar1.Panels.item(2) = "[INS] Agrega - [ENTER] Modifica - [F5] Elimina - [F9] Continua - [F3] Pendientes "
 If msf1.Rows > 1 Then
   msf1.FocusRect = flexFocusNone
 Else
@@ -1454,7 +1456,7 @@ If EXISTE = "S" Then
     cp = cl_comp.num_op
     
   Else
-    ssi = Val(t_total)
+    ssi = Val(T_TOTAL)
     ep = "N"
     cp = "0000-00000000"
   End If
@@ -1462,7 +1464,7 @@ If EXISTE = "S" Then
 Else
  'no existe
   If Option4 = True Then
-     ssi = Val(t_total)
+     ssi = Val(T_TOTAL)
   Else
      ssi = Val(t_dolares)
   End If
@@ -1520,8 +1522,8 @@ End If
       Set cl_prov = New proveedores
       cl_prov.carga (c_prov.ItemData(c_prov.ListIndex))
       
-      If c_cliente.ListIndex > 0 Then
-        idcli = c_cliente.ItemData(c_cliente.ListIndex)
+      If C_CLIENTE.ListIndex > 0 Then
+        idcli = C_CLIENTE.ItemData(C_CLIENTE.ListIndex)
       Else
         idcli = 0
       End If
@@ -1535,7 +1537,7 @@ End If
       
  QUERY = QUERY & " VALUES (" & numint & ", " & Val(t_sucursal) & ", " & Val(t_numoc) & ", '" & t_letra & "', " & c_tipocomp.ItemData(c_tipocomp.ListIndex) & _
  ", " & c_prov.ItemData(c_prov.ListIndex) & ", '" & t_fecha & "', " & para.id_usuario & ", " & Val(t_subtotal) & ", " & Val(t_nograbado) & ", " & Val(t_perc) & ", " & Val(t_iva) & _
- ", " & Val(t_total) & ", '" & Format$(Now, "dd/mm/yyyy") & "', '" & t_fecha & "', 'A', " & c_ret.ItemData(c_ret.ListIndex) & ", " & c_cuenta.ItemData(c_cuenta.ListIndex) & _
+ ", " & Val(T_TOTAL) & ", '" & Format$(Now, "dd/mm/yyyy") & "', '" & t_fecha & "', 'A', " & c_ret.ItemData(c_ret.ListIndex) & ", " & c_cuenta.ItemData(c_cuenta.ListIndex) & _
  ", '" & cl_comp.STOCK & "', '" & cc & "', '" & cl_comp.grabado & "', '" & ep & "', '" & cp & "', " & c_ib.ItemData(c_ib.ListIndex) & ", '" & t_obs & "', ' ', ' ', '" & moneda & "', " & _
  Val(t_cotiz) & ", '" & ctdo & "', " & tom & ", 0, 0, 0, 0, 0, 0, '" & t_fechavto & "', '" & cl_comp.compra & "', " & ssi & ", " & c_zona.ListIndex + 1 & ", " & Val(com_proveedor.t_cuit) & ", '" & Left$(Trim$(com_proveedor.t_cli), 50) & _
  "', " & idcli & ")"
@@ -1596,7 +1598,7 @@ End If
       
       For i = 1 To msf1.Rows - 1
         'tipoprecio actulaizacion
-        Set rs2 = New adodb.Recordset
+        Set rs2 = New ADODB.Recordset
         q = "select * from g0 where [sucursal] = 0"
         rs2.Open q, cn1
         If rs2("tipo_actu_pu_compra") = "C" Then
@@ -1619,7 +1621,7 @@ End If
         
         'referencias
         If Val(msf1.TextMatrix(i, 8)) > 0 Then 'nro ref.
-            Set rs2 = New adodb.Recordset
+            Set rs2 = New ADODB.Recordset
             q = "select * from pro_04 where [num_referencia] = " & Val(msf1.TextMatrix(i, 8))
             rs2.MaxRecords = 1
             rs2.Open q, cn1, adOpenDynamic, adLockOptimistic
@@ -1644,7 +1646,7 @@ End If
         Else
             'creo una entrada por producto para seguirlo por el sistema
             'num_referencia auto
-            Set rs2 = New adodb.Recordset
+            Set rs2 = New ADODB.Recordset
             q = "select * from pro_04"
             rs2.MaxRecords = 1
             rs2.Open q, cn1, adOpenDynamic, adLockOptimistic
@@ -1676,7 +1678,7 @@ End If
         End If
         
         q = "select * from pro_05 where [num_referencia] = " & nr
-        Set rs2 = New adodb.Recordset
+        Set rs2 = New ADODB.Recordset
         rs2.Open q, cn1, adOpenDynamic, adLockOptimistic
         If Not rs2.EOF And Not rs2.BOF Then
            rs2.MoveLast
@@ -1707,7 +1709,7 @@ End If
               s = Val(msf1.TextMatrix(i, 3))
               COSTOINV = COSTOINV + (costo * s)
               If EXISTE = "N" Then
-                Set rs = New adodb.Recordset
+                Set rs = New ADODB.Recordset
                 q = "select [pedidos] from a2 where [id_producto] = " & Val(msf1.TextMatrix(i, 1))
                 rs.MaxRecords = 1
                 rs.Open q, cn1
@@ -1748,7 +1750,7 @@ End If
         
           If z < 3 Then  'actualizo precio de compra o de venta
             
-            Set rs = New adodb.Recordset
+            Set rs = New ADODB.Recordset
             q = "select * from a2 where [id_producto] = " & Val(msf1.TextMatrix(i, 1))
             rs.Open q, cn1
             If Not rs.EOF And Not rs.BOF Then
@@ -1816,7 +1818,7 @@ End If
          
          'grabo asiento
          QUERY = "INSERT INTO c_02([num_interno], [fecha], [descripcion], [modulo], [num_mov_int], [debe], [haber], [id_USUARIO], [observaciones])"
-         QUERY = QUERY & " VALUES (" & numintcgr & " ,'" & t_fecha & "', '[Compras] " & cl_comp.abreviatura & " " & Format$(Val(t_sucursal), "0000") & "-" & Format$(Val(t_numoc), "00000000") & "', 'C', " & numint & ", " & Val(t_total) & ", " & Val(t_total) & ", " & para.id_usuario & ", '" & Left$(RTrim$(c_prov), 50) & "')"
+         QUERY = QUERY & " VALUES (" & numintcgr & " ,'" & t_fecha & "', '[Compras] " & cl_comp.abreviatura & " " & Format$(Val(t_sucursal), "0000") & "-" & Format$(Val(t_numoc), "00000000") & "', 'C', " & numint & ", " & Val(T_TOTAL) & ", " & Val(T_TOTAL) & ", " & para.id_usuario & ", '" & Left$(RTrim$(c_prov), 50) & "')"
          cn1.Execute QUERY
       
          ic = 1
@@ -1826,7 +1828,7 @@ End If
           If Option1 = True Then
            'ingresa deudores
            cta = para.cuenta_acreedores
-           Set rs = New adodb.Recordset
+           Set rs = New ADODB.Recordset
            q = "select * from c_01 where [id_cuenta] = " & cta
            rs.Open q, cn1
            If Not rs.EOF And Not rs.BOF Then
@@ -1837,14 +1839,14 @@ End If
            Set rs = Nothing
            
            QUERY = "INSERT INTO c_03([num_interno], [renglon], [id_cuenta], [ubicacion], [importe], [descripcion])"
-           QUERY = QUERY & " VALUES (" & numintcgr & ", " & ic & ", " & cta & ", '" & u1 & "', " & Format(Val(t_total), "######0.00") & ", '" & dcta & "')"
+           QUERY = QUERY & " VALUES (" & numintcgr & ", " & ic & ", " & cta & ", '" & u1 & "', " & Format(Val(T_TOTAL), "######0.00") & ", '" & dcta & "')"
            cn1.Execute QUERY
            ic = ic + 1
           Else
            'ingresa forma de pago
             For i = 1 To com_formapago.msf2.Rows - 1
                cta = Val(com_formapago.msf2.TextMatrix(i, 9))
-               Set rs = New adodb.Recordset
+               Set rs = New ADODB.Recordset
                q = "select * from c_01 where [id_cuenta] = " & cta
                rs.Open q, cn1
                If Not rs.EOF And Not rs.BOF Then
@@ -1947,7 +1949,7 @@ End Sub
 Sub actureq(r As Long)
 'actualizo requisiciones
           p = 0
-          Set rs = New adodb.Recordset
+          Set rs = New ADODB.Recordset
           q = "select * from a3 where [id_renglon] = " & r
           rs.Open q, cn1, adOpenStatic, adLockOptimistic
           If Not rs.EOF And Not rs.BOF Then
@@ -2140,14 +2142,14 @@ Else
   t_iva = Format$(Val(t_subtotal) * Val(c_alicuota) / 100, "######0.00")
 End If
 
-t_total = Format$(Val(t_subtotal) + Val(t_nograbado) + Val(t_perc) + Val(t_iva), "######0.00")
+T_TOTAL = Format$(Val(t_subtotal) + Val(t_nograbado) + Val(t_perc) + Val(t_iva), "######0.00")
 If Val(t_cotiz) < 1 Then
    t_cotiz = 1
 End If
 If Option4 = True Then
-  t_dolares = Format$(Val(t_total) / Val(t_cotiz), "#####0.00")
+  t_dolares = Format$(Val(T_TOTAL) / Val(t_cotiz), "#####0.00")
 Else
-  t_dolares = Format$(Val(t_total) * Val(t_cotiz), "#####0.00")
+  t_dolares = Format$(Val(T_TOTAL) * Val(t_cotiz), "#####0.00")
 End If
 End Sub
 

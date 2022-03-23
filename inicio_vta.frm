@@ -570,12 +570,12 @@ Begin VB.Form inicio_vta
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "03/12/2021"
+            TextSave        =   "15/02/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "11:44 a.m."
+            TextSave        =   "05:36 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -1056,6 +1056,7 @@ Private Sub b_facte_Click()
  vta_facturacion.t_sucursal = Format$(glo.sucursale, "0000")
  vta_facturacion.c_sucursal.ListIndex = buscaindice(vta_facturacion.c_sucursal, glo.sucursale)
  vta_facturacion.c_sucursal.Enabled = False
+ vta_facturacion.Option3 = False
 End Sub
 
 Private Sub b_probarconexion_Click()
@@ -1195,6 +1196,15 @@ Case Is = 1721 'électrinica sin boton facturacion en pc que factura
     If glo.sucursale <> 0 Then
        Toolbar2.Buttons(1).Enabled = False
     End If
+    
+    Toolbar5.Visible = False
+
+Case Is = 9315 'fotos
+    'Frame3.Visible = True
+    Frame11.Visible = False
+    Frame9.Visible = False
+    Frame3.Visible = False
+    
     
     Toolbar5.Visible = False
 
@@ -1973,7 +1983,7 @@ If glo.sucursalf > 0 Then
        espere.Label1 = "Espere.... Emitiendo Cierre X"
       
       'nuevo codigo driver IF Universal
-       'Dim Fiscal As Driver
+      'Dim Fiscal As Driver
        Set fiscal = New Driver
   
        fiscal.Modelo = cMODELO

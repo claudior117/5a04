@@ -2,17 +2,17 @@ VERSION 5.00
 Begin VB.Form frmAbout 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Acerca de GESTIONE"
-   ClientHeight    =   3555
+   ClientHeight    =   3990
    ClientLeft      =   2340
    ClientTop       =   1935
-   ClientWidth     =   5940
+   ClientWidth     =   6630
    ClipControls    =   0   'False
    LinkTopic       =   "Form2"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   2453.724
+   ScaleHeight     =   2753.969
    ScaleMode       =   0  'User
-   ScaleWidth      =   5577.967
+   ScaleWidth      =   6225.913
    ShowInTaskbar   =   0   'False
    Begin VB.PictureBox picIcon 
       AutoSize        =   -1  'True
@@ -56,7 +56,7 @@ Begin VB.Form frmAbout
    End
    Begin VB.Label Label5 
       Alignment       =   2  'Center
-      Caption         =   "Última actualización 5/12/2021    569"
+      Caption         =   "Última actualización 23/03/2022    579"
       ForeColor       =   &H00000000&
       Height          =   285
       Left            =   1200
@@ -122,7 +122,7 @@ Begin VB.Form frmAbout
    End
    Begin VB.Label lblVersion 
       Alignment       =   2  'Center
-      Caption         =   "Sistema de Gestion para Empresas   V 11.0   216"
+      Caption         =   "Sistema de Gestion para Empresas   V 11.0   217"
       ForeColor       =   &H00800080&
       Height          =   465
       Left            =   720

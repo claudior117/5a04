@@ -1,6 +1,6 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
-Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "msflxgrd.ocx"
+Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
+Object = "{6B7E6392-850A-101B-AFC0-4210102A8DA7}#1.3#0"; "COMCTL32.OCX"
 Begin VB.Form ABM_COMP_COMPRA2 
    BackColor       =   &H00E0E0E0&
    Caption         =   "INGRESO DE PERCEPCIONES/RETENCIONES"
@@ -14,10 +14,34 @@ Begin VB.Form ABM_COMP_COMPRA2
    ScaleHeight     =   4905
    ScaleWidth      =   8445
    StartUpPosition =   3  'Windows Default
+   Begin ComctlLib.StatusBar StatusBar1 
+      Align           =   2  'Align Bottom
+      Height          =   255
+      Left            =   0
+      TabIndex        =   11
+      Top             =   4650
+      Width           =   8445
+      _ExtentX        =   14896
+      _ExtentY        =   450
+      SimpleText      =   ""
+      _Version        =   327682
+      BeginProperty Panels {0713E89E-850A-101B-AFC0-4210102A8DA7} 
+         NumPanels       =   1
+         BeginProperty Panel1 {0713E89F-850A-101B-AFC0-4210102A8DA7} 
+            Object.Width           =   14111
+            MinWidth        =   14111
+            Text            =   ""
+            TextSave        =   ""
+            Key             =   ""
+            Object.Tag             =   ""
+            Object.ToolTipText     =   ""
+         EndProperty
+      EndProperty
+   End
    Begin VB.TextBox t_modulo 
       Height          =   495
       Left            =   3480
-      TabIndex        =   10
+      TabIndex        =   9
       Text            =   "Text1"
       Top             =   4320
       Visible         =   0   'False
@@ -28,13 +52,13 @@ Begin VB.Form ABM_COMP_COMPRA2
       Caption         =   "Ingreso Percepcion"
       Height          =   975
       Left            =   240
-      TabIndex        =   2
+      TabIndex        =   1
       Top             =   0
       Width           =   8055
       Begin VB.ComboBox c_concepto 
          Height          =   315
          Left            =   4440
-         TabIndex        =   6
+         TabIndex        =   5
          Top             =   600
          Width           =   3495
       End
@@ -42,14 +66,14 @@ Begin VB.Form ABM_COMP_COMPRA2
          Height          =   285
          Left            =   3120
          MaxLength       =   14
-         TabIndex        =   5
+         TabIndex        =   4
          Top             =   600
          Width           =   1215
       End
       Begin VB.ComboBox c_perc 
          Height          =   315
          Left            =   1080
-         TabIndex        =   4
+         TabIndex        =   3
          Top             =   600
          Width           =   1935
       End
@@ -57,7 +81,7 @@ Begin VB.Form ABM_COMP_COMPRA2
          Enabled         =   0   'False
          Height          =   285
          Left            =   120
-         TabIndex        =   3
+         TabIndex        =   2
          Top             =   600
          Width           =   855
       End
@@ -67,7 +91,7 @@ Begin VB.Form ABM_COMP_COMPRA2
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   4440
-         TabIndex        =   11
+         TabIndex        =   10
          Top             =   240
          Width           =   3495
       End
@@ -77,7 +101,7 @@ Begin VB.Form ABM_COMP_COMPRA2
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   3120
-         TabIndex        =   9
+         TabIndex        =   8
          Top             =   240
          Width           =   1335
       End
@@ -87,7 +111,7 @@ Begin VB.Form ABM_COMP_COMPRA2
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   1080
-         TabIndex        =   8
+         TabIndex        =   7
          Top             =   240
          Width           =   2055
       End
@@ -97,7 +121,7 @@ Begin VB.Form ABM_COMP_COMPRA2
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   120
-         TabIndex        =   7
+         TabIndex        =   6
          Top             =   240
          Width           =   975
       End
@@ -111,45 +135,6 @@ Begin VB.Form ABM_COMP_COMPRA2
       _ExtentX        =   14631
       _ExtentY        =   7223
       _Version        =   393216
-   End
-   Begin MSComctlLib.StatusBar StatusBar1 
-      Align           =   2  'Align Bottom
-      Height          =   255
-      Left            =   0
-      TabIndex        =   1
-      Top             =   4650
-      Width           =   8445
-      _ExtentX        =   14896
-      _ExtentY        =   450
-      _Version        =   393216
-      BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
-         NumPanels       =   4
-         BeginProperty Panel1 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
-            Alignment       =   1
-            Object.Width           =   4410
-            MinWidth        =   4410
-            Text            =   "Cliente"
-            TextSave        =   "Cliente"
-         EndProperty
-         BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
-            Alignment       =   1
-            Object.Width           =   11465
-            MinWidth        =   11465
-            Text            =   "Sistema"
-            TextSave        =   "Sistema"
-         EndProperty
-         BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
-            Style           =   6
-            Alignment       =   1
-            TextSave        =   "16/08/2011"
-         EndProperty
-         BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
-            Style           =   5
-            Alignment       =   1
-            TextSave        =   "08:53 a.m."
-         EndProperty
-      EndProperty
-      OLEDropMode     =   1
    End
 End
 Attribute VB_Name = "ABM_COMP_COMPRA2"
@@ -166,7 +151,7 @@ Sub limpia()
    t_nograbado = ""
    t_perc = ""
    t_iva = ""
-   t_total = ""
+   T_TOTAL = ""
   
 End Sub
 
@@ -225,7 +210,7 @@ If c_perc.ListIndex < 0 Then
   c_perc.ListIndex = 0
 End If
 q = "select * from a12 where [id_percepcion] = " & c_perc.ItemData(c_perc.ListIndex)
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 rs.Open q, cn1
 If Not rs.EOF And Not rs.BOF Then
   Select Case rs("impuesto12")
@@ -276,7 +261,7 @@ Sub cargarenglon()
   d = c_perc
   im = Format$(t_importe, "#####0.00")
   q = "select * from a12 where [id_percepcion] = " & c_perc.ItemData(c_perc.ListIndex)
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   rs.Open q, cn1
   If Not rs.EOF And Not rs.BOF Then
      cta = rs("id_cuenta")
@@ -328,7 +313,7 @@ Call barraesag(Me)
 End Sub
 
 Private Sub msf1_GotFocus()
-Me.StatusBar1.Panels.Item(2) = "[INS] Agrega - [ENTER] Modifica - [F5] Elimina - [F9] Sale"
+Me.StatusBar1.Panels.item(1) = "[INS] Agrega - [ENTER] Modifica - [F5] Elimina - [F9] Sale"
 If msf1.Rows > 1 Then
   msf1.FocusRect = flexFocusNone
 Else

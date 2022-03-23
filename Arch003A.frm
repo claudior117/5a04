@@ -549,7 +549,7 @@ End If
 End Sub
 
 Private Sub DataGrid1_GotFocus()
-Me.StatusBar1.Panels.Item(1) = "[ENTER]Detalle - [F3] Arma Sol.Cot. - [F4] Modificacion Manual - [F6]Arma Rto. - [F7] Imprime - [F8] Borra Ingreso - [F9] Arma O.C. - [F5] Imp. Comp."
+Me.StatusBar1.Panels.item(1) = "[ENTER]Detalle - [F3] Arma Sol.Cot. - [F4] Modificacion Manual - [F6]Arma Rto. - [F7] Imprime - [F8] Borra Ingreso - [F9] Arma O.C. - [F5] Imp. Comp."
 
 End Sub
 
@@ -894,8 +894,8 @@ If t_fecha2 <> "" Then
   c = " and "
 End If
 
-If c_Obra.ListIndex > 0 Then
-  q = q & c & " pro_04.[id_obra] = " & c_Obra.ItemData(c_Obra.ListIndex)
+If C_OBRA.ListIndex > 0 Then
+  q = q & c & " pro_04.[id_obra] = " & C_OBRA.ItemData(C_OBRA.ListIndex)
   c = " and "
 End If
 
@@ -910,7 +910,7 @@ DataGrid1.Refresh
 End Sub
 
 Private Sub Form_Load()
-Call carga_productos(c_prod)
+'Call carga_productos(c_prod)
 c_prod.AddItem "<Todos>", 0
 c_prod.ListIndex = 0
 
@@ -918,9 +918,9 @@ Call carga_usuarios(c_usuario)
 c_usuario.AddItem "<Todos>", 0
 c_usuario.ListIndex = 0
 
-Call carga_obras(c_Obra, "A")
-c_Obra.AddItem "<Todas>", 0
-c_Obra.ListIndex = 0
+Call carga_obras(C_OBRA, "A")
+C_OBRA.AddItem "<Todas>", 0
+C_OBRA.ListIndex = 0
 
 
 Call barraesag(Me)

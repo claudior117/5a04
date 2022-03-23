@@ -1,7 +1,7 @@
 VERSION 5.00
 Object = "{0A6BE9FC-5039-11D5-98EC-0800460222F0}#1.0#0"; "IFEpson.ocx"
 Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form vta_actu_listaprov 
    BackColor       =   &H00E0E0E0&
    Caption         =   "ACTUALIZA PRECIOS desde LISTA DE PRECIOS DEL PROVEEDOR en EXCEL"
@@ -464,12 +464,12 @@ Begin VB.Form vta_actu_listaprov
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "05/11/2013"
+            TextSave        =   "11/03/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "8:49"
+            TextSave        =   "12:46 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -505,7 +505,7 @@ Sub limpia()
    t_nograbado = ""
    t_perc = ""
    t_iva = ""
-   t_total = ""
+   T_TOTAL = ""
    Option1 = True
    
 End Sub
@@ -553,8 +553,8 @@ Sub actualiza()
     Dim o_Excel     As Object
     Dim o_Libro     As Object
     Dim o_Hoja      As Object
-    Dim F        As Long
-    Dim c     As Long
+    Dim F        As Integer
+    Dim c     As Integer
     Dim CODIGO As String
    Dim nombrehoja As String
    

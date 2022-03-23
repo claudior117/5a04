@@ -1,7 +1,7 @@
 Línea 26: la clase MSComctlLib.Toolbar del control Toolbar3 no era una clase de control cargada.
 Línea 63: la clase MSComctlLib.Toolbar del control Toolbar2 no era una clase de control cargada.
-Línea 96: la clase MSComctlLib.Toolbar del control Toolbar1 no era una clase de control cargada.
-Línea 266: la clase MSComctlLib.StatusBar del control StatusBar1 no era una clase de control cargada.
-Línea 305: la clase MSComctlLib.ImageList del control ImageList1 no era una clase de control cargada.
-Línea 323: la clase MSComctlLib.ImageList del control ImageList2 no era una clase de control cargada.
-Línea 341: la clase MSComctlLib.ImageList del control ImageList3 no era una clase de control cargada.
+Línea 100: la clase MSComctlLib.Toolbar del control Toolbar1 no era una clase de control cargada.
+Línea 270: la clase MSComctlLib.StatusBar del control StatusBar1 no era una clase de control cargada.
+Línea 309: la clase MSComctlLib.ImageList del control ImageList1 no era una clase de control cargada.
+Línea 327: la clase MSComctlLib.ImageList del control ImageList2 no era una clase de control cargada.
+Línea 349: la clase MSComctlLib.ImageList del control ImageList3 no era una clase de control cargada.

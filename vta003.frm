@@ -254,12 +254,12 @@ Begin VB.Form vta_facturacion1
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "01/01/2006"
+            TextSave        =   "19/03/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "12:39 a.m."
+            TextSave        =   "11:44 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -319,7 +319,7 @@ For i = 0 To 9
 Next i
 c_tasa.ListIndex = 0
 
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select [recargo_cc] from g0 where [sucursal] = 0"
 rs.Open q, cn1
 If Not rs.BOF And Not rs.EOF Then
@@ -346,7 +346,7 @@ If KeyCode = vbKeyF8 Then
 End If
 
 If KeyCode = vbKeyF6 And t_renglon = "" Then
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   q = "select * from g0 where [sucursal] = 0"
   rs.Open q, cn1
   d1 = rs("descuento1")
@@ -363,7 +363,7 @@ If KeyCode = vbKeyF6 And t_renglon = "" Then
 End If
 
 If KeyCode = vbKeyF7 And t_renglon = "" Then
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   q = "select * from g0 where [sucursal] = 0"
   rs.Open q, cn1
   d2 = rs("descuento2")
@@ -419,7 +419,7 @@ End If
 End Sub
 Sub busca(tipo As String)
 'tipo = I por id_producto tipo = B por cod_barra
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select * from a2, g5, g12 where a2.[id_unidad] = g5.[id_unidad] and a2.[id_tasaib] = g12.[id_tasaib] "
 If tipo = "I" Then
   q = q & " and [id_producto] = " & Val(t_basico)
@@ -428,26 +428,54 @@ Else
 End If
 rs.MaxRecords = 1
 rs.Open q, cn1
+precio21 = 0
+
 If Not rs.BOF And Not rs.EOF Then
   t_detalle = rs("descripcion")
+  
+  
   If para.tipoprecioventa = 1 Then
-    t_pu = rs("precio_final")
+    precio21 = rs("precio_final")
   Else
-    t_pu = rs("pu")
+    precio21 = rs("pu")
   End If
-  If Val(t_pu) = 0 Then
+  If precio21 = 0 Then
     t_pu = ""
   Else
+  
+   If vta_facturacion.Option4 = True Then
+     If rs("moneda") = "P" Then
+        'factura en $ y producto en $
+        t_pu = precio21
+        t_costo = rs("costoreal")
+        
+     Else
+        'factura en $ y producto en U$s
+        t_pu = precio21 * Val(vta_facturacion.t_cotizacion)
+        t_costo = rs("costoreal") * Val(vta_facturacion.t_cotizacion)
+     End If
+  Else
+        If rs("moneda") = "D" Then
+        'factura en U$s y producto en U$s
+           t_pu = precio21
+           t_costo = rs("costoreal")
+     Else
+        'factura en u$s y producto en $
+        t_pu = precio21 / Val(vta_facturacion.t_cotizacion)
+        t_costo = rs("costoreal") / Val(vta_facturacion.t_cotizacion)
+     End If
+  End If
+   
    If vta_facturacion.Option1 = True And grecargocc > 0 Then
        r = (Val(t_pu) * grecargocc) / 100
        t_pu = Format(Val(t_pu) + r, "#####0.00")
    End If
   End If
   
+  t_pu = Format$(Val(t_pu), "#####0.00")
   c_tasa.ListIndex = rs("cod_tasaiva")
   t_ip = rs("id_producto")
   t_unidad = rs("unidad")
-  t_costo = rs("costoreal")
   t_tasaib = rs("tasaib")
   
 Else
@@ -526,7 +554,7 @@ Sub cargarenglon(t As String)
   If vta_facturacion.c_tipocomp.ListIndex = 0 And vta_facturacion.Option1 Then
     If vta_facturacion.Option4 Then
      'pesos
-     tpl = Val(vta_facturacion.t_total)
+     tpl = Val(vta_facturacion.T_TOTAL)
     Else
      tpl = Val(vta_facturacion.T_total2)
     End If

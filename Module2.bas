@@ -45,7 +45,7 @@ Public Type varudt 'se crea una estructura para los parametros
    muestraagenda As String
    tipoprecioventa As Integer 'define el tipo de precio venta a utilizar 0 pu  1 pf
    password_adm  As String
-   Fiscal As Integer ' 0 NO  1 SI
+   fiscal As Integer ' 0 NO  1 SI
    IMPRESORA_PREDETERMINADA As String
    impresora_actual As String
    cuenta_compras_varias As Long
@@ -93,19 +93,19 @@ Public cl_chterc As chterceros
 Public cl_banco As bancos
 Public cl_padronib As padron_ib
 Public cl_stock As STOCK
-Public cl_fiscal As Fiscal
+Public cl_fiscal As fiscal
 
 
 
 Public a_nr() As String 'array de numeros de requesicion
-Public cnib As adodb.Connection
-Public cnrep As adodb.Connection
+Public cnib As ADODB.Connection
+Public cnrep As ADODB.Connection
 
 'factura electronica
 Dim WSAA As Object, WSFEv1 As Object
 
 'controlador fiscal nuevo protocolo (2020)
-Public Fiscal As Driver
+Public fiscal As Driver
 Public cMODELO As Integer
 Public cPUERTO As Integer
 Public cBAUDIOS As Long
@@ -115,7 +115,7 @@ Public Function busca_saldos_prov(ByVal cp As Long, ByVal m As String, ByVal F A
     'busca saldos  cp a= cod. proveedor   m = moneda p pesos d dolares f = fecha hasta
     q = "select * from a5 where [id_proveedor] = " & cp & " and [ctacte] <> 'N' "
     q = q & " and datevalue([fecha]) < datevalue('" & F & "')"
-    Set rs = New adodb.Recordset
+    Set rs = New ADODB.Recordset
     rs.Open q, cn1
     da = 0
     ha = 0
@@ -135,7 +135,7 @@ End Function
 
 Public Function sacaactividadsucursal(ByVal s As Integer) As Integer
  'devuelve la actividad comercial predefinida para la sucursal s
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   q = "select * from g8 where [sucursal_predefinida] = " & s
   rs.Open q, cn1
   If Not rs.EOF And Not rs.BOF Then
@@ -156,7 +156,7 @@ Public Function abrirconexion(u As String, p As String) As Boolean   'proc. que 
  
   abrirconexion = False
   On Error GoTo manerr
-  Set cn1 = New adodb.Connection
+  Set cn1 = New ADODB.Connection
   gconexion = "Provider=Microsoft.Jet.oledb.4.0;Data Source=" & App.Path & "\dat\5a04.mdb;User id=" & u & ";password=" & p & ";" & "Jet OLEDB:System database=" & App.Path & "\SEG\system1.mdw;"
  
  ' (sql) gconexion = "Provider=SQLOLEDB; Initial Catalog=5a04sql; Data Source=(local)\SQL5A04; integrated security=SSPI; persist security info=True;"
@@ -186,7 +186,7 @@ Public Function abrirconexionib() As Boolean   'proc. que abre la conexion con l
   p = "0969"
   abrirconexionib = False
   On Error GoTo manerr
-  Set cnib = New adodb.Connection
+  Set cnib = New ADODB.Connection
   gconexion = "Provider=Microsoft.Jet.oledb.4.0;Data Source=" & App.Path & "\dat\pib.mdb;User id=" & u & ";password=" & p & ";" & "Jet OLEDB:System database=" & App.Path & "\SEG\system2.mdw;"
  
   cnib.Open gconexion
@@ -203,7 +203,7 @@ End Function
 Public Function codproddesdebarras(ByVal codbarra As Double)
 'devuelve el id del producto teniendo el cod. de barras
 cp = 0
-Set rscb = New adodb.Recordset
+Set rscb = New ADODB.Recordset
 q = "select * from a2 where [cod_barras] = " & codbarra
 rscb.Open q, cn1
 If Not rscb.EOF And Not rscb.BOF Then
@@ -219,7 +219,7 @@ Public Function abrirconexionrep() As Boolean 'proc. que abre la conexion con la
   p = "0969"
   abrirconexionrep = False
   'On Error GoTo manerr
-  Set cnrep = New adodb.Connection
+  Set cnrep = New ADODB.Connection
   gconexion = "Provider=Microsoft.Jet.oledb.4.0;Data Source=" & "c:\5a04\rep\dat\rep2.mdb;"
   cnrep.Open gconexion
   abrirconexionrep = True
@@ -237,12 +237,13 @@ End Function
 
 Sub barraesag(p_form As Form)
 'BARRA ESTADO
-p_form.StatusBar1.Panels.Item(1) = "[ENTER] Avanza - [Up] Regresa - [ESC] Sale - [F4] Abre Combo -  [F12] Tools"
+p_form.StatusBar1.Panels.item(1) = "[ENTER] Avanza - [Up] Regresa - [ESC] Sale - [F4] Abre Combo -  [F12] Tools"
+
 End Sub
 
 Sub barracgr(p_form As Form)
 'BARRA ESTADO
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select * from c_10 where [id_periodo] = " & para.id_periodo_contable
 rs.Open q, cn1
 If Not rs.EOF And Not rs.BOF Then
@@ -252,9 +253,9 @@ Else
 End If
 Set rs = Nothing
 'FIXIT: 'StatusBar1.Panels.Item(1' no es una propiedad del objeto genérico 'Form' en Visual Basic .NET. Para obtener acceso a 'StatusBar1.Panels.Item(1', declare 'p_form' utilizando su tipo real en lugar de 'Form'     FixIT90210ae-R1460-RCFE85
-p_form.StatusBar1.Panels.Item(1) = "Periodo Trabajo: " & t & " (" & para.id_periodo_contable & ")"
+p_form.StatusBar1.Panels.item(1) = "Periodo Trabajo: " & t & " (" & para.id_periodo_contable & ")"
 'FIXIT: 'StatusBar1.Panels.Item(2' no es una propiedad del objeto genérico 'Form' en Visual Basic .NET. Para obtener acceso a 'StatusBar1.Panels.Item(2', declare 'p_form' utilizando su tipo real en lugar de 'Form'     FixIT90210ae-R1460-RCFE85
-p_form.StatusBar1.Panels.Item(2) = "[ENTER] Avanza - [Up] Regresa - [ESC] Regresa - [F4] Despliega"
+p_form.StatusBar1.Panels.item(2) = "[ENTER] Avanza - [Up] Regresa - [ESC] Regresa - [F4] Despliega"
 
 End Sub
 Sub ejecutareporte(a As Adodc, r As Report)
@@ -291,7 +292,7 @@ End Sub
 Function saca_ultnumero_comp(ByVal tc As Integer) As Long
 'devuelve el ultimo numero utilizado del comprobante Y ACTUALIZA BASE
 
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select [ult_num] from g2 where [id_tipo_comp] = " & tc
 rs.MaxRecords = 1
 rs.Open q, cn1, adOpenStatic, adLockOptimistic
@@ -310,7 +311,7 @@ End Function
 Function saca_ultnumero_comp2(ByVal tc As Integer) As Long
 'devuelve el ultimo numero utilizado del comprobante SIN ACTUALIZA R BASE
 
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select [ult_num] from g2 where [id_tipo_comp] = " & tc
 rs.MaxRecords = 1
 rs.Open q, cn1, adOpenStatic, adLockOptimistic
@@ -327,7 +328,7 @@ End Function
 Function saca_ultnumero_int_comp(modulo As String) As Long
 'devuelve el ultimo numero interno modulo = C Compras // modulo = V ventas
 
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select [ult_num_int_comp], [ult_num_int_vta], [ult_num_int_cgr], [ult_num_int_prod]  from g0 where [sucursal] = " & 0
 rs.MaxRecords = 1
 rs.Open q, cn1, adOpenStatic, adLockOptimistic

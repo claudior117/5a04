@@ -19,14 +19,14 @@ Begin VB.Form abm_asientos
       BackColor       =   &H00E0E0E0&
       Height          =   615
       Left            =   3600
-      TabIndex        =   30
+      TabIndex        =   29
       Top             =   7440
       Width           =   3975
       Begin VB.CommandButton Command3 
          Caption         =   "Renumera Items"
          Height          =   255
          Left            =   2040
-         TabIndex        =   32
+         TabIndex        =   31
          Top             =   240
          Width           =   1455
       End
@@ -34,7 +34,7 @@ Begin VB.Form abm_asientos
          Caption         =   "Acumula Cuentas"
          Height          =   255
          Left            =   120
-         TabIndex        =   31
+         TabIndex        =   30
          Top             =   240
          Width           =   1455
       End
@@ -42,7 +42,7 @@ Begin VB.Form abm_asientos
    Begin VB.Frame Frame7 
       Height          =   1215
       Left            =   0
-      TabIndex        =   23
+      TabIndex        =   22
       Top             =   6000
       Width           =   11775
       Begin VB.TextBox t_diferencia 
@@ -58,7 +58,7 @@ Begin VB.Form abm_asientos
          Height          =   360
          Left            =   5040
          Locked          =   -1  'True
-         TabIndex        =   29
+         TabIndex        =   28
          Top             =   720
          Width           =   1455
       End
@@ -75,7 +75,7 @@ Begin VB.Form abm_asientos
          Height          =   360
          Left            =   9240
          Locked          =   -1  'True
-         TabIndex        =   27
+         TabIndex        =   26
          Top             =   240
          Width           =   1455
       End
@@ -92,7 +92,7 @@ Begin VB.Form abm_asientos
          Height          =   360
          Left            =   3240
          Locked          =   -1  'True
-         TabIndex        =   25
+         TabIndex        =   24
          Top             =   240
          Width           =   1455
       End
@@ -112,7 +112,7 @@ Begin VB.Form abm_asientos
          ForeColor       =   &H00FFFFFF&
          Height          =   375
          Left            =   2040
-         TabIndex        =   28
+         TabIndex        =   27
          Top             =   720
          Width           =   2895
       End
@@ -132,7 +132,7 @@ Begin VB.Form abm_asientos
          ForeColor       =   &H00FFFFFF&
          Height          =   375
          Left            =   6600
-         TabIndex        =   26
+         TabIndex        =   25
          Top             =   240
          Width           =   2535
       End
@@ -152,7 +152,7 @@ Begin VB.Form abm_asientos
          ForeColor       =   &H00FFFFFF&
          Height          =   375
          Left            =   600
-         TabIndex        =   24
+         TabIndex        =   23
          Top             =   240
          Width           =   2535
       End
@@ -162,7 +162,7 @@ Begin VB.Form abm_asientos
       Caption         =   "HABER"
       Height          =   4215
       Left            =   6000
-      TabIndex        =   22
+      TabIndex        =   21
       Top             =   1680
       Width           =   5775
       Begin MSFlexGridLib.MSFlexGrid msf2 
@@ -195,7 +195,7 @@ Begin VB.Form abm_asientos
       Caption         =   "DEBE"
       Height          =   4215
       Left            =   0
-      TabIndex        =   21
+      TabIndex        =   20
       Top             =   1680
       Width           =   5895
       Begin MSFlexGridLib.MSFlexGrid msf1 
@@ -227,7 +227,7 @@ Begin VB.Form abm_asientos
       BackColor       =   &H00E0E0E0&
       Height          =   1095
       Left            =   8400
-      TabIndex        =   16
+      TabIndex        =   15
       Top             =   240
       Width           =   3255
       Begin VB.TextBox t_id 
@@ -237,7 +237,7 @@ Begin VB.Form abm_asientos
          Left            =   1680
          Locked          =   -1  'True
          MaxLength       =   5
-         TabIndex        =   18
+         TabIndex        =   17
          Top             =   240
          Width           =   1455
       End
@@ -248,7 +248,7 @@ Begin VB.Form abm_asientos
          Left            =   1680
          Locked          =   -1  'True
          MaxLength       =   10
-         TabIndex        =   17
+         TabIndex        =   16
          Top             =   720
          Width           =   1455
       End
@@ -268,7 +268,7 @@ Begin VB.Form abm_asientos
          ForeColor       =   &H00FFFFFF&
          Height          =   495
          Left            =   120
-         TabIndex        =   20
+         TabIndex        =   19
          Top             =   240
          Width           =   1455
       End
@@ -288,7 +288,7 @@ Begin VB.Form abm_asientos
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   120
-         TabIndex        =   19
+         TabIndex        =   18
          Top             =   720
          Width           =   1455
       End
@@ -297,7 +297,7 @@ Begin VB.Form abm_asientos
       BackColor       =   &H00E0E0E0&
       Height          =   735
       Left            =   120
-      TabIndex        =   9
+      TabIndex        =   8
       Top             =   7440
       Width           =   2535
       Begin VB.TextBox t_funcion 
@@ -305,7 +305,7 @@ Begin VB.Form abm_asientos
          Height          =   405
          Left            =   1680
          MaxLength       =   1
-         TabIndex        =   10
+         TabIndex        =   9
          Top             =   240
          Width           =   615
       End
@@ -316,7 +316,7 @@ Begin VB.Form abm_asientos
          ForeColor       =   &H00FFFFFF&
          Height          =   375
          Left            =   120
-         TabIndex        =   11
+         TabIndex        =   10
          Top             =   240
          Width           =   1335
       End
@@ -326,7 +326,7 @@ Begin VB.Form abm_asientos
       Caption         =   "Asiento"
       Height          =   1455
       Left            =   0
-      TabIndex        =   8
+      TabIndex        =   7
       Top             =   0
       Width           =   10455
       Begin VB.CommandButton Command2 
@@ -334,7 +334,7 @@ Begin VB.Form abm_asientos
          Left            =   9600
          Picture         =   "CGR006.frx":0000
          Style           =   1  'Graphical
-         TabIndex        =   15
+         TabIndex        =   14
          Top             =   1560
          Width           =   615
       End
@@ -361,7 +361,7 @@ Begin VB.Form abm_asientos
       Begin MSComCtl2.UpDown UpDown1 
          Height          =   375
          Left            =   3600
-         TabIndex        =   14
+         TabIndex        =   13
          Top             =   360
          Width           =   255
          _ExtentX        =   450
@@ -385,7 +385,7 @@ Begin VB.Form abm_asientos
          ForeColor       =   &H00FFFFFF&
          Height          =   615
          Left            =   240
-         TabIndex        =   13
+         TabIndex        =   12
          Top             =   360
          Width           =   1575
       End
@@ -405,7 +405,7 @@ Begin VB.Form abm_asientos
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   240
-         TabIndex        =   12
+         TabIndex        =   11
          Top             =   960
          Width           =   1575
       End
@@ -415,7 +415,7 @@ Begin VB.Form abm_asientos
       Caption         =   "Funciones"
       Height          =   975
       Left            =   10200
-      TabIndex        =   5
+      TabIndex        =   4
       Top             =   7200
       Width           =   1575
       Begin VB.CommandButton btnsale 
@@ -424,7 +424,7 @@ Begin VB.Form abm_asientos
          Left            =   840
          Picture         =   "CGR006.frx":0105
          Style           =   1  'Graphical
-         TabIndex        =   7
+         TabIndex        =   6
          ToolTipText     =   "Salir sin Modificar"
          Top             =   240
          UseMaskColor    =   -1  'True
@@ -435,7 +435,7 @@ Begin VB.Form abm_asientos
          Left            =   120
          Picture         =   "CGR006.frx":0987
          Style           =   1  'Graphical
-         TabIndex        =   6
+         TabIndex        =   5
          ToolTipText     =   "Renueva Lista de Clientes"
          Top             =   240
          UseMaskColor    =   -1  'True
@@ -446,7 +446,7 @@ Begin VB.Form abm_asientos
       Align           =   2  'Align Bottom
       Height          =   255
       Left            =   0
-      TabIndex        =   4
+      TabIndex        =   32
       Top             =   8205
       Width           =   11850
       _ExtentX        =   20902
@@ -471,12 +471,12 @@ Begin VB.Form abm_asientos
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "23/11/2020"
+            TextSave        =   "19/03/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "05:17 p.m."
+            TextSave        =   "11:50 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -525,7 +525,7 @@ If J = 6 Then
        a1 = Val(a & m & "000")
        a2 = Val(a & m & "999")
       
-       Set rs = New adodb.Recordset
+       Set rs = New ADODB.Recordset
        q = "select * from c_11 where [año] = " & Val(a) & " and [mes] = " & Val(m)
        rs.Open q, cn1, adOpenDynamic, adLockOptimistic
        If Not rs.EOF And Not rs.BOF Then
@@ -805,7 +805,7 @@ Call armagrid2
 Load abm_asientos2
 
 'saco fechas del periodo
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select * from c_10 where [id_periodo] = " & para.id_periodo_contable
 rs.Open q, cn1
 If Not rs.EOF And Not rs.BOF Then

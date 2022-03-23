@@ -120,7 +120,7 @@ Begin VB.Form actu_inicio
    Begin VB.Label Label3 
       Alignment       =   2  'Center
       BackColor       =   &H0000FFFF&
-      Caption         =   "216"
+      Caption         =   "217"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   18
@@ -312,6 +312,8 @@ Case Is = 215
     Call actu215
  Case Is = 216
     Call actu216
+ Case Is = 217
+    Call actu217
  Case Is = 999
    Call actu999
    
@@ -2235,6 +2237,43 @@ err1:
 Resume Next
 End Sub
 
+
+Sub actu217()
+'agrega alias (bancaria) a G0 para emision de FCE
+h = MsgBox("Actualizacion 217 . ¿Esta seguro que quiere actualizar?  ", 4)
+If h = 6 Then
+  
+  
+  espere.Show
+  espere.Refresh
+    
+    
+   
+   cn1.BeginTrans
+     q = "alter table g0 add column [alias] string(150)  "
+     cn1.Execute q
+   
+  q = "update g0 set  [actualizacion]=217, alias='" & "Alias Banco" & "'"
+  q = q & " where [sucursal]=0 "
+  
+   cn1.Execute q
+    
+  cn1.CommitTrans
+  
+   
+    
+   MsgBox ("Operación Completa. Si tiene sistema de Facturacion electronica es obligatorio informar CBU y Alias cuetnta bancaria")
+   
+ Unload espere
+  
+End If
+
+Exit Sub
+
+
+err1:
+Resume Next
+End Sub
 Sub actu167()
 
 h = MsgBox("Actualizacion 167 . ¿Esta seguro que quiere actualizar?  ", 4)

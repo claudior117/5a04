@@ -86,7 +86,7 @@ Begin VB.Form fsc_tiqueNF
       End
       Begin VB.Label Label3 
          Alignment       =   2  'Center
-         BackColor       =   &H00FF0000&
+         BackColor       =   &H0000C000&
          Caption         =   "Fecha:"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
@@ -378,7 +378,7 @@ Begin VB.Form fsc_tiqueNF
       End
       Begin VB.Label Label1 
          Alignment       =   2  'Center
-         BackColor       =   &H00FF0000&
+         BackColor       =   &H0000C000&
          Caption         =   "Comprobante:"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
@@ -466,7 +466,7 @@ Sub limpia()
    t_nograbado = ""
    t_perc = ""
    t_iva = ""
-   T_TOTAL = ""
+   t_total = ""
    Option1 = True
    
 End Sub
@@ -566,7 +566,7 @@ msf1.clear
 msf1.Rows = 1
 msf1.Cols = 11
 msf1.ColWidth(0) = 500
-msf1.ColWidth(1) = 700
+msf1.ColWidth(1) = 1000
 msf1.ColWidth(2) = 5000
 msf1.ColWidth(3) = 1100
 msf1.ColWidth(4) = 900
@@ -679,7 +679,7 @@ For i = 1 To msf1.Rows - 1
       Wend
 
 Next i
-T_TOTAL = t
+t_total = t
 t_subtotal = tin
 t_iva = t - tin
   
@@ -704,7 +704,7 @@ End Sub
 
 Sub cargarenglon2(t As String)
 
-  ip = "(" & fsc_tiqueNF1.t_ip & ")"
+  ip = fsc_tiqueNF1.t_ip
   d = fsc_tiqueNF1.t_detalle
   cu = Format$(Val(fsc_tiqueNF1.t_cantidad), "#####0.000")
   ti = Format$(fsc_tiqueNF1.c_tasa, "####0.00")
@@ -814,11 +814,11 @@ If KeyCode = vbKeyF4 Then
 If KeyCode = vbKeyF9 Then
   Call CALCULATOTALES
   Call sacatotales
-  If Val(T_TOTAL) > 0 Then
+  If Val(t_total) > 0 Then
    'J = MsgBox("Cierra Tiquet", 4)
    'If J = 6 Then
      Call renumera
-     fsc_tiqueNF2.T_TOTAL = T_TOTAL
+     fsc_tiqueNF2.t_total = t_total
      fsc_tiqueNF2.Show
      fsc_tiqueNF2.Refresh
    'End If
@@ -831,12 +831,12 @@ End If
 
  
 If KeyCode = vbKeyF6 Then
- If msf1.Rows > 1 And Val(T_TOTAL) > 0 Then
+ If msf1.Rows > 1 And Val(t_total) > 0 Then
    J = InputBox$("Ingrese % a  bonificar, luego el tique se cerrará", " % BONICICACION", "")
    If Val(J) > 0 And Val(J) < 100 Then
-          dto = (Val(T_TOTAL) * Val(J)) / 100
+          dto = (Val(t_total) * Val(J)) / 100
           r = msf1.Rows
-          msf1.AddItem r & Chr(9) & Format$(1, "00000") & Chr(9) & "Bonificación " & J & "%" & Chr(9) & 1 & Chr(9) & "" & Chr$(9) & Format$(-Val(dto), "######0.00") & Chr(9) & 0 & Chr(9) & Format$(-Val(dto), "######0.00") & Chr(9) & Format$(-Val(dto), "######0.00") & Chr(9) & 0 & Chr$(9) & 0
+          msf1.AddItem r & Chr(9) & Format$(1, "00000") & Chr(9) & "Bonificación " & J & "%" & Chr(9) & 1 & Chr(9) & " " & Chr$(9) & Format$(-Val(dto), "######0.00") & Chr(9) & 0 & Chr(9) & Format$(-Val(dto), "######0.00") & Chr(9) & Format$(-Val(dto), "######0.00") & Chr(9) & 0 & Chr$(9) & 0
            Call CALCULATOTALES
         ' SendKeys "{F9}" 'cierra el tique
    End If
@@ -859,7 +859,7 @@ End Sub
 
 Sub cierratique2()
 Dim r As Boolean
-If estadotique = "A" And Val(T_TOTAL) > 0 Then
+If estadotique = "A" And Val(t_total) > 0 Then
   'cierro tique
   espere.Show
   espere.Label1 = "Espere Actualizando Contadores...."
@@ -871,6 +871,9 @@ If estadotique = "A" And Val(T_TOTAL) > 0 Then
    espere.Label1 = "Espere Grabando Tique...."
    espere.Label1.Refresh
    Call graba
+   
+   
+   
    
    Unload espere
  Else
@@ -931,8 +934,8 @@ Sub graba()
     "[alicuota_perc_iva], [canje_cereal], [fecha_vto], [total_bultos], [valor_declarado], [transporte], [direccion_transp], [cuit_transp], [perc_ss], [sucursal_ingreso], [cliente02], [direccion02], [cuit02], [localidad02], [id_tipo_iva02], [saldo_impago02], [num_z])"
 
     QUERY = QUERY & " VALUES (" & numint & ", " & Val(t_sucursal) & ", " & Val(t_numcomp) & ", '" & t_letra & "', 310, 1" & _
-    ", '" & t_fecha & "', " & para.id_usuario & ", " & Val(t_subtotal) & ", " & Val(t_nograbado) & ", " & Val(t_iva) & ", " & Val(T_TOTAL) & ", 'A', " & cuentaact & ", '" & cl_compvta.STOCK & "', '" & _
-    cl_compvta.ctacte & "', '" & cl_compvta.grabado & "', '" & ep & "', '0000-00000000', 'Tq.Ctdo', " & para.cotizacion & ", " & Format(Val(T_TOTAL) / para.cotizacion, "######0.00") & ", '" & moneda & "', " & codvend & ", '" & _
+    ", '" & t_fecha & "', " & para.id_usuario & ", " & Val(t_subtotal) & ", " & Val(t_nograbado) & ", " & Val(t_iva) & ", " & Val(t_total) & ", 'A', " & cuentaact & ", '" & cl_compvta.STOCK & "', '" & _
+    cl_compvta.ctacte & "', '" & cl_compvta.grabado & "', '" & ep & "', '0000-00000000', 'Tq.Ctdo', " & para.cotizacion & ", " & Format(Val(t_total) / para.cotizacion, "######0.00") & ", '" & moneda & "', " & codvend & ", '" & _
     cl_compvta.venta & "', '" & contado & "', " & Val(t_perc) & ", 0, " & Val(t_perciva) & ", " & codact & ", " & Val(t_alicuotaib) & ", " & Val(t_alicuotaperciva) & ", 0 , '" & t_fecha & "', 0, 0, ' ', ' ', ' ', 0, " & Val(t_sucursal) & ", 'Tique Contado' , ' ', ' ', '00-00000000-0', 3, 0, " & para.z_actual & ")"
     
     cn1.Execute QUERY
@@ -949,7 +952,7 @@ Sub graba()
         End If
         
         QUERY = "INSERT INTO vta_03([num_int], [RENGLON], [id_producto], [descripcion], [cantidad], [pu], [importe], [tasaiva], [impuesto], [costo], [cantidad_original], [tunidad], [pu_final], [tasaib])"
-        QUERY = QUERY & " VALUES (" & numint & ", " & Val(msf1.TextMatrix(i, 0)) & ", " & Val(msf1.TextMatrix(i, 1)) & ", '" & msf1.TextMatrix(i, 2) & " ', " & Val(msf1.TextMatrix(i, 3)) & ", " & Val(msf1.TextMatrix(i, 5)) & ", " & Val(msf1.TextMatrix(i, 7)) & ", " & Val(msf1.TextMatrix(i, 6)) & ", 0, " & costo & ", " & Val(msf1.TextMatrix(i, 3)) & ", '" & msf1.TextMatrix(i, 4) & "', " & Val(msf1.TextMatrix(i, 8)) & ", " & Val(msf1.TextMatrix(i, 10)) & ")"
+        QUERY = QUERY & " VALUES (" & numint & ", " & Val(msf1.TextMatrix(i, 0)) & ", " & Val(msf1.TextMatrix(i, 1)) & ", '" & msf1.TextMatrix(i, 2) & " ', " & Val(msf1.TextMatrix(i, 3)) & ", " & Val(msf1.TextMatrix(i, 8)) & ", " & Val(msf1.TextMatrix(i, 7)) & ", " & Val(msf1.TextMatrix(i, 6)) & ", 0, " & costo & ", " & Val(msf1.TextMatrix(i, 3)) & ", '" & msf1.TextMatrix(i, 4) & "', " & Val(msf1.TextMatrix(i, 5)) & ", " & Val(msf1.TextMatrix(i, 10)) & ")"
         cn1.Execute QUERY
       
         If cl_compvta.STOCK <> "N" Then
@@ -1021,7 +1024,7 @@ Sub graba()
          
          'grabo asiento
          QUERY = "INSERT INTO c_02([num_interno], [fecha], [descripcion], [modulo], [num_mov_int], [debe], [haber], [id_USUARIO], [observaciones])"
-         QUERY = QUERY & " VALUES (" & numintcgr & " ,'" & t_fecha & "', '[Ventas] " & cl_compvta.abreviatura & " " & t_letra & Format$(Val(t_sucursal), "0000") & "-" & Format$(Val(t_numcomp), "00000000") & "', 'V', " & numint & ", " & Val(T_TOTAL) & ", " & Val(T_TOTAL) & ", " & para.id_usuario & ", 'Tique Ctdo.')"
+         QUERY = QUERY & " VALUES (" & numintcgr & " ,'" & t_fecha & "', '[Ventas] " & cl_compvta.abreviatura & " " & t_letra & Format$(Val(t_sucursal), "0000") & "-" & Format$(Val(t_numcomp), "00000000") & "', 'V', " & numint & ", " & Val(t_total) & ", " & Val(t_total) & ", " & para.id_usuario & ", 'Tique Ctdo.')"
          cn1.Execute QUERY
       
          
@@ -1081,7 +1084,7 @@ Sub graba()
          
          'contrapartida
          If cl_compvta.grabado = "N" Then
-           importe = Val(T_TOTAL)
+           importe = Val(t_total)
          Else
            importe = Val(t_subtotal)
          End If
@@ -1126,23 +1129,25 @@ Sub graba()
       End If
     End If
       
-      cn1.CommitTrans
-      Set rs = Nothing
-      Set cl_compvta = Nothing
-      Set cl_cli = Nothing
+     cn1.CommitTrans
+     Set rs = Nothing
+     Set cl_compvta = Nothing
+     Set cl_cli = Nothing
 
-      
-      
-      
-      Call INICIALIZA2(Me)
-      Call armagrid
-      Call fsc_formapago.armagrid2
-      t_sucursal = Format$(glo.sucursal, "0000")
-      t_letra = "B"
-      t_fecha = Format$(Now, "dd/mm/yyyy")
-      estadotique = "C" 'cerrado
-      t_numcomp.Enabled = True
-      t_numcomp.SetFocus
+
+     Set cl_compvta = New comprobantes_venta
+     cl_compvta.cargar2 (numint)
+     cl_compvta.imprimir
+     
+     Call INICIALIZA2(Me)
+     Call armagrid
+     Call fsc_formapago.armagrid2
+     t_sucursal = Format$(glo.sucursal, "0000")
+     t_letra = "B"
+     t_fecha = Format$(Now, "dd/mm/yyyy")
+     estadotique = "C" 'cerrado
+     t_numcomp.Enabled = True
+     t_numcomp.SetFocus
 Exit Sub
 
 ERRORGRABA:
@@ -1178,7 +1183,7 @@ End Sub
 Sub iniciatique()
   Call armagrid
   t_numcomp = ""
-  T_TOTAL = ""
+  t_total = ""
   t_numcomp.Enabled = True
   t_numcomp.SetFocus
 End Sub
@@ -1310,7 +1315,7 @@ t_subtotal = Format$(Val(t_subtotal), "######0.00")
 't_perc = Format$(Val(t_perc), "######0.00")
 t_iva = Format$(Val(t_iva), "######0.00")
 't_perciva = Format$(Val(t_perciva), "######0.00")
-T_TOTAL = Format$(Val(T_TOTAL), "######0.00")
+t_total = Format$(Val(t_total), "######0.00")
 End Sub
 
 Private Sub t_sucursal_GotFocus()
@@ -1322,6 +1327,6 @@ Call inicia
 End Sub
 
 Private Sub t_total_LostFocus()
-T_TOTAL = Format$(T_TOTAL, "######0.00")
+t_total = Format$(t_total, "######0.00")
 End Sub
 

@@ -1,7 +1,7 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
-Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
 Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCT2.OCX"
+Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form vta_informevta6 
    BackColor       =   &H00E0E0E0&
    BorderStyle     =   1  'Fixed Single
@@ -178,7 +178,7 @@ Begin VB.Form vta_informevta6
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   130023425
+      StartOfWeek     =   107544577
       CurrentDate     =   38750
    End
    Begin VB.Frame Frame3 
@@ -290,12 +290,12 @@ Begin VB.Form vta_informevta6
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "15/08/2013"
+            TextSave        =   "11/03/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:14"
+            TextSave        =   "08:54 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -648,7 +648,7 @@ End Sub
 
 Sub armagrid()
 'armar grilla
-msf1.Clear
+msf1.clear
 msf1.Rows = 1
 msf1.Cols = 8
 msf1.ColWidth(0) = 700
@@ -700,7 +700,7 @@ Call carga_vendedores(c_vend)
 c_vend.AddItem "<Todos>", 0
 c_vend.ListIndex = 0
 
-Call carga_productos(c_prod)
+'Call carga_productos(c_prod)
 c_prod.AddItem "<Todos>", 0
 c_prod.ListIndex = 0
 
@@ -718,7 +718,7 @@ End Sub
 
 
 Private Sub msf1_GotFocus()
-Me.StatusBar1.Panels.Item(2) = "[F7] Imprime - [F11] Excel"
+Me.StatusBar1.Panels.item(2) = "[F7] Imprime - [F11] Excel"
 
 End Sub
 
@@ -767,7 +767,7 @@ If KeyAscii = 13 Then
     Else
      If Val(msf1.TextMatrix(msf1.Row, 7)) > 0 Then
       Load vta_cc_detalle
-      vta_cc_detalle.t_NUMINT = Val(msf1.TextMatrix(msf1.Row, 7))
+      vta_cc_detalle.t_numint = Val(msf1.TextMatrix(msf1.Row, 7))
       vta_cc_detalle.Show
      End If
     End If

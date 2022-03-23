@@ -3468,6 +3468,8 @@ Select Case Me.idtipocomp
   Case Is = 150
        Call imprimirempaque(copias)
   
+  Case Is = 310
+       Call imprimirTiqueNF(1)
   
 End Select
 
@@ -3711,7 +3713,106 @@ End If
 
 End Sub
 
-Sub imprimertoT(c As Integer)
+Sub imprimirTiqueNF(c As Integer)
+'tiquetera no fiscal
+'Idem a Y pero sin membrete(quitado todo el espacio)
+ 
+ 'arma lista de remitos
+  
+ comp = "Nota Venta Contado "
+  
+lc = InputBox("Indique cantidad de Copias", , c)
+If Val(lc) > 0 And Val(lc) <= 6 Then
+ 
+For Y = 1 To Val(lc)
+ 
+ Printer.FontName = "Times New Roman"
+ cc = Space$(5)
+ cp = Space$(9)
+ cant = Space$(8)
+ pu = Space$(9)
+ dtop = Space$(7)
+ pp = Space$(10)
+ im = Space$(10)
+ s = Space$(10)
+ s2 = Space$(10)
+ dto = Space$(7)
+ i1 = Space$(9)
+ I2 = Space$(9)
+ tot = Space$(10)
+  Printer.FontSize = 10
+  Printer.FontSize = 8
+ Printer.Print
+ Printer.Print Spc(30); " Fecha.....: " & Format$(Me.fecha)
+ Printer.Print Spc(30); " Nro.......: "; Me.letra; Spc(1); Format$(Me.sucursal, "0000"); "-"; Format$(Me.numcomp, "00000000")
+ Printer.Print
+ Printer.Print
+ Printer.FontName = "Courier New"
+ Printer.FontSize = 7
+ Printer.Print "================================================================================================="
+ Printer.Print "  Cant. Uni Codigo Articulo"
+ Printer.Print Tab(30); "P.U    IMPORTE"
+ Printer.Print "================================================================================================="
+ Set rs = New ADODB.Recordset
+ q = "Select * from vta_03 where [num_int] = " & Me.numint
+ rs.Open q, cn1
+ l = 0
+ While Not rs.EOF
+    d = Format$(Left$(rs("descripcion") & " ", 40), "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@!")
+    pu = Space$(8)
+    i = Space$(9)
+    cant = Space$(7)
+    cp2 = Space$(6)
+    tu = Space$(3)
+    If rs("cantidad_original") > 0 Then
+      RSet cant = Format$(rs("cantidad_original"), "###0.00")
+      RSet cp2 = Format$(rs("id_producto"), "000000")
+      tu = Format$(Left$(rs("tunidad"), 3), "@@@!")
+      RSet pu = Format$(rs("PU_FINAL"), "####0.00")
+      RSet i = Format$(rs("PU_FINAL") * rs("cantidad_original"), "######0.00")
+    
+    End If
+    Printer.Print cant; " "; tu; " "; cp2; Spc(2);
+    Printer.FontBold = True
+    Printer.Print d
+    Printer.FontBold = False
+    Printer.Print Tab(27); pu; " "; i
+    
+    rs.MoveNext
+    l = l + 1
+ Wend
+ Set rs = Nothing
+ 
+Printer.Print
+Printer.Print
+Printer.Print
+Printer.FontSize = 8
+Printer.Print Tab(15); "****************************"
+Printer.Print Tab(20); "TOTAL ";
+Printer.FontBold = True
+Printer.Print asteriscos(Format$(Me.total, "######0.00"), 15)
+Printer.FontBold = False
+Printer.Print Tab(15); "****************************"
+Printer.Print
+Printer.Print
+Printer.FontSize = 6
+Printer.Print Tab(11); "(Documento no valido como Factura)"
+
+
+Printer.FontSize = 8
+Printer.Print
+Printer.Print
+Printer.Print
+
+If Y < Val(lc) Then
+  Printer.Print Chr(27) & "i"
+End If
+
+
+Next Y
+ 
+Printer.EndDoc
+End If
 
 End Sub
 
