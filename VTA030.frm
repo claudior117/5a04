@@ -1,6 +1,6 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form vta_listaprecios4 
    BackColor       =   &H00E0E0E0&
    BorderStyle     =   1  'Fixed Single
@@ -178,12 +178,12 @@ Begin VB.Form vta_listaprecios4
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "15/06/2012"
+            TextSave        =   "04/04/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:26 a.m."
+            TextSave        =   "02:24 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -247,7 +247,7 @@ Sub carga()
   rs.Open q, cn1
   co = 0
   While Not rs.EOF
-     f = Format$(rs("a5.fecha"), "dd/mm/yy")
+     F = Format$(rs("a5.fecha"), "dd/mm/yy")
      nc = rs("letra") & " " & Format$(rs("sucursal"), "0000") & "-" & Format$(rs("num_comprobante"), "00000000")
      p = rs("denominacion")
      m = rs("moneda")
@@ -257,7 +257,7 @@ Sub carga()
      c = Format$(rs("cantidad"), "#####0.00")
      pd = Format$(rs("pu"), "#####0.00")
      CUIT = rs("cuit05")
-     msf1.AddItem p & Chr(9) & CUIT & Chr$(9) & f & Chr(9) & pu & Chr(9) & d & Chr(9) & ti & Chr(9) & pd & Chr(9) & c & Chr(9) & m & Chr(9) & nc & Chr(9) & rs("a5.num_int")
+     msf1.AddItem p & Chr(9) & CUIT & Chr$(9) & F & Chr(9) & pu & Chr(9) & d & Chr(9) & ti & Chr(9) & pd & Chr(9) & c & Chr(9) & m & Chr(9) & nc & Chr(9) & rs("a5.num_int")
      co = co + 1
     rs.MoveNext
   Wend
@@ -286,10 +286,11 @@ Sub carga2()
   
   q = q & " order by [fecha] desc, [letra], [num_comp]"
   Set rs = New ADODB.Recordset
+ 
    rs.Open q, cn1
   co = 0
   While Not rs.EOF
-     f = Format$(rs("fecha"), "dd/mm/yy")
+     F = Format$(rs("fecha"), "dd/mm/yy")
      nc = rs("letra") & " " & Format$(rs("sucursal"), "0000") & "-" & Format$(rs("num_comp"), "00000000")
      p = rs("cliente02")
      m = rs("moneda")
@@ -299,7 +300,7 @@ Sub carga2()
      c = Format$(rs("cantidad"), "#####0.00")
      pd = Format$(rs("pu_final"), "#####0.00")
      CUIT = rs("cuit02")
-     msf1.AddItem p & Chr(9) & CUIT & Chr$(9) & f & Chr(9) & pu & Chr(9) & d & Chr(9) & ti & Chr(9) & pd & Chr(9) & c & Chr(9) & m & Chr(9) & nc & Chr(9) & rs("vta_02.num_int")
+     msf1.AddItem p & Chr(9) & CUIT & Chr$(9) & F & Chr(9) & pu & Chr(9) & d & Chr(9) & ti & Chr(9) & pd & Chr(9) & c & Chr(9) & m & Chr(9) & nc & Chr(9) & rs("vta_02.num_int")
      co = co + 1
     rs.MoveNext
   Wend
@@ -399,7 +400,7 @@ End Sub
 
 
 Private Sub msf1_GotFocus()
-Me.StatusBar1.Panels.Item(2) = "[F7] Imprime - [F11] Excel -[ENTER] Ver Comp."
+Me.StatusBar1.Panels.item(2) = "[F7] Imprime - [F11] Excel -[ENTER] Ver Comp."
 
 End Sub
 
@@ -442,13 +443,13 @@ If KeyAscii = 13 Then
   If Option1 = True Then 'comptras
    If msf1.Row > 0 Then
       Load cc_detalle
-      cc_detalle.t_NUMINT = msf1.TextMatrix(msf1.Row, 10)
+      cc_detalle.t_numint = msf1.TextMatrix(msf1.Row, 10)
       cc_detalle.Show
     End If
   Else
    If msf1.Row > 0 Then
       Load vta_cc_detalle
-      vta_cc_detalle.t_NUMINT = msf1.TextMatrix(msf1.Row, 10)
+      vta_cc_detalle.t_numint = msf1.TextMatrix(msf1.Row, 10)
       vta_cc_detalle.Show
     End If
   

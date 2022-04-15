@@ -239,7 +239,7 @@ End Property
 
 
 Public Sub carga(ByVal suc As Integer)
-Set rsF = New adodb.Recordset
+Set rsF = New ADODB.Recordset
 q = "select * from fsc_001 where [sucursal_fiscal] = " & suc
 rsF.Open q, cn1
 If Not rsF.EOF And Not rsF.BOF Then

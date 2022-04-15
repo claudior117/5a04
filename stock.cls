@@ -18,7 +18,7 @@ Private mvaridproducto As Long 'copia local
 Private mvarstock_instantaneo As Double 'copia local
 Private mvarstock_movimientos As Double 'copia local
 Public Sub sacastock(ByVal idproducto As Long, Optional ByVal F As Date)
-Set rsc = New adodb.Recordset
+Set rsc = New ADODB.Recordset
 q = "select [stock] from a2 where [id_producto] = " & idproducto
 rsc.Open q, cn1
 If Not rsc.EOF And Not rsc.BOF Then
@@ -29,7 +29,7 @@ End If
 
 Set rsc = Nothing
 
-Set rsc = New adodb.Recordset
+Set rsc = New ADODB.Recordset
 q = "select [ubicacion], [cantidad] from stk_01 where [id_producto] = " & idproducto
 
  If IsMissing(F) Then
@@ -59,7 +59,7 @@ End Sub
 Public Function sacastockvalorizado(ByVal F As String, ByVal t As String)
 'f fecha corte
 't tipo:   C Precio Compra  S Costo   V Precio Final Venta
-Set rsc = New adodb.Recordset
+Set rsc = New ADODB.Recordset
 q = "select * from a2 where [id_producto] > 1 "
 rsc.Open q, cn1
 st = 0
@@ -76,7 +76,7 @@ While Not rsc.EOF
      precio = rsc("costoreal")
   End Select
      
-  Set rsc2 = New adodb.Recordset
+  Set rsc2 = New ADODB.Recordset
   q = "select * from stk_01 where [id_producto] = " & rsc("id_producto") & " and datevalue([fecha]) <= datevalue('" & F & "')"
   rsc2.Open q, cn1
   s = 0
@@ -101,7 +101,7 @@ End Function
 
 Public Function sacafaltante(ByVal ip As Long)
 q = "select * from a6 where [num_int] = " & para.numint_regfaltante & " and [id_producto] = " & ip
-Set rsx = New adodb.Recordset
+Set rsx = New ADODB.Recordset
 rsx.Open q, cn1
 trf = 0
 While Not rsx.EOF
@@ -120,7 +120,7 @@ Sub actualizastock()
   If J = 6 Then
    Load espere
    q = "select * from a2 order by [id_producto]"
-   Set rs = New adodb.Recordset
+   Set rs = New ADODB.Recordset
    rs.Open q, cn1, adOpenDynamic, adLockOptimistic
    rs.MoveLast
    ri = 1
@@ -160,11 +160,11 @@ End Sub
 
 Public Sub borra_mov_stk(ByVal numint As Long, ByVal modulo As String)
 'actualizo stock instantaneo y borro stock movimientos
-Set rsc = New adodb.Recordset
+Set rsc = New ADODB.Recordset
 q = "select * from stk_01 where [num_mov_int] = " & numint & " and [modulo] = '" & modulo & "'"
 rsc.Open q, cn1, adOpenDynamic, adLockOptimistic
 While Not rsc.EOF
- Set rsc2 = New adodb.Recordset
+ Set rsc2 = New ADODB.Recordset
  q = "select * from a2 where [id_producto] = " & rsc("id_producto")
  rsc2.Open q, cn1, adOpenDynamic, adLockOptimistic
  If Not rsc2.EOF And Not rsc2.BOF Then
@@ -182,7 +182,7 @@ Wend
 Set rsc = Nothing
 
 If modulo = "S" Then ' si el movimientos es del modulo stock lo borro
-  Set rsc = New adodb.Recordset
+  Set rsc = New ADODB.Recordset
   q = "select * from stk_02 where [num_int] = " & numint
   rsc.Open q, cn1, adOpenDynamic, adLockOptimistic
   While Not rsc.EOF
@@ -191,7 +191,7 @@ If modulo = "S" Then ' si el movimientos es del modulo stock lo borro
   Wend
   Set rsc = Nothing
   
-  Set rsc = New adodb.Recordset
+  Set rsc = New ADODB.Recordset
   q = "select * from stk_03 where [num_int] = " & numint
   rsc.Open q, cn1, adOpenDynamic, adLockOptimistic
   While Not rsc.EOF
@@ -256,7 +256,7 @@ End Property
 
 'FIXIT: Utilice Option Explicit para evitar la creación implícita de variables de tipo Variant.     FixIT90210ae-R383-H1984
 Public Sub imprimir(ByVal id As Long)
-Set rs22 = New adodb.Recordset
+Set rs22 = New ADODB.Recordset
 q = "SELECT * FROM STK_02, STK_03, g1 WHERE STK_02.[NUM_INT] = " & id & " AND STK_02.[NUM_INT] = STK_03.[NUM_INT] and stk_02.[Id_usuario] = g1.[id_usuario]"
 rs22.Open q, cn1
 If Not rs22.EOF And Not rs22.BOF Then

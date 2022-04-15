@@ -195,7 +195,7 @@ Begin VB.Form vta_informevta2
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   107544577
+      StartOfWeek     =   112066561
       CurrentDate     =   38750
    End
    Begin VB.Frame Frame3 
@@ -307,12 +307,12 @@ Begin VB.Form vta_informevta2
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "11/03/2022"
+            TextSave        =   "04/04/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "08:54 a.m."
+            TextSave        =   "02:24 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -675,8 +675,9 @@ Sub carga2()
          q = q & c & " vta_02.[Id_vendedor] = " & c_vend.ItemData(c_vend.ListIndex)
       End If
         
-      Set rs2 = New ADODB.Recordset
-      rs2.Open q, cn1
+      Set rs22 = New ADODB.Recordset
+      
+      rs22.Open q, cn1
       tr = 0
       tf = 0
       tp = 0
@@ -685,38 +686,38 @@ Sub carga2()
       Label8 = reg2
       Label8.Refresh
       pp = 0
-      While Not rs2.EOF
+      While Not rs22.EOF
         If pp = 0 Then
           pp = 1
           msf1.AddItem ip & Chr(9) & dp
         End If
-        dc = rs2("denominacion")
-         c = Format$(rs2("fecha"), "dd/mm/yyyy") & " " & Format$(Left$(rs2("abreviatura"), 6), "@@@@@@!") & " " & Format$(rs2("vta_02.sucursal"), "0000") & "-" & Format$(rs2("num_comp"), "00000000")
+        dc = rs22("denominacion")
+         c = Format$(rs22("fecha"), "dd/mm/yyyy") & " " & Format$(Left$(rs22("abreviatura"), 6), "@@@@@@!") & " " & Format$(rs22("vta_02.sucursal"), "0000") & "-" & Format$(rs22("num_comp"), "00000000")
          F = ""
          r = ""
          d = ""
          p = ""
-        Select Case rs2("vta_02.id_tipocomp")
+        Select Case rs22("vta_02.id_tipocomp")
           Case Is = 45 'rtos
-            r = Format$(rs2("cantidad_original"), "#####0.00")
-            tr = tr + rs2("cantidad_original")
-            ttr = ttr + rs2("cantidad_original")
-            p = Format$(rs2("cantidad"), "#####0.00")
-            tp = tp + (rs2("cantidad"))
-            ttp = ttp + (rs2("cantidad"))
+            r = Format$(rs22("cantidad_original"), "#####0.00")
+            tr = tr + rs22("cantidad_original")
+            ttr = ttr + rs22("cantidad_original")
+            p = Format$(rs22("cantidad"), "#####0.00")
+            tp = tp + (rs22("cantidad"))
+            ttp = ttp + (rs22("cantidad"))
             F = ""
             d = ""
   
           Case Is = 46 'dev
-            d = Format$(rs2("cantidad"), "#####0.00")
-            td = td + rs2("cantidad")
-            ttd = ttd + rs2("cantidad")
+            d = Format$(rs22("cantidad"), "#####0.00")
+            td = td + rs22("cantidad")
+            ttd = ttd + rs22("cantidad")
             r = ""
             F = ""
             p = ""
           Case Else
             Set rs1 = New ADODB.Recordset
-            q = "select [venta] from vta_06 where [sucursal] = " & rs2("sucursal_ingreso") & " and [id_tipocomp] = " & rs2("vta_02.id_tipocomp")
+            q = "select [venta] from vta_06 where [sucursal] = " & rs22("sucursal_ingreso") & " and [id_tipocomp] = " & rs22("vta_02.id_tipocomp")
             rs1.Open q, cn1
             If Not rs1.EOF And Not rs1.BOF Then
               v = rs1("venta")
@@ -725,21 +726,21 @@ Sub carga2()
             End If
             If v <> "N" Then
              If v = "S" Then
-               tf = tf + rs2("cantidad")
-               ttf = ttf + rs2("cantidad")
+               tf = tf + rs22("cantidad")
+               ttf = ttf + rs22("cantidad")
              Else
-               tf = tf - rs2("cantidad")
-               ttf = ttf - rs2("cantidad")
+               tf = tf - rs22("cantidad")
+               ttf = ttf - rs22("cantidad")
              End If
            End If
            Set rs1 = Nothing
         End Select
          
-        msf1.AddItem "" & Chr$(9) & "  [" & dc & "]" & Chr(9) & c & Chr(9) & Format$(r, "#####0.00") & Chr(9) & Format$(d, "#####0.00") & Chr(9) & Format$(F, "#####0.00") & Chr(9) & Format$(p, "#####0.00") & Chr(9) & Format$(rs2("vta_02.num_int"), "#####0.00")
+        msf1.AddItem "" & Chr$(9) & "  [" & dc & "]" & Chr(9) & c & Chr(9) & Format$(r, "#####0.00") & Chr(9) & Format$(d, "#####0.00") & Chr(9) & Format$(F, "#####0.00") & Chr(9) & Format$(p, "#####0.00") & Chr(9) & Format$(rs22("vta_02.num_int"), "#####0.00")
         reg = reg + 1
-        rs2.MoveNext
+        rs22.MoveNext
       Wend
-      Set rs2 = Nothing
+      Set rs22 = Nothing
       If tr > 0 Or tf > 0 Or tnc > 0 Or tp > 0 Or td > 0 Then
        msf1.AddItem Chr(9) & Chr(9) & " " & Chr(9) & "--------------------" & Chr(9) & "--------------------" & Chr(9) & "--------------------" & Chr(9) & "--------------------"
        msf1.AddItem Chr(9) & Chr(9) & "Totales del Producto " & Chr(9) & Format$(tr, "#####0.00") & Chr(9) & Format$(td, "#####0.00") & Chr(9) & Format$(tf, "#####0.00") & Chr(9) & Format$(tp, "#####0.00")

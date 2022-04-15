@@ -308,8 +308,13 @@ If t_numint <> "" Then
      List1.AddItem "************************"
      List1.AddItem "TOTALES"
      List1.AddItem "************************"
-     RSet e = Format$(rs("subtotal"), "########0.00")
+     RSet e = Format$(rs("subtotal") + rs("descuento"), "########0.00")
      List1.AddItem "Subtotal  : " & e
+     RSet e = Format$(rs("descuento"), "########0.00")
+     List1.AddItem "Descuento : " & e & "-"
+        
+     RSet e = Format$(rs("subtotal"), "########0.00")
+     List1.AddItem "Subtotal2 : " & e
      RSet e = Format$(rs("vta_02.iva"), "######0.00")
      List1.AddItem "Iva       : " & e
      RSet e = Format$(rs("impuestos"), "######0.00")
@@ -438,13 +443,13 @@ If t_numint <> "" Then
           i = Space$(10)
           While Not rs3.EOF
            F = Format$(rs3("fecha_dif"), "dd/mm/yy")
-           fp = Format$(rs3("id_formapago"), "000") & " " & Format$(Left$(rs3("formapago"), 7), "@@@@@@@!")
+           FP = Format$(rs3("id_formapago"), "000") & " " & Format$(Left$(rs3("formapago"), 7), "@@@@@@@!")
            nch = Format$(rs3("num_ch"), "0000000000")
             b = Format$(Left$(rs3("detalle_banco"), 50), ">@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@!")
             t = "" 'Format$(Left$(rs1("titular"), 25), ">@@@@@@@@@@@@@@@@@@@@@@@@@!")
             RSet i = Format$(rs3("importe"), "########0.00")
             'nix = Format$(rs3("num_int_fp"), "000000")
-            List1.AddItem fp & "  " & nch & "  " & F & "  " & b & "  " & i
+            List1.AddItem FP & "  " & nch & "  " & F & "  " & b & "  " & i
             rs3.MoveNext
           Wend
           Set rs3 = Nothing
@@ -672,13 +677,13 @@ Sub PAGOS()
      rs1.Open q, cn1
      While Not rs1.EOF
          F = Format$(rs1("fecha_dif"), "dd/mm/yy")
-         fp = Format$(rs1("id_formapago"), "000") & " " & Format$(Left$(rs1("formapago"), 7), "@@@@@@@!")
+         FP = Format$(rs1("id_formapago"), "000") & " " & Format$(Left$(rs1("formapago"), 7), "@@@@@@@!")
          nch = Format$(rs1("num_ch"), "0000000000")
          b = Format$(Left$(rs1("detalle_banco"), 50), ">@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@!")
          t = "" 'Format$(Left$(rs1("titular"), 25), ">@@@@@@@@@@@@@@@@@@@@@@@@@!")
          RSet i = Format$(rs1("importe"), "########0.00")
          nix = Format$(rs1("num_int_fp"), "000000")
-         List1.AddItem fp & "  " & nch & "  " & F & "  " & b & "  " & i & "   " & nix
+         List1.AddItem FP & "  " & nch & "  " & F & "  " & b & "  " & i & "   " & nix
          rs1.MoveNext
      Wend
      Set rs1 = Nothing
@@ -728,7 +733,7 @@ End Sub
 
 
 Private Sub List1_GotFocus()
-Me.StatusBar1.Panels.Item(1) = "[F4]Historial Prod - [F5] Imprime Comp. - [F8] Borra Comp. - [F3] Cambia Estado - [F2]Consulta AFIP"
+Me.StatusBar1.Panels.item(1) = "[F4]Historial Prod - [F5] Imprime Comp. - [F8] Borra Comp. - [F3] Cambia Estado - [F2]Consulta AFIP"
 
 End Sub
 
@@ -750,12 +755,12 @@ End If
 
 If KeyCode = vbKeyF4 Then 'historial producto
  Call nivel_acceso(2)
- Item = Val(Mid$(List1.List(List1.ListIndex), 1, 5))
+ item = Val(Mid$(List1.List(List1.ListIndex), 1, 5))
  
  If para.id_grupo_modulo_actual >= 5 Then
-  If Item > 1 Then
+  If item > 1 Then
      
-     vta_listaprecios4.t_idprod = Item
+     vta_listaprecios4.t_idprod = item
      vta_listaprecios4.Option2 = True
      vta_listaprecios4.Show
    End If
@@ -850,7 +855,7 @@ If KeyCode = vbKeyF3 Then
           vta_cambia_estado_pago.t_subtotal = cl_compvta.subtotal
           vta_cambia_estado_pago.t_nograv = cl_compvta.impuestos
           vta_cambia_estado_pago.t_iva = cl_compvta.iva
-          vta_cambia_estado_pago.t_total = cl_compvta.total
+          vta_cambia_estado_pago.T_TOTAL = cl_compvta.total
           vta_cambia_estado_pago.T_total2 = cl_compvta.totalotramoneda
  
           
@@ -1005,7 +1010,7 @@ Sub fe_consulta_comp()
     ControlarExcepcion WSFEv1
 
     List1.AddItem "Fecha Comprobante:" & WSFEv1.FechaCbte
-     List1.AddItem "CAE:" & WSFEv1.CAE
+     List1.AddItem "CAE:" & WSFEv1.cae
     List1.AddItem "Fecha Vencimiento CAE" & WSFEv1.Vencimiento
     List1.AddItem "Resultado:" & WSFEv1.Resultado
     List1.AddItem ""
@@ -1041,13 +1046,13 @@ Sub fe_consulta_comp()
     List1.AddItem ""
     List1.AddItem "Analisis del CAE"
     List1.AddItem ""
-    If CAE = "" Then
+    If cae = "" Then
         List1.AddItem "Error en el CAE"
         
         ' hubo error, no comparo
     Else
-    If CAE <> cae2 Then
-        List1.AddItem "El CAE del comprobante guardafo localmentedifiere del guardado en el AFIP: " & CAE & " vs " & cae2
+    If cae <> cae2 Then
+        List1.AddItem "El CAE del comprobante guardafo localmentedifiere del guardado en el AFIP: " & cae & " vs " & cae2
     Else
         List1.AddItem "El CAE de la factura concuerdan con el recuperado de la AFIP"
     End If

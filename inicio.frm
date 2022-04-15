@@ -236,13 +236,13 @@ Begin VB.Form inicio
       Top             =   240
       Width           =   8415
       Begin MSComctlLib.Toolbar Toolbar1 
-         Height          =   870
+         Height          =   1680
          Left            =   240
          TabIndex        =   14
          Top             =   360
          Width           =   7920
          _ExtentX        =   13970
-         _ExtentY        =   1535
+         _ExtentY        =   2963
          ButtonWidth     =   2672
          ButtonHeight    =   1429
          Appearance      =   1
@@ -455,12 +455,12 @@ Begin VB.Form inicio
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "23/03/2022"
+            TextSave        =   "26/03/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "02:32 p.m."
+            TextSave        =   "07:58 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -1294,7 +1294,7 @@ Select Case Button.Key
 
  Case Is = "B8"
    'compras
-   Call nivel_acceso(2)
+   Call nivel_acceso(1)
    If para.id_grupo_modulo_actual > 0 Then
      inicio_empleados.Show
     

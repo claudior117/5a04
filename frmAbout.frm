@@ -56,7 +56,7 @@ Begin VB.Form frmAbout
    End
    Begin VB.Label Label5 
       Alignment       =   2  'Center
-      Caption         =   "Última actualización 23/03/2022    579"
+      Caption         =   "Última actualización 15/04/2022    587"
       ForeColor       =   &H00000000&
       Height          =   285
       Left            =   1200

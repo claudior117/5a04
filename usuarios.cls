@@ -21,7 +21,7 @@ Private mvarnivel As Long 'copia local
 Public Sub cargar(ByVal idusuario As Long)
 On Error GoTo er_carga
 q = "select * from  g1 where [id_usuario] = " & idusuario
-Set rst = New adodb.Recordset
+Set rst = New ADODB.Recordset
 rst.Open q, cn1
 If Not rst.BOF And Not rst.EOF Then
   Me.idusuario = rst("id_usuario")

@@ -570,12 +570,12 @@ Begin VB.Form inicio_vta
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "15/02/2022"
+            TextSave        =   "26/03/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "05:36 p.m."
+            TextSave        =   "07:27 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -1055,7 +1055,7 @@ Private Sub b_facte_Click()
  vta_facturacion.Show
  vta_facturacion.t_sucursal = Format$(glo.sucursale, "0000")
  vta_facturacion.c_sucursal.ListIndex = buscaindice(vta_facturacion.c_sucursal, glo.sucursale)
- vta_facturacion.c_sucursal.Enabled = False
+ vta_facturacion.c_sucursal.Enabled = True
  vta_facturacion.Option3 = False
 End Sub
 

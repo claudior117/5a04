@@ -677,12 +677,12 @@ Begin VB.Form vta_recibo
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "01/01/2006"
+            TextSave        =   "15/04/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "12:11 a.m."
+            TextSave        =   "11:25 a.m."
          EndProperty
       EndProperty
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -719,7 +719,7 @@ n = Space$(10)
 
 QUERY = "select * from vta_02, vta_06 where  [estado_pago] = 'N' and [id_cliente] = " & denominACION.ItemData(denominACION.ListIndex) & " and [cta_cte] <> 'N' and vta_02.[id_tipocomp] = vta_06.[id_tipocomp] and [contado] = 'N' and [sucursal_ingreso] = vta_06.[sucursal]"
 QUERY = QUERY & " order by fecha"
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 rs.Open QUERY, cn1
 While Not rs.EOF
    cot = rs("cotizacion_dolar")
@@ -1060,7 +1060,7 @@ espere.Label1 = "Espere... Imprimiendo Pago"
     
     't_subtotal = Fiscalrnc.subtotal.MontoNeto
     't_iva = Fiscalrnc.subtotal.MontoIVA
-     t_total = Fiscalrnc.subtotal.MontoVentas
+     T_TOTAL = Fiscalrnc.subtotal.MontoVentas
  
  espere.ProgressBar1.Value = 4
   espere.Label1 = "Espere... Cerrando Comprobante Fiscal"
@@ -1435,7 +1435,7 @@ cn1.Execute QUERY
          If Val(msf2.TextMatrix(i, 0)) = 3 Then
                 'ch. terceros
                 q = "select * from cyb_03"
-                Set rs = New adodb.Recordset
+                Set rs = New ADODB.Recordset
                 rs.Open q, cn1, adOpenDynamic, adLockOptimistic
                 rs.AddNew
                  rs("fecha_emision") = t_fecha
@@ -1471,7 +1471,7 @@ cn1.Execute QUERY
          
          If Val(msf2.TextMatrix(i, 0)) = 4 Then
                 q = "select * from cyb_04"
-                Set rs = New adodb.Recordset
+                Set rs = New ADODB.Recordset
                 rs.Open q, cn1, adOpenDynamic, adLockOptimistic
                 rs.AddNew
                  rs("id_banco") = Val(msf2.TextMatrix(i, 8))
@@ -1494,7 +1494,7 @@ cn1.Execute QUERY
          
          
          q = "select * from cyb_01 where [id_forma_pago] = " & Val(msf2.TextMatrix(i, 0))
-         Set rs = New adodb.Recordset
+         Set rs = New ADODB.Recordset
          rs.Open q, cn1
          If Not rs.EOF And Not rs.BOF Then
           If rs("CAJA") = "S" Then
@@ -1518,7 +1518,7 @@ cn1.Execute QUERY
       'actualiza comprobantes aplicados
       
       For i = 1 To msf1.Rows - 1
-        Set rs = New adodb.Recordset
+        Set rs = New ADODB.Recordset
         q = "select * from vta_02 where [num_int] = " & Val(msf1.TextMatrix(i, 3))
         rs.Open q, cn1, adOpenDynamic, adLockOptimistic
         If Not rs.BOF And Not rs.EOF Then
@@ -1555,7 +1555,7 @@ cn1.Execute QUERY
            u2 = "D"
          End If
          
-         Set rs = New adodb.Recordset
+         Set rs = New ADODB.Recordset
          q = "select * from c_01 where [id_cuenta] = " & cta
          rs.Open q, cn1
          If Not rs.EOF And Not rs.BOF Then
@@ -1861,7 +1861,7 @@ End If
 End Sub
 
 Private Sub sucursal_LostFocus()
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select * from vta_06 where [sucursal] = " & Val(sucursal)
 rs.Open q, cn1
 If Not rs.BOF And Not rs.EOF Then
@@ -1892,7 +1892,7 @@ End Sub
 
 Private Sub t_numop_LostFocus()
       q = "select * from vta_02 where [sucursal] = " & Val(sucursal) & " and [num_comp] = " & Val(t_numop) & " and [id_tipocomp] = 50"
-      Set rs = New adodb.Recordset
+      Set rs = New ADODB.Recordset
       'MsgBox (q)
       rs.Open q, cn1
       If rs.BOF And rs.EOF Then
@@ -1953,7 +1953,7 @@ Sub totales2()
   T_RETD = 0
   If msf1.Rows > 1 Then
    While J <= msf1.Rows - 1
-    If Val(msf1.TextMatrix(J, 6)) < 10 Then
+    If Val(msf1.TextMatrix(J, 6)) < 35 Then
      t_pago = Val(t_pago) + Val(msf1.TextMatrix(J, 8))
      't_totald = Val(t_totald) + Val(msf1.TextMatrix(J, 5))
     Else
@@ -2159,7 +2159,7 @@ espere.Label1 = "Espere... Imprimiendo Productos"
 
  
  td = "Cta. Cte. Nro. " & Format$(denominACION.ItemData(denominACION.ListIndex), "00000")
-mp = Val(t_total)
+mp = Val(T_TOTAL)
 dp = "T"
 If Not Fiscalrnc.ImprimirPago2g(td, Format$(mp, "######0.00"), "", IFUniversal.CuentaCorriente, 1, "", "") Then
        Err.Raise Fiscalrnc.Error, "", Fiscalrnc.ErrorDesc
@@ -2282,7 +2282,7 @@ espere.Label1 = "Espere... Imprimiendo Productos"
 
 
 td = "Cta. Cte. Nro. " & Format$(denominACION.ItemData(denominACION.ListIndex), "00000")
-mp = Format$(Val(t_total) * 100, "00000000")
+mp = Format$(Val(T_TOTAL) * 100, "00000000")
 dp = "T"
 If rk Then
       rk = epson1.SendInvoicePayment(td, Format$(Val(t_diferencia) * 100, "00000000"), "T")
@@ -2347,7 +2347,7 @@ Sub grabanc()
   ssi = Val(t_totalnc)
   moneda = "P"
       
-      Set rs = New adodb.Recordset
+      Set rs = New ADODB.Recordset
       q = "select * from g8 where [id_actividad] = " & 1
       rs.Open q, cn1
       If Not rs.EOF And Not rs.BOF Then
@@ -2439,7 +2439,7 @@ If Generaasientosauto Then
          End If
          
          
-           tot = Val(t_total)
+           tot = Val(T_TOTAL)
            m = 1
          
          QUERY = "INSERT INTO c_02([num_interno], [fecha], [descripcion], [modulo], [num_mov_int], [debe], [haber], [id_USUARIO], [observaciones])"
@@ -2470,7 +2470,7 @@ If Generaasientosauto Then
          If cl_compvta.grabado <> "N" Then
            importe = Val(t_subtotal) * m
          Else
-           importe = Val(t_total) * m
+           importe = Val(T_TOTAL) * m
          End If
          QUERY = "INSERT INTO c_03([num_interno], [renglon], [id_cuenta], [ubicacion], [importe], [descripcion])"
          QUERY = QUERY & " VALUES (" & numintcgr & ", " & ic & ", " & cuentaact & ", '" & u2 & "', " & Format(importe, "######0.00") & ", '" & "Ventas" & "')"

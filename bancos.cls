@@ -25,7 +25,7 @@ Public Sub borrar(ByVal numint As Long)
       
       Call borrarconciliacion(numint)
       
-       Set rsb = New adodb.Recordset
+       Set rsb = New ADODB.Recordset
        q = "select * from cyb_04 where [num_mov_banco] = " & numint
        rsb.Open q, cn1
        If Not rsb.EOF And Not rsb.BOF Then
@@ -63,7 +63,7 @@ Public Sub borrar(ByVal numint As Long)
 End Sub
 Public Sub borrarconciliacion(ByVal ni)
    q = "select * from c_02 where [modulo] = 'B' and [num_mov_int] = " & ni & " and [descripcion] like '%Conciliacion%'"
-   Set rsx = New adodb.Recordset
+   Set rsx = New ADODB.Recordset
    rsx.MaxRecords = 1
    rsx.Open q, cn1
    If Not rsx.EOF And Not rsx.BOF Then

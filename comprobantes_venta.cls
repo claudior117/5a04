@@ -66,7 +66,6 @@ Private mvardir_transporte As String 'copia local
 Private mvarcuit_transporte As String 'copia local
 Private mvarloc_transporte As String 'copia local
 'variables locales para almacenar los valores de las propiedades
-Private mvarbultos_totales As Integer 'copia local
 Private mvarvalor_declarado As Double 'copia local
 'variables locales para almacenar los valores de las propiedades
 Private mvartipoimpresora As String 'copia local
@@ -101,6 +100,37 @@ Private mvarcae As Variant 'copia local
 Private mvarfecha_vto_cae As Date 'copia local
 'variables locales para almacenar los valores de las propiedades
 Private mvartipoop As Integer 'copia local
+'variables locales para almacenar los valores de las propiedades
+'variables locales para almacenar los valores de las propiedades
+'variables locales para almacenar los valores de las propiedades
+Private mvarbultos_totales As Long 'copia local
+Public Property Let bultos_totales(ByVal vData As Long)
+'se usa al asignar un valor a la propiedad, en la parte izquierda de una asignación.
+'Syntax: X.bultos_totales = 5
+    mvarbultos_totales = vData
+End Property
+
+
+Public Property Get bultos_totales() As Long
+'se usa al recuperar un valor de una propiedad, en la parte derecha de una asignación.
+'Syntax: Debug.Print X.bultos_totales
+    bultos_totales = mvarbultos_totales
+End Property
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Public Property Let tipoop(ByVal vData As Integer)
 'se usa al asignar un valor a la propiedad, en la parte izquierda de una asignación.
 'Syntax: X.tipoop = 5
@@ -571,18 +601,9 @@ End Property
 
 
 
-Public Property Let bultos_totales(ByVal vData As Integer)
-'se usa al asignar un valor a la propiedad, en la parte izquierda de una asignación.
-'Syntax: X.bultos_totales = 5
-    mvarbultos_totales = vData
-End Property
 
 
-Public Property Get bultos_totales() As Integer
-'se usa al recuperar un valor de una propiedad, en la parte derecha de una asignación.
-'Syntax: Debug.Print X.bultos_totales
-    bultos_totales = mvarbultos_totales
-End Property
+
 
 
 
@@ -3005,12 +3026,12 @@ Public Sub generapdf(ByVal c As Integer)
     ' totales del comprobante:
     imp_total = Format$(Me.total, "#####0.00")
     imp_tot_conc = "0.00"
-    imp_neto = Format$(Me.subtotal, "#####0.00")
+    imp_neto = Format$(Me.subtotal + Me.descuento, "#####0.00")
     imp_iva = Format$(Me.iva, "#####0.00")
     imp_trib = ""
     imp_op_ex = ""
     imp_subtotal = Format$(Me.subtotal, "#####0.00")
-    descuento = 0
+   
     fecha_cbte = Format$(fecha, "dd/mm/yyyy")
     fecha_venc_pago = Format$(DateValue(Me.fecha) + diaspagocc, "dd/mm/yyyy")
     ' Fechas del período del servicio facturado
@@ -3047,7 +3068,7 @@ Public Sub generapdf(ByVal c As Integer)
     ' (para facturas tradicionales, no imprimir el CAE ni código de barras)
     cae = Format$(Me.cae)
     fch_vto_cae = Mid$(Format$(Me.fecha_vto_cae, "dd/mm/yyyy"), 7, 4) & Mid$(Format$(Me.fecha_vto_cae, "dd/mm/yyyy"), 4, 2) & Mid$(Format$(Me.fecha_vto_cae, "dd/mm/yyyy"), 1, 2)
-   
+    descuento = Format$(Me.descuento, "#####0.00")
     
     ' Creo la factura (internamente en la interfaz)
     ok = PyFEPDF.CrearFactura( _
@@ -3141,6 +3162,8 @@ While Not rs.EOF
   
     
     
+    
+    
     ' Agrego datos adicionales fijos:
     ok = PyFEPDF.AgregarDato("logo", "c:\5a04\tools\logo.png")
     ok = PyFEPDF.AgregarDato("afip", "c:\5a04\tools\afip.png")
@@ -3154,6 +3177,8 @@ While Not rs.EOF
     ok = PyFEPDF.AgregarDato("ObservacionesGenerales1", "Mensaje Monotributos")
     ok = PyFEPDF.AgregarDato("ObservacionesGenerales2", "CBU para Transferencias ")
     ok = PyFEPDF.AgregarDato("ObservacionesGenerales3", "")
+
+    'ok = PyFEPDF.AgregarDato("descuento", Me.descuento)
 
 
     ' Cargo el formato desde el archivo CSV (opcional)
@@ -3396,6 +3421,11 @@ Select Case Me.idtipocomp
     End Select
   Case Is <= 10
      Call imprimefact(copias, formato)
+  
+  Case Is = 30, Is = 31, Is = 32
+     Call imprimefact(copias, formato)
+  
+  
   
   Case Is = 45, Is = 46
     Select Case formato

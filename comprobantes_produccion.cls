@@ -132,7 +132,7 @@ Public Sub sacaultimonumero(ByVal tc As Integer)
 'por parametro se le pasa el tipo de comprobante
 
 On Error GoTo e1
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select * from pro_03 where [id_tipocomp] = " & tc
 rs.Open q, cn1, adOpenDynamic, adLockOptimistic
 If Not rs.EOF And Not rs.BOF Then
@@ -314,7 +314,7 @@ For Y = 1 To c
    Printer.Print "        Ref.    Detalle                                        Observaciones              Cant.   Unid.   Para el:"
 'FIXIT: El Asistente para actualización no actualiza el objeto Printer ni la colección Printers a Visual Basic .NET.     FixIT90210ae-R5481-H1984
    Printer.Print "____________________________________________________________________________________________________________________"
-   Set rs = New adodb.Recordset
+   Set rs = New ADODB.Recordset
    q = "select * from pro_02 where [num_int] = " & Me.numint
    rs.Open q, cn1
    r = 1
@@ -478,7 +478,7 @@ For Y = 1 To c
    Printer.Print "        Ref.  Detalle                                        Observaciones              Cant.   Unid.   Para el:"
 'FIXIT: El Asistente para actualización no actualiza el objeto Printer ni la colección Printers a Visual Basic .NET.     FixIT90210ae-R5481-H1984
    Printer.Print "____________________________________________________________________________________________________________________"
-   Set rs = New adodb.Recordset
+   Set rs = New ADODB.Recordset
    q = "select * from pro_02 where [num_int] = " & Me.numint
    rs.Open q, cn1
    r = 1
@@ -553,7 +553,7 @@ End Sub
 Sub imprimeminuta(ByVal c As Integer)
 Dim tipoop As String
 
-Set rs4 = New adodb.Recordset
+Set rs4 = New ADODB.Recordset
 q = "select [obs] from pro_05 where [num_int] = " & Me.numint & " and [modulo] = 'P'"
 rs4.Open q, cn1
 If Not rs4.EOF And Not rs4.BOF Then
@@ -654,7 +654,7 @@ For Y = 1 To c
    Printer.Print "        Basico  Detalle                                        Observaciones              Cant.   "
 'FIXIT: El Asistente para actualización no actualiza el objeto Printer ni la colección Printers a Visual Basic .NET.     FixIT90210ae-R5481-H1984
    Printer.Print "____________________________________________________________________________________________________________________"
-   Set rs = New adodb.Recordset
+   Set rs = New ADODB.Recordset
    q = "select * from pro_02 where [num_int] = " & Me.numint
    rs.Open q, cn1
    r = 1
@@ -752,7 +752,7 @@ End Property
 Sub borrocomp()
  'borro COMPROBANTES
  borra = 0
- Set rs = New adodb.Recordset
+ Set rs = New ADODB.Recordset
  q = "select * from pro_04, pro_05 where [modulo] = 'P' and [num_int] = " & Me.numint & " and pro_05.[num_referencia] = pro_04.[num_referencia]"
  rs.Open q, cn1
  While Not rs.EOF
@@ -772,7 +772,7 @@ Sub borrocomp()
       QUERY = "DELETE FROM PRO_02 WHERE [num_int] = " & Me.numint
       cn1.Execute QUERY
   
-      Set rs = New adodb.Recordset
+      Set rs = New ADODB.Recordset
       q = "select * from pro_05 WHERE [modulo] = 'P' and [num_int] = " & Me.numint
       rs.Open q, cn1
       While Not rs.EOF
@@ -802,7 +802,7 @@ End Sub
 
 Sub borraproductorequisicion(ByVal numref As Long)
   q = "select * from pro_05 where [num_referencia] = " & numref & " and [modulo] <> 'P'"
-  Set rsc = New adodb.Recordset
+  Set rsc = New ADODB.Recordset
   rsc.Open q, cn1
   borra = 0
   While Not rsc.EOF
@@ -813,12 +813,12 @@ Sub borraproductorequisicion(ByVal numref As Long)
  
   If borra <= 1 Then
     q = "select * from pro_04 where [num_referencia] = " & numref
-    Set rsc = New adodb.Recordset
+    Set rsc = New ADODB.Recordset
     rsc.Open q, cn1, adOpenDynamic, adLockOptimistic
     While Not rsc.EOF
      If rsc("id_Usuario") = para.id_usuario Or para.id_grupo_modulo_compras >= 8 Then
         q = "select * from pro_05 where [num_referencia] = " & numref
-        Set rsc2 = New adodb.Recordset
+        Set rsc2 = New ADODB.Recordset
         rsc2.Open q, cn1, adOpenDynamic, adLockOptimistic
         If Not rsc2.EOF And Not rsc2.BOF Then
             rsc2.Delete
@@ -847,7 +847,7 @@ End Sub
 
 'FIXIT: Declare 'numint' con un tipo de datos de enlace en tiempo de compilación           FixIT90210ae-R1672-R1B8ZE
 Sub cargar2(ByVal numint)
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select * from pro_01, pro_03, g1, a4 where [num_int] = " & numint & " and pro_01.[id_tipocomp] = pro_03.[id_tipocomp] and pro_01.[id_usuario] = g1.[id_usuario] and pro_01.[id_obra] = a4.[id_obra]"
 rs.Open q, cn1
 If Not rs.EOF And Not rs.BOF Then
