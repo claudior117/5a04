@@ -9551,8 +9551,8 @@ While Not rs.EOF
     dt = Space$(9)
     cant = Space$(8)
     cp2 = Space$(9)
-    If rs("cantidad") > 0 Then
-      RSet cant = Format$(rs("cantidad"), "####0.00")
+    If rs("cantidad_original") > 0 Then
+      RSet cant = Format$(rs("cantidad_original"), "####0.00")
       cp2 = " [" & Format$(rs("id_producto"), "00000") & "] "
     End If
     

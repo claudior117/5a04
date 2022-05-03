@@ -178,7 +178,7 @@ Begin VB.Form vta_informevta6
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   107544577
+      StartOfWeek     =   113836033
       CurrentDate     =   38750
    End
    Begin VB.Frame Frame3 
@@ -290,12 +290,12 @@ Begin VB.Form vta_informevta6
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "11/03/2022"
+            TextSave        =   "29/04/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "08:54 a.m."
+            TextSave        =   "12:34 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -700,7 +700,7 @@ Call carga_vendedores(c_vend)
 c_vend.AddItem "<Todos>", 0
 c_vend.ListIndex = 0
 
-'Call carga_productos(c_prod)
+Call carga_productos(c_prod)
 c_prod.AddItem "<Todos>", 0
 c_prod.ListIndex = 0
 

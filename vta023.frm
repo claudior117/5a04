@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form vta_cambia_estado_pago 
    BackColor       =   &H00E0E0E0&
    Caption         =   "CAMBIA DATOS EN COMPROBANTES DE VENTA"
@@ -81,7 +81,7 @@ Begin VB.Form vta_cambia_estado_pago
          BorderStyle     =   0  'None
          Height          =   285
          Left            =   120
-         MaxLength       =   8
+         MaxLength       =   14
          TabIndex        =   7
          Top             =   960
          Width           =   1215
@@ -113,7 +113,7 @@ Begin VB.Form vta_cambia_estado_pago
          BorderStyle     =   0  'None
          Height          =   285
          Left            =   1560
-         MaxLength       =   8
+         MaxLength       =   14
          TabIndex        =   8
          Top             =   960
          Width           =   1215
@@ -123,7 +123,7 @@ Begin VB.Form vta_cambia_estado_pago
          BorderStyle     =   0  'None
          Height          =   285
          Left            =   3000
-         MaxLength       =   8
+         MaxLength       =   14
          TabIndex        =   9
          Top             =   960
          Width           =   1215
@@ -133,7 +133,7 @@ Begin VB.Form vta_cambia_estado_pago
          BorderStyle     =   0  'None
          Height          =   285
          Left            =   4440
-         MaxLength       =   8
+         MaxLength       =   14
          TabIndex        =   10
          Top             =   960
          Width           =   1215
@@ -143,7 +143,7 @@ Begin VB.Form vta_cambia_estado_pago
          BorderStyle     =   0  'None
          Height          =   285
          Left            =   5880
-         MaxLength       =   8
+         MaxLength       =   14
          TabIndex        =   11
          Top             =   960
          Width           =   1215
@@ -610,12 +610,12 @@ Begin VB.Form vta_cambia_estado_pago
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "27/06/2014"
+            TextSave        =   "29/04/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "16:54"
+            TextSave        =   "04:22 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
