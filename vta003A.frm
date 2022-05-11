@@ -888,12 +888,12 @@ Begin VB.Form vta_facturacion
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "04/04/2022"
+            TextSave        =   "10/05/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:38 a.m."
+            TextSave        =   "05:00 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -1586,10 +1586,13 @@ If Val(t_total) > 0 Then
   
   
   If verificaperiodog(t_fecha) = "A" Then
+   
    If Val(t_sucursal) = glo.sucursalf Then
-     If verificafechafiscal = True Then
+     
+    
+       
        Call fiscal
-     End If
+     
    Else
     If Val(t_sucursal) = glo.sucursale Then
      para.z_actual = 0
@@ -1663,6 +1666,7 @@ Function verificatasaunica() As Boolean
  verificatasaunica = v
 End Function
 Sub fiscal()
+
 estadograba = 0
 Call bloquea_comp
 If Option4 = True Then
@@ -1673,8 +1677,13 @@ If Option4 = True Then
   While seguir
     Set cl_fiscal = New fiscal
     cl_fiscal.carga (glo.sucursalf)
+    
      If cl_fiscal.idmodelo = 24 Then 'tm-900 then
+          'if vta_clientes.c_iva
              resulta = imprime_facturafiscal2
+       
+       
+       
        Else
              resulta = imprime_facturafiscal
        End If
@@ -1836,7 +1845,7 @@ If vta_clientes.c_iva.ItemData(vta_clientes.c_iva.ListIndex) <> 3 Then
    'CUIT = Mid$(vta_clientes.t_cuit, 1, 11) '& Mid$(vta_clientes.t_cuit, 4, 8) & Mid$(vta_clientes.t_cuit, 13, 1)
     CUIT = RTrim$(vta_clientes.t_cuit)
  Else
-   identifica = 1 'dni
+   identifica = 1 'ninguno
    CUIT = RTrim$(vta_clientes.t_cuit)
  End If
  
@@ -3426,16 +3435,12 @@ Next i
       
       
       If glo.sucursalf <> Val(t_sucursal) Then
-        If glo.sucursalf = 0 Or Val(t_sucursal) = glo.sucursalprueba Then
           J = MsgBox("Confirma Impresion del Comprobante", 4)
           If J = 6 Then
              Set cl_compvta = New comprobantes_venta
              cl_compvta.cargar2 (numint)
              cl_compvta.imprimir
           End If
-        Else
-          MsgBox ("Por disposicion del AFIP teniendo una impresora fiscal definida no se permite imprimir otro tipo de comprobantes. Gracias")
-        End If
       End If
       Call INICIALIZA2(Me)
       Call armagrid

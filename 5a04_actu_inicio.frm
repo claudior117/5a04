@@ -120,7 +120,7 @@ Begin VB.Form actu_inicio
    Begin VB.Label Label3 
       Alignment       =   2  'Center
       BackColor       =   &H0000FFFF&
-      Caption         =   "217"
+      Caption         =   "218"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   18
@@ -314,6 +314,8 @@ Case Is = 215
     Call actu216
  Case Is = 217
     Call actu217
+ Case Is = 218
+    Call actu218
  Case Is = 999
    Call actu999
    
@@ -2274,6 +2276,49 @@ Exit Sub
 err1:
 Resume Next
 End Sub
+
+Sub actu218()
+'agrega cod-fiscal2 en g3 y codigo_driver_fiscal en cyb_01
+h = MsgBox("Actualizacion 218 . ¿Esta seguro que quiere actualizar?  ", 4)
+If h = 6 Then
+  
+  h = MsgBox("Esta actualizacion corrige una actualizacion para el uso de controladores fiscales nuevo protocolo. Puede ser que algun sistema ya lo tenga.")
+  espere.Show
+  espere.Refresh
+    
+    
+   
+   cn1.BeginTrans
+     q = "alter table g3 add column [cod_fiscal2] int  "
+     cn1.Execute q
+   
+     q = "alter table cyb_01 add column [codigo_driver_fiscal] int  "
+     cn1.Execute q
+   
+   
+    q = "update g0 set  [actualizacion]=218"
+    q = q & " where [sucursal]=0 "
+  
+   cn1.Execute q
+    
+  cn1.CommitTrans
+  
+   
+    
+   MsgBox ("Operación Completa. Si usa CF verificar valores de campos cod_fiscal2 en g3 y codigo_driver_fiscal en cyb_01")
+   
+ Unload espere
+  
+End If
+
+Exit Sub
+
+
+err1:
+Resume Next
+End Sub
+
+
 Sub actu167()
 
 h = MsgBox("Actualizacion 167 . ¿Esta seguro que quiere actualizar?  ", 4)
