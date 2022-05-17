@@ -888,12 +888,12 @@ Begin VB.Form vta_facturacion
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "10/05/2022"
+            TextSave        =   "17/05/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "05:00 a.m."
+            TextSave        =   "04:00 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -1681,8 +1681,7 @@ If Option4 = True Then
      If cl_fiscal.idmodelo = 24 Then 'tm-900 then
           'if vta_clientes.c_iva
              resulta = imprime_facturafiscal2
-       
-       
+             
        
        Else
              resulta = imprime_facturafiscal
@@ -1829,6 +1828,19 @@ Case Is = 2
 End Select
 caracteresmax = cl_fiscal.caracteresmax
 Set cl_fiscal = Nothing
+
+
+'copias
+'cantidad copias
+Set rs = New ADODB.Recordset
+q = "select * from vta_06 where [sucursal] = " & Val(t_sucursal) & " and  [id_tipocomp] = " & 10
+rs.Open q, cn1
+If Not rs.EOF And Not rs.BOF Then
+   copias21 = rs("cant_copias_b")
+Else
+   copias21 = 1
+End If
+Set rs = Nothing
 
 
 
@@ -2029,6 +2041,19 @@ espere.Label1 = "Espere... Cerrando Comprobante Fiscal"
   
   imprime_facturafiscal2 = True
  
+    
+  'copias
+   l = InputBox("Indique cantidad de Copias", , copias21)
+   If Val(l) > 0 And Val(l) <= 6 Then
+        For Y = 1 To Val(l)
+            If Fiscaltf.CopiarComprobante(tipocompfz, Val(t_numcomp)) Then
+                     Err.Raise Fiscaltf.Error, "", Fiscaltf.ErrorDesc
+            End If
+        Next
+   End If
+   
+  
+    
     
  Exit Function
 DepuraErrores:

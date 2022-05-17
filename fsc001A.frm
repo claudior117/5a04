@@ -9,9 +9,18 @@ Begin VB.Form fsc_tique
    ClientTop       =   450
    ClientWidth     =   11880
    LinkTopic       =   "Form1"
-   ScaleHeight     =   10950
-   ScaleWidth      =   15120
+   ScaleHeight     =   8490
+   ScaleWidth      =   11880
    StartUpPosition =   2  'CenterScreen
+   Begin VB.TextBox t_copias 
+      Height          =   285
+      Left            =   8280
+      TabIndex        =   33
+      Text            =   "t_copias"
+      Top             =   1080
+      Visible         =   0   'False
+      Width           =   1575
+   End
    Begin VB.Frame Frame5 
       BackColor       =   &H00E0E0E0&
       Caption         =   "Datos Complementarios"
@@ -402,9 +411,9 @@ Begin VB.Form fsc_tique
       Height          =   255
       Left            =   0
       TabIndex        =   8
-      Top             =   10695
-      Width           =   15120
-      _ExtentX        =   26670
+      Top             =   8235
+      Width           =   11880
+      _ExtentX        =   20955
       _ExtentY        =   450
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
@@ -793,7 +802,22 @@ Set cl_fiscal = New fiscal
 cl_fiscal.carga (glo.sucursalf)
 t_limite = cl_fiscal.limitetique
 t_limite.Tag = cl_fiscal.limitetique
+
+'cantidad copias
+Set rs = New ADODB.Recordset
+q = "select * from vta_06 where [sucursal] = " & Val(t_sucursal) & " and  [id_tipocomp] = " & 10
+rs.Open q, cn1
+If Not rs.EOF And Not rs.BOF Then
+   t_copias = rs("cant_copias_b")
+Else
+   t_copias = 1
+End If
+Set rs = Nothing
+  
+
 Set cl_fiscal = Nothing
+
+
 
 
 Set Fiscaltq = New Driver
@@ -998,7 +1022,7 @@ If estadotique = "A" And Val(t_total) > 0 Then
   
   If resto > 0 Then
       If Not Fiscaltq.ImprimirPago2g("Pago", Format$(resto, "######0.00"), "", IFUniversal.CuentaCorriente, 1, "", "") Then
-       Err.Raise fiscal.Error, "", fiscal.ErrorDesc
+       Err.Raise Fiscaltq.Error, "", Fiscaltq.ErrorDesc
       End If
      
   End If
@@ -1015,7 +1039,18 @@ If estadotique = "A" And Val(t_total) > 0 Then
   exito = 1
   estadotique = "C"
   Label2.Visible = False
-  't_numcomp = Format$(Fiscaltq.UltimoComprobante(10), "00000000")
+          
+          
+   'copias
+   l = InputBox("Indique cantidad de Copias", , Val(t_copias))
+   If Val(l) > 0 And Val(l) <= 6 Then
+        For Y = 1 To Val(l)
+            If Fiscaltq.CopiarComprobante(tcTique, Val(t_numcomp)) Then
+                     Err.Raise Fiscaltq.Error, "", Fiscaltq.ErrorDesc
+            End If
+        Next
+   End If
+   
           
   End If 'fin verificafecha
  Else
@@ -1028,9 +1063,16 @@ If estadotique = "A" And Val(t_total) > 0 Then
  End If
   
  If exito = 1 Then
+     
+   
+     
+     
+     
      espere.Label1 = "Espere Grabando Tique...."
      espere.Label1.Refresh
      Call graba
+   
+         
    
    Unload espere
  Else
@@ -1414,35 +1456,39 @@ If KeyCode = vbKeyF11 Then
      gsucursalprueba = rs("sucursal_prueba")
    End If
    Set rs = Nothing
-   t_sucursal = Format$(gsucursalprueba, "0000")
-   q = "select * from vta_06 where [sucursal] = " & gsucursalprueba & " and [id_tipocomp] = 310"
-   Set rs = New ADODB.Recordset
-   rs.Open q, cn1
-   If Not rs.EOF And Not rs.BOF Then
-      If gsucursalprueba <> glo.sucursalf Then
-         'continua
-          Label2 = "Tique Abierto"
-          Label2.Visible = True
-      
-           estadotique = "A"
-           msf1.Enabled = True
-           msf1.SetFocus
-           t_numcomp.Enabled = False
+   If gsucursalprueba > 0 Then
+   
+        t_sucursal = Format$(gsucursalprueba, "0000")
+        q = "select * from vta_06 where [sucursal] = " & gsucursalprueba & " and [id_tipocomp] = 310"
+        Set rs = New ADODB.Recordset
+        rs.Open q, cn1
+        If Not rs.EOF And Not rs.BOF Then
+           If gsucursalprueba <> glo.sucursalf Then
+              'continua
+               Label2 = "Tique Abierto"
+               Label2.Visible = True
            
-           
-            fsc_tique1.t_renglon = ""
-            fsc_tique1.t_cantidad = ""
-            fsc_tique1.t_pu = ""
-            fsc_tique1.t_importe = ""
-            fsc_tique1.Show
-       Else
-           MsgBox ("El punto de Venta para pruebas  NO puede ser el mismo que el punto de venta fiscal")
-       End If
-   Else
-     MsgBox ("ERROR. El punto de Venta para  Pruebas no fue creado  o  No tiene asignado el Comprobante Tique ")
+                estadotique = "A"
+                msf1.Enabled = True
+                msf1.SetFocus
+                t_numcomp.Enabled = False
+                
+                
+                 fsc_tique1.t_renglon = ""
+                 fsc_tique1.t_cantidad = ""
+                 fsc_tique1.t_pu = ""
+                 fsc_tique1.t_importe = ""
+                 fsc_tique1.Show
+            Else
+                MsgBox ("El punto de Venta para pruebas  NO puede ser el mismo que el punto de venta fiscal")
+            End If
+        Else
+          MsgBox ("ERROR. El punto de Venta para  Pruebas no fue creado  o  No tiene asignado el Comprobante Tique ")
+        End If
+    Else
+        MsgBox ("El módulo de prueba está deshabilitado!!!!")
+        Unload Me
    End If
-   
-   
    
 End If
 

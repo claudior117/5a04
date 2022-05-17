@@ -5,22 +5,22 @@ Begin VB.Form gen_cf
    BackColor       =   &H00E0E0E0&
    BorderStyle     =   1  'Fixed Single
    Caption         =   "INFORME ENTRE FECHAS CONTROLADOR FISCAL"
-   ClientHeight    =   2970
+   ClientHeight    =   3975
    ClientLeft      =   60
    ClientTop       =   345
-   ClientWidth     =   12060
+   ClientWidth     =   7350
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
    MinButton       =   0   'False
-   ScaleHeight     =   2970
-   ScaleWidth      =   12060
+   ScaleHeight     =   3975
+   ScaleWidth      =   7350
    StartUpPosition =   3  'Windows Default
    Begin VB.Frame Frame5 
       Caption         =   "Salida:"
       Height          =   615
-      Left            =   4680
+      Left            =   240
       TabIndex        =   10
-      Top             =   360
+      Top             =   1560
       Width           =   6855
       Begin VB.CommandButton Command2 
          Caption         =   "Carpeta destino:"
@@ -51,7 +51,7 @@ Begin VB.Form gen_cf
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   60948481
+      StartOfWeek     =   175702017
       CurrentDate     =   38750
    End
    Begin VB.Frame Frame3 
@@ -106,9 +106,9 @@ Begin VB.Form gen_cf
       BackColor       =   &H00E0E0E0&
       Caption         =   "Funciones"
       Height          =   975
-      Left            =   9960
+      Left            =   5520
       TabIndex        =   3
-      Top             =   1680
+      Top             =   2400
       Width           =   1575
       Begin VB.CommandButton btnsale 
          Cancel          =   -1  'True
@@ -139,9 +139,9 @@ Begin VB.Form gen_cf
       Height          =   255
       Left            =   0
       TabIndex        =   2
-      Top             =   2715
-      Width           =   12060
-      _ExtentX        =   21273
+      Top             =   3720
+      Width           =   7350
+      _ExtentX        =   12965
       _ExtentY        =   450
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
@@ -163,15 +163,23 @@ Begin VB.Form gen_cf
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "07/12/2020"
+            TextSave        =   "14/05/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "12:01 p.m."
+            TextSave        =   "11:13 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
+   End
+   Begin VB.Label Label2 
+      Caption         =   $"gen042..frx":1104
+      Height          =   855
+      Left            =   240
+      TabIndex        =   13
+      Top             =   2640
+      Width           =   5055
    End
 End
 Attribute VB_Name = "gen_cf"
@@ -247,7 +255,7 @@ t_carpeta = "c:\"
 t_fecha = Format$(Now, "dd/mm/yy")
 t_fecha2 = Format$(Now, "dd/mm/yy")
 
-Set cl_fiscal = New Fiscal
+Set cl_fiscal = New fiscal
    cl_fiscal.carga (glo.sucursalf)
    If cl_fiscal.id > 0 Then
       cMODELO = cl_fiscal.idmodelo
@@ -275,9 +283,7 @@ If t_fecha <> "" And t_fecha2 <> "" Then
    f2 = Mid$(t_fecha2, 1, 2) & Mid$(t_fecha2, 4, 2) & Mid$(t_fecha2, 7, 2)
     
     
-   MsgBox (f1)
-   MsgBox (f2)
-   
+      
   On Error GoTo DepuraErrores
   
  If Not Fiscali1.Inicializar Then
@@ -285,8 +291,9 @@ If t_fecha <> "" And t_fecha2 <> "" Then
   End If
   
   Fiscali1.CancelarComprobante
+  archivo22 = t_carpeta & "\reporte" & f1 & "-" & f2 & ".zip"
   
-  If Fiscali1.ObtenerPrimerBloqueReporteElectronico(f1, f2, t_carpeta, 0) Then
+  If Fiscali1.ObtenerPrimerBloqueReporteElectronico(f1, f2, archivo22, 0) Then
     Do
     Loop While Fiscali1.ObtenerSiguienteBloqueReporteElectronico
   End If
@@ -310,6 +317,10 @@ End If
 DepuraErrores:
   Fiscali1.Finalizar
   MsgBox ("Error: " & Fiscali1.ErrorDesc)
+
+
+
+
 End Sub
 
 
