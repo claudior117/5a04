@@ -1,6 +1,6 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form emp_saldos 
    BackColor       =   &H00E0E0E0&
    Caption         =   "SALDOS EMPLEADOS"
@@ -168,12 +168,12 @@ Begin VB.Form emp_saldos
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "21/01/2010"
+            TextSave        =   "20/05/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "06:28 p.m."
+            TextSave        =   "11:32 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -251,16 +251,16 @@ Load espere
 pb = 1
 Set rs1 = New ADODB.Recordset
 QUERY = "select * from emp_01"
-x = " where "
+X = " where "
 
 If t_cliente <> "" Then
-  QUERY = QUERY & x & " [denominacion]  like '%" & t_cliente & "%'"
-  x = " and "
+  QUERY = QUERY & X & " [denominacion]  like '%" & t_cliente & "%'"
+  X = " and "
 End If
 
 If Check1 = 0 Then
-  QUERY = QUERY & x & " [estado] = 'A'"
-  x = " and "
+  QUERY = QUERY & X & " [estado] = 'A'"
+  X = " and "
 End If
 
 If Option1 = True Then
@@ -418,6 +418,15 @@ End Sub
 
 
 
+Private Sub msf1_GotFocus()
+Me.StatusBar1.Panels.item(2) = "[F7] Imprime - [F11] Exporta Excel  "
+If msf1.Rows > 1 Then
+  msf1.FocusRect = flexFocusNone
+Else
+  msf1.FocusRect = flexFocusLight
+End If
+End Sub
+
 Private Sub msf1_KeyDown(KeyCode As Integer, Shift As Integer)
 If KeyCode = vbKeyF7 Then
   Dim c(15) As Double
@@ -435,9 +444,13 @@ If KeyCode = vbKeyF7 Then
       For i = 7 To 14
         c(i) = -1
       Next i
-      Call imprimegrid(msf1, c(), "SALDOS por EMPLEADOS", p, " ", V, 72, 8, True, False)
+      Call imprimegrid(msf1, c(), "SALDOS por EMPLEADOS", p, " ", v, 72, 8, True, False)
   End If
 
+End If
+
+If KeyCode = vbKeyF11 Then
+  Call exportaexcel(msf1)
 End If
 
 End Sub

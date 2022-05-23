@@ -152,12 +152,12 @@ Begin VB.Form emp_estadocuenta
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "03/02/2020"
+            TextSave        =   "20/05/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "17:27"
+            TextSave        =   "11:28 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -324,7 +324,7 @@ Unload vta_clientes
 End Sub
 
 Private Sub msf1_GotFocus()
-Me.StatusBar1.Panels.Item(2) = "[F7] Imprime - [F8] Borra Mov.  "
+Me.StatusBar1.Panels.item(2) = "[F7] Imprime - [F8] Borra Mov. - [F11] Exporta Excel  "
 If msf1.Rows > 1 Then
   msf1.FocusRect = flexFocusNone
 Else
@@ -374,6 +374,10 @@ If KeyCode = vbKeyF8 Then
   Else
     Call sinpermisos
   End If
+End If
+
+If KeyCode = vbKeyF11 Then
+  Call exportaexcel(msf1)
 End If
 
 End Sub

@@ -371,12 +371,12 @@ Begin VB.Form fsc_tique1
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "01/01/2006"
+            TextSave        =   "22/05/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "12:27 a.m."
+            TextSave        =   "06:50 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -467,7 +467,7 @@ End If
 
 
 If KeyCode = vbKeyF6 And t_renglon = "" Then
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   q = "select * from g0 where [sucursal] = 0"
   rs.Open q, cn1
   d1 = rs("descuento1")
@@ -484,7 +484,7 @@ If KeyCode = vbKeyF6 And t_renglon = "" Then
 End If
 
 If KeyCode = vbKeyF7 And t_renglon = "" Then
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   q = "select * from g0 where [sucursal] = 0"
   rs.Open q, cn1
   d2 = rs("descuento2")
@@ -535,7 +535,7 @@ End If
 End Sub
 Sub busca(tipo As String)
 'tipo = I por id_producto tipo = B por cod_barra
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select * from a2, g5, g12 where a2.[id_unidad] = g5.[id_unidad] and a2.[id_tasaib] = g12.[id_tasaib]  "
 If tipo = "I" Then
   q = q & " and [id_producto] = " & Val(t_basico)
@@ -561,7 +561,7 @@ If Not rs.BOF And Not rs.EOF Then
     End If
     t_importe = Format$(Val(t_cantidad) * Val(t_pu), "#####0.00")
     
-     If Val(fsc_tique.t_total) + Val(t_importe) >= Val(fsc_tique.t_limite) Then 'cl_fiscal.limitetique Then
+     If Val(fsc_tique.T_TOTAL) + Val(t_importe) >= Val(fsc_tique.t_limite) Then 'cl_fiscal.limitetique Then
        MsgBox ("El importe del comprobante supera el limite establecido para la impresora. Cierre el tique actual y abra uno nuevo para seguir cargando")
      Else
        Call fsc_tique.cargarenglon2("A")
@@ -604,7 +604,7 @@ End Sub
 Private Sub t_importe_KeyPress(KeyAscii As Integer)
 If KeyAscii = 13 Then
   If t_renglon = "" Then
-   If Val(fsc_tique.t_total) + Val(t_importe) >= Val(fsc_tique.t_limite) Then 'cl_fiscal.limitetique Then
+   If Val(fsc_tique.T_TOTAL) + Val(t_importe) >= Val(fsc_tique.t_limite) Then 'cl_fiscal.limitetique Then
      MsgBox ("El importe del comprobante supera el limite establecido para la impresora. Cierre el tique actual y abra uno nuevo para seguir cargando")
    Else
      Call fsc_tique.cargarenglon2("A")

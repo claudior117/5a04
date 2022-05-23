@@ -1,0 +1,4 @@
+Línea 45: la clase MSComctlLib.ImageList del control ImageList2 no era una clase de control cargada.
+Línea 238: la clase MSComctlLib.Toolbar del control Toolbar1 no era una clase de control cargada.
+Línea 429: la clase MSComctlLib.StatusBar del control StatusBar1 no era una clase de control cargada.
+Línea 468: la clase MSComctlLib.ImageList del control ImageList1 no era una clase de control cargada.

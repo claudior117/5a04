@@ -1,0 +1,5 @@
+Línea 864: la clase MSComctlLib.StatusBar del control StatusBar1 no era una clase de control cargada.
+Línea 871: el nombre de la propiedad _ExtentX de StatusBar1 no es válido.
+Línea 872: el nombre de la propiedad _ExtentY de StatusBar1 no es válido.
+Línea 873: el nombre de la propiedad _Version de StatusBar1 no es válido.
+Línea 900: el nombre de la propiedad Panels de StatusBar1 no es válido.
