@@ -190,7 +190,7 @@ End Sub
 
 
 Private Sub msf1_GotFocus()
-Me.StatusBar1.Panels.Item(2) = "[Barra] Pago Total - [F2] Pago Parcial -  [F5] Todos Total  - [F9] Agrega a Rbo "
+Me.StatusBar1.Panels.item(2) = "[Barra]Pago Total-[F2]Pago Parcial-[F3] Cambia Saldo - [F5]Todos Total- [F9] Agrega a Rbo "
 
 End Sub
 
@@ -230,6 +230,21 @@ If KeyCode = vbKeyF5 Then
    T_APAGAR = Format$(APAGAR, "######0.00")
   End If
 End If
+
+If KeyCode = vbKeyF3 Then
+  If msf1.Rows > 1 Then
+    If Val(msf1.TextMatrix(msf1.Row, 3)) > 0 Then
+         k = InputBox$("Ingrese el saldo pendiente", "CAMBIAR SALDO PENDIENTE")
+         If Val(k) > 0 And Val(k) <= Val(msf1.TextMatrix(msf1.Row, 3)) Then
+             msf1.TextMatrix(msf1.Row, 8) = Format$(Val(k), "######0.00")
+             
+         End If
+    End If
+  End If
+  
+End If
+
+
 
 End Sub
 

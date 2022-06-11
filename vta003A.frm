@@ -321,7 +321,7 @@ Begin VB.Form vta_facturacion
       Top             =   6600
       Width           =   3375
       Begin VB.CommandButton Command6 
-         Caption         =   "Percepcion IB"
+         Caption         =   "Percepciones"
          Height          =   195
          Left            =   120
          TabIndex        =   69
@@ -888,12 +888,12 @@ Begin VB.Form vta_facturacion
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "22/05/2022"
+            TextSave        =   "11/06/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "06:20 a.m."
+            TextSave        =   "09:40 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1

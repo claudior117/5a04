@@ -3,23 +3,23 @@ Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form vta_cambia_estado_pago 
    BackColor       =   &H00E0E0E0&
    Caption         =   "CAMBIA DATOS EN COMPROBANTES DE VENTA"
-   ClientHeight    =   7590
+   ClientHeight    =   8490
    ClientLeft      =   75
    ClientTop       =   360
    ClientWidth     =   8535
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
    PaletteMode     =   1  'UseZOrder
-   ScaleHeight     =   7590
+   ScaleHeight     =   8490
    ScaleWidth      =   8535
    StartUpPosition =   1  'CenterOwner
    Begin VB.Frame Frame7 
       BackColor       =   &H00E0E0E0&
       Caption         =   "Cambia Estado Cancelacion Proforma"
       Height          =   1095
-      Left            =   120
-      TabIndex        =   51
-      Top             =   2400
+      Left            =   480
+      TabIndex        =   52
+      Top             =   0
       Width           =   8175
       Begin VB.TextBox t_newestadoc 
          Appearance      =   0  'Flat
@@ -27,7 +27,7 @@ Begin VB.Form vta_cambia_estado_pago
          Height          =   285
          Left            =   1560
          MaxLength       =   1
-         TabIndex        =   53
+         TabIndex        =   54
          ToolTipText     =   "[N] Sin Cancelar  -  [P] Cancelada"
          Top             =   240
          Width           =   495
@@ -36,7 +36,7 @@ Begin VB.Form vta_cambia_estado_pago
          Caption         =   "Cambia estado Cancelacion"
          Height          =   255
          Left            =   2760
-         TabIndex        =   52
+         TabIndex        =   53
          Top             =   240
          Width           =   2535
       End
@@ -45,7 +45,7 @@ Begin VB.Form vta_cambia_estado_pago
          Caption         =   "N --> Sin Cancelar       P --> Cancelada"
          Height          =   255
          Left            =   2880
-         TabIndex        =   55
+         TabIndex        =   56
          Top             =   600
          Width           =   3975
       End
@@ -56,7 +56,7 @@ Begin VB.Form vta_cambia_estado_pago
          ForeColor       =   &H00FFFFFF&
          Height          =   375
          Left            =   120
-         TabIndex        =   54
+         TabIndex        =   55
          Top             =   240
          Width           =   1335
       End
@@ -65,14 +65,14 @@ Begin VB.Form vta_cambia_estado_pago
       BackColor       =   &H00E0E0E0&
       Height          =   1335
       Left            =   120
-      TabIndex        =   41
-      Top             =   4920
+      TabIndex        =   42
+      Top             =   5040
       Width           =   7455
       Begin VB.CommandButton Command4 
          Caption         =   "Modifica Datos"
          Height          =   255
          Left            =   4680
-         TabIndex        =   42
+         TabIndex        =   43
          Top             =   240
          Width           =   2415
       End
@@ -82,7 +82,7 @@ Begin VB.Form vta_cambia_estado_pago
          Height          =   285
          Left            =   120
          MaxLength       =   14
-         TabIndex        =   7
+         TabIndex        =   8
          Top             =   960
          Width           =   1215
       End
@@ -92,7 +92,7 @@ Begin VB.Form vta_cambia_estado_pago
          Height          =   285
          Left            =   1440
          MaxLength       =   1
-         TabIndex        =   5
+         TabIndex        =   6
          ToolTipText     =   "[P] pesos  -  [D] Dolares"
          Top             =   240
          Width           =   495
@@ -103,7 +103,7 @@ Begin VB.Form vta_cambia_estado_pago
          Height          =   285
          Left            =   3480
          MaxLength       =   10
-         TabIndex        =   6
+         TabIndex        =   7
          ToolTipText     =   "mayor o igual a  1"
          Top             =   240
          Width           =   975
@@ -114,7 +114,7 @@ Begin VB.Form vta_cambia_estado_pago
          Height          =   285
          Left            =   1560
          MaxLength       =   14
-         TabIndex        =   8
+         TabIndex        =   9
          Top             =   960
          Width           =   1215
       End
@@ -124,7 +124,7 @@ Begin VB.Form vta_cambia_estado_pago
          Height          =   285
          Left            =   3000
          MaxLength       =   14
-         TabIndex        =   9
+         TabIndex        =   10
          Top             =   960
          Width           =   1215
       End
@@ -134,7 +134,7 @@ Begin VB.Form vta_cambia_estado_pago
          Height          =   285
          Left            =   4440
          MaxLength       =   14
-         TabIndex        =   10
+         TabIndex        =   11
          Top             =   960
          Width           =   1215
       End
@@ -144,7 +144,7 @@ Begin VB.Form vta_cambia_estado_pago
          Height          =   285
          Left            =   5880
          MaxLength       =   14
-         TabIndex        =   11
+         TabIndex        =   12
          Top             =   960
          Width           =   1215
       End
@@ -156,7 +156,7 @@ Begin VB.Form vta_cambia_estado_pago
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   120
-         TabIndex        =   49
+         TabIndex        =   50
          Top             =   720
          Width           =   1215
       End
@@ -167,7 +167,7 @@ Begin VB.Form vta_cambia_estado_pago
          ForeColor       =   &H00FFFFFF&
          Height          =   495
          Left            =   120
-         TabIndex        =   48
+         TabIndex        =   49
          Top             =   240
          Width           =   1215
       End
@@ -178,7 +178,7 @@ Begin VB.Form vta_cambia_estado_pago
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   2280
-         TabIndex        =   47
+         TabIndex        =   48
          Top             =   240
          Width           =   1095
       End
@@ -190,7 +190,7 @@ Begin VB.Form vta_cambia_estado_pago
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   1560
-         TabIndex        =   46
+         TabIndex        =   47
          Top             =   720
          Width           =   1215
       End
@@ -202,7 +202,7 @@ Begin VB.Form vta_cambia_estado_pago
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   3000
-         TabIndex        =   45
+         TabIndex        =   46
          Top             =   720
          Width           =   1215
       End
@@ -214,7 +214,7 @@ Begin VB.Form vta_cambia_estado_pago
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   4440
-         TabIndex        =   44
+         TabIndex        =   45
          Top             =   720
          Width           =   1215
       End
@@ -226,7 +226,7 @@ Begin VB.Form vta_cambia_estado_pago
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   5880
-         TabIndex        =   43
+         TabIndex        =   44
          Top             =   720
          Width           =   1215
       End
@@ -236,14 +236,14 @@ Begin VB.Form vta_cambia_estado_pago
       Caption         =   "Otros cambios"
       Height          =   735
       Left            =   120
-      TabIndex        =   38
+      TabIndex        =   39
       Top             =   4200
       Width           =   8175
       Begin VB.CommandButton Command3 
          Caption         =   "Cambia "
          Height          =   255
          Left            =   7080
-         TabIndex        =   40
+         TabIndex        =   41
          Top             =   240
          Width           =   975
       End
@@ -253,7 +253,7 @@ Begin VB.Form vta_cambia_estado_pago
          Height          =   285
          Left            =   1560
          MaxLength       =   80
-         TabIndex        =   4
+         TabIndex        =   5
          ToolTipText     =   "Ingrese los digitos del 4 al 7 del cod. de barra de algun articulo de la marca"
          Top             =   240
          Width           =   5295
@@ -265,7 +265,7 @@ Begin VB.Form vta_cambia_estado_pago
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   120
-         TabIndex        =   39
+         TabIndex        =   40
          Top             =   240
          Width           =   1335
       End
@@ -275,14 +275,14 @@ Begin VB.Form vta_cambia_estado_pago
       Caption         =   "Cambia estado facturacion"
       Height          =   735
       Left            =   120
-      TabIndex        =   35
+      TabIndex        =   36
       Top             =   3480
       Width           =   8175
       Begin VB.CommandButton Command2 
          Caption         =   "Cambia estado Facturacion"
          Height          =   255
          Left            =   2760
-         TabIndex        =   37
+         TabIndex        =   38
          Top             =   240
          Width           =   2535
       End
@@ -292,7 +292,7 @@ Begin VB.Form vta_cambia_estado_pago
          Height          =   285
          Left            =   1560
          MaxLength       =   1
-         TabIndex        =   3
+         TabIndex        =   4
          ToolTipText     =   "[F] Facturado  -  [S] Sin Facturar"
          Top             =   240
          Width           =   495
@@ -304,7 +304,7 @@ Begin VB.Form vta_cambia_estado_pago
          ForeColor       =   &H00FFFFFF&
          Height          =   375
          Left            =   120
-         TabIndex        =   36
+         TabIndex        =   37
          Top             =   240
          Width           =   1335
       End
@@ -314,37 +314,48 @@ Begin VB.Form vta_cambia_estado_pago
       Caption         =   "Cambia Estado pago"
       Height          =   1095
       Left            =   120
-      TabIndex        =   26
+      TabIndex        =   27
       Top             =   2400
       Width           =   8175
+      Begin VB.TextBox t_newsaldoimpago 
+         Appearance      =   0  'Flat
+         BorderStyle     =   0  'None
+         Height          =   285
+         Left            =   3960
+         MaxLength       =   11
+         TabIndex        =   3
+         ToolTipText     =   "Saldo pendiente de pago"
+         Top             =   720
+         Width           =   1335
+      End
       Begin VB.CommandButton Command1 
          Caption         =   "Cambia estado pago"
          Height          =   255
-         Left            =   2760
-         TabIndex        =   34
-         Top             =   240
-         Width           =   2535
+         Left            =   5880
+         TabIndex        =   35
+         Top             =   720
+         Width           =   2055
       End
       Begin VB.TextBox t_numcomp 
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
          Height          =   285
-         Left            =   2400
+         Left            =   4800
          MaxLength       =   8
          TabIndex        =   2
          ToolTipText     =   "Ingrese los digitos del 4 al 7 del cod. de barra de algun articulo de la marca"
-         Top             =   720
+         Top             =   240
          Width           =   1215
       End
       Begin VB.TextBox t_sucursal 
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
          Height          =   285
-         Left            =   1560
+         Left            =   3960
          MaxLength       =   4
          TabIndex        =   1
          ToolTipText     =   "Ingrese los digitos del 4 al 7 del cod. de barra de algun articulo de la marca"
-         Top             =   720
+         Top             =   240
          Width           =   735
       End
       Begin VB.TextBox T_newestado 
@@ -358,15 +369,26 @@ Begin VB.Form vta_cambia_estado_pago
          Top             =   240
          Width           =   495
       End
+      Begin VB.Label Label23 
+         Appearance      =   0  'Flat
+         BackColor       =   &H00800000&
+         Caption         =   "Saldo Impago"
+         ForeColor       =   &H00FFFFFF&
+         Height          =   255
+         Left            =   2520
+         TabIndex        =   57
+         Top             =   720
+         Width           =   1335
+      End
       Begin VB.Label Label7 
          Appearance      =   0  'Flat
          BackColor       =   &H00800000&
          Caption         =   "Num. Recibo"
          ForeColor       =   &H00FFFFFF&
          Height          =   255
-         Left            =   120
-         TabIndex        =   28
-         Top             =   720
+         Left            =   2520
+         TabIndex        =   29
+         Top             =   240
          Width           =   1335
       End
       Begin VB.Label Label6 
@@ -376,7 +398,7 @@ Begin VB.Form vta_cambia_estado_pago
          ForeColor       =   &H00FFFFFF&
          Height          =   495
          Left            =   120
-         TabIndex        =   27
+         TabIndex        =   28
          Top             =   240
          Width           =   1335
       End
@@ -386,7 +408,7 @@ Begin VB.Form vta_cambia_estado_pago
       Caption         =   "Estado Actual del Comprobante"
       Height          =   2295
       Left            =   120
-      TabIndex        =   18
+      TabIndex        =   19
       Top             =   120
       Width           =   8295
       Begin VB.TextBox t_idtipocomp 
@@ -397,7 +419,7 @@ Begin VB.Form vta_cambia_estado_pago
          Left            =   7080
          Locked          =   -1  'True
          MaxLength       =   5
-         TabIndex        =   33
+         TabIndex        =   34
          TabStop         =   0   'False
          Top             =   720
          Width           =   855
@@ -409,7 +431,7 @@ Begin VB.Form vta_cambia_estado_pago
          Left            =   2160
          Locked          =   -1  'True
          MaxLength       =   150
-         TabIndex        =   30
+         TabIndex        =   31
          TabStop         =   0   'False
          ToolTipText     =   "[N] Sin Pagar  -  [P] Pagado "
          Top             =   1800
@@ -423,7 +445,7 @@ Begin VB.Form vta_cambia_estado_pago
          Left            =   7080
          Locked          =   -1  'True
          MaxLength       =   5
-         TabIndex        =   29
+         TabIndex        =   30
          TabStop         =   0   'False
          Top             =   1080
          Width           =   855
@@ -435,7 +457,7 @@ Begin VB.Form vta_cambia_estado_pago
          Left            =   2160
          Locked          =   -1  'True
          MaxLength       =   150
-         TabIndex        =   23
+         TabIndex        =   24
          TabStop         =   0   'False
          Top             =   1080
          Width           =   4575
@@ -447,7 +469,7 @@ Begin VB.Form vta_cambia_estado_pago
          Left            =   2160
          Locked          =   -1  'True
          MaxLength       =   150
-         TabIndex        =   13
+         TabIndex        =   14
          TabStop         =   0   'False
          ToolTipText     =   "[N] Sin Pagar  -  [P] Pagado "
          Top             =   1440
@@ -461,7 +483,7 @@ Begin VB.Form vta_cambia_estado_pago
          Left            =   2160
          Locked          =   -1  'True
          MaxLength       =   10
-         TabIndex        =   19
+         TabIndex        =   20
          TabStop         =   0   'False
          Top             =   360
          Width           =   1455
@@ -473,7 +495,7 @@ Begin VB.Form vta_cambia_estado_pago
          Left            =   2160
          Locked          =   -1  'True
          MaxLength       =   150
-         TabIndex        =   12
+         TabIndex        =   13
          TabStop         =   0   'False
          Top             =   720
          Width           =   4575
@@ -482,7 +504,7 @@ Begin VB.Form vta_cambia_estado_pago
          Caption         =   "[A] Activo     -    [F] Facturado  -  [S] Sin Factrurar"
          Height          =   255
          Left            =   2880
-         TabIndex        =   32
+         TabIndex        =   33
          Top             =   1800
          Width           =   3735
       End
@@ -493,7 +515,7 @@ Begin VB.Form vta_cambia_estado_pago
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   480
-         TabIndex        =   31
+         TabIndex        =   32
          Top             =   1800
          Width           =   1575
       End
@@ -501,7 +523,7 @@ Begin VB.Form vta_cambia_estado_pago
          Caption         =   "[N] Sin Pagar     -    [P] Pagado"
          Height          =   255
          Left            =   2880
-         TabIndex        =   25
+         TabIndex        =   26
          Top             =   1440
          Width           =   3735
       End
@@ -512,7 +534,7 @@ Begin VB.Form vta_cambia_estado_pago
          ForeColor       =   &H00FFFFFF&
          Height          =   375
          Left            =   480
-         TabIndex        =   24
+         TabIndex        =   25
          Top             =   1080
          Width           =   1575
       End
@@ -523,7 +545,7 @@ Begin VB.Form vta_cambia_estado_pago
          ForeColor       =   &H00FFFFFF&
          Height          =   375
          Left            =   480
-         TabIndex        =   22
+         TabIndex        =   23
          Top             =   1440
          Width           =   1575
       End
@@ -534,7 +556,7 @@ Begin VB.Form vta_cambia_estado_pago
          ForeColor       =   &H00FFFFFF&
          Height          =   375
          Left            =   480
-         TabIndex        =   21
+         TabIndex        =   22
          Top             =   360
          Width           =   1575
       End
@@ -545,7 +567,7 @@ Begin VB.Form vta_cambia_estado_pago
          ForeColor       =   &H00FFFFFF&
          Height          =   375
          Left            =   480
-         TabIndex        =   20
+         TabIndex        =   21
          Top             =   720
          Width           =   1575
       End
@@ -554,16 +576,16 @@ Begin VB.Form vta_cambia_estado_pago
       BackColor       =   &H00E0E0E0&
       Caption         =   "Funciones"
       Height          =   975
-      Left            =   6840
-      TabIndex        =   15
-      Top             =   6360
+      Left            =   6720
+      TabIndex        =   16
+      Top             =   7200
       Width           =   1575
       Begin VB.CommandButton btnsale 
          Height          =   615
          Left            =   840
          Picture         =   "vta023.frx":0000
          Style           =   1  'Graphical
-         TabIndex        =   17
+         TabIndex        =   18
          ToolTipText     =   "Salir sin Modificar"
          Top             =   240
          UseMaskColor    =   -1  'True
@@ -574,7 +596,7 @@ Begin VB.Form vta_cambia_estado_pago
          Left            =   120
          Picture         =   "vta023.frx":0882
          Style           =   1  'Graphical
-         TabIndex        =   16
+         TabIndex        =   17
          ToolTipText     =   "Renueva Lista de Clientes"
          Top             =   240
          UseMaskColor    =   -1  'True
@@ -585,8 +607,8 @@ Begin VB.Form vta_cambia_estado_pago
       Align           =   2  'Align Bottom
       Height          =   255
       Left            =   0
-      TabIndex        =   14
-      Top             =   7335
+      TabIndex        =   15
+      Top             =   8235
       Width           =   8535
       _ExtentX        =   15055
       _ExtentY        =   450
@@ -610,12 +632,12 @@ Begin VB.Form vta_cambia_estado_pago
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "29/04/2022"
+            TextSave        =   "27/05/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "04:22 p.m."
+            TextSave        =   "10:47 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -626,8 +648,8 @@ Begin VB.Form vta_cambia_estado_pago
       ForeColor       =   &H000000FF&
       Height          =   615
       Left            =   120
-      TabIndex        =   50
-      Top             =   6360
+      TabIndex        =   51
+      Top             =   7560
       Width           =   6255
    End
 End
@@ -693,27 +715,11 @@ q = "select * from vta_02 where [num_int] = " & Val(t_id)
 rs1.Open q, cn1, adOpenDynamic, adLockOptimistic, 1
 If Not rs1.BOF And Not rs1.EOF Then
           If T_newestado = "N" Then
-            MsgBox ("Se pondran los pagos parciales del comprobante en cero por lo que debera cancelarlo totalmente nuevamente")
+            MsgBox ("Se modifica el saldo impago del comprobante pero no se eliminan los comprobantes de pagos previos asociados a este comprobante ")
             r = "0000-00000000"
            'pone el comprobante como no pago
-            If rs1("moneda") = "P" Then
-                t = rs1("total")
-            Else
-                t = rs1("total_otra_moneda")
-            End If
-            rs1("saldo_impago02") = t
+            rs1("saldo_impago02") = Val(t_newsaldoimpago)
              
-             'limpio todas la op del comp vta_010
-             Set rs2 = New ADODB.Recordset
-             q = "select * from vta_010 where [num_int_comp] = " & rs1("num_int")
-             rs2.Open q, cn1, adOpenDynamic, adLockOptimistic
-             While Not rs2.EOF
-               rs2.Delete
-               rs2.MoveNext
-             Wend
-             Set rs2 = Nothing
-           
-           
            
            Else
                           
@@ -735,6 +741,7 @@ If Not rs1.BOF And Not rs1.EOF Then
           End If
           rs1("estado_pago") = T_newestado
           rs1("recibo_pago") = r
+          
         rs1.Update
         
         QUERY = "INSERT INTO g11([detalle], [id_usuario], [modulo], [num_int_comp], [fecha_hora], [obs], [id_operacion], [id_clipro])"
@@ -780,6 +787,35 @@ ERRORGRABA:
   MsgBox ("Error de Actualizacion. Verifique los datos o sus permisos")
 
 End Sub
+
+Sub cambia5()
+ 'On Error GoTo ERRORGRABA
+Set rs1 = New ADODB.Recordset
+q = "select * from vta_02 where [num_int] = " & Val(t_id)
+rs1.Open q, cn1, adOpenDynamic, adLockOptimistic, 1
+If Not rs1.BOF And Not rs1.EOF Then
+         rs1("estado_pago") = t_newestadopago
+         rs1("saldo_impago2") = Val(t_newsaldoimpago)
+          rs1.Update
+        
+        QUERY = "INSERT INTO g11([detalle], [id_usuario], [modulo], [num_int_comp], [fecha_hora], [obs], [id_operacion], [id_clipro])"
+        QUERY = QUERY & " VALUES ('Cambia estado pago comprobante:" & t_id & "', " & para.id_usuario & ", 'V', " & Val(t_id) & ", '" & Now & "', 'Nuevo estado " & t_newestadoc & "', 3, " & Val(T_IDPROV) & ")"
+        cn1.BeginTrans
+         cn1.Execute QUERY
+        cn1.CommitTrans
+End If
+Set rs1 = Nothing
+ 
+ 
+ 
+ MsgBox ("Operacion Terminada")
+
+Exit Sub
+ERRORGRABA:
+  MsgBox ("Error de Actualizacion. Verifique los datos o sus permisos")
+
+End Sub
+
 
 Sub cambia2(ByVal nio)
  'On Error GoTo ERRORGRABA
@@ -931,6 +967,8 @@ Unload Me
 
 End Sub
 
+
+
 Private Sub Form_Activate()
 If t_moneda = "P" Then
   Label16 = "Total $"
@@ -1006,7 +1044,7 @@ End Sub
 Private Sub Form_KeyPress(KeyAscii As Integer)
 Select Case KeyAscii
   Case Is = 13
-    Call TabEnter2(Me, 11)
+    Call TabEnter2(Me, 12)
   Case Is = 27
         Unload Me
 End Select
@@ -1053,6 +1091,11 @@ Private Sub T_newestado_LostFocus()
 T_newestado = UCase(T_newestado)
 If T_newestado <> "N" And T_newestado <> "P" Then
    T_newestado = "N"
+Else
+  If T_newestado = "P" Then
+     t_newsaldoimpago = 0
+  End If
+  
 End If
 
 End Sub
@@ -1063,6 +1106,12 @@ If t_newestado2 <> "A" And t_newestado2 <> "F" And t_newestado2 <> "S" Then
    t_newestado2 = t_estado2
 End If
 
+End Sub
+
+Private Sub t_newsaldoimpago_LostFocus()
+If t_newestadopago = "P" Then
+   t_newsaldoimpago = 0
+End If
 End Sub
 
 Private Sub t_numcomp_LostFocus()

@@ -18,11 +18,18 @@ Begin VB.Form vta_retyperc
    StartUpPosition =   3  'Windows Default
    Begin VB.Frame Frame2 
       BackColor       =   &H00E0E0E0&
-      Height          =   1335
+      Height          =   1695
       Left            =   7080
       TabIndex        =   11
       Top             =   0
       Width           =   4695
+      Begin VB.ComboBox c_concepto 
+         Height          =   315
+         Left            =   1440
+         TabIndex        =   16
+         Top             =   1200
+         Width           =   3135
+      End
       Begin VB.ComboBox c_imp 
          Height          =   315
          Left            =   1440
@@ -37,11 +44,21 @@ Begin VB.Form vta_retyperc
          Top             =   240
          Width           =   3135
       End
+      Begin VB.Label Label4 
+         BackColor       =   &H00C00000&
+         Caption         =   "Concepto:"
+         ForeColor       =   &H00FFFFFF&
+         Height          =   375
+         Left            =   120
+         TabIndex        =   17
+         Top             =   1200
+         Width           =   1215
+      End
       Begin VB.Label Label5 
          BackColor       =   &H00C00000&
          Caption         =   "Impuesto:"
          ForeColor       =   &H00FFFFFF&
-         Height          =   375
+         Height          =   495
          Left            =   120
          TabIndex        =   14
          Top             =   720
@@ -70,7 +87,7 @@ Begin VB.Form vta_retyperc
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   42467329
+      StartOfWeek     =   115146753
       CurrentDate     =   38750
    End
    Begin VB.Frame Frame3 
@@ -182,24 +199,24 @@ Begin VB.Form vta_retyperc
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "21/05/2022"
+            TextSave        =   "04/06/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:29 a.m."
+            TextSave        =   "06:13 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
    End
    Begin MSFlexGridLib.MSFlexGrid msf1 
-      Height          =   5535
+      Height          =   5415
       Left            =   0
       TabIndex        =   10
-      Top             =   1560
+      Top             =   1680
       Width           =   11895
       _ExtentX        =   20981
-      _ExtentY        =   9763
+      _ExtentY        =   9551
       _Version        =   393216
    End
 End
@@ -272,6 +289,9 @@ If c_comp.ListIndex = 0 Or c_comp.ListIndex = 1 Then 'percePCIONES
         'suss
      tp = buscaperc("S")
      
+   Case Is = 5
+        'otros
+     tp = buscaperc("O")
    End Select
  End If
  sacaperc = tp
@@ -296,6 +316,9 @@ Function SACAret(ByVal LI As Integer) As Double
    Case Is = 4
         'suss
      ttr = buscaRET2("S")
+   Case Is = 5
+        'otros
+     ttr = buscaRET2("O")
      
    End Select
  End If
@@ -316,6 +339,10 @@ Case Is = "G"
    dr = "GAN"
 Case Is = "S"
    dr = "SEG.SOC."
+Case Is = "O"
+   dr = "OTROS"
+
+
 End Select
   
 tp = 0
@@ -391,6 +418,11 @@ Case Is = "G"
 Case Is = "S"
    dr = "SEG.SOC."
    cc = 103
+Case Is = "O"
+   dr = "OTROS"
+   cc = 104
+
+
 End Select
 
 
@@ -543,6 +575,9 @@ Call barraesag(Me)
 cal1.Visible = False
 Call armagrid
 Call cargaret
+Call carga_percepciones(c_concepto, "T")
+c_concepto.AddItem "<Todos>", 0
+
 
 End Sub
 Sub cargaret()
@@ -553,6 +588,7 @@ c_imp.AddItem "Iva", 1
 c_imp.AddItem "Ing.Brutos", 2
 c_imp.AddItem "Ganancias", 3
 c_imp.AddItem "Seg. Social", 4
+c_imp.AddItem "Otros", 5
 c_imp.ListIndex = 0
 
 c_comp.clear

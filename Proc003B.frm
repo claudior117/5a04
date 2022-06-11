@@ -30,11 +30,8 @@ Begin VB.Form ABM_COMP_COMPRA2
          BeginProperty Panel1 {0713E89F-850A-101B-AFC0-4210102A8DA7} 
             Object.Width           =   14111
             MinWidth        =   14111
-            Text            =   ""
             TextSave        =   ""
-            Key             =   ""
             Object.Tag             =   ""
-            Object.ToolTipText     =   ""
          EndProperty
       EndProperty
    End
@@ -241,6 +238,8 @@ End Sub
 
 Private Sub Form_Activate()
 Frame1.Visible = False
+'t_modulo C --> Perc Compra  V --> Ret Venta    P --> Percepcines
+
 If t_modulo = "C" Then
   Call carga_percepciones(c_perc, "P") 'comprs
 Else

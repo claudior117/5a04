@@ -296,12 +296,12 @@ Begin VB.Form emp_emitemov
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "04/02/2020"
+            TextSave        =   "11/06/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "09:46"
+            TextSave        =   "09:27 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -322,12 +322,12 @@ Sub limpia()
    t_nograbado = ""
    t_perc = ""
    t_iva = ""
-   t_total = ""
+   T_TOTAL = ""
    Option1 = True
 End Sub
 Sub carga()
   q = "select * from emp_02 where [num_mov_int] = " & Val(t_numcomp)
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   rs.Open q, cn1
   If Not rs.EOF And Not rs.BOF Then
    If rs("tipo_movimiento") <> 20 Then
@@ -347,7 +347,7 @@ Sub carga()
     Else
        q = q & " order by [denominacion]"
     End If
-    Set rs1 = New adodb.Recordset
+    Set rs1 = New ADODB.Recordset
     rs1.Open q, cn1
     While Not rs1.EOF
        l = rs1("id_legajo")
@@ -373,7 +373,7 @@ End Sub
 Sub pi7()
 Call armagrid
 q = "select * from emp_02, emp_01 where [num_mov_int] = " & Val(t_numcomp) & " and emp_02.[id_legajo] = emp_01.[id_legajo]"
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 rs.Open q, cn1
 p = 0
 t = 0
@@ -434,7 +434,7 @@ End Sub
 
 
 Sub inicia()
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select * from g0 "
 rs.Open q, cn1
 If Not rs.EOF And Not rs.BOF Then
@@ -511,7 +511,7 @@ Unload emp_emitemov1
 End Sub
 
 Private Sub msf1_GotFocus()
-Me.StatusBar1.Panels.Item(2) = "[ENTER] Modifica - [F5] Elimina - [F7] Imprime - [F9] Termina"
+Me.StatusBar1.Panels.item(2) = "[ENTER] Modifica - [F5] Elimina - [F7] Imprime - [F9] Termina"
 If msf1.Rows > 1 Then
   msf1.FocusRect = flexFocusNone
 Else
@@ -565,28 +565,24 @@ Sub graba()
           u = "D"
      End Select
    
-   cn1.BeginTrans
+   
   'VERIFICA QUE NO EXISTA EL COMPROBANTE
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   q = "select * from emp_02 where [num_mov_int] = " & Val(t_numcomp)
   rs.Open q, cn1
   If Not rs.BOF And Not rs.EOF Then
-     If rs(tipo_movimiento) <> 20 Then
-      For i = 1 To msf1.Rows - 1
-           
-         QUERY = "update emp_02 set  [importe]=" & Val(msf1.TextMatrix(i, 4)) & " , [fecha]='" & t_fecha & "' , [tipo_movimiento]= " & tm & " , [ubicacion]='" & u & "'"
-         QUERY = QUERY & " where [num_mov_int]= " & Val(t_numcomp) & " and [id_legajo]= " & Val(msf1.TextMatrix(i, 0))
-         
-         cn1.Execute QUERY
-        
-      Next i
-     Else
-       MsgBox ("El movimiento es un GASTO. Imposible modificar")
-       Call limpia
-     End If
-  Else
-            
-      For i = 1 To msf1.Rows - 1
+  
+      'borro
+      QUERY = "DELETE FROM emp_02 WHERE [num_mov_int] = " & Val(t_numcomp)
+      cn1.BeginTrans
+      cn1.Execute QUERY
+      cn1.CommitTrans
+  
+   End If
+   
+   'agrego todo
+   cn1.BeginTrans
+   For i = 1 To msf1.Rows - 1
         If Val(msf1.TextMatrix(i, 4)) > 0 And Val(msf1.TextMatrix(i, 0)) > 1 Then
            
           
@@ -604,9 +600,6 @@ Sub graba()
       
       cn1.Execute QUERY
       
-      
-                 
- End If
  cn1.CommitTrans
  Set rs = Nothing
  
@@ -684,10 +677,10 @@ For i = 1 To msf1.Rows - 1
    s = s + r
   End If
 Next i
-t_total = Format$(s, "#####0.00")
+T_TOTAL = Format$(s, "#####0.00")
 msf1.TextMatrix(msf1.Rows - 2, 4) = "----------------------------"
 msf1.TextMatrix(msf1.Rows - 1, 1) = "*****TOTAL*******"
-msf1.TextMatrix(msf1.Rows - 1, 4) = t_total
+msf1.TextMatrix(msf1.Rows - 1, 4) = T_TOTAL
 
 End Sub
 
@@ -699,7 +692,7 @@ End If
 End Sub
 
 Private Sub t_total_LostFocus()
-t_total = Format$(t_total, "######0.00")
+T_TOTAL = Format$(T_TOTAL, "######0.00")
 End Sub
 
 Sub imprime()
