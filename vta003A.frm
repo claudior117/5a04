@@ -16,7 +16,7 @@ Begin VB.Form vta_facturacion
    Begin VB.TextBox t_cae_vence 
       Height          =   285
       Left            =   12240
-      TabIndex        =   81
+      TabIndex        =   75
       Text            =   "20180101"
       Top             =   6480
       Visible         =   0   'False
@@ -25,7 +25,7 @@ Begin VB.Form vta_facturacion
    Begin VB.TextBox t_cae 
       Height          =   285
       Left            =   12240
-      TabIndex        =   80
+      TabIndex        =   74
       Text            =   "u2"
       Top             =   6120
       Visible         =   0   'False
@@ -34,7 +34,7 @@ Begin VB.Form vta_facturacion
    Begin VB.TextBox t_cantlineas 
       Height          =   285
       Left            =   10440
-      TabIndex        =   79
+      TabIndex        =   73
       Text            =   "Text1"
       Top             =   6720
       Width           =   855
@@ -42,7 +42,7 @@ Begin VB.Form vta_facturacion
    Begin VB.TextBox t_cl 
       Height          =   285
       Left            =   10440
-      TabIndex        =   78
+      TabIndex        =   72
       Text            =   "Text1"
       Top             =   7080
       Visible         =   0   'False
@@ -52,7 +52,7 @@ Begin VB.Form vta_facturacion
       BackColor       =   &H00E0E0E0&
       Height          =   495
       Left            =   9720
-      TabIndex        =   76
+      TabIndex        =   70
       Top             =   1440
       Width           =   1935
       Begin VB.CheckBox Check3 
@@ -60,7 +60,7 @@ Begin VB.Form vta_facturacion
          Caption         =   "Moneda Unica"
          Height          =   315
          Left            =   120
-         TabIndex        =   77
+         TabIndex        =   71
          Top             =   120
          Width           =   1575
       End
@@ -69,7 +69,7 @@ Begin VB.Form vta_facturacion
       BackColor       =   &H00E0E0E0&
       Height          =   615
       Left            =   9000
-      TabIndex        =   74
+      TabIndex        =   68
       Top             =   5880
       Width           =   2775
       Begin VB.CheckBox Check2 
@@ -77,7 +77,7 @@ Begin VB.Form vta_facturacion
          Caption         =   "Imprime Descripcion Extra"
          Height          =   255
          Left            =   120
-         TabIndex        =   75
+         TabIndex        =   69
          TabStop         =   0   'False
          Top             =   240
          Width           =   2295
@@ -93,7 +93,7 @@ Begin VB.Form vta_facturacion
       BackColor       =   &H00E0E0E0&
       Height          =   735
       Left            =   240
-      TabIndex        =   67
+      TabIndex        =   61
       Top             =   7560
       Width           =   6015
       Begin VB.Label Label20 
@@ -101,7 +101,7 @@ Begin VB.Form vta_facturacion
          ForeColor       =   &H000000FF&
          Height          =   375
          Left            =   120
-         TabIndex        =   68
+         TabIndex        =   62
          Top             =   240
          Width           =   5775
       End
@@ -110,14 +110,14 @@ Begin VB.Form vta_facturacion
       BackColor       =   &H00E0E0E0&
       Height          =   615
       Left            =   9000
-      TabIndex        =   62
+      TabIndex        =   56
       Top             =   5280
       Width           =   2775
       Begin VB.CommandButton Command4 
          Caption         =   "Cal"
          Height          =   255
          Left            =   2280
-         TabIndex        =   64
+         TabIndex        =   58
          ToolTipText     =   "Para calcular la Percepcion por canje de cereal RG2459 es necesario que el cliente este marcado como OPERADOR DE GRANOS"
          Top             =   240
          Width           =   375
@@ -127,7 +127,7 @@ Begin VB.Form vta_facturacion
          Caption         =   "Por canje Cereal RG 2459"
          Height          =   255
          Left            =   120
-         TabIndex        =   63
+         TabIndex        =   57
          TabStop         =   0   'False
          Top             =   240
          Width           =   2295
@@ -138,7 +138,7 @@ Begin VB.Form vta_facturacion
       Caption         =   "Totales"
       Height          =   855
       Left            =   6480
-      TabIndex        =   59
+      TabIndex        =   53
       Top             =   7440
       Width           =   2535
       Begin VB.TextBox t_total 
@@ -147,7 +147,7 @@ Begin VB.Form vta_facturacion
          Left            =   120
          Locked          =   -1  'True
          MaxLength       =   10
-         TabIndex        =   23
+         TabIndex        =   20
          Top             =   480
          Width           =   1095
       End
@@ -156,7 +156,7 @@ Begin VB.Form vta_facturacion
          Height          =   285
          Left            =   1320
          MaxLength       =   10
-         TabIndex        =   24
+         TabIndex        =   21
          Top             =   480
          Width           =   1095
       End
@@ -167,7 +167,7 @@ Begin VB.Form vta_facturacion
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   120
-         TabIndex        =   61
+         TabIndex        =   55
          Top             =   240
          Width           =   1095
       End
@@ -178,7 +178,7 @@ Begin VB.Form vta_facturacion
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   1320
-         TabIndex        =   60
+         TabIndex        =   54
          Top             =   240
          Width           =   1095
       End
@@ -188,7 +188,7 @@ Begin VB.Form vta_facturacion
       Caption         =   "Parciales"
       Height          =   855
       Left            =   240
-      TabIndex        =   56
+      TabIndex        =   50
       Top             =   6600
       Width           =   6375
       Begin VB.TextBox t_subtotal 
@@ -223,7 +223,7 @@ Begin VB.Form vta_facturacion
          Caption         =   "IVA"
          Height          =   195
          Left            =   5160
-         TabIndex        =   70
+         TabIndex        =   64
          TabStop         =   0   'False
          Top             =   240
          Width           =   1095
@@ -265,7 +265,7 @@ Begin VB.Form vta_facturacion
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   3840
-         TabIndex        =   85
+         TabIndex        =   79
          Top             =   240
          Width           =   1095
       End
@@ -274,7 +274,7 @@ Begin VB.Form vta_facturacion
          Caption         =   "%"
          Height          =   255
          Left            =   2760
-         TabIndex        =   84
+         TabIndex        =   78
          Top             =   480
          Width           =   255
       End
@@ -285,7 +285,7 @@ Begin VB.Form vta_facturacion
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   2400
-         TabIndex        =   83
+         TabIndex        =   77
          Top             =   240
          Width           =   1335
       End
@@ -296,7 +296,7 @@ Begin VB.Form vta_facturacion
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   120
-         TabIndex        =   58
+         TabIndex        =   52
          Top             =   240
          Width           =   1095
       End
@@ -307,7 +307,7 @@ Begin VB.Form vta_facturacion
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   1320
-         TabIndex        =   57
+         TabIndex        =   51
          Top             =   240
          Width           =   975
       End
@@ -317,89 +317,33 @@ Begin VB.Form vta_facturacion
       Caption         =   "Percepciones"
       Height          =   855
       Left            =   6720
-      TabIndex        =   52
+      TabIndex        =   49
       Top             =   6600
-      Width           =   3375
+      Width           =   2295
       Begin VB.CommandButton Command6 
          Caption         =   "Percepciones"
          Height          =   195
-         Left            =   120
-         TabIndex        =   69
+         Left            =   360
+         TabIndex        =   63
          TabStop         =   0   'False
          Top             =   240
          Width           =   1455
       End
-      Begin VB.TextBox t_perciva 
-         BorderStyle     =   0  'None
-         Height          =   285
-         Left            =   2520
-         MaxLength       =   10
-         TabIndex        =   22
-         Top             =   480
-         Width           =   735
-      End
-      Begin VB.TextBox t_alicuotaperciva 
-         BorderStyle     =   0  'None
-         Height          =   285
-         Left            =   1680
-         MaxLength       =   8
-         TabIndex        =   21
-         Top             =   480
-         Width           =   495
-      End
       Begin VB.TextBox t_perc 
          BorderStyle     =   0  'None
          Height          =   285
-         Left            =   840
+         Left            =   360
          MaxLength       =   10
-         TabIndex        =   20
-         Top             =   480
-         Width           =   735
-      End
-      Begin VB.TextBox t_alicuotaib 
-         BorderStyle     =   0  'None
-         Height          =   285
-         Left            =   120
-         MaxLength       =   8
          TabIndex        =   19
          Top             =   480
-         Width           =   495
-      End
-      Begin VB.Label Label18 
-         BackColor       =   &H00E0E0E0&
-         Caption         =   "%"
-         Height          =   255
-         Left            =   2160
-         TabIndex        =   55
-         Top             =   480
-         Width           =   255
-      End
-      Begin VB.Label Label7 
-         Alignment       =   2  'Center
-         BackColor       =   &H00800080&
-         Caption         =   "Perc. Iva"
-         ForeColor       =   &H00FFFFFF&
-         Height          =   255
-         Left            =   1680
-         TabIndex        =   54
-         Top             =   240
-         Width           =   1575
-      End
-      Begin VB.Label Label17 
-         BackColor       =   &H00E0E0E0&
-         Caption         =   "%"
-         Height          =   255
-         Left            =   600
-         TabIndex        =   53
-         Top             =   480
-         Width           =   255
+         Width           =   1455
       End
    End
    Begin VB.CommandButton Command3 
       Caption         =   " Remitos"
       Height          =   255
       Left            =   8160
-      TabIndex        =   49
+      TabIndex        =   46
       TabStop         =   0   'False
       Top             =   1560
       Width           =   1095
@@ -408,7 +352,7 @@ Begin VB.Form vta_facturacion
       BackColor       =   &H00E0E0E0&
       Height          =   735
       Left            =   9720
-      TabIndex        =   43
+      TabIndex        =   40
       Top             =   720
       Width           =   1935
       Begin VB.OptionButton Option4 
@@ -416,7 +360,7 @@ Begin VB.Form vta_facturacion
          Caption         =   "Pesos"
          Height          =   255
          Left            =   120
-         TabIndex        =   45
+         TabIndex        =   42
          TabStop         =   0   'False
          Top             =   120
          Width           =   975
@@ -426,7 +370,7 @@ Begin VB.Form vta_facturacion
          Caption         =   "U$s"
          Height          =   255
          Left            =   120
-         TabIndex        =   44
+         TabIndex        =   41
          TabStop         =   0   'False
          Top             =   360
          Width           =   855
@@ -436,14 +380,14 @@ Begin VB.Form vta_facturacion
       BackColor       =   &H00E0E0E0&
       Height          =   735
       Left            =   9720
-      TabIndex        =   40
+      TabIndex        =   37
       Top             =   0
       Width           =   1935
       Begin VB.CommandButton Command8 
          Caption         =   "F.P."
          Height          =   255
          Left            =   1080
-         TabIndex        =   73
+         TabIndex        =   67
          TabStop         =   0   'False
          Top             =   360
          Width           =   735
@@ -453,7 +397,7 @@ Begin VB.Form vta_facturacion
          Caption         =   "Contado "
          Height          =   255
          Left            =   120
-         TabIndex        =   42
+         TabIndex        =   39
          TabStop         =   0   'False
          Top             =   360
          Width           =   975
@@ -463,7 +407,7 @@ Begin VB.Form vta_facturacion
          Caption         =   "Cta.Cte."
          Height          =   255
          Left            =   120
-         TabIndex        =   41
+         TabIndex        =   38
          TabStop         =   0   'False
          Top             =   120
          Width           =   1215
@@ -473,7 +417,7 @@ Begin VB.Form vta_facturacion
       BackColor       =   &H00E0E0E0&
       Height          =   735
       Left            =   9960
-      TabIndex        =   37
+      TabIndex        =   34
       Top             =   2160
       Visible         =   0   'False
       Width           =   2535
@@ -482,7 +426,7 @@ Begin VB.Form vta_facturacion
          Height          =   405
          Left            =   1680
          MaxLength       =   1
-         TabIndex        =   38
+         TabIndex        =   35
          Top             =   240
          Width           =   615
       End
@@ -493,7 +437,7 @@ Begin VB.Form vta_facturacion
          ForeColor       =   &H00FFFFFF&
          Height          =   375
          Left            =   120
-         TabIndex        =   39
+         TabIndex        =   36
          Top             =   240
          Width           =   1335
       End
@@ -503,7 +447,7 @@ Begin VB.Form vta_facturacion
       Caption         =   "Totales del Comprobante"
       Height          =   1335
       Left            =   240
-      TabIndex        =   35
+      TabIndex        =   32
       Top             =   5280
       Width           =   8655
       Begin VB.ComboBox c_tipoop 
@@ -528,7 +472,7 @@ Begin VB.Form vta_facturacion
          Left            =   6720
          Picture         =   "vta003A.frx":003E
          Style           =   1  'Graphical
-         TabIndex        =   48
+         TabIndex        =   45
          Top             =   240
          Width           =   735
       End
@@ -555,7 +499,7 @@ Begin VB.Form vta_facturacion
          ForeColor       =   &H00FFFFFF&
          Height          =   375
          Left            =   120
-         TabIndex        =   50
+         TabIndex        =   47
          Top             =   600
          Width           =   1335
       End
@@ -566,7 +510,7 @@ Begin VB.Form vta_facturacion
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   120
-         TabIndex        =   46
+         TabIndex        =   43
          Top             =   960
          Width           =   1335
       End
@@ -577,7 +521,7 @@ Begin VB.Form vta_facturacion
          ForeColor       =   &H00FFFFFF&
          Height          =   375
          Left            =   120
-         TabIndex        =   36
+         TabIndex        =   33
          Top             =   240
          Width           =   1335
       End
@@ -597,7 +541,7 @@ Begin VB.Form vta_facturacion
       BackColor       =   &H00E0E0E0&
       Height          =   1935
       Left            =   120
-      TabIndex        =   30
+      TabIndex        =   27
       Top             =   0
       Width           =   9375
       Begin VB.ComboBox c_transferencia 
@@ -615,7 +559,7 @@ Begin VB.Form vta_facturacion
          Left            =   7440
          List            =   "vta003A.frx":018B
          Style           =   2  'Dropdown List
-         TabIndex        =   71
+         TabIndex        =   65
          Top             =   240
          Width           =   1695
       End
@@ -624,7 +568,7 @@ Begin VB.Form vta_facturacion
          Left            =   8520
          Picture         =   "vta003A.frx":018D
          Style           =   1  'Graphical
-         TabIndex        =   66
+         TabIndex        =   60
          Top             =   720
          Width           =   255
       End
@@ -651,7 +595,7 @@ Begin VB.Form vta_facturacion
          Left            =   7680
          Picture         =   "vta003A.frx":04FF
          Style           =   1  'Graphical
-         TabIndex        =   47
+         TabIndex        =   44
          Top             =   720
          Width           =   735
       End
@@ -670,7 +614,7 @@ Begin VB.Form vta_facturacion
          Left            =   1680
          Locked          =   -1  'True
          MaxLength       =   1
-         TabIndex        =   25
+         TabIndex        =   22
          Top             =   1200
          Width           =   375
       End
@@ -745,7 +689,7 @@ Begin VB.Form vta_facturacion
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   4800
-         TabIndex        =   82
+         TabIndex        =   76
          Top             =   1200
          Width           =   1095
       End
@@ -756,7 +700,7 @@ Begin VB.Form vta_facturacion
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   5880
-         TabIndex        =   72
+         TabIndex        =   66
          Top             =   240
          Width           =   1455
       End
@@ -767,7 +711,7 @@ Begin VB.Form vta_facturacion
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   3240
-         TabIndex        =   65
+         TabIndex        =   59
          Top             =   1560
          Width           =   1095
       End
@@ -778,7 +722,7 @@ Begin VB.Form vta_facturacion
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   6000
-         TabIndex        =   51
+         TabIndex        =   48
          Top             =   1560
          Width           =   975
       End
@@ -789,7 +733,7 @@ Begin VB.Form vta_facturacion
          ForeColor       =   &H00FFFFFF&
          Height          =   495
          Left            =   120
-         TabIndex        =   34
+         TabIndex        =   31
          Top             =   240
          Width           =   1455
       End
@@ -800,7 +744,7 @@ Begin VB.Form vta_facturacion
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   120
-         TabIndex        =   33
+         TabIndex        =   30
          Top             =   1560
          Width           =   1455
       End
@@ -811,7 +755,7 @@ Begin VB.Form vta_facturacion
          ForeColor       =   &H00FFFFFF&
          Height          =   375
          Left            =   120
-         TabIndex        =   32
+         TabIndex        =   29
          Top             =   1200
          Width           =   1455
       End
@@ -822,7 +766,7 @@ Begin VB.Form vta_facturacion
          ForeColor       =   &H00FFFFFF&
          Height          =   495
          Left            =   120
-         TabIndex        =   31
+         TabIndex        =   28
          Top             =   720
          Width           =   1455
       End
@@ -832,7 +776,7 @@ Begin VB.Form vta_facturacion
       Caption         =   "Funciones"
       Height          =   975
       Left            =   10200
-      TabIndex        =   27
+      TabIndex        =   24
       Top             =   7320
       Width           =   1575
       Begin VB.CommandButton btnsale 
@@ -841,7 +785,7 @@ Begin VB.Form vta_facturacion
          Left            =   840
          Picture         =   "vta003A.frx":0608
          Style           =   1  'Graphical
-         TabIndex        =   29
+         TabIndex        =   26
          ToolTipText     =   "Salir sin Modificar"
          Top             =   240
          UseMaskColor    =   -1  'True
@@ -852,7 +796,7 @@ Begin VB.Form vta_facturacion
          Left            =   120
          Picture         =   "vta003A.frx":0E8A
          Style           =   1  'Graphical
-         TabIndex        =   28
+         TabIndex        =   25
          ToolTipText     =   "Renueva Lista de Clientes"
          Top             =   240
          UseMaskColor    =   -1  'True
@@ -863,7 +807,7 @@ Begin VB.Form vta_facturacion
       Align           =   2  'Align Bottom
       Height          =   255
       Left            =   0
-      TabIndex        =   26
+      TabIndex        =   23
       Top             =   8235
       Width           =   11880
       _ExtentX        =   20955
@@ -893,7 +837,7 @@ Begin VB.Form vta_facturacion
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "09:40 a.m."
+            TextSave        =   "10:28 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -1011,7 +955,7 @@ Sub electronica()
                        tipo_doc = 80
                        CUIT2 = RTrim$(vta_clientes.t_cuit)
                      Else
-                        If Val(T_TOTAL) < 1000 Then
+                        If Val(t_total) < 1000 Then
                             tipo_doc = 99
                             CUIT2 = "0"
                         Else
@@ -1022,7 +966,7 @@ Sub electronica()
                      
                      cbt_desde = cbte_nro
                      cbt_hasta = cbte_nro
-                     imp_total = T_TOTAL
+                     imp_total = t_total
                      imp_tot_conc = t_nograbado
                      imp_neto = t_subtotal
                      imp_iva = t_iva
@@ -1288,7 +1232,7 @@ Sub limpia()
    t_nograbado = ""
    t_perc = ""
    t_iva = ""
-   T_TOTAL = ""
+   t_total = ""
    Option1 = True
    
 End Sub
@@ -1372,7 +1316,7 @@ Sub carga()
      t_nograbado = Format$(rs("impuestos"), "######0.00")
      t_perc = Format$(rs("perc_iva") + rs("perc_gan") + rs("perc_ib"), "######0.00")
      t_iva = Format$(rs("iva"), "######0.00")
-     T_TOTAL = Format$(rs("total"), "######0.00")
+     t_total = Format$(rs("total"), "######0.00")
      If Not IsNull(rs("observaciones")) Then
             t_observaciones = rs("observaciones")
      Else
@@ -1463,7 +1407,7 @@ Sub carga2()
      t_nograbado = Format$(rs("impuestos"), "######0.00")
      t_perc = Format$(rs("perc_iva") + rs("perc_gan") + rs("perc_ib"), "######0.00")
      t_iva = Format$(rs("iva"), "######0.00")
-     T_TOTAL = Format$(rs("total"), "######0.00")
+     t_total = Format$(rs("total"), "######0.00")
      If Not IsNull(rs("observaciones")) Then
             t_observaciones = rs("observaciones")
      Else
@@ -1488,6 +1432,20 @@ Sub carga2()
    Set rs = Nothing
   
    
+   'cargo percepciones
+     Set rs2 = New ADODB.Recordset
+     q = "select * from vta_015 where [num_int] = " & rs("num_int")
+     rs2.Open q, cn1
+     ABM_COMP_COMPRA2.armagrid
+     i = 1
+     While Not rs.EOF
+       ABM_COMP_COMPRA2.msf1.AddItem i & Chr$(9) & rs2("id_percepcion") & Chr$(9) & rs2("descripcion") & Chr$(9) & rs2("importe") & Chr$(9) & rs2("id_cuenta")
+       rs2.MoveNext
+       i = i + 1
+     Wend
+     Set rs2 = Nothing
+   
+   
   
   Else
      EXISTE = "N"
@@ -1508,11 +1466,11 @@ If Option2 = True Then
            J = MsgBox("No ha ingresado forma de pago, acepta pago total en Efectivo", 4)
            If J = 6 Then
               'pone forma de pago efectivo
-              vta_formapago.msf2.AddItem "001" & Chr(9) & 1 & Chr(9) & "-" & Chr(9) & "Efectivo $" & Chr(9) & "-" & Chr(9) & "-" & Chr(9) & Format$(Val(T_TOTAL), "######0.00") & Chr(9) & Format$(t_fecha, "DD/MM/YYYY") & Chr(9) & "" & Chr(9) & para.cuenta_caja
+              vta_formapago.msf2.AddItem "001" & Chr(9) & 1 & Chr(9) & "-" & Chr(9) & "Efectivo $" & Chr(9) & "-" & Chr(9) & "-" & Chr(9) & Format$(Val(t_total), "######0.00") & Chr(9) & Format$(t_fecha, "DD/MM/YYYY") & Chr(9) & "" & Chr(9) & para.cuenta_caja
               Call iniciagraba
            Else
               vta_formapago.Show
-              vta_formapago.T_TOTAL = T_TOTAL
+              vta_formapago.t_total = t_total
            End If
        Else
           MsgBox ("El pago ingresado no coincide con el total del comprobante")
@@ -1547,7 +1505,7 @@ vc = True
 If vta_facturacion.c_tipocomp.ListIndex = 0 Then
     If vta_facturacion.Option4 Then
      'pesos
-     tpl = Val(vta_facturacion.T_TOTAL)
+     tpl = Val(vta_facturacion.t_total)
     Else
      tpl = Val(vta_facturacion.T_total2)
     End If
@@ -1572,7 +1530,7 @@ Sub iniciagraba()
 
 
 
-If Val(T_TOTAL) > 0 Then
+If Val(t_total) > 0 Then
   If c_tipocomp.ItemData(c_tipocomp.ListIndex) = 25 And t_letra <> "E" Then
     MsgBox ("Para realizar Facturas de Pro Forma es necesario que el cliente sea de Exportacion")
     c_tipocomp.SetFocus
@@ -1691,7 +1649,7 @@ If Option4 = True Then
     If resulta Then
         espere.ProgressBar1.Value = 5
         espere.Label1 = "Espere... Grabando Comprobante Fiscal"
-        If Val(T_TOTAL) <= 0 Or Val(t_numcomp) <= 0 Then
+        If Val(t_total) <= 0 Or Val(t_numcomp) <= 0 Then
           seguir = False
           estadograba = 1
         Else
@@ -1973,13 +1931,13 @@ espere.Label1 = "Espere... Imprimiendo Productos"
   
   t_subtotal = Fiscaltf.subtotal.MontoNeto
   t_iva = Fiscaltf.subtotal.MontoIVA
-  T_TOTAL = Fiscaltf.subtotal.MontoVentas
+  t_total = Fiscaltf.subtotal.MontoVentas
  
   
   
   If Option2 = True Then 'contado
   
-    resto = Val(T_TOTAL)
+    resto = Val(t_total)
   For i = 1 To fsc_formapago.msf2.Rows - 1
      td = Left$(RTrim$(fsc_formapago.msf2.TextMatrix(i, 2)), 15)
      mp = Format$(Val(fsc_formapago.msf2.TextMatrix(i, 6)), "######0.00")
@@ -2014,7 +1972,7 @@ espere.Label1 = "Espere... Imprimiendo Productos"
   
   Else
     td = "Cta. Cte. Nro. " & Format$(c_prov.ItemData(c_prov.ListIndex), "00000")
-    mp = Val(T_TOTAL)
+    mp = Val(t_total)
     dp = "T"
     If Not Fiscaltf.ImprimirPago2g(td, Format$(mp, "######0.00"), "", IFUniversal.CuentaCorriente, 1, "", "") Then
        Err.Raise Fiscaltf.Error, "", Fiscaltf.ErrorDesc
@@ -2258,20 +2216,20 @@ espere.Label1 = "Espere... Imprimiendo Productos"
   If Option2 = True Then 'contado
   
      td = Left$(RTrim$(vta_formapago.msf2.TextMatrix(1, 1)) & " " & RTrim$(vta_formapago.msf2.TextMatrix(1, 3)), caracteresmax)
-    mp = Format$(Val(T_TOTAL) * 100, "00000000")
+    mp = Format$(Val(t_total) * 100, "00000000")
     dp = "T"
     If rk Then
-       rk = epson1.SendInvoicePayment(td, Format$(Val(T_TOTAL) * 100, "00000000"), "T")
+       rk = epson1.SendInvoicePayment(td, Format$(Val(t_total) * 100, "00000000"), "T")
      Else
        Call verificaerrfiscal(epson1.FiscalStatus, epson1.PrinterStatus)
      End If
   
   Else
     td = "Cta. Cte. Nro. " & Format$(c_prov.ItemData(c_prov.ListIndex), "00000")
-    mp = Format$(Val(T_TOTAL) * 100, "00000000")
+    mp = Format$(Val(t_total) * 100, "00000000")
     dp = "T"
     If rk Then
-       rk = epson1.SendInvoicePayment("Cta. Cte. Nro. " & Format$(c_prov.ItemData(c_prov.ListIndex), "00000"), Format$(Val(T_TOTAL) * 100, "00000000"), "T")
+       rk = epson1.SendInvoicePayment("Cta. Cte. Nro. " & Format$(c_prov.ItemData(c_prov.ListIndex), "00000"), Format$(Val(t_total) * 100, "00000000"), "T")
      Else
        Call verificaerrfiscal(epson1.FiscalStatus, epson1.PrinterStatus)
      End If
@@ -2289,7 +2247,7 @@ espere.Label1 = "Espere... Cerrando Comprobante Fiscal"
  If rk Then
       t_subtotal = Format$(Val(epson1.AnswerField_10) / 100, "######0.00")
       t_iva = Format$(Val(epson1.AnswerField_6) / 100, "####0.00")
-      T_TOTAL = Format$(Val(epson1.AnswerField_5) / 100, "######0.00")
+      t_total = Format$(Val(epson1.AnswerField_5) / 100, "######0.00")
  Else
      Call verificaerrfiscal(epson1.FiscalStatus, epson1.PrinterStatus)
  End If
@@ -2561,11 +2519,8 @@ vta_clientes.Show
 End Sub
 
 Private Sub Command6_Click()
-Load gen_consultaib
-gen_consultaib.t_id = c_prov.ItemData(c_prov.ListIndex)
-gen_consultaib.t_tipo = "C"
-gen_consultaib.Show
-gen_consultaib.carga
+ABM_COMP_COMPRA2.t_modulo = "P"
+ABM_COMP_COMPRA2.Show
 End Sub
 
 Private Sub Command7_Click()
@@ -2576,7 +2531,7 @@ End Sub
 Private Sub Command8_Click()
  
   vta_formapago.Show
-  vta_formapago.T_TOTAL = T_TOTAL
+  vta_formapago.t_total = t_total
  
 End Sub
 
@@ -2846,7 +2801,7 @@ If t_letra = "A" Then
      If renglon > 0 Then
       
       r = Val(msf1.TextMatrix(i, 7))
-      R2 = Val(msf1.TextMatrix(i, 8))
+      r2 = Val(msf1.TextMatrix(i, 8))
       's = s + r
       't = t + (R2 * Val(msf1.TextMatrix(i, 3)))
       't = t + (r * Val(msf1.TextMatrix(i, 6)) / 100)
@@ -2904,7 +2859,7 @@ End Sub
 
 Private Sub Form_KeyPress(KeyAscii As Integer)
 If KeyAscii = 13 Then
-  Call TabEnter2(Me, 24)
+  Call TabEnter2(Me, 21)
 End If
 
 
@@ -2951,6 +2906,8 @@ Load vta_facturacion1
 Load vta_selremitos
 Load vta_selcomp
 Load vta_facturacion2
+Load ABM_COMP_COMPRA2
+
 Frame11.Visible = False
 
 Call carga_actividades(c_actividad)
@@ -3114,7 +3071,7 @@ Sub graba()
          cp = "0000-00000000"
          contado = "N"
          If Option4 = True Then
-            ssi = Val(T_TOTAL)
+            ssi = Val(t_total)
          Else
             ssi = Val(T_total2)
          End If
@@ -3198,7 +3155,7 @@ Sub graba()
 
 
 QUERY = QUERY & " VALUES (" & numint & ", " & Val(t_sucursal) & ", " & Val(t_numcomp) & ", '" & t_letra & "', " & c_tipocomp.ItemData(c_tipocomp.ListIndex) & _
-", " & idcli & ", '" & t_fecha & "', " & para.id_usuario & ", " & Val(t_subtotal) & ", " & Val(t_nograbado) & ", " & Val(t_iva) & ", " & Val(T_TOTAL) & _
+", " & idcli & ", '" & t_fecha & "', " & para.id_usuario & ", " & Val(t_subtotal) & ", " & Val(t_nograbado) & ", " & Val(t_iva) & ", " & Val(t_total) & _
 ", 'A', " & cuentaact & ", '" & cl_compvta.STOCK & "', '" & cl_compvta.ctacte & "', '" & cl_compvta.grabado & "', '" & ep & "', '" & cp & "', '" & t_observaciones & _
 " ', " & Val(t_cotizacion) & ", " & T2 & ", '" & moneda & "', " & c_vend.ItemData(c_vend.ListIndex) & ", '" & cl_compvta.venta & "', '" & contado & "', " & Val(t_perc)
 
@@ -3280,6 +3237,18 @@ Next i
       End If
      End If
      
+     
+     'actualizo percepciones
+     If Val(t_perc) > 0 Then
+        For i = 1 To ABM_COMP_COMPRA2.msf1.Rows - 1
+          QUERY = "INSERT INTO vta_015([num_int], [secuencia], [id_percepcion], [importe], [id_cuenta], [cod_regimen])"
+          QUERY = QUERY & " VALUES (" & numint & ", " & i & ", " & ABM_COMP_COMPRA2.msf1.TextMatrix(i, 1) & ", " & ABM_COMP_COMPRA2.msf1.TextMatrix(i, 3) & ", " & ABM_COMP_COMPRA2.msf1.TextMatrix(i, 4) & ", " & ABM_COMP_COMPRA2.msf1.TextMatrix(i, 6) & ")"
+          cn1.Execute QUERY
+        Next i
+      End If
+      ABM_COMP_COMPRA2.armagrid
+     
+     
      If Option2 = True Then
         'graba fortma de pago
         Call grabaformapago
@@ -3307,7 +3276,7 @@ Next i
            tot = Val(T_total2)
            m = Val(t_cotizacion)
          Else
-           tot = Val(T_TOTAL)
+           tot = Val(t_total)
            m = 1
          End If
          
@@ -3380,7 +3349,7 @@ Next i
          If cl_compvta.grabado <> "N" Then
            importe = Val(t_subtotal) * m
          Else
-           importe = Val(T_TOTAL) * m
+           importe = Val(t_total) * m
          End If
          QUERY = "INSERT INTO c_03([num_interno], [renglon], [id_cuenta], [ubicacion], [importe], [descripcion])"
          QUERY = QUERY & " VALUES (" & numintcgr & ", " & ic & ", " & cuentaact & ", '" & u2 & "', " & Format(importe, "######0.00") & ", '" & "Ventas" & "')"
@@ -3690,21 +3659,35 @@ While X < vta_facturacion2.msf1.Rows
   neto = neto + Val(vta_facturacion2.msf1.TextMatrix(X, 1))
   X = X + 1
 Wend
+
+
+'busco perc
+If ABM_COMP_COMPRA2.msf1.Rows > 1 Then
+  t = 0
+  For i = 1 To ABM_COMP_COMPRA2.msf1.Rows - 1
+    t = t + Val(ABM_COMP_COMPRA2.msf1.TextMatrix(i, 3))
+  Next i
+  t_perc = Format$(t, "######0.00")
+Else
+  t_perc = Format$(0, "######0.00")
+End If
+
+
 t_descuento = Format$(Val(t_descuento), "######0.00")
 t_subtotal2 = Format$(neto + Val(t_descuento), "######0.00")
 t_nograbado = Format$(Val(t_nograbado), "######0.00")
-t_perc = Format$(Val(t_perc), "######0.00")
+'t_perc = Format$(Val(t_perc), "######0.00")
 t_subtotal = Format$(neto, "######0.00")
 t_iva = Format$(iva, "######0.00")
 t_perciva = Format$(Val(t_perciva), "######0.00")
-T_TOTAL = Format$(Val(t_subtotal) + Val(t_nograbado) + Val(t_perc) + Val(t_iva) + Val(t_perciva), "######0.00")
+t_total = Format$(Val(t_subtotal) + Val(t_nograbado) + Val(t_perc) + Val(t_iva) + Val(t_perciva), "######0.00")
 If Option4 = True Then
  If Val(t_cotizacion) < 1 Then
    t_cotizacion = 1
  End If
- T_total2 = Format$(Val(T_TOTAL) / Val(t_cotizacion), "#####0.00")
+ T_total2 = Format$(Val(t_total) / Val(t_cotizacion), "#####0.00")
 Else
-  T_total2 = Format$(Val(T_TOTAL) * Val(t_cotizacion), "#####0.00")
+  T_total2 = Format$(Val(t_total) * Val(t_cotizacion), "#####0.00")
 End If
 End Sub
 Sub sacaperc()
@@ -3814,7 +3797,7 @@ Call inicia
 End Sub
 
 Private Sub t_total_LostFocus()
-T_TOTAL = Format$(T_TOTAL, "######0.00")
+t_total = Format$(t_total, "######0.00")
 End Sub
 
 Private Sub T_total2_KeyPress(KeyAscii As Integer)

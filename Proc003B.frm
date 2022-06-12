@@ -31,6 +31,7 @@ Begin VB.Form ABM_COMP_COMPRA2
             Object.Width           =   14111
             MinWidth        =   14111
             TextSave        =   ""
+            Key             =   ""
             Object.Tag             =   ""
          EndProperty
       EndProperty
@@ -240,11 +241,17 @@ Private Sub Form_Activate()
 Frame1.Visible = False
 't_modulo C --> Perc Compra  V --> Ret Venta    P --> Percepcines
 
-If t_modulo = "C" Then
+Select Case t_modulo
+
+Case Is = "C"
   Call carga_percepciones(c_perc, "P") 'comprs
-Else
+Case Is = "V"
   Call carga_percepciones(c_perc, "R") 'ventas directs
-End If
+Case Is = "P"
+  Call carga_percepciones(c_perc, "P") 'facturas de venta
+Case Else
+   Call carga_percepciones(c_perc, "T")
+End Select
 End Sub
 
 Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
@@ -301,6 +308,11 @@ Sub cargarenglon()
     Else
       vta_liqcereal.t_perc = Format$(0, "######0.00")
     End If
+    
+   Case Is = "P"
+     vta_facturacion.sacatotales
+   
+    
    End Select
   
 End Sub
@@ -333,7 +345,7 @@ End If
 
 If KeyCode = vbKeyF9 Then
   'If msf1.Rows > 1 Then
-     Call sacatotales
+     Call sale
   'End If
    
 End If
@@ -361,15 +373,7 @@ If KeyAscii = 13 Then
 End If
 
 If KeyAscii = 27 Then
- Select Case t_modulo
- Case Is = "C"
-  ABM_COMP_COMPRA.t_perc.SetFocus
- Case Is = "V"
-  vta_directa.t_perc.SetFocus
- Case Is = "L"
-  vta_liqcereal.t_perc.SetFocus
-End Select
-  Me.Hide
+   Call sale
 End If
 End Sub
 
@@ -380,12 +384,23 @@ Me.KeyPreview = True
 
 End Sub
 
-Sub sacatotales()
-t = 0
-For i = 1 To msf1.Rows
+Sub sale()
+ Select Case t_modulo
+ Case Is = "C"
+  ABM_COMP_COMPRA.t_perc.SetFocus
+ Case Is = "V"
+  vta_directa.t_perc.SetFocus
+ Case Is = "L"
+  vta_liqcereal.t_perc.SetFocus
+Case Is = "P"
+  vta_facturacion.t_perc.SetFocus
+End Select
+  Me.Hide
 
-Next i
-ABM_COMP_COMPRA!t_perc = Format$(t, "#####0.00")
+End Sub
+
+Sub sacatotales()
+
 End Sub
 
 Private Sub t_importe_KeyPress(KeyAscii As Integer)
