@@ -316,16 +316,10 @@ If t_numint <> "" Then
      RSet e = Format$(rs("subtotal"), "########0.00")
      List1.AddItem "Subtotal2 : " & e
      RSet e = Format$(rs("vta_02.iva"), "######0.00")
-     List1.AddItem "Iva       : " & e
+     List1.AddItem "Iva       : " & e & " (Ver detalle)"
      RSet e = Format$(rs("impuestos"), "######0.00")
-     
-     List1.AddItem "No Grabado: " & e
-     RSet e = Format$(rs("perc_gan"), "######0.00")
-     List1.AddItem "Perc Gan  : " & e
      RSet e = Format$(rs("perc_ib"), "######0.00")
-     List1.AddItem "Perc IB   : " & e & "  " & "Alicuota Perc. IB. " & Format$(rs("alicuota_ib"), "###0.00") & " %"
-     RSet e = Format$(rs("perc_iva"), "######0.00")
-     List1.AddItem "Perc Iva  : " & e & "  " & "Alicuota Perc. Iva. " & Format$(rs("alicuota_perc_iva"), "###0.00") & " %"
+     List1.AddItem "Percepcion: " & e & "  " & "(Ver detalle)"
      List1.AddItem "           ----------------- "
      RSet e = Format$(rs("total"), "######0.00")
      List1.AddItem "Total     : " & e
@@ -384,6 +378,30 @@ If t_numint <> "" Then
         rs2.MoveNext
       Wend
      Set rs2 = Nothing
+     
+     'percvepciones
+     List1.AddItem ""
+     List1.AddItem ""
+     Set rs2 = New ADODB.Recordset
+     q = "select * from vta_016, a12 where [num_int] = " & Val(t_numint) & " and vta_016.id_percepcion = a12.id_percepcion"
+     rs2.Open q, cn1
+     p = 0
+     While Not rs2.EOF
+       If p = 0 Then
+          List1.AddItem "Detalle de percepciones"
+          List1.AddItem ""
+          List1.AddItem "Percepcion                 Importe   "
+          List1.AddItem "-------------------------------------"
+          p = 1
+        End If
+        List1.AddItem Format$(rs2("descripcion"), "@@@@@@@@@@@@@@@@@@@@@@@@@!") & "  " & Format$(rs2("importe"), "#######0.00")
+        rs2.MoveNext
+      Wend
+     Set rs2 = Nothing
+     
+     
+     
+     
      List1.AddItem ""
      If rs("vta_02.id_tipocomp") >= 1 And rs("vta_02.id_tipocomp") < 10 Then
        If rs("contado") = "N" Then

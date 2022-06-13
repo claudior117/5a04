@@ -120,7 +120,7 @@ Begin VB.Form actu_inicio
    Begin VB.Label Label3 
       Alignment       =   2  'Center
       BackColor       =   &H0000FFFF&
-      Caption         =   "218"
+      Caption         =   "219"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   18
@@ -316,6 +316,10 @@ Case Is = 215
     Call actu217
  Case Is = 218
     Call actu218
+ Case Is = 219
+    Call actu219
+ 
+ 
  Case Is = 999
    Call actu999
    
@@ -2306,6 +2310,41 @@ If h = 6 Then
    
     
    MsgBox ("Operación Completa. Si usa CF verificar valores de campos cod_fiscal2 en g3 y codigo_driver_fiscal en cyb_01")
+   
+ Unload espere
+  
+End If
+
+Exit Sub
+
+
+err1:
+Resume Next
+End Sub
+
+Sub actu219()
+'agrega tabla vta_016 percepciones de venta
+h = MsgBox("Actualizacion 219 . ¿Esta seguro que quiere actualizar?  ", 4)
+If h = 6 Then
+  
+  h = MsgBox("Importar tabla vta_016 (percepciones de venta")
+  espere.Show
+  espere.Refresh
+    
+    
+   
+   
+   
+    q = "update g0 set  [actualizacion]=219"
+    q = q & " where [sucursal]=0 "
+  
+   cn1.Execute q
+    
+  cn1.CommitTrans
+  
+   
+    
+   MsgBox ("Operación Completa. Borrar datos de tabla vta_016 importada")
    
  Unload espere
   

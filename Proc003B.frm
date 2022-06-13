@@ -31,7 +31,6 @@ Begin VB.Form ABM_COMP_COMPRA2
             Object.Width           =   14111
             MinWidth        =   14111
             TextSave        =   ""
-            Key             =   ""
             Object.Tag             =   ""
          EndProperty
       EndProperty
@@ -149,7 +148,7 @@ Sub limpia()
    t_nograbado = ""
    t_perc = ""
    t_iva = ""
-   T_TOTAL = ""
+   t_total = ""
   
 End Sub
 
@@ -249,6 +248,9 @@ Case Is = "V"
   Call carga_percepciones(c_perc, "R") 'ventas directs
 Case Is = "P"
   Call carga_percepciones(c_perc, "P") 'facturas de venta
+Case Is = "S"
+  Call carga_percepciones(c_perc, "P") 'Comprobantes varios ventas
+
 Case Else
    Call carga_percepciones(c_perc, "T")
 End Select
@@ -299,19 +301,21 @@ Sub cargarenglon()
       vta_directa.t_perc = Format$(0, "######0.00")
     End If
   Case Is = "L"
+   
+    
+   Case Is = "P"
+     vta_facturacion.sacatotales
+   
+   Case Is = "S"
    If msf1.Rows > 1 Then
       t = 0
       For i = 1 To msf1.Rows - 1
         t = t + Val(msf1.TextMatrix(i, 3))
       Next i
-      vta_liqcereal.t_perc = Format$(t, "######0.00")
+      vta_COMPVARIOS.t_perc = Format$(t, "######0.00")
     Else
-      vta_liqcereal.t_perc = Format$(0, "######0.00")
+      vta_COMPVARIOS.t_perc = Format$(0, "######0.00")
     End If
-    
-   Case Is = "P"
-     vta_facturacion.sacatotales
-   
     
    End Select
   
@@ -394,6 +398,10 @@ Sub sale()
   vta_liqcereal.t_perc.SetFocus
 Case Is = "P"
   vta_facturacion.t_perc.SetFocus
+ 
+Case Is = "S"
+   vta_COMPVARIOS.t_perc.Enabled = True
+   vta_COMPVARIOS.t_perc.SetFocus
 End Select
   Me.Hide
 

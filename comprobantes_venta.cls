@@ -1439,6 +1439,8 @@ If b = 1 Then
       QUERY = "DELETE FROM vta_015 WHERE [num_int] = " & Me.numint
       cn1.Execute QUERY
       
+      QUERY = "DELETE FROM vta_016 WHERE [num_int] = " & Me.numint
+      cn1.Execute QUERY
       
       QUERY = "DELETE FROM stk_01 WHERE [num_mov_int] = " & Me.numint & " and [modulo] = 'V'"
       cn1.Execute QUERY

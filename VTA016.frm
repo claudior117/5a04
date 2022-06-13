@@ -87,7 +87,7 @@ Begin VB.Form vta_retyperc
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   115146753
+      StartOfWeek     =   108462081
       CurrentDate     =   38750
    End
    Begin VB.Frame Frame3 
@@ -199,12 +199,12 @@ Begin VB.Form vta_retyperc
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "04/06/2022"
+            TextSave        =   "12/06/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "06:13 p.m."
+            TextSave        =   "10:41 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -267,6 +267,8 @@ End If
    
    
 End Sub
+
+
 Function sacaperc(ByVal LI As Integer) As Double
   
 tp = 0
@@ -324,6 +326,8 @@ Function SACAret(ByVal LI As Integer) As Double
  End If
 SACAret = ttr
 End Function
+
+
 Function buscaperc(ByVal t As String) As Double
 
 Set rs1 = New ADODB.Recordset
@@ -400,6 +404,8 @@ While Not rs1.EOF
  End If
  buscaperc = tp
 End Function
+  
+  
   
   
   
@@ -498,6 +504,7 @@ Private Sub btnacepta_Click()
 espere.Show
 espere.Refresh
 Call carga
+
 Unload espere
 
 End Sub

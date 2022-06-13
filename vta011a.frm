@@ -19,7 +19,7 @@ Begin VB.Form vta_COMPVARIOS
       BackColor       =   &H00E0E0E0&
       Height          =   495
       Left            =   10080
-      TabIndex        =   57
+      TabIndex        =   56
       Top             =   1440
       Width           =   1455
       Begin VB.CheckBox Check1 
@@ -27,7 +27,7 @@ Begin VB.Form vta_COMPVARIOS
          Caption         =   "Moneda Unica"
          Height          =   315
          Left            =   120
-         TabIndex        =   58
+         TabIndex        =   57
          Top             =   120
          Width           =   1215
       End
@@ -36,7 +36,7 @@ Begin VB.Form vta_COMPVARIOS
       BackColor       =   &H00E0E0E0&
       Height          =   735
       Left            =   10080
-      TabIndex        =   40
+      TabIndex        =   39
       Top             =   720
       Width           =   1455
       Begin VB.OptionButton Option4 
@@ -44,7 +44,7 @@ Begin VB.Form vta_COMPVARIOS
          Caption         =   "Pesos"
          Height          =   255
          Left            =   120
-         TabIndex        =   42
+         TabIndex        =   41
          Top             =   120
          Width           =   975
       End
@@ -53,7 +53,7 @@ Begin VB.Form vta_COMPVARIOS
          Caption         =   "U$s"
          Height          =   255
          Left            =   120
-         TabIndex        =   41
+         TabIndex        =   40
          Top             =   360
          Width           =   855
       End
@@ -62,7 +62,7 @@ Begin VB.Form vta_COMPVARIOS
       BackColor       =   &H00E0E0E0&
       Height          =   735
       Left            =   10080
-      TabIndex        =   37
+      TabIndex        =   36
       Top             =   0
       Width           =   1455
       Begin VB.OptionButton Option2 
@@ -70,7 +70,7 @@ Begin VB.Form vta_COMPVARIOS
          Caption         =   "Contado "
          Height          =   255
          Left            =   120
-         TabIndex        =   39
+         TabIndex        =   38
          Top             =   360
          Width           =   1215
       End
@@ -79,7 +79,7 @@ Begin VB.Form vta_COMPVARIOS
          Caption         =   "Cta.Cte."
          Height          =   255
          Left            =   120
-         TabIndex        =   38
+         TabIndex        =   37
          Top             =   120
          Width           =   1215
       End
@@ -88,7 +88,7 @@ Begin VB.Form vta_COMPVARIOS
       BackColor       =   &H00E0E0E0&
       Height          =   735
       Left            =   9120
-      TabIndex        =   34
+      TabIndex        =   33
       Top             =   5880
       Visible         =   0   'False
       Width           =   2535
@@ -97,7 +97,7 @@ Begin VB.Form vta_COMPVARIOS
          Height          =   405
          Left            =   1680
          MaxLength       =   1
-         TabIndex        =   35
+         TabIndex        =   34
          Top             =   240
          Width           =   615
       End
@@ -108,7 +108,7 @@ Begin VB.Form vta_COMPVARIOS
          ForeColor       =   &H00FFFFFF&
          Height          =   375
          Left            =   120
-         TabIndex        =   36
+         TabIndex        =   35
          Top             =   240
          Width           =   1335
       End
@@ -121,6 +121,15 @@ Begin VB.Form vta_COMPVARIOS
       TabIndex        =   28
       Top             =   5760
       Width           =   8775
+      Begin VB.CommandButton Command1 
+         Caption         =   "Percepciones"
+         Height          =   255
+         Left            =   2880
+         TabIndex        =   59
+         TabStop         =   0   'False
+         Top             =   1800
+         Width           =   1095
+      End
       Begin VB.TextBox t_cae 
          BorderStyle     =   0  'None
          Height          =   285
@@ -167,7 +176,7 @@ Begin VB.Form vta_COMPVARIOS
          Height          =   285
          Left            =   6840
          MaxLength       =   10
-         TabIndex        =   44
+         TabIndex        =   43
          Top             =   2040
          Width           =   1095
       End
@@ -232,7 +241,7 @@ Begin VB.Form vta_COMPVARIOS
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   5160
-         TabIndex        =   59
+         TabIndex        =   58
          Top             =   600
          Width           =   1335
       End
@@ -243,7 +252,7 @@ Begin VB.Form vta_COMPVARIOS
          ForeColor       =   &H00FFFFFF&
          Height          =   375
          Left            =   240
-         TabIndex        =   55
+         TabIndex        =   54
          Top             =   1320
          Width           =   1335
       End
@@ -254,7 +263,7 @@ Begin VB.Form vta_COMPVARIOS
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   2880
-         TabIndex        =   49
+         TabIndex        =   48
          Top             =   240
          Width           =   1335
       End
@@ -265,7 +274,7 @@ Begin VB.Form vta_COMPVARIOS
          ForeColor       =   &H00FFFFFF&
          Height          =   375
          Left            =   240
-         TabIndex        =   48
+         TabIndex        =   47
          Top             =   960
          Width           =   1335
       End
@@ -276,7 +285,7 @@ Begin VB.Form vta_COMPVARIOS
          ForeColor       =   &H00FFFFFF&
          Height          =   375
          Left            =   240
-         TabIndex        =   46
+         TabIndex        =   45
          Top             =   600
          Width           =   1335
       End
@@ -287,7 +296,7 @@ Begin VB.Form vta_COMPVARIOS
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   6840
-         TabIndex        =   45
+         TabIndex        =   44
          Top             =   1800
          Width           =   1095
       End
@@ -298,7 +307,7 @@ Begin VB.Form vta_COMPVARIOS
          ForeColor       =   &H00FFFFFF&
          Height          =   375
          Left            =   240
-         TabIndex        =   43
+         TabIndex        =   42
          Top             =   240
          Width           =   1335
       End
@@ -309,7 +318,7 @@ Begin VB.Form vta_COMPVARIOS
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   5520
-         TabIndex        =   33
+         TabIndex        =   32
          Top             =   1800
          Width           =   1095
       End
@@ -320,17 +329,6 @@ Begin VB.Form vta_COMPVARIOS
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   4200
-         TabIndex        =   32
-         Top             =   1800
-         Width           =   1095
-      End
-      Begin VB.Label Label7 
-         Alignment       =   2  'Center
-         BackColor       =   &H00800080&
-         Caption         =   "Perc.y Ret."
-         ForeColor       =   &H00FFFFFF&
-         Height          =   255
-         Left            =   2880
          TabIndex        =   31
          Top             =   1800
          Width           =   1095
@@ -379,7 +377,7 @@ Begin VB.Form vta_COMPVARIOS
          Caption         =   " Remitos"
          Height          =   375
          Left            =   8160
-         TabIndex        =   56
+         TabIndex        =   55
          TabStop         =   0   'False
          Top             =   1440
          Width           =   1095
@@ -390,14 +388,14 @@ Begin VB.Form vta_COMPVARIOS
          Left            =   7560
          List            =   "vta011a.frx":0002
          Style           =   2  'Dropdown List
-         TabIndex        =   53
+         TabIndex        =   52
          Top             =   240
          Width           =   1695
       End
       Begin VB.TextBox t_propio 
          Height          =   285
          Left            =   5640
-         TabIndex        =   52
+         TabIndex        =   51
          Text            =   "Text1"
          Top             =   240
          Visible         =   0   'False
@@ -408,7 +406,7 @@ Begin VB.Form vta_COMPVARIOS
          Left            =   8880
          Picture         =   "vta011a.frx":0004
          Style           =   1  'Graphical
-         TabIndex        =   51
+         TabIndex        =   50
          Top             =   720
          Width           =   255
       End
@@ -426,7 +424,7 @@ Begin VB.Form vta_COMPVARIOS
          Left            =   8040
          Picture         =   "vta011a.frx":0376
          Style           =   1  'Graphical
-         TabIndex        =   47
+         TabIndex        =   46
          Top             =   720
          Width           =   735
       End
@@ -517,7 +515,7 @@ Begin VB.Form vta_COMPVARIOS
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   6000
-         TabIndex        =   54
+         TabIndex        =   53
          Top             =   240
          Width           =   1455
       End
@@ -528,7 +526,7 @@ Begin VB.Form vta_COMPVARIOS
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   4320
-         TabIndex        =   50
+         TabIndex        =   49
          Top             =   1560
          Width           =   1935
       End
@@ -638,12 +636,12 @@ Begin VB.Form vta_COMPVARIOS
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "23/03/2022"
+            TextSave        =   "12/06/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:25 a.m."
+            TextSave        =   "10:15 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -681,7 +679,7 @@ Sub limpia()
    t_nograbado = ""
    t_perc = ""
    t_iva = ""
-   T_TOTAL = ""
+   t_total = ""
    Option1 = True
 End Sub
 Sub carga()
@@ -715,12 +713,30 @@ Sub carga()
         rs1.MoveNext
      Wend
      Set rs1 = Nothing
+     
+     
+        'cargo percepciones
+     Set rs2 = New ADODB.Recordset
+     q = "select * from vta_016, a12 where [num_int] = " & rs("num_int") & " and vta_016.id_percepcion = a12.id_percepcion"
+     rs2.Open q, cn1
+     
+     ABM_COMP_COMPRA2.armagrid
+     i = 1
+     While Not rs2.EOF
+       ABM_COMP_COMPRA2.msf1.AddItem i & Chr$(9) & rs2("vta_016.id_percepcion") & Chr$(9) & rs2("descripcion") & Chr$(9) & rs2("importe") & Chr$(9) & rs2("vta_016.id_cuenta")
+       rs2.MoveNext
+       i = i + 1
+     Wend
+     Set rs2 = Nothing
+
      t_subtotal = Format$(rs("subtotal"), "######0.00")
      t_nograbado = Format$(rs("impuestos"), "######0.00")
      t_perc = Format$(rs("perc_iva") + rs("perc_gan") + rs("perc_ib"), "######0.00")
      t_iva = Format$(rs("iva"), "######0.00")
-     T_TOTAL = Format$(rs("total"), "######0.00")
+     t_total = Format$(rs("total"), "######0.00")
      Set rs = Nothing
+     
+     
   Else
      EXISTE = "N"
   End If
@@ -940,6 +956,11 @@ c_cuenta.ListIndex = buscaindice(c_cuenta, c)
  
 End Sub
 
+Private Sub Command1_Click()
+ABM_COMP_COMPRA2.t_modulo = "S"
+ABM_COMP_COMPRA2.Show
+End Sub
+
 Private Sub Command2_Click()
 vta_ABM_cli.Show
 End Sub
@@ -1030,11 +1051,6 @@ Wend
 verificaremito = p
 End Function
 
-Private Sub Form_Activate()
-Frame2.Enabled = False
-
-End Sub
-
 Sub CALCULATOTALES()
 vta_facturacion2.armagrid
 If t_letra = "A" Then
@@ -1072,9 +1088,9 @@ If t_letra = "A" Then
   t = 0
   For i = 1 To msf1.Rows - 1
       r = Val(msf1.TextMatrix(i, 6))
-      R2 = Val(msf1.TextMatrix(i, 7))
+      r2 = Val(msf1.TextMatrix(i, 7))
       s = s + r
-      t = t + (R2 * Val(msf1.TextMatrix(i, 3)))
+      t = t + (r2 * Val(msf1.TextMatrix(i, 3)))
   
             'agrega en composicion de iva
       X = 1
@@ -1156,7 +1172,7 @@ Call barraesag(Me)
 Option1 = True
 Option4 = True
 Load vta_COMPVARIOS1
-
+Load ABM_COMP_COMPRA2
 Call carga_actividades(c_actividad)
 
 Load vta_clientes
@@ -1241,7 +1257,7 @@ Sub graba()
          cp = "0000-00000000"
          contado = "N"
          If Option4 = True Then
-           ssi = Val(T_TOTAL)
+           ssi = Val(t_total)
          Else
            ssi = Val(T_total2)
          End If
@@ -1304,13 +1320,13 @@ Sub graba()
       QUERY = "INSERT INTO vta_02([num_int], [sucursal], [num_comp], [letra], [id_tipocomp], [id_cliente], [fecha], [id_usuario], [subtotal], [impuestos], [iva], [total], [estado], " & _
 " [id_cuenta], [stock], [cta_cte], [grabado], [estado_pago], [recibo_Pago], [observaciones], [cotizacion_dolar], [total_otra_moneda], [moneda], [id_vendedor], [VENTA], [CONTADO], " & _
 " [id_actividad], [alicuota_ib],[alicuota_perc_iva], [canje_cereal], [fecha_vto], [total_bultos], [valor_declarado], [transporte], [direccion_transp], [cuit_transp], [perc_ss], [sucursal_ingreso], " & _
-" [cliente02], [direccion02], [cuit02], [localidad02], [id_tipo_iva02], [chofer02], [dominio02], [dominio_acoplado02], [SALDO_IMPAGO02], [id_camion02], [dni_chofer02], [num_z], [cae], [cae_vence], [tipo_op])"
+" [cliente02], [direccion02], [cuit02], [localidad02], [id_tipo_iva02], [chofer02], [dominio02], [dominio_acoplado02], [SALDO_IMPAGO02], [id_camion02], [dni_chofer02], [num_z], [cae], [cae_vence], [tipo_op], perc_ib)"
 QUERY = QUERY & " VALUES (" & numint & ", " & Val(t_sucursal) & ", " & Val(t_numcomp) & ", '" & t_letra & "', " & c_tipocomp.ItemData(c_tipocomp.ListIndex) & ", " & _
-c_prov.ItemData(c_prov.ListIndex) & ", '" & t_fecha & "', " & para.id_usuario & ", " & Val(t_subtotal) & ", " & Val(t_nograbado) & ", " & Val(t_iva) & ", " & Val(T_TOTAL) & ", 'A', " & _
+c_prov.ItemData(c_prov.ListIndex) & ", '" & t_fecha & "', " & para.id_usuario & ", " & Val(t_subtotal) & ", " & Val(t_nograbado) & ", " & Val(t_iva) & ", " & Val(t_total) & ", 'A', " & _
 para.cuenta_ventas & ", '" & cl_compvta.STOCK & "', '" & cl_compvta.ctacte & "', '" & cl_compvta.grabado & "', '" & ep & "', '" & cp & "', '" & t_observaciones & " ', " & Val(t_cotizacion) & ", " & _
 tom & ", '" & moneda & "'," & c_vend.ItemData(c_vend.ListIndex) & ", '" & cl_compvta.venta & "', '" & contado & "', " & codact & ", " & alicuotaib & ", 0, 0, '" & t_fechavto & _
 "', 0, 0, ' ', ' ', ' ', 0, " & Val(c_sucursal) & ", '" & Left$(vta_clientes.t_cli, 50) & "', '" & Left$(vta_clientes.t_direccion, 50) & "', '" & Left$(vta_clientes.t_cuit, 20) & "', '" & Left$(vta_clientes.t_localidad, 50) & "', " & tiporespiva & _
-", ' ', ' ', ' ', " & ssi & ", 1, 0, " & numz & ", '" & t_cae & "', '" & fvcae & "', 1)"
+", ' ', ' ', ' ', " & ssi & ", 1, 0, " & numz & ", '" & t_cae & "', '" & fvcae & "', 1, " & Val(t_perc)
       
       
      'MsgBox (QUERY)
@@ -1378,6 +1394,18 @@ tom & ", '" & moneda & "'," & c_vend.ItemData(c_vend.ListIndex) & ", '" & cl_com
      End If
       
       
+     'actualizo percepciones
+     If Val(t_perc) > 0 Then
+        For i = 1 To ABM_COMP_COMPRA2.msf1.Rows - 1
+          QUERY = "INSERT INTO vta_016([num_int], [secuencia], [id_percepcion], [importe], [id_cuenta], [cod_regimen])"
+          QUERY = QUERY & " VALUES (" & numint & ", " & i & ", " & ABM_COMP_COMPRA2.msf1.TextMatrix(i, 1) & ", " & ABM_COMP_COMPRA2.msf1.TextMatrix(i, 3) & ", " & ABM_COMP_COMPRA2.msf1.TextMatrix(i, 4) & ", " & ABM_COMP_COMPRA2.msf1.TextMatrix(i, 6) & ")"
+          cn1.Execute QUERY
+        Next i
+      End If
+      ABM_COMP_COMPRA2.armagrid
+       
+      
+          
      If Option2 = True Then
         'cobranza en efectivo
         'grabo mov caja
@@ -1387,9 +1415,9 @@ tom & ", '" & moneda & "'," & c_vend.ItemData(c_vend.ListIndex) & ", '" & cl_com
         If Not rs.BOF And Not rs.EOF Then
           If rs("caja") = "S" Then
             If cl_compvta.ctacte = "H" Then
-              t = -Val(T_TOTAL)
+              t = -Val(t_total)
             Else
-              t = Val(T_TOTAL)
+              t = Val(t_total)
             End If
               
             'grabo mov caja
@@ -1435,14 +1463,14 @@ tom & ", '" & moneda & "'," & c_vend.ItemData(c_vend.ListIndex) & ", '" & cl_com
          
          'grabo asiento
          QUERY = "INSERT INTO c_02([num_interno], [fecha], [descripcion], [modulo], [num_mov_int], [debe], [haber], [id_USUARIO], [observaciones])"
-         QUERY = QUERY & " VALUES (" & numintcgr & " ,'" & t_fecha & "', '[Ventas] " & cl_compvta.abreviatura & " " & t_letra & Format$(Val(t_sucursal), "0000") & "-" & Format$(Val(t_numcomp), "00000000") & "', 'V', " & numint & ", " & Val(T_TOTAL) & ", " & Val(T_TOTAL) & ", " & para.id_usuario & ", '" & Left$(RTrim$(c_prov), 50) & "')"
+         QUERY = QUERY & " VALUES (" & numintcgr & " ,'" & t_fecha & "', '[Ventas] " & cl_compvta.abreviatura & " " & t_letra & Format$(Val(t_sucursal), "0000") & "-" & Format$(Val(t_numcomp), "00000000") & "', 'V', " & numint & ", " & Val(t_total) & ", " & Val(t_total) & ", " & para.id_usuario & ", '" & Left$(RTrim$(c_prov), 50) & "')"
          cn1.Execute QUERY
       
          
          'cuenta madre ctacte o caja
          ic = 1
          QUERY = "INSERT INTO c_03([num_interno], [renglon], [id_cuenta], [ubicacion], [importe], [descripcion])"
-         QUERY = QUERY & " VALUES (" & numintcgr & ", " & ic & ", " & cta & ", '" & u1 & "', " & Val(T_TOTAL) & ", '" & dcta & "')"
+         QUERY = QUERY & " VALUES (" & numintcgr & ", " & ic & ", " & cta & ", '" & u1 & "', " & Val(t_total) & ", '" & dcta & "')"
          
          cn1.Execute QUERY
          ic = ic + 1
@@ -1616,11 +1644,11 @@ t_subtotal = Format$(Val(t_subtotal), "######0.00")
 t_nograbado = Format$(Val(t_nograbado), "######0.00")
 t_perc = Format$(Val(t_perc), "######0.00")
 t_iva = Format$(Val(t_iva), "######0.00")
-T_TOTAL = Format$(Val(t_subtotal) + Val(t_nograbado) + Val(t_t_perc) + Val(t_iva), "######0.00")
+t_total = Format$(Val(t_subtotal) + Val(t_nograbado) + Val(t_perc) + Val(t_iva), "######0.00")
 If Option4 = True Then
-  T_total2 = Format$(Val(T_TOTAL) / Val(t_cotizacion), "#####0.00")
+  T_total2 = Format$(Val(t_total) / Val(t_cotizacion), "#####0.00")
 Else
-  T_total2 = Format$(Val(T_TOTAL) * Val(t_cotizacion), "#####0.00")
+  T_total2 = Format$(Val(t_total) * Val(t_cotizacion), "#####0.00")
 End If
 End Sub
 
@@ -1640,7 +1668,7 @@ End If
 End Sub
 
 Private Sub t_total_LostFocus()
-T_TOTAL = Format$(T_TOTAL, "######0.00")
+t_total = Format$(t_total, "######0.00")
 End Sub
 
 Private Sub Text1_LostFocus()

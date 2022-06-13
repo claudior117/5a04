@@ -832,12 +832,12 @@ Begin VB.Form vta_facturacion
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "11/06/2022"
+            TextSave        =   "12/06/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:28 a.m."
+            TextSave        =   "10:15 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -1423,28 +1423,28 @@ Sub carga2()
         Option2 = True
         
         
-        
-        
-        
     End If
      
      
-   Set rs = Nothing
+  
   
    
    'cargo percepciones
      Set rs2 = New ADODB.Recordset
-     q = "select * from vta_015 where [num_int] = " & rs("num_int")
+     q = "select * from vta_016, a12 where [num_int] = " & rs("num_int") & " and vta_016.id_percepcion = a12.id_percepcion"
      rs2.Open q, cn1
+    
      ABM_COMP_COMPRA2.armagrid
      i = 1
-     While Not rs.EOF
-       ABM_COMP_COMPRA2.msf1.AddItem i & Chr$(9) & rs2("id_percepcion") & Chr$(9) & rs2("descripcion") & Chr$(9) & rs2("importe") & Chr$(9) & rs2("id_cuenta")
+     While Not rs2.EOF
+       ABM_COMP_COMPRA2.msf1.AddItem i & Chr$(9) & rs2("vta_016.id_percepcion") & Chr$(9) & rs2("descripcion") & Chr$(9) & rs2("importe") & Chr$(9) & rs2("vta_016.id_cuenta")
        rs2.MoveNext
        i = i + 1
      Wend
      Set rs2 = Nothing
-   
+      
+      
+      Set rs = Nothing
    
   
   Else
@@ -3241,7 +3241,7 @@ Next i
      'actualizo percepciones
      If Val(t_perc) > 0 Then
         For i = 1 To ABM_COMP_COMPRA2.msf1.Rows - 1
-          QUERY = "INSERT INTO vta_015([num_int], [secuencia], [id_percepcion], [importe], [id_cuenta], [cod_regimen])"
+          QUERY = "INSERT INTO vta_016([num_int], [secuencia], [id_percepcion], [importe], [id_cuenta], [cod_regimen])"
           QUERY = QUERY & " VALUES (" & numint & ", " & i & ", " & ABM_COMP_COMPRA2.msf1.TextMatrix(i, 1) & ", " & ABM_COMP_COMPRA2.msf1.TextMatrix(i, 3) & ", " & ABM_COMP_COMPRA2.msf1.TextMatrix(i, 4) & ", " & ABM_COMP_COMPRA2.msf1.TextMatrix(i, 6) & ")"
           cn1.Execute QUERY
         Next i
