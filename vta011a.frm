@@ -636,12 +636,12 @@ Begin VB.Form vta_COMPVARIOS
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "12/06/2022"
+            TextSave        =   "05/07/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:15 p.m."
+            TextSave        =   "05:02 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -1321,15 +1321,17 @@ Sub graba()
 " [id_cuenta], [stock], [cta_cte], [grabado], [estado_pago], [recibo_Pago], [observaciones], [cotizacion_dolar], [total_otra_moneda], [moneda], [id_vendedor], [VENTA], [CONTADO], " & _
 " [id_actividad], [alicuota_ib],[alicuota_perc_iva], [canje_cereal], [fecha_vto], [total_bultos], [valor_declarado], [transporte], [direccion_transp], [cuit_transp], [perc_ss], [sucursal_ingreso], " & _
 " [cliente02], [direccion02], [cuit02], [localidad02], [id_tipo_iva02], [chofer02], [dominio02], [dominio_acoplado02], [SALDO_IMPAGO02], [id_camion02], [dni_chofer02], [num_z], [cae], [cae_vence], [tipo_op], perc_ib)"
+
+      
 QUERY = QUERY & " VALUES (" & numint & ", " & Val(t_sucursal) & ", " & Val(t_numcomp) & ", '" & t_letra & "', " & c_tipocomp.ItemData(c_tipocomp.ListIndex) & ", " & _
 c_prov.ItemData(c_prov.ListIndex) & ", '" & t_fecha & "', " & para.id_usuario & ", " & Val(t_subtotal) & ", " & Val(t_nograbado) & ", " & Val(t_iva) & ", " & Val(t_total) & ", 'A', " & _
 para.cuenta_ventas & ", '" & cl_compvta.STOCK & "', '" & cl_compvta.ctacte & "', '" & cl_compvta.grabado & "', '" & ep & "', '" & cp & "', '" & t_observaciones & " ', " & Val(t_cotizacion) & ", " & _
 tom & ", '" & moneda & "'," & c_vend.ItemData(c_vend.ListIndex) & ", '" & cl_compvta.venta & "', '" & contado & "', " & codact & ", " & alicuotaib & ", 0, 0, '" & t_fechavto & _
 "', 0, 0, ' ', ' ', ' ', 0, " & Val(c_sucursal) & ", '" & Left$(vta_clientes.t_cli, 50) & "', '" & Left$(vta_clientes.t_direccion, 50) & "', '" & Left$(vta_clientes.t_cuit, 20) & "', '" & Left$(vta_clientes.t_localidad, 50) & "', " & tiporespiva & _
-", ' ', ' ', ' ', " & ssi & ", 1, 0, " & numz & ", '" & t_cae & "', '" & fvcae & "', 1, " & Val(t_perc)
+", ' ', ' ', ' ', " & ssi & ", 1, 0, " & numz & ", '" & t_cae & "', '" & fvcae & "', 1, " & Val(t_perc) & ")"
       
       
-     'MsgBox (QUERY)
+     'MsgBox (QUERY2)
       cn1.Execute QUERY
       
       For i = 1 To msf1.Rows - 1

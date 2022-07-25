@@ -832,12 +832,12 @@ Begin VB.Form vta_facturacion
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "12/06/2022"
+            TextSave        =   "25/07/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:15 p.m."
+            TextSave        =   "10:42 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -2495,7 +2495,7 @@ c_prov.ListIndex = 0
 End Sub
 
 Private Sub Command3_Click()
-If c_tipocomp.ItemData(c_tipocomp.ListIndex) = 1 Or c_tipocomp.ItemData(c_tipocomp.ListIndex) > 3 Then
+If c_tipocomp.ItemData(c_tipocomp.ListIndex) <> 3 And c_tipocomp.ItemData(c_tipocomp.ListIndex) <> 32 Then
     Set cl_compvta = New comprobantes_venta
     cl_compvta.sucursal = Val(c_sucursal)
     cl_compvta.actual (1)
@@ -2651,10 +2651,10 @@ Sub iniciacli()
    End If
  End If
  
- If c_tipocomp.ItemData(c_tipocomp.ListIndex) > 1 Or c_tipocomp.ItemData(c_tipocomp.ListIndex) > 3 Then
-    Command3.Caption = "Remitos"
- Else
+ If c_tipocomp.ItemData(c_tipocomp.ListIndex) = 3 Or c_tipocomp.ItemData(c_tipocomp.ListIndex) = 32 Then
     Command3.Caption = "Facturas"
+ Else
+    Command3.Caption = "Remitos"
     
  End If
  
@@ -2956,6 +2956,7 @@ Unload vta_facturacion2
     Unload vta_clientes
     Unload vta_formapago
     Unload vta_selcomp
+    Unload ABM_COMP_COMPRA2
 End Sub
 
 Private Sub msf1_GotFocus()

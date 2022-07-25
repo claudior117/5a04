@@ -70,7 +70,7 @@ Begin VB.Form vta_perc
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   108462081
+      StartOfWeek     =   115081217
       CurrentDate     =   38750
    End
    Begin VB.Frame Frame3 
@@ -182,12 +182,12 @@ Begin VB.Form vta_perc
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "12/06/2022"
+            TextSave        =   "25/07/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "09:33 p.m."
+            TextSave        =   "10:42 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -256,7 +256,7 @@ If c_imp.ListIndex > 0 Then
  
 Set rs = New ADODB.Recordset
 rs.Open q, cn1
-tT = 0
+tt = 0
 ti = 0
 tcp = 0
 timp = ""
@@ -303,7 +303,7 @@ While Not rs.EOF
         End If
         tcodperc = tcodperc + Val(t)
         ti = ti + Val(t)
-        tT = tT + Val(t)
+        tt = tt + Val(t)
         msf1.AddItem F & Chr(9) & "" & Chr$(9) & rs2("cliente02") & Chr(9) & rs2("cuit02") & " " & Chr(9) & " " & nc & Chr(9) & "" & Chr(9) & t & Chr(9) & Format$(rs2("vta_02.num_int"), "00000")
         rs2.MoveNext
 
@@ -320,7 +320,7 @@ While Not rs.EOF
         
     rs.MoveNext
  Wend
-  msf1.AddItem "" & Chr(9) & "" & Chr(9) & "" & Chr(9) & "" & Chr(9) & "TOTAL PERCEPCIONES " & Chr$(9) & "" & Chr(9) & Format$(tT, "########0.00")
+  msf1.AddItem "" & Chr(9) & "" & Chr(9) & "" & Chr(9) & "" & Chr(9) & "TOTAL PERCEPCIONES " & Chr$(9) & "" & Chr(9) & Format$(tt, "########0.00")
          
        
 
