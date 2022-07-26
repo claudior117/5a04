@@ -26,19 +26,19 @@ Begin VB.Form vta_selcomp
       Width           =   4095
       Begin VB.TextBox t_seleccionados 
          Height          =   285
-         Left            =   2040
+         Left            =   2400
          Locked          =   -1  'True
          TabIndex        =   8
          Top             =   240
          Width           =   1335
       End
       Begin VB.Label Label1 
-         Caption         =   "Remitos Seleciionados:"
+         Caption         =   "Comprobantes Selecionados:"
          Height          =   255
          Left            =   120
          TabIndex        =   7
          Top             =   240
-         Width           =   1815
+         Width           =   2175
       End
    End
    Begin VB.Frame Frame5 
@@ -220,15 +220,23 @@ End Sub
 
 Sub carga()
    Call limpia
-   q = "select * from vta_02 where [id_tipocomp] = 1 and [id_cliente] = " & vta_facturacion.c_prov.ItemData(vta_facturacion.c_prov.ListIndex)
+   q = "select * from vta_02 where ([id_tipocomp] = 1 or [id_tipocomp] = 30)  and [id_cliente] = " & vta_facturacion.c_prov.ItemData(vta_facturacion.c_prov.ListIndex)
    Set rs = New ADODB.Recordset
    rs.Open q, cn1
    While Not rs.EOF
    
      If rs("letra") = "A" Then
-        t = 1
+       If rs("id_tipocomp") = 1 Then
+            t = 1
+       Else
+            t = 201
+       End If
      Else
-        t = 6
+      If rs("id_tipocomp") = 1 Then
+                t = 6
+      Else
+                t = 206
+      End If
      End If
      
      nc = Format$(rs("sucursal"), "0000") & "-" & Format$(rs("num_comp"), "00000000")

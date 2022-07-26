@@ -1,8 +1,7 @@
 VERSION 5.00
 Object = "{C4847593-972C-11D0-9567-00A0C9273C2A}#8.0#0"; "crviewer.dll"
-Begin VB.Form lao 
+Begin VB.Form reporte 
    BorderStyle     =   1  'Fixed Single
-   Caption         =   "liiiiiistienxd = 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
    ClientHeight    =   7395
    ClientLeft      =   45
    ClientTop       =   330
@@ -45,7 +44,7 @@ Begin VB.Form lao
       EnableHelpButton=   0   'False
    End
 End
-Attribute VB_Name = "lao"
+Attribute VB_Name = "reporte"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True

@@ -832,12 +832,12 @@ Begin VB.Form vta_facturacion
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "25/07/2022"
+            TextSave        =   "26/07/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:42 a.m."
+            TextSave        =   "05:19 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -883,7 +883,7 @@ Sub electronica()
     Debug.Print ("Tiquet correcto")
     
     
-    If c_tipocomp.ItemData(c_tipocomp.ListIndex) >= 2 And c_tipocomp.ItemData(c_tipocomp.ListIndex) <= 3 Then
+    If (c_tipocomp.ItemData(c_tipocomp.ListIndex) >= 2 And c_tipocomp.ItemData(c_tipocomp.ListIndex) <= 3) Or (c_tipocomp.ItemData(c_tipocomp.ListIndex) >= 31 And c_tipocomp.ItemData(c_tipocomp.ListIndex) <= 32) Then
        If Val(vta_selcomp.t_seleccionados) = 0 Then
            MsgBox ("Para realizar NC/ND es necesario que seleccione la factura asociada")
            seguir = False
@@ -1026,23 +1026,23 @@ Sub electronica()
                   
                   
                     'agrego opcionales factura credito
-                     If c_tipocomp.ItemData(c_tipocomp.ListIndex) >= 30 And c_tipocomp.ItemData(c_tipocomp.ListIndex) <= 32 Then
+                     If c_tipocomp.ItemData(c_tipocomp.ListIndex) = 30 Then
                     
                       'parametros
                       ok = WSFEv1.AgregarOpcional(2101, "0140360003659001871431") 'cbu
                       ok = WSFEv1.AgregarOpcional(2102, "BRONCE.BALDE.VASO") 'alias
                       ok = WSFEv1.AgregarOpcional(27, mtransf) 'transmisión (desde el 01/04/2021)
-                      If c_tipocomp.ItemData(c_tipocomp.ListIndex) = 32 Then
-                            ok = WSFEv1.AgregarOpcional(22, "S") 'anula
-                      End If
+                      
                      Else
                       fecha_venc_pago = ""
                      End If
                   
-                  
+                     If c_tipocomp.ItemData(c_tipocomp.ListIndex) = 32 Then
+                            ok = WSFEv1.AgregarOpcional(22, "S") 'anula
+                      End If
                   
                   ' Agrego los comprobantes asociados:
-                  If c_tipocomp.ItemData(c_tipocomp.ListIndex) >= 2 And c_tipocomp.ItemData(c_tipocomp.ListIndex) <= 3 Then  ' solo nc/nd
+                  If (c_tipocomp.ItemData(c_tipocomp.ListIndex) >= 2 And c_tipocomp.ItemData(c_tipocomp.ListIndex) <= 3) Or (c_tipocomp.ItemData(c_tipocomp.ListIndex) >= 31 And c_tipocomp.ItemData(c_tipocomp.ListIndex) <= 32) Then   ' solo nc/nd
                      F = vta_selcomp.msf1.Rows - 1
                      compasocnc = ""
                      For i = 1 To F
