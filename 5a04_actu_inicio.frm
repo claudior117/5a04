@@ -120,7 +120,7 @@ Begin VB.Form actu_inicio
    Begin VB.Label Label3 
       Alignment       =   2  'Center
       BackColor       =   &H0000FFFF&
-      Caption         =   "219"
+      Caption         =   "220"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   18
@@ -318,6 +318,8 @@ Case Is = 215
     Call actu218
  Case Is = 219
     Call actu219
+ Case Is = 220
+    Call actu220
  
  
  Case Is = 999
@@ -2332,7 +2334,7 @@ If h = 6 Then
   espere.Refresh
     
     
-   
+   cn1.BeginTrans
    
    
     q = "update g0 set  [actualizacion]=219"
@@ -2356,6 +2358,81 @@ Exit Sub
 err1:
 Resume Next
 End Sub
+
+
+Sub actu220()
+'agrega datos a productos para calcular costos de estructura de productos
+h = MsgBox("Actualizacion 220 . ¿Esta seguro que quiere actualizar?  ", 4)
+If h = 6 Then
+  
+    
+  espere.Show
+  espere.Refresh
+    
+   cn1.BeginTrans
+     q = "alter table a2 add column [num_int_ult_compra] double, [dolar_ult_compra] double  "
+     cn1.Execute q
+   
+    q = "update g0 set  [actualizacion]=220"
+    q = q & " where [sucursal]=0 "
+  
+   cn1.Execute q
+    
+  cn1.CommitTrans
+    
+    
+   MsgBox ("Se va a proceder a realizar una actualizacion de datos")
+   
+  q = "select * from a2"
+  Set rs = New ADODB.Recordset
+  rs.Open q, cn1, adOpenDynamic, adLockOptimistic
+  While Not rs.EOF
+      If IsNull(rs("ultima_compra")) Then
+        lc = "X"
+      Else
+           lc = Mid$(rs("ultima_compra"), 1, 1)
+      End If
+      If lc = "A" Then
+          tc = 1
+          sc = Val(Mid$(rs("ultima_compra"), 2, 4))
+          nc = Val(Mid$(rs("ultima_compra"), 7, 8))
+          pc = rs("id_proveedor_ult_compra")
+          q = "select * from a5 where sucursal=" & sc & " and num_comprobante=" & nc & " and letra= '" & lc & "' and id_tipocomp=" & tc & " and id_proveedor=" & pc
+          Set rs2 = New ADODB.Recordset
+          rs2.Open q, cn1
+          If Not rs2.EOF And Not rs2.BOF Then
+            niuc = rs2("num_int")
+            cduc = rs2("cotiz_dolar")
+          Else
+            niuc = 0
+            cduc = 0
+          End If
+          Set rs2 = Nothing
+      Else
+         niuc = 0
+         cduc = 1
+      End If
+  
+      rs("num_int_ult_compra") = niuc
+      rs("dolar_ult_compra") = cduc
+      rs.Update
+   
+      rs.MoveNext
+  Wend
+  Set rs = Nothing
+  MsgBox ("proceso terminado")
+   
+ Unload espere
+  
+End If
+
+Exit Sub
+
+
+err1:
+Resume Next
+End Sub
+
 
 
 Sub actu167()

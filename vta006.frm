@@ -1044,6 +1044,8 @@ Sub muestra2()
      vta_listaprecios2.t_tipocarga = rs("tipo_carga_tique")
      vta_listaprecios2.c_tasaib.ListIndex = buscaindice(vta_listaprecios2!c_tasaib, rs("id_tasaib"))
      vta_listaprecios2.t_idprodprov = rs("id_prod_prov")
+     vta_listaprecios2.t_cotizultcom = rs("dolar_ult_compra")
+     
      
      If rs("vigente") = True Then
       vta_listaprecios2.Check1 = 1

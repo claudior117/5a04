@@ -1,6 +1,6 @@
 VERSION 5.00
 Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form pro_costos 
    BackColor       =   &H00E0E0E0&
    Caption         =   "ESTRUCTURA DE COSTOS"
@@ -19,7 +19,24 @@ Begin VB.Form pro_costos
       Left            =   240
       TabIndex        =   8
       Top             =   7320
-      Width           =   3015
+      Width           =   8295
+      Begin VB.TextBox t_costohoy 
+         Enabled         =   0   'False
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   495
+         Left            =   5760
+         TabIndex        =   11
+         Top             =   240
+         Width           =   1575
+      End
       Begin VB.TextBox t_dolar 
          BeginProperty Font 
             Name            =   "MS Sans Serif"
@@ -31,15 +48,33 @@ Begin VB.Form pro_costos
             Strikethrough   =   0   'False
          EndProperty
          Height          =   495
-         Left            =   1200
+         Left            =   1440
          TabIndex        =   10
          Text            =   "Text1"
          Top             =   240
          Width           =   1575
       End
+      Begin VB.Label Label3 
+         BackColor       =   &H0080FFFF&
+         Caption         =   "Costo en $ hoy:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   495
+         Left            =   3840
+         TabIndex        =   12
+         Top             =   240
+         Width           =   1815
+      End
       Begin VB.Label Label1 
          BackColor       =   &H0080FFFF&
-         Caption         =   "Dolar:"
+         Caption         =   "Dolar hoy:"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
             Size            =   12
@@ -53,7 +88,7 @@ Begin VB.Form pro_costos
          Left            =   120
          TabIndex        =   9
          Top             =   240
-         Width           =   975
+         Width           =   1215
       End
    End
    Begin MSFlexGridLib.MSFlexGrid msf1 
@@ -234,7 +269,7 @@ Sub cargaproducto(ByVal p As Long, ByVal r As Integer)
   
   If idp > 1 Then
    Set rs1 = New ADODB.Recordset
-   q = "select [fecha_ult_compra], [precio_ult_compra], [denominacion], [moneda]  from a2, a1 where [id_producto] = " & idp & " and a1.[id_proveedor] = [id_proveedor_ult_compra]"
+   q = "select [fecha_ult_compra], [precio_ult_compra], [denominacion], [moneda], [dolar_ult_compra]  from a2, a1 where [id_producto] = " & idp & " and a1.[id_proveedor] = [id_proveedor_ult_compra]"
   
   'MsgBox (q)
    rs1.MaxRecords = 1
@@ -245,21 +280,26 @@ Sub cargaproducto(ByVal p As Long, ByVal r As Integer)
      prov = rs1("denominacion")
      If rs1("moneda") = "P" Then
        pc = rs1("precio_ult_compra")
+       pd = rs1("precio_ult_compra") / rs1("dolar_ult_compra")
+
      Else
-       pc = rs1("precio_ult_compra") * Val(t_dolar)
+       pc = rs1("precio_ult_compra") * rs1("dolar_ult_compra")
+       pd = rs1("precio_ult_compra")
      End If
    Else
      ful = "01/01/2000"
      prov = "Error producto dado de baja"
      pc = 0
+     pd = 0
    End If
    
   Else
      ful = " "
      prov = "Producto Manual"
      pc = 0
+     pd = 0
   End If
-  msf1.AddItem idp & Chr(9) & d & Chr(9) & c & Chr(9) & pc & Chr(9) & Format$(c * pc, "#####0.00") & Chr(9) & u & Chr(9) & ful & Chr(9) & prov
+  msf1.AddItem idp & Chr(9) & d & Chr(9) & c & Chr(9) & Format$(pc, "########0.00") & Chr(9) & Format$(pd, "########0.00") & Chr(9) & Format$(rs1("dolar_ult_compra"), "#######0.000") & Chr(9) & Format$(c * pc, "########0.00") & Chr$(9) & Format$(c * pd, "########0.00") & Chr$(9) & ful & Chr(9) & prov
   Set rs1 = Nothing
 End Sub
 Sub buscaestructura(ByVal ip)
@@ -289,9 +329,11 @@ End Sub
 Private Sub btnacepta_Click()
 Call carga
 If msf1.Rows > 1 Then
-  tot = suma_msflexgrid(msf1, 4)
-  msf1.AddItem "" & Chr$(9) & "" & Chr$(9) & "" & Chr$(9) & "" & Chr$(9) & "-------------------------"
-  msf1.AddItem "" & Chr$(9) & "*******  COSTO TOTAL ------------>" & Chr$(9) & "" & Chr$(9) & "" & Chr$(9) & Format$(tot, "#######0.00")
+  tot = suma_msflexgrid(msf1, 6)
+  totd = suma_msflexgrid(msf1, 7)
+  msf1.AddItem "" & Chr$(9) & "" & Chr$(9) & "" & Chr$(9) & "" & Chr$(9) & "" & Chr$(9) & "" & Chr$(9) & "-------------------------" & Chr$(9) & "-------------------------"
+  msf1.AddItem "" & Chr$(9) & "*******  COSTO TOTAL ------------>" & Chr$(9) & "" & Chr$(9) & "" & Chr$(9) & "" & Chr$(9) & "" & Chr$(9) & Format$(tot, "#######0.00") & Chr$(9) & Format$(totd, "#######0.00")
+  t_costohoy = Format$(totd * Val(t_dolar), "########0.00")
 End If
   
 End Sub
@@ -304,30 +346,34 @@ Sub armagrid()
 'armar grilla
   msf1.clear
   msf1.Rows = 1
-  msf1.Cols = 8
-  msf1.ColWidth(0) = 600
-  msf1.ColWidth(1) = 6000
-  msf1.ColWidth(2) = 1100
+  msf1.Cols = 10
+  msf1.ColWidth(0) = 500
+  msf1.ColWidth(1) = 4000
+  msf1.ColWidth(2) = 800
   msf1.ColWidth(3) = 1200
-  msf1.ColWidth(4) = 1400
+  msf1.ColWidth(4) = 1200
   msf1.ColWidth(5) = 1200
   msf1.ColWidth(6) = 1200
-  msf1.ColWidth(7) = 2500
+  msf1.ColWidth(7) = 1200
+  msf1.ColWidth(8) = 1200
+  msf1.ColWidth(9) = 2500
   msf1.TextMatrix(0, 0) = "Id."
   msf1.TextMatrix(0, 1) = "DETALLE"
   msf1.TextMatrix(0, 2) = "Cantidad"
-  msf1.TextMatrix(0, 3) = "Pu"
-  msf1.TextMatrix(0, 4) = "Importe"
-  msf1.TextMatrix(0, 5) = "Unidad"
-  msf1.TextMatrix(0, 6) = "Fec.Actu."
-  msf1.TextMatrix(0, 7) = "Proveedor"
+  msf1.TextMatrix(0, 3) = "$ Ult.Compra"
+  msf1.TextMatrix(0, 4) = "U$s Ult.Compra "
+  msf1.TextMatrix(0, 5) = "Cotizacion"
+  msf1.TextMatrix(0, 6) = "Total $"
+  msf1.TextMatrix(0, 7) = "Total U$S"
+  msf1.TextMatrix(0, 8) = "Fec.Actu."
+  msf1.TextMatrix(0, 9) = "Proveedor"
   
- For i = 0 To 6
+ For i = 0 To 9
    msf1.ColAlignment(i) = 9 'izq
  Next i
   
  msf1.ColAlignment(1) = 1 'izq
- msf1.ColAlignment(7) = 1 'izq
+ 
 
 End Sub
 
@@ -349,6 +395,7 @@ End Sub
 
 Private Sub Form_Load()
 t_dolar = Format$(para.cotizacion, "#####0.000")
+t_costohoy = ""
 Call carga_piezas(c_prov)
 c_prov.AddItem "<seleccionar Pieza>", 0
 c_prov.ListIndex = 0
@@ -362,7 +409,7 @@ End Sub
 
 
 Private Sub msf1_GotFocus()
-Me.StatusBar1.Panels.Item(1) = " [F7] Imprime -  [F11] Excel - [ENTER] Modif. Celda "
+Me.StatusBar1.Panels.item(1) = " [F7] Imprime -  [F11] Excel - [ENTER] Modif. Celda "
 If msf1.Rows > 1 Then
   msf1.FocusRect = flexFocusNone
 Else
@@ -427,13 +474,63 @@ End Function
 
 Private Sub msf1_KeyPress(KeyAscii As Integer)
 If KeyAscii = 13 Then
-  If msf1.col = 2 Or msf1.col = 3 Then
-    If Val(msf1.TextMatrix(msf1.Row, 0)) > 0 Then
+  If msf1.col >= 3 And msf1.col <= 5 Then
+    '3 pc$  4 pcU$s 5 cotiz
+    
+    Select Case msf1.col
+    Case Is = 3
+      td = "Modifique Precio Compra en $"
+    Case Is = 4
+      td = "Modifique Precio Compra en U$s"
+    Case Is = 5
+      td = "Modifique Cotizacion U$s"
+    End Select
       
-      d = InputBox$("ingreso de datos", "MODIFICACION TABLA DE COSTOS")
-      If Val(d) >= 0 Then
-        msf1.TextMatrix(msf1.Row, msf1.col) = Format(Val(d), "#####0.00")
-        Call RECALCULA
+      
+    If Val(msf1.TextMatrix(msf1.Row, 0)) > 0 Then
+      d = InputBox$(td, "MODIFICACION TABLA DE COSTOS")
+      If Val(d) > 0 Then
+        Select Case msf1.col
+            Case Is = 3
+               'actualizo Precio Compra en $ actualizo tambien pcU$s
+               pd = Format$(d / Val(msf1.TextMatrix(msf1.Row, 5)), "######0.00")
+               msf1.TextMatrix(msf1.Row, 4) = pd
+            Case Is = 4
+                'Modifico Precio Compra en U$s actualiza tambien pc$
+                pd = Format$(d * Val(msf1.TextMatrix(msf1.Row, 5)), "######0.00")
+                msf1.TextMatrix(msf1.Row, 3) = pd
+            Case Is = 5
+                'Modifique Cotizacion U$s modifica tambie $
+                 pd = Format$(d * Val(msf1.TextMatrix(msf1.Row, 4)), "######0.00")
+                 msf1.TextMatrix(msf1.Row, 3) = pd
+                
+            End Select
+            msf1.TextMatrix(msf1.Row, msf1.col) = Format(Val(d), "#####0.00")
+            Call RECALCULA
+            
+            J = MsgBox("Desea agregar los cambios a la lista de precios de productos", 4)
+            If J = 6 Then
+            
+            Set rs = New ADODB.Recordset
+            QUERY = "update a2 set  [precio_ult_compra]=" & Val(msf1.TextMatrix(msf1.Row, 3)) & ", [costoreal]=" & Val(msf1.TextMatrix(msf1.Row, 3)) & ", [dolar_ult_compra]=" & Val(msf1.TextMatrix(msf1.Row, 5)) & " , [fecha_ult_compra]='" & Format$(Now, "dd/mm/yyyy") & "' "
+            QUERY = QUERY & " where [id_producto]= " & Val(msf1.TextMatrix(msf1.Row, 0))
+            
+            cn1.BeginTrans
+            cn1.Execute QUERY
+     
+        
+            QUERY = "INSERT INTO g11([detalle], [id_usuario], [modulo], [num_int_comp], [fecha_hora], [obs], [id_operacion], [id_clipro])"
+            QUERY = QUERY & " VALUES ('Modifica Costo Producto: " & t_basico & "', " & para.id_usuario & ", 'P', 0, '" & Now & "', 'Cambio Manual Planilla Costo Produccion', 20, " & 0 & ")"
+            cn1.Execute QUERY
+            
+             cn1.CommitTrans
+    
+            
+            
+            
+            
+            End If
+            
       End If
     End If
   End If
@@ -443,13 +540,23 @@ Sub RECALCULA()
 J = 1
 While J <= msf1.Rows - 1
  If Val(msf1.TextMatrix(J, 0)) > 0 Then
-    msf1.TextMatrix(J, 4) = Format$(Val(msf1.TextMatrix(J, 2)) * Val(msf1.TextMatrix(J, 3)), "######0.00")
+    
+    
+    msf1.TextMatrix(J, 6) = Format$(Val(msf1.TextMatrix(J, 2)) * Val(msf1.TextMatrix(J, 3)), "######0.00")
+    msf1.TextMatrix(J, 7) = Format$(Val(msf1.TextMatrix(J, 2)) * Val(msf1.TextMatrix(J, 4)), "######0.00")
+ 
  End If
  J = J + 1
 Wend
-msf1.TextMatrix(msf1.Rows - 1, 4) = ""
-tot = Format$(suma_msflexgrid(msf1, 4), "######0.00")
-msf1.TextMatrix(msf1.Rows - 1, 4) = tot
+msf1.TextMatrix(msf1.Rows - 1, 6) = ""
+msf1.TextMatrix(msf1.Rows - 1, 7) = ""
+
+tot = Format$(suma_msflexgrid(msf1, 6), "######0.00")
+totd = Format$(suma_msflexgrid(msf1, 7), "######0.00")
+msf1.TextMatrix(msf1.Rows - 1, 6) = tot
+msf1.TextMatrix(msf1.Rows - 1, 7) = totd
+t_costohoy = Format$(totd * Val(t_dolar), "########0.00")
+
 
 End Sub
 Private Sub msf1_LostFocus()

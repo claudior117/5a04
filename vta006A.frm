@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form vta_listaprecios2 
    BackColor       =   &H00C0C0C0&
    BorderStyle     =   1  'Fixed Single
@@ -178,6 +178,17 @@ Begin VB.Form vta_listaprecios2
       TabIndex        =   54
       Top             =   6240
       Width           =   9375
+      Begin VB.TextBox t_cotizultcom 
+         Appearance      =   0  'Flat
+         BorderStyle     =   0  'None
+         Height          =   285
+         Left            =   8280
+         MaxLength       =   70
+         TabIndex        =   103
+         ToolTipText     =   "Si el comprobante es de tipo ""A"" el precio de venta es ""sin iva"", sino es ""precio final"""
+         Top             =   600
+         Width           =   975
+      End
       Begin VB.TextBox t_ultimacompra 
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
@@ -187,7 +198,7 @@ Begin VB.Form vta_listaprecios2
          TabIndex        =   80
          ToolTipText     =   "Si el comprobante es de tipo ""A"" el precio de venta es ""sin iva"", sino es ""precio final"""
          Top             =   600
-         Width           =   7815
+         Width           =   5295
       End
       Begin VB.TextBox t_ultvta 
          Appearance      =   0  'Flat
@@ -199,6 +210,16 @@ Begin VB.Form vta_listaprecios2
          ToolTipText     =   "Si el comprobante es de tipo ""A"" el precio de venta es ""sin iva"", sino es ""precio final"""
          Top             =   240
          Width           =   7815
+      End
+      Begin VB.Label Label39 
+         BackColor       =   &H00800080&
+         Caption         =   "Cotiz U$s Ult.Com"
+         ForeColor       =   &H00FFFFFF&
+         Height          =   255
+         Left            =   6840
+         TabIndex        =   102
+         Top             =   600
+         Width           =   1335
       End
       Begin VB.Label Label25 
          BackColor       =   &H00800080&
@@ -1121,12 +1142,12 @@ Begin VB.Form vta_listaprecios2
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "09/10/2014"
+            TextSave        =   "28/07/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "09:04"
+            TextSave        =   "09:54 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -1164,7 +1185,7 @@ Sub graba()
 J = MsgBox("Confirma Valores para Grabar", 4)
 If J = 6 Then
    
-   On Error GoTo ERRORGRABA
+   'On Error GoTo ERRORGRABA
        
    QUERY = "update a2 set  [Descripcion]='" & t_detalle & "' , [id_proveedor]=" & c_prov.ItemData(c_prov.ListIndex) & " , [id_unidad]=" & c_unidad.ItemData(c_unidad.ListIndex) & _
    " , [envase]=" & Val(t_envase) & " , [id_grupo]=" & c_grupo.ItemData(c_grupo.ListIndex) & " , [precio_ult_compra]=" & Val(t_preciocompra) & " , [pu]=" & Val(t_pu) & _
@@ -1172,11 +1193,11 @@ If J = 6 Then
    c_depto.ItemData(c_depto.ListIndex) & " , [porc_utilidad]=" & Val(t_utilidad) & " , [costoreal]=" & Val(t_costo) & " , [flete_compra]=" & Val(t_fletecompra) & " , [dto_compra]=" & _
    Val(t_dtocompra) & " , [cod_barra]='" & RTrim$(t_codbarra) & "' , [precio_final]=" & Val(t_final) & " , [tasa_imp_interno]=" & Val(t_tasaimpint) & " , [tipo_producto]='" & t_tipo & _
    "' , [moneda]='" & t_moneda & "' , [impuesto]=" & Val(t_impuesto) & " , [observaciones]='" & t_observaciones & "' , [vigente]= " & Check1 & " , [tipo_carga_tique]='" & t_tipocarga & _
-   "' , [id_tasaib]=" & c_tasaib.ItemData(c_tasaib.ListIndex) & " , [id_prod_prov]='" & RTrim$(UCase(t_idprodprov)) & "' , [dto_compra2]=" & Val(t_dtocompra2)
+   "' , [id_tasaib]=" & c_tasaib.ItemData(c_tasaib.ListIndex) & " , [id_prod_prov]='" & RTrim$(UCase(t_idprodprov)) & "' , [dto_compra2]=" & Val(t_dtocompra2) & ", [dolar_ult_compra]=" & Val(t_cotizultcom)
       
       
       
-      If Val(t_preciocompra) <> Val(t_preciocompra.Tag) Or Val(t_costo) <> Val(t_costo.Tag) Then
+      If Val(t_preciocompra) <> Val(t_preciocompra.Tag) Or Val(t_costo) <> Val(t_costo.Tag) Or Val(t_cotizultcom) <> Val(t_cotizultcom.Tag) Then
           QUERY = QUERY & " , [fecha_ult_compra]='" & Format$(Now, "dd/mm/yyyy") & "' "
       End If
       
@@ -1327,6 +1348,7 @@ Private Sub Form_GotFocus()
 t_preciocompra.Tag = t_preciocompra
 t_costo.Tag = t_costo
 t_final.Tag = t_final
+t_cotizultcom.Tag = t_cotizultcom
 End Sub
 
 Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
