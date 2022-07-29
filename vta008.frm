@@ -253,7 +253,7 @@ End Sub
 
 Sub electronico()
 Set rs2 = New ADODB.Recordset
-q = "select * from vta_014 where [num_int] = " & Val(t_numint)
+q = "select path from vta_014 where [num_int] = " & Val(t_numint)
 rs2.Open q, cn1
 If Not rs2.EOF And Not rs2.BOF Then
   t_path = rs2("path")
@@ -271,14 +271,26 @@ l1 = "--------------------------------------------------------------------------
 l2 = "*************************************"
 
 If t_numint <> "" Then
-  q = "select * from vta_02, vta_01, vta_06, g1 where vta_02.[id_cliente] = vta_01.[id_cliente] and vta_02.[id_tipocomp] = vta_06.[id_tipocomp] and vta_02.[num_int] = " & Val(t_numint) & " and vta_02.[sucursal_ingreso] = vta_06.[sucursal] and vta_02.[id_usuario] = g1.[id_usuario]"
+  'q = "select * from vta_02, vta_01, vta_06, g1 where vta_02.[id_cliente] = vta_01.[id_cliente] and vta_02.[id_tipocomp] = vta_06.[id_tipocomp] and vta_02.[num_int] = " & Val(t_numint) & " and vta_02.[sucursal_ingreso] = vta_06.[sucursal] and vta_02.[id_usuario] = g1.[id_usuario]"
+  
+q = "select num_int, abreviatura, fecha, sucursal_INGRESO, vta_02.id_cliente, cliente02, " _
+& "direccion02, localidad02, cuit02, vta_02.id_tipocomp, SUBTOTAL, DESCUENTO, " _
+& "vta_02.iva, impuestos, perc_ib, total, vta_02.observaciones, vta_02.id_vendedor, contado, vta_02.moneda, " _
+& "total_otra_moneda, cae, cae_vence, estado, ctacte, vta_02.stock, grabado, id_cuenta, fecha_vto, " _
+& "fecha_pago, recibo_pago, cotizacion_dolar, vta_02.id_usuario,  vta_02.iva, estado_pago, " _
+& " vta_06.id_tipocomp, vta_06.sucursal, letra, vta_02.sucursal, num_comp, cp, te, email, inscripto_operador_granos, usuario " _
+& " from vta_02, vta_06, vta_01, g1 where vta_02.[num_int] = " & Val(t_numint) & " and  vta_02.[id_tipocomp] = vta_06.[id_tipocomp]  and vta_02.[sucursal_ingreso] = vta_06.[sucursal]  and vta_02.[id_cliente] = vta_01.[id_cliente]" _
+& " and vta_02.[id_usuario] =  g1.[id_usuario]"
+
   Set rs = New ADODB.Recordset
+'MsgBox (q)
+  
   rs.Open q, cn1
   If Not rs.EOF And Not rs.BOF Then
      List1.AddItem Space$(60) & "Numero.......:" & rs("abreviatura") & " " & rs("letra") & " " & Format$(rs("vta_02.sucursal"), "0000") & "-" & Format$(rs("num_comp"), "00000000")
      List1.AddItem Space$(60) & "Fecha........:" & rs("fecha")
      List1.AddItem Space$(60) & "Punto Venta..:" & Format$(rs("sucursal_ingreso"), "0000")
-     List1.AddItem "Cliente......:(" & Format$(rs("vta_02.id_cliente"), "00000") & ") " & rs("cliente02")
+     List1.AddItem "Cliente......:(" & Format$(rs("id_cliente"), "00000") & ") " & rs("cliente02")
      List1.AddItem "Direccion....: " & rs("direccion02") & " (" & rs("cp") & ") " & rs("localidad02")
      List1.AddItem "TE...........: " & rs("TE")
      List1.AddItem "Email........: " & rs("email")
@@ -300,7 +312,7 @@ If t_numint <> "" Then
         
      End Select
      
-     Call electronico
+     'Call electronico
             
      e = Space$(12)
      List1.AddItem ""
@@ -315,7 +327,7 @@ If t_numint <> "" Then
         
      RSet e = Format$(rs("subtotal"), "########0.00")
      List1.AddItem "Subtotal2 : " & e
-     RSet e = Format$(rs("vta_02.iva"), "######0.00")
+     RSet e = Format$(rs("iva"), "######0.00")
      List1.AddItem "Iva       : " & e & " (Ver detalle)"
      RSet e = Format$(rs("impuestos"), "######0.00")
      RSet e = Format$(rs("perc_ib"), "######0.00")
@@ -327,7 +339,7 @@ If t_numint <> "" Then
      If rs("vta_02.id_tipocomp") >= 205 And rs("vta_02.id_tipocomp") <= 207 Then
        'muestro retenciones
        Set rs1 = New ADODB.Recordset
-       q = "select * from vta_012, a12 where [num_int] = " & rs("num_int") & " and [id_retencion] = [id_percepcion]"
+       q = "select descripcion, importe from vta_012, a12 where [num_int] = " & rs("num_int") & " and [id_retencion] = [id_percepcion]"
        rs1.Open q, cn1
        List1.AddItem "Retenciones"
        List1.AddItem "Tipo                      Importe"
@@ -346,10 +358,10 @@ If t_numint <> "" Then
      End If
      List1.AddItem " "
      
-     List1.AddItem "Observaciones....: " & rs("vta_02.observaciones")
-     If rs("vta_02.id_vendedor") > 0 Then
+     List1.AddItem "Observaciones....: " & rs("observaciones")
+     If rs("id_vendedor") > 0 Then
         Set rs2 = New ADODB.Recordset
-        q = "select * from vta_05 where [id_vendedor] = " & rs("vta_02.id_vendedor")
+        q = "select denominacion from vta_05 where [id_vendedor] = " & rs("id_vendedor")
         rs2.Open q, cn1
         If Not rs2.EOF And Not rs2.BOF Then
            vendedor = rs2("denominacion")
@@ -409,7 +421,7 @@ If t_numint <> "" Then
          q = "select * from vta_010 where [num_int_comp] = " & rs("num_int")
          Set rs3 = New ADODB.Recordset
          rs3.Open q, cn1
-             If rs("vta_02.moneda") = "P" Then
+             If rs("moneda") = "P" Then
                t = rs("total")
              Else
                t = rs("total_otra_moneda")
@@ -424,7 +436,7 @@ If t_numint <> "" Then
              s = Space$(10)
          
          While Not rs3.EOF
-           q = "select * from vta_02 where [num_int] = " & rs3("num_int_rbo")
+           q = "select sucursal, num_comp, fecha from vta_02 where [num_int] = " & rs3("num_int_rbo")
            Set rs4 = New ADODB.Recordset
            rs4.Open q, cn1
            If Not rs4.EOF And Not rs4.BOF Then
@@ -484,8 +496,8 @@ If t_numint <> "" Then
      List1.AddItem Space$(60) & "CAE..........:" & rs("cae")
      List1.AddItem Space$(60) & "Venc. CAE....:" & rs("cae_vence")
      List1.AddItem Space$(60) & "Estado.......:" & rs("estado")
-     List1.AddItem Space$(60) & "Cta.Cte......:" & rs("cta_cte")
-     List1.AddItem Space$(60) & "Stock........:" & rs("vta_02.stock")
+     List1.AddItem Space$(60) & "Cta.Cte......:" & rs("ctacte")
+     List1.AddItem Space$(60) & "Stock........:" & rs("stock")
      List1.AddItem Space$(60) & "Iva..........:" & rs("grabado")
      List1.AddItem Space$(60) & "Num.Int......:" & rs("num_int")
      If rs("id_cuenta") > 0 Then
@@ -505,7 +517,7 @@ If t_numint <> "" Then
      List1.AddItem Space$(60) & "Op. Granos...: " & rs("inscripto_operador_granos")
      List1.AddItem Space$(60) & "Estado Cob...: " & rs("estado_pago")
      List1.AddItem Space$(60) & "Recibo.......: " & rs("recibo_pago")
-     If rs("VTA_02.moneda") = "P" Then
+     If rs("moneda") = "P" Then
        List1.AddItem Space$(60) & "Moneda.......: $"
      Else
        List1.AddItem Space$(60) & "Moneda.......: U$s"
@@ -532,7 +544,7 @@ Sub remitos()
      List1.AddItem l1
      
      Set rs1 = New ADODB.Recordset
-     q = "select * from vta_03 where [num_int] = " & Val(t_numint)
+     q = "select cantidad_original, cantidad, pu, id_producto, descripcion, importe, tasaiva from vta_03 where [num_int] = " & Val(t_numint)
      rs1.Open q, cn1
      co = Space$(9)
      cf = Space$(9)
@@ -570,7 +582,7 @@ Sub COMPROBANTES()
      List1.AddItem l1
      
      Set rs1 = New ADODB.Recordset
-     q = "select * from vta_03 where [num_int] = " & Val(t_numint)
+     q = "select cantidad, pu_final, pu, importe,id_producto, descripcion, tasaiva, tasaib, renglon from vta_03 where [num_int] = " & Val(t_numint)
      rs1.Open q, cn1
      c = Space$(7)
      p = Space$(10)
@@ -633,7 +645,7 @@ Sub MUESTRaREMITOS()
      List1.AddItem "=========================="
      
      Set rst = New ADODB.Recordset
-     q = "select * from vta_08, vta_02 where [id_factura] = " & Val(t_numint) & " and [id_remito] = [num_int]"
+     q = "select id_tipocomp, sucursal, num_comp from vta_08, vta_02 where [id_factura] = " & Val(t_numint) & " and [id_remito] = [num_int]"
      rst.Open q, cn1
      While Not rst.EOF
          If rst("id_tipocomp") = 45 Then
@@ -668,7 +680,8 @@ Sub PAGOS()
      ia = Space$(10)
      While Not rs1.EOF
          Set rs2 = New ADODB.Recordset
-         q = "select * from vta_02 where [num_int] = " & rs1("num_int_comp")
+         q = "select num_int, fecha, letra, sucursal, num_comp  from vta_02 where [num_int] = " & rs1("num_int_comp")
+         
          rs2.Open q, cn1
          If Not rs2.EOF And Not rs2.BOF Then
           F = Format$(rs2("fecha"), "dd/mm/yyyy")

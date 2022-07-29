@@ -156,7 +156,7 @@ Begin VB.Form vta_estadocuenta
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   115671041
+      StartOfWeek     =   108986369
       CurrentDate     =   38754
    End
    Begin MSFlexGridLib.MSFlexGrid msf1 
@@ -300,12 +300,12 @@ Begin VB.Form vta_estadocuenta
          BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "28/07/2022"
+            TextSave        =   "29/07/2022"
          EndProperty
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:37 a.m."
+            TextSave        =   "02:29 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -336,7 +336,7 @@ Sub carga()
   hao = 0
   T2 = 0
   If t_fecha <> "" Then
-     q = "select * from vta_02 where [id_cliente] = " & c_prov.ItemData(c_prov.ListIndex) & " and [cta_cte] <> 'N' " & " and [contado] = " & "'N' "
+     q = "select moneda, total, total_otra_moneda, id_tipocomp, cta_cte, estado_pago from vta_02 where [id_cliente] = " & c_prov.ItemData(c_prov.ListIndex) & " and [cta_cte] <> 'N' " & " and [contado] = " & "'N' "
      
      If c_sucursal.ListIndex > 0 Then
         q = q & " and [sucursal_ingreso] = " & Val(c_sucursal)
@@ -387,6 +387,7 @@ Sub carga()
     Wend
     sa = da - ha
     sao = dao - hao
+    Set rs = Nothing
   End If
   
   saldoanterior = sa
@@ -396,7 +397,9 @@ Sub carga()
   Else
     msf1.AddItem t_fecha & Chr(9) & "" & Chr(9) & "Saldo Ant." & Chr(9) & "" & Chr(9) & Format$(da, "######0.00") & Chr(9) & Format$(ha, "######0.00") & Chr(9) & Format$(sa, "######0.00") & Chr(9) & Format$(sao, "######0.00")
   End If
-  q = "select * from vta_02, vta_06 where  vta_02.[id_cliente] = " & c_prov.ItemData(c_prov.ListIndex) & " and vta_02.[cta_cte] <> 'N'  and vta_02.[id_tipocomp] = vta_06.[id_tipocomp]  " & " and [contado] = " & "'N' and vta_02.[sucursal_ingreso] = vta_06.[sucursal]"
+  
+  
+  q = "select  num_int, fecha, fecha_vto, vta_02.ID_TIPOCOMP, descripcion, letra, vta_02.sucursal, num_comp, vta_02.moneda, total_otra_moneda, total, estado_pago, cta_cte, observaciones, saldo_impago02  from vta_02, vta_06 where  vta_02.[id_cliente] = " & c_prov.ItemData(c_prov.ListIndex) & " and vta_02.[cta_cte] <> 'N'  and vta_02.[id_tipocomp] = vta_06.[id_tipocomp]  " & " and [contado] = " & "'N' and vta_02.[sucursal_ingreso] = vta_06.[sucursal]"
   If t_fecha <> "" Then
     If Option1 = True Then
        q = q & " and datevalue([fecha]) >= datevalue('" & t_fecha & "')"
@@ -437,11 +440,11 @@ Sub carga()
     Else
          F = rs("fecha_vto")
     End If
-     CTC = Format$(rs("vta_02.ID_TIPOCOMP"), "000")
+     CTC = Format$(rs("iD_TIPOCOMP"), "000")
      tc = rs("descripcion")
-     nc = rs("letra") & " " & Format$(rs("vta_02.sucursal"), "0000") & "-" & Format$(rs("num_comp"), "00000000")
+     nc = rs("letra") & " " & Format$(rs("sucursal"), "0000") & "-" & Format$(rs("num_comp"), "00000000")
      If Option4 = True Then
-      If rs("vta_02.moneda") = "P" Then
+      If rs("moneda") = "P" Then
         t = rs("total")
         T2 = rs("total_otra_moneda")
       Else
@@ -457,7 +460,7 @@ Sub carga()
         T2 = rs("total")
       End If
      End If
-     If rs("vta_02.id_tipocomp") = 25 Then
+     If rs("id_tipocomp") = 25 Then
       If rs("estado_pago") = "P" Then
          t = 0
          T2 = 0
@@ -479,7 +482,7 @@ Sub carga()
      s2 = Format$(Val(s2) + Val(dao) - Val(hao), "######0.00")
      ni = rs("num_int")
      o = rs("observaciones")
-     If rs("vta_02.id_tipocomp") = 1 Then
+     If rs("id_tipocomp") = 1 Then
        If rs("estado_pago") = "P" Then
         ep = "Cancelado"
        Else
@@ -504,6 +507,7 @@ Sub carga()
      End If
    rs.MoveNext
   Wend
+  Set rs = Nothing
   
 End Sub
 
