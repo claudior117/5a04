@@ -667,7 +667,7 @@ If Not rs.BOF And Not rs.EOF Then
   Me.codfiscal = rs("cod_fiscal")
   Me.limitecredito = rs("limite_credito")
   Me.direccion_local = rs("direccion_local")
-  Me.codfiscal2 = rs("cod_fiscal2")
+  'Me.codfiscal2 = rs("cod_fiscal2")
 Else
   Me.id = 0
 End If

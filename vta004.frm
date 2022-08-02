@@ -156,7 +156,7 @@ Begin VB.Form vta_estadocuenta
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   108986369
+      StartOfWeek     =   109772801
       CurrentDate     =   38754
    End
    Begin MSFlexGridLib.MSFlexGrid msf1 
@@ -300,12 +300,12 @@ Begin VB.Form vta_estadocuenta
          BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "29/07/2022"
+            TextSave        =   "01/08/2022"
          EndProperty
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "02:29 p.m."
+            TextSave        =   "10:28 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -486,7 +486,7 @@ Sub carga()
        If rs("estado_pago") = "P" Then
         ep = "Cancelado"
        Else
-        If rs("vta_02.moneda") = "P" Then
+        If rs("moneda") = "P" Then
           ic = rs("total")
         Else
           ic = rs("total_otra_moneda")
