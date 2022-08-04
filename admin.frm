@@ -235,6 +235,10 @@ If c_usuario.ListIndex >= 0 Then
        para.fecha_inicio_actividades = rs("fecha_inicio_actividades")
        para.numero_ib = rs("numero_ingresos_brutos")
        para.idsistema = rs("id_sistema")
+       'define tipo de iva del cliente del sistema (1 fact ay b, el resto factura C)
+       para.tipo_iva_empresa = rs("id_tipo_iva")
+       
+       
         
         Set rs1 = New ADODB.Recordset
         q = "select * from cyb_01 where [id_forma_pago] = 1"
@@ -360,7 +364,7 @@ End Sub
 Sub entrar()
         'para.empresa = "geser" 'command$
         'fotosv   sistema2
-        para.empresa = "" 'prueba
+        para.empresa = "claudio" 'prueba
         Call LEEINI
         X = Shell(App.Path & "\tools\confreg.exe")
         Call carga_usuarios_ini(c_usuario)

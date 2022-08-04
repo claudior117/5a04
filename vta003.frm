@@ -254,12 +254,12 @@ Begin VB.Form vta_facturacion1
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "19/03/2022"
+            TextSave        =   "02/08/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "11:44 a.m."
+            TextSave        =   "04:55 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -503,14 +503,21 @@ Sub cargarenglon(t As String)
   u = RTrim$(t_unidad)
   'If vta_facturacion.t_letra = "A" Then
    'se cargan todos los comprobantes sin iva, en las que no se descrimina solo se imprimen con iva
-  If para.tipoprecioventa = 1 Then
-   pu = Format$(Val(t_pu) / (1 + Val(c_tasa) / 100), "#####0.0000")
-   im = Format$(Val(pu) * Val(cu), "#####0.00")
-   puf = Format$(Val(t_pu), "#####0.0000")
-  Else
-   pu = Format$(Val(t_pu), "#####0.0000")
-   im = Format$(Val(pu) * Val(cu), "#####0.00")
-   puf = Format$(Val(t_pu) * (1 + Val(c_tasa) / 100), "#####0.0000")
+  
+  If para.tipo_iva_empresa = 1 Then 'inscriptos
+        If para.tipoprecioventa = 1 Then
+         pu = Format$(Val(t_pu) / (1 + Val(c_tasa) / 100), "#####0.0000")
+         im = Format$(Val(pu) * Val(cu), "#####0.00")
+         puf = Format$(Val(t_pu), "#####0.0000")
+        Else
+         pu = Format$(Val(t_pu), "#####0.0000")
+         im = Format$(Val(pu) * Val(cu), "#####0.00")
+         puf = Format$(Val(t_pu) * (1 + Val(c_tasa) / 100), "#####0.0000")
+        End If
+  Else ' monotributos
+        pu = Format$(Val(t_pu), "#####0.0000")
+        im = Format$(Val(pu) * Val(cu), "#####0.00")
+       puf = Format$(Val(t_pu), "#####0.0000")
   End If
   'End If
   If u = "" Then

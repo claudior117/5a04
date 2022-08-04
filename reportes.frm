@@ -1,6 +1,6 @@
 VERSION 5.00
 Object = "{C4847593-972C-11D0-9567-00A0C9273C2A}#8.0#0"; "crviewer.dll"
-Begin VB.Form reporte 
+Begin VB.Form prrrrrriont 
    BorderStyle     =   1  'Fixed Single
    ClientHeight    =   7395
    ClientLeft      =   45
@@ -44,7 +44,7 @@ Begin VB.Form reporte
       EnableHelpButton=   0   'False
    End
 End
-Attribute VB_Name = "reporte"
+Attribute VB_Name = "prrrrrriont"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True

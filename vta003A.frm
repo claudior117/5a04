@@ -1,4 +1,5 @@
 VERSION 5.00
+Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCT2.OCX"
 Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
 Object = "{0A6BE9FC-5039-11D5-98EC-0800460222F0}#1.0#0"; "IFEpson.ocx"
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
@@ -13,6 +14,68 @@ Begin VB.Form vta_facturacion
    LinkTopic       =   "Form1"
    ScaleHeight     =   8490
    ScaleWidth      =   11880
+   Begin VB.Frame Frame14 
+      BackColor       =   &H00E0E0E0&
+      Caption         =   "Cuotas"
+      Height          =   855
+      Left            =   240
+      TabIndex        =   80
+      Top             =   7440
+      Width           =   6015
+      Begin MSComCtl2.UpDown UpDown1 
+         Height          =   375
+         Left            =   1440
+         TabIndex        =   85
+         Top             =   480
+         Width           =   255
+         _ExtentX        =   450
+         _ExtentY        =   661
+         _Version        =   393216
+         Enabled         =   -1  'True
+      End
+      Begin VB.TextBox t_valorcuota 
+         Alignment       =   2  'Center
+         BorderStyle     =   0  'None
+         Height          =   285
+         Left            =   1920
+         MaxLength       =   10
+         TabIndex        =   82
+         Top             =   480
+         Width           =   1095
+      End
+      Begin VB.TextBox t_cantcuotas 
+         Alignment       =   2  'Center
+         BorderStyle     =   0  'None
+         Height          =   285
+         Left            =   360
+         MaxLength       =   10
+         TabIndex        =   81
+         Top             =   480
+         Width           =   1095
+      End
+      Begin VB.Label Label17 
+         Alignment       =   2  'Center
+         BackColor       =   &H00008000&
+         Caption         =   "Valor Cuota"
+         ForeColor       =   &H00FFFFFF&
+         Height          =   255
+         Left            =   1560
+         TabIndex        =   84
+         Top             =   240
+         Width           =   1455
+      End
+      Begin VB.Label Label7 
+         Alignment       =   2  'Center
+         BackColor       =   &H00008000&
+         Caption         =   "Cant.Cuotas"
+         ForeColor       =   &H00FFFFFF&
+         Height          =   255
+         Left            =   360
+         TabIndex        =   83
+         Top             =   240
+         Width           =   1335
+      End
+   End
    Begin VB.TextBox t_cae_vence 
       Height          =   285
       Left            =   12240
@@ -832,12 +895,12 @@ Begin VB.Form vta_facturacion
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "26/07/2022"
+            TextSave        =   "04/08/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "05:19 p.m."
+            TextSave        =   "02:25 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -930,11 +993,16 @@ Sub electronica()
              cl_compvta.sucursal = glo.sucursale
              cl_compvta.actual (c_tipocomp.ItemData(c_tipocomp.ListIndex))
             ' Establezco los valores de la factura a autorizar:
-             If t_letra = "A" Then
+             Select Case t_letra
+             
+             Case Is = "A"
                 tipo_cbte = cl_compvta.cod_afip_a
-             Else
+             Case Is = "B"
                 tipo_cbte = cl_compvta.cod_afip_b
-             End If
+             Case Is = "C"
+                tipo_cbte = cl_compvta.cod_afip_c
+           
+             End Select
              punto_vta = glo.sucursale
              cbte_nro = WSFEv1.CompUltimoAutorizado(tipo_cbte, punto_vta)
              ControlarExcepcion_fe WSFEv1
@@ -966,12 +1034,24 @@ Sub electronica()
                      
                      cbt_desde = cbte_nro
                      cbt_hasta = cbte_nro
-                     imp_total = t_total
-                     imp_tot_conc = t_nograbado
-                     imp_neto = t_subtotal
-                     imp_iva = t_iva
-                     imp_trib = "0.00"
-                     imp_op_ex = "0.00"
+                     
+                     If t_letra <> "C" Then
+                        imp_total = t_total
+                        imp_tot_conc = t_nograbado
+                        imp_neto = t_subtotal
+                        imp_iva = t_iva
+                        imp_trib = "0.00"
+                        imp_op_ex = "0.00"
+                     Else
+                        imp_total = t_total
+                        imp_tot_conc = "0.00"
+                        imp_neto = t_subtotal
+                        imp_iva = "0.00"
+                        imp_trib = "0.00"
+                        imp_op_ex = "0.00"
+                     
+                     
+                     End If
                      fecha_cbte = fecha
                      If Option1 = True Then
                           'cc 10 dias a partir factura
@@ -1027,12 +1107,17 @@ Sub electronica()
                   
                     'agrego opcionales factura credito
                      If c_tipocomp.ItemData(c_tipocomp.ListIndex) = 30 Then
-                    
+                      
+                      Set rs21 = New ADODB.Recordset
+                      q = "select cbu, alias from g0 where id = 0"
+                      rs21.Open q, cn1
+                      
                       'parametros
-                      ok = WSFEv1.AgregarOpcional(2101, "0140360003659001871431") 'cbu
-                      ok = WSFEv1.AgregarOpcional(2102, "BRONCE.BALDE.VASO") 'alias
+                      ok = WSFEv1.AgregarOpcional(2101, rs21("cbu")) 'cbu
+                      ok = WSFEv1.AgregarOpcional(2102, rs21("alias")) 'alias
                       ok = WSFEv1.AgregarOpcional(27, mtransf) 'transmisión (desde el 01/04/2021)
                       
+                      Set rs21 = Nothing
                      Else
                       fecha_venc_pago = ""
                      End If
@@ -1042,7 +1127,10 @@ Sub electronica()
                       End If
                   
                   ' Agrego los comprobantes asociados:
-                  If (c_tipocomp.ItemData(c_tipocomp.ListIndex) >= 2 And c_tipocomp.ItemData(c_tipocomp.ListIndex) <= 3) Or (c_tipocomp.ItemData(c_tipocomp.ListIndex) >= 31 And c_tipocomp.ItemData(c_tipocomp.ListIndex) <= 32) Then   ' solo nc/nd
+                  
+                  tc21 = c_tipocomp.ItemData(c_tipocomp.ListIndex)
+                  
+                  If tc21 = 2 Or tc21 = 3 Or tc21 = 31 Or tc21 = 32 Then ' solo nc/nd
                      F = vta_selcomp.msf1.Rows - 1
                      compasocnc = ""
                      For i = 1 To F
@@ -1068,57 +1156,55 @@ Sub electronica()
                   End If
                 
                 
+                
                
+            If t_letra <> "C" Then
+                ' Agrego percepcion ib
+                If Val(t_perc) > 0 Then
+                    id = 99
+                    Desc = "Percepcion Ing Brutos"
+                    base_imp = t_subtotal
+                    alic = Format$(Val(t_alicuotaib) / 100, "#0.00")
+                    importe = t_perc
+                    ok = WSFEv1.AgregarTributo(id, Desc, base_imp, alic, importe)
+                End If
                 
                 
-                 ' Agrego percepcion ib
-            If Val(t_perc) > 0 Then
-                id = 99
-                Desc = "Percepcion Ing Brutos"
-                base_imp = t_subtotal
-                alic = Format$(Val(t_alicuotaib) / 100, "#0.00")
-                importe = t_perc
-                ok = WSFEv1.AgregarTributo(id, Desc, base_imp, alic, importe)
-            End If
-            
-            
-                 ' Agrego percepcion iva
-            If Val(t_perciva) > 0 Then
-                id = 99
-                Desc = "Percepcion Iva"
-                base_imp = t_subtotal
-                alic = Format$(Val(t_alicuotaperciva) / 100, "#0.00")
-                importe = t_perciva
-                ok = WSFEv1.AgregarTributo(id, Desc, base_imp, alic, importe)
-            End If
-            
-            
-             
-            
-            ' Agrego tasas de IVA
-             
-                For i = 1 To 7
-                  If Val(vta_facturacion2.msf1.TextMatrix(i, 1)) > 0 Then
-                      Select Case Val(vta_facturacion2.msf1.TextMatrix(i, 0))
-                        Case Is = 0
-                             id = 3
-                        Case Is = 10.5
-                             id = 4
-                        Case Is = 21
-                             id = 5
-                        Case Is = 27
-                             id = 6
-                        Case Is = 5
-                             id = 8
-                        Case Is = 2.5
-                             id = 9
-                      End Select
-                      base_imp = Format$(Val(vta_facturacion2.msf1.TextMatrix(i, 1)), "0.00")
-                      importe = Format$(Val(vta_facturacion2.msf1.TextMatrix(i, 2)), "0.00")
-                      ok = WSFEv1.AgregarIva(id, base_imp, importe)
-                   End If
-                 Next i
-             
+                     ' Agrego percepcion iva
+                If Val(t_perciva) > 0 Then
+                    id = 99
+                    Desc = "Percepcion Iva"
+                    base_imp = t_subtotal
+                    alic = Format$(Val(t_alicuotaperciva) / 100, "#0.00")
+                    importe = t_perciva
+                    ok = WSFEv1.AgregarTributo(id, Desc, base_imp, alic, importe)
+                End If
+                
+                                
+                ' Agrego tasas de IVA
+                 
+                    For i = 1 To 7
+                      If Val(vta_facturacion2.msf1.TextMatrix(i, 1)) > 0 Then
+                          Select Case Val(vta_facturacion2.msf1.TextMatrix(i, 0))
+                            Case Is = 0
+                                 id = 3
+                            Case Is = 10.5
+                                 id = 4
+                            Case Is = 21
+                                 id = 5
+                            Case Is = 27
+                                 id = 6
+                            Case Is = 5
+                                 id = 8
+                            Case Is = 2.5
+                                 id = 9
+                          End Select
+                          base_imp = Format$(Val(vta_facturacion2.msf1.TextMatrix(i, 1)), "0.00")
+                          importe = Format$(Val(vta_facturacion2.msf1.TextMatrix(i, 2)), "0.00")
+                          ok = WSFEv1.AgregarIva(id, base_imp, importe)
+                       End If
+                     Next i
+             End If
             
             ' Habilito reprocesamiento automático (predeterminado):
             WSFEv1.Reprocesar = True
@@ -2658,6 +2744,22 @@ Sub iniciacli()
     
  End If
  
+ If c_tipocomp.ItemData(c_tipocomp.ListIndex) <> 36 Then
+   Frame14.Visible = False
+   Frame11.Visible = True
+ Else
+  If Option2 = False Then
+   Frame14.Visible = True
+   Frame11.Visible = False
+   t_cantcuotas = 1
+  Else
+    MsgBox ("Los planes de cuotas deben realizarse en CUENTA CORRIENTE")
+    Option1 = True
+  End If
+ End If
+ 
+ 
+ 
  If c_tipocomp.ItemData(c_tipocomp.ListIndex) >= 30 And c_tipocomp.ItemData(c_tipocomp.ListIndex) <= 32 Then
     c_transferencia.Visible = True
     Label15.Visible = True
@@ -2793,6 +2895,8 @@ If t_letra = "A" Then
   Call sacaperc
   Call sacatotales
  Else
+  
+ If t_letra = "B" Then
   s = 0
   v = 0
   t = 0
@@ -2819,6 +2923,37 @@ If t_letra = "A" Then
     End If
     
   Next i
+  
+Else
+   'factura c
+   s = 0
+  v = 0
+  t = 0
+  For i = 1 To msf1.Rows - 1
+     renglon = Val(msf1.TextMatrix(i, 0))
+     If renglon > 0 Then
+      
+      r = Val(msf1.TextMatrix(i, 7))
+      r2 = Val(msf1.TextMatrix(i, 8))
+      's = s + r
+      't = t + (R2 * Val(msf1.TextMatrix(i, 3)))
+      't = t + (r * Val(msf1.TextMatrix(i, 6)) / 100)
+            'agrega en composicion de iva
+      X = 1
+      While X < vta_facturacion2.msf1.Rows
+        If Val(vta_facturacion2.msf1.TextMatrix(X, 0)) = Val(msf1.TextMatrix(i, 6)) Then
+           vta_facturacion2.msf1.TextMatrix(X, 1) = Val(vta_facturacion2.msf1.TextMatrix(X, 1)) + r
+           vta_facturacion2.msf1.TextMatrix(X, 2) = 0
+           X = vta_facturacion2.msf1.Rows
+        Else
+           X = X + 1
+        End If
+      Wend
+    End If
+    
+  Next i
+
+ End If
 End If
   
 d = 0
@@ -2830,7 +2965,12 @@ While X < vta_facturacion2.msf1.Rows
      d = d + d1
   End If
   vta_facturacion2.msf1.TextMatrix(X, 1) = Format$(Val(vta_facturacion2.msf1.TextMatrix(X, 1)) - d1, "#####0.00")
-  vta_facturacion2.msf1.TextMatrix(X, 2) = Format$(Val(vta_facturacion2.msf1.TextMatrix(X, 1)) * Val(vta_facturacion2.msf1.TextMatrix(X, 0)) / 100, "#####0.00")
+  If t_letra <> "C" Then
+    vta_facturacion2.msf1.TextMatrix(X, 2) = Format$(Val(vta_facturacion2.msf1.TextMatrix(X, 1)) * Val(vta_facturacion2.msf1.TextMatrix(X, 0)) / 100, "#####0.00")
+  Else
+    vta_facturacion2.msf1.TextMatrix(X, 2) = 0
+  End If
+    
   X = X + 1
 Wend
  
@@ -2859,7 +2999,7 @@ End Sub
 
 Private Sub Form_KeyPress(KeyAscii As Integer)
 If KeyAscii = 13 Then
-  Call TabEnter2(Me, 21)
+  Call TabEnter3(Me, 21)
 End If
 
 
@@ -2886,6 +3026,9 @@ Set rs = Nothing
 
 
 c_tipocomp.ListIndex = buscaindice(c_tipocomp, 1)
+
+Frame14.Visible = False
+Frame11.Visible = True
 
 Set rs = New ADODB.Recordset
 q = "select * from vta_05 order by [denominacion]"
@@ -3160,11 +3303,11 @@ QUERY = QUERY & " VALUES (" & numint & ", " & Val(t_sucursal) & ", " & Val(t_num
 ", 'A', " & cuentaact & ", '" & cl_compvta.STOCK & "', '" & cl_compvta.ctacte & "', '" & cl_compvta.grabado & "', '" & ep & "', '" & cp & "', '" & t_observaciones & _
 " ', " & Val(t_cotizacion) & ", " & T2 & ", '" & moneda & "', " & c_vend.ItemData(c_vend.ListIndex) & ", '" & cl_compvta.venta & "', '" & contado & "', " & Val(t_perc)
 
-query2 = ", 0, " & Val(t_perciva) & ", " & codact & ", " & Val(t_alicuotaib) & ", " & Val(t_alicuotaperciva) & ", " & Check1 & ", '" & t_fechavto & "', 0, 0, ' ', ' ', ' ', 0, " & Val(c_sucursal) & _
+QUERY2 = ", 0, " & Val(t_perciva) & ", " & codact & ", " & Val(t_alicuotaib) & ", " & Val(t_alicuotaperciva) & ", " & Check1 & ", '" & t_fechavto & "', 0, 0, ' ', ' ', ' ', 0, " & Val(c_sucursal) & _
 ", '" & Left$(vta_clientes.t_cli, 50) & "', '" & Left$(vta_clientes.t_direccion, 50) & "', '" & Left$(vta_clientes.t_cuit, 20) & "', '" & Left$(vta_clientes.t_localidad, 50) & "', " & tiporespiva & ", '" & compasocnc & "', ' ', ' ', " & ssi & ", " & para.z_actual & ", '" & t_cae & "', '" & Format(t_cae_vence, "@@@@/@@/@@") & "', " & c_tipoop.ListIndex + 1 & ", " & Val(t_descuento) & ")"
 
                                                                                                                                                                                                                                                             
-cn1.Execute QUERY & query2
+cn1.Execute QUERY & QUERY2
 COSTOINV = 0
 Set cl_cli = Nothing
 For i = 1 To msf1.Rows - 1
@@ -3382,7 +3525,7 @@ Next i
         
          End If
          
-                   
+         ic = 1
          QUERY = "INSERT INTO c_03([num_interno], [renglon], [id_cuenta], [ubicacion], [importe], [descripcion])"
          QUERY = QUERY & " VALUES (" & numintcgr & ", " & ic & ", " & para.cuenta_inventario & ", '" & u2 & "', " & Format(COSTOINV * m, "#####0.00") & ", 'Inventario')"
          cn1.Execute QUERY
@@ -3420,7 +3563,6 @@ Next i
      cn1.Execute QUERY
 
       
-      
       cn1.CommitTrans
       
       
@@ -3437,8 +3579,26 @@ Next i
              cl_compvta.imprimir
           End If
       End If
+      
+      
+      
+      If c_tipocomp.ItemData(c_tipocomp.ListIndex) = 36 Then
+      
+        J = MsgBox("Confirma emitir PLAN de CUOTAS", 4)
+        If J = 6 Then
+            'arma plan de pago
+            Call generaplancuotas
+            
+            
+        End If
+        
+      
+      End If
+           
+      
       Call INICIALIZA2(Me)
       Call armagrid
+      
       
       
       Set cl_compvta = New comprobantes_venta
@@ -3446,6 +3606,11 @@ Next i
       
       
       Call libera_comp
+      
+      
+      
+      
+      
       
       c_prov.SetFocus
       Frame2.Enabled = False
@@ -3467,7 +3632,88 @@ ERRORGRABA:
 
 End Sub
 
+Sub generaplancuotas()
+  
+For i = 1 To Val(t_cantcuotas)
+  numint = saca_ultnumero_int_comp("V")
+      
+  Set cl_compvta = New comprobantes_venta
+  cl_compvta.sucursal = Val(t_sucursal)
+  cl_compvta.actual (251) 'cuotas
+  cl_compvta.letra = t_letra
+  numcomp = Val(RTrim$(t_numcomp) + Format$(i, "00"))
+  cl_compvta.numcomp = numcomp  'numero nota venta + numero cuota
+  abreviatura = cl_compvta.abreviatura
+  ubicacionctacte = cl_compvta.ctacte
+  ep = "N"
+  cp = "0000-00000000"
+  contado = "N"
+  If Option4 = True Then
+      ssi = Val(t_total)
+      moneda = "P"
+      cm = Val(t_valorcuota)
+      cotram = Val(t_valorcuota) / Val(t_cotizacion)
+   Else
+      ssi = Val(T_total2)
+      moneda = "D"
+      cm = Val(t_valorcuota)
+      cotram = Val(t_valorcuota) * Val(t_cotizacion)
+ 
+  End If
+  
+  
+  
+  
+  codact = 0
+  alicuotaib = 0
+  cuentaact = para.cuenta_ventas
+  tiporespiva = vta_clientes.c_iva.ItemData(vta_clientes.c_iva.ListIndex)
+  idcli = c_prov.ItemData(c_prov.ListIndex)
+     
+     
+  fecha = DateValue(t_fecha) + (i * 30)
+  observaciones = "NV " & Format$(t_sucursal, "0000") & "-" & Format$(t_numcomp, "00000000") & "/" & Format$(i, "00")
+  
+  
+      If Check3 Then
+        T2 = 0
+      Else
+        T2 = cotram
+      End If
+  
+  
+  
+  
+  cn1.BeginTrans
+       
+       QUERY = ""
+       QUERY = "INSERT INTO vta_02([num_int], [sucursal], [num_comp], [letra], [id_tipocomp], [id_cliente], [fecha], [id_usuario], [subtotal], [impuestos], [iva], [total]," & _
+"[estado], [id_cuenta], [stock], [cta_cte], [grabado], [estado_pago], [recibo_Pago], [observaciones], [cotizacion_dolar], [total_otra_moneda], [moneda], [id_vendedor], " & _
+" [VENTA], [CONTADO], [perc_ib], [perc_gan], [perc_iva] , [id_actividad], [alicuota_ib], [alicuota_perc_iva], [canje_cereal], [fecha_vto], [total_bultos],  [valor_declarado], " & _
+" [transporte], [direccion_transp], [cuit_transp], [perc_ss], [sucursal_ingreso], [cliente02], [direccion02], [cuit02], [localidad02], [id_tipo_iva02], [chofer02], [dominio02], " & _
+" [dominio_acoplado02], [SALDO_IMPAGO02], [num_z], [cae], [cae_vence], [tipo_op], [descuento])"
 
+
+
+QUERY = QUERY & " VALUES (" & numint & ", " & Val(t_sucursal) & ", " & numcomp & ", '" & t_letra & "', 251 " & _
+", " & idcli & ", '" & fecha & "', " & para.id_usuario & ", " & cm & ", 0, 0," & cm & _
+", 'A', " & cuentaact & ", '" & cl_compvta.STOCK & "', '" & cl_compvta.ctacte & "', '" & cl_compvta.grabado & "', '" & ep & "', '" & cp & "', '" & observaciones & _
+" ', " & Val(t_cotizacion) & ", " & T2 & ", '" & moneda & "', " & c_vend.ItemData(c_vend.ListIndex) & ", '" & cl_compvta.venta & "', '" & contado & "', " & Val(0)
+
+QUERY2 = ", 0, " & Val(0) & ", " & codact & ", " & Val(0) & ", " & Val(0) & ", " & Check1 & ", '" & fecha & "', 0, 0, ' ', ' ', ' ', 0, " & Val(c_sucursal) & _
+", '" & Left$(vta_clientes.t_cli, 50) & "', '" & Left$(vta_clientes.t_direccion, 50) & "', '" & Left$(vta_clientes.t_cuit, 20) & "', '" & Left$(vta_clientes.t_localidad, 50) & "', " & tiporespiva & ", ' ', ' ', ' ', " & cm & ", " & para.z_actual & ", ' ', '" & fecha & "', " & c_tipoop.ListIndex + 1 & ", " & Val(0) & ")"
+
+'MsgBox (QUERY & QUERY2)
+                                                                                                                                                                                                                                                            
+cn1.Execute QUERY & QUERY2
+
+cn1.CommitTrans
+
+Set cl_cli = Nothing
+
+
+Next i
+End Sub
 
 Private Sub msf1_KeyPress(KeyAscii As Integer)
 If KeyAscii = 13 Then
@@ -3555,6 +3801,31 @@ If Val(t_alicuotaib) < 0 Then
   t_alicuotaib = "0.00"
 End If
 Call sacaperc
+End Sub
+
+Private Sub t_cantcuotas_KeyPress(KeyAscii As Integer)
+If KeyAscii = 13 Then
+  Call calculacuotas
+  t_valorcuota.SetFocus
+End If
+
+End Sub
+
+Sub calculacuotas()
+If IsNull(t_cantcuotas) Then
+  t_cantcvuotas = 1
+End If
+
+If Val(t_cantcuotas) < 1 Then
+    t_cantcuotas = 1
+End If
+  t_valorcuota = Format$(Val(t_total) / Val(t_cantcuotas), "######0.00")
+
+End Sub
+
+Private Sub t_cantcuotas_LostFocus()
+Call calculacuotas
+
 End Sub
 
 Private Sub t_cotizacion_KeyPress(KeyAscii As Integer)
@@ -3652,14 +3923,15 @@ Call sacatotales
 End Sub
 Sub sacatotales()
 'busco iva
- X = 1
- iva = 0
- neto = 0
-While X < vta_facturacion2.msf1.Rows
-  iva = iva + Val(vta_facturacion2.msf1.TextMatrix(X, 2))
-  neto = neto + Val(vta_facturacion2.msf1.TextMatrix(X, 1))
-  X = X + 1
-Wend
+ 
+     X = 1
+     iva = 0
+     neto = 0
+    While X < vta_facturacion2.msf1.Rows
+      iva = iva + Val(vta_facturacion2.msf1.TextMatrix(X, 2))
+      neto = neto + Val(vta_facturacion2.msf1.TextMatrix(X, 1))
+      X = X + 1
+    Wend
 
 
 'busco perc
@@ -3690,6 +3962,11 @@ If Option4 = True Then
 Else
   T_total2 = Format$(Val(t_total) * Val(t_cotizacion), "#####0.00")
 End If
+
+If c_tipocomp.ItemData(c_tipocomp.ListIndex) = 36 Then
+   t_valorcuota = Format$(Val(t_total) / Val(t_cantcuotas), "######0.00")
+End If
+
 End Sub
 Sub sacaperc()
 If Option3 = True Then
@@ -3816,3 +4093,20 @@ End Sub
 
 
 
+Private Sub t_valorcuota_KeyPress(KeyAscii As Integer)
+If KeyAscii = 13 Then
+  t_cantcuotas.SetFocus
+End If
+End Sub
+
+Private Sub UpDown1_DownClick()
+If Val(t_cantcuotas) > 1 Then
+  t_cantcuotas = Val(t_cantcuotas) - 1
+  Call calculacuotas
+End If
+End Sub
+
+Private Sub UpDown1_UpClick()
+  t_cantcuotas = Val(t_cantcuotas) + 1
+  Call calculacuotas
+End Sub

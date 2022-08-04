@@ -656,9 +656,16 @@ If Not rs.BOF And Not rs.EOF Then
   Me.email = rs("email")
   Me.te = rs("te")
   Me.idtipoiva = rs("id_tipoiva")
-  Me.letra = rs("letra_cliente")
+  
+  If para.tipo_iva_empresa <> 1 Then
+    Me.letra = "C"
+    Me.descrimina = "N"
+  Else
+    Me.letra = rs("letra_cliente")
+    Me.descrimina = rs("descrimina_cliente")
+  End If
+    
   Me.abreviatura_tipoiva = rs("abreviatura")
-  Me.descrimina = rs("descrimina_cliente")
   Me.idvendedor = rs("id_vendedor")
   Me.operador_granos = rs("inscripto_operador_granos")
   Me.perciveib = rs("percive_ib")

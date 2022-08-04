@@ -120,7 +120,7 @@ Begin VB.Form actu_inicio
    Begin VB.Label Label3 
       Alignment       =   2  'Center
       BackColor       =   &H0000FFFF&
-      Caption         =   "220"
+      Caption         =   "221"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   18
@@ -320,6 +320,8 @@ Case Is = 215
     Call actu219
  Case Is = 220
     Call actu220
+ Case Is = 221
+    Call actu221
  
  
  Case Is = 999
@@ -2432,6 +2434,48 @@ Exit Sub
 err1:
 Resume Next
 End Sub
+
+Sub actu221()
+'agrega posibilidad de factura C
+h = MsgBox("Actualizacion 221 . ¿Esta seguro que quiere actualizar?  ", 4)
+If h = 6 Then
+  
+    
+  espere.Show
+  espere.Refresh
+    
+   cn1.BeginTrans
+     q = "alter table g0 add column [id_tipo_iva] int  "
+     cn1.Execute q
+   
+     q = "alter table vta_06 add column [cod_afip_c] int  "
+     cn1.Execute q
+   
+   
+    q = "update g0 set  [actualizacion]=221, [id_tipo_iva] = 1"
+    q = q & " where [sucursal]=0 "
+  
+   cn1.Execute q
+    
+  cn1.CommitTrans
+    
+  
+  MsgBox ("Agregar comp venta 35(nota venta), 36(nota venta con cuotas) 401(pagare), 251(cuota)")
+   
+  MsgBox ("Poner codigos afip para comprobantes tipo C ")
+   
+ Unload espere
+  
+End If
+
+Exit Sub
+
+
+err1:
+Resume Next
+End Sub
+
+
 
 
 

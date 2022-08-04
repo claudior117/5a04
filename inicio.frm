@@ -455,12 +455,12 @@ Begin VB.Form inicio
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "14/05/2022"
+            TextSave        =   "04/08/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "11:01 p.m."
+            TextSave        =   "01:12 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -910,18 +910,11 @@ End Sub
 
 
 Private Sub Command7_Click()
-Set rs = New ADODB.Recordset
-q = "select * from vta_02 order by [num_int]"
-rs.Open q, cn1
-nc = 0
-While Not rs.EOF
-  If rs("num_int") = nc Then
-     MsgBox (nc)
-  End If
-  nc = rs("num_int")
-  rs.MoveNext
-Wend
-MsgBox ("termino")
+F = "04/08/2022"
+f2 = DateValue(F) + (2 * 30)
+MsgBox (f2)
+
+
 End Sub
 
 Private Sub Form_Activate()

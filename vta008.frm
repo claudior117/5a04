@@ -312,7 +312,7 @@ q = "select num_int, abreviatura, fecha, sucursal_INGRESO, vta_02.id_cliente, cl
         
      End Select
      
-     'Call electronico
+     Call electronico
             
      e = Space$(12)
      List1.AddItem ""
@@ -596,11 +596,17 @@ Sub COMPROBANTES()
             RSet p = Format$(rs1("pu_final"), "######0.00")
             RSet i = Format$(Val(c) * Val(p), "######0.00")
          Else
+
+           If para.tipoprecioventa = 0 Then
             RSet p = Format$(rs1("pu"), "######0.00")
             RSet i = Format$(rs1("importe"), "######0.00")
+          Else
+            RSet p = Format$(rs1("pu_final"), "######0.00")
+            RSet i = Format$(Val(c) * Val(p), "######0.00")
+          End If
          End If
          
-         b = Format$(rs1("id_producto"), "000")
+          b = Format$(rs1("id_producto"), "000")
          d = Format$(Left$(rs1("descripcion"), 50), "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@!")
          
          RSet v = Format$(rs1("tasaiva"), "#0.0")

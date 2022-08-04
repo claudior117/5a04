@@ -104,6 +104,23 @@ Private mvartipoop As Integer 'copia local
 'variables locales para almacenar los valores de las propiedades
 'variables locales para almacenar los valores de las propiedades
 Private mvarbultos_totales As Long 'copia local
+'variables locales para almacenar los valores de las propiedades
+Private mvarcod_afip_c As Integer 'copia local
+Public Property Let cod_afip_c(ByVal vData As Integer)
+'se usa al asignar un valor a la propiedad, en la parte izquierda de una asignación.
+'Syntax: X.cod_afip_c = 5
+    mvarcod_afip_c = vData
+End Property
+
+
+Public Property Get cod_afip_c() As Integer
+'se usa al recuperar un valor de una propiedad, en la parte derecha de una asignación.
+'Syntax: Debug.Print X.cod_afip_c
+    cod_afip_c = mvarcod_afip_c
+End Property
+
+
+
 Public Property Let bultos_totales(ByVal vData As Long)
 'se usa al asignar un valor a la propiedad, en la parte izquierda de una asignación.
 'Syntax: X.bultos_totales = 5
@@ -3000,11 +3017,14 @@ Public Sub generapdf(ByVal c As Integer)
     PyFEPDF.FmtCantidad = "0.2"
     PyFEPDF.FmtPrecio = "0.4"
     
-    If Me.letra = "A" Then
+    Select Case Me.letra
+        Case Is = "A"
         tipo_cbte = Me.cod_afip_a
-    Else
+        Case Is = "B"
         tipo_cbte = Me.cod_afip_b
-    End If
+        Case Is = "C"
+        tipo_cbte = Me.cod_afip_c
+    End Select
     punto_vta = Me.sucursal    ' prefijo
     cbte_nro = Me.numcomp ' número de factura
     fecha = Me.fecha
@@ -3308,6 +3328,26 @@ While Not rs.EOF
       
     salida = pathfacturas & "\" & nf
     ok = PyFEPDF.GenerarPDF(salida)
+    
+    
+    'asociar pdf con comprobante
+    
+    
+     Set rs21 = New ADODB.Recordset
+     q = "select * from vta_014 where [num_int] = " & Me.numint
+     
+     rs21.Open q, cn1, adOpenDynamic, adLockOptimistic
+     If Not rs21.EOF And Not rs21.BOF Then
+         rs21("path") = salida
+     Else
+         rs21.AddNew
+         rs21("num_int") = Me.numint
+         rs21("path") = salida
+     End If
+     rs21.Update
+    Set rs21 = Nothing
+    
+    
     MsgBox ("E7")
     ' Abro el visor de PDF y muestro lo generado
     ' (es necesario tener instalado Acrobat Reader o similar)
@@ -3502,6 +3542,9 @@ Select Case Me.idtipocomp
   
   Case Is = 310
        Call imprimirTiqueNF(1)
+       
+  Case Is = 401 'pagare
+      Call imprimirPagare(copias)
   
 End Select
 
@@ -8321,6 +8364,96 @@ Printer.EndDoc
 End If
 
 End Sub
+
+Sub imprimirPagare(ByVal c As Integer)
+'formato en hoja A4 en blanco
+Dim a(5) As String
+  
+l = InputBox("Indique cantidad de Copias", , c)
+If Val(l) > 0 And Val(l) <= 6 Then
+ 
+For Y = 1 To Val(l)
+ Printer.FontName = "Courier New"
+ Printer.FontSize = "12"
+ dd = Mid$(Format$(Me.fecha, "dd/mm/yyyy"), 1, 2)
+ mm = Mid$(Format$(Me.fecha, "dd/mm/yyyy"), 4, 2)
+ aa = Mid$(Format$(Me.fecha, "dd/mm/yyyy"), 7, 4)
+ 
+ Select Case mm
+   Case Is = 1
+      m = " enero "
+   Case Is = 2
+      m = " febrero "
+   Case Is = 3
+      m = " marzo "
+   Case Is = 4
+      m = " abril "
+   Case Is = 5
+      m = " mayo "
+   Case Is = 6
+      m = " junio "
+   Case Is = 7
+      m = " julio "
+   Case Is = 8
+      m = " agosto "
+   Case Is = 9
+      m = " septiembre "
+   Case Is = 10
+      m = " octubre "
+   Case Is = 11
+      m = " noviembre "
+   Case Is = 12
+      m = " diciembre "
+   End Select
+      
+      
+ 
+ Printer.Print "En la ciudad de Rojas(B), a los " & dd & " del mes de " & m & " del año " & aa
+ Printer.Print
+ Printer.Print "Por este pagaré a la vista y sin protesto (art. 50 D. Ley 5965/63) haré efectivo a "
+    
+    
+    
+    
+    l = l + 1
+    If l > Me.cant_lineas Then
+       pieempaque (Y)
+       Printer.NewPage
+       cabeceraempaque
+ 
+    End If
+ 
+ 
+Printer.Print
+Printer.FontSize = 12
+Printer.FontBold = True
+Printer.Print "Observaciones: ";
+Printer.FontBold = False
+Printer.FontSize = 10
+Printer.Print Me.observaciones
+
+
+For ó = l To Me.cant_lineas
+  Printer.Print
+Next ó
+
+
+Call pieempaque(Y)
+
+If Y < c Then
+      Printer.NewPage
+End If
+
+Next Y
+ 
+Printer.EndDoc
+End If
+
+End Sub
+
+
+
+
 Sub pieempaque(ByVal p As Integer)
 Printer.Print
 Printer.Print
@@ -11093,6 +11226,9 @@ Public Sub actual(ByVal TIPOCOMP As Integer)
      Me.imprimedescextra = rs("imprime_desc_extra")
      Me.cod_afip_a = rs("cod_afip_a")
      Me.cod_afip_b = rs("cod_afip_b")
+     Me.cod_afip_c = rs("cod_afip_c")
+     
+     
  Else
   MsgBox ("Error al Inicializar Comprobante. Clase: Comprobantes Venta  Proc.Actual: Error en el punto de venta o en el tipo de comprobante")
   Me.STOCK = "N"
@@ -11107,6 +11243,8 @@ Public Sub actual(ByVal TIPOCOMP As Integer)
   Me.imprimedescextra = "N"
   Me.cod_afip_a = 1
   Me.cod_afip_b = 6
+  Me.cod_afip_c = 11
+  
  End If
 
 Me.idtipocomp = TIPOCOMP

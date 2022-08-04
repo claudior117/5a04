@@ -56,7 +56,7 @@ Begin VB.Form frmAbout
    End
    Begin VB.Label Label5 
       Alignment       =   2  'Center
-      Caption         =   "Última actualización 01/08/2022    626"
+      Caption         =   "Última actualización 03/08/2022    631"
       ForeColor       =   &H00000000&
       Height          =   285
       Left            =   1200
@@ -122,7 +122,7 @@ Begin VB.Form frmAbout
    End
    Begin VB.Label lblVersion 
       Alignment       =   2  'Center
-      Caption         =   "Sistema de Gestion para Empresas   V 11.0   220"
+      Caption         =   "Sistema de Gestion para Empresas   V 11.0   221"
       ForeColor       =   &H00800080&
       Height          =   465
       Left            =   1080
