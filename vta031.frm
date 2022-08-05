@@ -340,7 +340,7 @@ If FileColl.Count > 0 Then
        
         'busco si el comprobante no fue cargado
         q = "select * from vta_02 where [id_tipocomp] = " & cc & " and [letra] = '" & letra & "' and [sucursal] = " & Val(suc) & " and [num_comp] = " & NUM
-        Set rs = New adodb.Recordset
+        Set rs = New ADODB.Recordset
         rs.Open q, cn1
         If Not rs.EOF And Not rs.BOF Then
             estado = "ERR"
@@ -351,7 +351,7 @@ If FileColl.Count > 0 Then
         
         
         CUIT = Mid$(l, 38, 11)
-        Set rs = New adodb.Recordset
+        Set rs = New ADODB.Recordset
         q = "select * from vta_01 where [cuit] = '" & CUIT & "'" ' "' or [cuit] = '" & Format$(CUIT, "@@-@@@@@@@@-@") & "'"
         rs.Open q, cn1
         If Not rs.EOF And Not rs.BOF Then
@@ -507,7 +507,7 @@ Sub graba(ByVal r As Integer)
         Close #1
        
         CUIT = Mid$(l, 38, 11)
-        Set rs = New adodb.Recordset
+        Set rs = New ADODB.Recordset
         q = "select * from vta_01 where [cuit] = '" & CUIT & "'" ' "' or [cuit] = '" & Format$(CUIT, "@@-@@@@@@@@-@") & "'"
         rs.Open q, cn1
         If Not rs.EOF And Not rs.BOF Then
@@ -524,8 +524,12 @@ Sub graba(ByVal r As Integer)
  subtotal = Val(Mid$(l, 109, 13) & "." & Mid$(l, 122, 2))
  iva = Val(Mid$(l, 124, 13) & "." & Mid$(l, 137, 2)) + Val(Mid$(l, 139, 13) & "." & Mid$(l, 152, 2))
  nograbado = Val(Mid$(l, 94, 13) & "." & Mid$(l, 107, 2)) + Val(Mid$(l, 139, 13) & "." & Mid$(l, 152, 2))
- cotizacion = Val(Mid$(l, 237, 4) & "." & Mid$(l, 241, 6))
+ cotizacion = Val(Mid$(l, 249, 4) & "." & Mid$(l, 253, 6))
  percib = Val(Mid$(l, 184, 13) & "." & Mid$(l, 197, 2))
+ moneda = Mid$(l, 246, 3)
+ 
+ 
+ 
  If percib > 0 Then
    tpercib = (percib * 100) / subtotal
  Else
@@ -536,6 +540,15 @@ Sub graba(ByVal r As Integer)
  If cotizacion < 1 Then
    cotizacion = 1
  End If
+ 
+If moneda = "DOL" Then
+    totalotramoneda = total * cotizacion
+    moneda = "D"
+Else
+    totalotramoneda = total / cotizacion
+    moneda = "P"
+End If
+ 
  
   numint = saca_ultnumero_int_comp("V")
   Set cl_compvta = New comprobantes_venta
@@ -550,10 +563,11 @@ Sub graba(ByVal r As Integer)
   cp = "0000-00000000"
   contado = "N"
   cl_compvta.ACTUALIZA_NUMERADOR
-  moneda = "P"
       
       
-  Set rs = New adodb.Recordset
+      
+      
+  Set rs = New ADODB.Recordset
   q = "select * from g8 where [id_actividad] = " & c_actividad.ItemData(c_actividad.ListIndex)
   rs.Open q, cn1
   If Not rs.EOF And Not rs.BOF Then
@@ -586,7 +600,7 @@ Sub graba(ByVal r As Integer)
 QUERY = QUERY & " VALUES (" & numint & ", " & Val(suc) & ", " & Val(NUM) & ", '" & letra & "', " & cc & _
 ", " & idcli & ", '" & F & "', " & para.id_usuario & ", " & subtotal & ", " & nograbado & ", " & iva & ", " & total & _
 ", 'A', " & cuentaact & ", '" & cl_compvta.STOCK & "', '" & cl_compvta.ctacte & "', '" & cl_compvta.grabado & "', '" & ep & "', '" & cp & "', 'Dup.Digital" & _
-" ', " & cotizacion & ", " & Format(total / cotizacion, "#####0.00") & ", 'P', 0, '" & cl_compvta.venta & "', '" & contado & "', " & percib & _
+" ', " & cotizacion & ", " & Format(totalotramoneda, "#####0.00") & ", '" & moneda & "', 0, '" & cl_compvta.venta & "', '" & contado & "', " & percib & _
 ", 0, " & Val(t_perciva) & ", " & codact & ", " & tpercib & ", " & Val(t_alicuotaperciva) & ", 0, '" & F & "', 0, 0, ' ', ' ', ' ', 0, " & Val(suc) & _
 ", '" & Left$(cli, 50) & "', '" & Left$(Dire, 50) & "', '" & Left$(CUIT, 20) & "', '" & Left$(Loca, 50) & "', " & tiporespiva & ", " & total & ")"
 
@@ -604,7 +618,7 @@ QUERY = QUERY & " VALUES (" & numint & ", " & Val(suc) & ", " & Val(NUM) & ", '"
    Line Input #1, m
    cantidad = Val(Mid$(m, 32, 7) & "." & Mid$(m, 39, 5))
    codunidad = Val(Mid$(m, 44, 2))
-   Set rs = New adodb.Recordset
+   Set rs = New ADODB.Recordset
    q = "select * from g5 where [cod_afip] = " & codunidad
    rs.Open q, cn1
    If Not rs.EOF And Not rs.BOF Then
@@ -636,7 +650,7 @@ QUERY = QUERY & " VALUES (" & numint & ", " & Val(suc) & ", " & Val(NUM) & ", '"
    Wend
    
    If Val(cp) > 0 Then
-     Set rs = New adodb.Recordset
+     Set rs = New ADODB.Recordset
      q = "select * from a2 where [id_producto] = " & Val(cp)
      rs.MaxRecords = 1
      rs.Open q, cn1

@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form abm_prod1 
    BackColor       =   &H00E0E0E0&
    BorderStyle     =   1  'Fixed Single
@@ -19,7 +19,7 @@ Begin VB.Form abm_prod1
       BackColor       =   &H00E0E0E0&
       Height          =   735
       Left            =   9240
-      TabIndex        =   34
+      TabIndex        =   37
       Top             =   120
       Width           =   2535
       Begin VB.TextBox t_funcion 
@@ -27,7 +27,7 @@ Begin VB.Form abm_prod1
          Height          =   405
          Left            =   1680
          MaxLength       =   1
-         TabIndex        =   35
+         TabIndex        =   38
          Top             =   240
          Width           =   615
       End
@@ -38,7 +38,7 @@ Begin VB.Form abm_prod1
          ForeColor       =   &H00FFFFFF&
          Height          =   375
          Left            =   120
-         TabIndex        =   36
+         TabIndex        =   39
          Top             =   240
          Width           =   1335
       End
@@ -47,24 +47,54 @@ Begin VB.Form abm_prod1
       BackColor       =   &H00E0E0E0&
       Height          =   8175
       Left            =   120
-      TabIndex        =   30
+      TabIndex        =   33
       Top             =   120
       Width           =   8295
+      Begin VB.TextBox t_medida 
+         Appearance      =   0  'Flat
+         BorderStyle     =   0  'None
+         Height          =   285
+         Left            =   5160
+         MaxLength       =   20
+         TabIndex        =   23
+         Top             =   6480
+         Width           =   2775
+      End
+      Begin VB.TextBox t_color 
+         Appearance      =   0  'Flat
+         BorderStyle     =   0  'None
+         Height          =   285
+         Left            =   6840
+         MaxLength       =   20
+         TabIndex        =   4
+         Top             =   1080
+         Width           =   1215
+      End
+      Begin VB.TextBox t_talle 
+         Appearance      =   0  'Flat
+         BorderStyle     =   0  'None
+         Height          =   285
+         Left            =   4920
+         MaxLength       =   20
+         TabIndex        =   3
+         Top             =   1080
+         Width           =   855
+      End
       Begin VB.TextBox t_dtocompra2 
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
          Height          =   285
          Left            =   5400
          MaxLength       =   13
-         TabIndex        =   10
+         TabIndex        =   12
          Top             =   3600
          Width           =   1335
       End
       Begin VB.ComboBox c_tasaib 
          Height          =   315
-         Left            =   5640
+         Left            =   5160
          Style           =   2  'Dropdown List
-         TabIndex        =   16
+         TabIndex        =   18
          Top             =   5400
          Width           =   1335
       End
@@ -74,7 +104,7 @@ Begin VB.Form abm_prod1
          Height          =   285
          Left            =   2160
          MaxLength       =   19
-         TabIndex        =   22
+         TabIndex        =   25
          ToolTipText     =   "Abreviatura - texto central etiquetas - (max. 19 caracteres)"
          Top             =   7200
          Width           =   2775
@@ -83,9 +113,9 @@ Begin VB.Form abm_prod1
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
          Height          =   285
-         Left            =   7680
+         Left            =   7440
          MaxLength       =   1
-         TabIndex        =   24
+         TabIndex        =   27
          ToolTipText     =   "[M] Manual - [A] Automatica(Solo en Tiques Fiscales)"
          Top             =   7200
          Width           =   495
@@ -95,7 +125,7 @@ Begin VB.Form abm_prod1
          Left            =   6000
          Picture         =   "Arch002.frx":0000
          Style           =   1  'Graphical
-         TabIndex        =   61
+         TabIndex        =   64
          Top             =   2880
          Width           =   735
       End
@@ -104,7 +134,7 @@ Begin VB.Form abm_prod1
          Left            =   6000
          Picture         =   "Arch002.frx":0105
          Style           =   1  'Graphical
-         TabIndex        =   60
+         TabIndex        =   63
          Top             =   2520
          Width           =   735
       End
@@ -113,7 +143,7 @@ Begin VB.Form abm_prod1
          Left            =   6000
          Picture         =   "Arch002.frx":020A
          Style           =   1  'Graphical
-         TabIndex        =   59
+         TabIndex        =   62
          Top             =   2160
          Width           =   735
       End
@@ -122,7 +152,7 @@ Begin VB.Form abm_prod1
          Left            =   6000
          Picture         =   "Arch002.frx":030F
          Style           =   1  'Graphical
-         TabIndex        =   58
+         TabIndex        =   61
          Top             =   1440
          Width           =   735
       End
@@ -132,9 +162,9 @@ Begin VB.Form abm_prod1
          Height          =   285
          Left            =   2160
          MaxLength       =   49
-         TabIndex        =   21
+         TabIndex        =   24
          Top             =   6840
-         Width           =   6015
+         Width           =   5775
       End
       Begin VB.TextBox t_moneda 
          Appearance      =   0  'Flat
@@ -142,7 +172,7 @@ Begin VB.Form abm_prod1
          Height          =   285
          Left            =   2160
          MaxLength       =   1
-         TabIndex        =   25
+         TabIndex        =   28
          ToolTipText     =   "[P] Pesos - [D] Dolares "
          Top             =   7560
          Width           =   495
@@ -153,7 +183,7 @@ Begin VB.Form abm_prod1
          Height          =   285
          Left            =   6000
          MaxLength       =   1
-         TabIndex        =   23
+         TabIndex        =   26
          ToolTipText     =   "[P] Productos - [M] Materias Primas"
          Top             =   7200
          Width           =   495
@@ -164,9 +194,9 @@ Begin VB.Form abm_prod1
          Height          =   285
          Left            =   2160
          MaxLength       =   13
-         TabIndex        =   20
+         TabIndex        =   22
          Top             =   6480
-         Width           =   1095
+         Width           =   1335
       End
       Begin VB.TextBox t_codbarra 
          Appearance      =   0  'Flat
@@ -181,7 +211,7 @@ Begin VB.Form abm_prod1
       Begin VB.ComboBox c_marca 
          Height          =   315
          Left            =   2160
-         TabIndex        =   7
+         TabIndex        =   9
          Text            =   "c_marca"
          Top             =   2880
          Width           =   3615
@@ -189,7 +219,7 @@ Begin VB.Form abm_prod1
       Begin VB.ComboBox c_depto 
          Height          =   315
          Left            =   2160
-         TabIndex        =   6
+         TabIndex        =   8
          Text            =   "c_depto"
          Top             =   2520
          Width           =   3615
@@ -200,7 +230,7 @@ Begin VB.Form abm_prod1
          Height          =   285
          Left            =   2160
          MaxLength       =   13
-         TabIndex        =   19
+         TabIndex        =   21
          Top             =   6120
          Width           =   1335
       End
@@ -208,9 +238,9 @@ Begin VB.Form abm_prod1
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
          Height          =   285
-         Left            =   4680
+         Left            =   5160
          MaxLength       =   13
-         TabIndex        =   18
+         TabIndex        =   20
          ToolTipText     =   "Se calcula sobre el precio de compra"
          Top             =   5760
          Width           =   1095
@@ -221,15 +251,15 @@ Begin VB.Form abm_prod1
          Height          =   285
          Left            =   2160
          MaxLength       =   13
-         TabIndex        =   17
+         TabIndex        =   19
          Top             =   5760
-         Width           =   735
+         Width           =   1335
       End
       Begin VB.ComboBox c_iva 
          Height          =   315
          Left            =   2160
          Style           =   2  'Dropdown List
-         TabIndex        =   14
+         TabIndex        =   16
          Top             =   5040
          Width           =   1335
       End
@@ -239,7 +269,7 @@ Begin VB.Form abm_prod1
          Height          =   285
          Left            =   2160
          MaxLength       =   13
-         TabIndex        =   15
+         TabIndex        =   17
          Top             =   5400
          Width           =   1335
       End
@@ -249,7 +279,7 @@ Begin VB.Form abm_prod1
          Height          =   285
          Left            =   2160
          MaxLength       =   13
-         TabIndex        =   13
+         TabIndex        =   15
          Top             =   4680
          Width           =   1335
       End
@@ -259,7 +289,7 @@ Begin VB.Form abm_prod1
          Height          =   285
          Left            =   2160
          MaxLength       =   13
-         TabIndex        =   12
+         TabIndex        =   14
          Top             =   4320
          Width           =   1335
       End
@@ -269,7 +299,7 @@ Begin VB.Form abm_prod1
          Height          =   285
          Left            =   2160
          MaxLength       =   13
-         TabIndex        =   11
+         TabIndex        =   13
          Top             =   3960
          Width           =   1335
       End
@@ -279,7 +309,7 @@ Begin VB.Form abm_prod1
          Height          =   285
          Left            =   2160
          MaxLength       =   13
-         TabIndex        =   9
+         TabIndex        =   11
          Top             =   3600
          Width           =   1335
       End
@@ -289,14 +319,14 @@ Begin VB.Form abm_prod1
          Height          =   285
          Left            =   2160
          MaxLength       =   13
-         TabIndex        =   8
+         TabIndex        =   10
          Top             =   3240
          Width           =   1335
       End
       Begin VB.ComboBox c_grupo 
          Height          =   315
          Left            =   2160
-         TabIndex        =   5
+         TabIndex        =   7
          Text            =   "c_grupo"
          Top             =   2160
          Width           =   3615
@@ -304,7 +334,7 @@ Begin VB.Form abm_prod1
       Begin VB.ComboBox c_prov 
          Height          =   315
          Left            =   2160
-         TabIndex        =   3
+         TabIndex        =   5
          Text            =   "c_prov"
          Top             =   1440
          Width           =   3615
@@ -315,7 +345,7 @@ Begin VB.Form abm_prod1
          Height          =   285
          Left            =   2160
          MaxLength       =   13
-         TabIndex        =   4
+         TabIndex        =   6
          Top             =   1800
          Width           =   1335
       End
@@ -325,7 +355,7 @@ Begin VB.Form abm_prod1
          Style           =   2  'Dropdown List
          TabIndex        =   2
          Top             =   1080
-         Width           =   3615
+         Width           =   1695
       End
       Begin VB.TextBox t_id 
          Appearance      =   0  'Flat
@@ -335,7 +365,7 @@ Begin VB.Form abm_prod1
          Left            =   2160
          Locked          =   -1  'True
          MaxLength       =   5
-         TabIndex        =   31
+         TabIndex        =   34
          Top             =   360
          Width           =   1455
       End
@@ -348,6 +378,66 @@ Begin VB.Form abm_prod1
          TabIndex        =   1
          Top             =   720
          Width           =   5895
+      End
+      Begin VB.Label Label7 
+         Appearance      =   0  'Flat
+         BackColor       =   &H00800080&
+         Caption         =   "Medida:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00FFFFFF&
+         Height          =   255
+         Left            =   3840
+         TabIndex        =   71
+         Top             =   6480
+         Width           =   1215
+      End
+      Begin VB.Label Label6 
+         Appearance      =   0  'Flat
+         BackColor       =   &H00800080&
+         Caption         =   "Color:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00FFFFFF&
+         Height          =   255
+         Left            =   6000
+         TabIndex        =   70
+         Top             =   1080
+         Width           =   735
+      End
+      Begin VB.Label Label4 
+         Appearance      =   0  'Flat
+         BackColor       =   &H00800080&
+         Caption         =   "Talle:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00FFFFFF&
+         Height          =   255
+         Left            =   4080
+         TabIndex        =   69
+         Top             =   1080
+         Width           =   735
       End
       Begin VB.Label Label5 
          Appearance      =   0  'Flat
@@ -366,7 +456,7 @@ Begin VB.Form abm_prod1
          Height          =   255
          Index           =   23
          Left            =   3720
-         TabIndex        =   65
+         TabIndex        =   68
          Top             =   3600
          Width           =   1575
       End
@@ -386,10 +476,10 @@ Begin VB.Form abm_prod1
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Index           =   22
-         Left            =   4440
-         TabIndex        =   64
+         Left            =   3840
+         TabIndex        =   67
          Top             =   5400
-         Width           =   1095
+         Width           =   1215
       End
       Begin VB.Label Label5 
          Appearance      =   0  'Flat
@@ -408,7 +498,7 @@ Begin VB.Form abm_prod1
          Height          =   375
          Index           =   21
          Left            =   480
-         TabIndex        =   63
+         TabIndex        =   66
          Top             =   7200
          Width           =   1575
       End
@@ -428,8 +518,8 @@ Begin VB.Form abm_prod1
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Index           =   20
-         Left            =   6960
-         TabIndex        =   62
+         Left            =   6720
+         TabIndex        =   65
          Top             =   7200
          Width           =   615
       End
@@ -450,7 +540,7 @@ Begin VB.Form abm_prod1
          Height          =   375
          Index           =   19
          Left            =   480
-         TabIndex        =   57
+         TabIndex        =   60
          Top             =   6840
          Width           =   1575
       End
@@ -471,7 +561,7 @@ Begin VB.Form abm_prod1
          Height          =   255
          Index           =   18
          Left            =   480
-         TabIndex        =   56
+         TabIndex        =   59
          Top             =   7560
          Width           =   1575
       End
@@ -492,7 +582,7 @@ Begin VB.Form abm_prod1
          Height          =   255
          Index           =   17
          Left            =   5160
-         TabIndex        =   55
+         TabIndex        =   58
          Top             =   7200
          Width           =   735
       End
@@ -513,7 +603,7 @@ Begin VB.Form abm_prod1
          Height          =   375
          Index           =   16
          Left            =   480
-         TabIndex        =   54
+         TabIndex        =   57
          Top             =   6480
          Width           =   1575
       End
@@ -533,7 +623,7 @@ Begin VB.Form abm_prod1
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   3960
-         TabIndex        =   53
+         TabIndex        =   56
          Top             =   360
          Width           =   1575
       End
@@ -554,7 +644,7 @@ Begin VB.Form abm_prod1
          Height          =   375
          Index           =   15
          Left            =   480
-         TabIndex        =   52
+         TabIndex        =   55
          Top             =   2880
          Width           =   1575
       End
@@ -575,7 +665,7 @@ Begin VB.Form abm_prod1
          Height          =   375
          Index           =   14
          Left            =   480
-         TabIndex        =   51
+         TabIndex        =   54
          Top             =   2520
          Width           =   1575
       End
@@ -596,7 +686,7 @@ Begin VB.Form abm_prod1
          Height          =   375
          Index           =   13
          Left            =   480
-         TabIndex        =   50
+         TabIndex        =   53
          Top             =   6120
          Width           =   1575
       End
@@ -616,10 +706,10 @@ Begin VB.Form abm_prod1
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Index           =   12
-         Left            =   3120
-         TabIndex        =   49
+         Left            =   3840
+         TabIndex        =   52
          Top             =   5760
-         Width           =   1455
+         Width           =   1215
       End
       Begin VB.Label Label5 
          Appearance      =   0  'Flat
@@ -638,7 +728,7 @@ Begin VB.Form abm_prod1
          Height          =   375
          Index           =   11
          Left            =   480
-         TabIndex        =   48
+         TabIndex        =   51
          Top             =   5760
          Width           =   1575
       End
@@ -659,7 +749,7 @@ Begin VB.Form abm_prod1
          Height          =   375
          Index           =   10
          Left            =   480
-         TabIndex        =   47
+         TabIndex        =   50
          Top             =   5040
          Width           =   1575
       End
@@ -680,7 +770,7 @@ Begin VB.Form abm_prod1
          Height          =   375
          Index           =   9
          Left            =   480
-         TabIndex        =   46
+         TabIndex        =   49
          Top             =   5400
          Width           =   1575
       End
@@ -701,7 +791,7 @@ Begin VB.Form abm_prod1
          Height          =   375
          Index           =   8
          Left            =   480
-         TabIndex        =   45
+         TabIndex        =   48
          Top             =   4680
          Width           =   1575
       End
@@ -722,7 +812,7 @@ Begin VB.Form abm_prod1
          Height          =   375
          Index           =   7
          Left            =   480
-         TabIndex        =   44
+         TabIndex        =   47
          Top             =   4320
          Width           =   1575
       End
@@ -743,7 +833,7 @@ Begin VB.Form abm_prod1
          Height          =   375
          Index           =   6
          Left            =   480
-         TabIndex        =   43
+         TabIndex        =   46
          Top             =   3960
          Width           =   1575
       End
@@ -764,7 +854,7 @@ Begin VB.Form abm_prod1
          Height          =   375
          Index           =   5
          Left            =   480
-         TabIndex        =   42
+         TabIndex        =   45
          Top             =   3600
          Width           =   1575
       End
@@ -785,7 +875,7 @@ Begin VB.Form abm_prod1
          Height          =   375
          Index           =   4
          Left            =   480
-         TabIndex        =   41
+         TabIndex        =   44
          Top             =   3240
          Width           =   1575
       End
@@ -806,7 +896,7 @@ Begin VB.Form abm_prod1
          Height          =   375
          Index           =   2
          Left            =   480
-         TabIndex        =   40
+         TabIndex        =   43
          Top             =   2160
          Width           =   1575
       End
@@ -827,7 +917,7 @@ Begin VB.Form abm_prod1
          Height          =   375
          Index           =   0
          Left            =   480
-         TabIndex        =   39
+         TabIndex        =   42
          Top             =   1440
          Width           =   1575
       End
@@ -848,7 +938,7 @@ Begin VB.Form abm_prod1
          Height          =   375
          Index           =   3
          Left            =   480
-         TabIndex        =   38
+         TabIndex        =   41
          Top             =   1800
          Width           =   1575
       End
@@ -869,7 +959,7 @@ Begin VB.Form abm_prod1
          Height          =   375
          Index           =   1
          Left            =   480
-         TabIndex        =   37
+         TabIndex        =   40
          Top             =   1080
          Width           =   1575
       End
@@ -889,7 +979,7 @@ Begin VB.Form abm_prod1
          ForeColor       =   &H00FFFFFF&
          Height          =   375
          Left            =   480
-         TabIndex        =   33
+         TabIndex        =   36
          Top             =   360
          Width           =   1575
       End
@@ -909,7 +999,7 @@ Begin VB.Form abm_prod1
          ForeColor       =   &H00FFFFFF&
          Height          =   375
          Left            =   480
-         TabIndex        =   32
+         TabIndex        =   35
          Top             =   720
          Width           =   1575
       End
@@ -919,7 +1009,7 @@ Begin VB.Form abm_prod1
       Caption         =   "Funciones"
       Height          =   975
       Left            =   10200
-      TabIndex        =   27
+      TabIndex        =   30
       Top             =   7200
       Width           =   1575
       Begin VB.CommandButton btnsale 
@@ -927,7 +1017,7 @@ Begin VB.Form abm_prod1
          Left            =   840
          Picture         =   "Arch002.frx":0414
          Style           =   1  'Graphical
-         TabIndex        =   29
+         TabIndex        =   32
          ToolTipText     =   "Salir sin Modificar"
          Top             =   240
          UseMaskColor    =   -1  'True
@@ -938,7 +1028,7 @@ Begin VB.Form abm_prod1
          Left            =   120
          Picture         =   "Arch002.frx":0C96
          Style           =   1  'Graphical
-         TabIndex        =   28
+         TabIndex        =   31
          ToolTipText     =   "Renueva Lista de Clientes"
          Top             =   240
          UseMaskColor    =   -1  'True
@@ -949,7 +1039,7 @@ Begin VB.Form abm_prod1
       Align           =   2  'Align Bottom
       Height          =   255
       Left            =   0
-      TabIndex        =   26
+      TabIndex        =   29
       Top             =   8325
       Width           =   11910
       _ExtentX        =   21008
@@ -974,12 +1064,12 @@ Begin VB.Form abm_prod1
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "27/02/2015"
+            TextSave        =   "04/08/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "09:44"
+            TextSave        =   "06:16 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -1010,7 +1100,20 @@ If J = 6 Then
    If IsNull(t_codbarra) Then
      t_codbarra = 0
    End If
-       
+   
+   If IsNull(t_talle) Then
+     t_talle = " "
+   End If
+   
+   If IsNull(t_color) Then
+     t_color = " "
+   End If
+        
+   If IsNull(t_medida) Then
+     t_medida = " "
+   End If
+        
+  
    Select Case t_funcion
       
    Case "A"
@@ -1018,13 +1121,15 @@ If J = 6 Then
 
 QUERY = "INSERT INTO a2([descripcion], [id_grupo], [id_proveedor], [precio_ult_compra], [fecha_ult_compra], [id_proveedor_ult_compra], [pu], [cod_tasaiva], [id_unidad], [envase], [stock], " & _
 " [requeridos], [pedidos], [stock_minimo], [id_marca], [id_departamento], [porc_utilidad], [costoreal], [flete_compra], [dto_compra], [cod_barra], [precio_final], [tasa_imp_interno], " & _
-" [tipo_producto], [moneda], [impuesto], [observaciones], [ultima_compra], [ultima_venta], [fecha_actu_precio_venta],  [vigente], [tipo_carga_tique], [texto_central], [id_tasaib], [emite_etiqueta], [dto_compra2], [id_prod_prov])"
+" [tipo_producto], [moneda], [impuesto], [observaciones], [ultima_compra], [ultima_venta], [fecha_actu_precio_venta],  [vigente], [tipo_carga_tique], [texto_central], [id_tasaib], [emite_etiqueta], [dto_compra2], " & _
+" [id_prod_prov], [talle], [color],[medida])"
 
 QUERY = QUERY & " VALUES ('" & t_descripcion & "', " & c_grupo.ItemData(c_grupo.ListIndex) & ", " & c_prov.ItemData(c_prov.ListIndex) & ", " & Val(t_preciocompra) & _
 ", '01/01/2005', 1, " & Val(t_pu) & ", " & c_iva.ItemData(c_iva.ListIndex) & ", " & c_unidad.ItemData(c_unidad.ListIndex) & ", " & Val(t_envase) & ", 0, 0, 0, " & Val(t_stockminimo) & _
 ", " & c_marca.ItemData(c_marca.ListIndex) & ", " & c_depto.ItemData(c_depto.ListIndex) & ", " & Val(t_utilidad) & ", " & Val(t_costo) & ", " & Val(t_fletecompra) & ", " & _
 Val(t_dtocompra) & ", '" & RTrim$(t_codbarra) & "', " & Val(t_final) & ", " & Val(t_tasaimpint) & ", '" & t_tipo & "', '" & t_moneda & "', " & t_impuesto & ", '" & t_observaciones & _
-"', 'Sin Compras', 'Sin Ventas', '01/01/2006',  1, '" & t_tipocarga & "', '" & RTrim$(t_abreviatura) & " ', " & c_tasaib.ItemData(c_tasaib.ListIndex) & ", 'S', " & Val(t_dtocompra2) & ", 0)"
+"', 'Sin Compras', 'Sin Ventas', '01/01/2006',  1, '" & t_tipocarga & "', '" & RTrim$(t_abreviatura) & " ', " & c_tasaib.ItemData(c_tasaib.ListIndex) & ", 'S', " & Val(t_dtocompra2) & _
+", 0, '" & t_talle & "', '" & t_color & "','" & t_medida & "')"
        
        
       cn1.BeginTrans
@@ -1047,7 +1152,7 @@ c_iva.ItemData(c_iva.ListIndex) & " , [stock_minimo]= " & Val(t_stockminimo) & "
 c_depto.ItemData(c_depto.ListIndex) & " , [porc_utilidad]=" & Val(t_utilidad) & " , [costoreal]=" & Val(t_costo) & " , [flete_compra]=" & Val(t_fletecompra) & " , [dto_compra]=" & _
 Val(t_dtocompra) & " , [cod_barra]='" & RTrim$(t_codbarra) & "' , [precio_final]=" & Val(t_final) & " , [tasa_imp_interno]=" & Val(t_tasaimpint) & " , [tipo_producto]='" & t_tipo & _
  "' , [moneda]='" & t_moneda & "' , [impuesto]=" & Val(t_impuesto) & " , [observaciones]='" & t_observaciones & "' , [texto_central]='" & RTrim$(t_abreviatura) & " ', [id_tasaib]=" & _
- c_tasaib.ItemData(c_tasaib.ListIndex)
+ c_tasaib.ItemData(c_tasaib.ListIndex) & " , [talle]='" & t_talle & "', [color]='" & t_color & "', [medida]='" & t_medida & "'"
  
 QUERY = QUERY & " where [id_producto]= " & Val(t_id)
    
@@ -1181,7 +1286,7 @@ End Sub
 Private Sub Form_KeyPress(KeyAscii As Integer)
 Select Case KeyAscii
   Case Is = 13
-    Call TabEnter2(Me, 25)
+    Call TabEnter2(Me, 28)
   
 End Select
 End Sub

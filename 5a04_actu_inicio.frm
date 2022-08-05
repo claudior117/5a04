@@ -120,7 +120,7 @@ Begin VB.Form actu_inicio
    Begin VB.Label Label3 
       Alignment       =   2  'Center
       BackColor       =   &H0000FFFF&
-      Caption         =   "221"
+      Caption         =   "222"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   18
@@ -322,7 +322,8 @@ Case Is = 215
     Call actu220
  Case Is = 221
     Call actu221
- 
+  Case Is = 222
+    Call actu222
  
  Case Is = 999
    Call actu999
@@ -2435,6 +2436,59 @@ err1:
 Resume Next
 End Sub
 
+
+Sub actu222()
+'agrega datos a lista de precio talle, color, etc
+h = MsgBox("Actualizacion 222 . ¿Esta seguro que quiere actualizar?  ", 4)
+If h = 6 Then
+  
+    
+  espere.Show
+  espere.Refresh
+    
+   cn1.BeginTrans
+     q = "alter table a2 add column [talle] text(10), [color] text(25), [medida] text(35)  "
+     cn1.Execute q
+   
+     q = "alter table g0 add column [cuotas_sininteres] int, [interes_cuota] double  "
+     cn1.Execute q
+   
+   
+    q = "update g0 set  [actualizacion]=222, [cuotas_sininteres]=2, [interes_cuota] = 7"
+    q = q & " where [sucursal]=0 "
+  
+   cn1.Execute q
+    
+  cn1.CommitTrans
+    
+    
+   MsgBox ("Se va a proceder a realizar una actualizacion de datos")
+   
+  q = "select * from a2"
+  Set rs = New ADODB.Recordset
+  rs.Open q, cn1, adOpenDynamic, adLockOptimistic
+  While Not rs.EOF
+      rs("talle") = "*"
+      rs("color") = "*"
+      rs("medida") = "*"
+      rs.Update
+   
+      rs.MoveNext
+  Wend
+  Set rs = Nothing
+  MsgBox ("proceso terminado")
+   
+ Unload espere
+  
+End If
+
+Exit Sub
+
+
+err1:
+Resume Next
+
+End Sub
 Sub actu221()
 'agrega posibilidad de factura C
 h = MsgBox("Actualizacion 221 . ¿Esta seguro que quiere actualizar?  ", 4)

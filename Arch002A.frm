@@ -1,7 +1,7 @@
 VERSION 5.00
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomctl.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form ABM_PROD 
    BackColor       =   &H00E0E0E0&
    Caption         =   "PRODUCTOS"
@@ -328,12 +328,12 @@ Begin VB.Form ABM_PROD
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "27/11/2015"
+            TextSave        =   "04/08/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "08:12 p.m."
+            TextSave        =   "06:18 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -412,6 +412,12 @@ rs.Open q, cn1
  abm_prod1!t_preciocompra = rs("precio_ult_compra")
  abm_prod1!t_abreviatura = rs("texto_central")
  abm_prod1!c_tasaib.ListIndex = buscaindice(abm_prod1!c_tasaib, rs("id_tasaib"))
+ abm_prod1!t_talle = rs("talle")
+ abm_prod1!t_color = rs("color")
+ abm_prod1!t_medida = rs("medida")
+
+
+ 
  abm_prod1.Show
 
 Set rs = Nothing
