@@ -1,10 +1,10 @@
 VERSION 5.00
 Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
-Begin VB.Form vta_listaprecios 
+Begin VB.Form vta_listaprecios_5 
    AutoRedraw      =   -1  'True
    BackColor       =   &H00C0C0C0&
-   Caption         =   "LISTA DE PRECIOS (Formato 1 general)"
+   Caption         =   "LISTA DE PRECIOS (Formato Tiendal)"
    ClientHeight    =   8595
    ClientLeft      =   75
    ClientTop       =   360
@@ -26,9 +26,9 @@ Begin VB.Form vta_listaprecios
       Begin VB.ComboBox c_tasaib 
          Appearance      =   0  'Flat
          Height          =   315
-         ItemData        =   "vta006.frx":0000
+         ItemData        =   "vta065.frx":0000
          Left            =   120
-         List            =   "vta006.frx":0019
+         List            =   "vta065.frx":0019
          TabIndex        =   43
          TabStop         =   0   'False
          Text            =   "Combo1"
@@ -47,9 +47,9 @@ Begin VB.Form vta_listaprecios
       Begin VB.ComboBox c_tasa 
          Appearance      =   0  'Flat
          Height          =   315
-         ItemData        =   "vta006.frx":0092
+         ItemData        =   "vta065.frx":0092
          Left            =   120
-         List            =   "vta006.frx":00AB
+         List            =   "vta065.frx":00AB
          TabIndex        =   41
          TabStop         =   0   'False
          Text            =   "Combo1"
@@ -165,7 +165,7 @@ Begin VB.Form vta_listaprecios
          Cancel          =   -1  'True
          Height          =   495
          Left            =   960
-         Picture         =   "vta006.frx":0124
+         Picture         =   "vta065.frx":0124
          Style           =   1  'Graphical
          TabIndex        =   39
          ToolTipText     =   "Salir sin Modificar"
@@ -176,7 +176,7 @@ Begin VB.Form vta_listaprecios
       Begin VB.CommandButton btnacepta 
          Height          =   495
          Left            =   120
-         Picture         =   "vta006.frx":09A6
+         Picture         =   "vta065.frx":09A6
          Style           =   1  'Graphical
          TabIndex        =   28
          TabStop         =   0   'False
@@ -197,9 +197,9 @@ Begin VB.Form vta_listaprecios
       Begin VB.ComboBox c_tipo 
          Appearance      =   0  'Flat
          Height          =   315
-         ItemData        =   "vta006.frx":1228
+         ItemData        =   "vta065.frx":1228
          Left            =   120
-         List            =   "vta006.frx":1241
+         List            =   "vta065.frx":1241
          TabIndex        =   26
          TabStop         =   0   'False
          Text            =   "Combo1"
@@ -218,7 +218,7 @@ Begin VB.Form vta_listaprecios
          BackColor       =   &H00E0E0E0&
          Height          =   255
          Left            =   120
-         Picture         =   "vta006.frx":12BA
+         Picture         =   "vta065.frx":12BA
          Style           =   1  'Graphical
          TabIndex        =   24
          TabStop         =   0   'False
@@ -326,24 +326,47 @@ Begin VB.Form vta_listaprecios
       TabIndex        =   2
       Top             =   0
       Width           =   7215
+      Begin VB.TextBox t_idgrupo 
+         Height          =   285
+         Left            =   5880
+         TabIndex        =   51
+         Text            =   "Text1"
+         Top             =   240
+         Width           =   855
+      End
+      Begin VB.TextBox t_color 
+         Appearance      =   0  'Flat
+         BorderStyle     =   0  'None
+         Height          =   285
+         Left            =   6120
+         MaxLength       =   20
+         TabIndex        =   49
+         TabStop         =   0   'False
+         Top             =   1440
+         Width           =   975
+      End
+      Begin VB.TextBox t_talle 
+         Appearance      =   0  'Flat
+         BorderStyle     =   0  'None
+         Height          =   285
+         Left            =   6120
+         MaxLength       =   20
+         TabIndex        =   47
+         TabStop         =   0   'False
+         Top             =   840
+         Width           =   975
+      End
       Begin VB.TextBox t_codprodprov 
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
          Height          =   285
-         Left            =   6000
+         Left            =   6120
          MaxLength       =   20
-         TabIndex        =   46
+         TabIndex        =   45
          TabStop         =   0   'False
          ToolTipText     =   "Codigo de producto en la lista del proveedor"
-         Top             =   240
-         Width           =   1095
-      End
-      Begin VB.TextBox t_idgrupo 
-         Height          =   285
-         Left            =   6360
-         TabIndex        =   45
-         Top             =   960
-         Width           =   735
+         Top             =   2040
+         Width           =   975
       End
       Begin VB.ComboBox c_prov 
          Appearance      =   0  'Flat
@@ -393,13 +416,13 @@ Begin VB.Form vta_listaprecios
          MaxLength       =   30
          TabIndex        =   0
          Top             =   600
-         Width           =   5175
+         Width           =   4575
       End
       Begin VB.TextBox t_codbarra 
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
          Height          =   285
-         Left            =   3600
+         Left            =   3480
          MaxLength       =   20
          TabIndex        =   6
          TabStop         =   0   'False
@@ -417,15 +440,35 @@ Begin VB.Form vta_listaprecios
          Top             =   240
          Width           =   855
       End
+      Begin VB.Label Label10 
+         BackColor       =   &H00800080&
+         Caption         =   "Color"
+         ForeColor       =   &H00FFFFFF&
+         Height          =   255
+         Left            =   6120
+         TabIndex        =   50
+         Top             =   1200
+         Width           =   975
+      End
+      Begin VB.Label Label9 
+         BackColor       =   &H00800080&
+         Caption         =   "Talle"
+         ForeColor       =   &H00FFFFFF&
+         Height          =   255
+         Left            =   6120
+         TabIndex        =   48
+         Top             =   600
+         Width           =   975
+      End
       Begin VB.Label Label8 
          BackColor       =   &H00800080&
          Caption         =   "C Prod Prov"
          ForeColor       =   &H00FFFFFF&
          Height          =   255
-         Left            =   5040
-         TabIndex        =   47
-         Top             =   240
-         Width           =   855
+         Left            =   6120
+         TabIndex        =   46
+         Top             =   1800
+         Width           =   975
       End
       Begin VB.Label Label7 
          BackColor       =   &H00800080&
@@ -482,7 +525,7 @@ Begin VB.Form vta_listaprecios
          Caption         =   "Cod. Barra"
          ForeColor       =   &H00FFFFFF&
          Height          =   255
-         Left            =   2640
+         Left            =   2520
          TabIndex        =   5
          Top             =   240
          Width           =   855
@@ -521,7 +564,7 @@ Begin VB.Form vta_listaprecios
       OLEDropMode     =   1
    End
 End
-Attribute VB_Name = "vta_listaprecios"
+Attribute VB_Name = "vta_listaprecios_5"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
@@ -538,8 +581,8 @@ Sub carga()
  Call armagrid
  ct = Space$(10)
  Set rs = New ADODB.Recordset
- q = "select [id_producto], a2.[descripcion],  [precio_final], [pu], [cod_tasaiva], [stock], [tasa], [moneda], [emite_etiqueta], [reg_faltante], [pedidos] from a2, g4 where [cod_tasaiva] = [id_tasaiva]"
- c = " and "
+ q = "select [id_producto], [descripcion],  [precio_final], [pu], [stock], [moneda], [emite_etiqueta], [reg_faltante], [pedidos], [talle], [color], [medida]  from a2"
+ c = " where "
  filtro = 0
  If t_basico <> "" Then
    q = q & c & "[id_producto] = " & Val(t_basico)
@@ -566,6 +609,20 @@ Sub carga()
    c = " and "
    filtro = 1
  End If
+ 
+ If t_talle <> "" Then
+   q = q & c & "[talle] like  '%" & t_talle & "%'"
+   c = " and "
+   filtro = 1
+ End If
+ 
+ If t_color <> "" Then
+   q = q & c & "[color] like  '%" & t_color & "%'"
+   c = " and "
+   filtro = 1
+ End If
+ 
+ 
  
  If c_grupo.ListIndex > 0 Then
    q = q & c & "[id_grupo] = " & c_grupo.ItemData(c_grupo.ListIndex)
@@ -698,6 +755,7 @@ espere.Show
 espere.Label1 = "Cargando lista de precios...."
 espere.Refresh
 
+
 rs.Open q, cn1
  t_encontrados = 0
  Set cl_stock = New STOCK
@@ -718,19 +776,14 @@ rs.Open q, cn1
     'cl_stock.sacastock (rs("id_producto"))
     'c = Format$(cl_stock.stock_movimientos, "#######0.00")
     c = rs("stock")
-    ti = Format$(rs("tasa"), "#0.00")
-    If rs("moneda") = "P" Then
-      m = " $ "
-    Else
-      m = "U$s"
-    End If
+    
     If rs("emite_etiqueta") = "N" Then
       ee = ""
     Else
       ee = "E"
     End If
     F = rs("reg_faltante")
-    msf1.AddItem b & Chr$(9) & d & Chr$(9) & p & Chr$(9) & c & Chr$(9) & m & Chr$(9) & ti & "%" & Chr$(9) & p2 & Chr$(9) & ee & Chr$(9) & F & Chr$(9) & rs("pedidos")
+    msf1.AddItem b & Chr$(9) & d & Chr$(9) & p & Chr$(9) & c & Chr$(9) & rs("talle") & Chr$(9) & rs("color") & Chr$(9) & rs("medida") & Chr$(9) & ee & Chr$(9) & F & Chr$(9) & rs("pedidos")
     t_encontrados = Val(t_encontrados) + 1
     
     If gestilo >= 2 Then
@@ -856,37 +909,11 @@ End Sub
 
 Private Sub Form_Activate()
 para.producto_sel = 0
-If para.tipolistaprecios = 1 Then
  If msf1.Rows > 1 Then
   ' msf1.SetFocus
   Else
   t_detalle.SetFocus
   End If
-Else
-  Select Case para.tipolistaprecios
-  Case Is = 2
-     vta_listaprecios_2.Show
-     Unload Me
-  Case Is = 3
-     vta_listaprecios_3.Show
-     Unload Me
-  Case Is = 4
-     vta_listaprecios_4.Show
-     Unload Me
-  Case Is = 5
-     vta_listaprecios_5.Show
-     Unload Me
-  
-  
-  Case Else
-    If msf1.Rows > 1 Then
-      ' msf1.SetFocus
-    Else
-      t_detalle.SetFocus
-    End If
-  
-  End Select
- End If
 
 End Sub
 
@@ -944,7 +971,7 @@ Sub armagrid()
 'armar grilla
 msf1.clear
 msf1.Rows = 1
-msf1.Cols = 10
+msf1.Cols = 9
 'If gestilo = 0 Then
 '    msf1.FocusRect = flexFocusLight
 'Else
@@ -954,38 +981,34 @@ msf1.ColWidth(0) = 800
 msf1.ColWidth(1) = 5000
 msf1.ColWidth(2) = 1000
 msf1.ColWidth(3) = 800
-msf1.ColWidth(4) = 400
+msf1.ColWidth(4) = 800
 msf1.ColWidth(5) = 1000
 msf1.ColWidth(6) = 1000
 msf1.ColWidth(7) = 400
 msf1.ColWidth(8) = 600
-msf1.ColWidth(9) = 600
 
 
 
 msf1.TextMatrix(0, 0) = "Basico"
 msf1.TextMatrix(0, 1) = "Descripcion"
-If gtipoprecio = 0 Then
-  msf1.TextMatrix(0, 2) = "P.Final"
-  msf1.TextMatrix(0, 6) = "P.s/Iva"
-Else
-  msf1.TextMatrix(0, 2) = "P.s/Iva"
-  msf1.TextMatrix(0, 6) = "P.Final"
-
-End If
+msf1.TextMatrix(0, 2) = "P.Final"
 msf1.TextMatrix(0, 3) = "Stock"
-msf1.TextMatrix(0, 4) = ""
-msf1.TextMatrix(0, 5) = "% Iva"
-msf1.TextMatrix(0, 7) = " "
-msf1.TextMatrix(0, 8) = "R.F."
-msf1.TextMatrix(0, 9) = "En O.C"
+msf1.TextMatrix(0, 4) = "Talle"
+msf1.TextMatrix(0, 5) = "Color"
+msf1.TextMatrix(0, 6) = "Medida"
+msf1.TextMatrix(0, 7) = "R.F."
+msf1.TextMatrix(0, 8) = "En O.C"
 
-For i = 0 To 1
+For i = 0 To 6
   msf1.ColAlignment(i) = 1 'izq
 Next i
-For i = 2 To 6
+For i = 2 To 3
   msf1.ColAlignment(i) = 9 'der
 Next i
+For i = 7 To 8
+  msf1.ColAlignment(i) = 9 'der
+Next i
+
 
 galtofila = msf1.RowHeight(0)
 gtamañofuente = 8
@@ -1007,51 +1030,55 @@ Sub muestra2()
  r = msf1.Row
  c = Val(msf1.TextMatrix(r, 0))
  If c > 1 Then
-   Set rs = New ADODB.Recordset
+   Set rs31 = New ADODB.Recordset
    q = " select * from a2 where [id_producto] = " & c
-   rs.Open q, cn1
-   If Not rs.BOF And Not rs.EOF Then
+   
+   rs31.Open q, cn1
+   If Not rs31.BOF And Not rs31.EOF Then
      vta_listaprecios2.t_linea = r
      
-     vta_listaprecios2.t_basico = rs("id_producto")
-     vta_listaprecios2.t_codbarra = rs("cod_barra")
-     vta_listaprecios2.t_detalle = rs("descripcion")
-     vta_listaprecios2.c_grupo.ListIndex = buscaindice(vta_listaprecios2.c_grupo, rs("id_grupo"))
-     vta_listaprecios2.c_depto.ListIndex = buscaindice(vta_listaprecios2.c_depto, rs("id_departamento"))
-     vta_listaprecios2.c_marca.ListIndex = buscaindice(vta_listaprecios2.c_marca, rs("id_marca"))
-     vta_listaprecios2.c_prov.ListIndex = buscaindice(vta_listaprecios2.c_prov, rs("id_proveedor"))
-     vta_listaprecios2.c_unidad.ListIndex = buscaindice(vta_listaprecios2!c_unidad, rs("id_unidad"))
-     vta_listaprecios2.t_envase = rs("envase")
-     vta_listaprecios2.t_pu = Format$(rs("pu"), "###0.00")
-     vta_listaprecios2.c_iva.ListIndex = buscaindice(vta_listaprecios2!c_iva, rs("cod_tasaiva"))
-     vta_listaprecios2.t_stockminimo = rs("stock_minimo")
-     vta_listaprecios2.t_utilidad = rs("porc_utilidad")
-     vta_listaprecios2.t_costo = rs("costoreal")
-     vta_listaprecios2.t_fletecompra = rs("flete_compra")
-     vta_listaprecios2.t_dtocompra = rs("dto_compra")
-     vta_listaprecios2.t_dtocompra2 = rs("dto_compra2")
-     vta_listaprecios2.t_final = Format$(rs("precio_final"), "####0.00")
-     vta_listaprecios2.t_tasaimpint = rs("tasa_imp_interno")
-     vta_listaprecios2.t_tipo = rs("tipo_producto")
-     vta_listaprecios2.t_moneda = rs("moneda")
-     vta_listaprecios2.t_impuesto = rs("impuesto")
-     vta_listaprecios2.t_observaciones = rs("observaciones")
-     vta_listaprecios2.t_preciocompra = rs("precio_ult_compra")
-     vta_listaprecios2.t_ultvta = rs("ultima_venta")
-     vta_listaprecios2.t_ultimacompra = rs("ultima_compra")
-     vta_listaprecios2.t_fechaactu = rs("fecha_actu_precio_venta")
-     vta_listaprecios2.t_stock = rs("stock")
-     vta_listaprecios2.t_oc = rs("pedidos")
-     vta_listaprecios2.t_pedidos = rs("requeridos")
-     vta_listaprecios2.t_fechaactuc = rs("fecha_ult_compra")
-     vta_listaprecios2.t_textocentral = rs("texto_central")
-     vta_listaprecios2.t_tipocarga = rs("tipo_carga_tique")
-     vta_listaprecios2.c_tasaib.ListIndex = buscaindice(vta_listaprecios2!c_tasaib, rs("id_tasaib"))
-     vta_listaprecios2.t_idprodprov = rs("id_prod_prov")
-     vta_listaprecios2.t_cotizultcom = rs("dolar_ult_compra")
+     vta_listaprecios2.t_basico = rs31("id_producto")
+     vta_listaprecios2.t_codbarra = rs31("cod_barra")
+     vta_listaprecios2.t_detalle = rs31("descripcion")
+     vta_listaprecios2.c_grupo.ListIndex = buscaindice(vta_listaprecios2.c_grupo, rs31("id_grupo"))
+     vta_listaprecios2.c_depto.ListIndex = buscaindice(vta_listaprecios2.c_depto, rs31("id_departamento"))
+     vta_listaprecios2.c_marca.ListIndex = buscaindice(vta_listaprecios2.c_marca, rs31("id_marca"))
+     vta_listaprecios2.c_prov.ListIndex = buscaindice(vta_listaprecios2.c_prov, rs31("id_proveedor"))
+     vta_listaprecios2.c_unidad.ListIndex = buscaindice(vta_listaprecios2!c_unidad, rs31("id_unidad"))
+     vta_listaprecios2.t_envase = rs31("envase")
+     vta_listaprecios2.t_pu = Format$(rs31("pu"), "###0.00")
+     vta_listaprecios2.c_iva.ListIndex = buscaindice(vta_listaprecios2!c_iva, rs31("cod_tasaiva"))
+     vta_listaprecios2.t_stockminimo = rs31("stock_minimo")
+     vta_listaprecios2.t_utilidad = rs31("porc_utilidad")
+     vta_listaprecios2.t_costo = rs31("costoreal")
+     vta_listaprecios2.t_fletecompra = rs31("flete_compra")
+     vta_listaprecios2.t_dtocompra = rs31("dto_compra")
+     vta_listaprecios2.t_dtocompra2 = rs31("dto_compra2")
+     vta_listaprecios2.t_final = Format$(rs31("precio_final"), "####0.00")
+     vta_listaprecios2.t_tasaimpint = rs31("tasa_imp_interno")
+     vta_listaprecios2.t_tipo = rs31("tipo_producto")
+     vta_listaprecios2.t_moneda = rs31("moneda")
+     vta_listaprecios2.t_impuesto = rs31("impuesto")
+     vta_listaprecios2.t_observaciones = rs31("observaciones")
+     vta_listaprecios2.t_preciocompra = rs31("precio_ult_compra")
+     vta_listaprecios2.t_ultvta = rs31("ultima_venta")
+     vta_listaprecios2.t_ultimacompra = rs31("ultima_compra")
+     vta_listaprecios2.t_fechaactu = rs31("fecha_actu_precio_venta")
+     vta_listaprecios2.t_stock = rs31("stock")
+     vta_listaprecios2.t_oc = rs31("pedidos")
+     vta_listaprecios2.t_pedidos = rs31("requeridos")
+     vta_listaprecios2.t_fechaactuc = rs31("fecha_ult_compra")
+     vta_listaprecios2.t_textocentral = rs31("texto_central")
+     vta_listaprecios2.t_tipocarga = rs31("tipo_carga_tique")
+     vta_listaprecios2.c_tasaib.ListIndex = buscaindice(vta_listaprecios2!c_tasaib, rs31("id_tasaib"))
+     vta_listaprecios2.t_idprodprov = rs31("id_prod_prov")
+     vta_listaprecios2.t_cotizultcom = rs31("dolar_ult_compra")
+     vta_listaprecios2.t_talle = rs31("talle")
+     vta_listaprecios2.t_color = rs31("color")
+     vta_listaprecios2.t_medida = rs31("medida")
      
      
-     If rs("vigente") = True Then
+     If rs31("vigente") = True Then
       vta_listaprecios2.Check1 = 1
      Else
       vta_listaprecios2.Check1 = 0
