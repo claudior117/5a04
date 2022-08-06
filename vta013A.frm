@@ -713,12 +713,12 @@ Begin VB.Form vta_remitos
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "25/4/2019"
+            TextSave        =   "05/08/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "09:08"
+            TextSave        =   "05:01 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -1292,7 +1292,7 @@ Unload vta_clientes
 End Sub
 
 Private Sub msf1_GotFocus()
-Me.StatusBar1.Panels.Item(2) = "[INS] Agrega - [ENTER] Modifica - [F3] Lote/Vto - [F5] Elimina - [F9] Graba"
+Me.StatusBar1.Panels.item(2) = "[INS] Agrega - [ENTER] Modifica - [F3] Lote/Vto - [F5] Elimina - [F9] Graba"
 If msf1.Rows > 1 Then
   msf1.FocusRect = flexFocusNone
 Else
@@ -1393,7 +1393,7 @@ Sub graba()
       QUERY = "INSERT INTO vta_02([num_int], [sucursal], [num_comp], [letra], [id_tipocomp], [id_cliente], [fecha], [id_usuario], [subtotal], [impuestos], [iva], [total], [estado], [id_cuenta], [stock], [cta_cte], [grabado], " & _
 " [estado_pago], [recibo_Pago], [observaciones], [cotizacion_dolar], [total_otra_moneda], [moneda], [id_vendedor], [VENTA], [CONTADO], [perc_ib], [perc_gan], [perc_iva], [total_bultos], [valor_declarado], " & _
 " [transporte], [direccion_transp], [cuit_transp], [id_transporte], [fecha_vto], [perc_ss], [sucursal_ingreso], [cliente02], [direccion02], [cuit02], [localidad02], [id_tipo_iva02], [chofer02], [dominio02], [dominio_acoplado02], [id_camion02], [dni_chofer02], " & _
-"[cae], [cae_vence], [tipo_op])"
+"[cae], [cae_vence], [tipo_op], [numint_asociado])"
 
 QUERY = QUERY & " VALUES (" & numint & ", " & Val(t_sucursal) & ", " & Val(t_numcomp) & ", '" & t_letra & "', " & c_tipocomp.ItemData(c_tipocomp.ListIndex) & ", " & c_prov.ItemData(c_prov.ListIndex) & _
 ", '" & t_fecha & "', " & para.id_usuario & ", " & Val(t_subtotal) & ", " & Val(t_nograbado) & ", " & Val(t_iva) & ", " & Val(t_total) & ", '" & estado & "', " & para.cuenta_ventas & ", '" & t_stock & "', '" & _
@@ -1401,7 +1401,7 @@ cl_compvta.ctacte & "', '" & cl_compvta.grabado & "', '" & ep & "', '" & cp & "'
 ", '" & cl_compvta.venta & "', '" & contado & "', " & Val(t_perc) & ", 0, 0, " & Val(t_bultos) & ", " & Val(t_valor) & ", '" & vta_transporte.t_transp & "', '" & vta_transporte.t_direccion & "', '" & vta_transporte.t_cuit & _
 "', " & Val(vta_transporte.t_id) & ", '" & t_fecha & "', 0, " & Val(c_sucursal) & ", '" & Left$(cl_cli.razonsocial, 50) & "', '" & _
 Left$(cl_cli.direccion, 50) & "', '" & Left$(cl_cli.CUIT, 20) & "', '" & Left$(cl_cli.localidad, 50) & "', " & cl_cli.idtipoiva & ", '" & vta_transporte.t_chofer & "', '" & vta_transporte.t_dominio & "', '" & vta_transporte.t_acoplado & _
-"', " & idcamion & ", " & Val(vta_transporte.t_dni) & ",'u2','01/01/2018',2)"
+"', " & idcamion & ", " & Val(vta_transporte.t_dni) & ",'u2','01/01/2018',2,0)"
 
 
       cn1.Execute QUERY

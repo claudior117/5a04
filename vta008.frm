@@ -278,7 +278,7 @@ q = "select num_int, abreviatura, fecha, sucursal_INGRESO, vta_02.id_cliente, cl
 & "vta_02.iva, impuestos, perc_ib, total, vta_02.observaciones, vta_02.id_vendedor, contado, vta_02.moneda, " _
 & "total_otra_moneda, cae, cae_vence, estado, ctacte, vta_02.stock, grabado, id_cuenta, fecha_vto, " _
 & "fecha_pago, recibo_pago, cotizacion_dolar, vta_02.id_usuario,  vta_02.iva, estado_pago, " _
-& " vta_06.id_tipocomp, vta_06.sucursal, letra, vta_02.sucursal, num_comp, cp, te, email, inscripto_operador_granos, usuario " _
+& " vta_06.id_tipocomp, vta_06.sucursal, letra, vta_02.sucursal, num_comp, cp, te, email, inscripto_operador_granos, usuario, numint_asociado " _
 & " from vta_02, vta_06, vta_01, g1 where vta_02.[num_int] = " & Val(t_numint) & " and  vta_02.[id_tipocomp] = vta_06.[id_tipocomp]  and vta_02.[sucursal_ingreso] = vta_06.[sucursal]  and vta_02.[id_cliente] = vta_01.[id_cliente]" _
 & " and vta_02.[id_usuario] =  g1.[id_usuario]"
 
@@ -490,6 +490,19 @@ q = "select num_int, abreviatura, fecha, sucursal_INGRESO, vta_02.id_cliente, cl
        End If
      
      End If
+     
+     
+          
+     If rs("vta_02.id_tipocomp") = 36 Then
+        Call planepago(rs("num_int"))
+     End If
+     
+     
+     If rs("vta_02.id_tipocomp") = 251 Then
+        Call planepago(rs("numint_asociado"))
+     End If
+     
+     
      List1.AddItem " "
      List1.AddItem " "
      List1.AddItem Space$(60) & "***** DATOS DE AUDITORIA ******"
@@ -530,6 +543,48 @@ q = "select num_int, abreviatura, fecha, sucursal_INGRESO, vta_02.id_cliente, cl
  End If
  Set rs = Nothing
 End If
+End Sub
+
+Sub planepago(ni)
+          List1.AddItem "PLAN DE PAGO"
+          List1.AddItem "-------------------------------------------------------------"
+          List1.AddItem "Cuota    Fecha       Importe       Estado    Fecha   Recibo  "
+          List1.AddItem "          Vto                                Pago"
+          List1.AddItem "-------------------------------------------------------------"
+          
+          co = Space$(9)
+          cf = Space$(9)
+          cp = Space$(9)
+          p = Space$(10)
+          i = Space$(10)
+          v = Space$(4)
+         q = "select num_comp, fecha, total, estado_pago, fecha_pago, recibo_pago from vta_02 where [numint_asociado] = " & ni
+         Set rs3 = New ADODB.Recordset
+         rs3.Open q, cn1
+         While Not rs3.EOF
+          nc = Format$(rs3("num_comp"), "00000000")
+          F = Format$(rs3("fecha"), "dd/mm/yyyy")
+          RSet i = Format$(rs3("total"), "######0.00")
+          If rs3("estado_pago") = "P" Then
+             e = "Cancelada"
+             FP = Format$(rs3("fecha_pago"), "dd/mm/yyyy")
+             rp = Format$(rs3("recibo_pago"), "@@@@@@@@@@@@@@!")
+         
+          Else
+             If DateValue(F) < DateValue(Now) Then
+                e = "Vencida  "
+             Else
+                e = "         "
+             End If
+             FP = "          "
+             rp = "             "
+          End If
+          List1.AddItem nc & " " & F & "  " & i & " " & e & " " & FP & "  " & rp
+          
+           rs3.MoveNext
+           
+         Wend
+         Set rs3 = Nothing
 End Sub
 Sub remitos()
      List1.AddItem ""

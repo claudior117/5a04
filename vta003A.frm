@@ -6,25 +6,47 @@ Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form vta_facturacion 
    BackColor       =   &H00E0E0E0&
    Caption         =   "FACTURACION"
-   ClientHeight    =   8490
+   ClientHeight    =   8640
    ClientLeft      =   60
    ClientTop       =   255
    ClientWidth     =   11880
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
-   ScaleHeight     =   8490
+   ScaleHeight     =   8640
    ScaleWidth      =   11880
    Begin VB.Frame Frame14 
       BackColor       =   &H00E0E0E0&
-      Caption         =   "Cuotas"
+      Caption         =   "Plan de pago en cuotas"
       Height          =   855
       Left            =   240
       TabIndex        =   80
       Top             =   7440
       Width           =   6015
+      Begin VB.TextBox t_cuotas_sininteres 
+         Alignment       =   2  'Center
+         BorderStyle     =   0  'None
+         Enabled         =   0   'False
+         Height          =   285
+         Left            =   120
+         MaxLength       =   10
+         TabIndex        =   87
+         Top             =   480
+         Width           =   1095
+      End
+      Begin VB.TextBox t_interes_cuota 
+         Alignment       =   2  'Center
+         BorderStyle     =   0  'None
+         Enabled         =   0   'False
+         Height          =   285
+         Left            =   1560
+         MaxLength       =   10
+         TabIndex        =   86
+         Top             =   480
+         Width           =   1095
+      End
       Begin MSComCtl2.UpDown UpDown1 
          Height          =   375
-         Left            =   1440
+         Left            =   4320
          TabIndex        =   85
          Top             =   480
          Width           =   255
@@ -37,7 +59,7 @@ Begin VB.Form vta_facturacion
          Alignment       =   2  'Center
          BorderStyle     =   0  'None
          Height          =   285
-         Left            =   1920
+         Left            =   4680
          MaxLength       =   10
          TabIndex        =   82
          Top             =   480
@@ -47,11 +69,33 @@ Begin VB.Form vta_facturacion
          Alignment       =   2  'Center
          BorderStyle     =   0  'None
          Height          =   285
-         Left            =   360
+         Left            =   3240
          MaxLength       =   10
          TabIndex        =   81
          Top             =   480
          Width           =   1095
+      End
+      Begin VB.Label Label24 
+         Alignment       =   2  'Center
+         BackColor       =   &H00008000&
+         Caption         =   "Cuotas Sin Int."
+         ForeColor       =   &H00FFFFFF&
+         Height          =   255
+         Left            =   120
+         TabIndex        =   89
+         Top             =   240
+         Width           =   1335
+      End
+      Begin VB.Label Label18 
+         Alignment       =   2  'Center
+         BackColor       =   &H00008000&
+         Caption         =   "% Int x cuota"
+         ForeColor       =   &H00FFFFFF&
+         Height          =   255
+         Left            =   1320
+         TabIndex        =   88
+         Top             =   240
+         Width           =   1455
       End
       Begin VB.Label Label17 
          Alignment       =   2  'Center
@@ -59,7 +103,7 @@ Begin VB.Form vta_facturacion
          Caption         =   "Valor Cuota"
          ForeColor       =   &H00FFFFFF&
          Height          =   255
-         Left            =   1560
+         Left            =   4440
          TabIndex        =   84
          Top             =   240
          Width           =   1455
@@ -70,7 +114,7 @@ Begin VB.Form vta_facturacion
          Caption         =   "Cant.Cuotas"
          ForeColor       =   &H00FFFFFF&
          Height          =   255
-         Left            =   360
+         Left            =   3240
          TabIndex        =   83
          Top             =   240
          Width           =   1335
@@ -200,7 +244,7 @@ Begin VB.Form vta_facturacion
       BackColor       =   &H00E0E0E0&
       Caption         =   "Totales"
       Height          =   855
-      Left            =   6480
+      Left            =   6840
       TabIndex        =   53
       Top             =   7440
       Width           =   2535
@@ -379,7 +423,7 @@ Begin VB.Form vta_facturacion
       BackColor       =   &H00E0E0E0&
       Caption         =   "Percepciones"
       Height          =   855
-      Left            =   6720
+      Left            =   6840
       TabIndex        =   49
       Top             =   6600
       Width           =   2295
@@ -871,7 +915,7 @@ Begin VB.Form vta_facturacion
       Height          =   255
       Left            =   0
       TabIndex        =   23
-      Top             =   8235
+      Top             =   8385
       Width           =   11880
       _ExtentX        =   20955
       _ExtentY        =   450
@@ -895,12 +939,12 @@ Begin VB.Form vta_facturacion
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "04/08/2022"
+            TextSave        =   "05/08/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "02:25 p.m."
+            TextSave        =   "05:05 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -2756,6 +2800,23 @@ Sub iniciacli()
     MsgBox ("Los planes de cuotas deben realizarse en CUENTA CORRIENTE")
     Option1 = True
   End If
+  
+  Set rs0 = New ADODB.Recordset
+  q = "select cuotas_sininteres, interes_cuota  from g0 where sucursal=0"
+  rs0.Open q, cn1
+  If Not rs0.EOF And Not rs0.BOF Then
+    t_interes_cuota = rs0("interes_cuota")
+    t_cuotas_sininteres = rs0("cuotas_sininteres")
+  
+  
+  Else
+    t_interes_cuota = 0
+    t_cuotas_sininteres = 0
+  
+  End If
+  
+  Set rs0 = Nothing
+ 
  End If
  
  
@@ -3294,7 +3355,7 @@ Sub graba()
 "[estado], [id_cuenta], [stock], [cta_cte], [grabado], [estado_pago], [recibo_Pago], [observaciones], [cotizacion_dolar], [total_otra_moneda], [moneda], [id_vendedor], " & _
 " [VENTA], [CONTADO], [perc_ib], [perc_gan], [perc_iva] , [id_actividad], [alicuota_ib], [alicuota_perc_iva], [canje_cereal], [fecha_vto], [total_bultos],  [valor_declarado], " & _
 " [transporte], [direccion_transp], [cuit_transp], [perc_ss], [sucursal_ingreso], [cliente02], [direccion02], [cuit02], [localidad02], [id_tipo_iva02], [chofer02], [dominio02], " & _
-" [dominio_acoplado02], [SALDO_IMPAGO02], [num_z], [cae], [cae_vence], [tipo_op], [descuento])"
+" [dominio_acoplado02], [SALDO_IMPAGO02], [num_z], [cae], [cae_vence], [tipo_op], [descuento],[numint_asociado])"
 
 
 
@@ -3304,7 +3365,7 @@ QUERY = QUERY & " VALUES (" & numint & ", " & Val(t_sucursal) & ", " & Val(t_num
 " ', " & Val(t_cotizacion) & ", " & T2 & ", '" & moneda & "', " & c_vend.ItemData(c_vend.ListIndex) & ", '" & cl_compvta.venta & "', '" & contado & "', " & Val(t_perc)
 
 QUERY2 = ", 0, " & Val(t_perciva) & ", " & codact & ", " & Val(t_alicuotaib) & ", " & Val(t_alicuotaperciva) & ", " & Check1 & ", '" & t_fechavto & "', 0, 0, ' ', ' ', ' ', 0, " & Val(c_sucursal) & _
-", '" & Left$(vta_clientes.t_cli, 50) & "', '" & Left$(vta_clientes.t_direccion, 50) & "', '" & Left$(vta_clientes.t_cuit, 20) & "', '" & Left$(vta_clientes.t_localidad, 50) & "', " & tiporespiva & ", '" & compasocnc & "', ' ', ' ', " & ssi & ", " & para.z_actual & ", '" & t_cae & "', '" & Format(t_cae_vence, "@@@@/@@/@@") & "', " & c_tipoop.ListIndex + 1 & ", " & Val(t_descuento) & ")"
+", '" & Left$(vta_clientes.t_cli, 50) & "', '" & Left$(vta_clientes.t_direccion, 50) & "', '" & Left$(vta_clientes.t_cuit, 20) & "', '" & Left$(vta_clientes.t_localidad, 50) & "', " & tiporespiva & ", '" & compasocnc & "', ' ', ' ', " & ssi & ", " & para.z_actual & ", '" & t_cae & "', '" & Format(t_cae_vence, "@@@@/@@/@@") & "', " & c_tipoop.ListIndex + 1 & ", " & Val(t_descuento) & ",0)"
 
                                                                                                                                                                                                                                                             
 cn1.Execute QUERY & QUERY2
@@ -3587,7 +3648,7 @@ Next i
         J = MsgBox("Confirma emitir PLAN de CUOTAS", 4)
         If J = 6 Then
             'arma plan de pago
-            Call generaplancuotas
+            Call generaplancuotas(numint)
             
             
         End If
@@ -3632,10 +3693,10 @@ ERRORGRABA:
 
 End Sub
 
-Sub generaplancuotas()
+Sub generaplancuotas(ni21)
   
 For i = 1 To Val(t_cantcuotas)
-  numint = saca_ultnumero_int_comp("V")
+  nint = saca_ultnumero_int_comp("V")
       
   Set cl_compvta = New comprobantes_venta
   cl_compvta.sucursal = Val(t_sucursal)
@@ -3691,17 +3752,17 @@ For i = 1 To Val(t_cantcuotas)
 "[estado], [id_cuenta], [stock], [cta_cte], [grabado], [estado_pago], [recibo_Pago], [observaciones], [cotizacion_dolar], [total_otra_moneda], [moneda], [id_vendedor], " & _
 " [VENTA], [CONTADO], [perc_ib], [perc_gan], [perc_iva] , [id_actividad], [alicuota_ib], [alicuota_perc_iva], [canje_cereal], [fecha_vto], [total_bultos],  [valor_declarado], " & _
 " [transporte], [direccion_transp], [cuit_transp], [perc_ss], [sucursal_ingreso], [cliente02], [direccion02], [cuit02], [localidad02], [id_tipo_iva02], [chofer02], [dominio02], " & _
-" [dominio_acoplado02], [SALDO_IMPAGO02], [num_z], [cae], [cae_vence], [tipo_op], [descuento])"
+" [dominio_acoplado02], [SALDO_IMPAGO02], [num_z], [cae], [cae_vence], [tipo_op], [descuento], [numint_asociado])"
 
 
 
-QUERY = QUERY & " VALUES (" & numint & ", " & Val(t_sucursal) & ", " & numcomp & ", '" & t_letra & "', 251 " & _
+QUERY = QUERY & " VALUES (" & nint & ", " & Val(t_sucursal) & ", " & numcomp & ", '" & t_letra & "', 251 " & _
 ", " & idcli & ", '" & fecha & "', " & para.id_usuario & ", " & cm & ", 0, 0," & cm & _
 ", 'A', " & cuentaact & ", '" & cl_compvta.STOCK & "', '" & cl_compvta.ctacte & "', '" & cl_compvta.grabado & "', '" & ep & "', '" & cp & "', '" & observaciones & _
 " ', " & Val(t_cotizacion) & ", " & T2 & ", '" & moneda & "', " & c_vend.ItemData(c_vend.ListIndex) & ", '" & cl_compvta.venta & "', '" & contado & "', " & Val(0)
 
 QUERY2 = ", 0, " & Val(0) & ", " & codact & ", " & Val(0) & ", " & Val(0) & ", " & Check1 & ", '" & fecha & "', 0, 0, ' ', ' ', ' ', 0, " & Val(c_sucursal) & _
-", '" & Left$(vta_clientes.t_cli, 50) & "', '" & Left$(vta_clientes.t_direccion, 50) & "', '" & Left$(vta_clientes.t_cuit, 20) & "', '" & Left$(vta_clientes.t_localidad, 50) & "', " & tiporespiva & ", ' ', ' ', ' ', " & cm & ", " & para.z_actual & ", ' ', '" & fecha & "', " & c_tipoop.ListIndex + 1 & ", " & Val(0) & ")"
+", '" & Left$(vta_clientes.t_cli, 50) & "', '" & Left$(vta_clientes.t_direccion, 50) & "', '" & Left$(vta_clientes.t_cuit, 20) & "', '" & Left$(vta_clientes.t_localidad, 50) & "', " & tiporespiva & ", ' ', ' ', ' ', " & cm & ", " & para.z_actual & ", ' ', '" & fecha & "', " & c_tipoop.ListIndex + 1 & ", " & Val(0) & ", " & ni21 & ")"
 
 'MsgBox (QUERY & QUERY2)
                                                                                                                                                                                                                                                             
@@ -3819,7 +3880,15 @@ End If
 If Val(t_cantcuotas) < 1 Then
     t_cantcuotas = 1
 End If
-  t_valorcuota = Format$(Val(t_total) / Val(t_cantcuotas), "######0.00")
+  
+If Val(t_cantcuotas) > Val(t_cuotas_sininteres) Then
+  'aplica interes
+  interes = Format((Val(t_cantcuotas) * Val(t_interes_cuota) * Val(t_total)) / 100, "#######0.00")
+Else
+  interes = 0
+End If
+  
+t_valorcuota = Format$((Val(t_total) + interes) / Val(t_cantcuotas), "######0.00")
 
 End Sub
 

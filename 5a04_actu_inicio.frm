@@ -2442,7 +2442,7 @@ Sub actu222()
 h = MsgBox("Actualizacion 222 . ¿Esta seguro que quiere actualizar?  ", 4)
 If h = 6 Then
   
-    
+ 
   espere.Show
   espere.Refresh
     
@@ -2452,12 +2452,18 @@ If h = 6 Then
    
      q = "alter table g0 add column [cuotas_sininteres] int, [interes_cuota] double  "
      cn1.Execute q
+     
+     q = "alter table vta_02 add column [numint_asociado] long "
+     cn1.Execute q
+     
    
    
     q = "update g0 set  [actualizacion]=222, [cuotas_sininteres]=2, [interes_cuota] = 7"
     q = q & " where [sucursal]=0 "
-  
-   cn1.Execute q
+    cn1.Execute q
+   
+    q = "update vta_02 set [numint_asociado]=0"
+    cn1.Execute q
     
   cn1.CommitTrans
     
@@ -2476,6 +2482,33 @@ If h = 6 Then
       rs.MoveNext
   Wend
   Set rs = Nothing
+  
+  
+  
+  q = "select * from vta_02, vta_010 where [estado_pago] = 'P' and [num_int] = [num_int_comp] and [saldo_comprobante]=0 "
+  Set rs = New ADODB.Recordset
+  
+  rs.Open q, cn1, adOpenDynamic, adLockOptimistic
+  While Not rs.EOF
+      Set rs2 = New ADODB.Recordset
+      q = "select fecha from vta_02 where [num_int] = " & rs("num_int_rbo")
+      rs2.Open q, cn1
+      If Not rs2.EOF And Not rs2.BOF Then
+         f = rs2("fecha")
+      Else
+         f = "01-01-2000"
+      End If
+      Set rs2 = Nothing
+      
+      rs("fecha_pago") = f
+      rs.Update
+   
+      rs.MoveNext
+  Wend
+  Set rs = Nothing
+  
+  
+  
   MsgBox ("proceso terminado")
    
  Unload espere

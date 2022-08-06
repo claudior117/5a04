@@ -677,12 +677,12 @@ Begin VB.Form vta_recibo
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "15/04/2022"
+            TextSave        =   "06/08/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "11:25 a.m."
+            TextSave        =   "10:06 a.m."
          EndProperty
       EndProperty
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -1422,12 +1422,12 @@ cl_cli.carga (denominACION.ItemData(denominACION.ListIndex))
 QUERY = "INSERT INTO vta_02([num_int], [sucursal], [num_comp], [letra], [id_tipocomp], [id_cliente], [fecha], [id_usuario], [subtotal], [impuestos], [iva], [total], [estado], [id_cuenta], [stock], [cta_cte], " & _
 "[grabado], [estado_pago], [recibo_Pago], [observaciones], [cotizacion_dolar], [total_otra_moneda], [moneda], [id_vendedor], [VENTA], [CONTADO], [fecha_vto], [id_actividad], [alicuota_ib], " & _
 "[alicuota_perc_iva], [canje_cereal], [total_bultos], [valor_declarado], [transporte], [direccion_transp], [cuit_transp], [perc_ss], [sucursal_ingreso], [cliente02], [direccion02], [cuit02], [localidad02], [id_tipo_iva02], [chofer02], [dominio02], [dominio_acoplado02], " & _
-"[cae], [cae_vence], [tipo_op])"
+"[cae], [cae_vence], [tipo_op], [numint_asociado])"
 
 QUERY = QUERY & " VALUES (" & numint & ", " & Val(sucursal) & ", " & Val(t_numop) & ", 'R', 50, " & denominACION.ItemData(denominACION.ListIndex) & ", '" & t_fecha & "', " & para.id_usuario & _
 ", 0, 0, 0, " & t2p & ", 'A', " & para.cuenta_ventas & ", '" & cl_compvta.STOCK & "', '" & cl_compvta.ctacte & "', '" & cl_compvta.grabado & "', 'S', '0000-00000000', '" & Detalle & " ', " & Val(fdolar) & _
 ", " & t2d & ", 'P', " & cl_cli.idvendedor & ", '" & cl_compvta.venta & "', 'N', '" & t_fecha & "' ,1 , 0, 0, 0, 0, 0, ' ', ' ', ' ', 0, " & Val(c_sucursal) & ", '" & Left$(cl_cli.razonsocial, 50) & "', '" & _
-Left$(cl_cli.direccion, 50) & "', '" & Left$(cl_cli.CUIT, 20) & "', '" & Left$(cl_cli.localidad, 50) & "', " & cl_cli.idtipoiva & ", ' ', ' ', ' ', 'u2', '01/01/2018', 2)"
+Left$(cl_cli.direccion, 50) & "', '" & Left$(cl_cli.CUIT, 20) & "', '" & Left$(cl_cli.localidad, 50) & "', " & cl_cli.idtipoiva & ", ' ', ' ', ' ', 'u2', '01/01/2018', 2,0)"
 
 cn1.Execute QUERY
       
@@ -1526,10 +1526,12 @@ cn1.Execute QUERY
              rs("estado_pago") = "N"
           Else
              rs("estado_pago") = "P"
+             
           End If
           
           rs("saldo_impago02") = Val(msf1.TextMatrix(i, 7))
           rs("recibo_pago") = Format$(sucursal, "0000") & "-" & Format$(t_numop, "00000000")
+          rs("fecha_pago") = t_fecha
           rs.Update
           
           QUERY = "INSERT INTO vta_010([num_int_comp], [num_int_rbo], [importe_pagado], [saldo_comprobante])"
@@ -1953,7 +1955,7 @@ Sub totales2()
   T_RETD = 0
   If msf1.Rows > 1 Then
    While J <= msf1.Rows - 1
-    If Val(msf1.TextMatrix(J, 6)) < 35 Then
+    If Val(msf1.TextMatrix(J, 6)) < 35 Or Val(msf1.TextMatrix(J, 6)) = 251 Then
      t_pago = Val(t_pago) + Val(msf1.TextMatrix(J, 8))
      't_totald = Val(t_totald) + Val(msf1.TextMatrix(J, 5))
     Else
