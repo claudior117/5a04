@@ -120,7 +120,7 @@ Begin VB.Form actu_inicio
    Begin VB.Label Label3 
       Alignment       =   2  'Center
       BackColor       =   &H0000FFFF&
-      Caption         =   "222"
+      Caption         =   "223"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   18
@@ -322,9 +322,10 @@ Case Is = 215
     Call actu220
  Case Is = 221
     Call actu221
-  Case Is = 222
+ Case Is = 222
     Call actu222
- 
+ Case Is = 223
+    Call actu223
  Case Is = 999
    Call actu999
    
@@ -2522,6 +2523,47 @@ err1:
 Resume Next
 
 End Sub
+
+
+Sub actu223()
+'agrega datos a lista de precio talle, color, etc
+h = MsgBox("Actualizacion 223 . ¿Esta seguro que quiere actualizar?  ", 4)
+If h = 6 Then
+  
+ 
+  espere.Show
+  espere.Refresh
+    
+   cn1.BeginTrans
+     
+     q = "alter table g0 add column [minimo_informar_cons_final] double  "
+     cn1.Execute q
+     
+    q = "update g0 set  [actualizacion]=223, [minimo_informar_cons_final]=43010"
+    q = q & " where [sucursal]=0 "
+    cn1.Execute q
+   
+    
+  cn1.CommitTrans
+    
+   
+  MsgBox ("proceso terminado")
+   
+ Unload espere
+  
+End If
+
+Exit Sub
+
+
+err1:
+Resume Next
+
+End Sub
+
+
+
+
 Sub actu221()
 'agrega posibilidad de factura C
 h = MsgBox("Actualizacion 221 . ¿Esta seguro que quiere actualizar?  ", 4)

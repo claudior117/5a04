@@ -463,7 +463,11 @@ Sub limpia()
      c_iva.ListIndex = 2
      t_cotiz = "0.000"
      t_idvend = 1
-     t_letrafact = "B"
+     If para.tipo_iva_empresa = 1 Then
+        t_letrafact = "B"
+     Else
+         t_letrafact = "C"
+     End If
      t_codfiscal = "F"
  
 
@@ -473,29 +477,38 @@ Private Sub c_iva_LostFocus()
 Call cambiacli
 End Sub
 Sub cambiacli()
-Set rs = New ADODB.Recordset
-q = "select * from g3 where [cod_tipoiva] = " & c_iva.ItemData(c_iva.ListIndex)
-rs.Open q, cn1
-If Not rs.EOF And Not rs.BOF Then
-  t_letrafact = rs("letra_cliente")
-  t_iva = rs("abreviatura")
-  t_codfiscal = rs("cod_fiscal")
-Else
-  c_iva.ListIndex = 2
-  t_iva = "C.F"
-  t_letrafact = "B"
-  t_codfiscal = "F"
-End If
-If c_iva.ItemData(c_iva.ListIndex) <> 3 Then
-  'VERIFICO CUIT
-  If verificacuit(t_cuit) = 0 Then
-    MsgBox ("Error en el numero de Cuit")
-    c_iva.ListIndex = 2
-    t_iva = "C.F"
-    t_letrafact = "B"
-    t_codfiscal = "F"
-   End If
-End If
+    Set rs = New ADODB.Recordset
+    q = "select * from g3 where [cod_tipoiva] = " & c_iva.ItemData(c_iva.ListIndex)
+    rs.Open q, cn1
+    If Not rs.EOF And Not rs.BOF Then
+     If para.tipo_iva_empresa = 1 Then
+      t_letrafact = rs("letra_cliente")
+     Else
+      t_letrafact = "C"
+     End If
+     
+     t_iva = rs("abreviatura")
+     t_codfiscal = rs("cod_fiscal")
+    
+    Else
+      c_iva.ListIndex = 2
+      t_iva = "C.F"
+      t_letrafact = "B"
+      t_codfiscal = "F"
+    End If
+    
+    If c_iva.ItemData(c_iva.ListIndex) <> 3 Then
+      'VERIFICO CUIT
+      If verificacuit(t_cuit) = 0 Then
+        MsgBox ("Error en el numero de Cuit")
+        c_iva.ListIndex = 2
+        t_iva = "C.F"
+        t_letrafact = "B"
+        t_codfiscal = "F"
+       End If
+    End If
+
+
 End Sub
 
 Private Sub Command1_Click()
@@ -547,25 +560,16 @@ If Val(t_id) > 0 Then
      t_iva = cl_cli.abreviatura_tipoiva
      c_iva.ListIndex = buscaindice(c_iva, cl_cli.idtipoiva)
      t_idvend = cl_cli.idvendedor
-     t_letrafact = cl_cli.letra
+     If para.tipo_iva_empresa = 1 Then
+        t_letrafact = cl_cli.letra
+     Else
+         t_letrafact = "C"
+     End If
      t_codfiscal = cl_cli.codfiscal
      t_codfiscal2 = cl_cli.codfiscal2
      t_dirlocal = cl_cli.direccion_local
      t_percibeib = cl_cli.perciveib
      t_idproveedor = cl_cli.idproveedor
-    ' If cl_cli.id > 1 Then
-      't_saldo1 = Format$(cl_cli.saldo(True, Now, True), "######0.00")
-     ' t_saldo2 = Format$(cl_cli.saldo(True, Now, False), "######0.00")
-     ' If Val(t_saldo2) <> 0 Then
-     '  t_cotiz = Format$(Val(t_saldo1) / Val(t_saldo2), "####0.000")
-    ' Else
-    '   t_cotiz = "1.000"
-    '  End If
-    ' Else
-    '  t_saldo1 = "0.00"
-     ' t_saldo2 = "0.00"
-    '  t_cotiz = para.cotizacion
-   '  End If
      t_limite = cl_cli.limitecredito
    
    End If
