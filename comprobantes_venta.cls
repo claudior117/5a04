@@ -1379,9 +1379,11 @@ If Not rs.EOF And Not rs.BOF Then
    If Not rs2.EOF And Not rs2.BOF Then
      Me.cod_afip_a = rs2("cod_afip_a")
      Me.cod_afip_b = rs2("cod_afip_b")
+     Me.cod_afip_c = rs2("cod_afip_c")
    Else
      Me.cod_afip_a = 1
      Me.cod_afip_b = 6
+     Me.cod_afip_c = 11
    
    End If
    Set rs2 = Nothing
@@ -3025,6 +3027,8 @@ Public Sub generapdf(ByVal c As Integer)
         Case Is = "C"
         tipo_cbte = Me.cod_afip_c
     End Select
+    
+    
     punto_vta = Me.sucursal    ' prefijo
     cbte_nro = Me.numcomp ' número de factura
     fecha = Me.fecha
@@ -3182,8 +3186,19 @@ While Not rs.EOF
  Wend
  Set rs = Nothing
   
-    
-    
+ Set rs = New ADODB.Recordset
+ q = "select * from g0 where sucursal = 0"
+ rs.Open q, cn1
+ If Not rs.EOF And Not rs.BOF Then
+    If rs("id_tipo_iva") = 3 Then
+       tri = "MONOTRIBUTO exento de Iva"
+    Else
+       tri = "Iva Responsable Inscripto"
+    End If
+ Else
+   tri = "Iva Responsable Inscripto"
+ End If
+ Set rs = Nothing
     
     
     ' Agrego datos adicionales fijos:
@@ -3194,7 +3209,7 @@ While Not rs.EOF
     ok = PyFEPDF.AgregarDato("MEMBRETE2", "Rojas")
     ok = PyFEPDF.AgregarDato("CUIT", "CUIT " & glo.CUIT)
     ok = PyFEPDF.AgregarDato("IIBB", "IIBB " & para.numero_ib)
-    ok = PyFEPDF.AgregarDato("IVA", "IVA Responsable Inscripto")
+    ok = PyFEPDF.AgregarDato("IVA", tri)
     ok = PyFEPDF.AgregarDato("INICIO", "Inicio de Actividad: " & para.fecha_inicio_actividades)
     ok = PyFEPDF.AgregarDato("ObservacionesGenerales1", "Mensaje Monotributos")
     ok = PyFEPDF.AgregarDato("ObservacionesGenerales2", "CBU para Transferencias ")

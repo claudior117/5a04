@@ -575,7 +575,7 @@ Dim grecargocc3 As Single
 Sub carga()
  Call armagrid
  ct = Space$(10)
- Set rs = New adodb.Recordset
+ Set rs = New ADODB.Recordset
  q = "select [id_producto], a2.[descripcion],  [precio_final], [pu], [reg_faltante], [pedidos], [fecha_actu_precio_venta] from a2, g4 where [cod_tasaiva] = [id_tasaiva]"
  c = " and "
  filtro = 0
@@ -902,7 +902,7 @@ End If
 End Sub
 
 Private Sub Form_Load()
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   q = "select * from g1 where [id_usuario] = " & para.id_usuario
   rs.MaxRecords = 1
   rs.Open q, cn1
@@ -938,7 +938,7 @@ Private Sub Form_Load()
   c_tasaib.ListIndex = 0
   
  
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select [recargo_cc] from g0 where [sucursal] = 0"
 rs.Open q, cn1
 If Not rs.BOF And Not rs.EOF Then
@@ -1008,7 +1008,7 @@ Sub muestra2()
  r = msf1.Row
  c = Val(msf1.TextMatrix(r, 0))
  If c > 1 Then
-   Set rs2 = New adodb.Recordset
+   Set rs2 = New ADODB.Recordset
    q = " select * from a2 where [id_producto] = " & c
    rs2.Open q, cn1
    If Not rs2.BOF And Not rs2.EOF Then
@@ -1065,6 +1065,7 @@ Sub muestra2()
    End If
    Set rs2 = Nothing
    
+    Call vta_listaprecios2.actualiza
  End If
  
 End Sub
@@ -1096,7 +1097,7 @@ If KeyCode = vbKeyF1 Then
   If p > 1 Then
     precio = InputBox("Ingrese Precio")
     If Val(precio) > 0 Then
-      Set rs = New adodb.Recordset
+      Set rs = New ADODB.Recordset
       q = "select * from a2 where [id_producto] = " & p
       rs.MaxRecords = 1
       rs.Open q, cn1, adOpenDynamic, adLockOptimistic

@@ -1066,6 +1066,8 @@ Sub muestra2()
    End If
    Set rs = Nothing
    
+   Call vta_listaprecios2.actualiza
+   
  End If
  
 End Sub

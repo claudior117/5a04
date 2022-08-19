@@ -453,7 +453,7 @@ Dim gtamañofuente As Integer
 Sub carga()
  Call armagrid
  ct = Space$(10)
- Set rs = New adodb.Recordset
+ Set rs = New ADODB.Recordset
  q = "select [id_producto], a2.[descripcion], [tasa], [moneda],[emite_etiqueta],[reg_faltante], [precio_ult_compra], [fecha_ult_compra] from a2, g4 where [cod_tasaiva] = [id_tasaiva]"
  c = " and "
  filtro = 0
@@ -584,7 +584,7 @@ espere.Refresh
  t_encontrados = 0
  ls = 1
  While Not rs.EOF
-    Set rs1 = New adodb.Recordset
+    Set rs1 = New ADODB.Recordset
     q = "select [pu], [pusindto], [descuento], a5.[fecha] from a6, a5 where [id_producto] = " & rs("id_producto") & " and a6.[num_int] = a5.[num_int] order by a5.[fecha] desc "
     rs1.MaxRecords = 1
     rs1.Open q, cn1
@@ -752,7 +752,7 @@ End If
 End Sub
 
 Private Sub Form_Load()
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   q = "select * from g1 where [id_usuario] = " & para.id_usuario
   rs.MaxRecords = 1
   rs.Open q, cn1
@@ -836,7 +836,7 @@ Sub muestra2()
  r = msf1.Row
  c = Val(msf1.TextMatrix(r, 0))
  If c > 1 Then
-   Set rs1 = New adodb.Recordset
+   Set rs1 = New ADODB.Recordset
    q = " select * from a2 where [id_producto] = " & c
    rs1.Open q, cn1
    If Not rs1.BOF And Not rs1.EOF Then
@@ -886,6 +886,7 @@ Sub muestra2()
      vta_listaprecios2.Show
    End If
    Set rs1 = Nothing
+    Call vta_listaprecios2.actualiza
    
  End If
  
@@ -916,7 +917,7 @@ If KeyCode = vbKeyF1 Then
   If p > 1 Then
     precio = InputBox("Ingrese Precio")
     If Val(precio) > 0 Then
-      Set rs = New adodb.Recordset
+      Set rs = New ADODB.Recordset
       q = "select * from a2 where [id_producto] = " & p
       rs.MaxRecords = 1
       rs.Open q, cn1, adOpenDynamic, adLockOptimistic
@@ -1029,7 +1030,7 @@ If KeyCode = vbKeyF11 Then
     msf1.TextMatrix(r, 6) = "E"
     ee = "S"
   End If
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   q = "select [emite_etiqueta] from a2 where [id_producto] = " & Val(msf1.TextMatrix(r, 0))
   rs.MaxRecords = 1
   rs.Open q, cn1, adOpenDynamic, adLockOptimistic
@@ -1086,7 +1087,7 @@ If inp <> "" Then
   espere.Refresh
   
  If abrirconexionrep Then
-    Set rs = New adodb.Recordset
+    Set rs = New ADODB.Recordset
     q = "select * from t1"
     rs.Open q, cnrep, adOpenDynamic, adLockOptimistic
     While Not rs.EOF
@@ -1097,7 +1098,7 @@ If inp <> "" Then
     J = 0
     While J < msf1.Rows
      If Val(msf1.TextMatrix(J, 0)) > 1 And msf1.TextMatrix(J, 6) = "E" Then
-         Set rs1 = New adodb.Recordset
+         Set rs1 = New ADODB.Recordset
          q = "select * from a2 where [id_producto] = " & Val(msf1.TextMatrix(J, 0))
          rs1.Open q, cn1, adOpenStatic, adLockOptimistic
          If Not rs1.EOF And Not rs1.BOF Then

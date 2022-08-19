@@ -120,7 +120,7 @@ Begin VB.Form actu_inicio
    Begin VB.Label Label3 
       Alignment       =   2  'Center
       BackColor       =   &H0000FFFF&
-      Caption         =   "223"
+      Caption         =   "224"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   18
@@ -326,6 +326,8 @@ Case Is = 215
     Call actu222
  Case Is = 223
     Call actu223
+ Case Is = 224
+    Call actu224
  Case Is = 999
    Call actu999
    
@@ -2548,6 +2550,43 @@ If h = 6 Then
     
    
   MsgBox ("proceso terminado")
+   
+ Unload espere
+  
+End If
+
+Exit Sub
+
+
+err1:
+Resume Next
+
+End Sub
+
+
+Sub actu224()
+'corrige ajustes de stock
+h = MsgBox("Actualizacion 224 . ¿Esta seguro que quiere actualizar?  ", 4)
+If h = 6 Then
+  
+ 
+  espere.Show
+  espere.Refresh
+    
+   cn1.BeginTrans
+     
+     q = "alter table g0 add column [ult_num_ajuste_stock] long  "
+     cn1.Execute q
+     
+    q = "update g0 set  [actualizacion]=224, [ult_num_ajuste_stock]=100"
+    q = q & " where [sucursal]=0 "
+    cn1.Execute q
+   
+    
+  cn1.CommitTrans
+    
+   
+  MsgBox ("Proceso terminado. Verificar que el campo numint en stk02 esté como autonumerico")
    
  Unload espere
   

@@ -48,7 +48,12 @@ If KeyAscii = 13 Then
     Case Is = 3
       vta_listaprecios_3.t_detalle = t_texto
       vta_listaprecios_3.carga
-    
+     Case Is = 4
+      vta_listaprecios_4.t_detalle = t_texto
+      vta_listaprecios_4.carga
+      Case Is = 5
+      vta_listaprecios_5.t_detalle = t_texto
+      vta_listaprecios_5.carga
     
     Case Else
       vta_listaprecios.t_detalle = t_texto

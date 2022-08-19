@@ -1,6 +1,6 @@
 VERSION 5.00
 Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form stk_movint 
    BackColor       =   &H00E0E0E0&
    Caption         =   "MOVIMIENTOS DE AJUESTE EN STOCK"
@@ -240,12 +240,12 @@ Begin VB.Form stk_movint
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "06/08/2017"
+            TextSave        =   "19/08/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "06:17 p.m."
+            TextSave        =   "10:47 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -359,7 +359,7 @@ t_ajuste = "0.00"
 End Sub
 
 Private Sub msf1_GotFocus()
-Me.StatusBar1.Panels.Item(2) = "[INS] Agrega - [ENTER] Modifica - [F5] Elimina - [F9] Graba"
+Me.StatusBar1.Panels.item(2) = "[INS] Agrega - [ENTER] Modifica - [F5] Elimina - [F9] Graba"
 If msf1.Rows > 1 Then
   msf1.FocusRect = flexFocusNone
 Else
@@ -412,10 +412,17 @@ If EXISTE = "N" Then
    'oc nueva
       'On Error GoTo ERRORGRABA
       
+      Set rs = New ADODB.Recordset
+      q = "Select * from g0 where sucursal=0"
+      rs.Open q, cn1, adOpenDynamic, adLockOptimistic
+      numcomp = rs("ult_num_ajuste_stock") + 1
+      rs("ult_num_ajuste_stock") = numcomp
+      rs.Update
+      Set rs = Nothing
       
       cn1.BeginTrans
       QUERY = "INSERT INTO stk_02([fecha], [letra], [num_comprobante], [id_usuario], [detalle], [sucursal], [tipo_comprobante], [id_proveedor], [id_obra])"
-      QUERY = QUERY & " VALUES ('" & t_fecha & "', 'X', 0, " & para.id_usuario & ", '" & t_detalle & " ', 0, 1, 1,1)"
+      QUERY = QUERY & " VALUES ('" & t_fecha & "', 'X', " & numcomp & ", " & para.id_usuario & ", '" & t_detalle & " ', 0, 1, 1,1)"
       cn1.Execute QUERY
       
       qr = "SELECT @@IDENTITY AS NewID"
