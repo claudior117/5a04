@@ -1205,12 +1205,12 @@ Begin VB.Form vta_listaprecios2
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "19/08/2022"
+            TextSave        =   "22/08/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:57 a.m."
+            TextSave        =   "04:42 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -1282,44 +1282,51 @@ If J = 6 Then
      If Val(t_stock.Tag) <> Val(t_stock) Then
        'genero mov stock para ajustarlo
        
-               If Val(t_stock.Tag) > Val(t_stock) Then
+               Set cl_stock = New STOCK
+               cl_stock.sacastock (Val(t_basico))
+                 
+               If cl_stock.stock_movimientos > Val(t_stock) Then
                    'salida
-                    cantajuste = Val(t_stock.Tag) - Val(t_stock)
+                    cantajuste = cl_stock.stock_movimientos - Val(t_stock)
                     ubicaajuste = "S"
                Else
                     'entrada
-                    cantajuste = Val(t_stock) - Val(t_stock.Tag)
+                    cantajuste = Val(t_stock) - cl_stock.stock_movimientos
                     ubicaajuste = "E"
                
                End If
-               
+                        
+              Set cl_stock = Nothing
        
-               Set rss1 = New ADODB.Recordset
-               q = "Select * from g0 where sucursal=0"
-               rss1.Open q, cn1, adOpenDynamic, adLockOptimistic
-               numcomp = rss1("ult_num_ajuste_stock") + 1
-               rss1("ult_num_ajuste_stock") = numcomp
-               rss1.Update
-               Set rss1 = Nothing
-      
-               QUERY = "INSERT INTO stk_02([fecha], [letra], [num_comprobante], [id_usuario], [detalle], [sucursal], [tipo_comprobante], [id_proveedor], [id_obra])"
-               QUERY = QUERY & " VALUES ('" & Format$(Now, "dd/mm/yyyy") & "', 'X', " & numcomp & ", " & para.id_usuario & ", 'Ajuste stock auto lista precios', 0, 1, 1,1)"
-               cn1.Execute QUERY
-      
-               qr = "SELECT @@IDENTITY AS NewID"
-               Set rss2 = cn1.Execute(qr)
-               numint = rss2.Fields("NewID").Value
-               idcli = 0
-        
-              QUERY = "INSERT INTO stk_03([num_int], [RENGLON], [id_producto], [descripcion], [unidad], [detalle], [cantidad], [ubicacion])"
-              QUERY = QUERY & " VALUES (" & numint & ", " & 1 & ", " & Val(t_basico) & ", '" & t_detalle & "', ' ', 'Ajuste auto lista precios', " & cantajuste & " , '" & ubicaajuste & "')"
-              cn1.Execute QUERY
-      
-             QUERY = "INSERT INTO stk_01([fecha], [id_producto], [cantidad], [ubicacion], [comprobante], [descripcion], [num_mov_int], [modulo], [id_cliente])"
-             QUERY = QUERY & " VALUES ('" & Format$(Now, "dd/mm/yyyy") & "', " & Val(t_basico) & ", " & cantajuste & ", '" & ubicaajuste & "', 'Mov.Int.Stk " & Format$(numint, "00000000") & _
-             "', 'Ajuste auto listaprecios', " & numint & ", 'S', " & idcli & ")"
-             cn1.Execute QUERY
-           
+       
+               If cantajuste <> 0 Then
+                     Set rss1 = New ADODB.Recordset
+                     q = "Select * from g0 where sucursal=0"
+                     rss1.Open q, cn1, adOpenDynamic, adLockOptimistic
+                     numcomp = rss1("ult_num_ajuste_stock") + 1
+                     rss1("ult_num_ajuste_stock") = numcomp
+                     rss1.Update
+                     Set rss1 = Nothing
+            
+                     QUERY = "INSERT INTO stk_02([fecha], [letra], [num_comprobante], [id_usuario], [detalle], [sucursal], [tipo_comprobante], [id_proveedor], [id_obra])"
+                     QUERY = QUERY & " VALUES ('" & Format$(Now, "dd/mm/yyyy") & "', 'X', " & numcomp & ", " & para.id_usuario & ", 'Ajuste stock auto lista precios', 0, 1, 1,1)"
+                     cn1.Execute QUERY
+            
+                     qr = "SELECT @@IDENTITY AS NewID"
+                     Set rss2 = cn1.Execute(qr)
+                     numint = rss2.Fields("NewID").Value
+                     idcli = 0
+              
+                    QUERY = "INSERT INTO stk_03([num_int], [RENGLON], [id_producto], [descripcion], [unidad], [detalle], [cantidad], [ubicacion])"
+                    QUERY = QUERY & " VALUES (" & numint & ", " & 1 & ", " & Val(t_basico) & ", '" & t_detalle & "', ' ', 'Ajuste auto lista precios', " & cantajuste & " , '" & ubicaajuste & "')"
+                    cn1.Execute QUERY
+            
+                   QUERY = "INSERT INTO stk_01([fecha], [id_producto], [cantidad], [ubicacion], [comprobante], [descripcion], [num_mov_int], [modulo], [id_cliente])"
+                   QUERY = QUERY & " VALUES ('" & Format$(Now, "dd/mm/yyyy") & "', " & Val(t_basico) & ", " & cantajuste & ", '" & ubicaajuste & "', 'Mov.Int.Stk " & Format$(numint, "00000000") & _
+                   "', 'Ajuste auto listaprecios', " & numint & ", 'S', " & idcli & ")"
+                   cn1.Execute QUERY
+              End If
+                 
      End If
      
      

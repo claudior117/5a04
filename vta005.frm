@@ -169,7 +169,7 @@ Begin VB.Form vta_vercomp
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   177012737
+      StartOfWeek     =   173342721
       CurrentDate     =   38754
    End
    Begin MSFlexGridLib.MSFlexGrid msf1 
@@ -434,12 +434,12 @@ Begin VB.Form vta_vercomp
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "10/08/2022"
+            TextSave        =   "22/08/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "05:20 p.m."
+            TextSave        =   "04:39 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
