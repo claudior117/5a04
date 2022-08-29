@@ -215,7 +215,7 @@ Begin VB.Form ABM_PROD
          Strikethrough   =   0   'False
       EndProperty
       Caption         =   "PRODUCTOS"
-      ColumnCount     =   8
+      ColumnCount     =   9
       BeginProperty Column00 
          DataField       =   "id_producto"
          Caption         =   "Id."
@@ -256,11 +256,11 @@ Begin VB.Form ABM_PROD
          EndProperty
       EndProperty
       BeginProperty Column03 
-         DataField       =   "envase"
-         Caption         =   "Envase"
+         DataField       =   "precio_final"
+         Caption         =   "Precio Final"
          BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
             Type            =   0
-            Format          =   "dd/MM/yyyy"
+            Format          =   ""
             HaveTrueFalseNull=   0
             FirstDayOfWeek  =   0
             FirstWeekOfYear =   0
@@ -269,6 +269,19 @@ Begin VB.Form ABM_PROD
          EndProperty
       EndProperty
       BeginProperty Column04 
+         DataField       =   "Stock"
+         Caption         =   "Stock"
+         BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
+            Type            =   0
+            Format          =   ""
+            HaveTrueFalseNull=   0
+            FirstDayOfWeek  =   0
+            FirstWeekOfYear =   0
+            LCID            =   11274
+            SubFormatType   =   0
+         EndProperty
+      EndProperty
+      BeginProperty Column05 
          DataField       =   "denominacion"
          Caption         =   "Proveedor"
          BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
@@ -281,7 +294,7 @@ Begin VB.Form ABM_PROD
             SubFormatType   =   0
          EndProperty
       EndProperty
-      BeginProperty Column05 
+      BeginProperty Column06 
          DataField       =   "talle"
          Caption         =   ""
          BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
@@ -294,7 +307,7 @@ Begin VB.Form ABM_PROD
             SubFormatType   =   0
          EndProperty
       EndProperty
-      BeginProperty Column06 
+      BeginProperty Column07 
          DataField       =   "color"
          Caption         =   ""
          BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
@@ -307,7 +320,7 @@ Begin VB.Form ABM_PROD
             SubFormatType   =   0
          EndProperty
       EndProperty
-      BeginProperty Column07 
+      BeginProperty Column08 
          DataField       =   "medida"
          Caption         =   ""
          BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
@@ -327,22 +340,32 @@ Begin VB.Form ABM_PROD
          AllowRowSizing  =   0   'False
          AllowSizing     =   0   'False
          BeginProperty Column00 
-         EndProperty
-         BeginProperty Column01 
-         EndProperty
-         BeginProperty Column02 
-         EndProperty
-         BeginProperty Column03 
-         EndProperty
-         BeginProperty Column04 
-         EndProperty
-         BeginProperty Column05 
             ColumnWidth     =   1005.165
          EndProperty
+         BeginProperty Column01 
+            ColumnWidth     =   3000.189
+         EndProperty
+         BeginProperty Column02 
+            Alignment       =   2
+            ColumnWidth     =   599.811
+         EndProperty
+         BeginProperty Column03 
+            Alignment       =   1
+            ColumnWidth     =   1005.165
+         EndProperty
+         BeginProperty Column04 
+            Alignment       =   2
+            ColumnWidth     =   705.26
+         EndProperty
+         BeginProperty Column05 
+         EndProperty
          BeginProperty Column06 
-            ColumnWidth     =   1305.071
+            ColumnWidth     =   1005.165
          EndProperty
          BeginProperty Column07 
+            ColumnWidth     =   1305.071
+         EndProperty
+         BeginProperty Column08 
          EndProperty
       EndProperty
    End
@@ -375,12 +398,12 @@ Begin VB.Form ABM_PROD
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "19/08/2022"
+            TextSave        =   "23/08/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:17 a.m."
+            TextSave        =   "09:05 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1

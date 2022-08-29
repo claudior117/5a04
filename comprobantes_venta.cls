@@ -3477,7 +3477,19 @@ Select Case Me.idtipocomp
          
     End Select
   Case Is <= 10
+    If Me.idtipocomp <> 4 Then
      Call imprimefact(copias, formato)
+    Else
+     'presupuestos
+     Select Case formato
+      Case Is = "1"
+            'varios hoja en blanco
+            Call imprimirpresup1(copias)
+      Case Is = "2"
+            'lA CALERA
+            Call imprimirpresup2(copias)
+     End Select
+    End If
   
   Case Is = 30, Is = 31, Is = 32
      Call imprimefact(copias, formato)
@@ -8566,7 +8578,7 @@ If Val(l) > 0 And Val(l) <= 6 Then
  
 For Y = 1 To Val(l)
  Printer.FontName = "Courier New"
- Printer.FontSize = "12"
+ Printer.FontSize = "11"
  dd = Mid$(Format$(Me.fecha, "dd/mm/yyyy"), 1, 2)
  mm = Mid$(Format$(Me.fecha, "dd/mm/yyyy"), 4, 2)
  aa = Mid$(Format$(Me.fecha, "dd/mm/yyyy"), 7, 4)
@@ -8599,38 +8611,59 @@ For Y = 1 To Val(l)
    End Select
       
       
- 
- Printer.Print "En la ciudad de Rojas(B), a los " & dd & " del mes de " & m & " del año " & aa
  Printer.Print
- Printer.Print "Por este pagaré a la vista y sin protesto (art. 50 D. Ley 5965/63) haré efectivo a "
-    
-    
-    
-    
-    l = l + 1
-    If l > Me.cant_lineas Then
-       pieempaque (Y)
-       Printer.NewPage
-       cabeceraempaque
+ Printer.Print
+ Printer.Print Tab(5); "En la ciudad de Rojas(B), a los " & dd & " del mes de " & m & " del año " & aa
+ Printer.Print
+ Printer.Print Tab(5); "Por este pagaré a la vista y sin protesto (art. 50 D. Ley 5965/63) haré efectivo"
+ Printer.Print Tab(5); "a " & llena_puntos(glo.nombrecli, 30) & ", o a su orden, la suma de $" & asteriscos(Me.total, 10) & " por igual"
+ Printer.Print Tab(5); "valor recibido en mercaderías varias, pagadero en calle " & llena_puntos(glo.direccioncli, 25)
+ Printer.Print Tab(5); "de la ciudad de  Rojas (B). La falta de  pago desde los  30  días de la fecha de "
+ Printer.Print Tab(5); "suscripción , producirá la mora  automática de  pleno derecho,  sin necesidad de "
+ Printer.Print Tab(5); "protesto, ni de interpelación judicial, o extrajudicial, y dará lugar al pago de "
+ Printer.Print Tab(5); "intereses compensatorios que se pactan entre las partes en un " & Me.descuento & "% mensual, y  un "
+ Printer.Print Tab(5); Me.descuento * 12 & "% anual. Los intereses punitorios por mora se pactan en un " & Me.descuento & "% mensual y " & Me.descuento * 12 & "% anual,"
+ Printer.Print Tab(5); "los cuales serán devengados desde la mora fijada 0 días despues de la suscripción"
+ Printer.Print Tab(5); "del presente hasta el día de pago completo y definitivo."
+ Printer.Print Tab(5); "Se explica verbalmente al consumidor los intereses pactdados y demás riquisitos del"
+ Printer.Print Tab(5); "artículo 6 de la ley 24.240"
+ Printer.Print Tab(5); ""
+ Printer.Print Tab(5); ""
+ Printer.Print Tab(5); ""
+ Printer.Print Tab(5); ""
+ Printer.Print Tab(5); llena_puntos("Firma", 30); Tab(55); llena_puntos("dni", 25)
+ Printer.Print Tab(5); ""
+ Printer.Print Tab(5); ""
+ Printer.Print Tab(5); llena_puntos("Aclaracion:", 30)
+ Printer.Print Tab(5); ""
+ Printer.Print Tab(5); ""
+ Printer.Print Tab(5); "DETALLE DE VENTA"
+ Printer.Print Tab(5); ""
+ Printer.Print Tab(5); "Solicito se me permita cancelar la operación comercial en " & Me.bultos_totales & " cuotas pagaderas de"
+ Printer.Print Tab(5); "forma mensual, con un monto de $ " & asteriscos(Format$(Me.valor_declarado, "######0.00"), 12) & "(valor  de la cuota) con un interés"
+ Printer.Print Tab(5); "pactado por mora del " & Me.descuento & "% mensual"
  
-    End If
+ Printer.Print Tab(5); ""
+ Printer.Print Tab(5); "Interés compensatorio mensual: " & Me.descuento & "%"
+ Printer.Print Tab(5); "Interés compensatorio anual  : " & Me.descuento * 12 & "%"
+ Printer.Print Tab(5); "Interés moratorio mensual    : " & Me.descuento & "%"
+ Printer.Print Tab(5); "Interés moratorio anual      : " & Me.descuento * 12 & "%"
+ Printer.Print Tab(5); "Costo financiero total       :$" & asteriscos(Format$((Me.valor_declarado * Me.bultos_totales) - Me.total, "#######0.00"), 15)
+ Printer.Print ""
+ Printer.Print Tab(5); "Comienzo de mora a partir de 30 días de suscripto el pagaré, se acepta la modalidad"
+ Printer.Print Tab(5); "de cuotas, intereses pactados y plan contratado."
+ Printer.Print Tab(5); ""
+ Printer.Print Tab(5); ""
+ Printer.Print Tab(5); ""
+ Printer.Print Tab(5); llena_puntos("Firma", 30);
  
+   
+ l = l + 1
  
-Printer.Print
-Printer.FontSize = 12
-Printer.FontBold = True
-Printer.Print "Observaciones: ";
-Printer.FontBold = False
-Printer.FontSize = 10
-Printer.Print Me.observaciones
-
-
 For ó = l To Me.cant_lineas
   Printer.Print
 Next ó
 
-
-Call pieempaque(Y)
 
 If Y < c Then
       Printer.NewPage

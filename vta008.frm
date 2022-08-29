@@ -274,11 +274,11 @@ If t_numint <> "" Then
   'q = "select * from vta_02, vta_01, vta_06, g1 where vta_02.[id_cliente] = vta_01.[id_cliente] and vta_02.[id_tipocomp] = vta_06.[id_tipocomp] and vta_02.[num_int] = " & Val(t_numint) & " and vta_02.[sucursal_ingreso] = vta_06.[sucursal] and vta_02.[id_usuario] = g1.[id_usuario]"
   
 q = "select num_int, abreviatura, fecha, sucursal_INGRESO, vta_02.id_cliente, cliente02, " _
-& "direccion02, localidad02, cuit02, vta_02.id_tipocomp, SUBTOTAL, DESCUENTO, " _
-& "vta_02.iva, impuestos, perc_ib, total, vta_02.observaciones, vta_02.id_vendedor, contado, vta_02.moneda, " _
+& "direccion02, localidad02, cuit02, vta_02.id_tipocomp, SUBTOTAL, DESCUENTO, transporte, chofer02, dominio02, " _
+& "dominio_acoplado02, vta_02.iva, impuestos, perc_ib, total, vta_02.observaciones, vta_02.id_vendedor, contado, vta_02.moneda, " _
 & "total_otra_moneda, cae, cae_vence, estado, ctacte, vta_02.stock, grabado, id_cuenta, fecha_vto, " _
 & "fecha_pago, recibo_pago, cotizacion_dolar, vta_02.id_usuario,  vta_02.iva, estado_pago, " _
-& " vta_06.id_tipocomp, vta_06.sucursal, letra, vta_02.sucursal, num_comp, cp, te, email, inscripto_operador_granos, usuario, numint_asociado " _
+& " vta_06.id_tipocomp, vta_06.sucursal, letra, vta_02.sucursal, num_comp, cp, te, email, inscripto_operador_granos, usuario, numint_asociado, valor_declarado, total_bultos " _
 & " from vta_02, vta_06, vta_01, g1 where vta_02.[num_int] = " & Val(t_numint) & " and  vta_02.[id_tipocomp] = vta_06.[id_tipocomp]  and vta_02.[sucursal_ingreso] = vta_06.[sucursal]  and vta_02.[id_cliente] = vta_01.[id_cliente]" _
 & " and vta_02.[id_usuario] =  g1.[id_usuario]"
 
@@ -301,8 +301,8 @@ q = "select num_int, abreviatura, fecha, sucursal_INGRESO, vta_02.id_cliente, cl
         Call remitos
       Case Is = 50
         Call PAGOS
-      Case Is = 4
-        Call FLETES
+      Case Is = 401
+        Call pagare
       
       Case Else
         Call COMPROBANTES
@@ -374,6 +374,7 @@ q = "select num_int, abreviatura, fecha, sucursal_INGRESO, vta_02.id_cliente, cl
      End If
      List1.AddItem ""
      List1.AddItem ""
+     
      Set rs2 = New ADODB.Recordset
      q = "select * from vta_09 where [num_int] = " & Val(t_numint)
      rs2.Open q, cn1
@@ -390,6 +391,9 @@ q = "select num_int, abreviatura, fecha, sucursal_INGRESO, vta_02.id_cliente, cl
         rs2.MoveNext
       Wend
      Set rs2 = Nothing
+     
+     
+    
      
      'percvepciones
      List1.AddItem ""
@@ -544,6 +548,10 @@ q = "select num_int, abreviatura, fecha, sucursal_INGRESO, vta_02.id_cliente, cl
  Set rs = Nothing
 End If
 End Sub
+
+
+      
+
 
 Sub planepago(ni)
           List1.AddItem "PLAN DE PAGO"
@@ -783,6 +791,26 @@ Sub PAGOS()
  
 
 
+End Sub
+
+Sub pagare()
+List1.AddItem ""
+ List1.AddItem ""
+ List1.AddItem "DATOS DEL PLAN DE PAGO DEL PAGARÉ"
+ List1.AddItem ""
+ List1.AddItem ""
+ List1.AddItem "Neto sin financiacion        : " & rs("total")
+
+ List1.AddItem "Cantidad de cuotas           : " & rs("total_bultos")
+ List1.AddItem "Importe por cuota            : " & rs("valor_declarado")
+ List1.AddItem "Interés compensatorio mensual: " & rs("descuento") & "%"
+ List1.AddItem "Interés compensatorio anual  : " & rs("descuento") * 12 & "%"
+ List1.AddItem "Interés moratorio mensual    : " & rs("descuento") & "%"
+ List1.AddItem "Interés moratorio anual      : " & rs("descuento") * 12 & "%"
+ List1.AddItem "Costo financiero total       :$" & Format$((rs("valor_declarado") * rs("total_bultos")) - rs("total"), "#######0.00")
+ List1.AddItem ""
+
+ 
 End Sub
 
 Sub FLETES()
