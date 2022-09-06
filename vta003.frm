@@ -254,12 +254,12 @@ Begin VB.Form vta_facturacion1
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "02/08/2022"
+            TextSave        =   "04/09/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "04:55 p.m."
+            TextSave        =   "07:37 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -332,6 +332,9 @@ End Sub
 
 
 Private Sub t_basico_GotFocus()
+Call nivel_acceso(1)
+
+
 Me.StatusBar1.Panels.item(2) = "[ENTER] Acepta - [ESC] Sale - [F6] Dto1 - [F7] Dto2 - [F8]Lista Precios  "
 
 t_detalle.Enabled = False
@@ -401,16 +404,20 @@ If IsNumeric(t_basico) Then
     t_detalle.Enabled = True
     c_tasa.ListIndex = buscaindice2(c_tasa, para.tasageneral)
     t_detalle.SetFocus
-    
-
- 
- Else
+    t_pu.Locked = False
+  Else
     'c_tasa.Locked = True
     If Len(t_basico) <= 5 Then
        Call busca("I") 'busca por id. producto
     Else
        Call busca("B") 'busca por cod. barra
     End If
+    
+     If para.id_grupo_modulo_actual >= 7 Then
+         t_pu.Locked = False
+     Else
+         t_pu.Locked = True
+     End If
  End If
 Else
    

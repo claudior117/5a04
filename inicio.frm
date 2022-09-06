@@ -455,12 +455,12 @@ Begin VB.Form inicio
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "04/08/2022"
+            TextSave        =   "04/09/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "01:12 p.m."
+            TextSave        =   "07:49 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -922,6 +922,7 @@ Call barraesag(Me)
 Call HABILITACION
 Label7 = para.impresora_actual
 Text5 = para.punto_venta_usuario
+Label8.Caption = para.usuario
 End Sub
 
 Private Sub Form_Load()
@@ -1042,7 +1043,10 @@ End If
 End Sub
 
 Private Sub M_definir_Click()
-exportar.Show
+Call nivel_acceso(1)
+If para.id_grupo_modulo_actual > 8 Then
+   exportar.Show
+End If
 End Sub
 
 
@@ -1104,7 +1108,10 @@ gen_exporta_retiva.Show
 End Sub
 
 Private Sub M_importarexma_Click()
-gen_migrardatos.Show
+Call nivel_acceso(1)
+If para.id_grupo_modulo_actual > 8 Then
+   gen_migrardatos.Show
+End If
 End Sub
 
 Private Sub M_impuestos_Click()
@@ -1169,7 +1176,10 @@ End If
 End Sub
 
 Private Sub M_parametrosusuarios_Click()
-gen_parametrosusuarios.Show
+Call nivel_acceso(1)
+If para.id_grupo_modulo_actual > 8 Then
+ gen_parametrosusuarios.Show
+End If
 End Sub
 
 Private Sub m_programa_Click()

@@ -1045,7 +1045,7 @@ End Sub
 
 Private Sub msf1_DblClick()
 
-If para.id_grupo_modulo_actual > 6 Then
+If para.id_grupo_modulo_actual > 7 Then
      Call muestra2
   End If
 End Sub
@@ -1064,6 +1064,7 @@ If KeyCode = vbKeySpace Then
 End If
 
 If KeyCode = vbKeyF1 Then
+ If para.id_grupo_modulo_actual > 7 Then
   r = msf1.Row
   p = Val(msf1.TextMatrix(r, 0))
   If p > 1 Then
@@ -1082,6 +1083,7 @@ If KeyCode = vbKeyF1 Then
       Set rs = Nothing
     End If
     
+   End If
   End If
 End If
 
@@ -1114,7 +1116,9 @@ End If
 
 
 If KeyCode = vbKeyF5 Then
-  vta_listaprecios3.Show
+  If para.id_grupo_modulo_actual > 7 Then
+    vta_listaprecios3.Show
+  End If
 End If
 
 If KeyCode = vbKeyF4 Then
@@ -1305,7 +1309,7 @@ End If
 End Sub
 Private Sub msf1_KeyPress(KeyAscii As Integer)
 If KeyAscii = 13 Then
-  If para.id_grupo_modulo_actual > 6 Then
+  If para.id_grupo_modulo_actual > 7 Then
      Call muestra2
   End If
 Else

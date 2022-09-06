@@ -8626,7 +8626,7 @@ For Y = 1 To Val(l)
  Printer.Print Tab(5); "los cuales serán devengados desde la mora fijada 0 días despues de la suscripción"
  Printer.Print Tab(5); "del presente hasta el día de pago completo y definitivo."
  Printer.Print Tab(5); "Se explica verbalmente al consumidor los intereses pactdados y demás riquisitos del"
- Printer.Print Tab(5); "artículo 6 de la ley 24.240"
+ Printer.Print Tab(5); "artículo 36 de la ley 24.240"
  Printer.Print Tab(5); ""
  Printer.Print Tab(5); ""
  Printer.Print Tab(5); ""

@@ -672,6 +672,15 @@ Begin VB.Form vta_facturacion
       TabIndex        =   27
       Top             =   0
       Width           =   9375
+      Begin VB.CheckBox ch_plan 
+         BackColor       =   &H00E0E0E0&
+         Caption         =   "Habilita Plan Cuotas"
+         Height          =   375
+         Left            =   4920
+         TabIndex        =   92
+         Top             =   240
+         Width           =   1215
+      End
       Begin VB.ComboBox c_transferencia 
          Height          =   315
          ItemData        =   "vta003A.frx":0143
@@ -827,10 +836,10 @@ Begin VB.Form vta_facturacion
          Caption         =   "Punto Venta:"
          ForeColor       =   &H00FFFFFF&
          Height          =   255
-         Left            =   5880
+         Left            =   6240
          TabIndex        =   66
          Top             =   240
-         Width           =   1455
+         Width           =   1095
       End
       Begin VB.Label Label19 
          Alignment       =   1  'Right Justify
@@ -960,12 +969,12 @@ Begin VB.Form vta_facturacion
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "28/08/2022"
+            TextSave        =   "06/09/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "07:23 p.m."
+            TextSave        =   "03:55 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -2571,7 +2580,7 @@ Sub inicia()
      
    Else
      t_alicuotaib = "0.00"
-     t_percib = "0.00"
+     T_PERCIB = "0.00"
      'gcuit = "0"
    End If
    Call armagrid
@@ -2614,6 +2623,11 @@ Private Sub c_vend_LostFocus()
 If c_vend.ListIndex < 0 Then
   c_vend.ListIndex = 0
 End If
+End Sub
+
+Private Sub ch_plan_Click()
+
+Call habilitaplandepago
 End Sub
 
 Private Sub Check2_LostFocus()
@@ -2817,7 +2831,24 @@ Sub iniciacli()
     
  End If
  
- If c_tipocomp.ItemData(c_tipocomp.ListIndex) <> 36 Then
+ Call habilitaplandepago
+ 
+ 
+ 
+ 
+ 
+ If c_tipocomp.ItemData(c_tipocomp.ListIndex) >= 30 And c_tipocomp.ItemData(c_tipocomp.ListIndex) <= 32 Then
+    c_transferencia.Visible = True
+    Label15.Visible = True
+ Else
+    c_transferencia.Visible = False
+    Label15.Visible = False
+End If
+ 
+ 
+End Sub
+Sub habilitaplandepago()
+ If ch_plan.Value = 0 Then
    Frame14.Visible = False
    Frame11.Visible = True
  Else
@@ -2847,20 +2878,9 @@ Sub iniciacli()
   Set rs0 = Nothing
   
   t_fechacuota1 = Format$(Now, "dd/mm/yyyy")
- 
- End If
- 
- 
- 
- If c_tipocomp.ItemData(c_tipocomp.ListIndex) >= 30 And c_tipocomp.ItemData(c_tipocomp.ListIndex) <= 32 Then
-    c_transferencia.Visible = True
-    Label15.Visible = True
- Else
-    c_transferencia.Visible = False
-    Label15.Visible = False
+
 End If
- 
- 
+
 End Sub
 Sub actualizaremitos()
 For J = 1 To msf1.Rows - 1
@@ -3301,7 +3321,13 @@ Sub graba()
   cl_compvta.letra = t_letra
   cl_compvta.numcomp = Val(t_numcomp)
   abreviatura = cl_compvta.abreviatura
-  ubicacionctacte = cl_compvta.ctacte
+  
+  If ch_plan.Value = 0 Then
+      ubicacionctacte = cl_compvta.ctacte
+  Else
+      ubicacionctacte = "N"
+  End If
+     
      If Option1 = True Then
          ep = "N"
          cp = "0000-00000000"
@@ -3392,7 +3418,7 @@ Sub graba()
 
 QUERY = QUERY & " VALUES (" & numint & ", " & Val(t_sucursal) & ", " & Val(t_numcomp) & ", '" & t_letra & "', " & c_tipocomp.ItemData(c_tipocomp.ListIndex) & _
 ", " & idcli & ", '" & t_fecha & "', " & para.id_usuario & ", " & Val(t_subtotal) & ", " & Val(t_nograbado) & ", " & Val(t_iva) & ", " & Val(T_TOTAL) & _
-", 'A', " & cuentaact & ", '" & cl_compvta.STOCK & "', '" & cl_compvta.ctacte & "', '" & cl_compvta.grabado & "', '" & ep & "', '" & cp & "', '" & t_observaciones & _
+", 'A', " & cuentaact & ", '" & cl_compvta.STOCK & "', '" & ubicacionctacte & "', '" & cl_compvta.grabado & "', '" & ep & "', '" & cp & "', '" & t_observaciones & _
 " ', " & Val(t_cotizacion) & ", " & T2 & ", '" & moneda & "', " & c_vend.ItemData(c_vend.ListIndex) & ", '" & cl_compvta.venta & "', '" & contado & "', " & Val(t_perc)
 
 QUERY2 = ", 0, " & Val(t_perciva) & ", " & codact & ", " & Val(t_alicuotaib) & ", " & Val(t_alicuotaperciva) & ", " & Check1 & ", '" & t_fechavto & "', 0, 0, ' ', ' ', ' ', 0, " & Val(c_sucursal) & _
@@ -3674,15 +3700,10 @@ Next i
       
       
       
-      If c_tipocomp.ItemData(c_tipocomp.ListIndex) = 36 Then
+      If ch_plan.Value = 1 Then
       
-        J = MsgBox("Confirma emitir PLAN de CUOTAS", 4)
-        If J = 6 Then
             'arma plan de pago
             Call generaplancuotas(numint)
-            
-            
-        End If
         
       
       End If
@@ -3764,7 +3785,7 @@ For i = 0 To Val(t_cantcuotas) - 1
      
      
   fecha = DateValue(t_fechacuota1) + (i * 30)
-  observaciones = "NV " & Format$(t_sucursal, "0000") & "-" & Format$(t_numcomp, "00000000") & "/" & Format$(i, "00")
+  observaciones = Format$(c_tipocomp.ItemData(c_tipocomp.ListIndex), "000-") & Format$(t_sucursal, "0000") & "-" & Format$(t_numcomp, "00000000") & "/" & Format$(i, "00")
   
   
       If Check3 Then
@@ -3849,7 +3870,7 @@ Sub generapagare(ni21)
   tiporespiva = vta_clientes.c_iva.ItemData(vta_clientes.c_iva.ListIndex)
   idcli = c_prov.ItemData(c_prov.ListIndex)
   fecha = DateValue(t_fecha)
-  observaciones = "Pagare NVC " & Format$(t_sucursal, "0000") & "-" & Format$(t_numcomp, "00000000")
+  observaciones = "Pagare " & Format$(c_tipocomp.ItemData(c_tipocomp.ListIndex), "000-") & Format$(t_sucursal, "0000") & "-" & Format$(t_numcomp, "00000000")
   
       If Check3 Then
         T2 = 0
@@ -3885,7 +3906,27 @@ cn1.Execute QUERY & QUERY2
 
 cn1.CommitTrans
 
+
+
+
+
+
+
 Set cl_cli = Nothing
+
+
+
+J = MsgBox("Los comprobantes con Plan de Cuotas generan automáticamente un Pagaré respaldatorio del Plan de Pago, ¿desea imprimirlo?", 4)
+If J = 6 Then
+  'imprime pagare
+  
+  Set cl_compvta = New comprobantes_venta
+  cl_compvta.cargar2 (nint)
+  If cl_compvta.numint > 0 Then
+     cl_compvta.imprimir
+  End If
+  Set cl_compvta = Nothing
+End If
 
 
 End Sub
@@ -4115,11 +4156,25 @@ Call sacatotales
 End Sub
 
 Private Sub t_porcdescuento_LostFocus()
+  If Val(t_porcdescuento) > 0 Then
+    Set rs = New ADODB.Recordset
+    q = "select * from g0 where [sucursal] = 0"
+    rs.Open q, cn1
+    d1 = rs("descuento1")
+    Set rs = Nothing
+      
+    If para.id_grupo_modulo_actual <= 7 Then
+       If Val(t_porcdescuento) > d1 Then
+           MsgBox ("El máximo descuento permitido es " & d1 & "%")
+           t_porcdescuento = 0
+       End If
+    End If
+  End If
   Call CALCULATOTALES
   Call sacatotales
   Call sacaperc
   Call sacatotales
-  End Sub
+End Sub
 
 Private Sub t_subtotal_LostFocus()
 Call sacatotales

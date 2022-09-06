@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form inicio_compras 
    BackColor       =   &H00E0E0E0&
    Caption         =   "MODULO  COMPRAS"
@@ -416,12 +416,12 @@ Begin VB.Form inicio_compras
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "02/01/2018"
+            TextSave        =   "04/09/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "01:06 p.m."
+            TextSave        =   "07:47 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -778,6 +778,7 @@ End Sub
 Private Sub Form_Activate()
 Call barraesag(Me)
 Label7 = para.impresora_actual
+Label8.Caption = para.usuario
 End Sub
 
 Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)

@@ -1205,12 +1205,12 @@ Begin VB.Form vta_listaprecios2
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "22/08/2022"
+            TextSave        =   "04/09/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "04:42 p.m."
+            TextSave        =   "07:30 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -1242,7 +1242,10 @@ t_costo = Format$(n2, "#####0.000")
 End Sub
 
 Private Sub Command2_Click()
-Call graba
+Call nivel_acceso(1)
+If para.id_grupo_modulo_actual >= 7 Then
+   Call graba
+End If
 End Sub
 Sub graba()
 J = MsgBox("Confirma Valores para Grabar", 4)

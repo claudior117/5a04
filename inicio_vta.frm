@@ -570,12 +570,12 @@ Begin VB.Form inicio_vta
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "12/06/2022"
+            TextSave        =   "06/09/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:49 a.m."
+            TextSave        =   "03:46 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -1146,6 +1146,7 @@ End Sub
 
 Private Sub Form_Activate()
 Call barraesag(Me)
+Label8.Caption = para.usuario
 If para.fiscal = 0 Then
    Frame3.Visible = False
 Else
@@ -1536,7 +1537,7 @@ vta_movprodcli.Show
 End Sub
 
 Private Sub m_otros_Click()
-If para.id_grupo_modulo_actual >= 4 Then
+If para.id_grupo_modulo_actual >= 7 Then
       vta_COMPVARIOS.Show
     Else
       Call sinpermisos
@@ -1855,7 +1856,7 @@ Select Case Button.Key
     End If
 
   Case Is = "B4"
-     If para.id_grupo_modulo_actual >= 4 Then
+     If para.id_grupo_modulo_actual >= 7 Then
       vta_COMPVARIOS.Show
     Else
       Call sinpermisos
