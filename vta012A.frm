@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form vta_config_comp1 
    BackColor       =   &H00E0E0E0&
    BorderStyle     =   1  'Fixed Single
@@ -1081,12 +1081,12 @@ Begin VB.Form vta_config_comp1
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "27/02/2015"
+            TextSave        =   "16/09/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "09:43"
+            TextSave        =   "09:30 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -1115,7 +1115,7 @@ If J = 6 Then
    
    Case "M"
       cn1.BeginTrans
-      If para.numeracion_comun_Fact_nc = "S" And Val(t_id) <= 10 Then
+      If para.numeracion_comun_Fact_nc = "S" And Val(t_id) <= 3 Then
         For i = 1 To 10
          QUERY = "update vta_06 set  [ult_num_A]= " & Val(t_ultimoA) & " , [ult_num_b]= " & Val(t_ultimoB) & " , [ult_num_c]= " & Val(t_ultimoc) & " , [ult_num_e]= " & Val(t_ultimoE)
          QUERY = QUERY & " where [sucursal] = " & Val(t_sucursal) & " and [id_tipocomp]= " & i

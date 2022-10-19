@@ -2586,7 +2586,9 @@ If h = 6 Then
   cn1.CommitTrans
     
    
-  MsgBox ("Proceso terminado. Verificar que el campo numint en stk02 esté como autonumerico")
+  MsgBox ("Proceso terminado. Verificar que el campo numint en stk02 esté como autonumerico. Agregar xml.txt en crapeta c:\5a04\log de cada terminal de factura electronica")
+   
+  MsgBox ("Agregar comprobantes de venta 36 (Nota de Venta en cuotas), 251 (Cuotas), y 401(Pagare)")
    
  Unload espere
   
@@ -2620,6 +2622,9 @@ If h = 6 Then
      cn1.Execute q
    
    
+    q = "update vta_06 set  [cod_afip_c]=0"
+    
+    
     q = "update g0 set  [actualizacion]=221, [id_tipo_iva] = 1"
     q = q & " where [sucursal]=0 "
   

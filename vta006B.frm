@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomctl.ocx"
 Begin VB.Form vta_listaprecios3 
    BackColor       =   &H00C0C0C0&
    BorderStyle     =   1  'Fixed Single
@@ -771,12 +771,12 @@ Begin VB.Form vta_listaprecios3
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "03/01/2006"
+            TextSave        =   "19/10/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "01:35 a.m."
+            TextSave        =   "10:09 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -885,7 +885,10 @@ If h = 6 Then
         Filas = vta_listaprecios_2.msf1.Rows
     Case Is = 3
         Filas = vta_listaprecios_3.msf1.Rows
-    
+    Case Is = 4
+        Filas = vta_listaprecios_4.msf1.Rows
+    Case Is = 5
+        Filas = vta_listaprecios_5.msf1.Rows
     Case Else
         Filas = vta_listaprecios.msf1.Rows
     End Select
@@ -897,6 +900,10 @@ If h = 6 Then
         idprod = Val(vta_listaprecios_2.msf1.TextMatrix(J, 0))
        Case Is = 3
         idprod = Val(vta_listaprecios_3.msf1.TextMatrix(J, 0))
+       Case Is = 4
+        idprod = Val(vta_listaprecios_4.msf1.TextMatrix(J, 0))
+       Case Is = 5
+        idprod = Val(vta_listaprecios_5.msf1.TextMatrix(J, 0))
        
        Case Else
         idprod = Val(vta_listaprecios.msf1.TextMatrix(J, 0))
@@ -904,7 +911,7 @@ If h = 6 Then
     
     
       If idprod > 1 Then
-         Set rs = New adodb.Recordset
+         Set rs = New ADODB.Recordset
          q = "select * from a2, g4 where [id_producto] = " & idprod & " and [cod_tasaiva] = [id_tasaiva]"
          rs.MaxRecords = 1
          rs.Open q, cn1, adOpenStatic, adLockOptimistic
@@ -1194,7 +1201,7 @@ If h = 6 Then
     
     
       If idprod > 1 Then
-         Set rs = New adodb.Recordset
+         Set rs = New ADODB.Recordset
          q = "select * from a2, g4 where [id_producto] = " & idprod & " and [cod_tasaiva] = [id_tasaiva]"
          rs.MaxRecords = 1
          rs.Open q, cn1, adOpenStatic, adLockOptimistic

@@ -1092,7 +1092,7 @@ Public Sub ACTUALIZA_NUMERADOR()
        Set rs = Nothing
    End If
    
-   If para.numeracion_comun_Fact_nc = "S" And Me.idtipocomp <= 10 Then
+   If para.numeracion_comun_Fact_nc = "S" And Me.idtipocomp <= 3 Then
      Set rs = New ADODB.Recordset
      q = "select * from vta_06 where [sucursal] = " & Me.sucursal & " and  [id_tipocomp] <= 10"
      rs.Open q, cn1, adOpenStatic, adLockOptimistic

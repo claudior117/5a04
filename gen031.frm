@@ -17,6 +17,14 @@ Begin VB.Form gen_cierremes
    ScaleHeight     =   7170
    ScaleWidth      =   12495
    StartUpPosition =   1  'CenterOwner
+   Begin VB.CommandButton Command2 
+      Caption         =   "Command2"
+      Height          =   495
+      Left            =   6360
+      TabIndex        =   18
+      Top             =   6240
+      Width           =   1455
+   End
    Begin VB.TextBox t_funcion 
       Height          =   285
       Left            =   480
@@ -32,7 +40,7 @@ Begin VB.Form gen_cierremes
       Left            =   3360
       TabIndex        =   16
       Top             =   6240
-      Width           =   4335
+      Width           =   1815
    End
    Begin VB.Frame Frame3 
       Caption         =   "Verificaciones"
@@ -253,12 +261,12 @@ Begin VB.Form gen_cierremes
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "17/11/2019"
+            TextSave        =   "04/10/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "11:47"
+            TextSave        =   "11:54 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -562,6 +570,13 @@ If J = 6 Then
     End If
 End If
 
+End Sub
+
+Private Sub Command2_Click()
+ Set rs21 = New ADODB.Recordset
+ q = "select cbu, alias from g0 where [sucursal] = 0"
+ rs21.Open q, cn1
+ MsgBox (Len(rs21("cbu")))
 End Sub
 
 Private Sub Form_Load()

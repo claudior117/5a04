@@ -462,6 +462,14 @@ Select Case Me.idtipocomp
      gen_logo.Picture2.Picture = LoadPicture(App.Path & "\tools\firma1.jpg")
      Call IMPRIMERETG(copias)
      Unload gen_logo
+  
+  Case Is = 97
+     Load gen_logo
+     gen_logo.Picture2.Picture = LoadPicture(App.Path & "\tools\firma1.jpg")
+     Call IMPRIMERETiva(copias)
+     Unload gen_logo
+  
+  
   Case Is = 65
      Load gen_logo
      gen_logo.Picture2.Picture = LoadPicture(App.Path & "\tools\firma1.jpg")
@@ -1156,6 +1164,136 @@ End If
 Set rs = Nothing
 
 End Sub
+
+
+
+Sub IMPRIMERETiva(ByVal c As Integer)
+'imprime retencion de iva
+'c es copias
+
+Dim gf1 As String
+
+Set rs = New ADODB.Recordset
+q = "select * from a5, a1, g1 where [num_int] = " & Me.numint & " and a5.[id_proveedor] = a1.[id_proveedor] and a5.[id_usuario] = g1.[id_usuario]"
+rs.MaxRecords = 1
+rs.Open q, cn1
+If Not rs.BOF And Not rs.EOF Then
+        descconcepto = "Sin detallar"
+     
+     gf1 = "Courier New"
+     ip = Space$(9)
+     ret = Space$(9)
+     c2 = InputBox("Cantidad de Copias", "Imprimir Retencion Iva", c)
+     If Val(c2) > 0 Then
+      For h = 1 To Val(c2)
+       Call definefont(gf1, "S", 12)
+       Printer.Print
+       Printer.Print "Comprobante Retencion IVA - R.G.(AFIP) 1575"
+       Call definefont(gf1, "N", 12)
+       Printer.Print "Regimen de Retencion del IMPUESTO AL VALOR AGREGADO"
+       Call definefont(gf1, "S", 12)
+       Printer.Print Spc(50); "Nro.: ";
+       Call definefont(gf1, "N", 12)
+       Printer.Print Spc(3); Format$(rs("SUCURSAL"), "0000") & "-" & Format$(rs("num_comprobante"), "00000000")
+       Call definefont(gf1, "S", 12)
+       Printer.Print Spc(50); "Fecha:";
+       Call definefont(gf1, "N", 12)
+       Printer.Print Spc(3); rs("fecha")
+       Printer.Print
+       Call definefont(gf1, "N", 12)
+       Printer.Print "__________________________________________________________________________"
+       Call definefont(gf1, "S", 12)
+       Printer.Print "Agente de Retencion:"; glo.nombrecli
+       Printer.Print "Direccion..........:"; glo.direccioncli; "   (2705)"
+       Printer.Print "C.u.i.t............:"; glo.CUIT
+       Call definefont(gf1, "N", 12)
+       Printer.Print "__________________________________________________________________________"
+       Printer.Print
+       Printer.Print
+       Printer.Print
+       Call definefont(gf1, "N", 12)
+       Printer.Print "__________________________________________________________________________"
+ 
+       Call definefont(gf1, "S", 12)
+       Printer.Print "Contribuyente: ";
+       Call definefont(gf1, "N", 12)
+       Printer.Print rs("denominacion"); "  ("; Format$(rs("a5.id_proveedor"), "00000"); ")    "
+       Call definefont(gf1, "S", 12)
+       Printer.Print "Direccion....: ";
+       Call definefont(gf1, "N", 12)
+       Printer.Print rs("direccion") & "  -" & rs("localidad") & "-   (" & rs("cp") & ")"
+       Call definefont(gf1, "S", 12)
+       Printer.Print "CUIT.........: ";
+       Call definefont(gf1, "N", 12)
+       Printer.Print rs("cuit")
+       Printer.Print "__________________________________________________________________________"
+       Printer.Print
+       Printer.Print
+       Call definefont(gf1, "N", 10)
+       Printer.Print "Regimen: 966"
+       Printer.Print
+       RSet ip = Format$(rs("monto_suj_ret"), "####0.00")
+       Printer.Print "Monto Suj.a Reten. : " & ip
+       RSet ip = Format$(rs("alicuota_ret"), "####0.00")
+       Printer.Print "Alicuota           : " & ip
+       RSet ip = Format$(rs("total"), "####0.00")
+       Printer.Print "RETENCION          : " & ip
+       Printer.Print
+       Printer.Print
+       Call definefont(gf1, "S", 12)
+       Printer.Print "Son pesos: ";
+       Call definefont(gf1, "N", 12)
+       Printer.Print convierte(rs("total"))
+       Printer.Print
+       Printer.Print "Ingresa en DDJJ periodo: "; rs("condiciones")
+       Printer.Print
+       Printer.Print
+       Call definefont(gf1, "N", 8)
+       Printer.Print "Orden de Pago"
+       sop = Val(Mid$(Me.num_op, 1, 4))
+       nop = Val(Mid$(Me.num_op, 6, 8))
+       Set rs2 = New ADODB.Recordset
+       q = "select [fecha], [total] from a5 where [id_tipocomp] = 50 and [sucursal] = " & sop & " and [num_comprobante] = " & nop
+       rs2.Open q, cn1
+       If Not rs2.BOF And Not rs2.EOF Then
+         Printer.Print "------------------------------------------------"
+         Printer.Print "Fecha         Numero                  Importe      "
+         Printer.Print "------------------------------------------------"
+         Printer.Print Me.fecha & "  " & Me.observaciones & "        " & rs2("total")
+       Else
+         Printer.Print "------------------------------------------------"
+         Printer.Print "Fecha         Numero                  Importe      "
+         Printer.Print "------------------------------------------------"
+         Printer.Print Me.fecha & "  " & Me.observaciones
+       End If
+       Set rs2 = Nothing
+       Printer.PaintPicture gen_logo.Picture2.Picture, 7100, 10100
+       
+         Call definefont(gf1, "N", 12)
+       Printer.Print
+       Printer.Print
+       Printer.Print
+       Printer.Print
+       
+      
+       Call definefont(gf1, "N", 9)
+'FIXIT: El Asistente para actualización no actualiza el objeto Printer ni la colección Printers a Visual Basic .NET.     FixIT90210ae-R5481-H1984
+       
+        
+'FIXIT: El Asistente para actualización no actualiza el objeto Printer ni la colección Printers a Visual Basic .NET.     FixIT90210ae-R5481-H1984
+       Printer.NewPage
+     Next h
+'FIXIT: El Asistente para actualización no actualiza el objeto Printer ni la colección Printers a Visual Basic .NET.     FixIT90210ae-R5481-H1984
+     Printer.EndDoc
+  End If
+End If
+Set rs = Nothing
+
+End Sub
+
+
+
+
 Public Property Let observaciones(ByVal vData As String)
 'se usa al asignar un valor a la propiedad, en la parte izquierda de una asignación.
 'Syntax: X.observaciones = 5
