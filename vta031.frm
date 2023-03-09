@@ -195,7 +195,7 @@ Sub armagrid()
 'armar grilla
 msf1.clear
 msf1.Rows = 1
-msf1.Cols = 8
+msf1.Cols = 9
 msf1.ColWidth(0) = 500
 msf1.ColWidth(1) = 800
 msf1.ColWidth(2) = 4000
@@ -204,6 +204,8 @@ msf1.ColWidth(4) = 2000
 msf1.ColWidth(5) = 1200
 msf1.ColWidth(6) = 3000
 msf1.ColWidth(7) = 2500
+msf1.ColWidth(8) = 1500
+
 
 msf1.TextMatrix(0, 0) = " "
 msf1.TextMatrix(0, 1) = "Estado "
@@ -213,6 +215,8 @@ msf1.TextMatrix(0, 4) = "Comprobante"
 msf1.TextMatrix(0, 5) = "Cuit"
 msf1.TextMatrix(0, 6) = "Cliente"
 msf1.TextMatrix(0, 7) = "Observaciones"
+msf1.TextMatrix(0, 8) = "Precep"
+
 
 
 End Sub
@@ -260,17 +264,18 @@ If FileColl.Count > 0 Then
          Detalle = ""
          a0 = t_camino & Mid$(CurrentFile.Name, 1, 29) & "CABECERA.TXT"
          a1 = t_camino & Mid$(CurrentFile.Name, 1, 29) & "DETALLE.TXT"
-         'a2 = t_camino & Mid$(CurrentFile.Name, 1, 29) & "VENTAS.TXT"
+         a2 = t_camino & Mid$(CurrentFile.Name, 1, 29) & "OTRAS_PERCEP.TXT"
          
          If Not FileSystem.FileExists(a1) Then
            estado = "ERR"
            Detalle = Detalle & " No existe Archivo DETALLE. "
          End If
          
-         'If Not FileSystem.FileExists(a2) Then
-         '  estado = "ERR"
-         '  Detalle = Detalle & " No existe Archivo VENTAS. "
-         'End If
+         If Not FileSystem.FileExists(a2) Then
+            percep = "N"
+         Else
+            percep = "S"
+         End If
          
          'COMPRUEBO SI EL COMPROBANTE NO EXISTE EN EL SISTEMA
         Open a0 For Input As #1
@@ -374,7 +379,7 @@ If FileColl.Count > 0 Then
         Set rs = Nothing
         
         cliente = Format$(Codc, "00000") & " " & cli
-       .AddItem " " & Chr$(9) & estado & Chr$(9) & CurrentFile.Name & Chr$(9) & F & Chr$(9) & comp & Chr$(9) & CUIT & Chr$(9) & cliente & Chr$(9) & Detalle       'add item
+       msf1.AddItem " " & Chr$(9) & estado & Chr$(9) & CurrentFile.Name & Chr$(9) & F & Chr$(9) & comp & Chr$(9) & CUIT & Chr$(9) & cliente & Chr$(9) & Detalle & Chr$(9) & percep       'add item
       End If
   Next
  
@@ -438,8 +443,8 @@ Sub graba(ByVal r As Integer)
 
   a0 = t_camino & msf1.TextMatrix(r, 2)
   a1 = t_camino & Mid$(msf1.TextMatrix(r, 2), 1, 29) & "DETALLE.TXT"
- ' a2 = t_camino & Mid$(msf1.TextMatrix(r, 2), 1, 29) & "VENTAS.TXT"
-  
+  a2 = t_camino & Mid$(msf1.TextMatrix(r, 2), 1, 29) & "OTRAS_PERCP.TXT"
+  tp = msf1.TextMatrix(r, 8)
   
   Open a0 For Input As #1
   Line Input #1, l
@@ -676,6 +681,27 @@ QUERY = QUERY & " VALUES (" & numint & ", " & Val(suc) & ", " & Val(NUM) & ", '"
      QUERY = QUERY & " VALUES (" & numint & ", " & r & ", '" & Left$(Mid$(texto, 51, Len(texto) - 50), 50) & "', 1)"
      cn1.Execute QUERY
    End If
+  
+  
+  
+  If tp = "XXX" Then
+    'agrego percepciones venta
+       Open a2 For Input As #2
+       secuencia = 1
+       While Not EOF(2)
+            Line Input #2, w
+                   
+                   
+            QUERY = "INSERT INTO vta_016([num_int], [secuencia], [id_percepcion], [importe], [id_cuenta], [cod_regimen])"
+            QUERY = QUERY & " VALUES (" & numint & ", " & secuencia & ", " & ABM_COMP_COMPRA2.msf1.TextMatrix(i, 1) & ", " & ABM_COMP_COMPRA2.msf1.TextMatrix(i, 3) & ", " & ABM_COMP_COMPRA2.msf1.TextMatrix(i, 4) & ", " & ABM_COMP_COMPRA2.msf1.TextMatrix(i, 6) & ")"
+            cn1.Execute QUERY
+            
+            secuencia = secuencia + 1
+    
+      Wend
+  
+  End If
+  
   
   r = r + 1
   

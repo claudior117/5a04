@@ -969,12 +969,12 @@ Begin VB.Form vta_facturacion
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "14/10/2022"
+            TextSave        =   "07/12/2022"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "11:29 a.m."
+            TextSave        =   "05:41 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -1197,13 +1197,14 @@ Sub electronica()
                       rs31.Open q, cn1
                       
                       'parametros
-                      ok = WSFEv1.AgregarOpcional(2101, "0140360001659002948143") 'cbu
+                      ok = WSFEv1.AgregarOpcional(2101, rs31("cbu")) 'cbu
                       ok = WSFEv1.AgregarOpcional(2102, rs31("alias")) 'alias
                       ok = WSFEv1.AgregarOpcional(27, mtransf) 'transmisión (desde el 01/04/2021)
                       
                       Set rs31 = Nothing
                      Else
                       fecha_venc_pago = ""
+                      
                      End If
                   
                      If c_tipocomp.ItemData(c_tipocomp.ListIndex) = 32 Then

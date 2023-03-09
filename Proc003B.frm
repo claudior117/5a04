@@ -30,7 +30,6 @@ Begin VB.Form ABM_COMP_COMPRA2
          BeginProperty Panel1 {0713E89F-850A-101B-AFC0-4210102A8DA7} 
             Object.Width           =   14111
             MinWidth        =   14111
-            TextSave        =   ""
             Object.Tag             =   ""
          EndProperty
       EndProperty
@@ -148,7 +147,7 @@ Sub limpia()
    t_nograbado = ""
    t_perc = ""
    t_iva = ""
-   t_total = ""
+   T_TOTAL = ""
   
 End Sub
 
