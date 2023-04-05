@@ -277,12 +277,12 @@ Begin VB.Form gen_migrardatos
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "10/03/2022"
+            TextSave        =   "04/04/2023"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "08:01 p.m."
+            TextSave        =   "10:34 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -2134,10 +2134,10 @@ End Sub
 Private Sub Command11_Click()
 J = InputBox$("Ingrese Clave de Administrador General")
 If J = "1975" Then
-   ' Call clientes_terceros_access
-   ' Call grupos_terceros_access
+   'Call clientes_terceros_access
+   'Call grupos_terceros_access
    ' Call productos_terceros_access
-   Call proveedores_terceros_access
+   'Call proveedores_terceros_access
 End If
        
 End Sub
@@ -2202,7 +2202,7 @@ Sub clientes_terceros_access()
         End Select
              
         rs1("id_tipoiva") = ti
-        rs1("Observaciones") = rs("observacion") & " "
+        rs1("Observaciones") = Left$(rs("observacion"), 49) & " "
         rs1("inscripto_operador_granos") = "N"
         rs1("percive_ib") = "N"
         rs1("saldo_incobrable") = "N"

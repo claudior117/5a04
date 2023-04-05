@@ -14,6 +14,35 @@ Begin VB.Form vta_vercomp
    ScaleHeight     =   8490
    ScaleWidth      =   11880
    StartUpPosition =   3  'Windows Default
+   Begin VB.Frame Frame8 
+      BackColor       =   &H00E0E0E0&
+      Height          =   615
+      Left            =   5400
+      TabIndex        =   42
+      Top             =   7560
+      Width           =   2895
+      Begin VB.ComboBox c_moneda 
+         Height          =   315
+         ItemData        =   "vta005.frx":0000
+         Left            =   1200
+         List            =   "vta005.frx":000D
+         Style           =   2  'Dropdown List
+         TabIndex        =   43
+         Top             =   240
+         Width           =   1455
+      End
+      Begin VB.Label Label10 
+         Alignment       =   1  'Right Justify
+         BackColor       =   &H00800080&
+         Caption         =   "Moneda:"
+         ForeColor       =   &H00FFFFFF&
+         Height          =   255
+         Left            =   120
+         TabIndex        =   44
+         Top             =   240
+         Width           =   975
+      End
+   End
    Begin VB.Frame Frame7 
       BackColor       =   &H00E0E0E0&
       Caption         =   "Tipo Clientes"
@@ -51,9 +80,9 @@ Begin VB.Form vta_vercomp
       Width           =   2655
       Begin VB.ComboBox c_v 
          Height          =   315
-         ItemData        =   "vta005.frx":0000
+         ItemData        =   "vta005.frx":002A
          Left            =   240
-         List            =   "vta005.frx":000D
+         List            =   "vta005.frx":0037
          Style           =   2  'Dropdown List
          TabIndex        =   38
          Top             =   240
@@ -71,7 +100,7 @@ Begin VB.Form vta_vercomp
       Begin VB.CommandButton Command1 
          Height          =   495
          Left            =   120
-         Picture         =   "vta005.frx":0038
+         Picture         =   "vta005.frx":0062
          Style           =   1  'Graphical
          TabIndex        =   33
          Top             =   240
@@ -169,7 +198,7 @@ Begin VB.Form vta_vercomp
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   116129793
+      StartOfWeek     =   40697857
       CurrentDate     =   38754
    End
    Begin MSFlexGridLib.MSFlexGrid msf1 
@@ -191,9 +220,9 @@ Begin VB.Form vta_vercomp
       Width           =   11535
       Begin VB.ComboBox c_c 
          Height          =   315
-         ItemData        =   "vta005.frx":0342
+         ItemData        =   "vta005.frx":036C
          Left            =   9240
-         List            =   "vta005.frx":034F
+         List            =   "vta005.frx":0379
          Style           =   2  'Dropdown List
          TabIndex        =   35
          Top             =   1200
@@ -208,9 +237,9 @@ Begin VB.Form vta_vercomp
       End
       Begin VB.ComboBox c_estadopago 
          Height          =   315
-         ItemData        =   "vta005.frx":036D
+         ItemData        =   "vta005.frx":0397
          Left            =   9240
-         List            =   "vta005.frx":037A
+         List            =   "vta005.frx":03A4
          Style           =   2  'Dropdown List
          TabIndex        =   30
          Top             =   840
@@ -235,7 +264,7 @@ Begin VB.Form vta_vercomp
       Begin VB.CommandButton Command5 
          Height          =   255
          Left            =   7320
-         Picture         =   "vta005.frx":0397
+         Picture         =   "vta005.frx":03C1
          Style           =   1  'Graphical
          TabIndex        =   22
          Top             =   240
@@ -385,7 +414,7 @@ Begin VB.Form vta_vercomp
          Cancel          =   -1  'True
          Height          =   615
          Left            =   840
-         Picture         =   "vta005.frx":0709
+         Picture         =   "vta005.frx":0733
          Style           =   1  'Graphical
          TabIndex        =   8
          ToolTipText     =   "Salir sin Modificar"
@@ -396,7 +425,7 @@ Begin VB.Form vta_vercomp
       Begin VB.CommandButton btnacepta 
          Height          =   615
          Left            =   120
-         Picture         =   "vta005.frx":0F8B
+         Picture         =   "vta005.frx":0FB5
          Style           =   1  'Graphical
          TabIndex        =   7
          ToolTipText     =   "Renueva Lista de Clientes"
@@ -434,12 +463,12 @@ Begin VB.Form vta_vercomp
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "09/03/2023"
+            TextSave        =   "05/04/2023"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "06:35 p.m."
+            TextSave        =   "03:39 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -478,6 +507,11 @@ Sub carga()
   If t_fecha2 <> "" And IsDate(t_fecha2) Then
      q = q & c & " datevalue([fecha]) <= datevalue('" & t_fecha2 & "')"
   End If
+    
+   If c_moneda.ListIndex > 0 Then
+    q = q & c & " vta_02.[moneda] = '" & Mid$(c_moneda.ItemData(c_moneda.ListIndex), 1, 1) & "'"
+   End If
+  
     
    If c_vend.ListIndex > 0 Then
     q = q & c & " vta_02.[id_vendedor] = " & c_vend.ItemData(c_vend.ListIndex)
