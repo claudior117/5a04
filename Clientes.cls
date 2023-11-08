@@ -236,7 +236,7 @@ End Property
 
 Public Function busca_saldos(c As Long, m As String, F As Date) As Double
     'busca saldos  c = cod. cliente   m = moneda p pesos d dolares f = fecha hasta
-    q = "select * from vta_02 where [id_cliente] = " & c & " and [cta_cte] <> 'N' " & " and [contado] = " & "'N'"
+    q = "select cta_cte, total from vta_02 where [id_cliente] = " & c & " and [cta_cte] <> 'N' " & " and [contado] = " & "'N'"
     q = q & " and datevalue([fecha]) < datevalue('" & F & "')"
     Set rs = New ADODB.Recordset
     
@@ -268,11 +268,11 @@ Public Function saldo(menoreigual As Boolean, F As String, p As Boolean) As Doub
  
     Set rs = New ADODB.Recordset
     If menoreigual Then
-       QUERY = "SELECT * FROM VTA_02 where [id_CLIENTE] = " & Me.id
+       QUERY = "SELECT cta_cte, moneda, total, total_otra_moneda, id_tipocomp, estado_pago FROM VTA_02 where [id_CLIENTE] = " & Me.id
        QUERY = QUERY & " and datevalue(fecha) <= " & "DateValue('" & F & "') "
        QUERY = QUERY & " and [cta_cte] <> " & "'N'" & " and [contado] = " & "'N'"
     Else
-       QUERY = "SELECT * FROM VTA_02 where [id_CLIENTE] = " & Me.id
+       QUERY = "SELECT cta_cte, moneda, total, total_otra_moneda, id_tipocomp, estado_pago FROM VTA_02 where [id_CLIENTE] = " & Me.id
        QUERY = QUERY & " and datevalue(fecha) < " & "DateValue('" & F & "') "
        QUERY = QUERY & " and [cta_cte] <> " & "'N'" & " and [contado] = " & "'N'"
     End If
@@ -340,11 +340,11 @@ Public Function saldov(menoreigual As Boolean, F As String, p As Boolean) As Dou
  
     Set rs = New ADODB.Recordset
     If menoreigual Then
-       QUERY = "SELECT * FROM VTA_02 where [id_CLIENTE] = " & Me.id
+       QUERY = "SELECT cta_cte, moneda, total, total_otra_moneda, id_tipocomp, estado_pago  FROM VTA_02 where [id_CLIENTE] = " & Me.id
        QUERY = QUERY & " and datevalue([fecha_vto]) <= " & "DateValue('" & F & "') "
        QUERY = QUERY & " and [cta_cte] <> " & "'N'" & " and [contado] = " & "'N'"
     Else
-       QUERY = "SELECT * FROM VTA_02 where [id_CLIENTE] = " & Me.id
+       QUERY = "SELECT cta_cte, moneda, total, total_otra_moneda, id_tipocomp, estado_pago  FROM VTA_02 where [id_CLIENTE] = " & Me.id
        QUERY = QUERY & " and datevalue([fecha_vto]) < " & "DateValue('" & F & "') "
        QUERY = QUERY & " and [cta_cte] <> " & "'N'" & " and [contado] = " & "'N'"
     End If
@@ -526,7 +526,7 @@ Public Function saldoentrefechasv(f1 As String, f2 As String, p As Boolean) As D
     saldoant = saldov(False, f1, p)
     
     Set rs = New ADODB.Recordset
-    QUERY = "SELECT * FROM VTA_02 where [id_CLIENTE] = " & Me.id
+    QUERY = "SELECT cta_cte, moneda, total, total_otra_moneda, id_tipocomp, estado_pago  FROM VTA_02 where [id_CLIENTE] = " & Me.id
     QUERY = QUERY & " and datevalue([fecha_vto]) >= " & "DateValue('" & f1 & "') "
     QUERY = QUERY & " and datevalue([fecha_vto]) <= " & "DateValue('" & f2 & "') "
     QUERY = QUERY & " and  [cta_cte] <> " & "'N'" & " and [contado] = " & "'N'"
@@ -642,7 +642,8 @@ End Property
 
 Public Sub carga(ByVal ip As Long)
 'On Error GoTo er_carga
-q = "select * from vta_01, g3 where [id_cliente] = " & ip & " and [id_tipoiva] = [cod_tipoiva]"
+q = "select id_cliente, denominacion, direccion, localidad, provincia, cp, cuit, email, te, id_tipoiva, letra_cliente, descrimina_cliente, abreviatura, id_vendedor, inscripto_operador_granos, percive_ib, id_proveedor, id_prov, cod_fiscal, limite_credito, direccion_local from vta_01, g3 where [id_cliente] = " & ip & " and [id_tipoiva] = [cod_tipoiva]"
+'MsgBox (q)
 Set rs = New ADODB.Recordset
 rs.Open q, cn1
 If Not rs.BOF And Not rs.EOF Then

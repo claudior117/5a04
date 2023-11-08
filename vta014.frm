@@ -281,7 +281,7 @@ End Sub
 
 Sub carga()
    Call limpia
-   q = "select * from vta_02 where [id_tipocomp] > 40 and [id_tipocomp] < 50 and estado = 'S' and [id_cliente] = " & vta_facturacion.c_prov.ItemData(vta_facturacion.c_prov.ListIndex)
+   q = "select [num_int], [sucursal], [num_comp], [id_tipocomp], [fecha]  from vta_02 where [id_tipocomp] > 40 and [id_tipocomp] < 50  and [id_cliente] = " & vta_facturacion.c_prov.ItemData(vta_facturacion.c_prov.ListIndex) & " and estado = 'S'"
    Set rs = New ADODB.Recordset
    rs.Open q, cn1
    While Not rs.EOF
@@ -393,14 +393,14 @@ Dim PRECIOfinal2 As Double
 Dim J As Single
 
 'BUSCO REMITO
-q = "select * from vta_02 where [num_int] = " & Val(msf1.TextMatrix(k, 4))
+q = "select [num_int], [moneda]  from vta_02 where [num_int] = " & Val(msf1.TextMatrix(k, 4))
 Set rs = New ADODB.Recordset
 rs.Open q, cn1
 If Not rs.EOF And Not rs.BOF Then
    nms = rs("num_int")
    monedar = rs("moneda")
    'BUSCA PROD. PEND. DE FACTURACION EN EL REMITO
-   q = "select * from vta_03 where [num_int] = " & nms & " and [cantidad] > 0"
+   q = "select [id_producto], [pu], [impuesto], [tasaiva], [pu_final], [cantidad], [descripcion], [tunidad]  from vta_03 where [num_int] = " & nms & " and [cantidad] > 0"
    Set rs1 = New ADODB.Recordset
    rs1.Open q, cn1
    While Not rs1.EOF
@@ -441,7 +441,7 @@ If Not rs.EOF And Not rs.BOF Then
         'si el importe del remito es 0 totma el de la b.d.
         If rs1("id_producto") > 1 And (rs1("pu") = 0 Or Check1 = 1) Then
              Set rs3 = New ADODB.Recordset
-             q = "select * from a2, g4 where [id_producto] = " & rs1("id_producto") & " and [cod_tasaiva] = [id_tasaiva]"
+             q = "select [pu], [impuesto], [moneda], [tasa], [precio_final] from a2, g4 where [id_producto] = " & rs1("id_producto") & " and [cod_tasaiva] = [id_tasaiva]"
              rs3.Open q, cn1
              If Not rs3.EOF And Not rs3.BOF Then
                                   
@@ -463,7 +463,7 @@ If Not rs.EOF And Not rs.BOF Then
                         ti = 0
                         f2 = 0
               End If
-              Set rs3 = Nothing
+              'Set rs3 = Nothing
          Else
                 I2 = rs1("pu")
                 ii = rs1("IMPUESTO")
@@ -496,10 +496,115 @@ If Not rs.EOF And Not rs.BOF Then
      
      rs1.MoveNext
     Wend
-    Set rs1 = Nothing
+    'Set rs1 = Nothing
   End If
-Set rs = Nothing
+'Set rs = Nothing
 End Sub
+
+
+
+Sub agregalinea2(ByVal k)
+Dim CANTIDAD2 As Double
+Dim PRECIOUNITARIO2 As Double
+Dim IMPINTERNO2 As Double
+Dim IMPORTE2 As Double
+Dim PRECIOfinal2 As Double
+Dim J As Single
+
+'BUSCO REMITO
+   'BUSCA PROD. PEND. DE FACTURACION EN EL REMITO
+   q = "select vta_03.num_int, vta_03.id_producto, vta_03.pu, a2.pu   from vta_02, vta_03, a2, g4 where vta_02.[num_int] = vta_03.[num_int] and  vta_03.[id_producto] = a2.[id_producto] and [cod_tasaiva] = g4.[id_tasaiva] and vta_02.[num_int] = " & k & " and [cantidad] > 0"
+   Set rs1 = New ADODB.Recordset
+   rs1.Open q, cn1
+   nms = rs1("num_int")
+   'monedar = rs1("moneda")
+   
+   While Not rs1.EOF
+       
+       J = -1
+       
+       If rs1("id_producto") > 1 Then
+                J = BUSCOPRODFACTURA(rs1("id_producto"))
+       End If
+            
+        'SI ENCUENTRA EL PROD. EN LA FACTURA
+        'datos en la factura
+        If J <> -1 Then
+               'SACA LOS valores de la factura
+                CANTIDAD2 = Val(vta_facturacion.msf1.TextMatrix(J, 3))
+                PRECIOUNITARIO2 = Val(vta_facturacion.msf1.TextMatrix(J, 4))
+                PRECIOfinal2 = Val(vta_facturacion.msf1.TextMatrix(J, 8))
+                IMPINTERNO2 = 0 'Val(vta_facturacion.msf1.TextMatrix(J, 6))
+                IMPORTE2 = Val(vta_facturacion.msf1.TextMatrix(J, 6))
+                If vta_facturacion.msf1.Rows > 2 Then
+                   vta_facturacion.msf1.RemoveItem J
+                 Else
+                   Call vta_facturacion.armagrid
+                End If
+                
+        Else
+                CANTIDAD2 = 0
+                PRECIOUNITARIO2 = 0
+                PRECIOfinal2 = 0
+                IMPINTERNO2 = 0
+                IMPORTE2 = 0
+                t_r1 = Val(t_r1) + 1
+        End If
+
+            
+        'datos en el remito
+        'si el importe del remito es 0 totma el de la b.d.
+        If rs1("id_producto") > 1 And (rs1("vta_03.pu") = 0 Or Check1 = 1) Then
+                        I2 = rs1("a2.pu")
+                        ii = rs1("a2.IMPUESTO")
+                        MONEDALINEA = rs1("a2.moneda")
+                         ti = rs1("TASA")
+                         f2 = rs1("precio_final")
+                         If grecargocc > 0 Then
+                          r = (I2 * grecargocc) / 100
+                          I2 = Format(I2 + r, "#####0.00")
+                          f2 = Format(I2 * (1 + (ti / 100)), "#####0.00")
+                         End If
+                         
+         Else
+                        I2 = 0
+                        ii = 0
+                        MONEDALINEA = rs1("vta_02.moneda")
+                        ti = 0
+                        f2 = 0
+              End If
+      
+       Call CONVIERTEMONEDA
+       c2 = rs1("CANTIDAD")
+        it2 = I2 * c2
+       'nuevos datos a factura
+       CANTIDAD3 = CANTIDAD2 + c2
+       IMPINTERNO3 = IMPINTERNO2 + (ii * c2)
+       PRECIOUNITARIO3 = I2
+       IMPORTE3 = (PRECIOUNITARIO3 * CANTIDAD3)
+               
+       final2 = (f2)
+       cp = Format$(rs1("vta_03.id_producto"), "00000")
+       dp = rs1("vta_03.DESCRIPCION")
+        u = rs1("tunidad")
+        ct = Format$(CANTIDAD3, "#####0.00")
+        pu = Format$(PRECIOUNITARIO3, "#####0.00")
+        dt = Format$(rs1("tasaiva"), "###0.00")
+        im = Format$(IMPORTE3, "######0.00")
+        III = Format$(IMPINTERNO3, "###0.000")
+        ubica = vta_facturacion.msf1.Rows - 1
+        F = Format$(final2, "######0.00")
+        vta_facturacion.msf1.AddItem ubica & Chr$(9) & cp & Chr$(9) & dp & Chr$(9) & ct & Chr$(9) & u & Chr$(9) & pu & Chr$(9) & dt & Chr$(9) & im & Chr$(9) & F
+     
+     rs1.MoveNext
+    Wend
+    Set rs1 = Nothing
+  
+End Sub
+
+
+
+
 
 Sub CONVIERTEMONEDA()
 If vta_facturacion.Option3 = True Then
@@ -532,6 +637,8 @@ Function BUSCOPRODFACTURA(ByVal cp) As Integer
   If Val(vta_facturacion.msf1.TextMatrix(t, 1)) = cp Then
     e = t
     t = vta_facturacion.msf1.Rows
+  
+  
   End If
   t = t + 1
  Wend

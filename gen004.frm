@@ -277,12 +277,12 @@ Begin VB.Form gen_migrardatos
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "04/04/2023"
+            TextSave        =   "10/04/2023"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:34 a.m."
+            TextSave        =   "10:28 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -2850,8 +2850,28 @@ If J = 6 Then
   While Not rs.EOF
    If IsNull(rs("costoreal")) Then
       rs("costoreal") = 0
-      rs.Update
    End If
+   
+   If IsNull(rs("dolar_ult_compra")) Then
+      rs("dolar_ult_compra") = 1
+   End If
+   
+   If IsNull(rs("talle")) Then
+      rs("talle") = "*"
+   End If
+   
+   If IsNull(rs("color")) Then
+      rs("color") = "*"
+   End If
+   
+   If IsNull(rs("medida")) Then
+      rs("medida") = "*"
+   End If
+   
+   
+   rs.Update
+
+   
     rs.MoveNext
   Wend
   Set rs = Nothing

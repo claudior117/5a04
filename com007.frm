@@ -1,6 +1,6 @@
 VERSION 5.00
 Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form con_veroc 
    BackColor       =   &H00E0E0E0&
    Caption         =   "INFORME DE ORDENES DE COMPRAS EMITIDAS"
@@ -288,12 +288,12 @@ Begin VB.Form con_veroc
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "20/11/2013"
+            TextSave        =   "19/04/2023"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "8:50"
+            TextSave        =   "09:52 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -666,7 +666,7 @@ Unload espere
 End Sub
 
 Private Sub msf1_GotFocus()
-Me.StatusBar1.Panels.Item(2) = "[F1] Cambia Estado -[F7] Imprime - [ENTER] Detalla - [F8] Borra - [F6] Arch. Texto - [F11] Excel "
+Me.StatusBar1.Panels.item(2) = "[F1] Cambia Estado -[F7] Imprime - [ENTER] Detalla - [F8] Borra - [F6] Arch. Texto - [F11] Excel "
 If msf1.Rows > 1 Then
   msf1.FocusRect = flexFocusNone
 Else
@@ -733,7 +733,8 @@ If KeyCode = vbKeyF6 Then
     For i = 6 To 14
       c2(i) = -1
     Next i
-    Call exportagrid(msf1, c2(), "ORDENES DE COMPRAS EMITIDAS", "", "", "", True, False, para.archivo_exportacion)
+    RUTA = "C:" & para.empresa & "\5A04\oc.txt"
+    Call exportagrid(msf1, c2(), "ORDENES DE COMPRAS EMITIDAS", "", "", "", True, False, RUTA)
 
 End If
 
@@ -769,13 +770,13 @@ If KeyAscii = 13 Then
   If msf1.Row > 0 Then
       
     Load cc_detalle
-    cc_detalle.T_IDPROV = msf1.TextMatrix(msf1.Row, 1)
+    cc_detalle.t_idprov = msf1.TextMatrix(msf1.Row, 1)
     cc_detalle.t_prov = msf1.TextMatrix(msf1.Row, 2)
     cc_detalle.t_sucursal = Mid$(msf1.TextMatrix(msf1.Row, 5), 3, 4)
     cc_detalle.t_letra = Mid$(msf1.TextMatrix(msf1.Row, 5), 1, 1)
     cc_detalle.t_numcomp = Mid$(msf1.TextMatrix(msf1.Row, 5), 8, 8)
     cc_detalle.t_tipocomp = msf1.TextMatrix(msf1.Row, 3)
-    cc_detalle.t_NUMINT = msf1.TextMatrix(msf1.Row, 8)
+    cc_detalle.t_numint = msf1.TextMatrix(msf1.Row, 8)
     cc_detalle.Show
   End If
 End If

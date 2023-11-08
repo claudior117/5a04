@@ -874,7 +874,7 @@ If KeyCode = vbKeyF5 Then
  If msf1.Rows > 1 Then
    J = MsgBox("Revierte articulo del Ticket", 4)
    If J = 6 Then
-          r2 = msf1.Rows - 1
+          r2 = msf1.Row
           ip = "(" & msf1.TextMatrix(r2, 1) & ")"
           d = msf1.TextMatrix(r2, 2)
           cu = Format$(-Val(msf1.TextMatrix(r2, 3)), "#####0.000")

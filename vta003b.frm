@@ -1,9 +1,9 @@
 VERSION 5.00
-Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "msflxgrd.ocx"
+Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
 Begin VB.Form vta_facturacion2 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Composicion de IVA"
-   ClientHeight    =   3570
+   ClientHeight    =   4080
    ClientLeft      =   45
    ClientTop       =   435
    ClientWidth     =   3930
@@ -11,7 +11,7 @@ Begin VB.Form vta_facturacion2
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   3570
+   ScaleHeight     =   4080
    ScaleWidth      =   3930
    StartUpPosition =   3  'Windows Default
    Begin VB.TextBox t_modulo 
@@ -19,7 +19,7 @@ Begin VB.Form vta_facturacion2
       Left            =   840
       TabIndex        =   2
       Text            =   "Text1"
-      Top             =   3120
+      Top             =   3600
       Visible         =   0   'False
       Width           =   735
    End
@@ -31,7 +31,7 @@ Begin VB.Form vta_facturacion2
       Style           =   1  'Graphical
       TabIndex        =   1
       ToolTipText     =   "Salir sin Modificar"
-      Top             =   3120
+      Top             =   3600
       UseMaskColor    =   -1  'True
       Width           =   375
    End
@@ -45,6 +45,14 @@ Begin VB.Form vta_facturacion2
       _ExtentY        =   5106
       _Version        =   393216
       AllowUserResizing=   1
+   End
+   Begin VB.Label Label1 
+      Caption         =   "[F1] Modifica Neto Gravado "
+      Height          =   375
+      Left            =   120
+      TabIndex        =   3
+      Top             =   3120
+      Width           =   3615
    End
 End
 Attribute VB_Name = "vta_facturacion2"
@@ -79,7 +87,7 @@ Sub armagrid()
 End Sub
 Sub cargatasa()
 Set rs = New ADODB.Recordset
-q = "select * from g4 "
+q = "select tasa from g4 "
 rs.Open q, cn1
 c = 1
 While Not rs.EOF
@@ -90,7 +98,7 @@ Wend
 Set rs = Nothing
 End Sub
 Sub sacatotales()
-x = 0
+X = 0
 nt = 0
 IT = 0
 For i = 1 To 7
@@ -116,4 +124,19 @@ Private Sub msf1_DblClick()
     End If
   End If
 
+End Sub
+
+Private Sub msf1_KeyDown(KeyCode As Integer, Shift As Integer)
+If KeyCode = vbKeyF1 Then
+ If para.id_grupo_modulo_actual > 7 Then
+  r = msf1.Row
+  ti = msf1.TextMatrix(r, 0)
+  neto = InputBox("Ingrese Neto tasa " + ti)
+   If Val(precio) >= 0 Then
+        msf1.TextMatrix(r, 1) = Format$(Val(neto), "#####0.00")
+        msf1.TextMatrix(r, 2) = Format$(Val(neto) * Val(ti) / 100, "#####0.00")
+        Call sacatotales
+   End If
+ End If
+End If
 End Sub

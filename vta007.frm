@@ -677,12 +677,12 @@ Begin VB.Form vta_recibo
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "06/08/2022"
+            TextSave        =   "08/11/2023"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:06 a.m."
+            TextSave        =   "05:11 p.m."
          EndProperty
       EndProperty
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -717,13 +717,13 @@ ic = Space$(10)
 id = Space$(10)
 n = Space$(10)
 
-QUERY = "select * from vta_02, vta_06 where  [estado_pago] = 'N' and [id_cliente] = " & denominACION.ItemData(denominACION.ListIndex) & " and [cta_cte] <> 'N' and vta_02.[id_tipocomp] = vta_06.[id_tipocomp] and [contado] = 'N' and [sucursal_ingreso] = vta_06.[sucursal]"
+QUERY = "select cotizacion_dolar, vta_02.moneda, fecha, num_int, abreviatura, vta_02.id_tipocomp, subtotal, letra, num_comp, vta_02.sucursal, total, cta_cte, total_otra_moneda, saldo_impago02 from vta_02, vta_06 where  [estado_pago] = 'N' and [id_cliente] = " & denominACION.ItemData(denominACION.ListIndex) & " and [cta_cte] <> 'N' and vta_02.[id_tipocomp] = vta_06.[id_tipocomp] and [contado] = 'N' and [sucursal_ingreso] = vta_06.[sucursal]"
 QUERY = QUERY & " order by fecha"
 Set rs = New ADODB.Recordset
 rs.Open QUERY, cn1
 While Not rs.EOF
    cot = rs("cotizacion_dolar")
-   If rs("vta_02.moneda") = "P" Then
+   If rs("moneda") = "P" Then
      sp = rs("subtotal")
      tp = rs("total")
      td = rs("total_otra_moneda")
@@ -749,14 +749,14 @@ While Not rs.EOF
    
    End If
    tc = Format$(rs("letra"), "@")
-   sc = Format$(rs("vta_02.sucursal"), "0000")
+   sc = Format$(rs("sucursal"), "0000")
    nc = Format$(rs("num_comp"), "00000000")
    fc = Format$(rs("fecha"), "dd/mm/yyyy")
-   cc = "(" & Format$(rs("vta_02.id_tipocomp"), "000") & ")"
+   cc = "(" & Format$(rs("id_tipocomp"), "000") & ")"
    ni = Format$(rs("num_int"), "00000000")
    d = RTrim$(Format$(rs("aBREVIATURA"), "@@@@@@@@@@!"))
    tipoc = d & " " & cc & tc & " " & sc & "-" & nc
-   vta_recibo1.msf1.AddItem "" & Chr$(9) & fc & Chr$(9) & tipoc & Chr$(9) & ic & Chr$(9) & ni & Chr$(9) & n & Chr$(9) & id & Chr$(9) & Format$(rs("vta_02.id_tipocomp"), "000") & Chr$(9) & si2 & Chr$(9) & ""
+   vta_recibo1.msf1.AddItem "" & Chr$(9) & fc & Chr$(9) & tipoc & Chr$(9) & ic & Chr$(9) & ni & Chr$(9) & n & Chr$(9) & id & Chr$(9) & Format$(rs("id_tipocomp"), "000") & Chr$(9) & si2 & Chr$(9) & ""
    rs.MoveNext
 Wend
 Set rs = Nothing
@@ -1289,14 +1289,14 @@ vta_clientes.t_id = denominACION.ItemData(denominACION.ListIndex)
 vta_clientes.carga
 
 'calcula saldo
-Set cl_cli = New Clientes
-cl_cli.carga (denominACION.ItemData(denominACION.ListIndex))
-If cl_cli.id > 1 Then
-    t_saldo21 = Format$(cl_cli.saldo(True, Now, True), "######0.00")
-Else
-    t_saldo21 = 0
-End If
-Set Clientes = Nothing
+'Set cl_cli = New Clientes
+'cl_cli.carga (denominACION.ItemData(denominACION.ListIndex))
+'If cl_cli.id > 1 Then
+'    t_saldo21 = Format$(cl_cli.saldo(True, Now, True), "######0.00")
+'Else
+'    t_saldo21 = 0
+'End If
+'Set Clientes = Nothing
 
 
 
@@ -1434,28 +1434,14 @@ cn1.Execute QUERY
       For i = 1 To msf2.Rows - 1
          If Val(msf2.TextMatrix(i, 0)) = 3 Then
                 'ch. terceros
-                q = "select * from cyb_03"
-                Set rs = New ADODB.Recordset
-                rs.Open q, cn1, adOpenDynamic, adLockOptimistic
-                rs.AddNew
-                 rs("fecha_emision") = t_fecha
-                 rs("num_cheque") = Val(msf2.TextMatrix(i, 2))
-                 rs("banco") = msf2.TextMatrix(i, 3)
-                 rs("sucursal") = msf2.TextMatrix(i, 4)
-                 rs("titular") = msf2.TextMatrix(i, 5)
-                 rs("importe") = Val(msf2.TextMatrix(i, 6))
-                 rs("estado") = "C"
-                 rs("fecha_dif") = msf2.TextMatrix(i, 7)
-                 rs("origen") = Left$(denominACION, 50)
-                 rs("destino") = " "
-                 rs("num_mov_banco_i") = 0
-                 rs("num_mov_banco_e") = 0
-                 rs("num_int_op") = 0
-                 rs("num_int_rbo") = numint
-                 rs("fecha_salida") = t_fecha
-                 rs("fecha_ingreso") = t_fecha
-                 rs("tipo_salida") = "C"
-                rs.Update
+                
+                QUERY = "insert into cyb_03 (fecha_emision, num_cheque, banco, sucursal, titular, importe,   "
+                QUERY = QUERY & "estado, fecha_dif, origen, destino, num_mov_banco_i, num_mov_banco_e, num_int_op, num_int_rbo, fecha_salida, fecha_ingreso,tipo_salida) values("
+                QUERY = QUERY & "'" & t_fecha & "', " & Val(msf2.TextMatrix(i, 2)) & ",'" & msf2.TextMatrix(i, 3) & "', '" & msf2.TextMatrix(i, 4) & "', '" & msf2.TextMatrix(i, 5) & "', "
+                QUERY = QUERY & Val(msf2.TextMatrix(i, 6)) & ",'C', '" & msf2.TextMatrix(i, 7) & "', '" & Left$(denominACION, 50) & "', ' ', 0,0,0, " & numint & ", '" & t_fecha & "', '" & t_fecha & "', 'C')"
+                'MsgBox (QUERY)
+                cn1.Execute QUERY
+                
                 
                 qr = "SELECT @@IDENTITY AS NewID"
                 Set rs = cn1.Execute(qr)
@@ -1519,7 +1505,7 @@ cn1.Execute QUERY
       
       For i = 1 To msf1.Rows - 1
         Set rs = New ADODB.Recordset
-        q = "select * from vta_02 where [num_int] = " & Val(msf1.TextMatrix(i, 3))
+        q = "select estado_pago, saldo_impago02, recibo_pago, fecha_pago from vta_02 where [num_int] = " & Val(msf1.TextMatrix(i, 3))
         rs.Open q, cn1, adOpenDynamic, adLockOptimistic
         If Not rs.BOF And Not rs.EOF Then
           If Val(msf1.TextMatrix(i, 7)) > 0 Then
@@ -1636,7 +1622,7 @@ cn1.Execute QUERY
       Set cl_cli = Nothing
       
       
-      cl_compvta.web (numint)
+      'cl_compvta.web (numint)
       
       Set cl_compvta = Nothing
    
@@ -1893,18 +1879,41 @@ Private Sub t_numop_GotFocus()
 End Sub
 
 Private Sub t_numop_LostFocus()
-      q = "select * from vta_02 where [sucursal] = " & Val(sucursal) & " and [num_comp] = " & Val(t_numop) & " and [id_tipocomp] = 50"
-      Set rs = New ADODB.Recordset
-      'MsgBox (q)
-      rs.Open q, cn1
-      If rs.BOF And rs.EOF Then
+ '     q = "select [num_int] from vta_02 where [id_tipocomp] = 50 and [sucursal] = " & Val(sucursal) & " and [letra] = 'R' and  [num_comp] = " & Val(t_numop)
+ '     Set rs = New ADODB.Recordset
+     ' 'MsgBox (q)
+ '     rs.Open q, cn1
+ '     If rs.BOF And rs.EOF Then
+ '        EXISTE = "N"
+ '     Else
+ '        MsgBox ("Recibo Existente")
+ '        EXISTE = "S"
+ '        sucursal.SetFocus
+ '     End If
+      
+  
+  
+       q = "select [num_int], [sucursal], [id_tipocomp] from vta_02 where [num_comp] = " & Val(t_numop)
+       Set rs = New ADODB.Recordset
+     ' 'MsgBox (q)
+       rs.Open q, cn1
+       ni = 0
+       While Not rs.EOF And ni = 0
+         If rs("sucursal") = Val(sucursal) And rs("id_tipocomp") = 50 Then
+           ni = rs("num_int")
+         End If
+         rs.MoveNext
+       Wend
+       
+       If ni = 0 Then
          EXISTE = "N"
       Else
          MsgBox ("Recibo Existente")
          EXISTE = "S"
          sucursal.SetFocus
       End If
-      
+  
+  
   
 End Sub
 
@@ -2350,7 +2359,7 @@ Sub grabanc()
   moneda = "P"
       
       Set rs = New ADODB.Recordset
-      q = "select * from g8 where [id_actividad] = " & 1
+      q = "select id_actividad, alicuota_ib, cuenta_contable_venta  from g8 where [id_actividad] = " & 1
       rs.Open q, cn1
       If Not rs.EOF And Not rs.BOF Then
        codact = rs("id_actividad")

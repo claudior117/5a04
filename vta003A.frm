@@ -969,12 +969,12 @@ Begin VB.Form vta_facturacion
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "07/12/2022"
+            TextSave        =   "08/11/2023"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "05:41 p.m."
+            TextSave        =   "05:05 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -1100,7 +1100,7 @@ Sub electronica()
                         q = "select minimo_informar_cons_final from g0 where sucursal= 0"
                         rs3.Open q, cn1
                         If Not rs3.EOF And Not rs3.BOF Then
-                           If Val(t_total) < rs3("minimo_informar_cons_final") Then 'minimo de consumidor final sin informar datos
+                           If Val(T_TOTAL) < rs3("minimo_informar_cons_final") Then 'minimo de consumidor final sin informar datos
                                tipo_doc = 99
                                CUIT2 = "0"
                            Else
@@ -1118,14 +1118,14 @@ Sub electronica()
                      cbt_hasta = cbte_nro
                      
                      If t_letra <> "C" Then
-                        imp_total = t_total
+                        imp_total = T_TOTAL
                         imp_tot_conc = t_nograbado
                         imp_neto = t_subtotal
                         imp_iva = t_iva
                         imp_trib = "0.00"
                         imp_op_ex = "0.00"
                      Else
-                        imp_total = t_total
+                        imp_total = T_TOTAL
                         imp_tot_conc = "0.00"
                         imp_neto = t_subtotal
                         imp_iva = "0.00"
@@ -1416,7 +1416,7 @@ Sub limpia()
    t_nograbado = ""
    t_perc = ""
    t_iva = ""
-   t_total = ""
+   T_TOTAL = ""
    Option1 = True
    
 End Sub
@@ -1500,7 +1500,7 @@ Sub carga()
      t_nograbado = Format$(rs("impuestos"), "######0.00")
      t_perc = Format$(rs("perc_iva") + rs("perc_gan") + rs("perc_ib"), "######0.00")
      t_iva = Format$(rs("iva"), "######0.00")
-     t_total = Format$(rs("total"), "######0.00")
+     T_TOTAL = Format$(rs("total"), "######0.00")
      If Not IsNull(rs("observaciones")) Then
             t_observaciones = rs("observaciones")
      Else
@@ -1536,19 +1536,19 @@ End Sub
 Sub carga2()
   Set rs = New ADODB.Recordset
   If para.numeracion_comun_Fact_nc = "S" Then
-      q = "select [num_int], [letra], [sucursal], [id_tipocomp] from vta_02 where  [id_tipocomp] < 10 and [sucursal]= " & Val(t_sucursal) & " and [letra]= '" & t_letra & "' and [num_comp]= " & Val(t_numcomp)
+      q = "select [num_int] from vta_02 where  [id_tipocomp] = 1 and [sucursal]= " & Val(t_sucursal) & " and [letra]= '" & t_letra & "' and [num_comp]= " & Val(t_numcomp)
   Else
-      q = "select [num_int], [letra], [sucursal], [id_tipocomp] from vta_02 where  [id_tipocomp] = " & c_tipocomp.ItemData(c_tipocomp.ListIndex) & " and [sucursal]= " & Val(t_sucursal) & " and [letra]= '" & t_letra & "' and [num_comp]= " & Val(t_numcomp)
+      q = "select [num_int] from vta_02 where  [id_tipocomp] = " & c_tipocomp.ItemData(c_tipocomp.ListIndex) & " and [sucursal]= " & Val(t_sucursal) & " and [letra]= '" & t_letra & "' and [num_comp]= " & Val(t_numcomp)
  End If
  
  rs.MaxRecords = 1
  rs.Open q, cn1
- 
  ni = 0
  If Not rs.EOF And Not rs.BOF Then
       ni = rs("num_int")
  End If
  Set rs = Nothing
+ 
  If ni <> 0 Then
      MsgBox ("Comprobante Existente")
      EXISTE = "S"
@@ -1591,7 +1591,7 @@ Sub carga2()
      t_nograbado = Format$(rs("impuestos"), "######0.00")
      t_perc = Format$(rs("perc_iva") + rs("perc_gan") + rs("perc_ib"), "######0.00")
      t_iva = Format$(rs("iva"), "######0.00")
-     t_total = Format$(rs("total"), "######0.00")
+     T_TOTAL = Format$(rs("total"), "######0.00")
      If Not IsNull(rs("observaciones")) Then
             t_observaciones = rs("observaciones")
      Else
@@ -1615,13 +1615,13 @@ Sub carga2()
    
    'cargo percepciones
      Set rs2 = New ADODB.Recordset
-     q = "select * from vta_016, a12 where [num_int] = " & rs("num_int") & " and vta_016.id_percepcion = a12.id_percepcion"
+     q = "select vta_016.id_percepcion, descripcion, importe, vta_016.id_cuenta  from vta_016, a12 where [num_int] = " & rs("num_int") & " and vta_016.id_percepcion = a12.id_percepcion"
      rs2.Open q, cn1
     
      ABM_COMP_COMPRA2.armagrid
      i = 1
      While Not rs2.EOF
-       ABM_COMP_COMPRA2.msf1.AddItem i & Chr$(9) & rs2("vta_016.id_percepcion") & Chr$(9) & rs2("descripcion") & Chr$(9) & rs2("importe") & Chr$(9) & rs2("vta_016.id_cuenta")
+       ABM_COMP_COMPRA2.msf1.AddItem i & Chr$(9) & rs2("id_percepcion") & Chr$(9) & rs2("descripcion") & Chr$(9) & rs2("importe") & Chr$(9) & rs2("id_cuenta")
        rs2.MoveNext
        i = i + 1
      Wend
@@ -1637,6 +1637,125 @@ Sub carga2()
   
   
 End Sub
+
+Sub carga3()
+  Set rs = New ADODB.Recordset
+  q = "select [num_int], [id_tipocomp], [sucursal], [letra]  from vta_02 where  [num_comp]= " & Val(t_numcomp)
+  rs.Open q, cn1
+  ni = 0
+  If Not rs.EOF And Not rs.BOF Then
+      ni = 0
+      
+      While Not rs.EOF And ni = 0
+       If para.numeracion_comun_Fact_nc = "S" Then
+          If rs("id_tipocomp") < 10 And rs("sucursal") = Val(t_sucursal) And rs("letra") = t_letra Then
+            ni = rs("num_int")
+         End If
+      Else
+         If rs("id_tipocomp") = c_tipocomp.ItemData(c_tipocomp.ListIndex) And rs("sucursal") = Val(t_sucursal) And rs("letra") = t_letra Then
+            ni = rs("num_int")
+         End If
+      
+      End If
+         rs.MoveNext
+      Wend
+   Else
+    ni = 0
+   End If
+ Set rs = Nothing
+ 
+ If ni <> 0 Then
+     MsgBox ("Comprobante Existente")
+     EXISTE = "S"
+     Set rs = New ADODB.Recordset
+     q = "select [fecha], [fecha_vto], [cotizacion_dolar], [id_cliente], [num_int], [id_vendedor], [subtotal], [impuestos], [total], [perc_ib], [perc_gan], [perc_iva], [iva], " & _
+     " [contado], [cliente02], [direccion02], [cuit02], [localidad02], [id_tipo_iva02], [observaciones] from vta_02 where [num_int] = " & ni
+     rs.MaxRecords = 1
+     rs.Open q, cn1
+  
+     t_fecha = rs("fecha")
+     t_fechavto = rs("fecha_vto")
+     t_cotizacion = rs("cotizacion_dolar")
+     
+     c_prov.ListIndex = buscaindice(c_prov, rs("id_cliente"))
+     
+     Set rs1 = New ADODB.Recordset
+     q = "select [id_producto], [descripcion], [cantidad], [tunidad], [pu], [tasaiva], [importe], [pu_final], [tasaib], [num_int], [renglon] from vta_03 where [num_int] = " & rs("num_int")
+     rs1.Open q, cn1
+     Call armagrid
+     While Not rs1.EOF
+        r = msf1.Rows
+        msf1.AddItem r & Chr(9) & Format$(rs1("id_producto"), "00000") & Chr(9) & rs1("descripcion") & Chr(9) & rs1("cantidad") & Chr(9) & rs1("tunidad") & Chr$(9) & Format$(rs1("pu"), "######0.00") & Chr(9) & rs1("tasaiva") & Chr(9) & rs1("importe") & Chr(9) & rs1("pu_final") & Chr(9) & rs1("tasaib")
+        
+        Set rs2 = New ADODB.Recordset
+        q = "select [desc_ext], [cant_lineas] from vta_015 where [num_int] = " & rs1("num_int") & " and [renglon] = " & rs1("renglon")
+        rs2.Open q, cn1
+        If Not rs2.EOF And Not rs2.BOF Then
+           k = rs2("cant_lineas")
+           msf1.AddItem 0 & Chr(9) & "" & Chr(9) & rs2("desc_ext") & Chr(9) & k
+           msf1.RowHeight(msf1.Rows - 1) = k * 250
+ 
+        End If
+        Set rs2 = Nothing
+        rs1.MoveNext
+     Wend
+     Call renumera
+     Set rs1 = Nothing
+     c_vend.ListIndex = buscaindice(c_vend, rs("id_vendedor"))
+     t_subtotal = Format$(rs("subtotal"), "######0.00")
+     t_nograbado = Format$(rs("impuestos"), "######0.00")
+     t_perc = Format$(rs("perc_iva") + rs("perc_gan") + rs("perc_ib"), "######0.00")
+     t_iva = Format$(rs("iva"), "######0.00")
+     T_TOTAL = Format$(rs("total"), "######0.00")
+     If Not IsNull(rs("observaciones")) Then
+            t_observaciones = rs("observaciones")
+     Else
+       t_observaciones = "*"
+     End If
+     vta_formapago.armagrid2
+     If rs("contado") = "S" Then
+        vta_clientes.t_cli = rs("cliente02")
+        vta_clientes.t_direccion = rs("direccion02")
+        vta_clientes.t_cuit = rs("cuit02")
+        vta_clientes.t_localidad = rs("localidad02")
+        vta_clientes.c_iva.ListIndex = buscaindice(vta_clientes.c_iva, rs("id_tipo_iva02"))
+        Option2 = True
+        
+        
+    End If
+     
+     
+  
+  
+   
+   'cargo percepciones
+     Set rs2 = New ADODB.Recordset
+     q = "select vta_016.id_percepcion, descripcion, importe, vta_016.id_cuenta  from vta_016, a12 where [num_int] = " & rs("num_int") & " and vta_016.id_percepcion = a12.id_percepcion"
+     rs2.Open q, cn1
+    
+     ABM_COMP_COMPRA2.armagrid
+     i = 1
+     While Not rs2.EOF
+       ABM_COMP_COMPRA2.msf1.AddItem i & Chr$(9) & rs2("id_percepcion") & Chr$(9) & rs2("descripcion") & Chr$(9) & rs2("importe") & Chr$(9) & rs2("id_cuenta")
+       rs2.MoveNext
+       i = i + 1
+     Wend
+     Set rs2 = Nothing
+      
+      
+      Set rs = Nothing
+   
+  
+  Else
+     EXISTE = "N"
+  End If
+  
+  
+End Sub
+
+
+
+
 Private Sub btnacepta_Click()
 If msf1.Rows - 1 <= Val(t_cantlineas) Then
  
@@ -1650,11 +1769,11 @@ If Option2 = True Then
            J = MsgBox("No ha ingresado forma de pago, acepta pago total en Efectivo", 4)
            If J = 6 Then
               'pone forma de pago efectivo
-              vta_formapago.msf2.AddItem "001" & Chr(9) & 1 & Chr(9) & "-" & Chr(9) & "Efectivo $" & Chr(9) & "-" & Chr(9) & "-" & Chr(9) & Format$(Val(t_total), "######0.00") & Chr(9) & Format$(t_fecha, "DD/MM/YYYY") & Chr(9) & "" & Chr(9) & para.cuenta_caja
+              vta_formapago.msf2.AddItem "001" & Chr(9) & 1 & Chr(9) & "-" & Chr(9) & "Efectivo $" & Chr(9) & "-" & Chr(9) & "-" & Chr(9) & Format$(Val(T_TOTAL), "######0.00") & Chr(9) & Format$(t_fecha, "DD/MM/YYYY") & Chr(9) & "" & Chr(9) & para.cuenta_caja
               Call iniciagraba
            Else
               vta_formapago.Show
-              vta_formapago.t_total = t_total
+              vta_formapago.T_TOTAL = T_TOTAL
            End If
        Else
           MsgBox ("El pago ingresado no coincide con el total del comprobante")
@@ -1689,7 +1808,7 @@ vc = True
 If vta_facturacion.c_tipocomp.ListIndex = 0 Then
     If vta_facturacion.Option4 Then
      'pesos
-     tpl = Val(vta_facturacion.t_total)
+     tpl = Val(vta_facturacion.T_TOTAL)
     Else
      tpl = Val(vta_facturacion.T_total2)
     End If
@@ -1714,7 +1833,7 @@ Sub iniciagraba()
 
 
 
-If Val(t_total) > 0 Then
+If Val(T_TOTAL) > 0 Then
   If c_tipocomp.ItemData(c_tipocomp.ListIndex) = 25 And t_letra <> "E" Then
     MsgBox ("Para realizar Facturas de Pro Forma es necesario que el cliente sea de Exportacion")
     c_tipocomp.SetFocus
@@ -1833,7 +1952,7 @@ If Option4 = True Then
     If resulta Then
         espere.ProgressBar1.Value = 5
         espere.Label1 = "Espere... Grabando Comprobante Fiscal"
-        If Val(t_total) <= 0 Or Val(t_numcomp) <= 0 Then
+        If Val(T_TOTAL) <= 0 Or Val(t_numcomp) <= 0 Then
           seguir = False
           estadograba = 1
         Else
@@ -2115,13 +2234,13 @@ espere.Label1 = "Espere... Imprimiendo Productos"
   
   t_subtotal = Fiscaltf.subtotal.MontoNeto
   t_iva = Fiscaltf.subtotal.MontoIVA
-  t_total = Fiscaltf.subtotal.MontoVentas
+  T_TOTAL = Fiscaltf.subtotal.MontoVentas
  
   
   
   If Option2 = True Then 'contado
   
-    resto = Val(t_total)
+    resto = Val(T_TOTAL)
   For i = 1 To fsc_formapago.msf2.Rows - 1
      td = Left$(RTrim$(fsc_formapago.msf2.TextMatrix(i, 2)), 15)
      mp = Format$(Val(fsc_formapago.msf2.TextMatrix(i, 6)), "######0.00")
@@ -2156,7 +2275,7 @@ espere.Label1 = "Espere... Imprimiendo Productos"
   
   Else
     td = "Cta. Cte. Nro. " & Format$(c_prov.ItemData(c_prov.ListIndex), "00000")
-    mp = Val(t_total)
+    mp = Val(T_TOTAL)
     dp = "T"
     If Not Fiscaltf.ImprimirPago2g(td, Format$(mp, "######0.00"), "", IFUniversal.CuentaCorriente, 1, "", "") Then
        Err.Raise Fiscaltf.Error, "", Fiscaltf.ErrorDesc
@@ -2400,20 +2519,20 @@ espere.Label1 = "Espere... Imprimiendo Productos"
   If Option2 = True Then 'contado
   
      td = Left$(RTrim$(vta_formapago.msf2.TextMatrix(1, 1)) & " " & RTrim$(vta_formapago.msf2.TextMatrix(1, 3)), caracteresmax)
-    mp = Format$(Val(t_total) * 100, "00000000")
+    mp = Format$(Val(T_TOTAL) * 100, "00000000")
     dp = "T"
     If rk Then
-       rk = epson1.SendInvoicePayment(td, Format$(Val(t_total) * 100, "00000000"), "T")
+       rk = epson1.SendInvoicePayment(td, Format$(Val(T_TOTAL) * 100, "00000000"), "T")
      Else
        Call verificaerrfiscal(epson1.FiscalStatus, epson1.PrinterStatus)
      End If
   
   Else
     td = "Cta. Cte. Nro. " & Format$(c_prov.ItemData(c_prov.ListIndex), "00000")
-    mp = Format$(Val(t_total) * 100, "00000000")
+    mp = Format$(Val(T_TOTAL) * 100, "00000000")
     dp = "T"
     If rk Then
-       rk = epson1.SendInvoicePayment("Cta. Cte. Nro. " & Format$(c_prov.ItemData(c_prov.ListIndex), "00000"), Format$(Val(t_total) * 100, "00000000"), "T")
+       rk = epson1.SendInvoicePayment("Cta. Cte. Nro. " & Format$(c_prov.ItemData(c_prov.ListIndex), "00000"), Format$(Val(T_TOTAL) * 100, "00000000"), "T")
      Else
        Call verificaerrfiscal(epson1.FiscalStatus, epson1.PrinterStatus)
      End If
@@ -2431,7 +2550,7 @@ espere.Label1 = "Espere... Cerrando Comprobante Fiscal"
  If rk Then
       t_subtotal = Format$(Val(epson1.AnswerField_10) / 100, "######0.00")
       t_iva = Format$(Val(epson1.AnswerField_6) / 100, "####0.00")
-      t_total = Format$(Val(epson1.AnswerField_5) / 100, "######0.00")
+      T_TOTAL = Format$(Val(epson1.AnswerField_5) / 100, "######0.00")
  Else
      Call verificaerrfiscal(epson1.FiscalStatus, epson1.PrinterStatus)
  End If
@@ -2456,13 +2575,13 @@ End Function
 
 Sub normal()
   Set rs = New ADODB.Recordset
-  q = "select * from vta_02 where [sucursal] = " & Val(t_sucursal) & " and letra = '" & t_letra & "' and [id_tipocomp] = " & c_tipocomp.ItemData(c_tipocomp.ListIndex) & " and [num_comp] = " & Val(t_numcomp)
+  q = "select num_int from vta_02 where [sucursal] = " & Val(t_sucursal) & " and letra = '" & t_letra & "' and [id_tipocomp] = " & c_tipocomp.ItemData(c_tipocomp.ListIndex) & " and [num_comp] = " & Val(t_numcomp)
   rs.Open q, cn1
   If Not rs.BOF And Not rs.EOF Then
       EXISTE = "S"
       If para.id_grupo_modulo_actual >= 8 Then
          ni = rs("num_int")
-         Set rs = Nothing
+         
          J = MsgBox("Comprobante existente. ¿Desea Modificarlo? ", 4)
          If J = 6 Then
            Set cl_compvta = New comprobantes_venta
@@ -2479,6 +2598,7 @@ Sub normal()
     EXISTE = "N"
     Call graba
   End If
+  Set rs = Nothing
 
 End Sub
 Private Sub btnsale_Click()
@@ -2720,7 +2840,7 @@ End Sub
 Private Sub Command8_Click()
  
   vta_formapago.Show
-  vta_formapago.t_total = t_total
+  vta_formapago.T_TOTAL = T_TOTAL
  
 End Sub
 
@@ -2735,28 +2855,14 @@ Sub grabaformapago()
   For i = 1 To vta_formapago.msf2.Rows - 1
          If Val(vta_formapago.msf2.TextMatrix(i, 0)) = 3 Then
                 'ch. terceros
-                q = "select * from cyb_03"
-                Set rs = New ADODB.Recordset
-                rs.Open q, cn1, adOpenDynamic, adLockOptimistic
-                rs.AddNew
-                 rs("fecha_emision") = t_fecha
-                 rs("num_cheque") = Val(vta_formapago.msf2.TextMatrix(i, 2))
-                 rs("banco") = vta_formapago.msf2.TextMatrix(i, 3)
-                 rs("sucursal") = vta_formapago.msf2.TextMatrix(i, 4)
-                 rs("titular") = vta_formapago.msf2.TextMatrix(i, 5)
-                 rs("importe") = Val(vta_formapago.msf2.TextMatrix(i, 6))
-                 rs("estado") = "C"
-                 rs("fecha_dif") = vta_formapago.msf2.TextMatrix(i, 7)
-                 rs("origen") = Left$(vta_clientes.t_cli, 50)
-                 rs("destino") = " "
-                 rs("num_mov_banco_i") = 0
-                 rs("num_mov_banco_e") = 0
-                 rs("num_int_op") = 0
-                 rs("num_int_rbo") = numint
-                 rs("fecha_salida") = t_fecha
-                 rs("fecha_ingreso") = t_fecha
-                 rs("tipo_salida") = "C"
-                rs.Update
+                
+                QUERY = "insert into cyb_03 (fecha_emision, num_cheque, banco, sucursal, titular, importe,   "
+                QUERY = QUERY & "estado, fecha_dif, origen, destino, num_mov_banco_i, num_mov_banco_e, num_int_op, num_int_rbo, fecha_salida, fecha_ingreso,tipo_salida) values("
+                QUERY = QUERY & "'" & t_fecha & "', " & Val(msf2.TextMatrix(i, 2)) & ",'" & msf2.TextMatrix(i, 3) & "', '" & msf2.TextMatrix(i, 4) & "', '" & msf2.TextMatrix(i, 5) & "', "
+                QUERY = QUERY & Val(msf2.TextMatrix(i, 6)) & ",'C', '" & vta_formapago.msf2.TextMatrix(i, 7) & "', '" & Left$(vta_clientes.t_cli, 50) & "', ' ', 0,0,0, " & numint & ", '" & t_fecha & "', '" & t_fecha & "', 'C')"
+                'MsgBox (QUERY)
+                cn1.Execute QUERY
+                
                 
                 qr = "SELECT @@IDENTITY AS NewID"
                 Set rs = cn1.Execute(qr)
@@ -2794,7 +2900,7 @@ Sub grabaformapago()
          End If
          
          
-         q = "select * from cyb_01 where [id_forma_pago] = " & Val(vta_formapago.msf2.TextMatrix(i, 0))
+         q = "select caja from cyb_01 where [id_forma_pago] = " & Val(vta_formapago.msf2.TextMatrix(i, 0))
          Set rs = New ADODB.Recordset
          rs.Open q, cn1
          If Not rs.EOF And Not rs.BOF Then
@@ -2972,8 +3078,77 @@ Next J
           
           
 End Sub
+
+
+
+Sub actualizaremitos2()
+For J = 1 To msf1.Rows - 1
+ If Val(msf1.TextMatrix(J, 1)) > 1 Then
+  cantidadf = Val(msf1.TextMatrix(J, 3)) 'cantidad facturada
+  codprodant = Val(msf1.TextMatrix(J, 1))  'codigo producto
+  i = 1  'para cada articulo busco en los remitos seleccionados
+  While i < vta_selremitos.msf1.Rows
+   If vta_selremitos.msf1.TextMatrix(i, 0) = "**" Then
+     nir = Val(vta_selremitos.msf1.TextMatrix(i, 4))
+     q = "select cantidad from vta_03 where [num_int] = " & nir & " and [id_producto] = " & codprodant
+     Set rs1 = New ADODB.Recordset
+     rs1.Open q, cn1, adOpenDynamic, adLockOptimistic
+     While Not rs1.EOF
+             'si encontre el producto en el remito
+             'verifico cantidad a facturar cantidadf contra lo que hay en el remito
+             If cantidadf >= rs1.Fields("Cantidad") Then
+                cantidadf = cantidadf - rs1.Fields("Cantidad")
+                cpend = 0
+                rs1("cantidad") = cpend
+                rs1.Update
+            
+             Else
+                cpend = rs1.Fields("cantidad") - cantidadf
+                cantidadf = 0
+                rs1("cantidad") = cpend
+                rs1.Update
+                'rs1.MoveLast
+                i = vta_selremitos.msf1.Rows
+             End If
+              
+            rs1.MoveNext
+      Wend
+      Set rs1 = Nothing
+   End If
+     i = i + 1
+  Wend
+ End If
+Next J
+
+
+'vuelvo a verificar todos los remitos
+      
+      i = 1  'buscolos remitos seleccionados
+      While i < vta_selremitos.msf1.Rows
+        If vta_selremitos.msf1.TextMatrix(i, 0) = "**" Then
+          nir = Val(vta_selremitos.msf1.TextMatrix(i, 4))
+          If verificaremito(nir) = 0 Then
+             q = "SELECT estado FROM VTA_02 WHERE [NUM_INT] = " & nir
+             Set rs = New ADODB.Recordset
+             rs.Open q, cn1, adOpenDynamic, adLockOptimistic
+             If Not rs.EOF And Not rs.BOF Then
+                rs("estado") = "F"
+                rs.Update
+             End If
+          End If
+        End If
+        i = i + 1
+     Wend
+          
+          
+          
+          
+End Sub
+
+
+
 Function verificaremito(ByVal n As Long) As Integer
-q = "select * from vta_03 where [num_int] = " & n
+q = "select id_producto, cantidad from vta_03 where [num_int] = " & n
 Set rs1 = New ADODB.Recordset
 rs1.Open q, cn1
 p = 0
@@ -3349,7 +3524,7 @@ Sub graba()
          cp = "0000-00000000"
          contado = "N"
          If Option4 = True Then
-            ssi = Val(t_total)
+            ssi = Val(T_TOTAL)
          Else
             ssi = Val(T_total2)
          End If
@@ -3373,7 +3548,7 @@ Sub graba()
       
       
       Set rs = New ADODB.Recordset
-      q = "select * from g8 where [id_actividad] = " & c_actividad.ItemData(c_actividad.ListIndex)
+      q = "select id_actividad, alicuota_ib, cuenta_contable_venta from g8 where [id_actividad] = " & c_actividad.ItemData(c_actividad.ListIndex)
       rs.Open q, cn1
       If Not rs.EOF And Not rs.BOF Then
        codact = rs("id_actividad")
@@ -3433,7 +3608,7 @@ Sub graba()
 
 
 QUERY = QUERY & " VALUES (" & numint & ", " & Val(t_sucursal) & ", " & Val(t_numcomp) & ", '" & t_letra & "', " & c_tipocomp.ItemData(c_tipocomp.ListIndex) & _
-", " & idcli & ", '" & t_fecha & "', " & para.id_usuario & ", " & Val(t_subtotal) & ", " & Val(t_nograbado) & ", " & Val(t_iva) & ", " & Val(t_total) & _
+", " & idcli & ", '" & t_fecha & "', " & para.id_usuario & ", " & Val(t_subtotal) & ", " & Val(t_nograbado) & ", " & Val(t_iva) & ", " & Val(T_TOTAL) & _
 ", 'A', " & cuentaact & ", '" & cl_compvta.STOCK & "', '" & ubicacionctacte & "', '" & cl_compvta.grabado & "', '" & ep & "', '" & cp & "', '" & t_observaciones & _
 " ', " & Val(t_cotizacion) & ", " & T2 & ", '" & moneda & "', " & c_vend.ItemData(c_vend.ListIndex) & ", '" & cl_compvta.venta & "', '" & contado & "', " & Val(t_perc)
 
@@ -3554,7 +3729,7 @@ Next i
            tot = Val(T_total2)
            m = Val(t_cotizacion)
          Else
-           tot = Val(t_total)
+           tot = Val(T_TOTAL)
            m = 1
          End If
          
@@ -3627,7 +3802,7 @@ Next i
          If cl_compvta.grabado <> "N" Then
            importe = Val(t_subtotal) * m
          Else
-           importe = Val(t_total) * m
+           importe = Val(T_TOTAL) * m
          End If
          QUERY = "INSERT INTO c_03([num_interno], [renglon], [id_cuenta], [ubicacion], [importe], [descripcion])"
          QUERY = QUERY & " VALUES (" & numintcgr & ", " & ic & ", " & cuentaact & ", '" & u2 & "', " & Format(importe, "######0.00") & ", '" & "Ventas" & "')"
@@ -3701,7 +3876,7 @@ Next i
       
       
      
-        Call actualizaremitos
+        Call actualizaremitos2
      'End If
       
       
@@ -3730,8 +3905,8 @@ Next i
       
       
       
-      Set cl_compvta = New comprobantes_venta
-      cl_compvta.web (numint)
+      'Set cl_compvta = New comprobantes_venta
+      'cl_compvta.web (numint)
       
       
       Call libera_comp
@@ -3778,7 +3953,7 @@ For i = 0 To Val(t_cantcuotas) - 1
   cp = "0000-00000000"
   contado = "N"
   If Option4 = True Then
-      ssi = Val(t_total)
+      ssi = Val(T_TOTAL)
       moneda = "P"
       cm = Val(t_valorcuota)
       cotram = Val(t_valorcuota) / Val(t_cotizacion)
@@ -3870,13 +4045,13 @@ Sub generapagare(ni21)
   cp = "0000-00000000"
   contado = "S"
   If Option4 = True Then
-      ssi = Val(t_total)
+      ssi = Val(T_TOTAL)
       moneda = "P"
       cotram = Val(T_total2)
     Else
       ssi = Val(T_total2)
       moneda = "D"
-      cotram = Val(t_total)
+      cotram = Val(T_TOTAL)
     
   End If
   
@@ -4054,12 +4229,12 @@ End If
   
 If Val(t_cantcuotas) > Val(t_cuotas_sininteres) Then
   'aplica interes
-  interes = Format((Val(t_cantcuotas) * Val(t_interes_cuota) * Val(t_total)) / 100, "#######0.00")
+  interes = Format((Val(t_cantcuotas) * Val(t_interes_cuota) * Val(T_TOTAL)) / 100, "#######0.00")
 Else
   interes = 0
 End If
   
-t_valorcuota = Format$((Val(t_total) + interes) / Val(t_cantcuotas), "######0.00")
+t_valorcuota = Format$((Val(T_TOTAL) + interes) / Val(t_cantcuotas), "######0.00")
 
 End Sub
 
@@ -4099,6 +4274,9 @@ If Not IsDate(t_fecha) Then
 Else
   t_fecha = Format$(t_fecha, "dd/mm/yyyy")
 End If
+c_actividad.ListIndex = buscaindice(c_actividad, sacaactividadsucursal(Val(t_sucursal)))
+Call iniciacomp
+
 'Call verifica_fechacorte(t_fecha)
 End Sub
 
@@ -4140,23 +4318,24 @@ End Sub
 
 
 Private Sub t_numcomp_KeyPress(KeyAscii As Integer)
-Call solonum(KeyAscii, 0)
-If c_tipocomp.ItemData(c_tipocomp.ListIndex) < 30 Or c_tipocomp.ItemData(c_tipocomp.ListIndex) > 32 Then
+
+
+If KeyAscii = 13 Then
+  Call solonum(KeyAscii, 0)
+  If c_tipocomp.ItemData(c_tipocomp.ListIndex) < 30 Or c_tipocomp.ItemData(c_tipocomp.ListIndex) > 32 Then
     t_fecha.SetFocus
- End If
- 
+  End If
+End If
 End Sub
 
 Private Sub t_numcomp_LostFocus()
 If IsNumeric(t_numcomp) Then
    t_numcomp = Format$(t_numcomp, "00000000")
    
-    Call carga2
+    Call carga3
+   'EXISTE = "N"
    
    
-   c_actividad.ListIndex = buscaindice(c_actividad, sacaactividadsucursal(Val(t_sucursal)))
-   Call iniciacomp
-
 Else
   t_numcomp.SetFocus
 End If
@@ -4227,18 +4406,18 @@ t_nograbado = Format$(Val(t_nograbado), "######0.00")
 t_subtotal = Format$(neto, "######0.00")
 t_iva = Format$(iva, "######0.00")
 t_perciva = Format$(Val(t_perciva), "######0.00")
-t_total = Format$(Val(t_subtotal) + Val(t_nograbado) + Val(t_perc) + Val(t_iva) + Val(t_perciva), "######0.00")
+T_TOTAL = Format$(Val(t_subtotal) + Val(t_nograbado) + Val(t_perc) + Val(t_iva) + Val(t_perciva), "######0.00")
 If Option4 = True Then
  If Val(t_cotizacion) < 1 Then
    t_cotizacion = 1
  End If
- T_total2 = Format$(Val(t_total) / Val(t_cotizacion), "#####0.00")
+ T_total2 = Format$(Val(T_TOTAL) / Val(t_cotizacion), "#####0.00")
 Else
-  T_total2 = Format$(Val(t_total) * Val(t_cotizacion), "#####0.00")
+  T_total2 = Format$(Val(T_TOTAL) * Val(t_cotizacion), "#####0.00")
 End If
 
 If c_tipocomp.ItemData(c_tipocomp.ListIndex) = 36 Then
-   t_valorcuota = Format$(Val(t_total) / Val(t_cantcuotas), "######0.00")
+   t_valorcuota = Format$(Val(T_TOTAL) / Val(t_cantcuotas), "######0.00")
 End If
 
 End Sub
@@ -4250,6 +4429,7 @@ If Option3 = True Then
  End If
 
 q = "select * from i_01 where [id_impuesto] = 1"
+'MsgBox (q)
 Set rs2 = New ADODB.Recordset
 rs2.Open q, cn1
 If Not rs2.EOF And Not rs2.BOF Then
@@ -4280,7 +4460,7 @@ Set rs2 = Nothing
 If Check1 = 1 Then
   'calcula perciva rg 2459
    Set rs2 = New ADODB.Recordset
-   q = "select * from  i_01, i_02 where i_01.[id_impuesto] = i_02.[id_impuesto] and i_01.[id_impuesto] = 2"
+   q = "select alicuota_i, alicuota_n, importe_minimo_sujeto_ret, retencion-minima from  i_01, i_02 where i_01.[id_impuesto] = i_02.[id_impuesto] and i_01.[id_impuesto] = 2"
    rs2.Open q, cn1
    If Not rs2.EOF And Not rs2.BOF Then
      Set cl_cli = New Clientes
@@ -4349,7 +4529,7 @@ Call inicia
 End Sub
 
 Private Sub t_total_LostFocus()
-t_total = Format$(t_total, "######0.00")
+T_TOTAL = Format$(T_TOTAL, "######0.00")
 End Sub
 
 Private Sub T_total2_KeyPress(KeyAscii As Integer)

@@ -681,12 +681,12 @@ Begin VB.Form vta_directa
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "12/8/2018"
+            TextSave        =   "24/09/2023"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "19:38"
+            TextSave        =   "06:04 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -717,7 +717,7 @@ Sub limpia()
    t_nograbado = ""
    t_perc = ""
    t_iva = ""
-   t_total = ""
+   T_TOTAL = ""
    Option1 = True
    Call ABM_COMP_COMPRA2.armagrid
 End Sub
@@ -745,7 +745,7 @@ Sub carga()
      t_nograbado = Format$(rs("impuestos"), "######0.00")
      t_perc = Format$(rs("perc_iva") + rs("perc_gan") + rs("perc_ib"), "######0.00")
      t_iva = Format$(rs("iva"), "######0.00")
-     t_total = Format$(rs("total"), "######0.00")
+     T_TOTAL = Format$(rs("total"), "######0.00")
      
      vta_formapago.armagrid2
      If rs("contado") = "S" Then
@@ -796,7 +796,7 @@ If Option2 = True Then
            J = MsgBox("No ha ingresado forma de pago, acepta pago total en Efectivo", 4)
            If J = 6 Then
               'pone forma de pago efectivo
-              vta_formapago.msf2.AddItem "001" & Chr(9) & 1 & Chr(9) & "-" & Chr(9) & "Efectivo $" & Chr(9) & "-" & Chr(9) & "-" & Chr(9) & Format$(Val(t_total), "######0.00") & Chr(9) & Format$(t_fecha, "DD/MM/YYYY") & Chr(9) & "" & Chr(9) & para.cuenta_caja
+              vta_formapago.msf2.AddItem "001" & Chr(9) & 1 & Chr(9) & "-" & Chr(9) & "Efectivo $" & Chr(9) & "-" & Chr(9) & "-" & Chr(9) & Format$(Val(T_TOTAL), "######0.00") & Chr(9) & Format$(t_fecha, "DD/MM/YYYY") & Chr(9) & "" & Chr(9) & para.cuenta_caja
               Call iniciagraba
            End If
        Else
@@ -820,7 +820,7 @@ End If
 
 End Sub
 Sub iniciagraba()
-If Val(t_total) > 0 Then
+If Val(T_TOTAL) > 0 Then
  J = MsgBox("Graba Comprobante ", 4)
  If J = 6 Then
   
@@ -1010,10 +1010,10 @@ espere.Label1 = "Espere... Imprimiendo Productos"
    Next i
   Else
     td = "Cta. Cte. Nro. " & Format$(c_prov.ItemData(c_prov.ListIndex), "00000")
-    mp = Format$(Val(t_total) * 100, "00000000")
+    mp = Format$(Val(T_TOTAL) * 100, "00000000")
      dp = "T"
      If r Then
-       r = epson1.SendInvoicePayment("Cta. Cte. Nro. " & Format$(c_prov.ItemData(c_prov.ListIndex), "00000"), Format$(Val(t_total) * 100, "00000000"), "T")
+       r = epson1.SendInvoicePayment("Cta. Cte. Nro. " & Format$(c_prov.ItemData(c_prov.ListIndex), "00000"), Format$(Val(T_TOTAL) * 100, "00000000"), "T")
      Else
        MsgBox ("Error F005 al procesar Item.  Comando InvoiceItem. Estado Fiscal: " & epson1.FiscalStatus & "  Estado Impresor. " & epson1.PrinterStatus)
      End If
@@ -1031,7 +1031,7 @@ espere.Label1 = "Espere... Cerrando Comprobante Fiscal"
  If r Then
       t_subtotal = Format$(Val(epson1.AnswerField_10) / 100, "######0.00")
       t_iva = Format$(Val(epson1.AnswerField_6) / 100, "####0.00")
-      t_total = Format$(Val(epson1.AnswerField_5) / 100, "######0.00")
+      T_TOTAL = Format$(Val(epson1.AnswerField_5) / 100, "######0.00")
  Else
       MsgBox ("Error F007 al recibir totales. Comando SUBTOTAL . Estado Fiscal: " & epson1.FiscalStatus & "  Estado Impresor. " & epson1.PrinterStatus)
  End If
@@ -1238,7 +1238,7 @@ End Sub
 Private Sub Command8_Click()
  
   vta_formapago.Show
-  vta_formapago.t_total = t_total
+  vta_formapago.T_TOTAL = T_TOTAL
  
 End Sub
 
@@ -1456,9 +1456,9 @@ If t_letra = "A" Then
   t = 0
   For i = 1 To msf1.Rows - 1
       r = Val(msf1.TextMatrix(i, 7))
-      R2 = Val(msf1.TextMatrix(i, 8))
+      r2 = Val(msf1.TextMatrix(i, 8))
       s = s + r
-      t = t + (R2 * Val(msf1.TextMatrix(i, 3)))
+      t = t + (r2 * Val(msf1.TextMatrix(i, 3)))
   
             'agrega en composicion de iva
       X = 1
@@ -1560,7 +1560,7 @@ Unload ABM_COMP_COMPRA2
 End Sub
 
 Private Sub msf1_GotFocus()
-Me.StatusBar1.Panels.Item(2) = "[INS] Agrega - [ENTER] Modifica - [F5] Saca Renglon - [F7] Costo - [F9] Graba "
+Me.StatusBar1.Panels.item(2) = "[INS] Agrega - [ENTER] Modifica - [F5] Saca Renglon - [F7] Costo - [F9] Graba "
 If msf1.Rows > 1 Then
   msf1.FocusRect = flexFocusNone
 Else
@@ -1633,10 +1633,11 @@ Sub graba()
   numint = saca_ultnumero_int_comp("V")
       
   Set cl_compvta = New comprobantes_venta
-  cl_compvta.sucursal = Val(t_sucursal)
+  cl_compvta.sucursal = Val(c_sucursal)
   cl_compvta.actual (c_tipocomp.ItemData(c_tipocomp.ListIndex))
   cl_compvta.letra = t_letra
   cl_compvta.numcomp = Val(t_numcomp)
+  cl_compvta.sucursal = Val(t_sucursal)
   abreviatura = cl_compvta.abreviatura
   ubicacionctacte = cl_compvta.ctacte
      If Option1 = True Then
@@ -1644,7 +1645,7 @@ Sub graba()
          cp = "0000-00000000"
          contado = "N"
          If Option4 = True Then
-            ssi = Val(t_total)
+            ssi = Val(T_TOTAL)
          Else
             ssi = Val(T_total2)
          End If
@@ -1657,7 +1658,7 @@ Sub graba()
       End If
       
       If EXISTE = "N" Then
-        cl_compvta.ACTUALIZA_NUMERADOR
+        'cl_compvta.ACTUALIZA_NUMERADOR
       End If
       
       If Option4 = True Then
@@ -1705,7 +1706,7 @@ Sub graba()
 
 
 QUERY = QUERY & " VALUES (" & numint & ", " & Val(t_sucursal) & ", " & Val(t_numcomp) & ", '" & t_letra & "', " & c_tipocomp.ItemData(c_tipocomp.ListIndex) & _
-", " & idcli & ", '" & t_fecha & "', " & para.id_usuario & ", " & Val(t_subtotal) & ", " & Val(t_nograbado) & ", " & Val(t_iva) & ", " & Val(t_total) & _
+", " & idcli & ", '" & t_fecha & "', " & para.id_usuario & ", " & Val(t_subtotal) & ", " & Val(t_nograbado) & ", " & Val(t_iva) & ", " & Val(T_TOTAL) & _
 ", 'A', " & cuentaact & ", '" & cl_compvta.STOCK & "', '" & cl_compvta.ctacte & "', '" & cl_compvta.grabado & "', '" & ep & "', '" & cp & "', '" & t_observaciones & _
 " ', " & Val(t_cotizacion) & ", " & Val(T_total2) & ", '" & moneda & "', " & c_vend.ItemData(c_vend.ListIndex) & ", '" & cl_compvta.venta & "', '" & contado & "', 0" & _
 ", 0, 0, " & codact & ", 0, 0, 0, '" & t_fechavto & "', 0, 0, ' ', ' ', ' ', 0, " & Val(c_sucursal) & _
@@ -1811,7 +1812,7 @@ QUERY = QUERY & " VALUES (" & numint & ", " & Val(t_sucursal) & ", " & Val(t_num
            tot = Val(T_total2)
            m = Val(t_cotizacion)
          Else
-           tot = Val(t_total)
+           tot = Val(T_TOTAL)
            m = 1
          End If
          
@@ -1884,7 +1885,7 @@ QUERY = QUERY & " VALUES (" & numint & ", " & Val(t_sucursal) & ", " & Val(t_num
          If cl_compvta.grabado <> "N" Then
            importe = Val(t_subtotal) * m
          Else
-           importe = Val(t_total) * m
+           importe = Val(T_TOTAL) * m
          End If
          QUERY = "INSERT INTO c_03([num_interno], [renglon], [id_cuenta], [ubicacion], [importe], [descripcion])"
          QUERY = QUERY & " VALUES (" & numintcgr & ", " & ic & ", " & cuentaact & ", '" & u2 & "', " & Format(importe, "######0.00") & ", '" & "Ventas" & "')"
@@ -2169,14 +2170,14 @@ t_subtotal = Format$(Val(t_bruto) - Val(t_gastos), "######0.00")
 t_nograbado = Format$(Val(t_nograbado), "######0.00")
 t_perc = Format$(Val(t_perc), "######0.00")
 t_iva = Format$(Val(t_iva), "######0.00")
-t_total = Format$(Val(t_subtotal) - Val(t_nograbado) - Val(t_perc) + Val(t_iva), "######0.00")
+T_TOTAL = Format$(Val(t_subtotal) - Val(t_nograbado) - Val(t_perc) + Val(t_iva), "######0.00")
 If Option4 = True Then
  If Val(t_cotizacion) < 1 Then
    t_cotizacion = 1
  End If
- T_total2 = Format$(Val(t_total) / Val(t_cotizacion), "#####0.00")
+ T_total2 = Format$(Val(T_TOTAL) / Val(t_cotizacion), "#####0.00")
 Else
-  T_total2 = Format$(Val(t_total) * Val(t_cotizacion), "#####0.00")
+  T_total2 = Format$(Val(T_TOTAL) * Val(t_cotizacion), "#####0.00")
 End If
 End Sub
 Sub sacaperc()
@@ -2274,7 +2275,7 @@ Call inicia
 End Sub
 
 Private Sub t_total_LostFocus()
-t_total = Format$(t_total, "######0.00")
+T_TOTAL = Format$(T_TOTAL, "######0.00")
 End Sub
 
 Private Sub T_total2_KeyPress(KeyAscii As Integer)
