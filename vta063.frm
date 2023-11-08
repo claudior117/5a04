@@ -18,7 +18,7 @@ Begin VB.Form vta_cargaprod_listaprov
       Height          =   1335
       Left            =   120
       TabIndex        =   31
-      Top             =   3480
+      Top             =   3600
       Width           =   9735
       Begin VB.TextBox t_filaini 
          BorderStyle     =   0  'None
@@ -520,12 +520,12 @@ Begin VB.Form vta_cargaprod_listaprov
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "11/03/2022"
+            TextSave        =   "15/06/2023"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "04:44 p.m."
+            TextSave        =   "11:50 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -537,7 +537,7 @@ Begin VB.Form vta_cargaprod_listaprov
       Left            =   120
       TabIndex        =   28
       Top             =   5400
-      Width           =   7095
+      Width           =   6975
    End
    Begin VB.Label Label6 
       Caption         =   $"vta063.frx":142C
@@ -545,7 +545,7 @@ Begin VB.Form vta_cargaprod_listaprov
       Left            =   120
       TabIndex        =   27
       Top             =   4920
-      Width           =   7695
+      Width           =   7575
    End
 End
 Attribute VB_Name = "vta_cargaprod_listaprov"
@@ -752,6 +752,13 @@ Sub actualiza()
          rs("dto_compra") = Val(t_dto1)
          rs("dto_compra2") = Val(t_dto2)
          rs("flete_compra") = Val(t_recargo)
+         rs("dolar_ult_compra") = 1
+         rs("talle") = "*"
+         rs("color") = "*"
+         rs("medida") = "*"
+        
+        
+        
         
          rs.Update
          Set rs = Nothing

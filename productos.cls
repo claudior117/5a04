@@ -232,11 +232,12 @@ End Sub
 
 Public Sub cargar(ByVal ip As Long)
 Set rsc = New ADODB.Recordset
-q = "select * from a2, g5, g4 where [id_producto] = " & ip & " and a2.[id_unidad] = g5.[id_unidad] and [id_tasaiva] = [cod_tasaiva]"
+q = "select id_producto, pu, unidad, id_proveedor, tasa, costoreal, stock, precio_ult_compra, a2.id_unidad, a2.descripcion, cod_tasaiva, envase, pedidos, requeridos  from a2, g5, g4 where [id_producto] = " & ip & " and a2.[id_unidad] = g5.[id_unidad] and [id_tasaiva] = [cod_tasaiva]"
+
 rsc.Open q, cn1
 If Not rsc.EOF And Not rsc.BOF Then
   Me.idproducto = rsc("id_producto")
-  Me.Detalle = rsc("a2.descripcion")
+  Me.Detalle = rsc("descripcion")
   Me.codtasaiva = rsc("cod_tasaiva")
   Me.envase = rsc("envase")
   Me.pedido = rsc("pedidos")
@@ -244,7 +245,7 @@ If Not rsc.EOF And Not rsc.BOF Then
   Me.STOCK = rsc("stock")
   Me.precio_ult_compra = rsc("precio_ult_compra")
   Me.preciounitario = rsc("pu")
-  Me.id_unidad = rsc("a2.id_unidad")
+  Me.id_unidad = rsc("id_unidad")
   Me.unidad = rsc("unidad")
   Me.idproveedor = rsc("id_proveedor")
   Me.tasaiva = rsc("tasa")

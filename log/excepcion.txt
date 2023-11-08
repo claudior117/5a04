@@ -1,0 +1,48 @@
+soapenv:Server.userException: javax.ejb.EJBException: org.hibernate.exception.LockAcquisitionException: could not extract ResultSet
+
+<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:ser="https://wsaa.afip.gov.ar/ws/services/LoginCms" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+<soapenv:Header/>
+<soapenv:Body>
+    <ser:loginCms><in0>MIIG7QYJKoZIhvcNAQcCoIIG3jCCBtoCAQExDzANBglghkgBZQMEAgEFADCCAR8G
+CSqGSIb3DQEHAaCCARAEggEMPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0i
+VVRGLTgiPz48bG9naW5UaWNrZXRSZXF1ZXN0IHZlcnNpb249IjEuMCI+PGhlYWRl
+cj48dW5pcXVlSWQ+MTY4NjU3MzE3MTwvdW5pcXVlSWQ+PGdlbmVyYXRpb25UaW1l
+PjIwMjMtMDYtMTFUMjM6MzI6NTE8L2dlbmVyYXRpb25UaW1lPjxleHBpcmF0aW9u
+VGltZT4yMDIzLTA2LTEyVDE5OjMyOjUxPC9leHBpcmF0aW9uVGltZT48L2hlYWRl
+cj48c2VydmljZT53c2ZlPC9zZXJ2aWNlPjwvbG9naW5UaWNrZXRSZXF1ZXN0PqCC
+A0owggNGMIICLqADAgECAghDRtGcNAqWBTANBgkqhkiG9w0BAQ0FADAzMRUwEwYD
+VQQDDAxDb21wdXRhZG9yZXMxDTALBgNVBAoMBEFGSVAxCzAJBgNVBAYTAkFSMB4X
+DTIyMDgwODEzMTEyOFoXDTI0MDgwNzEzMTEyOFowMTEUMBIGA1UEAwwLY2xhdWRp
+bzA4MjIxGTAXBgNVBAUTEENVSVQgMjAyMDI5NTYwMzQwggEiMA0GCSqGSIb3DQEB
+AQUAA4IBDwAwggEKAoIBAQDY+HlFe0bhFAqirD0773iCeCSAuT//ZYnwhDHEL5gW
+C+4oqXkCpzWeqiBekxu7vjvQIE8NXTHCFMiNhU2zX4FdXDSOenpFEe7gvD624PRc
+nFmRY3tnJi1OFgnQObs08h94eXv5LTXb5ZD79qrESiDSSRk5xz26ciyzMPIEhXNw
+FlI1rz5MWtDVi2BjjIgIN0NKlsEYIlk+tVNrzdEWxLHln/mPwAqA0hUVTYThPCd9
+kO2c+fBu4hnN9GkRUf6bPRGomiUl0vzacjKsI3wqUGv696RarN+9Ra2vXVLOrE1Q
+DMsMQsdxYx+a9EdSwMfchY3LkOpw5Q6YKYZ28gkt7jx9AgMBAAGjYDBeMAwGA1Ud
+EwEB/wQCMAAwHwYDVR0jBBgwFoAUW0BRMOfDKracVpyTheNCgLBQ6/YwHQYDVR0O
+BBYEFINH9Y2pJGwTZYRkrsyFckqKgtRfMA4GA1UdDwEB/wQEAwIF4DANBgkqhkiG
+9w0BAQ0FAAOCAQEARtXSFDimKN6Ea91KZtSJiHdZ3R6IyXD01OpmBLnc9H6D/97d
+3DDixWg+xCADMDezPs74glXQj9Vd9vHXHYEDNS4oVXCaKmz0Wkbs5YNOrj+b0lkR
+rb45JQ8uRURVLoQIRgyz3wLuDNhpHb/Y75ngdVDDWy7HfXu3CXuJM0FWMOOUw44G
+dNz4Hawt/DOzMJnvx+QYkEEsRWy1P9Egm2tXceIK/x0Pfrwu2VJNTDjr+nN8mqC7
+3OB+DGIVE9CyseDLa213j3B+LrYovCehtNsvbg3hfaWRBlV+ORSPYnANsy+bw6Lt
+4B+XJk+hZpp0TpB+xBrew8tkCm2cv5Sr2WQDgjGCAlEwggJNAgEBMD8wMzEVMBMG
+A1UEAwwMQ29tcHV0YWRvcmVzMQ0wCwYDVQQKDARBRklQMQswCQYDVQQGEwJBUgII
+Q0bRnDQKlgUwDQYJYIZIAWUDBAIBBQCggeQwGAYJKoZIhvcNAQkDMQsGCSqGSIb3
+DQEHATAcBgkqhkiG9w0BCQUxDxcNMjMwNjEyMTIzMjUyWjAvBgkqhkiG9w0BCQQx
+IgQg7g3BWHcKIlog9TvwzaPLPWuGAQGcaqg1N0P6wrQ+UegweQYJKoZIhvcNAQkP
+MWwwajALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsGCWCGSAFlAwQBAjAKBggq
+hkiG9w0DBzAOBggqhkiG9w0DAgICAIAwDQYIKoZIhvcNAwICAUAwBwYFKw4DAgcw
+DQYIKoZIhvcNAwICASgwDQYJKoZIhvcNAQEBBQAEggEArrB5ceAYVvIJ3MqgQszz
+BaIkZ00GlAp7K1FYa9Zc/QvE7vRQwfAAAzLkV44VJwxhGdtnBGUoCTx0V6kz4XPl
+3Qy0vNnjk1/GUBSp7yFomyP+uRC5WtdcVI3Q8iqnVv1k+UxRygSjAgC+bgkN6Ksx
+rq1sPejbBv2Ovm1IITmomIPpP+BOAsvSoiP3TnLRU2vHggN9etoc3bx/geEOtceR
+W5sQAzS8AbOC7OQjd/UP1iHW6P/tju1nO1mRnC/sPT5zW6tVB64YliOTJfBdfXfg
+BtbdAV+OVwp6QjvY9cmryYqUt2PgTUlFwENZgjI8I1eZUHcTUu8ENcE0M6Ms0ecn
+2w==
+
+</in0></ser:loginCms>
+</soapenv:Body>
+</soapenv:Envelope>
+<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><soapenv:Body><soapenv:Fault><faultcode>soapenv:Server.userException</faultcode><faultstring>javax.ejb.EJBException: org.hibernate.exception.LockAcquisitionException: could not extract ResultSet</faultstring><detail><ns1:hostname xmlns:ns1="http://xml.apache.org/axis/">wsaa0.afip.gov.ar</ns1:hostname></detail></soapenv:Fault></soapenv:Body></soapenv:Envelope>

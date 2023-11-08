@@ -1,6 +1,6 @@
 VERSION 5.00
 Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form op 
    Appearance      =   0  'Flat
    BackColor       =   &H00E0E0E0&
@@ -890,12 +890,12 @@ Begin VB.Form op
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "19/12/2017"
+            TextSave        =   "07/09/2023"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "09:26 a.m."
+            TextSave        =   "11:33 p.m."
          EndProperty
       EndProperty
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -1024,8 +1024,8 @@ If T_CALCULARETGAN = "S" Then
             If excedente >= rs("minimo") And excedente <= rs("maximo") Then
              'ENCONTRE LA RETENCION
                 R1 = rs("importe_retenido")
-                R2 = (excedente - rs("sobre_EXcEDENTE")) * (rs("porcentaje_extra") / 100)
-                t_ret = R1 + R2 - retmes
+                r2 = (excedente - rs("sobre_EXcEDENTE")) * (rs("porcentaje_extra") / 100)
+                t_ret = R1 + r2 - retmes
                 rs.MoveLast
             End If
             rs.MoveNext
@@ -1055,7 +1055,7 @@ id = Space$(10)
 n2 = Space$(10)
 id = Space$(10)
 iss = Space$(10)
-QUERY = "select [ctacte], [moneda], [total], [subtotal], [total_d], [letra], [sucursal], [num_comprobante], [fecha], [id_codretgan], [id_tipocomp], [num_int], [id_codretib], [id_cuenta], [cotiz_dolar], [saldo_impago] from a5 where  [id_proveedor] = " & denominACION.ItemData(denominACION.ListIndex) & " and [estado_pago] = 'N' and  [ctacte] <> 'N' and [contado] = 'N' and id_tipocomp <= 30"
+QUERY = "select [ctacte], [moneda], [total], [subtotal], [total_d], [letra], [sucursal], [num_comprobante], [fecha], [id_codretgan], [id_tipocomp], [num_int], [id_codretib], [id_cuenta], [cotiz_dolar], [saldo_impago] from a5 where  [id_proveedor] = " & denominACION.ItemData(denominACION.ListIndex) & " and [estado_pago] = 'N' and  [ctacte] <> 'N' and [contado] = 'N' and (id_tipocomp <= 30 or id_tipocomp = 400) "
 QUERY = QUERY & " order by fecha"
 Set rs = New ADODB.Recordset
 rs.Open QUERY, cn1
@@ -1122,8 +1122,8 @@ If KeyAscii = 13 Then
      MsgBox ("El importe ngresado No coinciden con el total de la O.P.")
    Else
      Command3.Enabled = True
-     confirma.Enabled = True
-     confirma.SetFocus
+     Confirma.Enabled = True
+     Confirma.SetFocus
    End If
 End If
 
@@ -2119,7 +2119,7 @@ netoretib = 0
  t_netoretib = Format$(netoretib, "######0.00")
 End Sub
 Private Sub msf2_GotFocus()
-Me.StatusBar1.Panels.Item(2) = "[F1]Ch.Terc. - [F2]Ch.Propios - [F3]Otras - [F4] Transf/Db autom. - [ENTER] Continua - [F5] Saca Pago "
+Me.StatusBar1.Panels.item(2) = "[F1]Ch.Terc. - [F2]Ch.Propios - [F3]Otras - [F4] Transf/Db autom. - [ENTER] Continua - [F5] Saca Pago "
 If msf2.Rows > 0 Then
   msf2.FocusRect = flexFocusNone
 Else
@@ -2189,7 +2189,7 @@ Private Sub pi3()
    t_fecha = Format$(Now, "dd/mm/yyyy")
    Call armagrid
    Call armagrid2
-   confirma.Enabled = False
+   Confirma.Enabled = False
    Command3.Enabled = False
    t_numop = Format$(saca_ultnumero_comp2(50), "00000000")
 

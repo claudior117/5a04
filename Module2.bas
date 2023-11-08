@@ -137,7 +137,7 @@ End Function
 Public Function sacaactividadsucursal(ByVal s As Integer) As Integer
  'devuelve la actividad comercial predefinida para la sucursal s
   Set rs = New ADODB.Recordset
-  q = "select * from g8 where [sucursal_predefinida] = " & s
+  q = "select id_actividad from g8 where [sucursal_predefinida] = " & s
   rs.Open q, cn1
   If Not rs.EOF And Not rs.BOF Then
     a = rs("id_actividad")

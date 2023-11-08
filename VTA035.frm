@@ -585,12 +585,23 @@ espere.Refresh
  ls = 1
  While Not rs.EOF
     Set rs1 = New ADODB.Recordset
-    q = "select [pu], [pusindto], [descuento], a5.[fecha] from a6, a5 where [id_producto] = " & rs("id_producto") & " and a6.[num_int] = a5.[num_int] order by a5.[fecha] desc "
+    q = "select [pu], [pusindto], [descuento], a5.[fecha], moneda, cotiz_dolar from a6, a5 where [id_producto] = " & rs("id_producto") & " and a6.[num_int] = a5.[num_int] order by a5.[fecha] desc "
     rs1.MaxRecords = 1
     rs1.Open q, cn1
     If Not rs1.EOF And Not rs1.BOF Then
-          p = Format$(rs1("pu"), "######0.00") 'precio con dto
-          psd = Format$(rs1("pusindto"), "######0.00") 'precio sin dto
+          If rs("moneda") = rs1("moneda") Then
+            m = 1
+          Else
+            If rs("moneda") = "P" Then
+              'producto en $ comrpobante en dolares
+              m = rs1("cotiz_dolar") 'tomo la cotizacion del comrponate
+            Else
+             'producto en dolares comrpobante en $
+             m = 1 / rs1("cotiz_dolar")
+            End If
+          End If
+          p = Format$(rs1("pu") * m, "######0.00") 'precio con dto
+          psd = Format$(rs1("pusindto") * m, "######0.00") 'precio sin dto
           dto = Format$(rs1("descuento"), "##0.0") ' dto
           fec = Format$(rs1("fecha"), "dd/mm/yyyy")
     Else

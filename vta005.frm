@@ -198,7 +198,7 @@ Begin VB.Form vta_vercomp
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   40697857
+      StartOfWeek     =   114360321
       CurrentDate     =   38754
    End
    Begin MSFlexGridLib.MSFlexGrid msf1 
@@ -463,12 +463,12 @@ Begin VB.Form vta_vercomp
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "05/04/2023"
+            TextSave        =   "08/11/2023"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "03:39 p.m."
+            TextSave        =   "05:33 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -509,7 +509,11 @@ Sub carga()
   End If
     
    If c_moneda.ListIndex > 0 Then
-    q = q & c & " vta_02.[moneda] = '" & Mid$(c_moneda.ItemData(c_moneda.ListIndex), 1, 1) & "'"
+    If c_moneda.ListIndex = 1 Then
+        q = q & c & " vta_02.[moneda] = 'P'"
+    Else
+         q = q & c & " vta_02.[moneda] = 'D'"
+    End If
    End If
   
     
@@ -584,6 +588,7 @@ Sub carga()
  Else
     q = q & " order by [denominacion], [fecha], [num_comp]"
  End If
+ 
  
   Set rs = New ADODB.Recordset
   rs.Open q, cn1
@@ -764,7 +769,7 @@ Call carga_clientes(c_prov)
 c_prov.AddItem "<Todos>", 0
 c_prov.ListIndex = 0
 
-
+c_moneda.ListIndex = 0
 
 
 Call carga_vendedores(c_vend)

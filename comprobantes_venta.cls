@@ -1049,7 +1049,7 @@ End Property
 
 Public Sub ACTUALIZA_NUMERADOR()
    Set rs = New ADODB.Recordset
-   q = "select * from vta_06 where [sucursal] = " & Me.sucursal & " and  [id_tipocomp] = " & Me.idtipocomp
+   q = "select ULT_NUM_a, ULT_NUM_b, ULT_NUM_c, ULT_NUM_e from vta_06 where [sucursal] = " & Me.sucursal & " and  [id_tipocomp] = " & Me.idtipocomp
    rs.Open q, cn1, adOpenStatic, adLockOptimistic
    If Not rs.BOF And Not rs.EOF Then
       Select Case Me.letra
@@ -1401,7 +1401,7 @@ Sub borrocomp()
 'borrar comprbates de venta
 b = 1
 If Me.contado = "S" Then
-  q = "select * from cyb_03 where [num_int_rbo] = " & Me.numint & " and [estado] <> 'C'"
+  q = "select num_int_rbo from cyb_03 where [num_int_rbo] = " & Me.numint & " and [estado] <> 'C'"
   Set rs = New ADODB.Recordset
   rs.Open q, cn1
   If Not rs.BOF And Not rs.EOF Then
@@ -1416,25 +1416,19 @@ If b = 1 Then
     'borro comprobantes
       cn1.BeginTrans
       If Me.STOCK <> "N" Then
-        q = "select * from vta_03 where [num_int] = " & Me.numint & " and [id_producto] > 1 "
+        q = "select id_producto, cantidad from vta_03 where [num_int] = " & Me.numint & " and [id_producto] > 1 "
         Set rs = New ADODB.Recordset
         rs.Open q, cn1
         While Not rs.EOF
-          Set rs2 = New ADODB.Recordset
-          q = "select * from a2 where [id_producto] = " & rs("id_producto")
-          rs2.Open q, cn1, adOpenDynamic, adLockOptimistic, 1
-          If Not rs2.BOF And Not rs2.EOF Then
-             If Me.STOCK = "E" Then
+          If Me.STOCK = "E" Then
               s = -Val(rs("cantidad"))
-             Else
+          Else
               s = Val(rs("cantidad"))
-             End If
+          End If
              
-             QUERY = "update a2 set [stock] = [stock] + " & s & " where [id_producto] = " & rs2("id_producto")
+             QUERY = "update a2 set [stock] = [stock] + " & s & " where [id_producto] = " & rs("id_producto")
              cn1.Execute QUERY
             
-          End If
-          Set rs2 = Nothing
           rs.MoveNext
         Wend
         Set rs = Nothing
@@ -1488,7 +1482,7 @@ If b = 1 Then
       
       
       
-      q = "select * from c_02 where [modulo] = 'V' and [num_mov_int] = " & Me.numint
+      q = "select num_interno from c_02 where [modulo] = 'V' and [num_mov_int] = " & Me.numint
       Set rs = New ADODB.Recordset
       rs.Open q, cn1
       If Not rs.EOF And Not rs.BOF Then
@@ -1508,7 +1502,7 @@ If b = 1 Then
       
       
      'busco remitos en facturas
-     q = "select * from vta_08 where [id_factura] = " & Me.numint
+     q = "select id_factura from vta_08 where [id_factura] = " & Me.numint
      Set rs = New ADODB.Recordset
      rs.Open q, cn1
      If Not rs.EOF And Not rs.BOF Then
@@ -1537,7 +1531,7 @@ Public Sub borrar()
 Select Case Me.idtipocomp
  Case Is = 50
     'borro rbo
-     q = "select * from cyb_09 where datevalue([fecha]) = datevalue('" & Me.fecha & "')"
+     q = "select estado from cyb_09 where datevalue([fecha]) = datevalue('" & Me.fecha & "')"
      Set rs = New ADODB.Recordset
      rs.Open q, cn1
      If Not rs.EOF And Not rs.BOF Then
@@ -3415,7 +3409,7 @@ Public Sub imprimir()
 'T tique no fiscal
 
 Set rs = New ADODB.Recordset
-q = "select * from vta_06 where [sucursal] = " & Me.sucursal & " and  [id_tipocomp] = " & Me.idtipocomp
+q = "select cant_copias_a, cant_copias_b, cant_copias_c, cant_copias_e, formato from vta_06 where [sucursal] = " & Me.sucursal & " and  [id_tipocomp] = " & Me.idtipocomp
 rs.Open q, cn1
 If Not rs.EOF And Not rs.BOF Then
  Me.imprimedescextra = rs("imprime_desc_extra")
@@ -11329,7 +11323,7 @@ Sub BORRoRBO()
  On Error GoTo errbop
       
  'primero verifico que los ch. recibidos estan en cartera
- q = "select * from cyb_03 where [num_int_rbo] = " & Me.numint & " and [estado] <> 'C'"
+ q = "select num_int_rbo from cyb_03 where [num_int_rbo] = " & Me.numint & " and [estado] <> 'C'"
  Set rs = New ADODB.Recordset
  rs.Open q, cn1
  If Not rs.BOF And Not rs.EOF Then
@@ -11373,7 +11367,7 @@ Sub BORRoRBO()
       
       
       
-      q = "select * from c_02 where [modulo] = 'V' and [num_mov_int] = " & Me.numint
+      q = "select num_interno from c_02 where [modulo] = 'V' and [num_mov_int] = " & Me.numint
       Set rs = New ADODB.Recordset
       rs.Open q, cn1
       If Not rs.EOF And Not rs.BOF Then
@@ -11393,7 +11387,7 @@ Sub BORRoRBO()
        
       
       Set rs = New ADODB.Recordset
-      q = "select * from vta_010 where [num_int_rbo] = " & Me.numint
+      q = "select num_int_comp, importe_pagado from vta_010 where [num_int_rbo] = " & Me.numint
       rs.Open q, cn1, adOpenDynamic, adLockOptimistic
       While Not rs.EOF
          nic = rs("num_int_comp")
@@ -11435,7 +11429,7 @@ Public Sub actual(ByVal TIPOCOMP As Integer)
 'STOCK, CTACTE
 
  Set rs = New ADODB.Recordset
- q = "select * from vta_06 where [sucursal] = " & Me.sucursal & " and  [id_tipocomp] = " & TIPOCOMP
+ q = "select stock, ctacte, iva, abreviatura, venta, propio, contabilidad, tipo_impresora, cant_lineas,imprime_desc_extra, cod_afip_a, cod_afip_b, cod_afip_c  from vta_06 where [sucursal] = " & Me.sucursal & " and  [id_tipocomp] = " & TIPOCOMP
  rs.MaxRecords = 1
  rs.Open q, cn1
  If Not rs.EOF And Not rs.BOF Then
@@ -11484,7 +11478,7 @@ Public Sub actual2(ByVal TIPOCOMP As Integer, ByVal suc As Integer)
 'STOCK, CTACTE
 
  Set rs = New ADODB.Recordset
- q = "select * from vta_06 where [sucursal] = " & suc & " and  [id_tipocomp] = " & TIPOCOMP
+ q = "select stock, ctacte, iva, abreviatura, venta, propio, contabilidad, tipo_impresora, cant_lineas,imprime_desc_extra, cod_afip_a, cod_afip_b, cod_afip_c  from vta_06 where [sucursal] = " & suc & " and  [id_tipocomp] = " & TIPOCOMP
  rs.MaxRecords = 1
  rs.Open q, cn1
  If Not rs.EOF And Not rs.BOF Then
@@ -11500,7 +11494,7 @@ Public Sub actual2(ByVal TIPOCOMP As Integer, ByVal suc As Integer)
      Me.imprimedescextra = rs("imprime_desc_extra")
      Me.cod_afip_a = rs("cod_afip_a")
      Me.cod_afip_b = rs("cod_afip_b")
-    
+    Me.cod_afip_c = rs("cod_afip_c")
      
  Else
   MsgBox ("Error al Inicializar Comprobante. Clase: Comprobantes Venta  Proc.Actual: Error en el punto de venta o en el tipo de comprobante")

@@ -1,7 +1,7 @@
 VERSION 5.00
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomctl.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form vta_ABM_vend 
    BackColor       =   &H00E0E0E0&
    BorderStyle     =   1  'Fixed Single
@@ -130,8 +130,8 @@ Begin VB.Form vta_ABM_vend
       OLEDBFile       =   ""
       DataSourceName  =   ""
       OtherAttributes =   ""
-      UserName        =   ""
-      Password        =   ""
+      UserName        =   "claudio"
+      Password        =   "0969"
       RecordSource    =   ""
       Caption         =   "Adodc1"
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -262,12 +262,12 @@ Begin VB.Form vta_ABM_vend
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "27/11/2015"
+            TextSave        =   "07/07/2023"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "08:13 p.m."
+            TextSave        =   "10:37 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1

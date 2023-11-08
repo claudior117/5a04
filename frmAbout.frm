@@ -56,7 +56,7 @@ Begin VB.Form frmAbout
    End
    Begin VB.Label Label5 
       Alignment       =   2  'Center
-      Caption         =   "Última actualización 05/04/2023    679"
+      Caption         =   "Última actualización 08/11/2023    699"
       ForeColor       =   &H00000000&
       Height          =   285
       Left            =   1200
@@ -278,6 +278,3 @@ GetKeyError:      ' Borrar después de que se produzca un error...
     rc = RegCloseKey(hKey)                                  ' Cerrar clave de Registro
 End Function
 
-Private Sub Label5_Click()
-
-End Sub

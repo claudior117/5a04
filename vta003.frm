@@ -254,12 +254,12 @@ Begin VB.Form vta_facturacion1
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "04/09/2022"
+            TextSave        =   "08/11/2023"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "07:37 p.m."
+            TextSave        =   "11:27 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -427,7 +427,7 @@ End Sub
 Sub busca(tipo As String)
 'tipo = I por id_producto tipo = B por cod_barra
 Set rs = New ADODB.Recordset
-q = "select * from a2, g5, g12 where a2.[id_unidad] = g5.[id_unidad] and a2.[id_tasaib] = g12.[id_tasaib] "
+q = "select id_producto, cod_barra, descripcion, precio_final, pu, moneda, costoreal, cod_tasaiva, unidad, tasaib  from a2, g5, g12 where a2.[id_unidad] = g5.[id_unidad] and a2.[id_tasaib] = g12.[id_tasaib] "
 If tipo = "I" Then
   q = q & " and [id_producto] = " & Val(t_basico)
 Else
@@ -568,7 +568,7 @@ Sub cargarenglon(t As String)
   If vta_facturacion.c_tipocomp.ListIndex = 0 And vta_facturacion.Option1 Then
     If vta_facturacion.Option4 Then
      'pesos
-     tpl = Val(vta_facturacion.T_TOTAL)
+     tpl = Val(vta_facturacion.t_total)
     Else
      tpl = Val(vta_facturacion.T_total2)
     End If

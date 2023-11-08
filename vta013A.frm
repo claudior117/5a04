@@ -713,12 +713,12 @@ Begin VB.Form vta_remitos
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "05/08/2022"
+            TextSave        =   "08/11/2023"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "05:01 p.m."
+            TextSave        =   "05:19 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -785,7 +785,7 @@ End Sub
 Sub carga()
   
   Set rs = New ADODB.Recordset
-  q = " select * from vta_02 where [sucursal] = " & Val(t_sucursal) & " and letra = '" & t_letra & "' and [id_tipocomp] = " & c_tipocomp.ItemData(c_tipocomp.ListIndex) & " and [num_comp] = " & Val(t_numcomp)
+  q = " select * from vta_02 where [id_tipocomp] = " & c_tipocomp.ItemData(c_tipocomp.ListIndex) & " and [sucursal] = " & Val(t_sucursal) & " and [letra] = '" & t_letra & "' and [num_comp] = " & Val(t_numcomp)
   rs.Open q, cn1
   If Not rs.BOF And Not rs.EOF Then
      MsgBox ("Comprobante Existente")
@@ -831,6 +831,38 @@ Sub carga()
   
 End Sub
 
+
+
+Sub carga2()
+  Set rs = New ADODB.Recordset
+  q = "select [num_int], [id_tipocomp], [sucursal], [letra]  from vta_02 where  [num_comp]= " & Val(t_numcomp)
+  rs.Open q, cn1
+  ni = 0
+  While Not rs.EOF And ni = 0
+      If rs("id_tipocomp") = c_tipocomp.ItemData(c_tipocomp.ListIndex) And rs("sucursal") = Val(t_sucursal) And rs("letra") = t_letra Then
+            ni = rs("num_int")
+      End If
+      rs.MoveNext
+  Wend
+  
+  If ni = 0 Then
+     EXISTE = "N"
+  Else
+     EXISTE = "S"
+     MsgBox ("Comprobante Existente")
+     t_numcomp.SetFocus
+   End If
+ Set rs = Nothing
+ 
+  
+  
+  
+End Sub
+
+
+
+
+
 Private Sub btnacepta_Click()
 J = MsgBox("Graba Comprobante ", 4)
 If J = 6 Then
@@ -853,7 +885,7 @@ End If
 End Sub
 Sub normal()
   Set rs = New ADODB.Recordset
-  q = "select * from vta_02 where [sucursal] = " & Val(t_sucursal) & " and letra = '" & t_letra & "' and [id_tipocomp] = " & c_tipocomp.ItemData(c_tipocomp.ListIndex) & " and [num_comp] = " & Val(t_numcomp)
+  q = "select num_int from vta_02 where [sucursal] = " & Val(t_sucursal) & " and letra = '" & t_letra & "' and [id_tipocomp] = " & c_tipocomp.ItemData(c_tipocomp.ListIndex) & " and [num_comp] = " & Val(t_numcomp)
   rs.Open q, cn1
   If Not rs.BOF And Not rs.EOF Then
       EXISTE = "S"
@@ -1407,39 +1439,18 @@ Left$(cl_cli.direccion, 50) & "', '" & Left$(cl_cli.CUIT, 20) & "', '" & Left$(c
       cn1.Execute QUERY
       
       Set cl_cli = Nothing
+      Set cl_prod = New productos
       For i = 1 To msf1.Rows - 1
         If Val(msf1.TextMatrix(i, 1)) > 1 Then
-          Set cl_prod = New productos
+          
           cl_prod.cargar (Val(msf1.TextMatrix(i, 1)))
           costo = cl_prod.precio_ult_compra
-          Set cl_prod = Nothing
-        
-        
-            'descargar de remitos`pendientyes las cantidaddes de la devolucion
-          If c_tipocomp.ItemData(c_tipocomp.ListIndex) = 46 Then
-            q = "SELECT * FROM VTA_02, VTA_03 WHERE VTA_02.[NUM_INT] = VTA_03.[NUM_INT] AND [ID_TIPOCOMP] = 45 AND [ID_PRODUCTO] = " & Val(msf1.TextMatrix(i, 1)) & " AND [CANTIDAD] > 0 and [id_cliente] = " & c_prov.ItemData(c_prov.ListIndex) & " and [estado] = 'S'"
-            q = q & " order by [fecha]"
-            Set rs2 = New ADODB.Recordset
-            rs2.Open q, cn1, adOpenDynamic, adLockOptimistic
-            c = Val(msf1.TextMatrix(i, 3))
-            While Not rs2.EOF And c > 0
-              If rs2("cantidad") >= c Then
-               rs2("cantidad") = rs2("cantidad") - c
-               rs2.Update
-               c = 0
-              Else
-               c = c - rs2("cantidad")
-               rs2("cantidad") = 0
-               rs2.Update
-              End If
-              rs2.MoveNext
-             Wend
-             Set rs2 = Nothing
-           End If
+          
         Else
-          costo = 0
+         costo = 0
         End If
         
+          
         QUERY = "INSERT INTO vta_03([num_int], [RENGLON], [id_producto], [descripcion], [cantidad], [pu], [importe], [tasaiva], [impuesto], [costo], [cantidad_original], [tunidad], [bultos], [pu_final])"
         QUERY = QUERY & " VALUES (" & numint & ", " & Val(msf1.TextMatrix(i, 0)) & ", " & Val(msf1.TextMatrix(i, 1)) & ", '" & msf1.TextMatrix(i, 2) & " ', " & Val(msf1.TextMatrix(i, 3)) & ", " & Val(msf1.TextMatrix(i, 5)) & ", " & Val(msf1.TextMatrix(i, 8)) & ", " & Val(msf1.TextMatrix(i, 6)) & ", 0, " & costo & ", " & Val(msf1.TextMatrix(i, 3)) & ", '" & Left$(msf1.TextMatrix(i, 4), 8) & "', " & Val(msf1.TextMatrix(i, 7)) & ", " & Val(msf1.TextMatrix(i, 10)) & ")"
         cn1.Execute QUERY
@@ -1449,8 +1460,6 @@ Left$(cl_cli.direccion, 50) & "', '" & Left$(cl_cli.CUIT, 20) & "', '" & Left$(c
         QUERY = QUERY & " VALUES (" & numint & ", " & Val(msf1.TextMatrix(i, 0)) & ", " & Val(msf1.TextMatrix(i, 1)) & ", " & c_prov.ItemData(c_prov.ListIndex) & ", " & Val(msf1.TextMatrix(i, 3)) & ", '" & tc & "')"
         cn1.Execute QUERY
       
-        
-        
         
              
         
@@ -1476,19 +1485,21 @@ Left$(cl_cli.direccion, 50) & "', '" & Left$(cl_cli.CUIT, 20) & "', '" & Left$(c
            QUERY = QUERY & " where [id_producto]= " & Val(msf1.TextMatrix(i, 1))
            cn1.Execute QUERY
         End If
+        
+       
       Next i
-      
+      Set cl_prod = Nothing
       
     
     'verifica los remitos que debn pasar a pendiente
     If c_tipocomp.ItemData(c_tipocomp.ListIndex) = 46 Then
-       q = "SELECT * FROM VTA_02 WHERE [ID_TIPOCOMP] = 45 AND  [id_cliente] = " & c_prov.ItemData(c_prov.ListIndex) & " and [estado] = 'S'"
+       q = "SELECT num_int FROM VTA_02 WHERE [ID_TIPOCOMP] = 45 AND  [id_cliente] = " & c_prov.ItemData(c_prov.ListIndex) & " and [estado] = 'S'"
        q = q & " order by [fecha]"
        Set rs2 = New ADODB.Recordset
        rs2.Open q, cn1, adOpenDynamic, adLockOptimistic
        While Not rs2.EOF
          Set rs3 = New ADODB.Recordset
-         q = "select * from vta_03 where [num_int] = " & rs2("num_int")
+         q = "select cantidad from vta_03 where [num_int] = " & rs2("num_int")
          rs3.Open q, cn1
          p = 0
          While Not rs3.EOF
@@ -1710,7 +1721,8 @@ End Sub
 Private Sub t_numcomp_LostFocus()
 If IsNumeric(t_numcomp) Then
    t_numcomp = Format$(t_numcomp, "00000000")
-   Call carga
+   Call carga2
+   'EXISTE = "N"
    Call iniciacomp
 End If
 End Sub
@@ -1724,19 +1736,21 @@ Call sacatotales
 
 End Sub
 Sub iniciacomp()
-Set rs = New ADODB.Recordset
-q = "select [imprime_desc_extra] from vta_06 where [sucursal] = " & Val(t_sucursal) & " and [id_tipocomp] = " & c_tipocomp.ItemData(c_tipocomp.ListIndex)
-rs.Open q, cn1
-If Not rs.EOF And Not rs.BOF Then
-  If rs("imprime_desc_extra") = "S" Then
-    Check2 = 1
-  Else
-    Check2 = 0
-  End If
-Else
-  Check2 = 0
-End If
-Set rs = Nothing
+
+'Set rs = New ADODB.Recordset
+'q = "select [imprime_desc_extra] from vta_06 where [sucursal] = " & Val(t_sucursal) & " and [id_tipocomp] = " & c_tipocomp.ItemData(c_tipocomp.ListIndex)
+'rs.Open q, cn1
+'If Not rs.EOF And Not rs.BOF Then
+'  If rs("imprime_desc_extra") = "S" Then
+'    Check2 = 1
+'  Else
+'    Check2 = 0
+'  End If
+'Else
+'  Check2 = 0
+'End If
+'Set rs = Nothing
+Check2 = 0
 End Sub
 
 Private Sub t_stock_LostFocus()
