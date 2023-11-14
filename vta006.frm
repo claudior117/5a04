@@ -700,7 +700,7 @@ espere.Refresh
 
 rs.Open q, cn1
  t_encontrados = 0
- Set cl_stock = New STOCK
+ 'Set cl_stock = New STOCK
  ls = 1
  While Not rs.EOF
     b = Format$(rs("id_producto"), "00000")
@@ -715,8 +715,6 @@ rs.Open q, cn1
         p2 = Format$(rs("precio_final"), "######0.00")
       
     End If
-    'cl_stock.sacastock (rs("id_producto"))
-    'c = Format$(cl_stock.stock_movimientos, "#######0.00")
     c = rs("stock")
     ti = Format$(rs("tasa"), "#0.00")
     If rs("moneda") = "P" Then
@@ -733,15 +731,15 @@ rs.Open q, cn1
     msf1.AddItem b & Chr$(9) & d & Chr$(9) & p & Chr$(9) & c & Chr$(9) & m & Chr$(9) & ti & "%" & Chr$(9) & p2 & Chr$(9) & ee & Chr$(9) & F & Chr$(9) & rs("pedidos")
     t_encontrados = Val(t_encontrados) + 1
     
-    If gestilo >= 2 Then
-     If ls = 0 Then
-      Call cambiacolor("&HFFDEC8", msf1.Rows - 1)
-      ls = 1
-     Else
-      Call cambiacolor("&H80000005", msf1.Rows - 1)
-      ls = 0
-     End If
-    End If
+   ' If gestilo >= 2 Then
+   '  If ls = 0 Then
+   '   Call cambiacolor("&HFFDEC8", msf1.Rows - 1)
+   '   ls = 1
+   '  Else
+   '   Call cambiacolor("&H80000005", msf1.Rows - 1)
+   '   ls = 0
+   '  End If
+   ' End If
     rs.MoveNext
  Wend
  Set cl_stock = Nothing

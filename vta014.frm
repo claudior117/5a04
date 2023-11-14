@@ -370,6 +370,9 @@ Sub armafactura()
         Call agregalinea(i)
         'listaremitos = listaremitos & "Rt " & Mid$(facturas.List(i), 6, 8) & "- "
        End If
+       
+       
+       
     End If
   Next i
   'FACTURACION!t_remitos = listaremitos
@@ -393,7 +396,7 @@ Dim PRECIOfinal2 As Double
 Dim J As Single
 
 'BUSCO REMITO
-q = "select [num_int], [moneda]  from vta_02 where [num_int] = " & Val(msf1.TextMatrix(k, 4))
+q = "select [num_int], [moneda], [id_tipocomp] from vta_02 where [num_int] = " & Val(msf1.TextMatrix(k, 4))
 Set rs = New ADODB.Recordset
 rs.Open q, cn1
 If Not rs.EOF And Not rs.BOF Then
@@ -476,7 +479,13 @@ If Not rs.EOF And Not rs.BOF Then
          c2 = rs1("CANTIDAD")
          it2 = I2 * c2
        'nuevos datos a factura
-       CANTIDAD3 = CANTIDAD2 + c2
+       
+       'nota db o remito
+       'If rs("id_tipocomp") = 45 Then
+            CANTIDAD3 = CANTIDAD2 + c2
+      ' Else
+      '      CANTIDAD3 = CANTIDAD2 - c2
+      ' End If
        IMPINTERNO3 = IMPINTERNO2 + (ii * c2)
        PRECIOUNITARIO3 = I2
        IMPORTE3 = (PRECIOUNITARIO3 * CANTIDAD3)

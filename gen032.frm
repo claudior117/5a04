@@ -1,6 +1,6 @@
 VERSION 5.00
 Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCT2.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form gen_depuraperiodo 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "ELIMINA MOVIMIENTOS DE UN PERIODO"
@@ -156,12 +156,12 @@ Begin VB.Form gen_depuraperiodo
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "27/02/2015"
+            TextSave        =   "09/11/2023"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "09:39"
+            TextSave        =   "06:26 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -328,7 +328,7 @@ While Not rs7.EOF
  Wend
  Set rs2 = Nothing
  'termino el cliente
-  If rs7("id_cliente") > 1 And (sa > 0 Or sao > 0) Then
+  If rs7("id_cliente") > 1 And (sa <> 0 Or sao <> 0) Then
     'genero movimiento en cuenta corriente
      idcliente = rs7("id_cliente")
      Call generoajuste
@@ -507,6 +507,8 @@ Sub generoajuste()
     tipoc = 80
   Else
     tipoc = 85
+    sa = -sa
+    sao = -sao
   End If
   cl_compvta.actual (tipoc)
   abreviatura = cl_compvta.abreviatura

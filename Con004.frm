@@ -80,7 +80,7 @@ Begin VB.Form con_subdiarioc
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   114360321
+      StartOfWeek     =   179568641
       CurrentDate     =   38750
    End
    Begin VB.Frame Frame3 
@@ -246,12 +246,12 @@ Begin VB.Form con_subdiarioc
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "08/11/2023"
+            TextSave        =   "10/11/2023"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "05:33 p.m."
+            TextSave        =   "11:38 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1

@@ -3409,7 +3409,7 @@ Public Sub imprimir()
 'T tique no fiscal
 
 Set rs = New ADODB.Recordset
-q = "select cant_copias_a, cant_copias_b, cant_copias_c, cant_copias_e, formato from vta_06 where [sucursal] = " & Me.sucursal & " and  [id_tipocomp] = " & Me.idtipocomp
+q = "select cant_copias_a, cant_copias_b, cant_copias_c, cant_copias_e, formato, imprime_desc_extra from vta_06 where [sucursal] = " & Me.sucursal & " and  [id_tipocomp] = " & Me.idtipocomp
 rs.Open q, cn1
 If Not rs.EOF And Not rs.BOF Then
  Me.imprimedescextra = rs("imprime_desc_extra")
@@ -11445,6 +11445,9 @@ Public Sub actual(ByVal TIPOCOMP As Integer)
      Me.imprimedescextra = rs("imprime_desc_extra")
      Me.cod_afip_a = rs("cod_afip_a")
      Me.cod_afip_b = rs("cod_afip_b")
+     
+     
+     
      Me.cod_afip_c = rs("cod_afip_c")
      
      
