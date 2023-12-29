@@ -455,12 +455,12 @@ Begin VB.Form inicio
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "10/11/2023"
+            TextSave        =   "26/11/2023"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "12:39 a.m."
+            TextSave        =   "09:51 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -721,6 +721,23 @@ If Val(Mid$(rs("habilitacion"), 5, 2)) = sc Then
        Toolbar1.Buttons.item(10).Visible = True
        
        para.fiscal = 0
+       
+       
+    Case Is = 3333 ' Historico
+       Toolbar1.Buttons.item(1).Visible = True
+       Toolbar1.Buttons.item(2).Visible = True
+       Toolbar1.Buttons.item(3).Visible = True
+       Toolbar1.Buttons.item(4).Visible = True
+       Toolbar1.Buttons.item(5).Visible = True
+       Toolbar1.Buttons.item(6).Visible = True
+       Toolbar1.Buttons.item(7).Visible = True
+       Toolbar1.Buttons.item(8).Visible = True
+       Toolbar1.Buttons.item(9).Visible = True
+       Toolbar1.Buttons.item(10).Visible = True
+       
+       para.fiscal = 0
+       
+       
    Case Is = 1795 'sin produccion y sin fiscal y exportacion
        Toolbar1.Buttons.item(1).Visible = True
        Toolbar1.Buttons.item(2).Visible = True

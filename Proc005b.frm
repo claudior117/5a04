@@ -49,11 +49,11 @@ Begin VB.Form op_fp3
       Begin VB.TextBox t_importe 
          BorderStyle     =   0  'None
          Height          =   405
-         Left            =   6960
-         MaxLength       =   10
+         Left            =   6600
+         MaxLength       =   18
          TabIndex        =   2
          Top             =   840
-         Width           =   1215
+         Width           =   1575
       End
       Begin VB.TextBox t_detalle 
          BorderStyle     =   0  'None
@@ -62,7 +62,7 @@ Begin VB.Form op_fp3
          MaxLength       =   25
          TabIndex        =   1
          Top             =   840
-         Width           =   3735
+         Width           =   3375
       End
       Begin VB.ComboBox c_fp 
          BeginProperty Font 
@@ -165,12 +165,12 @@ Begin VB.Form op_fp3
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "13/10/2010"
+            TextSave        =   "26/12/2023"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "07:14 p.m."
+            TextSave        =   "11:36 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1

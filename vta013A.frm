@@ -713,12 +713,12 @@ Begin VB.Form vta_remitos
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "09/11/2023"
+            TextSave        =   "21/12/2023"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "11:08 a.m."
+            TextSave        =   "10:30 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -1376,6 +1376,14 @@ End If
 End Sub
 
 Sub graba()
+' las devoluciones descuentan automaticamnete los productos con id > 0  de los remitos pendientes cambiandoi la cantidad pendiente a facturar
+' los productos id = 1 no se decuentan y quedan pendientes de facturacion para descontar de la factura
+' las devolucones que no tengan productos con id = 1 pasan ddirectamente a facturadas
+
+
+
+
+
   'On Error GoTo ERRORGRABA
   numint = saca_ultnumero_int_comp("V")
       
@@ -1394,7 +1402,7 @@ Sub graba()
       ep = "S"
       cp = "Dev"
       tc = "D"
-      estado = "F" 'ver???
+      estado = "F"
   End If
       
      
@@ -1444,26 +1452,34 @@ Left$(cl_cli.direccion, 50) & "', '" & Left$(cl_cli.CUIT, 20) & "', '" & Left$(c
       
       Set cl_cli = Nothing
       Set cl_prod = New productos
+      cantidadpendientetotal = 0
       For i = 1 To msf1.Rows - 1
         If Val(msf1.TextMatrix(i, 1)) > 1 Then
           
           cl_prod.cargar (Val(msf1.TextMatrix(i, 1)))
           costo = cl_prod.precio_ult_compra
           
+          If c_tipocomp.ItemData(c_tipocomp.ListIndex) = 46 Then
+             cantidadpendiente = 0
+          Else
+             cantidadpendiente = Val(msf1.TextMatrix(i, 3))
+             cantidadpendientetotal = cantidadpendientetotal + cantidadpendiente
+         End If
+          
         Else
          costo = 0
+         cantidadpendiente = Val(msf1.TextMatrix(i, 3))
+         cantidadpendientetotal = cantidadpendientetotal + cantidadpendiente
         End If
         
           
         QUERY = "INSERT INTO vta_03([num_int], [RENGLON], [id_producto], [descripcion], [cantidad], [pu], [importe], [tasaiva], [impuesto], [costo], [cantidad_original], [tunidad], [bultos], [pu_final])"
-        QUERY = QUERY & " VALUES (" & numint & ", " & Val(msf1.TextMatrix(i, 0)) & ", " & Val(msf1.TextMatrix(i, 1)) & ", '" & msf1.TextMatrix(i, 2) & " ', " & Val(msf1.TextMatrix(i, 3)) & ", " & Val(msf1.TextMatrix(i, 5)) & ", " & Val(msf1.TextMatrix(i, 8)) & ", " & Val(msf1.TextMatrix(i, 6)) & ", 0, " & costo & ", " & Val(msf1.TextMatrix(i, 3)) & ", '" & Left$(msf1.TextMatrix(i, 4), 8) & "', " & Val(msf1.TextMatrix(i, 7)) & ", " & Val(msf1.TextMatrix(i, 10)) & ")"
+        QUERY = QUERY & " VALUES (" & numint & ", " & Val(msf1.TextMatrix(i, 0)) & ", " & Val(msf1.TextMatrix(i, 1)) & ", '" & msf1.TextMatrix(i, 2) & " ', " & cantidadpendiente & ", " & Val(msf1.TextMatrix(i, 5)) & ", " & Val(msf1.TextMatrix(i, 8)) & ", " & Val(msf1.TextMatrix(i, 6)) & ", 0, " & costo & ", " & Val(msf1.TextMatrix(i, 3)) & ", '" & Left$(msf1.TextMatrix(i, 4), 8) & "', " & Val(msf1.TextMatrix(i, 7)) & ", " & Val(msf1.TextMatrix(i, 10)) & ")"
         cn1.Execute QUERY
       
-        'productos pendientes de facturacion
-        QUERY = "INSERT INTO vta_07([num_int], [secuencia], [id_producto], [id_cliente], [cantidad], [tipo])"
-        QUERY = QUERY & " VALUES (" & numint & ", " & Val(msf1.TextMatrix(i, 0)) & ", " & Val(msf1.TextMatrix(i, 1)) & ", " & c_prov.ItemData(c_prov.ListIndex) & ", " & Val(msf1.TextMatrix(i, 3)) & ", '" & tc & "')"
-        cn1.Execute QUERY
-      
+        
+        
+        
         
              
         
@@ -1491,13 +1507,42 @@ Left$(cl_cli.direccion, 50) & "', '" & Left$(cl_cli.CUIT, 20) & "', '" & Left$(c
         End If
         
        
+      
+      
+        'si es devolucion descuento del remito pendiente
+       If c_tipocomp.ItemData(c_tipocomp.ListIndex) = 46 Then
+        q = "SELECT id_producto, vta_03.num_int, renglon, cantidad FROM VTA_02, VTA_03 WHERE VTA_02.[NUM_INT] = VTA_03.[NUM_INT] AND [ID_TIPOCOMP] = 45 AND [ID_PRODUCTO] = " & Val(msf1.TextMatrix(i, 1)) & " AND [CANTIDAD] > 0 and [id_cliente] = " & c_prov.ItemData(vta_remitos.c_prov.ListIndex) & " and [estado] = 'S' order by [vta_02.num_int]"
+        Set rs2 = New ADODB.Recordset
+        rs2.Open q, cn1, adOpenStatic, adLockOptimistic
+        
+        cantdev = Val(msf1.TextMatrix(i, 3))
+        While Not rs2.EOF And cantdev > 0
+            cantrem = rs2("cantidad")
+            If cantrem >= cantdev Then
+               cantrem = cantrem - cantdev
+               cantdev = 0
+            Else
+               cantdev = cantdev - cantrem
+               cantrem = 0
+            End If
+            rs2("cantidad") = cantrem
+            rs2.Update
+           
+           rs2.MoveNext
+        Wend
+        Set rs2 = Nothing
+  
+      End If
+      
+      
+      
       Next i
       Set cl_prod = Nothing
       
     
     'verifica los remitos que debn pasar a pendiente
     If c_tipocomp.ItemData(c_tipocomp.ListIndex) = 46 Then
-       q = "SELECT num_int FROM VTA_02 WHERE [ID_TIPOCOMP] = 45 AND  [id_cliente] = " & c_prov.ItemData(c_prov.ListIndex) & " and [estado] = 'S'"
+       q = "SELECT num_int, estado FROM VTA_02 WHERE [ID_TIPOCOMP] = 45 AND  [id_cliente] = " & c_prov.ItemData(c_prov.ListIndex) & " and [estado] = 'S'"
        q = q & " order by [fecha]"
        Set rs2 = New ADODB.Recordset
        rs2.Open q, cn1, adOpenDynamic, adLockOptimistic
@@ -1525,6 +1570,18 @@ Left$(cl_cli.direccion, 50) & "', '" & Left$(cl_cli.CUIT, 20) & "', '" & Left$(c
 
 
 
+      If cantidadpendientetotal > 0 And c_tipocomp.ItemData(c_tipocomp.ListIndex) = 46 Then
+        
+           QUERY = "update vta_02 set  [estado]='S' "
+           QUERY = QUERY & " where [num_int]= " & numint
+           cn1.Execute QUERY
+        
+        
+     End If
+       
+
+
+   If Generaasientosauto Then
      If cl_compvta.contabilidad <> "N" Then
          numintcgr = saca_ultnumero_int_comp("G")
 
@@ -1594,6 +1651,7 @@ Left$(cl_cli.direccion, 50) & "', '" & Left$(cl_cli.CUIT, 20) & "', '" & Left$(c
          cn1.Execute QUERY
       
       End If
+    End If
       
       cn1.CommitTrans
       Set rs = Nothing

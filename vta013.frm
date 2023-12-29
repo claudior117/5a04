@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form vta_remitos1 
    BackColor       =   &H00C0C0C0&
    Caption         =   "INGRESO DE ARTICULOS"
@@ -260,12 +260,12 @@ Begin VB.Form vta_remitos1
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "01/10/2014"
+            TextSave        =   "14/11/2023"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "09:04"
+            TextSave        =   "12:28 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -426,7 +426,7 @@ Set rs = Nothing
 End Sub
 
 Private Sub t_cantidad_GotFocus()
-Me.StatusBar1.Panels.Item(2) = "[F5] Comvierte Unidades x Envase"
+Me.StatusBar1.Panels.item(2) = "[F5] Comvierte Unidades x Envase"
 End Sub
 
 Private Sub t_cantidad_KeyDown(KeyCode As Integer, Shift As Integer)
@@ -502,7 +502,7 @@ If vta_remitos.c_tipocomp.ItemData(vta_remitos.c_tipocomp.ListIndex) = 46 Then
  If Val(t_basico) > 1 Then
   If Val(t_cantidad) > Val(t_tr) Then
     MsgBox ("El cliente tiene " & (t_tr) & " unidades del producto seleccionado sin facturar. La cantidad a devolver no puede superar esa cantidad")
-    t_cantidad.SetFocus
+    't_cantidad.SetFocus
   End If
  Else
   tr = ""

@@ -70,7 +70,7 @@ Begin VB.Form op
          EndProperty
          Height          =   405
          Left            =   5520
-         MaxLength       =   14
+         MaxLength       =   18
          TabIndex        =   10
          Top             =   1200
          Width           =   1095
@@ -96,7 +96,7 @@ Begin VB.Form op
          EndProperty
          Height          =   405
          Left            =   1920
-         MaxLength       =   14
+         MaxLength       =   18
          TabIndex        =   8
          Top             =   1200
          Width           =   1215
@@ -132,7 +132,7 @@ Begin VB.Form op
          EndProperty
          Height          =   405
          Left            =   8520
-         MaxLength       =   14
+         MaxLength       =   18
          TabIndex        =   13
          Top             =   720
          Width           =   1335
@@ -150,7 +150,7 @@ Begin VB.Form op
          EndProperty
          Height          =   405
          Left            =   8520
-         MaxLength       =   14
+         MaxLength       =   18
          TabIndex        =   14
          Top             =   1200
          Width           =   1335
@@ -168,7 +168,7 @@ Begin VB.Form op
          EndProperty
          Height          =   405
          Left            =   8880
-         MaxLength       =   14
+         MaxLength       =   18
          TabIndex        =   12
          Top             =   240
          Width           =   975
@@ -204,7 +204,7 @@ Begin VB.Form op
          EndProperty
          Height          =   405
          Left            =   1920
-         MaxLength       =   14
+         MaxLength       =   18
          TabIndex        =   7
          Top             =   720
          Width           =   1215
@@ -222,7 +222,7 @@ Begin VB.Form op
          EndProperty
          Height          =   405
          Left            =   5520
-         MaxLength       =   14
+         MaxLength       =   18
          TabIndex        =   9
          Top             =   720
          Width           =   1095
@@ -701,7 +701,7 @@ Begin VB.Form op
          Height          =   285
          Left            =   1800
          Locked          =   -1  'True
-         MaxLength       =   14
+         MaxLength       =   18
          TabIndex        =   59
          TabStop         =   0   'False
          Top             =   2160
@@ -741,7 +741,7 @@ Begin VB.Form op
          Height          =   285
          Left            =   5520
          Locked          =   -1  'True
-         MaxLength       =   14
+         MaxLength       =   18
          TabIndex        =   24
          TabStop         =   0   'False
          Top             =   2160
@@ -890,12 +890,12 @@ Begin VB.Form op
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "07/09/2023"
+            TextSave        =   "26/12/2023"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "11:33 p.m."
+            TextSave        =   "11:36 a.m."
          EndProperty
       EndProperty
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -1118,12 +1118,12 @@ If KeyAscii = 13 Then
      c_zona.ListIndex = 0
    End If
    Detalle = RTrim$(Detalle) & " "
-   If Val(t_total) <> Val(t_ingresado) Then
+   If Val(T_TOTAL) <> Val(t_ingresado) Then
      MsgBox ("El importe ngresado No coinciden con el total de la O.P.")
    Else
      Command3.Enabled = True
-     Confirma.Enabled = True
-     Confirma.SetFocus
+     confirma.Enabled = True
+     confirma.SetFocus
    End If
 End If
 
@@ -1409,7 +1409,7 @@ QUERY = "INSERT INTO a5([num_int], [sucursal], [num_comprobante], [letra], [id_t
 "[fecha_recepcion], [estado], [ID_CODRETGAN], [ID_CUENTA], [STOCK], [CTACTE], [grabado], [estado_pago], [num_op], [obs], [ret_ib], [ret_gan], [condiciones], [info_contacto], [moneda], [cotiz_dolar], [contado], " & _
 " [TOTAL_D], [monto_suj_ret], [alicuota_ret], [ret_mes], [pagos_realizados], [pago_actual], [minimo_no_imp], [fecha_vto], [zona], [cuit05], [proveedor05])"
 QUERY = QUERY & " VALUES (" & numint & ", " & Val(sucursal) & ", " & Val(t_numop) & ", 'O', 50, " & denominACION.ItemData(denominACION.ListIndex) & ", '" & t_fecha & "', " & para.id_usuario & ", " & _
- Val(t_neto) & ", " & Val(t_alicuotaretib) & ", 0, 0, " & Val(t_total) & ", '" & t_fecha & "', '" & t_fecha & "', 'A', " & Val(t_crg) & ", 0, " & "'N', '" & ctacte & "', '" & cl_comp.grabado & "', 'X', '0000-00000000', '" & _
+ Val(t_neto) & ", " & Val(t_alicuotaretib) & ", 0, 0, " & Val(T_TOTAL) & ", '" & t_fecha & "', '" & t_fecha & "', 'A', " & Val(t_crg) & ", 0, " & "'N', '" & ctacte & "', '" & cl_comp.grabado & "', 'X', '0000-00000000', '" & _
  Detalle & " ', " & Val(t_retib) & ", " & Val(retencion) & ", ' ', ' ', 'P', " & Val(fdolar) & ", 'N', " & Val(t_totald) & ", 0, 0, 0, 0, 0, 0, '" & t_fecha & "', " & c_zona.ListIndex + 1 & ", " & Val(t_cuit) & ", '" & Left$(denominACION, 50) & "')"
 
       cn1.Execute QUERY
@@ -1614,12 +1614,12 @@ QUERY = QUERY & " VALUES (" & numint & ", " & Val(sucursal) & ", " & Val(t_numop
          
          'grabo asiento
          QUERY = "INSERT INTO c_02([num_interno], [fecha], [descripcion], [modulo], [num_mov_int], [debe], [haber], [id_USUARIO], [observaciones])"
-         QUERY = QUERY & " VALUES (" & numintcgr & " ,'" & t_fecha & "', '[Pagos] " & cl_comp.abreviatura & " " & Format$(Val(sucursal), "0000") & "-" & Format$(Val(t_numop), "00000000") & "', 'C', " & numint & ", " & Val(t_total) & ", " & Val(t_total) & ", " & para.id_usuario & ", '" & Left$(RTrim$(denominACION), 50) & "')"
+         QUERY = QUERY & " VALUES (" & numintcgr & " ,'" & t_fecha & "', '[Pagos] " & cl_comp.abreviatura & " " & Format$(Val(sucursal), "0000") & "-" & Format$(Val(t_numop), "00000000") & "', 'C', " & numint & ", " & Val(T_TOTAL) & ", " & Val(T_TOTAL) & ", " & para.id_usuario & ", '" & Left$(RTrim$(denominACION), 50) & "')"
          cn1.Execute QUERY
       
          'cuenta madre acreedores
          QUERY = "INSERT INTO c_03([num_interno], [renglon], [id_cuenta], [ubicacion], [importe], [descripcion])"
-         QUERY = QUERY & " VALUES (" & numintcgr & ", 1, " & cta & ", '" & u1 & "', " & Val(t_total) & ", 'Op. Nro." & Format$(Val(sucursal), "0000") & "-" & Format$(Val(t_numop), "00000000") & "')"
+         QUERY = QUERY & " VALUES (" & numintcgr & ", 1, " & cta & ", '" & u1 & "', " & Val(T_TOTAL) & ", 'Op. Nro." & Format$(Val(sucursal), "0000") & "-" & Format$(Val(t_numop), "00000000") & "')"
          cn1.Execute QUERY
       
          'formas de pago
@@ -2003,7 +2003,7 @@ If Not rs.BOF And Not rs.EOF Then
 'FIXIT: El Asistente para actualización no actualiza el objeto Printer ni la colección Printers a Visual Basic .NET.     FixIT90210ae-R5481-H1984
        Printer.Print "------------------------------------------------"
 'FIXIT: El Asistente para actualización no actualiza el objeto Printer ni la colección Printers a Visual Basic .NET.     FixIT90210ae-R5481-H1984
-       Printer.Print t_fecha & "  " & Format$(sucursal, "0000") & "-" & Format$(t_numop, "00000000") & "             " & Format$(Val(t_total), "######0.00")
+       Printer.Print t_fecha & "  " & Format$(sucursal, "0000") & "-" & Format$(t_numop, "00000000") & "             " & Format$(Val(T_TOTAL), "######0.00")
        Call definefont(gf1, "N", 12)
 'FIXIT: El Asistente para actualización no actualiza el objeto Printer ni la colección Printers a Visual Basic .NET.     FixIT90210ae-R5481-H1984
        Printer.Print
@@ -2126,7 +2126,7 @@ Else
   msf2.FocusRect = flexFocusLight
 End If
 t_ingresado = Format$(suma_msflexgrid(msf2, 6), "######0.00")
-t_diferencia = Format$(Val(t_total) - Val(t_ingresado), "######0.00")
+t_diferencia = Format$(Val(T_TOTAL) - Val(t_ingresado), "######0.00")
 
 
 End Sub
@@ -2157,7 +2157,7 @@ If KeyCode = vbKeyF4 Then
 End If
 
 If KeyCode = vbKeyF9 Then
-  If Val(t_total) <> Val(t_ingresado) Then
+  If Val(T_TOTAL) <> Val(t_ingresado) Then
      MsgBox ("El total ingresado no coincide con el Total a Pagar")
   End If
   t_pago.SetFocus
@@ -2189,7 +2189,7 @@ Private Sub pi3()
    t_fecha = Format$(Now, "dd/mm/yyyy")
    Call armagrid
    Call armagrid2
-   Confirma.Enabled = False
+   confirma.Enabled = False
    Command3.Enabled = False
    t_numop = Format$(saca_ultnumero_comp2(50), "00000000")
 
@@ -2366,7 +2366,7 @@ Call totales2
 End Sub
 
 Private Sub t_total_LostFocus()
-Call fm(t_total)
+Call fm(T_TOTAL)
 
 End Sub
 
@@ -2378,17 +2378,17 @@ End Sub
 
 Sub totales2()
 t_pago = Format$(t_pago, "######0.00")
-t_total = Format$(Val(t_pago) - Val(retencion) - Val(t_retib), "######0.00")
-t_aingresar = t_total
+T_TOTAL = Format$(Val(t_pago) - Val(retencion) - Val(t_retib), "######0.00")
+t_aingresar = T_TOTAL
 If Val(fdolar) < 1 Then
   fdolar = "1.00"
 End If
-t_totald = Format$(Val(t_total) / Val(fdolar), "######0.00")
-t_diferencia = Format$(Val(t_total) - Val(t_ingresado), "######0.00")
+t_totald = Format$(Val(T_TOTAL) / Val(fdolar), "######0.00")
+t_diferencia = Format$(Val(T_TOTAL) - Val(t_ingresado), "######0.00")
 op2.t_cotiz = fdolar
 op2.t_op = Format$(Val(t_totald), "######0.00")
 op2.t_retgan = Format$(Val(retencion) / Val(fdolar), "######0.00")
 op2.t_retib = Format$(Val(t_retib) / Val(fdolar), "######0.00")
-op2.t_total = Format$(Val(op2.t_op) + Val(op2.t_retgan) + Val(op2.t_retib), "######0.00")
+op2.T_TOTAL = Format$(Val(op2.t_op) + Val(op2.t_retgan) + Val(op2.t_retib), "######0.00")
 End Sub
 

@@ -71,10 +71,10 @@ Begin VB.Form op_fp5
          BorderStyle     =   0  'None
          Height          =   405
          Left            =   1680
-         MaxLength       =   10
+         MaxLength       =   18
          TabIndex        =   4
          Top             =   2880
-         Width           =   975
+         Width           =   1695
       End
       Begin VB.TextBox t_titular 
          BorderStyle     =   0  'None
@@ -202,12 +202,12 @@ Begin VB.Form op_fp5
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "26/12/2011"
+            TextSave        =   "26/12/2023"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "05:41 p.m."
+            TextSave        =   "11:36 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1

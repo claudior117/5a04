@@ -570,12 +570,12 @@ Begin VB.Form inicio_vta
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "06/09/2022"
+            TextSave        =   "25/11/2023"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "03:46 p.m."
+            TextSave        =   "08:30 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -1181,6 +1181,15 @@ Case Is = 1912
                Frame10.Visible = False
                'Frame3.Visible = True
                
+Case Is = 3333 'historicos// solo consultas
+
+               Frame4.Visible = False
+               Frame9.Visible = False
+               Frame11.Visible = False
+               Frame3.Visible = False
+               'Frame3.Visible = True
+               
+               MsgBox ("Este sistemma es solo para consultas historicas. NO EMITA COMPROBANTES!!!! ")
                
 Case Is = 7422 'agropecuarias
     Frame11.Visible = True

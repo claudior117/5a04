@@ -416,12 +416,12 @@ Begin VB.Form inicio_compras
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "04/09/2022"
+            TextSave        =   "25/11/2023"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "07:47 p.m."
+            TextSave        =   "08:43 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -800,6 +800,10 @@ Call activaobra(io)
 Select Case para.HABILITACION
 Case Is = 1825, Is = 9999  'facturacion fletes
      M_ley23966.Visible = True
+Case Is = 3333 'historico
+     Frame7.Visible = False
+     MsgBox ("Este sistema es solo para consultas Historicas. NO EMITA COMPROBANTES!!!")
+      
 Case Else
      M_ley23966.Visible = False
 End Select

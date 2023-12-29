@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form op_fp1_1 
    BackColor       =   &H00C0C0C0&
    BorderStyle     =   1  'Fixed Single
@@ -99,10 +99,10 @@ Begin VB.Form op_fp1_1
          BorderStyle     =   0  'None
          Height          =   405
          Left            =   1680
-         MaxLength       =   10
+         MaxLength       =   18
          TabIndex        =   9
          Top             =   5160
-         Width           =   975
+         Width           =   1695
       End
       Begin VB.TextBox t_titular 
          BorderStyle     =   0  'None
@@ -294,12 +294,12 @@ Begin VB.Form op_fp1_1
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "20/03/2014"
+            TextSave        =   "26/12/2023"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "18:44"
+            TextSave        =   "11:34 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
