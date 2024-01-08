@@ -1047,7 +1047,7 @@ Sub muestra2()
      vta_listaprecios2.c_tasaib.ListIndex = buscaindice(vta_listaprecios2!c_tasaib, rs("id_tasaib"))
      vta_listaprecios2.t_idprodprov = rs("id_prod_prov")
      vta_listaprecios2.t_cotizultcom = rs("dolar_ult_compra")
-     
+     vta_listaprecios2.t_percibe5329 = rs("percibe_5329")
      
      If rs("vigente") = True Then
       vta_listaprecios2.Check1 = 1

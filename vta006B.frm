@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomctl.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form vta_listaprecios3 
    BackColor       =   &H00C0C0C0&
    BorderStyle     =   1  'Fixed Single
@@ -19,7 +19,7 @@ Begin VB.Form vta_listaprecios3
       Height          =   1455
       Left            =   5760
       TabIndex        =   69
-      Top             =   4800
+      Top             =   5160
       Width           =   5055
       Begin VB.CheckBox Check2 
          Caption         =   "Calcula PF desde PU"
@@ -59,7 +59,7 @@ Begin VB.Form vta_listaprecios3
       Height          =   1455
       Left            =   960
       TabIndex        =   65
-      Top             =   4800
+      Top             =   5160
       Width           =   4575
       Begin VB.OptionButton Option6 
          Caption         =   "No Modifica Costos"
@@ -92,7 +92,7 @@ Begin VB.Form vta_listaprecios3
       Height          =   975
       Left            =   240
       TabIndex        =   56
-      Top             =   6360
+      Top             =   6720
       Width           =   11055
       Begin VB.OptionButton Option11 
          BackColor       =   &H00E0E0E0&
@@ -152,9 +152,9 @@ Begin VB.Form vta_listaprecios3
       BackColor       =   &H00C0C0C0&
       Caption         =   "Etiquetas"
       Height          =   615
-      Left            =   8280
+      Left            =   3840
       TabIndex        =   54
-      Top             =   3960
+      Top             =   4440
       Width           =   3375
       Begin VB.ComboBox c_etiquetas 
          Appearance      =   0  'Flat
@@ -171,7 +171,7 @@ Begin VB.Form vta_listaprecios3
    Begin VB.Frame Frame6 
       BackColor       =   &H00C0C0C0&
       Caption         =   "Variaciones en $ fija"
-      Height          =   1215
+      Height          =   1095
       Left            =   120
       TabIndex        =   47
       Top             =   3360
@@ -220,7 +220,7 @@ Begin VB.Form vta_listaprecios3
    Begin VB.Frame Frame4 
       BackColor       =   &H00C0C0C0&
       Caption         =   "Estructura de Costos"
-      Height          =   2295
+      Height          =   2175
       Left            =   3840
       TabIndex        =   29
       Top             =   2280
@@ -378,11 +378,22 @@ Begin VB.Form vta_listaprecios3
    Begin VB.Frame Frame5 
       BackColor       =   &H00C0C0C0&
       Caption         =   "Modificaciones Varios"
-      Height          =   3735
+      Height          =   4335
       Left            =   8280
       TabIndex        =   12
       Top             =   120
       Width           =   3255
+      Begin VB.TextBox t_percibe5329 
+         Appearance      =   0  'Flat
+         BorderStyle     =   0  'None
+         Height          =   285
+         Left            =   1080
+         MaxLength       =   1
+         TabIndex        =   80
+         ToolTipText     =   "[M] Manual - [A] Automatica"
+         Top             =   3600
+         Width           =   375
+      End
       Begin VB.TextBox t_stock 
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
@@ -474,6 +485,25 @@ Begin VB.Form vta_listaprecios3
          Text            =   "Combo1"
          Top             =   240
          Width           =   1935
+      End
+      Begin VB.Label Label27 
+         BackColor       =   &H00C0C0C0&
+         Caption         =   "[S] - [N]"
+         Height          =   255
+         Left            =   1560
+         TabIndex        =   82
+         Top             =   3600
+         Width           =   1575
+      End
+      Begin VB.Label Label26 
+         BackColor       =   &H00800080&
+         Caption         =   "Percibe 5329"
+         ForeColor       =   &H00FFFFFF&
+         Height          =   495
+         Left            =   120
+         TabIndex        =   81
+         Top             =   3600
+         Width           =   855
       End
       Begin VB.Label Label25 
          BackColor       =   &H00800080&
@@ -598,7 +628,7 @@ Begin VB.Form vta_listaprecios3
       Height          =   735
       Left            =   9120
       TabIndex        =   10
-      Top             =   7440
+      Top             =   7680
       Width           =   2655
       Begin VB.CommandButton Command4 
          Caption         =   "&Salir"
@@ -771,12 +801,12 @@ Begin VB.Form vta_listaprecios3
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "19/10/2022"
+            TextSave        =   "29/12/2023"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:09 a.m."
+            TextSave        =   "11:39 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -787,7 +817,7 @@ Begin VB.Form vta_listaprecios3
       Height          =   255
       Left            =   360
       TabIndex        =   75
-      Top             =   7920
+      Top             =   8160
       Width           =   8415
    End
    Begin VB.Label Label8 
@@ -796,7 +826,7 @@ Begin VB.Form vta_listaprecios3
       Height          =   255
       Left            =   360
       TabIndex        =   74
-      Top             =   7560
+      Top             =   7800
       Width           =   6735
    End
 End
@@ -1146,6 +1176,10 @@ If h = 6 Then
             rs("stock") = Val(t_stock)
           End If
           
+           If t_percibe5329 <> "" Then
+                rs("percibe_5329") = t_percibe5329
+          
+           End If
           rs.Update
           Set rs = Nothing
         End If

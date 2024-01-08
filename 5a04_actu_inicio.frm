@@ -120,7 +120,7 @@ Begin VB.Form actu_inicio
    Begin VB.Label Label3 
       Alignment       =   2  'Center
       BackColor       =   &H0000FFFF&
-      Caption         =   "224"
+      Caption         =   "225"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   18
@@ -328,6 +328,8 @@ Case Is = 215
     Call actu223
  Case Is = 224
     Call actu224
+ Case Is = 225
+    Call actu225
  Case Is = 999
    Call actu999
    
@@ -2589,6 +2591,60 @@ If h = 6 Then
   MsgBox ("Proceso terminado. Verificar que el campo numint en stk02 esté como autonumerico. Agregar xml.txt en crapeta c:\5a04\log de cada terminal de factura electronica")
    
   MsgBox ("Agregar comprobantes de venta 36 (Nota de Venta en cuotas), 251 (Cuotas), y 401(Pagare)")
+   
+ Unload espere
+  
+End If
+
+Exit Sub
+
+
+err1:
+Resume Next
+
+End Sub
+
+
+
+Sub actu225()
+'agrega percepciones de venta articulos limpiaeza
+h = MsgBox("Actualizacion 225 . ¿Esta seguro que quiere actualizar?  ", 4)
+If h = 6 Then
+  
+ 
+  espere.Show
+  espere.Refresh
+    
+   cn1.BeginTrans
+     
+     q = "alter table a2 add column [percibe_5329] text(1)  "
+     cn1.Execute q
+     
+   
+    q = "alter table g8 add column [percibe_5329] text(1)  "
+     cn1.Execute q
+     
+   cn1.CommitTrans
+   
+   cn1.BeginTrans
+     
+    q = "update a2 set [percibe_5329]='N'"
+    cn1.Execute q
+    
+    q = "update g8 set [percibe_5329]='N'"
+    cn1.Execute q
+    
+    q = "update g0 set  [actualizacion]=225"
+    q = q & " where [sucursal]=0 "
+    cn1.Execute q
+   
+   cn1.CommitTrans
+   
+    
+    
+   
+  MsgBox ("Proceso terminado. Verificar articulos para aquellos que deban percibir Iva RG5329 ")
+   
    
  Unload espere
   

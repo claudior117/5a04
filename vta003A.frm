@@ -969,12 +969,12 @@ Begin VB.Form vta_facturacion
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "14/11/2023"
+            TextSave        =   "08/01/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:36 a.m."
+            TextSave        =   "11:23 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -2618,7 +2618,7 @@ Sub armagrid()
 'armar grilla
 msf1.clear
 msf1.Rows = 1
-msf1.Cols = 12
+msf1.Cols = 13
 msf1.ColWidth(0) = 500
 msf1.ColWidth(1) = 700
 msf1.ColWidth(2) = 5000
@@ -2631,6 +2631,7 @@ msf1.ColWidth(8) = 1100
 msf1.ColWidth(9) = 1100
 msf1.ColWidth(10) = 1100
 msf1.ColWidth(11) = 1000
+msf1.ColWidth(12) = 1000
 msf1.TextMatrix(0, 0) = "Reng."
 msf1.TextMatrix(0, 1) = "Id.Prod."
 msf1.TextMatrix(0, 2) = "Detalle"
@@ -2643,6 +2644,8 @@ msf1.TextMatrix(0, 8) = "PU Final"
 msf1.TextMatrix(0, 9) = "Iva"
 msf1.TextMatrix(0, 10) = "Costo Tot."
 msf1.TextMatrix(0, 11) = "Tasa IB "
+msf1.TextMatrix(0, 12) = "Perc5329"
+
 End Sub
 
 
@@ -2650,6 +2653,7 @@ Private Sub c_actividad_LostFocus()
 If c_actividad.ListIndex < 0 Then
   c_actividad.ListIndex = 0
 End If
+
 End Sub
 
 Private Sub c_prov_LostFocus()
@@ -3208,7 +3212,7 @@ If t_letra = "A" Then
      If renglon > 0 Then
       
       r = Val(msf1.TextMatrix(i, 7))
-      R2 = Val(msf1.TextMatrix(i, 8))
+      r2 = Val(msf1.TextMatrix(i, 8))
       's = s + r
       't = t + (R2 * Val(msf1.TextMatrix(i, 3)))
       't = t + (r * Val(msf1.TextMatrix(i, 6)) / 100)
@@ -3237,7 +3241,7 @@ Else
      If renglon > 0 Then
       
       r = Val(msf1.TextMatrix(i, 7))
-      R2 = Val(msf1.TextMatrix(i, 8))
+      r2 = Val(msf1.TextMatrix(i, 8))
       's = s + r
       't = t + (R2 * Val(msf1.TextMatrix(i, 3)))
       't = t + (r * Val(msf1.TextMatrix(i, 6)) / 100)
@@ -4428,6 +4432,9 @@ If Option3 = True Then
    s = Val(t_subtotal)
  End If
 
+t_perc = "0.00"
+
+'percepcion general IBBA
 q = "select * from i_01 where [id_impuesto] = 1"
 'MsgBox (q)
 Set rs2 = New ADODB.Recordset
@@ -4435,7 +4442,7 @@ rs2.Open q, cn1
 If Not rs2.EOF And Not rs2.BOF Then
  impmin = rs2("importe_minimo_sujeto_ret")
  retmin = rs2("retencion-minima")
-  If rs2("calcula") = "S" And s >= impmin Then
+ If rs2("calcula") = "S" And s >= impmin Then
    tp = s * (Val(t_alicuotaib) / 100)
    If tp >= retmin Then
        t_perc = Format$(tp, "#####0.00")
@@ -4448,7 +4455,6 @@ If Not rs2.EOF And Not rs2.BOF Then
 Else
  t_perc = "0.00"
 End If
-
 If Option3 = True Then 'dolares
    p$ = Val(t_perc) / Val(t_cotizacion)
 Else
@@ -4456,6 +4462,64 @@ Else
 End If
 t_perc = Format$(p$, "####0.00")
 Set rs2 = Nothing
+
+
+'peercepcion Iva 5329 alimentos y limpieza
+If t_letra = "A" Then
+    q = "select * from i_01 where [id_impuesto] = 5329 and calcula = 'S'"
+    Set rs2 = New ADODB.Recordset
+    rs2.Open q, cn1
+    If Not rs2.EOF And Not rs2.BOF Then
+      'calcula retencion
+      retmin = rs2("retencion-minima")
+      pt = 0
+      For i = 1 To msf1.Rows - 1
+         renglon = Val(msf1.TextMatrix(i, 0))
+         If renglon > 0 Then
+            If (msf1.TextMatrix(i, 12) = "S") Then 'calcula para perc pàra el producto
+                    Select Case Val(msf1.TextMatrix(i, 6))
+                        Case Is = 21
+                          tasaperc = 3
+                        Case Is = 10.5
+                          tasaperc = 1.5
+                        Case Else
+                          tasaperc = 0
+                    End Select
+                    pt = pt + Val(msf1.TextMatrix(i, 7)) * tasaperc / 100
+            End If
+         End If
+      Next i
+                    
+      If retmin <= pt Then
+            'agrega en percepciones
+            X = 0
+            encontro = 0
+            While X < ABM_COMP_COMPRA2.msf1.Rows
+              If Val(ABM_COMP_COMPRA2.msf1.TextMatrix(X, 1)) = 5329 Then
+                 ABM_COMP_COMPRA2.msf1.TextMatrix(X, 3) = pt
+                 X = ABM_COMP_COMPRA2.msf1.Rows
+                 encontro = 1
+              End If
+              X = X + 1
+            Wend
+            
+           If encontro = 0 Then
+                  ABM_COMP_COMPRA2.msf1.AddItem ABM_COMP_COMPRA2.msf1.Rows & Chr(9) & 5329 & Chr(9) & "Perc. RG5329" & Chr(9) & pt & Chr(9) & "Art Limpieza"
+     
+           End If
+           
+     End If
+      
+        
+      
+      
+    End If
+    
+    
+    Set rs2 = Nothing
+End If
+
+
 
 If Check1 = 1 Then
   'calcula perciva rg 2459

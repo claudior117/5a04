@@ -888,6 +888,7 @@ Sub muestra2()
      vta_listaprecios2.t_tipocarga = rs1("tipo_carga_tique")
      vta_listaprecios2.c_tasaib.ListIndex = buscaindice(vta_listaprecios2!c_tasaib, rs1("id_tasaib"))
      vta_listaprecios2.t_idprodprov = rs1("id_prod_prov")
+     vta_listaprecios2.t_percibe5329 = rs("percibe_5329")
      If rs1("vigente") = True Then
       vta_listaprecios2.Check1 = 1
      Else

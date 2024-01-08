@@ -1064,12 +1064,12 @@ Begin VB.Form abm_prod1
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "10/08/2022"
+            TextSave        =   "29/12/2023"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "04:14 p.m."
+            TextSave        =   "11:25 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -1122,14 +1122,14 @@ If J = 6 Then
 QUERY = "INSERT INTO a2([descripcion], [id_grupo], [id_proveedor], [precio_ult_compra], [fecha_ult_compra], [id_proveedor_ult_compra], [pu], [cod_tasaiva], [id_unidad], [envase], [stock], " & _
 " [requeridos], [pedidos], [stock_minimo], [id_marca], [id_departamento], [porc_utilidad], [costoreal], [flete_compra], [dto_compra], [cod_barra], [precio_final], [tasa_imp_interno], " & _
 " [tipo_producto], [moneda], [impuesto], [observaciones], [ultima_compra], [ultima_venta], [fecha_actu_precio_venta],  [vigente], [tipo_carga_tique], [texto_central], [id_tasaib], [emite_etiqueta], [dto_compra2], " & _
-" [id_prod_prov], [talle], [color],[medida], [dolar_ult_compra], [num_int_ult_compra])"
+" [id_prod_prov], [talle], [color],[medida], [dolar_ult_compra], [num_int_ult_compra], [percibe_5329])"
 
 QUERY = QUERY & " VALUES ('" & t_descripcion & "', " & c_grupo.ItemData(c_grupo.ListIndex) & ", " & c_prov.ItemData(c_prov.ListIndex) & ", " & Val(t_preciocompra) & _
 ", '01/01/2005', 1, " & Val(t_pu) & ", " & c_iva.ItemData(c_iva.ListIndex) & ", " & c_unidad.ItemData(c_unidad.ListIndex) & ", " & Val(t_envase) & ", 0, 0, 0, " & Val(t_stockminimo) & _
 ", " & c_marca.ItemData(c_marca.ListIndex) & ", " & c_depto.ItemData(c_depto.ListIndex) & ", " & Val(t_utilidad) & ", " & Val(t_costo) & ", " & Val(t_fletecompra) & ", " & _
 Val(t_dtocompra) & ", '" & RTrim$(t_codbarra) & "', " & Val(t_final) & ", " & Val(t_tasaimpint) & ", '" & t_tipo & "', '" & t_moneda & "', " & t_impuesto & ", '" & t_observaciones & _
 "', 'Sin Compras', 'Sin Ventas', '01/01/2006',  1, '" & t_tipocarga & "', '" & RTrim$(t_abreviatura) & " ', " & c_tasaib.ItemData(c_tasaib.ListIndex) & ", 'S', " & Val(t_dtocompra2) & _
-", 0, '" & t_talle & "', '" & t_color & "','" & t_medida & "',1,0)"
+", 0, '" & t_talle & "', '" & t_color & "','" & t_medida & "',1,0,'N')"
        
        
       cn1.BeginTrans

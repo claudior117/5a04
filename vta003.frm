@@ -23,6 +23,17 @@ Begin VB.Form vta_facturacion1
       TabIndex        =   8
       Top             =   120
       Width           =   11775
+      Begin VB.TextBox t_perc5329 
+         BorderStyle     =   0  'None
+         Enabled         =   0   'False
+         Height          =   405
+         Left            =   6720
+         MaxLength       =   8
+         TabIndex        =   21
+         Top             =   1320
+         Visible         =   0   'False
+         Width           =   855
+      End
       Begin VB.TextBox t_tasaib 
          BorderStyle     =   0  'None
          Enabled         =   0   'False
@@ -254,12 +265,12 @@ Begin VB.Form vta_facturacion1
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "08/11/2023"
+            TextSave        =   "08/01/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "11:27 a.m."
+            TextSave        =   "10:14 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -403,6 +414,7 @@ If IsNumeric(t_basico) Then
     t_tasaib = para.tasaib
     t_detalle.Enabled = True
     c_tasa.ListIndex = buscaindice2(c_tasa, para.tasageneral)
+    t_perc5329 = "N"
     t_detalle.SetFocus
     t_pu.Locked = False
   Else
@@ -427,7 +439,7 @@ End Sub
 Sub busca(tipo As String)
 'tipo = I por id_producto tipo = B por cod_barra
 Set rs = New ADODB.Recordset
-q = "select id_producto, cod_barra, descripcion, precio_final, pu, moneda, costoreal, cod_tasaiva, unidad, tasaib  from a2, g5, g12 where a2.[id_unidad] = g5.[id_unidad] and a2.[id_tasaib] = g12.[id_tasaib] "
+q = "select id_producto, cod_barra, descripcion, precio_final, pu, moneda, costoreal, cod_tasaiva, unidad, tasaib, percibe_5329  from a2, g5, g12 where a2.[id_unidad] = g5.[id_unidad] and a2.[id_tasaib] = g12.[id_tasaib] "
 If tipo = "I" Then
   q = q & " and [id_producto] = " & Val(t_basico)
 Else
@@ -484,6 +496,7 @@ If Not rs.BOF And Not rs.EOF Then
   t_ip = rs("id_producto")
   t_unidad = rs("unidad")
   t_tasaib = rs("tasaib")
+  t_perc5329 = rs("percibe_5329")
   
 Else
   MsgBox ("Producto no Ingresado")
@@ -521,10 +534,12 @@ Sub cargarenglon(t As String)
          im = Format$(Val(pu) * Val(cu), "#####0.00")
          puf = Format$(Val(t_pu) * (1 + Val(c_tasa) / 100), "#####0.0000")
         End If
+        perc5329 = t_perc5329
   Else ' monotributos
         pu = Format$(Val(t_pu), "#####0.0000")
         im = Format$(Val(pu) * Val(cu), "#####0.00")
        puf = Format$(Val(t_pu), "#####0.0000")
+       perc5329 = "N"
   End If
   'End If
   If u = "" Then
@@ -535,7 +550,7 @@ Sub cargarenglon(t As String)
     'nueva linea
     r = vta_facturacion.msf1.Rows
     If r <= Val(vta_facturacion.t_cantlineas) Then
-       vta_facturacion.msf1.AddItem r & Chr(9) & Format$(ip, "00000") & Chr(9) & d & Chr(9) & cu & Chr(9) & u & Chr$(9) & pu & Chr(9) & ti & Chr(9) & im & Chr(9) & puf & Chr(9) & Chr(9) & cr & Chr(9) & Format$(Val(t_tasaib), "####0.00")
+       vta_facturacion.msf1.AddItem r & Chr(9) & Format$(ip, "00000") & Chr(9) & d & Chr(9) & cu & Chr(9) & u & Chr$(9) & pu & Chr(9) & ti & Chr(9) & im & Chr(9) & puf & Chr(9) & Chr(9) & cr & Chr(9) & Format$(Val(t_tasaib), "####0.00") & Chr(9) & perc5329
     Else
        MsgBox ("Se ha superado el limite maximo de renglones para este comprobante")
     End If
@@ -543,7 +558,7 @@ Sub cargarenglon(t As String)
   
   Else
     r = t_renglon
-    vta_facturacion.msf1.AddItem r & Chr(9) & Format$(ip, "00000") & Chr(9) & d & Chr(9) & cu & Chr$(9) & u & Chr$(9) & pu & Chr(9) & ti & Chr(9) & im & Chr(9) & puf & Chr(9) & Chr(9) & cr & Chr(9) & Format$(Val(t_tasaib), "####0.00"), r
+    vta_facturacion.msf1.AddItem r & Chr(9) & Format$(ip, "00000") & Chr(9) & d & Chr(9) & cu & Chr$(9) & u & Chr$(9) & pu & Chr(9) & ti & Chr(9) & im & Chr(9) & puf & Chr(9) & Chr(9) & cr & Chr(9) & Format$(Val(t_tasaib), "####0.00") & Chr(9) & perc5329, r
     vta_facturacion.msf1.RemoveItem r + 1
   End If
    
@@ -568,7 +583,7 @@ Sub cargarenglon(t As String)
   If vta_facturacion.c_tipocomp.ListIndex = 0 And vta_facturacion.Option1 Then
     If vta_facturacion.Option4 Then
      'pesos
-     tpl = Val(vta_facturacion.t_total)
+     tpl = Val(vta_facturacion.T_TOTAL)
     Else
      tpl = Val(vta_facturacion.T_total2)
     End If
