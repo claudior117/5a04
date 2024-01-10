@@ -2621,8 +2621,9 @@ If h = 6 Then
      cn1.Execute q
      
    
-    q = "alter table g8 add column [percibe_5329] text(1)  "
+     q = "alter table I_01 add column [id_otrostributos] int, [tasa_i1] double"
      cn1.Execute q
+     
      
    cn1.CommitTrans
    
@@ -2631,8 +2632,9 @@ If h = 6 Then
     q = "update a2 set [percibe_5329]='N'"
     cn1.Execute q
     
-    q = "update g8 set [percibe_5329]='N'"
+    q = "update i_01 set [id_otrostributos]=99, tasa_i1=0"
     cn1.Execute q
+    
     
     q = "update g0 set  [actualizacion]=225"
     q = q & " where [sucursal]=0 "
@@ -2644,6 +2646,10 @@ If h = 6 Then
     
    
   MsgBox ("Proceso terminado. Verificar articulos para aquellos que deban percibir Iva RG5329 ")
+   
+  MsgBox ("Agregar en I_01 registro 5329 Precepcion 5329(3%) 5329 Precepcion 5329(1.5%) ")
+  
+  MsgBox ("Modifique I_01 id_otrostirbutos segun excel otrostributos(6 percep iva - 7 perc ibba")
    
    
  Unload espere
