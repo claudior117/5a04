@@ -120,7 +120,7 @@ Begin VB.Form actu_inicio
    Begin VB.Label Label3 
       Alignment       =   2  'Center
       BackColor       =   &H0000FFFF&
-      Caption         =   "224"
+      Caption         =   "225"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   18
@@ -328,6 +328,8 @@ Case Is = 215
     Call actu223
  Case Is = 224
     Call actu224
+ Case Is = 225
+    Call actu225 'resolucion minima pantalla 1024x768
  Case Is = 999
    Call actu999
    
@@ -2601,6 +2603,40 @@ err1:
 Resume Next
 
 End Sub
+
+
+
+Sub actu225()
+'corrige ajustes de stock
+h = MsgBox("Actualizacion 225 . ¿Esta seguro que quiere actualizar?  ", 4)
+If h = 6 Then
+  
+ 
+    
+   cn1.BeginTrans
+     
+    q = "update g0 set  [actualizacion]=225"
+    q = q & " where [sucursal]=0 "
+    cn1.Execute q
+   
+    
+  cn1.CommitTrans
+    
+   
+  MsgBox ("Proceso terminado. La resolución mínima de pantalla debe ser 1024x768")
+   
+ Unload espere
+  
+End If
+
+Exit Sub
+
+
+err1:
+Resume Next
+
+End Sub
+
 
 
 

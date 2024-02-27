@@ -113,7 +113,7 @@ Begin VB.Form cyb_estadocuenta
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   114688001
+      StartOfWeek     =   180813825
       CurrentDate     =   38754
    End
    Begin MSFlexGridLib.MSFlexGrid msf1 
@@ -267,12 +267,12 @@ Begin VB.Form cyb_estadocuenta
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "21/12/2023"
+            TextSave        =   "26/02/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:40 a.m."
+            TextSave        =   "04:24 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1

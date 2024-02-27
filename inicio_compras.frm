@@ -61,7 +61,7 @@ Begin VB.Form inicio_compras
       BackColor       =   &H00E0E0E0&
       Caption         =   "Impresora Actual del Sistema"
       Height          =   735
-      Left            =   4920
+      Left            =   4800
       TabIndex        =   21
       Top             =   7080
       Width           =   4815
@@ -246,7 +246,7 @@ Begin VB.Form inicio_compras
       BackColor       =   &H00E0E0E0&
       Caption         =   "Modulo "
       Height          =   1455
-      Left            =   6240
+      Left            =   6120
       TabIndex        =   13
       Top             =   5640
       Width           =   2055
@@ -282,7 +282,7 @@ Begin VB.Form inicio_compras
       BackColor       =   &H00800080&
       BorderStyle     =   0  'None
       Height          =   1695
-      Left            =   240
+      Left            =   120
       TabIndex        =   4
       Top             =   6120
       Width           =   4575
@@ -359,9 +359,9 @@ Begin VB.Form inicio_compras
       BackColor       =   &H00E0E0E0&
       Caption         =   "Funciones"
       Height          =   975
-      Left            =   9960
+      Left            =   10320
       TabIndex        =   1
-      Top             =   6840
+      Top             =   6720
       Width           =   1575
       Begin VB.CommandButton btnsale 
          Cancel          =   -1  'True
@@ -416,12 +416,12 @@ Begin VB.Form inicio_compras
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "25/11/2023"
+            TextSave        =   "22/02/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "08:43 p.m."
+            TextSave        =   "11:48 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -571,7 +571,7 @@ Begin VB.Form inicio_compras
       EndProperty
       ForeColor       =   &H00C0C0C0&
       Height          =   495
-      Left            =   240
+      Left            =   120
       TabIndex        =   26
       Top             =   5520
       Width           =   4575

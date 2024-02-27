@@ -4,8 +4,8 @@ Begin VB.Form inicio
    BackColor       =   &H00E0E0E0&
    Caption         =   "MODULO PRINCIPAL SISTEMA DE GESTION INTEGRADO PARA EMPRESAS"
    ClientHeight    =   8190
-   ClientLeft      =   90
-   ClientTop       =   -570
+   ClientLeft      =   1935
+   ClientTop       =   2085
    ClientWidth     =   11880
    FontTransparent =   0   'False
    Icon            =   "inicio.frx":0000
@@ -14,14 +14,29 @@ Begin VB.Form inicio
    PaletteMode     =   1  'UseZOrder
    ScaleHeight     =   8190
    ScaleWidth      =   11880
-   StartUpPosition =   1  'CenterOwner
+   Begin VB.TextBox Text6 
+      Height          =   375
+      Left            =   7080
+      TabIndex        =   30
+      Text            =   "Text6"
+      Top             =   3360
+      Width           =   1455
+   End
+   Begin VB.TextBox Text5 
+      Height          =   375
+      Left            =   7080
+      TabIndex        =   29
+      Text            =   "Text5"
+      Top             =   2760
+      Width           =   1455
+   End
    Begin VB.Frame Frame7 
       BackColor       =   &H00E0E0E0&
       Caption         =   "Impresora Actual del Sistema"
       Height          =   735
       Left            =   4920
       TabIndex        =   25
-      Top             =   7080
+      Top             =   8040
       Width           =   4815
       Begin VB.CommandButton Command6 
          Height          =   375
@@ -44,7 +59,7 @@ Begin VB.Form inicio
    End
    Begin MSComctlLib.ImageList ImageList2 
       Left            =   360
-      Top             =   4680
+      Top             =   4560
       _ExtentX        =   1005
       _ExtentY        =   1005
       BackColor       =   -2147483643
@@ -63,9 +78,9 @@ Begin VB.Form inicio
    Begin VB.Frame Frame4 
       BackColor       =   &H00FFFFFF&
       Height          =   3495
-      Left            =   10080
+      Left            =   9840
       TabIndex        =   21
-      Top             =   120
+      Top             =   480
       Width           =   1575
       Begin VB.Image Image6 
          Height          =   495
@@ -116,9 +131,9 @@ Begin VB.Form inicio
          Strikethrough   =   0   'False
       EndProperty
       Height          =   2055
-      Left            =   8040
+      Left            =   7680
       TabIndex        =   18
-      Top             =   4080
+      Top             =   4200
       Width           =   3735
       Begin VB.Label Label5 
          Alignment       =   2  'Center
@@ -135,7 +150,7 @@ Begin VB.Form inicio
          EndProperty
          ForeColor       =   &H000000FF&
          Height          =   855
-         Left            =   720
+         Left            =   600
          TabIndex        =   20
          Top             =   360
          Width           =   2775
@@ -172,7 +187,7 @@ Begin VB.Form inicio
       BackColor       =   &H00E0E0E0&
       Caption         =   "Tools(F12)"
       Height          =   1215
-      Left            =   240
+      Left            =   120
       TabIndex        =   15
       Top             =   3240
       Width           =   5655
@@ -231,7 +246,7 @@ Begin VB.Form inicio
       BackColor       =   &H00E0E0E0&
       Caption         =   "MODULOS DEL SISTEMA"
       Height          =   2295
-      Left            =   480
+      Left            =   120
       TabIndex        =   13
       Top             =   240
       Width           =   8415
@@ -324,7 +339,7 @@ Begin VB.Form inicio
       Height          =   1695
       Left            =   240
       TabIndex        =   4
-      Top             =   6120
+      Top             =   6000
       Width           =   4575
       Begin VB.TextBox Text4 
          Height          =   285
@@ -399,9 +414,9 @@ Begin VB.Form inicio
       BackColor       =   &H00E0E0E0&
       Caption         =   "Funciones"
       Height          =   975
-      Left            =   9960
+      Left            =   9720
       TabIndex        =   1
-      Top             =   6840
+      Top             =   6720
       Width           =   1575
       Begin VB.CommandButton btnsale 
          Height          =   615
@@ -455,19 +470,19 @@ Begin VB.Form inicio
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "26/11/2023"
+            TextSave        =   "26/02/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "09:51 p.m."
+            TextSave        =   "11:51 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
    End
    Begin MSComctlLib.ImageList ImageList1 
       Left            =   1080
-      Top             =   4680
+      Top             =   4560
       _ExtentX        =   1005
       _ExtentY        =   1005
       BackColor       =   -2147483643
@@ -519,6 +534,22 @@ Begin VB.Form inicio
          EndProperty
       EndProperty
    End
+   Begin VB.Label Label10 
+      Caption         =   "h"
+      Height          =   375
+      Left            =   6360
+      TabIndex        =   32
+      Top             =   3360
+      Width           =   375
+   End
+   Begin VB.Label Label9 
+      Caption         =   "w"
+      Height          =   255
+      Left            =   6360
+      TabIndex        =   31
+      Top             =   2760
+      Width           =   375
+   End
    Begin VB.Label Label8 
       BackColor       =   &H00400000&
       BeginProperty Font 
@@ -534,7 +565,7 @@ Begin VB.Form inicio
       Height          =   495
       Left            =   360
       TabIndex        =   28
-      Top             =   5400
+      Top             =   5280
       Width           =   4575
    End
    Begin VB.Menu M_info 
@@ -940,6 +971,9 @@ Call HABILITACION
 Label7 = para.impresora_actual
 Text5 = para.punto_venta_usuario
 Label8.Caption = para.usuario
+Text5 = Me.Width
+Text6 = Me.Height
+
 End Sub
 
 Private Sub Form_Load()
@@ -958,6 +992,30 @@ e1:
 
 End Sub
 
+
+Private Sub Form_Resize()
+Text5 = Me.Width
+Text6 = Me.Height
+
+If Me.Width > 14000 Then
+   Me.Width = 14000
+End If
+
+If Me.Width < 12120 Then
+   Me.Width = 12120
+End If
+
+
+If Me.Height > 10000 Then
+   Me.Height = 10000
+End If
+
+If Me.Height < 9060 Then
+   Me.Height = 9060
+End If
+
+
+End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
 Unload vta_listaprecios

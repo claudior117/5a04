@@ -5,14 +5,14 @@ Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form con_estadocuenta 
    BackColor       =   &H00E0E0E0&
    Caption         =   "ESTADO DE CUENTA POR PROVEDOR"
-   ClientHeight    =   8490
+   ClientHeight    =   10950
    ClientLeft      =   165
    ClientTop       =   555
-   ClientWidth     =   11880
+   ClientWidth     =   15120
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
-   ScaleHeight     =   8490
-   ScaleWidth      =   11880
+   ScaleHeight     =   10950
+   ScaleWidth      =   15120
    StartUpPosition =   3  'Windows Default
    Begin VB.Frame Frame4 
       BackColor       =   &H00E0E0E0&
@@ -95,19 +95,28 @@ Begin VB.Form con_estadocuenta
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   114688001
+      StartOfWeek     =   180813825
       CurrentDate     =   38754
    End
    Begin MSFlexGridLib.MSFlexGrid msf1 
-      Height          =   5295
+      Height          =   7455
       Left            =   240
       TabIndex        =   2
       Top             =   1920
-      Width           =   11535
-      _ExtentX        =   20346
-      _ExtentY        =   9340
+      Width           =   14775
+      _ExtentX        =   26061
+      _ExtentY        =   13150
       _Version        =   393216
       AllowUserResizing=   1
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Segoe UI"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
    End
    Begin VB.Frame Frame3 
       BackColor       =   &H00E0E0E0&
@@ -208,9 +217,9 @@ Begin VB.Form con_estadocuenta
       BackColor       =   &H00E0E0E0&
       Caption         =   "Funciones"
       Height          =   975
-      Left            =   9720
+      Left            =   13080
       TabIndex        =   4
-      Top             =   7320
+      Top             =   9600
       Width           =   1575
       Begin VB.CommandButton btnsale 
          Cancel          =   -1  'True
@@ -241,9 +250,9 @@ Begin VB.Form con_estadocuenta
       Height          =   255
       Left            =   0
       TabIndex        =   3
-      Top             =   8235
-      Width           =   11880
-      _ExtentX        =   20955
+      Top             =   10695
+      Width           =   15120
+      _ExtentX        =   26670
       _ExtentY        =   450
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
@@ -265,12 +274,12 @@ Begin VB.Form con_estadocuenta
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "21/12/2023"
+            TextSave        =   "26/02/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:40 a.m."
+            TextSave        =   "04:24 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -344,9 +353,9 @@ Sub carga()
   saldoanterior = sa
   saldoanterioro = sao
   If Check1 = 0 Then
-    msf1.AddItem t_fecha & Chr(9) & "" & Chr(9) & "Saldo Ant." & Chr(9) & "" & Chr(9) & Format$(da, "######0.00") & Chr(9) & Format$(ha, "######0.00") & Chr(9) & Format$(sa, "######0.00")
+    msf1.AddItem t_fecha & Chr(9) & "" & Chr(9) & "Saldo Ant." & Chr(9) & "" & Chr(9) & Format$(da, "##,#0.00") & Chr(9) & Format$(ha, "##,#0.00") & Chr(9) & Format$(sa, "##,#0.00")
   Else
-    msf1.AddItem t_fecha & Chr(9) & "" & Chr(9) & "Saldo Ant." & Chr(9) & "" & Chr(9) & Format$(da, "######0.00") & Chr(9) & Format$(ha, "######0.00") & Chr(9) & Format$(sa, "######0.00") & Chr(9) & Format$(sao, "######0.00")
+    msf1.AddItem t_fecha & Chr(9) & "" & Chr(9) & "Saldo Ant." & Chr(9) & "" & Chr(9) & Format$(da, "##,#0.00") & Chr(9) & Format$(ha, "##,#0.00") & Chr(9) & Format$(sa, "##,#0.00") & Chr(9) & Format$(sao, "##,#0.00")
   End If
   q = "select * from a5, g2 where [id_proveedor] = " & c_prov.ItemData(c_prov.ListIndex) & " and a5.[ctacte] <> 'N' and [contado] = 'N' and [id_tipocomp] = [id_tipo_comp]"
   If t_fecha <> "" Then
@@ -407,19 +416,19 @@ Sub carga()
       End If
      End If
      If rs("a5.ctacte") = "D" Then
-       d = Format$(t, "######0.00")
+       d = Format$(t, "##,#0.00")
        h = ""
-       dao = Format$(T2, "######0.00")
+       dao = Format$(T2, "##,#0.00")
        hao = ""
      Else
-       h = Format$(t, "######0.00")
+       h = Format$(t, "##,#0.00")
        d = ""
-       hao = Format$(T2, "######0.00")
+       hao = Format$(T2, "##,#0.00")
        dao = ""
      
      End If
-     s = Format$(Val(s) + Val(d) - Val(h), "######0.00")
-     sao = Format$(Val(sao) + Val(dao) - Val(hao), "######0.00")
+     s = Format$(Val(s) + Val(d) - Val(h), "##,#0.00")
+     sao = Format$(Val(sao) + Val(dao) - Val(hao), "##,#0.00")
      ni = rs("num_int")
      o = rs("obs")
      If Check1 = 0 Then
@@ -449,14 +458,14 @@ If Check1 = 0 Then
   msf1.clear
   msf1.Rows = 1
   msf1.Cols = 10
-  msf1.ColWidth(0) = 1300
-  msf1.ColWidth(1) = 500
+  msf1.ColWidth(0) = 1700
+  msf1.ColWidth(1) = 600
   msf1.ColWidth(2) = 1500
-  msf1.ColWidth(3) = 1700
-  msf1.ColWidth(4) = 1200
-  msf1.ColWidth(5) = 1200
-  msf1.ColWidth(6) = 1200
-  msf1.ColWidth(7) = 2000
+  msf1.ColWidth(3) = 2000
+  msf1.ColWidth(4) = 2000
+  msf1.ColWidth(5) = 2000
+  msf1.ColWidth(6) = 2000
+  msf1.ColWidth(7) = 1700
   msf1.ColWidth(8) = 1000
   msf1.ColWidth(9) = 500
   msf1.TextMatrix(0, 0) = "Fecha"
