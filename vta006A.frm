@@ -15,6 +15,16 @@ Begin VB.Form vta_listaprecios2
    ScaleHeight     =   8895
    ScaleWidth      =   12120
    StartUpPosition =   1  'CenterOwner
+   Begin VB.TextBox t_percibe5329 
+      Appearance      =   0  'Flat
+      BorderStyle     =   0  'None
+      Height          =   285
+      Left            =   8160
+      MaxLength       =   1
+      TabIndex        =   110
+      Top             =   2640
+      Width           =   375
+   End
    Begin VB.Frame Frame9 
       BackColor       =   &H00E0E0E0&
       Caption         =   "Consultas"
@@ -1205,15 +1215,25 @@ Begin VB.Form vta_listaprecios2
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "04/09/2022"
+            TextSave        =   "29/12/2023"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "07:30 p.m."
+            TextSave        =   "11:32 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
+   End
+   Begin VB.Label Label43 
+      BackColor       =   &H00800080&
+      Caption         =   "Percibe 5329"
+      ForeColor       =   &H00FFFFFF&
+      Height          =   255
+      Left            =   6720
+      TabIndex        =   111
+      Top             =   2640
+      Width           =   1215
    End
 End
 Attribute VB_Name = "vta_listaprecios2"
@@ -1260,7 +1280,7 @@ If J = 6 Then
    Val(t_dtocompra) & " , [cod_barra]='" & RTrim$(t_codbarra) & "' , [precio_final]=" & Val(t_final) & " , [tasa_imp_interno]=" & Val(t_tasaimpint) & " , [tipo_producto]='" & t_tipo & _
    "' , [moneda]='" & t_moneda & "' , [impuesto]=" & Val(t_impuesto) & " , [observaciones]='" & t_observaciones & "' , [vigente]= " & Check1 & " , [tipo_carga_tique]='" & t_tipocarga & _
    "' , [id_tasaib]=" & c_tasaib.ItemData(c_tasaib.ListIndex) & " , [id_prod_prov]='" & RTrim$(UCase(t_idprodprov)) & "' , [dto_compra2]=" & Val(t_dtocompra2) & ", [dolar_ult_compra]=" & Val(t_cotizultcom) & _
-   " , [talle]= '" & t_talle & " ', [color]= '" & t_color & " ', [medida]= '" & t_medida & " '"
+   " , [talle]= '" & t_talle & " ', [color]= '" & t_color & " ', [medida]= '" & t_medida & " ', [percibe_5329] = '" & t_percibe5329 & "'"
       
       
       

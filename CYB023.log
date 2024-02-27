@@ -1,1 +1,6 @@
-Línea 263: la clase MSComctlLib.StatusBar del control StatusBar1 no era una clase de control cargada.
+Línea 119: error de sintaxis: a la propiedad <<<<<<< de cal1 le falta un '='.
+Línea 123: error de sintaxis: a la propiedad >>>>>>> de cal1 le falta un '='.
+Línea 296: error de sintaxis: a la propiedad <<<<<<< de Panel3 le falta un '='.
+Línea 300: error de sintaxis: a la propiedad >>>>>>> de Panel3 le falta un '='.
+Línea 305: error de sintaxis: a la propiedad <<<<<<< de Panel4 le falta un '='.
+Línea 309: error de sintaxis: a la propiedad >>>>>>> de Panel4 le falta un '='.

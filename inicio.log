@@ -1,4 +1,4 @@
-Línea 45: la clase MSComctlLib.ImageList del control ImageList2 no era una clase de control cargada.
-Línea 238: la clase MSComctlLib.Toolbar del control Toolbar1 no era una clase de control cargada.
-Línea 429: la clase MSComctlLib.StatusBar del control StatusBar1 no era una clase de control cargada.
-Línea 468: la clase MSComctlLib.ImageList del control ImageList1 no era una clase de control cargada.
+Línea 473: error de sintaxis: a la propiedad <<<<<<< de Panel3 le falta un '='.
+Línea 477: error de sintaxis: a la propiedad >>>>>>> de Panel3 le falta un '='.
+Línea 482: error de sintaxis: a la propiedad <<<<<<< de Panel4 le falta un '='.
+Línea 486: error de sintaxis: a la propiedad >>>>>>> de Panel4 le falta un '='.

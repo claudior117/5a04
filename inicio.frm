@@ -251,13 +251,13 @@ Begin VB.Form inicio
       Top             =   240
       Width           =   8415
       Begin MSComctlLib.Toolbar Toolbar1 
-         Height          =   1680
+         Height          =   870
          Left            =   240
          TabIndex        =   14
          Top             =   360
          Width           =   7920
          _ExtentX        =   13970
-         _ExtentY        =   2963
+         _ExtentY        =   1535
          ButtonWidth     =   2672
          ButtonHeight    =   1429
          Appearance      =   1
@@ -470,12 +470,12 @@ Begin VB.Form inicio
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "26/02/2024"
+            TextSave        =   "27/02/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "11:51 a.m."
+            TextSave        =   "04:42 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1

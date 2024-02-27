@@ -1,1 +1,2 @@
-Línea 100: la propiedad Size de Font tenía un valor no válido.
+Línea 59: error de sintaxis: a la propiedad <<<<<<< de Label5 le falta un '='.
+Línea 63: error de sintaxis: a la propiedad >>>>>>> de Label5 le falta un '='.

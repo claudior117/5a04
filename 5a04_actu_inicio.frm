@@ -329,7 +329,11 @@ Case Is = 215
  Case Is = 224
     Call actu224
  Case Is = 225
+<<<<<<< HEAD
     Call actu225 'resolucion minima pantalla 1024x768
+=======
+    Call actu225
+>>>>>>> percepcionIva
  Case Is = 999
    Call actu999
    
@@ -2607,23 +2611,68 @@ End Sub
 
 
 Sub actu225()
+<<<<<<< HEAD
 'corrige ajustes de stock
+=======
+'agrega percepciones de venta articulos limpiaeza
+>>>>>>> percepcionIva
 h = MsgBox("Actualizacion 225 . ¿Esta seguro que quiere actualizar?  ", 4)
 If h = 6 Then
   
  
+<<<<<<< HEAD
     
    cn1.BeginTrans
      
+=======
+  espere.Show
+  espere.Refresh
+    
+   cn1.BeginTrans
+     
+     q = "alter table a2 add column [percibe_5329] text(1)  "
+     cn1.Execute q
+     
+   
+     q = "alter table I_01 add column [id_otrostributos] int, [tasa_i1] double"
+     cn1.Execute q
+     
+     
+   cn1.CommitTrans
+   
+   cn1.BeginTrans
+     
+    q = "update a2 set [percibe_5329]='N'"
+    cn1.Execute q
+    
+    q = "update i_01 set [id_otrostributos]=99, tasa_i1=0"
+    cn1.Execute q
+    
+    
+>>>>>>> percepcionIva
     q = "update g0 set  [actualizacion]=225"
     q = q & " where [sucursal]=0 "
     cn1.Execute q
    
+<<<<<<< HEAD
     
   cn1.CommitTrans
     
    
   MsgBox ("Proceso terminado. La resolución mínima de pantalla debe ser 1024x768")
+=======
+   cn1.CommitTrans
+   
+    
+    
+   
+  MsgBox ("Proceso terminado. Verificar articulos para aquellos que deban percibir Iva RG5329 ")
+   
+  MsgBox ("Agregar en I_01 registro 5329 Precepcion 5329(3%) 5329 Precepcion 5329(1.5%) ")
+  
+  MsgBox ("Modifique I_01 id_otrostirbutos segun excel otrostributos(6 percep iva - 7 perc ibba")
+   
+>>>>>>> percepcionIva
    
  Unload espere
   
@@ -2639,7 +2688,10 @@ End Sub
 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> percepcionIva
 
 Sub actu221()
 'agrega posibilidad de factura C
