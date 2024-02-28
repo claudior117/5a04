@@ -3,17 +3,17 @@ Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form inicio_compras 
    BackColor       =   &H00E0E0E0&
    Caption         =   "MODULO  COMPRAS"
-   ClientHeight    =   8520
+   ClientHeight    =   9135
    ClientLeft      =   90
    ClientTop       =   375
-   ClientWidth     =   11970
+   ClientWidth     =   18165
    FontTransparent =   0   'False
    Icon            =   "inicio_compras.frx":0000
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
    PaletteMode     =   1  'UseZOrder
-   ScaleHeight     =   8520
-   ScaleWidth      =   11970
+   ScaleHeight     =   9135
+   ScaleWidth      =   18165
    StartUpPosition =   1  'CenterOwner
    Begin VB.Frame Frame3 
       BackColor       =   &H00E0E0E0&
@@ -63,7 +63,7 @@ Begin VB.Form inicio_compras
       Height          =   735
       Left            =   4800
       TabIndex        =   21
-      Top             =   7080
+      Top             =   7800
       Width           =   4815
       Begin VB.CommandButton Command5 
          Height          =   375
@@ -248,11 +248,11 @@ Begin VB.Form inicio_compras
       Height          =   1455
       Left            =   6120
       TabIndex        =   13
-      Top             =   5640
+      Top             =   6360
       Width           =   2055
       Begin VB.Image Image1 
          Height          =   480
-         Left            =   720
+         Left            =   840
          Picture         =   "inicio_compras.frx":0614
          Top             =   360
          Width           =   480
@@ -284,7 +284,7 @@ Begin VB.Form inicio_compras
       Height          =   1695
       Left            =   120
       TabIndex        =   4
-      Top             =   6120
+      Top             =   6840
       Width           =   4575
       Begin VB.TextBox Text4 
          Height          =   285
@@ -359,9 +359,9 @@ Begin VB.Form inicio_compras
       BackColor       =   &H00E0E0E0&
       Caption         =   "Funciones"
       Height          =   975
-      Left            =   10320
+      Left            =   15720
       TabIndex        =   1
-      Top             =   6720
+      Top             =   7560
       Width           =   1575
       Begin VB.CommandButton btnsale 
          Cancel          =   -1  'True
@@ -392,9 +392,9 @@ Begin VB.Form inicio_compras
       Height          =   255
       Left            =   0
       TabIndex        =   0
-      Top             =   8265
-      Width           =   11970
-      _ExtentX        =   21114
+      Top             =   8880
+      Width           =   18165
+      _ExtentX        =   32041
       _ExtentY        =   450
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
@@ -416,12 +416,12 @@ Begin VB.Form inicio_compras
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "22/02/2024"
+            TextSave        =   "28/02/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "11:48 a.m."
+            TextSave        =   "05:04 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -573,7 +573,7 @@ Begin VB.Form inicio_compras
       Height          =   495
       Left            =   120
       TabIndex        =   26
-      Top             =   5520
+      Top             =   6240
       Width           =   4575
    End
    Begin VB.Menu M_tablas 

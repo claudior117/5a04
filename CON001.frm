@@ -5,35 +5,35 @@ Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form con_estadocuenta 
    BackColor       =   &H00E0E0E0&
    Caption         =   "ESTADO DE CUENTA POR PROVEDOR"
-   ClientHeight    =   10950
+   ClientHeight    =   9435
    ClientLeft      =   165
    ClientTop       =   555
-   ClientWidth     =   15120
+   ClientWidth     =   18165
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
-   ScaleHeight     =   10950
-   ScaleWidth      =   15120
+   ScaleHeight     =   9435
+   ScaleWidth      =   18165
    StartUpPosition =   3  'Windows Default
    Begin VB.Frame Frame4 
       BackColor       =   &H00E0E0E0&
-      Height          =   495
-      Left            =   8640
+      Height          =   855
+      Left            =   12000
       TabIndex        =   19
-      Top             =   1440
+      Top             =   0
       Width           =   2535
       Begin VB.CheckBox Check1 
          BackColor       =   &H00E0E0E0&
          Caption         =   "Muestra Saldo en U$s"
          Height          =   315
-         Left            =   120
+         Left            =   240
          TabIndex        =   20
-         Top             =   120
+         Top             =   360
          Width           =   2175
       End
    End
    Begin VB.Frame Frame5 
       BackColor       =   &H00E0E0E0&
-      Height          =   615
+      Height          =   735
       Left            =   8640
       TabIndex        =   14
       Top             =   840
@@ -44,7 +44,7 @@ Begin VB.Form con_estadocuenta
          Height          =   375
          Left            =   120
          TabIndex        =   16
-         Top             =   120
+         Top             =   240
          Width           =   1335
       End
       Begin VB.OptionButton Option3 
@@ -53,7 +53,7 @@ Begin VB.Form con_estadocuenta
          Height          =   375
          Left            =   1680
          TabIndex        =   15
-         Top             =   120
+         Top             =   240
          Width           =   1335
       End
    End
@@ -95,17 +95,17 @@ Begin VB.Form con_estadocuenta
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   116195329
+      StartOfWeek     =   172949505
       CurrentDate     =   38754
    End
    Begin MSFlexGridLib.MSFlexGrid msf1 
-      Height          =   7455
+      Height          =   5655
       Left            =   240
       TabIndex        =   2
-      Top             =   1920
-      Width           =   14775
-      _ExtentX        =   26061
-      _ExtentY        =   13150
+      Top             =   1800
+      Width           =   17655
+      _ExtentX        =   31141
+      _ExtentY        =   9975
       _Version        =   393216
       AllowUserResizing=   1
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -217,9 +217,9 @@ Begin VB.Form con_estadocuenta
       BackColor       =   &H00E0E0E0&
       Caption         =   "Funciones"
       Height          =   975
-      Left            =   13080
+      Left            =   16200
       TabIndex        =   4
-      Top             =   9600
+      Top             =   7560
       Width           =   1575
       Begin VB.CommandButton btnsale 
          Cancel          =   -1  'True
@@ -250,9 +250,9 @@ Begin VB.Form con_estadocuenta
       Height          =   255
       Left            =   0
       TabIndex        =   3
-      Top             =   10695
-      Width           =   15120
-      _ExtentX        =   26670
+      Top             =   9180
+      Width           =   18165
+      _ExtentX        =   32041
       _ExtentY        =   450
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
@@ -274,12 +274,12 @@ Begin VB.Form con_estadocuenta
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "27/02/2024"
+            TextSave        =   "28/02/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "04:41 p.m."
+            TextSave        =   "05:07 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -465,7 +465,7 @@ If Check1 = 0 Then
   msf1.ColWidth(4) = 2000
   msf1.ColWidth(5) = 2000
   msf1.ColWidth(6) = 2000
-  msf1.ColWidth(7) = 1700
+  msf1.ColWidth(7) = 4000
   msf1.ColWidth(8) = 1000
   msf1.ColWidth(9) = 500
   msf1.TextMatrix(0, 0) = "Fecha"
