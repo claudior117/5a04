@@ -14,22 +14,6 @@ Begin VB.Form inicio
    PaletteMode     =   1  'UseZOrder
    ScaleHeight     =   8190
    ScaleWidth      =   11880
-   Begin VB.TextBox Text6 
-      Height          =   375
-      Left            =   7080
-      TabIndex        =   30
-      Text            =   "Text6"
-      Top             =   3360
-      Width           =   1455
-   End
-   Begin VB.TextBox Text5 
-      Height          =   375
-      Left            =   7080
-      TabIndex        =   29
-      Text            =   "Text5"
-      Top             =   2760
-      Width           =   1455
-   End
    Begin VB.Frame Frame7 
       BackColor       =   &H00E0E0E0&
       Caption         =   "Impresora Actual del Sistema"
@@ -251,13 +235,13 @@ Begin VB.Form inicio
       Top             =   240
       Width           =   8415
       Begin MSComctlLib.Toolbar Toolbar1 
-         Height          =   870
+         Height          =   1680
          Left            =   240
          TabIndex        =   14
          Top             =   360
          Width           =   7920
          _ExtentX        =   13970
-         _ExtentY        =   1535
+         _ExtentY        =   2963
          ButtonWidth     =   2672
          ButtonHeight    =   1429
          Appearance      =   1
@@ -470,12 +454,12 @@ Begin VB.Form inicio
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "27/02/2024"
+            TextSave        =   "28/02/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "04:42 p.m."
+            TextSave        =   "06:16 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -533,22 +517,6 @@ Begin VB.Form inicio
             Key             =   ""
          EndProperty
       EndProperty
-   End
-   Begin VB.Label Label10 
-      Caption         =   "h"
-      Height          =   375
-      Left            =   6360
-      TabIndex        =   32
-      Top             =   3360
-      Width           =   375
-   End
-   Begin VB.Label Label9 
-      Caption         =   "w"
-      Height          =   255
-      Left            =   6360
-      TabIndex        =   31
-      Top             =   2760
-      Width           =   375
    End
    Begin VB.Label Label8 
       BackColor       =   &H00400000&
@@ -971,8 +939,6 @@ Call HABILITACION
 Label7 = para.impresora_actual
 Text5 = para.punto_venta_usuario
 Label8.Caption = para.usuario
-Text5 = Me.Width
-Text6 = Me.Height
 
 End Sub
 

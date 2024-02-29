@@ -7,14 +7,14 @@ Begin VB.Form op_fp1_1
    ClientHeight    =   6000
    ClientLeft      =   60
    ClientTop       =   345
-   ClientWidth     =   7005
+   ClientWidth     =   10005
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    PaletteMode     =   1  'UseZOrder
    ScaleHeight     =   6000
-   ScaleWidth      =   7005
+   ScaleWidth      =   10005
    StartUpPosition =   1  'CenterOwner
    Begin VB.Frame Frame4 
       BackColor       =   &H00C0C0C0&
@@ -22,19 +22,37 @@ Begin VB.Form op_fp1_1
       Left            =   120
       TabIndex        =   11
       Top             =   120
-      Width           =   6615
+      Width           =   9255
       Begin VB.TextBox t_fechai 
          BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   405
          Left            =   1680
          MaxLength       =   10
          TabIndex        =   1
          Top             =   1320
-         Width           =   1215
+         Width           =   1935
       End
       Begin VB.ComboBox c_cuenta 
          Appearance      =   0  'Flat
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Left            =   1680
          TabIndex        =   8
          Top             =   4680
@@ -44,7 +62,7 @@ Begin VB.Form op_fp1_1
          BorderStyle     =   0  'None
          Enabled         =   0   'False
          Height          =   405
-         Left            =   6000
+         Left            =   8400
          MaxLength       =   8
          TabIndex        =   22
          Top             =   240
@@ -52,75 +70,147 @@ Begin VB.Form op_fp1_1
       End
       Begin VB.TextBox t_origen 
          BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   405
          Left            =   1680
          MaxLength       =   50
          TabIndex        =   7
          Top             =   4200
-         Width           =   4335
+         Width           =   5775
       End
       Begin VB.TextBox t_sucursal 
          BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   405
          Left            =   1680
          MaxLength       =   50
          TabIndex        =   5
          Top             =   3240
-         Width           =   4335
+         Width           =   5775
       End
       Begin VB.TextBox t_fechad 
          BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   405
          Left            =   1680
          MaxLength       =   10
          TabIndex        =   3
          Top             =   2280
-         Width           =   1215
+         Width           =   1935
       End
       Begin VB.TextBox t_fechae 
          BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   405
          Left            =   1680
          MaxLength       =   10
          TabIndex        =   2
          Top             =   1800
-         Width           =   1215
+         Width           =   1935
       End
       Begin VB.TextBox T_NUMCH 
          BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   405
          Left            =   1680
          MaxLength       =   10
          TabIndex        =   0
          Top             =   840
-         Width           =   1095
+         Width           =   1935
       End
       Begin VB.TextBox t_importe 
          BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   405
          Left            =   1680
-         MaxLength       =   18
+         MaxLength       =   21
          TabIndex        =   9
          Top             =   5160
-         Width           =   1695
+         Width           =   2535
       End
       Begin VB.TextBox t_titular 
          BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   405
          Left            =   1680
          MaxLength       =   50
          TabIndex        =   6
          Top             =   3720
-         Width           =   4335
+         Width           =   5775
       End
       Begin VB.TextBox t_banco 
          BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   405
          Left            =   1680
          MaxLength       =   50
          TabIndex        =   4
          Top             =   2760
-         Width           =   4335
+         Width           =   5775
       End
       Begin VB.TextBox t_NUMINT 
          BorderStyle     =   0  'None
@@ -160,7 +250,7 @@ Begin VB.Form op_fp1_1
          Caption         =   "Funcion"
          ForeColor       =   &H00FFFFFF&
          Height          =   375
-         Left            =   4680
+         Left            =   7080
          TabIndex        =   23
          Top             =   240
          Width           =   1215
@@ -271,8 +361,8 @@ Begin VB.Form op_fp1_1
       Left            =   0
       TabIndex        =   10
       Top             =   5970
-      Width           =   7005
-      _ExtentX        =   12356
+      Width           =   10005
+      _ExtentX        =   17648
       _ExtentY        =   53
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
@@ -294,12 +384,12 @@ Begin VB.Form op_fp1_1
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "26/12/2023"
+            TextSave        =   "29/02/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "11:34 a.m."
+            TextSave        =   "04:35 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1

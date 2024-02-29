@@ -1,17 +1,17 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form op2 
    BackColor       =   &H00E0E0E0&
    Caption         =   "ORDEN DE PAGO EN DOLARES"
    ClientHeight    =   4770
    ClientLeft      =   75
    ClientTop       =   420
-   ClientWidth     =   6210
+   ClientWidth     =   6390
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
    PaletteMode     =   1  'UseZOrder
    ScaleHeight     =   4770
-   ScaleWidth      =   6210
+   ScaleWidth      =   6390
    StartUpPosition =   1  'CenterOwner
    Begin VB.Frame Frame3 
       BackColor       =   &H00E0E0E0&
@@ -149,7 +149,7 @@ Begin VB.Form op2
       BackColor       =   &H00E0E0E0&
       Caption         =   "Funciones"
       Height          =   975
-      Left            =   4440
+      Left            =   4560
       TabIndex        =   5
       Top             =   3360
       Width           =   1575
@@ -183,8 +183,8 @@ Begin VB.Form op2
       Left            =   0
       TabIndex        =   4
       Top             =   4515
-      Width           =   6210
-      _ExtentX        =   10954
+      Width           =   6390
+      _ExtentX        =   11271
       _ExtentY        =   450
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
@@ -222,7 +222,7 @@ Sub limpia()
  t_op = " "
  t_retgan = " "
  t_retib = " "
- t_total = " "
+ T_TOTAL = " "
  t_cotiz = " "
  
  End Sub
@@ -249,7 +249,7 @@ Sub totales()
 t_op = Format$(Val(t_op), "######0.00")
 t_retgan = Format$(Val(t_retgan), "######0.00")
 t_retib = Format$(Val(t_retib), "######0.00")
-t_total = Format$(Val(t_op) + Val(t_retgan) + Val(t_retib), "######0.00")
+T_TOTAL = Format$(Val(t_op) + Val(t_retgan) + Val(t_retib), "######0.00")
 op.t_totald = t_op
 
 End Sub

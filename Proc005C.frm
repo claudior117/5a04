@@ -7,14 +7,14 @@ Begin VB.Form op_fp2
    ClientHeight    =   2175
    ClientLeft      =   60
    ClientTop       =   345
-   ClientWidth     =   11250
+   ClientWidth     =   13455
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    PaletteMode     =   1  'UseZOrder
    ScaleHeight     =   2175
-   ScaleWidth      =   11250
+   ScaleWidth      =   13455
    StartUpPosition =   1  'CenterOwner
    Begin VB.TextBox t_modulo 
       Height          =   285
@@ -30,54 +30,90 @@ Begin VB.Form op_fp2
       Left            =   240
       TabIndex        =   5
       Top             =   120
-      Width           =   10335
+      Width           =   13095
       Begin VB.TextBox t_fecha 
          BorderStyle     =   0  'None
-         Height          =   405
-         Left            =   8880
-         MaxLength       =   10
-         TabIndex        =   3
-         Top             =   840
-         Width           =   1215
-      End
-      Begin VB.TextBox t_importe 
-         BorderStyle     =   0  'None
-         Height          =   405
-         Left            =   7200
-         MaxLength       =   18
-         TabIndex        =   2
-         Top             =   840
-         Width           =   1575
-      End
-      Begin VB.TextBox t_numch 
-         BorderStyle     =   0  'None
-         Height          =   405
-         Left            =   5400
-         MaxLength       =   9
-         TabIndex        =   1
-         Top             =   840
-         Width           =   1695
-      End
-      Begin VB.ComboBox c_fp 
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   12
+            Size            =   9.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   420
+         Height          =   405
+         Left            =   11400
+         MaxLength       =   10
+         TabIndex        =   3
+         Top             =   840
+         Width           =   1575
+      End
+      Begin VB.TextBox t_importe 
+         BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   405
+         Left            =   9000
+         MaxLength       =   21
+         TabIndex        =   2
+         Top             =   840
+         Width           =   2295
+      End
+      Begin VB.TextBox t_numch 
+         BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   405
+         Left            =   6240
+         MaxLength       =   9
+         TabIndex        =   1
+         Top             =   840
+         Width           =   2535
+      End
+      Begin VB.ComboBox c_fp 
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Left            =   1320
          TabIndex        =   0
          Text            =   "c_prod"
          Top             =   840
-         Width           =   3975
+         Width           =   4695
       End
       Begin VB.TextBox t_fp 
          BorderStyle     =   0  'None
          Enabled         =   0   'False
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   405
          Left            =   360
          MaxLength       =   8
@@ -91,7 +127,7 @@ Begin VB.Form op_fp2
          Caption         =   "Fecha Dif."
          ForeColor       =   &H00FFFFFF&
          Height          =   375
-         Left            =   8520
+         Left            =   11400
          TabIndex        =   10
          Top             =   240
          Width           =   1575
@@ -102,10 +138,10 @@ Begin VB.Form op_fp2
          Caption         =   "Importe"
          ForeColor       =   &H00FFFFFF&
          Height          =   375
-         Left            =   7200
+         Left            =   9000
          TabIndex        =   9
          Top             =   240
-         Width           =   1335
+         Width           =   2295
       End
       Begin VB.Label Label3 
          Alignment       =   2  'Center
@@ -113,10 +149,10 @@ Begin VB.Form op_fp2
          Caption         =   "Num.Cheque"
          ForeColor       =   &H00FFFFFF&
          Height          =   375
-         Left            =   5400
+         Left            =   6240
          TabIndex        =   8
          Top             =   240
-         Width           =   1815
+         Width           =   2535
       End
       Begin VB.Label Label2 
          Alignment       =   2  'Center
@@ -127,7 +163,7 @@ Begin VB.Form op_fp2
          Left            =   360
          TabIndex        =   7
          Top             =   240
-         Width           =   5055
+         Width           =   5655
       End
    End
    Begin MSComctlLib.StatusBar StatusBar1 
@@ -136,8 +172,8 @@ Begin VB.Form op_fp2
       Left            =   0
       TabIndex        =   4
       Top             =   1920
-      Width           =   11250
-      _ExtentX        =   19844
+      Width           =   13455
+      _ExtentX        =   23733
       _ExtentY        =   450
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
@@ -159,12 +195,12 @@ Begin VB.Form op_fp2
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "26/12/2023"
+            TextSave        =   "29/02/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "11:34 a.m."
+            TextSave        =   "04:37 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1

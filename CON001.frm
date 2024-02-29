@@ -259,15 +259,15 @@ Begin VB.Form con_estadocuenta
          NumPanels       =   4
          BeginProperty Panel1 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Alignment       =   1
-            Object.Width           =   7056
-            MinWidth        =   7056
+            Object.Width           =   12347
+            MinWidth        =   12347
             Text            =   "Cliente"
             TextSave        =   "Cliente"
          EndProperty
          BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Alignment       =   1
-            Object.Width           =   8820
-            MinWidth        =   8820
+            Object.Width           =   14111
+            MinWidth        =   14111
             Text            =   "Sistema"
             TextSave        =   "Sistema"
          EndProperty
@@ -279,7 +279,7 @@ Begin VB.Form con_estadocuenta
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "05:07 p.m."
+            TextSave        =   "06:03 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1

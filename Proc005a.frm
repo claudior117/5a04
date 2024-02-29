@@ -1,27 +1,27 @@
 VERSION 5.00
 Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form op1 
    BackColor       =   &H00C0C0C0&
    BorderStyle     =   1  'Fixed Single
-   ClientHeight    =   4830
+   ClientHeight    =   6405
    ClientLeft      =   60
    ClientTop       =   345
-   ClientWidth     =   12180
+   ClientWidth     =   15345
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    PaletteMode     =   1  'UseZOrder
-   ScaleHeight     =   4830
-   ScaleWidth      =   12180
+   ScaleHeight     =   6405
+   ScaleWidth      =   15345
    StartUpPosition =   1  'CenterOwner
    Begin VB.Frame Frame3 
       BackColor       =   &H8000000A&
       Height          =   615
-      Left            =   8520
+      Left            =   9840
       TabIndex        =   5
-      Top             =   3600
+      Top             =   5040
       Width           =   3495
       Begin VB.TextBox T_APAGAR 
          Height          =   285
@@ -46,13 +46,13 @@ Begin VB.Form op1
       Height          =   975
       Left            =   120
       TabIndex        =   3
-      Top             =   3600
+      Top             =   5040
       Width           =   7695
       Begin VB.Label Label1 
          BackColor       =   &H00E0E0E0&
          Caption         =   $"Proc005a.frx":0000
          Height          =   615
-         Left            =   120
+         Left            =   240
          TabIndex        =   4
          Top             =   240
          Width           =   7215
@@ -61,23 +61,23 @@ Begin VB.Form op1
    Begin VB.Frame Frame1 
       BackColor       =   &H00E0E0E0&
       Caption         =   "Comprobantes a Aplicar"
-      Height          =   3495
+      Height          =   4695
       Left            =   120
       TabIndex        =   1
       Top             =   120
-      Width           =   11895
+      Width           =   15015
       Begin MSFlexGridLib.MSFlexGrid msf1 
-         Height          =   3135
+         Height          =   4215
          Left            =   120
          TabIndex        =   2
          Top             =   240
-         Width           =   11535
-         _ExtentX        =   20346
-         _ExtentY        =   5530
+         Width           =   14535
+         _ExtentX        =   25638
+         _ExtentY        =   7435
          _Version        =   393216
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Size            =   9.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -91,9 +91,9 @@ Begin VB.Form op1
       Height          =   255
       Left            =   0
       TabIndex        =   0
-      Top             =   4575
-      Width           =   12180
-      _ExtentX        =   21484
+      Top             =   6150
+      Width           =   15345
+      _ExtentX        =   27067
       _ExtentY        =   450
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
@@ -115,12 +115,12 @@ Begin VB.Form op1
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "27/02/2015"
+            TextSave        =   "28/02/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "09:44"
+            TextSave        =   "06:41 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -149,17 +149,17 @@ msf1.clear
 msf1.Rows = 1
 msf1.Cols = 13
 msf1.ColWidth(0) = 300
-msf1.ColWidth(1) = 1000
-msf1.ColWidth(2) = 1900
-msf1.ColWidth(3) = 1100
+msf1.ColWidth(1) = 1200
+msf1.ColWidth(2) = 2400
+msf1.ColWidth(3) = 1400
 msf1.ColWidth(4) = 800
 msf1.ColWidth(5) = 1100
-msf1.ColWidth(6) = 1100
-msf1.ColWidth(7) = 1100
+msf1.ColWidth(6) = 1400
+msf1.ColWidth(7) = 1200
 msf1.ColWidth(8) = 800
-msf1.ColWidth(9) = 1000
-msf1.ColWidth(10) = 1000
-msf1.ColWidth(11) = 1000
+msf1.ColWidth(9) = 1400
+msf1.ColWidth(10) = 1400
+msf1.ColWidth(11) = 1400
 msf1.ColWidth(12) = 1000
 
 
@@ -198,7 +198,7 @@ End Sub
 Sub carga()
 op.armagrid
 r = 1
-minimo = 9999999.99
+minimo = 99999999999.99
 cribmax = 0
 aliribmax = 0
 If msf1.Rows > 1 Then
@@ -224,7 +224,7 @@ End Sub
 
 
 Private Sub msf1_GotFocus()
-Me.StatusBar1.Panels.Item(2) = "[Barra] Pago Total - [F2] Pago Parcial - [F3] Cambia Saldo -  [F5] Todos Total  - [F9] Agrega a OP "
+Me.StatusBar1.Panels.item(2) = "[Barra] Pago Total - [F2] Pago Parcial - [F3] Cambia Saldo -  [F5] Todos Total  - [F9] Agrega a OP "
 
 End Sub
 

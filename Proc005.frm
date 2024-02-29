@@ -5,10 +5,10 @@ Begin VB.Form op
    Appearance      =   0  'Flat
    BackColor       =   &H00E0E0E0&
    Caption         =   "ORDEN DE PAGO A PROVEDORES"
-   ClientHeight    =   8490
+   ClientHeight    =   9435
    ClientLeft      =   180
    ClientTop       =   330
-   ClientWidth     =   11880
+   ClientWidth     =   16815
    BeginProperty Font 
       Name            =   "MS Sans Serif"
       Size            =   8.25
@@ -22,31 +22,31 @@ Begin VB.Form op
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
    PaletteMode     =   1  'UseZOrder
-   ScaleHeight     =   8490
-   ScaleWidth      =   11880
+   ScaleHeight     =   9435
+   ScaleWidth      =   16815
    Begin VB.TextBox t_cuit 
       Height          =   375
-      Left            =   11160
+      Left            =   14040
       TabIndex        =   62
       Text            =   "Text1"
-      Top             =   2280
+      Top             =   6480
       Visible         =   0   'False
       Width           =   735
    End
    Begin VB.ComboBox c_zona 
       Height          =   315
-      Left            =   8760
+      Left            =   10560
       TabIndex        =   16
       Text            =   "Combo1"
-      Top             =   7920
-      Width           =   1335
+      Top             =   8760
+      Width           =   2055
    End
    Begin VB.CommandButton Command1 
       Caption         =   "Calculo Manual Ret."
       Height          =   495
-      Left            =   10320
+      Left            =   15000
       TabIndex        =   56
-      Top             =   6240
+      Top             =   7080
       Width           =   1335
    End
    Begin VB.Frame Frame3 
@@ -55,13 +55,13 @@ Begin VB.Form op
       Height          =   1695
       Left            =   120
       TabIndex        =   42
-      Top             =   6120
-      Width           =   9975
+      Top             =   6960
+      Width           =   14415
       Begin VB.TextBox t_netoretib 
          Appearance      =   0  'Flat
          BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Name            =   "Segoe UI"
+            Size            =   11.25
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -69,25 +69,25 @@ Begin VB.Form op
             Strikethrough   =   0   'False
          EndProperty
          Height          =   405
-         Left            =   5520
-         MaxLength       =   18
+         Left            =   6480
+         MaxLength       =   21
          TabIndex        =   10
          Top             =   1200
-         Width           =   1095
+         Width           =   2055
       End
       Begin VB.ComboBox c_tiporetg 
          Height          =   315
-         Left            =   3360
+         Left            =   4200
          TabIndex        =   57
          TabStop         =   0   'False
          Top             =   240
-         Width           =   3255
+         Width           =   5055
       End
       Begin VB.TextBox t_neto 
          Appearance      =   0  'Flat
          BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Name            =   "Segoe UI"
+            Size            =   11.25
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -96,10 +96,10 @@ Begin VB.Form op
          EndProperty
          Height          =   405
          Left            =   1920
-         MaxLength       =   18
+         MaxLength       =   21
          TabIndex        =   8
          Top             =   1200
-         Width           =   1215
+         Width           =   1935
       End
       Begin VB.TextBox fdolar 
          Appearance      =   0  'Flat
@@ -117,13 +117,13 @@ Begin VB.Form op
          MaxLength       =   8
          TabIndex        =   6
          Top             =   240
-         Width           =   855
+         Width           =   1695
       End
       Begin VB.TextBox t_total 
          Appearance      =   0  'Flat
          BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Name            =   "Segoe UI"
+            Size            =   11.25
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -131,17 +131,17 @@ Begin VB.Form op
             Strikethrough   =   0   'False
          EndProperty
          Height          =   405
-         Left            =   8520
-         MaxLength       =   18
+         Left            =   12000
+         MaxLength       =   21
          TabIndex        =   13
          Top             =   720
-         Width           =   1335
+         Width           =   2295
       End
       Begin VB.TextBox t_totald 
          Appearance      =   0  'Flat
          BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Name            =   "Segoe UI"
+            Size            =   11.25
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -149,11 +149,11 @@ Begin VB.Form op
             Strikethrough   =   0   'False
          EndProperty
          Height          =   405
-         Left            =   8520
-         MaxLength       =   18
+         Left            =   12000
+         MaxLength       =   21
          TabIndex        =   14
          Top             =   1200
-         Width           =   1335
+         Width           =   2295
       End
       Begin VB.TextBox t_retib 
          Appearance      =   0  'Flat
@@ -167,11 +167,11 @@ Begin VB.Form op
             Strikethrough   =   0   'False
          EndProperty
          Height          =   405
-         Left            =   8880
+         Left            =   12960
          MaxLength       =   18
          TabIndex        =   12
          Top             =   240
-         Width           =   975
+         Width           =   1335
       End
       Begin VB.TextBox t_alicuotaretib 
          Appearance      =   0  'Flat
@@ -185,17 +185,17 @@ Begin VB.Form op
             Strikethrough   =   0   'False
          EndProperty
          Height          =   405
-         Left            =   8280
+         Left            =   12000
          MaxLength       =   5
          TabIndex        =   11
          Top             =   240
-         Width           =   495
+         Width           =   735
       End
       Begin VB.TextBox t_pago 
          Appearance      =   0  'Flat
          BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Name            =   "Segoe UI"
+            Size            =   11.25
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -204,16 +204,16 @@ Begin VB.Form op
          EndProperty
          Height          =   405
          Left            =   1920
-         MaxLength       =   18
+         MaxLength       =   21
          TabIndex        =   7
          Top             =   720
-         Width           =   1215
+         Width           =   1935
       End
       Begin VB.TextBox retencion 
          Appearance      =   0  'Flat
          BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Name            =   "Segoe UI"
+            Size            =   11.25
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -221,11 +221,11 @@ Begin VB.Form op
             Strikethrough   =   0   'False
          EndProperty
          Height          =   405
-         Left            =   5520
-         MaxLength       =   18
+         Left            =   6480
+         MaxLength       =   21
          TabIndex        =   9
          Top             =   720
-         Width           =   1095
+         Width           =   2055
       End
       Begin VB.Label Label12 
          Alignment       =   2  'Center
@@ -234,7 +234,7 @@ Begin VB.Form op
          Caption         =   "Neto sujeto a Ret. IB:"
          ForeColor       =   &H00800000&
          Height          =   375
-         Left            =   3360
+         Left            =   4200
          TabIndex        =   63
          Top             =   1200
          Width           =   2055
@@ -271,7 +271,7 @@ Begin VB.Form op
          ForeColor       =   &H00000000&
          Height          =   375
          Index           =   2
-         Left            =   8640
+         Left            =   12720
          TabIndex        =   48
          Top             =   240
          Width           =   255
@@ -284,7 +284,7 @@ Begin VB.Form op
          ForeColor       =   &H00FFFFFF&
          Height          =   495
          Index           =   8
-         Left            =   6840
+         Left            =   10320
          TabIndex        =   47
          Top             =   720
          Width           =   1575
@@ -297,7 +297,7 @@ Begin VB.Form op
          ForeColor       =   &H00FFFFFF&
          Height          =   375
          Index           =   1
-         Left            =   6840
+         Left            =   10320
          TabIndex        =   46
          Top             =   1200
          Width           =   1575
@@ -308,12 +308,12 @@ Begin VB.Form op
          BackColor       =   &H00C0C0C0&
          Caption         =   "Ret. IB s/ neto comp. sel."
          ForeColor       =   &H00800000&
-         Height          =   375
+         Height          =   495
          Index           =   5
-         Left            =   6840
+         Left            =   10320
          TabIndex        =   45
          Top             =   240
-         Width           =   1335
+         Width           =   1575
       End
       Begin VB.Label Label6 
          Alignment       =   2  'Center
@@ -333,9 +333,9 @@ Begin VB.Form op
          BackColor       =   &H00C0C0C0&
          Caption         =   "Ret. Gan. s/  neto comp. seleccionados:"
          ForeColor       =   &H00800000&
-         Height          =   375
+         Height          =   495
          Index           =   20
-         Left            =   3360
+         Left            =   4200
          TabIndex        =   43
          Top             =   720
          Width           =   2055
@@ -373,7 +373,7 @@ Begin VB.Form op
       Left            =   240
       TabIndex        =   35
       Top             =   120
-      Width           =   9495
+      Width           =   12855
       Begin VB.CommandButton Command2 
          Height          =   375
          Left            =   8640
@@ -505,10 +505,10 @@ Begin VB.Form op
       BackColor       =   &H00E0E0E0&
       Caption         =   "Retenciones"
       Height          =   1695
-      Left            =   9720
+      Left            =   13440
       TabIndex        =   26
       Top             =   120
-      Width           =   2175
+      Width           =   3015
       Begin VB.TextBox T_CALCULARETGAN 
          BeginProperty Font 
             Name            =   "MS Sans Serif"
@@ -520,12 +520,12 @@ Begin VB.Form op
             Strikethrough   =   0   'False
          EndProperty
          Height          =   285
-         Left            =   1560
+         Left            =   2040
          Locked          =   -1  'True
          TabIndex        =   53
          TabStop         =   0   'False
          Top             =   1320
-         Width           =   495
+         Width           =   735
       End
       Begin VB.TextBox t_CALCULARETIB 
          BeginProperty Font 
@@ -543,7 +543,7 @@ Begin VB.Form op
          TabIndex        =   52
          TabStop         =   0   'False
          Top             =   1320
-         Width           =   495
+         Width           =   855
       End
       Begin VB.TextBox T_TASARG 
          BeginProperty Font 
@@ -556,12 +556,12 @@ Begin VB.Form op
             Strikethrough   =   0   'False
          EndProperty
          Height          =   285
-         Left            =   1560
+         Left            =   2040
          Locked          =   -1  'True
          TabIndex        =   51
          TabStop         =   0   'False
          Top             =   960
-         Width           =   495
+         Width           =   735
       End
       Begin VB.TextBox t_crg 
          BeginProperty Font 
@@ -579,7 +579,7 @@ Begin VB.Form op
          TabIndex        =   33
          TabStop         =   0   'False
          Top             =   960
-         Width           =   495
+         Width           =   855
       End
       Begin VB.TextBox t_big 
          BeginProperty Font 
@@ -597,7 +597,7 @@ Begin VB.Form op
          TabIndex        =   31
          TabStop         =   0   'False
          Top             =   600
-         Width           =   1095
+         Width           =   1815
       End
       Begin VB.TextBox t_minimoretib 
          BeginProperty Font 
@@ -615,7 +615,7 @@ Begin VB.Form op
          TabIndex        =   27
          TabStop         =   0   'False
          Top             =   240
-         Width           =   1095
+         Width           =   1815
       End
       Begin VB.Label Label10 
          Caption         =   "Retiene IB/GAN"
@@ -653,24 +653,24 @@ Begin VB.Form op
    Begin VB.Frame Frame1 
       BackColor       =   &H00E0E0E0&
       Caption         =   "Comprobantes a Aplicar"
-      Height          =   1695
+      Height          =   2175
       Left            =   240
       TabIndex        =   23
       Top             =   1800
-      Width           =   10695
+      Width           =   16215
       Begin MSFlexGridLib.MSFlexGrid msf1 
-         Height          =   1335
+         Height          =   1815
          Left            =   240
          TabIndex        =   4
          ToolTipText     =   "A los comprobantes que tengan Cod. ret.IB = 0  no se le calculará dicho impuesto"
          Top             =   240
-         Width           =   10335
-         _ExtentX        =   18230
-         _ExtentY        =   2355
+         Width           =   15735
+         _ExtentX        =   27755
+         _ExtentY        =   3201
          _Version        =   393216
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Size            =   9.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -685,8 +685,8 @@ Begin VB.Form op
       Height          =   2535
       Left            =   240
       TabIndex        =   22
-      Top             =   3480
-      Width           =   11655
+      Top             =   3960
+      Width           =   16215
       Begin VB.TextBox t_aingresar 
          Appearance      =   0  'Flat
          BeginProperty Font 
@@ -705,7 +705,7 @@ Begin VB.Form op
          TabIndex        =   59
          TabStop         =   0   'False
          Top             =   2160
-         Width           =   1455
+         Width           =   2055
       End
       Begin VB.TextBox t_diferencia 
          Appearance      =   0  'Flat
@@ -719,13 +719,13 @@ Begin VB.Form op
             Strikethrough   =   0   'False
          EndProperty
          Height          =   285
-         Left            =   9600
+         Left            =   10680
          Locked          =   -1  'True
          MaxLength       =   14
          TabIndex        =   28
          TabStop         =   0   'False
          Top             =   2160
-         Width           =   1455
+         Width           =   1815
       End
       Begin VB.TextBox t_ingresado 
          Appearance      =   0  'Flat
@@ -739,21 +739,21 @@ Begin VB.Form op
             Strikethrough   =   0   'False
          EndProperty
          Height          =   285
-         Left            =   5520
+         Left            =   5880
          Locked          =   -1  'True
          MaxLength       =   18
          TabIndex        =   24
          TabStop         =   0   'False
          Top             =   2160
-         Width           =   1455
+         Width           =   1935
       End
       Begin MSFlexGridLib.MSFlexGrid msf2 
          Height          =   1815
          Left            =   240
          TabIndex        =   5
          Top             =   240
-         Width           =   11175
-         _ExtentX        =   19711
+         Width           =   15735
+         _ExtentX        =   27755
          _ExtentY        =   3201
          _Version        =   393216
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -787,7 +787,7 @@ Begin VB.Form op
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Index           =   4
-         Left            =   8040
+         Left            =   9120
          TabIndex        =   29
          Top             =   2160
          Width           =   1455
@@ -800,7 +800,7 @@ Begin VB.Form op
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Index           =   0
-         Left            =   3960
+         Left            =   4320
          TabIndex        =   25
          Top             =   2160
          Width           =   1455
@@ -811,9 +811,9 @@ Begin VB.Form op
       BackColor       =   &H00E0E0E0&
       ForeColor       =   &H80000008&
       Height          =   1455
-      Left            =   10320
+      Left            =   15000
       TabIndex        =   18
-      Top             =   6720
+      Top             =   7680
       Width           =   1455
       Begin VB.CommandButton Command3 
          Appearance      =   0  'Flat
@@ -858,7 +858,7 @@ Begin VB.Form op
       Left            =   2040
       MaxLength       =   79
       TabIndex        =   15
-      Top             =   7920
+      Top             =   8760
       Width           =   5655
    End
    Begin MSComctlLib.StatusBar StatusBar1 
@@ -866,9 +866,9 @@ Begin VB.Form op
       Height          =   255
       Left            =   0
       TabIndex        =   21
-      Top             =   8235
-      Width           =   11880
-      _ExtentX        =   20955
+      Top             =   9180
+      Width           =   16815
+      _ExtentX        =   29660
       _ExtentY        =   450
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
@@ -890,12 +890,12 @@ Begin VB.Form op
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "26/12/2023"
+            TextSave        =   "28/02/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "11:36 a.m."
+            TextSave        =   "06:43 p.m."
          EndProperty
       EndProperty
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -916,9 +916,9 @@ Begin VB.Form op
       Caption         =   "Zona:"
       ForeColor       =   &H00FFFFFF&
       Height          =   255
-      Left            =   7800
+      Left            =   9600
       TabIndex        =   61
-      Top             =   7920
+      Top             =   8760
       Width           =   855
    End
    Begin VB.Label Label7 
@@ -930,7 +930,7 @@ Begin VB.Form op
       Height          =   255
       Left            =   120
       TabIndex        =   17
-      Top             =   7920
+      Top             =   8760
       Width           =   1815
    End
 End
@@ -1319,16 +1319,16 @@ Sub armagrid()
 msf1.clear
 msf1.Rows = 1
 msf1.Cols = 10
-msf1.ColWidth(0) = 1000
-msf1.ColWidth(1) = 1900
-msf1.ColWidth(2) = 1200
-msf1.ColWidth(3) = 800
-msf1.ColWidth(4) = 1000
-msf1.ColWidth(5) = 1000
-msf1.ColWidth(6) = 1000
-msf1.ColWidth(7) = 1000
-msf1.ColWidth(8) = 1000
-msf1.ColWidth(9) = 1000
+msf1.ColWidth(0) = 1200
+msf1.ColWidth(1) = 2500
+msf1.ColWidth(2) = 1700
+msf1.ColWidth(3) = 1200
+msf1.ColWidth(4) = 1400
+msf1.ColWidth(5) = 1700
+msf1.ColWidth(6) = 1500
+msf1.ColWidth(7) = 1400
+msf1.ColWidth(8) = 1700
+msf1.ColWidth(9) = 900
 
 msf1.TextMatrix(0, 0) = "Fecha"
 msf1.TextMatrix(0, 1) = "Comprobante"
@@ -2377,18 +2377,20 @@ End Sub
 
 
 Sub totales2()
-t_pago = Format$(t_pago, "######0.00")
-T_TOTAL = Format$(Val(t_pago) - Val(retencion) - Val(t_retib), "######0.00")
+t_pago = Format$(t_pago, "#0.00")
+T_TOTAL = Format$(Val(t_pago) - Val(retencion) - Val(t_retib), "#0.00")
 t_aingresar = T_TOTAL
 If Val(fdolar) < 1 Then
   fdolar = "1.00"
 End If
-t_totald = Format$(Val(T_TOTAL) / Val(fdolar), "######0.00")
-t_diferencia = Format$(Val(T_TOTAL) - Val(t_ingresado), "######0.00")
+t_totald = Format$(Val(T_TOTAL) / Val(fdolar), "#0.00")
+t_diferencia = Format$(Val(T_TOTAL) - Val(t_ingresado), "#0,00")
 op2.t_cotiz = fdolar
-op2.t_op = Format$(Val(t_totald), "######0.00")
-op2.t_retgan = Format$(Val(retencion) / Val(fdolar), "######0.00")
-op2.t_retib = Format$(Val(t_retib) / Val(fdolar), "######0.00")
-op2.T_TOTAL = Format$(Val(op2.t_op) + Val(op2.t_retgan) + Val(op2.t_retib), "######0.00")
+op2.t_op = Format$(Val(t_totald), "#0.00")
+op2.t_retgan = Format$(Val(retencion) / Val(fdolar), "#0.00")
+op2.t_retib = Format$(Val(t_retib) / Val(fdolar), "#0.00")
+op2.T_TOTAL = Format$(Val(op2.t_op) + Val(op2.t_retgan) + Val(op2.t_retib), "#0.00")
+
+
 End Sub
 
