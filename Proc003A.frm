@@ -4,29 +4,29 @@ Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form ABM_COMP_COMPRA 
    BackColor       =   &H00E0E0E0&
    Caption         =   "COMPROBANTES DE COMPRA"
-   ClientHeight    =   8760
+   ClientHeight    =   9435
    ClientLeft      =   90
    ClientTop       =   435
-   ClientWidth     =   12225
+   ClientWidth     =   18165
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
-   ScaleHeight     =   8760
-   ScaleWidth      =   12225
+   ScaleHeight     =   9435
+   ScaleWidth      =   18165
    StartUpPosition =   3  'Windows Default
    Begin VB.CommandButton Command6 
       Caption         =   "Ordenes de Compra Asociadas"
       Height          =   255
-      Left            =   9720
+      Left            =   15480
       TabIndex        =   64
-      Top             =   6960
+      Top             =   4680
       Width           =   2415
    End
    Begin VB.Frame Frame9 
       Height          =   615
       Left            =   240
       TabIndex        =   61
-      Top             =   7800
-      Width           =   9375
+      Top             =   8280
+      Width           =   15015
       Begin VB.Label Label18 
          Caption         =   "Label18"
          ForeColor       =   &H000000FF&
@@ -40,10 +40,10 @@ Begin VB.Form ABM_COMP_COMPRA
    Begin VB.Frame Frame8 
       BackColor       =   &H00E0E0E0&
       Height          =   495
-      Left            =   9480
+      Left            =   15360
       TabIndex        =   59
-      Top             =   1320
-      Width           =   2415
+      Top             =   1920
+      Width           =   2655
       Begin VB.CheckBox Check2 
          BackColor       =   &H00E0E0E0&
          Caption         =   " Comprobnate Electronico"
@@ -56,20 +56,20 @@ Begin VB.Form ABM_COMP_COMPRA
    End
    Begin VB.TextBox t_ni 
       Height          =   375
-      Left            =   8760
+      Left            =   5520
       TabIndex        =   57
       Text            =   "Text1"
-      Top             =   8040
+      Top             =   8760
       Visible         =   0   'False
       Width           =   1335
    End
    Begin VB.Frame Frame7 
       BackColor       =   &H00E0E0E0&
       Height          =   495
-      Left            =   9480
+      Left            =   15360
       TabIndex        =   54
-      Top             =   960
-      Width           =   2415
+      Top             =   1440
+      Width           =   2655
       Begin VB.CheckBox Check1 
          BackColor       =   &H00E0E0E0&
          Caption         =   "Moneda Unica"
@@ -82,16 +82,25 @@ Begin VB.Form ABM_COMP_COMPRA
    End
    Begin VB.CommandButton Command2 
       Caption         =   "Percepciones"
-      Height          =   255
-      Left            =   3120
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   12
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   375
+      Left            =   5640
       TabIndex        =   50
-      Top             =   7200
-      Width           =   1335
+      Top             =   7440
+      Width           =   1935
    End
    Begin VB.Frame Frame6 
       BackColor       =   &H00E0E0E0&
-      Height          =   975
-      Left            =   9480
+      Height          =   1455
+      Left            =   15360
       TabIndex        =   46
       Top             =   0
       Width           =   975
@@ -116,18 +125,18 @@ Begin VB.Form ABM_COMP_COMPRA
    End
    Begin VB.Frame Frame5 
       BackColor       =   &H00E0E0E0&
-      Height          =   975
-      Left            =   10440
+      Height          =   1455
+      Left            =   16320
       TabIndex        =   39
       Top             =   0
       Width           =   1695
       Begin VB.CommandButton Command4 
-         Caption         =   "F.P"
+         Caption         =   "Forma Pago Ctdo"
          Height          =   255
-         Left            =   1080
+         Left            =   120
          TabIndex        =   56
-         Top             =   600
-         Width           =   495
+         Top             =   1080
+         Width           =   1455
       End
       Begin VB.OptionButton Option2 
          BackColor       =   &H8000000A&
@@ -136,7 +145,7 @@ Begin VB.Form ABM_COMP_COMPRA
          Left            =   120
          TabIndex        =   41
          Top             =   480
-         Width           =   975
+         Width           =   1455
       End
       Begin VB.OptionButton Option1 
          BackColor       =   &H8000000A&
@@ -145,17 +154,17 @@ Begin VB.Form ABM_COMP_COMPRA
          Left            =   120
          TabIndex        =   40
          Top             =   240
-         Width           =   975
+         Width           =   1455
       End
    End
    Begin VB.Frame Frame4 
       BackColor       =   &H00E0E0E0&
       Height          =   615
-      Left            =   10080
+      Left            =   15360
       TabIndex        =   36
-      Top             =   5280
+      Top             =   2640
       Visible         =   0   'False
-      Width           =   2415
+      Width           =   2655
       Begin VB.TextBox t_funcion 
          Enabled         =   0   'False
          Height          =   285
@@ -180,18 +189,27 @@ Begin VB.Form ABM_COMP_COMPRA
    Begin VB.Frame Frame2 
       BackColor       =   &H00E0E0E0&
       Caption         =   "Totales del Comprobante"
-      Height          =   1935
-      Left            =   240
+      Height          =   2295
+      Left            =   120
       TabIndex        =   30
-      Top             =   5880
-      Width           =   9375
+      Top             =   6000
+      Width           =   15015
       Begin VB.CommandButton Command7 
          Caption         =   "Iva"
-         Height          =   255
-         Left            =   4440
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   375
+         Left            =   7680
          TabIndex        =   66
-         Top             =   1320
-         Width           =   1215
+         Top             =   1440
+         Width           =   2175
       End
       Begin VB.ComboBox c_cliente 
          Height          =   315
@@ -199,11 +217,11 @@ Begin VB.Form ABM_COMP_COMPRA
          Style           =   2  'Dropdown List
          TabIndex        =   13
          Top             =   960
-         Width           =   2655
+         Width           =   5655
       End
       Begin VB.CommandButton Command3 
          Height          =   255
-         Left            =   7800
+         Left            =   8640
          Picture         =   "Proc003A.frx":0000
          Style           =   1  'Graphical
          TabIndex        =   53
@@ -222,12 +240,12 @@ Begin VB.Form ABM_COMP_COMPRA
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   285
-         Left            =   8040
-         MaxLength       =   14
+         Height          =   405
+         Left            =   12960
+         MaxLength       =   21
          TabIndex        =   20
-         Top             =   1560
-         Width           =   1095
+         Top             =   1800
+         Width           =   1695
       End
       Begin VB.TextBox t_obs 
          BorderStyle     =   0  'None
@@ -241,20 +259,20 @@ Begin VB.Form ABM_COMP_COMPRA
             Strikethrough   =   0   'False
          EndProperty
          Height          =   285
-         Left            =   6000
+         Left            =   9000
          MaxLength       =   79
          TabIndex        =   14
          Text            =   """ "" "
          Top             =   960
-         Width           =   3015
+         Width           =   5655
       End
       Begin VB.ComboBox c_ib 
          Height          =   315
-         Left            =   6000
+         Left            =   9000
          Style           =   2  'Dropdown List
          TabIndex        =   12
          Top             =   600
-         Width           =   3015
+         Width           =   5655
       End
       Begin VB.ComboBox c_ret 
          Height          =   315
@@ -262,7 +280,7 @@ Begin VB.Form ABM_COMP_COMPRA
          Style           =   2  'Dropdown List
          TabIndex        =   11
          Top             =   600
-         Width           =   2655
+         Width           =   5655
       End
       Begin VB.ComboBox c_cuenta 
          Height          =   315
@@ -270,7 +288,7 @@ Begin VB.Form ABM_COMP_COMPRA
          TabIndex        =   10
          Text            =   "c_cuenta"
          Top             =   240
-         Width           =   6015
+         Width           =   6855
       End
       Begin VB.TextBox t_total 
          Alignment       =   1  'Right Justify
@@ -284,12 +302,12 @@ Begin VB.Form ABM_COMP_COMPRA
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   285
-         Left            =   6600
-         MaxLength       =   14
+         Height          =   405
+         Left            =   10200
+         MaxLength       =   21
          TabIndex        =   19
-         Top             =   1560
-         Width           =   1335
+         Top             =   1800
+         Width           =   2535
       End
       Begin VB.TextBox t_iva 
          Alignment       =   1  'Right Justify
@@ -303,13 +321,13 @@ Begin VB.Form ABM_COMP_COMPRA
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   285
-         Left            =   4440
+         Height          =   405
+         Left            =   7680
          Locked          =   -1  'True
-         MaxLength       =   14
+         MaxLength       =   21
          TabIndex        =   18
-         Top             =   1560
-         Width           =   1215
+         Top             =   1800
+         Width           =   2175
       End
       Begin VB.TextBox t_perc 
          Alignment       =   1  'Right Justify
@@ -323,13 +341,13 @@ Begin VB.Form ABM_COMP_COMPRA
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   285
-         Left            =   2880
+         Height          =   405
+         Left            =   5520
          Locked          =   -1  'True
-         MaxLength       =   14
+         MaxLength       =   21
          TabIndex        =   17
-         Top             =   1560
-         Width           =   1335
+         Top             =   1800
+         Width           =   1935
       End
       Begin VB.TextBox t_nograbado 
          Alignment       =   1  'Right Justify
@@ -343,12 +361,12 @@ Begin VB.Form ABM_COMP_COMPRA
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   285
-         Left            =   1680
-         MaxLength       =   14
+         Height          =   405
+         Left            =   3000
+         MaxLength       =   21
          TabIndex        =   16
-         Top             =   1560
-         Width           =   1095
+         Top             =   1800
+         Width           =   2295
       End
       Begin VB.TextBox t_subtotal 
          Alignment       =   1  'Right Justify
@@ -362,12 +380,12 @@ Begin VB.Form ABM_COMP_COMPRA
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   285
+         Height          =   405
          Left            =   240
-         MaxLength       =   14
+         MaxLength       =   21
          TabIndex        =   15
-         Top             =   1560
-         Width           =   1335
+         Top             =   1800
+         Width           =   2535
       End
       Begin VB.Label Label20 
          Alignment       =   1  'Right Justify
@@ -384,12 +402,21 @@ Begin VB.Form ABM_COMP_COMPRA
          Alignment       =   2  'Center
          BackColor       =   &H00400040&
          Caption         =   "Total U$s"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
-         Height          =   255
-         Left            =   8040
+         Height          =   375
+         Left            =   12960
          TabIndex        =   49
-         Top             =   1320
-         Width           =   1095
+         Top             =   1440
+         Width           =   1695
       End
       Begin VB.Label Label14 
          Alignment       =   2  'Center
@@ -397,7 +424,7 @@ Begin VB.Form ABM_COMP_COMPRA
          Caption         =   "Observaciones"
          ForeColor       =   &H00FFFFFF&
          Height          =   255
-         Left            =   4560
+         Left            =   7560
          TabIndex        =   43
          Top             =   960
          Width           =   1335
@@ -407,8 +434,8 @@ Begin VB.Form ABM_COMP_COMPRA
          BackColor       =   &H00800080&
          Caption         =   "Conc. Ret.IB"
          ForeColor       =   &H00FFFFFF&
-         Height          =   255
-         Left            =   4560
+         Height          =   495
+         Left            =   7560
          TabIndex        =   42
          Top             =   600
          Width           =   1335
@@ -439,172 +466,280 @@ Begin VB.Form ABM_COMP_COMPRA
          Alignment       =   2  'Center
          BackColor       =   &H00800080&
          Caption         =   "Total"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
-         Height          =   255
-         Left            =   6600
+         Height          =   375
+         Left            =   10200
          TabIndex        =   33
-         Top             =   1320
-         Width           =   1335
+         Top             =   1440
+         Width           =   2535
       End
       Begin VB.Label Label6 
          Alignment       =   2  'Center
          BackColor       =   &H00800080&
          Caption         =   "No Grabado"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
-         Height          =   255
-         Left            =   1680
+         Height          =   375
+         Left            =   3000
          TabIndex        =   32
-         Top             =   1320
-         Width           =   1095
+         Top             =   1440
+         Width           =   2295
       End
       Begin VB.Label Label4 
          Alignment       =   2  'Center
          BackColor       =   &H00800080&
          Caption         =   "Subtotal"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
-         Height          =   255
+         Height          =   375
          Left            =   240
          TabIndex        =   31
-         Top             =   1320
-         Width           =   1335
+         Top             =   1440
+         Width           =   2535
       End
    End
    Begin MSFlexGridLib.MSFlexGrid msf1 
       Height          =   3495
-      Left            =   240
+      Left            =   120
       TabIndex        =   9
-      Top             =   2280
-      Width           =   11655
-      _ExtentX        =   20558
+      Top             =   2400
+      Width           =   15135
+      _ExtentX        =   26696
       _ExtentY        =   6165
       _Version        =   393216
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
    End
    Begin VB.Frame Frame3 
       BackColor       =   &H00E0E0E0&
-      Height          =   2175
-      Left            =   240
+      Height          =   2295
+      Left            =   120
       TabIndex        =   25
       Top             =   0
-      Width           =   9135
+      Width           =   15135
       Begin VB.ComboBox c_zona 
          Height          =   315
          ItemData        =   "Proc003A.frx":030A
-         Left            =   6480
+         Left            =   9960
          List            =   "Proc003A.frx":0314
          TabIndex        =   5
          Text            =   "Combo1"
          Top             =   1200
-         Width           =   1335
+         Width           =   2655
       End
       Begin VB.TextBox t_fechavto 
          BorderStyle     =   0  'None
-         Height          =   285
-         Left            =   5400
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   405
+         Left            =   6000
          MaxLength       =   10
          TabIndex        =   7
-         Top             =   1680
-         Width           =   1335
+         Top             =   1800
+         Width           =   1815
       End
       Begin VB.CommandButton Command5 
-         Height          =   255
-         Left            =   7920
+         Height          =   375
+         Left            =   12600
          Picture         =   "Proc003A.frx":0328
          Style           =   1  'Graphical
          TabIndex        =   51
          Top             =   720
-         Width           =   255
+         Width           =   375
       End
       Begin VB.TextBox t_cotiz 
          BorderStyle     =   0  'None
-         Height          =   285
-         Left            =   8280
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   405
+         Left            =   9960
          MaxLength       =   10
          TabIndex        =   8
-         Top             =   1680
-         Width           =   735
+         Top             =   1800
+         Width           =   1815
       End
       Begin VB.CommandButton Command1 
          Height          =   375
-         Left            =   8280
+         Left            =   13200
          Picture         =   "Proc003A.frx":069A
          Style           =   1  'Graphical
          TabIndex        =   44
          Top             =   720
-         Width           =   735
+         Width           =   1095
       End
       Begin VB.TextBox t_letra 
          BorderStyle     =   0  'None
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   405
          Left            =   2160
          MaxLength       =   1
          TabIndex        =   2
          Top             =   1200
-         Width           =   375
+         Width           =   735
       End
       Begin VB.ComboBox c_tipocomp 
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Left            =   2160
          Sorted          =   -1  'True
          Style           =   2  'Dropdown List
          TabIndex        =   0
          Top             =   240
-         Width           =   4575
+         Width           =   5535
       End
       Begin VB.TextBox t_fecha 
          BorderStyle     =   0  'None
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   405
          Left            =   2160
          MaxLength       =   10
          TabIndex        =   6
-         Top             =   1680
-         Width           =   1575
+         Top             =   1800
+         Width           =   2295
       End
       Begin VB.TextBox t_numoc 
          BorderStyle     =   0  'None
-         Height          =   285
-         Left            =   3480
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   405
+         Left            =   4560
          MaxLength       =   8
          TabIndex        =   4
          Top             =   1200
-         Width           =   1575
+         Width           =   3255
       End
       Begin VB.TextBox t_sucursal 
          BorderStyle     =   0  'None
-         Height          =   285
-         Left            =   2640
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   405
+         Left            =   3000
          MaxLength       =   4
          TabIndex        =   3
          Top             =   1200
-         Width           =   735
+         Width           =   1455
       End
       Begin VB.ComboBox c_prov 
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Left            =   2160
          TabIndex        =   1
          Text            =   "c_prov"
          Top             =   720
-         Width           =   5655
+         Width           =   10215
       End
       Begin VB.Label Label17 
          Alignment       =   1  'Right Justify
          BackColor       =   &H00800080&
          Caption         =   "Zona:"
          ForeColor       =   &H00FFFFFF&
-         Height          =   255
-         Left            =   5400
+         Height          =   375
+         Left            =   8400
          TabIndex        =   58
          Top             =   1200
-         Width           =   975
+         Width           =   1335
       End
       Begin VB.Label Label7 
          Alignment       =   1  'Right Justify
          BackColor       =   &H00800080&
          Caption         =   "Fecha Vto:"
          ForeColor       =   &H00FFFFFF&
-         Height          =   255
-         Left            =   3960
+         Height          =   375
+         Left            =   4560
          TabIndex        =   52
-         Top             =   1680
+         Top             =   1800
          Width           =   1335
       End
       Begin VB.Label Label15 
@@ -612,10 +747,10 @@ Begin VB.Form ABM_COMP_COMPRA
          BackColor       =   &H00800080&
          Caption         =   "Cotizacion Dolar:"
          ForeColor       =   &H00FFFFFF&
-         Height          =   255
-         Left            =   6840
+         Height          =   375
+         Left            =   8400
          TabIndex        =   45
-         Top             =   1680
+         Top             =   1800
          Width           =   1335
       End
       Begin VB.Label Label5 
@@ -634,10 +769,10 @@ Begin VB.Form ABM_COMP_COMPRA
          BackColor       =   &H00800080&
          Caption         =   "Fecha:"
          ForeColor       =   &H00FFFFFF&
-         Height          =   255
+         Height          =   375
          Left            =   120
          TabIndex        =   28
-         Top             =   1680
+         Top             =   1800
          Width           =   1935
       End
       Begin VB.Label Label1 
@@ -645,7 +780,7 @@ Begin VB.Form ABM_COMP_COMPRA
          BackColor       =   &H00800080&
          Caption         =   "Nro. Comprobante:"
          ForeColor       =   &H00FFFFFF&
-         Height          =   495
+         Height          =   615
          Left            =   120
          TabIndex        =   27
          Top             =   1200
@@ -667,9 +802,9 @@ Begin VB.Form ABM_COMP_COMPRA
       BackColor       =   &H00E0E0E0&
       Caption         =   "Funciones"
       Height          =   975
-      Left            =   10200
+      Left            =   16320
       TabIndex        =   22
-      Top             =   7440
+      Top             =   7800
       Width           =   1575
       Begin VB.CommandButton btnsale 
          Cancel          =   -1  'True
@@ -697,40 +832,49 @@ Begin VB.Form ABM_COMP_COMPRA
    End
    Begin MSComctlLib.StatusBar StatusBar1 
       Align           =   2  'Align Bottom
-      Height          =   255
+      Height          =   405
       Left            =   0
       TabIndex        =   21
-      Top             =   8505
-      Width           =   12225
-      _ExtentX        =   21564
-      _ExtentY        =   450
+      Top             =   9030
+      Width           =   18165
+      _ExtentX        =   32041
+      _ExtentY        =   714
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
          NumPanels       =   4
          BeginProperty Panel1 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Alignment       =   1
-            Object.Width           =   4410
-            MinWidth        =   4410
+            Object.Width           =   20285
+            MinWidth        =   20285
             Text            =   "Cliente"
             TextSave        =   "Cliente"
          EndProperty
          BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Alignment       =   1
-            Object.Width           =   11465
-            MinWidth        =   11465
+            Object.Width           =   5292
+            MinWidth        =   5292
             Text            =   "Sistema"
             TextSave        =   "Sistema"
          EndProperty
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "11/10/2023"
+            TextSave        =   "01/03/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "05:49 p.m."
+            TextSave        =   "10:26 a.m."
          EndProperty
+      EndProperty
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "MS Sans Serif"
+         Size            =   12
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
       EndProperty
       OLEDropMode     =   1
    End
@@ -749,9 +893,9 @@ Begin VB.Form ABM_COMP_COMPRA
       EndProperty
       ForeColor       =   &H00FFFFFF&
       Height          =   735
-      Left            =   9840
+      Left            =   15600
       TabIndex        =   63
-      Top             =   6000
+      Top             =   3480
       Width           =   2175
    End
 End
@@ -1000,17 +1144,17 @@ msf1.clear
 msf1.Rows = 1
 msf1.Cols = 15
 msf1.ColWidth(0) = 400
-msf1.ColWidth(1) = 800
-msf1.ColWidth(2) = 5000
-msf1.ColWidth(3) = 1000
-msf1.ColWidth(4) = 1200
+msf1.ColWidth(1) = 1200
+msf1.ColWidth(2) = 6200
+msf1.ColWidth(3) = 1400
+msf1.ColWidth(4) = 1400
 msf1.ColWidth(5) = 1200
 msf1.ColWidth(6) = 900
-msf1.ColWidth(7) = 900
+msf1.ColWidth(7) = 2000
 msf1.ColWidth(8) = 1200
-msf1.ColWidth(9) = 1200
-msf1.ColWidth(10) = 1200
-msf1.ColWidth(11) = 1200
+msf1.ColWidth(9) = 1400
+msf1.ColWidth(10) = 1400
+msf1.ColWidth(11) = 1400
 msf1.ColWidth(12) = 1000
 msf1.ColWidth(13) = 1000
 msf1.ColWidth(14) = 900

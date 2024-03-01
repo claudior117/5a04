@@ -4,47 +4,74 @@ Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form ABM_COMP_COMPRA5 
    BackColor       =   &H00E0E0E0&
    Caption         =   "DETALLE DE IVA"
-   ClientHeight    =   4905
+   ClientHeight    =   5715
    ClientLeft      =   75
    ClientTop       =   360
-   ClientWidth     =   5340
+   ClientWidth     =   7695
    ControlBox      =   0   'False
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
-   ScaleHeight     =   4905
-   ScaleWidth      =   5340
+   ScaleHeight     =   5715
+   ScaleWidth      =   7695
    StartUpPosition =   3  'Windows Default
    Begin VB.Frame Frame2 
       Caption         =   "Totales"
       Enabled         =   0   'False
-      Height          =   735
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   12
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   855
       Left            =   240
       TabIndex        =   9
-      Top             =   3600
-      Width           =   4815
+      Top             =   3960
+      Width           =   7215
       Begin VB.TextBox t_totiva 
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   405
-         Left            =   3360
+         Left            =   5280
          TabIndex        =   11
          Top             =   240
-         Width           =   1215
+         Width           =   1815
       End
       Begin VB.TextBox t_totneto 
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   405
-         Left            =   1680
+         Left            =   2400
          TabIndex        =   10
          Top             =   240
-         Width           =   1335
+         Width           =   2655
       End
    End
    Begin VB.Frame Frame1 
       BackColor       =   &H00E0E0E0&
       Caption         =   "Ingreso iVA}"
-      Height          =   975
+      Height          =   1335
       Left            =   240
       TabIndex        =   5
       Top             =   0
-      Width           =   4935
+      Width           =   7335
       Begin VB.ComboBox c_tasa 
          BeginProperty Font 
             Name            =   "MS Sans Serif"
@@ -58,8 +85,8 @@ Begin VB.Form ABM_COMP_COMPRA5
          Height          =   420
          Left            =   240
          TabIndex        =   0
-         Top             =   480
-         Width           =   1455
+         Top             =   720
+         Width           =   1815
       End
       Begin VB.TextBox t_iva 
          BeginProperty Font 
@@ -72,11 +99,11 @@ Begin VB.Form ABM_COMP_COMPRA5
             Strikethrough   =   0   'False
          EndProperty
          Height          =   360
-         Left            =   3480
+         Left            =   5280
          MaxLength       =   14
          TabIndex        =   2
-         Top             =   480
-         Width           =   1215
+         Top             =   720
+         Width           =   1935
       End
       Begin VB.TextBox t_importe 
          BeginProperty Font 
@@ -89,53 +116,80 @@ Begin VB.Form ABM_COMP_COMPRA5
             Strikethrough   =   0   'False
          EndProperty
          Height          =   360
-         Left            =   1800
+         Left            =   2400
          MaxLength       =   14
          TabIndex        =   1
-         Top             =   480
-         Width           =   1455
+         Top             =   720
+         Width           =   2535
       End
       Begin VB.Label Label5 
          Alignment       =   2  'Center
          BackColor       =   &H00800000&
          Caption         =   "Iva"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
-         Height          =   255
-         Left            =   3480
+         Height          =   375
+         Left            =   5280
          TabIndex        =   8
          Top             =   240
-         Width           =   1215
+         Width           =   1935
       End
       Begin VB.Label Label3 
          Alignment       =   2  'Center
          BackColor       =   &H00800000&
-         Caption         =   "Neto"
+         Caption         =   "Neto Gravado"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
-         Height          =   255
-         Left            =   1800
+         Height          =   375
+         Left            =   2400
          TabIndex        =   7
          Top             =   240
-         Width           =   1455
+         Width           =   2535
       End
       Begin VB.Label Label2 
          Alignment       =   2  'Center
          BackColor       =   &H00800000&
          Caption         =   "Tasa Iva"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
-         Height          =   255
+         Height          =   375
          Left            =   240
          TabIndex        =   6
          Top             =   240
-         Width           =   1455
+         Width           =   1815
       End
    End
    Begin MSFlexGridLib.MSFlexGrid msf1 
       Height          =   2295
       Left            =   240
       TabIndex        =   3
-      Top             =   1080
-      Width           =   4935
-      _ExtentX        =   8705
+      Top             =   1440
+      Width           =   7215
+      _ExtentX        =   12726
       _ExtentY        =   4048
       _Version        =   393216
       BackColorBkg    =   12648447
@@ -151,39 +205,41 @@ Begin VB.Form ABM_COMP_COMPRA5
    End
    Begin MSComctlLib.StatusBar StatusBar1 
       Align           =   2  'Align Bottom
-      Height          =   255
+      Height          =   405
       Left            =   0
       TabIndex        =   4
-      Top             =   4650
-      Width           =   5340
-      _ExtentX        =   9419
-      _ExtentY        =   450
+      Top             =   5310
+      Width           =   7695
+      _ExtentX        =   13573
+      _ExtentY        =   714
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
          NumPanels       =   4
          BeginProperty Panel1 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Alignment       =   1
-            Object.Width           =   4410
-            MinWidth        =   4410
+            Object.Width           =   12347
+            MinWidth        =   12347
             Text            =   "Cliente"
             TextSave        =   "Cliente"
          EndProperty
          BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Alignment       =   1
-            Object.Width           =   11465
-            MinWidth        =   11465
+            Object.Width           =   1764
+            MinWidth        =   1764
             Text            =   "Sistema"
             TextSave        =   "Sistema"
          EndProperty
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "21/10/2019"
+            Object.Width           =   2117
+            MinWidth        =   2117
+            TextSave        =   "01/03/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "08:45"
+            TextSave        =   "10:35 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -211,13 +267,13 @@ msf1.clear
 msf1.Rows = 1
 msf1.Cols = 4
 msf1.ColWidth(0) = 700
-msf1.ColWidth(1) = 700
-msf1.ColWidth(2) = 1500
-msf1.ColWidth(3) = 1500
+msf1.ColWidth(1) = 1700
+msf1.ColWidth(2) = 2500
+msf1.ColWidth(3) = 2200
 
 msf1.TextMatrix(0, 0) = "id"
 msf1.TextMatrix(0, 1) = "Tasa"
-msf1.TextMatrix(0, 2) = "Neto"
+msf1.TextMatrix(0, 2) = "Neto Gravado"
 msf1.TextMatrix(0, 3) = "Iva"
 
 t_totneto = ""
@@ -285,7 +341,7 @@ c_tasa.ListIndex = 0
 End Sub
 
 Private Sub msf1_GotFocus()
-Me.StatusBar1.Panels.Item(2) = "[INS] Agrega - [ENTER] Modifica - [F5] Elimina - [F9] Sale"
+Me.StatusBar1.Panels.item(2) = "[INS] Agrega - [ENTER] Modifica - [F5] Elimina - [F9] Sale"
 End Sub
 
 Private Sub msf1_KeyDown(KeyCode As Integer, Shift As Integer)

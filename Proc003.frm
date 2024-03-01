@@ -2,24 +2,36 @@ VERSION 5.00
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form abm_COMP_COMPRA1 
    BackColor       =   &H00C0C0C0&
+   BorderStyle     =   1  'Fixed Single
    ClientHeight    =   2175
-   ClientLeft      =   75
-   ClientTop       =   360
-   ClientWidth     =   12495
+   ClientLeft      =   0
+   ClientTop       =   285
+   ClientWidth     =   17760
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
+   MaxButton       =   0   'False
+   MinButton       =   0   'False
    PaletteMode     =   1  'UseZOrder
    ScaleHeight     =   2175
-   ScaleWidth      =   12495
+   ScaleWidth      =   17760
    StartUpPosition =   1  'CenterOwner
    Begin VB.TextBox t_envase 
       BorderStyle     =   0  'None
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   405
-      Left            =   9480
+      Left            =   12600
       MaxLength       =   5
       TabIndex        =   6
-      Top             =   960
-      Width           =   615
+      Top             =   840
+      Width           =   735
    End
    Begin VB.Frame Frame4 
       BackColor       =   &H00C0C0C0&
@@ -27,15 +39,24 @@ Begin VB.Form abm_COMP_COMPRA1
       Left            =   120
       TabIndex        =   10
       Top             =   120
-      Width           =   12255
+      Width           =   17535
       Begin VB.TextBox t_unidad 
          BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   405
-         Left            =   8640
+         Left            =   11160
          MaxLength       =   5
          TabIndex        =   5
-         Top             =   840
-         Width           =   615
+         Top             =   720
+         Width           =   1215
       End
       Begin VB.TextBox t_pusindto 
          BorderStyle     =   0  'None
@@ -50,12 +71,21 @@ Begin VB.Form abm_COMP_COMPRA1
       End
       Begin VB.TextBox t_dto 
          BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   405
-         Left            =   7920
+         Left            =   10080
          MaxLength       =   10
          TabIndex        =   4
-         Top             =   840
-         Width           =   615
+         Top             =   720
+         Width           =   975
       End
       Begin VB.TextBox t_fechaultcompra 
          BorderStyle     =   0  'None
@@ -103,30 +133,57 @@ Begin VB.Form abm_COMP_COMPRA1
       End
       Begin VB.TextBox t_detalle 
          BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   405
-         Left            =   1080
+         Left            =   1320
          MaxLength       =   50
          TabIndex        =   1
-         Top             =   840
-         Width           =   4815
+         Top             =   720
+         Width           =   5295
       End
       Begin VB.TextBox t_basico 
          BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   405
          Left            =   120
          MaxLength       =   20
          TabIndex        =   0
-         Top             =   840
-         Width           =   855
+         Top             =   720
+         Width           =   1095
       End
       Begin VB.TextBox t_importe 
          BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   405
-         Left            =   11160
-         MaxLength       =   14
+         Left            =   15000
+         MaxLength       =   21
          TabIndex        =   8
-         Top             =   840
-         Width           =   975
+         Top             =   720
+         Width           =   2415
       End
       Begin VB.ComboBox c_tasa 
          BeginProperty Font 
@@ -139,29 +196,47 @@ Begin VB.Form abm_COMP_COMPRA1
             Strikethrough   =   0   'False
          EndProperty
          Height          =   420
-         Left            =   10080
+         Left            =   13320
          Style           =   2  'Dropdown List
          TabIndex        =   7
-         Top             =   840
-         Width           =   975
+         Top             =   720
+         Width           =   1575
       End
       Begin VB.TextBox t_pu 
          BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   405
-         Left            =   6960
-         MaxLength       =   10
+         Left            =   8160
+         MaxLength       =   21
          TabIndex        =   3
-         Top             =   840
-         Width           =   855
+         Top             =   720
+         Width           =   1815
       End
       Begin VB.TextBox t_cantidad 
          BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   405
-         Left            =   6000
-         MaxLength       =   10
+         Left            =   6720
+         MaxLength       =   21
          TabIndex        =   2
-         Top             =   840
-         Width           =   855
+         Top             =   720
+         Width           =   1335
       End
       Begin VB.TextBox t_renglon 
          BorderStyle     =   0  'None
@@ -180,10 +255,10 @@ Begin VB.Form abm_COMP_COMPRA1
          Caption         =   "Envase"
          ForeColor       =   &H00FFFFFF&
          Height          =   375
-         Left            =   9240
+         Left            =   12360
          TabIndex        =   26
          Top             =   240
-         Width           =   855
+         Width           =   975
       End
       Begin VB.Label Label8 
          Alignment       =   2  'Center
@@ -191,10 +266,10 @@ Begin VB.Form abm_COMP_COMPRA1
          Caption         =   "Unidad"
          ForeColor       =   &H00FFFFFF&
          Height          =   375
-         Left            =   8520
+         Left            =   11040
          TabIndex        =   24
          Top             =   240
-         Width           =   735
+         Width           =   1455
       End
       Begin VB.Label Label7 
          Alignment       =   2  'Center
@@ -202,10 +277,10 @@ Begin VB.Form abm_COMP_COMPRA1
          Caption         =   "% Dto."
          ForeColor       =   &H00FFFFFF&
          Height          =   375
-         Left            =   7920
+         Left            =   10080
          TabIndex        =   22
          Top             =   240
-         Width           =   615
+         Width           =   1095
       End
       Begin VB.Label Label6 
          Alignment       =   2  'Center
@@ -216,7 +291,7 @@ Begin VB.Form abm_COMP_COMPRA1
          Left            =   120
          TabIndex        =   17
          Top             =   240
-         Width           =   855
+         Width           =   1575
       End
       Begin VB.Label Label5 
          Alignment       =   2  'Center
@@ -224,10 +299,10 @@ Begin VB.Form abm_COMP_COMPRA1
          Caption         =   "Importe"
          ForeColor       =   &H00FFFFFF&
          Height          =   375
-         Left            =   11040
+         Left            =   14880
          TabIndex        =   16
          Top             =   240
-         Width           =   1095
+         Width           =   2535
       End
       Begin VB.Label Label4 
          Alignment       =   2  'Center
@@ -235,10 +310,10 @@ Begin VB.Form abm_COMP_COMPRA1
          Caption         =   "Tasa Iva"
          ForeColor       =   &H00FFFFFF&
          Height          =   375
-         Left            =   10080
+         Left            =   13320
          TabIndex        =   15
          Top             =   240
-         Width           =   975
+         Width           =   1575
       End
       Begin VB.Label Label1 
          Alignment       =   2  'Center
@@ -246,10 +321,10 @@ Begin VB.Form abm_COMP_COMPRA1
          Caption         =   "Pu"
          ForeColor       =   &H00FFFFFF&
          Height          =   375
-         Left            =   6840
+         Left            =   8040
          TabIndex        =   14
          Top             =   240
-         Width           =   1095
+         Width           =   2055
       End
       Begin VB.Label Label3 
          Alignment       =   2  'Center
@@ -257,10 +332,10 @@ Begin VB.Form abm_COMP_COMPRA1
          Caption         =   "Cantidad"
          ForeColor       =   &H00FFFFFF&
          Height          =   375
-         Left            =   5880
+         Left            =   6600
          TabIndex        =   13
          Top             =   240
-         Width           =   975
+         Width           =   1455
       End
       Begin VB.Label Label2 
          Alignment       =   2  'Center
@@ -268,10 +343,10 @@ Begin VB.Form abm_COMP_COMPRA1
          Caption         =   "Producto"
          ForeColor       =   &H00FFFFFF&
          Height          =   375
-         Left            =   960
+         Left            =   1320
          TabIndex        =   12
          Top             =   240
-         Width           =   4935
+         Width           =   5415
       End
    End
    Begin MSComctlLib.StatusBar StatusBar1 
@@ -280,8 +355,8 @@ Begin VB.Form abm_COMP_COMPRA1
       Left            =   0
       TabIndex        =   9
       Top             =   1920
-      Width           =   12495
-      _ExtentX        =   22040
+      Width           =   17760
+      _ExtentX        =   31327
       _ExtentY        =   450
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
@@ -303,12 +378,12 @@ Begin VB.Form abm_COMP_COMPRA1
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "09/07/2012"
+            TextSave        =   "01/03/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "06:39 p.m."
+            TextSave        =   "10:10 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -424,7 +499,7 @@ Private Sub t_basico_GotFocus()
 If para.producto_sel > 0 Then
   t_basico = para.producto_sel
 End If
-Me.StatusBar1.Panels.Item(2) = "[F8] Lista Precios - [1] Prod. s/ codificar - [Esc] Cancela"
+Me.StatusBar1.Panels.item(2) = "[F8] Lista Precios - [1] Prod. s/ codificar - [Esc] Cancela"
 para.producto_sel = 0
 End Sub
 
@@ -507,7 +582,7 @@ t_envase = ""
 End Sub
 
 Private Sub T_detalle_GotFocus()
-Me.StatusBar1.Panels.Item(2) = "[ENTER] Continua - [Esc] Cancela"
+Me.StatusBar1.Panels.item(2) = "[ENTER] Continua - [Esc] Cancela"
 
 End Sub
 

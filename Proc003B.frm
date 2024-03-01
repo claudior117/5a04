@@ -4,36 +4,45 @@ Object = "{6B7E6392-850A-101B-AFC0-4210102A8DA7}#1.3#0"; "COMCTL32.OCX"
 Begin VB.Form ABM_COMP_COMPRA2 
    BackColor       =   &H00E0E0E0&
    Caption         =   "INGRESO DE PERCEPCIONES/RETENCIONES"
-   ClientHeight    =   4905
+   ClientHeight    =   6180
    ClientLeft      =   75
    ClientTop       =   360
-   ClientWidth     =   8445
+   ClientWidth     =   13425
    ControlBox      =   0   'False
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
-   ScaleHeight     =   4905
-   ScaleWidth      =   8445
+   ScaleHeight     =   6180
+   ScaleWidth      =   13425
    StartUpPosition =   3  'Windows Default
    Begin ComctlLib.StatusBar StatusBar1 
       Align           =   2  'Align Bottom
-      Height          =   255
+      Height          =   405
       Left            =   0
       TabIndex        =   11
-      Top             =   4650
-      Width           =   8445
-      _ExtentX        =   14896
-      _ExtentY        =   450
+      Top             =   5775
+      Width           =   13425
+      _ExtentX        =   23680
+      _ExtentY        =   714
       SimpleText      =   ""
       _Version        =   327682
       BeginProperty Panels {0713E89E-850A-101B-AFC0-4210102A8DA7} 
          NumPanels       =   1
          BeginProperty Panel1 {0713E89F-850A-101B-AFC0-4210102A8DA7} 
-            Object.Width           =   14111
-            MinWidth        =   14111
+            Object.Width           =   15875
+            MinWidth        =   15875
             TextSave        =   ""
             Key             =   ""
             Object.Tag             =   ""
          EndProperty
+      EndProperty
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "MS Sans Serif"
+         Size            =   12
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
       EndProperty
    End
    Begin VB.TextBox t_modulo 
@@ -41,98 +50,183 @@ Begin VB.Form ABM_COMP_COMPRA2
       Left            =   3480
       TabIndex        =   9
       Text            =   "Text1"
-      Top             =   4320
+      Top             =   4800
       Visible         =   0   'False
       Width           =   855
    End
    Begin VB.Frame Frame1 
-      BackColor       =   &H80000013&
+      BackColor       =   &H80000010&
       Caption         =   "Ingreso Percepcion"
-      Height          =   975
+      ForeColor       =   &H00FFFFFF&
+      Height          =   1455
       Left            =   240
       TabIndex        =   1
       Top             =   0
-      Width           =   8055
+      Width           =   12975
       Begin VB.ComboBox c_concepto 
-         Height          =   315
-         Left            =   4440
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   420
+         Left            =   8040
          TabIndex        =   5
-         Top             =   600
-         Width           =   3495
+         Top             =   840
+         Width           =   4575
       End
       Begin VB.TextBox t_importe 
-         Height          =   285
-         Left            =   3120
-         MaxLength       =   14
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   405
+         Left            =   5640
+         MaxLength       =   21
          TabIndex        =   4
-         Top             =   600
-         Width           =   1215
+         Top             =   840
+         Width           =   2295
       End
       Begin VB.ComboBox c_perc 
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   420
          Left            =   1080
          TabIndex        =   3
-         Top             =   600
-         Width           =   1935
+         Top             =   840
+         Width           =   4455
       End
       Begin VB.TextBox t_renglon 
          Enabled         =   0   'False
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Left            =   120
          TabIndex        =   2
-         Top             =   600
+         Top             =   840
          Width           =   855
       End
       Begin VB.Label Label4 
+         Alignment       =   2  'Center
          BackColor       =   &H00800000&
-         Caption         =   "Concepto percepcion"
+         Caption         =   "Concepto percepción"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
-         Height          =   255
-         Left            =   4440
+         Height          =   495
+         Left            =   7680
          TabIndex        =   10
          Top             =   240
-         Width           =   3495
+         Width           =   4935
       End
       Begin VB.Label Label3 
+         Alignment       =   2  'Center
          BackColor       =   &H00800000&
          Caption         =   "Importe"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
-         Height          =   255
-         Left            =   3120
+         Height          =   495
+         Left            =   5640
          TabIndex        =   8
          Top             =   240
-         Width           =   1335
+         Width           =   2415
       End
       Begin VB.Label Label2 
+         Alignment       =   2  'Center
          BackColor       =   &H00800000&
          Caption         =   "Percepcion/Retencion"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
-         Height          =   255
-         Left            =   1080
+         Height          =   495
+         Left            =   1200
          TabIndex        =   7
          Top             =   240
-         Width           =   2055
+         Width           =   4455
       End
       Begin VB.Label Label1 
          BackColor       =   &H00800000&
          Caption         =   "Renglon"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
-         Height          =   255
+         Height          =   495
          Left            =   120
          TabIndex        =   6
          Top             =   240
-         Width           =   975
+         Width           =   1095
       End
    End
    Begin MSFlexGridLib.MSFlexGrid msf1 
-      Height          =   4095
+      Height          =   3615
       Left            =   240
       TabIndex        =   0
-      Top             =   360
-      Width           =   8295
-      _ExtentX        =   14631
-      _ExtentY        =   7223
+      Top             =   1560
+      Width           =   13095
+      _ExtentX        =   23098
+      _ExtentY        =   6376
       _Version        =   393216
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "MS Sans Serif"
+         Size            =   12
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
    End
 End
 Attribute VB_Name = "ABM_COMP_COMPRA2"
@@ -162,12 +256,12 @@ msf1.Rows = 1
 msf1.Cols = 8
 msf1.ColWidth(0) = 700
 msf1.ColWidth(1) = 1000
-msf1.ColWidth(2) = 1700
-msf1.ColWidth(3) = 1400
-msf1.ColWidth(4) = 1400
-msf1.ColWidth(5) = 2000
+msf1.ColWidth(2) = 3000
+msf1.ColWidth(3) = 2100
+msf1.ColWidth(4) = 1600
+msf1.ColWidth(5) = 3000
 msf1.ColWidth(6) = 600
-msf1.ColWidth(7) = 600
+msf1.ColWidth(7) = 1000
 msf1.TextMatrix(0, 0) = "Reng."
 msf1.TextMatrix(0, 1) = "Id.Perc."
 msf1.TextMatrix(0, 2) = "Detalle"
