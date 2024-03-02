@@ -4,14 +4,14 @@ Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form con_vercomp 
    BackColor       =   &H00E0E0E0&
    Caption         =   "ADMINISTRADOR DE COMPROBANTES INGRESADOS"
-   ClientHeight    =   8685
+   ClientHeight    =   9435
    ClientLeft      =   75
    ClientTop       =   360
-   ClientWidth     =   12405
+   ClientWidth     =   18165
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
-   ScaleHeight     =   8685
-   ScaleWidth      =   12405
+   ScaleHeight     =   9435
+   ScaleWidth      =   18165
    StartUpPosition =   3  'Windows Default
    Begin VB.Frame Frame2 
       BackColor       =   &H00E0E0E0&
@@ -19,7 +19,7 @@ Begin VB.Form con_vercomp
       Height          =   975
       Left            =   240
       TabIndex        =   24
-      Top             =   7320
+      Top             =   7800
       Width           =   5295
       Begin VB.OptionButton Option3 
          BackColor       =   &H00E0E0E0&
@@ -53,9 +53,9 @@ Begin VB.Form con_vercomp
       BackColor       =   &H00E0E0E0&
       Caption         =   "Cambiar"
       Height          =   975
-      Left            =   8520
+      Left            =   8640
       TabIndex        =   22
-      Top             =   7320
+      Top             =   7800
       Width           =   1095
       Begin VB.CommandButton Command1 
          Height          =   495
@@ -68,16 +68,25 @@ Begin VB.Form con_vercomp
       End
    End
    Begin MSFlexGridLib.MSFlexGrid msf1 
-      Height          =   5175
+      Height          =   5535
       Left            =   240
       TabIndex        =   4
       Top             =   2040
-      Width           =   11535
-      _ExtentX        =   20346
-      _ExtentY        =   9128
+      Width           =   17775
+      _ExtentX        =   31353
+      _ExtentY        =   9763
       _Version        =   393216
       AllowBigSelection=   0   'False
       FocusRect       =   0
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Segoe UI"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
    End
    Begin VB.Frame Frame3 
       BackColor       =   &H00E0E0E0&
@@ -85,7 +94,7 @@ Begin VB.Form con_vercomp
       Left            =   240
       TabIndex        =   9
       Top             =   0
-      Width           =   11535
+      Width           =   17655
       Begin VB.ComboBox c_zona 
          Height          =   315
          ItemData        =   "Con002.frx":030A
@@ -94,35 +103,35 @@ Begin VB.Form con_vercomp
          Style           =   2  'Dropdown List
          TabIndex        =   25
          Top             =   1560
-         Width           =   1815
+         Width           =   3855
       End
       Begin VB.ComboBox C_cc 
          Height          =   315
          ItemData        =   "Con002.frx":034B
-         Left            =   8640
+         Left            =   12840
          List            =   "Con002.frx":035B
          Style           =   2  'Dropdown List
          TabIndex        =   20
          Top             =   1320
-         Width           =   2415
+         Width           =   4575
       End
       Begin VB.ComboBox c_pago 
          Height          =   315
          ItemData        =   "Con002.frx":038C
-         Left            =   8640
+         Left            =   12840
          List            =   "Con002.frx":0399
          Style           =   2  'Dropdown List
          TabIndex        =   18
          Top             =   960
-         Width           =   2415
+         Width           =   4575
       End
       Begin VB.ComboBox c_cuenta 
          Height          =   315
-         Left            =   8640
+         Left            =   12840
          Style           =   2  'Dropdown List
          TabIndex        =   16
          Top             =   600
-         Width           =   2775
+         Width           =   4575
       End
       Begin VB.TextBox t_producto 
          BorderStyle     =   0  'None
@@ -131,41 +140,68 @@ Begin VB.Form con_vercomp
          MaxLength       =   20
          TabIndex        =   14
          Top             =   1200
-         Width           =   3015
+         Width           =   8055
       End
       Begin VB.ComboBox c_tipocomp 
          Height          =   315
-         Left            =   8640
+         Left            =   12840
          Style           =   2  'Dropdown List
          TabIndex        =   1
          Top             =   240
-         Width           =   2775
+         Width           =   4575
       End
       Begin VB.TextBox t_fecha2 
          BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   285
-         Left            =   4320
+         Left            =   5160
          MaxLength       =   10
          TabIndex        =   3
          Top             =   720
-         Width           =   1335
+         Width           =   2175
       End
       Begin VB.TextBox t_fecha 
          BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   285
          Left            =   1680
          MaxLength       =   10
          TabIndex        =   2
          Top             =   720
-         Width           =   1215
+         Width           =   1935
       End
       Begin VB.ComboBox c_prov 
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Left            =   1680
          TabIndex        =   0
          Text            =   "c_prov"
          Top             =   240
-         Width           =   4815
+         Width           =   8055
       End
       Begin VB.Label Label9 
          Alignment       =   1  'Right Justify
@@ -184,7 +220,7 @@ Begin VB.Form con_vercomp
          Caption         =   "Cuenta Corriente:"
          ForeColor       =   &H00FFFFFF&
          Height          =   375
-         Left            =   6960
+         Left            =   11160
          TabIndex        =   21
          Top             =   1320
          Width           =   1575
@@ -195,7 +231,7 @@ Begin VB.Form con_vercomp
          Caption         =   "Estado Pago:"
          ForeColor       =   &H00FFFFFF&
          Height          =   375
-         Left            =   6960
+         Left            =   11160
          TabIndex        =   19
          Top             =   960
          Width           =   1575
@@ -206,7 +242,7 @@ Begin VB.Form con_vercomp
          Caption         =   "Cuenta:"
          ForeColor       =   &H00FFFFFF&
          Height          =   375
-         Left            =   6960
+         Left            =   11160
          TabIndex        =   17
          Top             =   600
          Width           =   1575
@@ -214,7 +250,7 @@ Begin VB.Form con_vercomp
       Begin VB.Label Label5 
          Alignment       =   1  'Right Justify
          BackColor       =   &H00800080&
-         Caption         =   "Producto:"
+         Caption         =   "Producto(texto):"
          ForeColor       =   &H00FFFFFF&
          Height          =   375
          Left            =   120
@@ -228,7 +264,7 @@ Begin VB.Form con_vercomp
          Caption         =   "Tipo Comprobante:"
          ForeColor       =   &H00FFFFFF&
          Height          =   375
-         Left            =   6960
+         Left            =   11160
          TabIndex        =   13
          Top             =   240
          Width           =   1575
@@ -239,7 +275,7 @@ Begin VB.Form con_vercomp
          Caption         =   "Fecha Hasta:"
          ForeColor       =   &H00FFFFFF&
          Height          =   255
-         Left            =   3000
+         Left            =   3840
          TabIndex        =   12
          Top             =   720
          Width           =   1215
@@ -248,6 +284,15 @@ Begin VB.Form con_vercomp
          Alignment       =   1  'Right Justify
          BackColor       =   &H00800080&
          Caption         =   "Fecha Desde:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
          Height          =   495
          Left            =   120
@@ -259,6 +304,15 @@ Begin VB.Form con_vercomp
          Alignment       =   1  'Right Justify
          BackColor       =   &H00800080&
          Caption         =   "Proveedor:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
          Height          =   495
          Left            =   120
@@ -271,9 +325,9 @@ Begin VB.Form con_vercomp
       BackColor       =   &H00E0E0E0&
       Caption         =   "Funciones"
       Height          =   975
-      Left            =   9720
+      Left            =   16440
       TabIndex        =   6
-      Top             =   7320
+      Top             =   7800
       Width           =   1575
       Begin VB.CommandButton btnsale 
          Cancel          =   -1  'True
@@ -301,39 +355,39 @@ Begin VB.Form con_vercomp
    End
    Begin MSComctlLib.StatusBar StatusBar1 
       Align           =   2  'Align Bottom
-      Height          =   255
+      Height          =   405
       Left            =   0
       TabIndex        =   5
-      Top             =   8430
-      Width           =   12405
-      _ExtentX        =   21881
-      _ExtentY        =   450
+      Top             =   9030
+      Width           =   18165
+      _ExtentX        =   32041
+      _ExtentY        =   714
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
          NumPanels       =   4
          BeginProperty Panel1 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Alignment       =   1
-            Object.Width           =   2646
-            MinWidth        =   2646
+            Object.Width           =   19403
+            MinWidth        =   19403
             Text            =   "Cliente"
             TextSave        =   "Cliente"
          EndProperty
          BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Alignment       =   1
-            Object.Width           =   13229
-            MinWidth        =   13229
+            Object.Width           =   3528
+            MinWidth        =   3528
             Text            =   "Sistema"
             TextSave        =   "Sistema"
          EndProperty
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "21/2/2019"
+            TextSave        =   "02/03/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "09:10"
+            TextSave        =   "11:14 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -441,7 +495,7 @@ Sub carga(par As Integer)
      CTC = Format$(rs("ID_TIPOCOMP"), "000")
      tc = rs("descripcion")
      nc = rs("letra") & " " & Format$(rs("sucursal"), "0000") & "-" & Format$(rs("num_comprobante"), "00000000")
-     d = Format$(rs("total"), "######0.00")
+     d = Format$(rs("total"), "#0.00")
      cp = Format$(rs("a5.id_proveedor"), "0000")
      p = rs("proveedor05")
      t = t + Val(d)
@@ -451,7 +505,7 @@ Sub carga(par As Integer)
      Else
        tp = "CTACTE"
      End If
-     msf1.AddItem F & Chr(9) & cp & Chr(9) & p & Chr(9) & CTC & Chr(9) & tc & Chr(9) & nc & Chr(9) & d & Chr(9) & rs("estado_pago") & Chr(9) & rs("num_int") & Chr(9) & rs("Moneda") & Chr(9) & Format$(rs("subtotal"), "######0.00") & Chr(9) & Format$(rs("a5.iva"), "######0.00") & Chr(9) & Format$(rs("no_grabado"), "######0.00") & Chr(9) & Format$(rs("percep_ret"), "######0.00") & Chr(9) & Format$(tp, "######0.00")
+     msf1.AddItem F & Chr(9) & cp & Chr(9) & p & Chr(9) & CTC & Chr(9) & tc & Chr(9) & nc & Chr(9) & d & Chr(9) & rs("estado_pago") & Chr(9) & rs("num_int") & Chr(9) & rs("Moneda") & Chr(9) & Format$(rs("subtotal"), "#0.00") & Chr(9) & Format$(rs("a5.iva"), "#0.00") & Chr(9) & Format$(rs("no_grabado"), "#0.00") & Chr(9) & Format$(rs("percep_ret"), "#0.00") & Chr(9) & Format$(tp, "#0.00")
 
     rs.MoveNext
     pb = pb + 1
@@ -460,7 +514,7 @@ Sub carga(par As Integer)
     End If
   Wend
   msf1.AddItem ""
-  msf1.AddItem "" & Chr(9) & "" & Chr(9) & "" & Chr(9) & "" & Chr(9) & "" & Chr(9) & "Totales:" & Chr(9) & Format$(t, "#####0.00") & Chr(9) & ""
+  msf1.AddItem "" & Chr(9) & "" & Chr(9) & "" & Chr(9) & "" & Chr(9) & "" & Chr(9) & "Totales:" & Chr(9) & Format$(t, "##,#0.00") & Chr(9) & ""
  espere.Hide
    
 End Sub
@@ -607,20 +661,20 @@ Sub armagrid()
 msf1.clear
 msf1.Rows = 1
 msf1.Cols = 15
-msf1.ColWidth(0) = 1300
+msf1.ColWidth(0) = 1400
 msf1.ColWidth(1) = 700 'cod prov
-msf1.ColWidth(2) = 3500
+msf1.ColWidth(2) = 4000
 msf1.ColWidth(3) = 500
-msf1.ColWidth(4) = 1700
-msf1.ColWidth(5) = 1700
-msf1.ColWidth(6) = 1200
-msf1.ColWidth(7) = 500
+msf1.ColWidth(4) = 2000
+msf1.ColWidth(5) = 2000
+msf1.ColWidth(6) = 2100
+msf1.ColWidth(7) = 600
 msf1.ColWidth(8) = 1000
-msf1.ColWidth(9) = 800
-msf1.ColWidth(10) = 1200
-msf1.ColWidth(11) = 1200
-msf1.ColWidth(12) = 1200
-msf1.ColWidth(13) = 1200
+msf1.ColWidth(9) = 1000
+msf1.ColWidth(10) = 2100
+msf1.ColWidth(11) = 2100
+msf1.ColWidth(12) = 2100
+msf1.ColWidth(13) = 2100
 msf1.ColWidth(14) = 800
 
 
@@ -724,7 +778,7 @@ Unload espere
 End Sub
 
 Private Sub msf1_GotFocus()
-Me.StatusBar1.Panels.Item(2) = "[F1] Estado cuenta -[F7] Imprime - [ENTER] Detalla - [F8] Borra - [F6] Arch. Texto - [F11] Excel "
+Me.StatusBar1.Panels.item(2) = "[F1] Estado cuenta -[F7] Imprime - [ENTER] Detalla - [F8] Borra - [F6] Arch. Texto - [F11] Excel "
 If msf1.Rows > 1 Then
   msf1.FocusRect = flexFocusNone
 Else

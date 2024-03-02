@@ -5,47 +5,65 @@ Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form con_saldosprov 
    BackColor       =   &H00E0E0E0&
    Caption         =   "SALDOS PROVEEDORES"
-   ClientHeight    =   8325
+   ClientHeight    =   9435
    ClientLeft      =   60
    ClientTop       =   345
-   ClientWidth     =   11880
+   ClientWidth     =   17760
    LinkTopic       =   "Form1"
    PaletteMode     =   1  'UseZOrder
-   ScaleHeight     =   8325
-   ScaleWidth      =   11880
+   ScaleHeight     =   9435
+   ScaleWidth      =   17760
    StartUpPosition =   1  'CenterOwner
    Begin VB.Frame Frame9 
       BackColor       =   &H00E0E0E0&
-      Height          =   495
-      Left            =   7920
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   615
+      Left            =   13200
       TabIndex        =   29
-      Top             =   1800
-      Width           =   2415
+      Top             =   2040
+      Width           =   3975
       Begin VB.CheckBox Check2 
          BackColor       =   &H00E0E0E0&
          Caption         =   "Muestra Saldo a favor"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   315
          Left            =   120
          TabIndex        =   30
-         Top             =   120
-         Width           =   2175
+         Top             =   240
+         Width           =   3495
       End
    End
    Begin VB.Frame Frame8 
       BackColor       =   &H00E0E0E0&
       Height          =   855
-      Left            =   240
+      Left            =   360
       TabIndex        =   26
-      Top             =   6960
-      Width           =   3135
+      Top             =   8040
+      Width           =   6495
       Begin VB.OptionButton Option3 
          BackColor       =   &H00E0E0E0&
          Caption         =   "Fecha vencimiento"
          Height          =   495
-         Left            =   1680
+         Left            =   3480
          TabIndex        =   28
          Top             =   240
-         Width           =   1335
+         Width           =   2415
       End
       Begin VB.OptionButton Option4 
          BackColor       =   &H00E0E0E0&
@@ -54,7 +72,7 @@ Begin VB.Form con_saldosprov
          Left            =   120
          TabIndex        =   27
          Top             =   240
-         Width           =   1335
+         Width           =   3255
       End
    End
    Begin VB.Frame Frame6 
@@ -62,21 +80,30 @@ Begin VB.Form con_saldosprov
       Height          =   1335
       Left            =   360
       TabIndex        =   21
-      Top             =   840
-      Width           =   7455
+      Top             =   1320
+      Width           =   11055
       Begin VB.ComboBox c_zona 
          Height          =   315
-         Left            =   1440
+         Left            =   1920
          TabIndex        =   25
-         Top             =   720
-         Width           =   2055
+         Top             =   840
+         Width           =   4455
       End
       Begin VB.TextBox t_cliente 
-         Height          =   285
-         Left            =   1440
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Left            =   1920
          TabIndex        =   23
          Top             =   240
-         Width           =   5055
+         Width           =   8415
       End
       Begin VB.Label Label2 
          BackColor       =   &H00FF0000&
@@ -85,33 +112,51 @@ Begin VB.Form con_saldosprov
          Height          =   255
          Left            =   120
          TabIndex        =   24
-         Top             =   720
-         Width           =   1215
+         Top             =   840
+         Width           =   1695
       End
       Begin VB.Label Label1 
          BackColor       =   &H00FF0000&
-         Caption         =   "Proveedor:"
+         Caption         =   "Proveedor(texto):"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
-         Height          =   495
+         Height          =   615
          Left            =   120
          TabIndex        =   22
          Top             =   240
-         Width           =   1215
+         Width           =   1695
       End
    End
    Begin VB.Frame Frame5 
       BackColor       =   &H00E0E0E0&
       Caption         =   "Orden"
       Height          =   735
-      Left            =   3960
+      Left            =   6600
       TabIndex        =   17
       Top             =   120
-      Width           =   3855
+      Width           =   4815
       Begin VB.OptionButton Option5 
          BackColor       =   &H00E0E0E0&
          Caption         =   "Saldo"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   195
-         Left            =   2760
+         Left            =   3600
          TabIndex        =   31
          Top             =   360
          Width           =   855
@@ -119,15 +164,33 @@ Begin VB.Form con_saldosprov
       Begin VB.OptionButton Option2 
          BackColor       =   &H00E0E0E0&
          Caption         =   "Razon Social"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   195
-         Left            =   1200
+         Left            =   1440
          TabIndex        =   19
          Top             =   360
-         Width           =   1335
+         Width           =   2055
       End
       Begin VB.OptionButton Option1 
          BackColor       =   &H00E0E0E0&
          Caption         =   "Id. Prov"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   195
          Left            =   120
          TabIndex        =   18
@@ -137,19 +200,37 @@ Begin VB.Form con_saldosprov
    End
    Begin VB.Frame Frame3 
       BackColor       =   &H00E0E0E0&
-      Height          =   495
-      Left            =   7920
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   615
+      Left            =   13200
       TabIndex        =   14
-      Top             =   1320
-      Width           =   2415
+      Top             =   1440
+      Width           =   3975
       Begin VB.CheckBox Check1 
          BackColor       =   &H00E0E0E0&
          Caption         =   "Muestra Saldo en U$s"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   315
          Left            =   120
          TabIndex        =   15
-         Top             =   120
-         Width           =   2175
+         Top             =   240
+         Width           =   3615
       End
    End
    Begin MSComCtl2.MonthView cal1 
@@ -164,20 +245,29 @@ Begin VB.Form con_saldosprov
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   172949505
+      StartOfWeek     =   116588545
       CurrentDate     =   38803
    End
    Begin VB.Frame Frame2 
       BackColor       =   &H00E0E0E0&
       Caption         =   "Muestra Saldos en Cero"
       Height          =   615
-      Left            =   7920
+      Left            =   13200
       TabIndex        =   10
-      Top             =   720
-      Width           =   2415
+      Top             =   840
+      Width           =   3975
       Begin VB.OptionButton O_cero 
          BackColor       =   &H00E0E0E0&
          Caption         =   "Si"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Left            =   120
          TabIndex        =   12
@@ -188,6 +278,15 @@ Begin VB.Form con_saldosprov
       Begin VB.OptionButton O_nocero 
          BackColor       =   &H00E0E0E0&
          Caption         =   "No"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Left            =   1320
          TabIndex        =   11
@@ -199,39 +298,104 @@ Begin VB.Form con_saldosprov
    Begin VB.Frame Frame4 
       BackColor       =   &H00E0E0E0&
       Caption         =   "Fecha Desde - Hasta"
-      Height          =   735
+      Height          =   1215
       Left            =   360
       TabIndex        =   9
       Top             =   120
-      Width           =   3495
+      Width           =   4575
       Begin VB.TextBox t_fecha2 
-         Height          =   330
-         Left            =   1800
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   405
+         Left            =   2040
          MaxLength       =   10
          TabIndex        =   1
-         Top             =   240
-         Width           =   1455
+         Top             =   720
+         Width           =   2175
       End
       Begin VB.TextBox t_fecha 
-         Height          =   330
-         Left            =   120
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   405
+         Left            =   2040
          MaxLength       =   10
          TabIndex        =   0
          Top             =   240
-         Width           =   1335
+         Width           =   2175
+      End
+      Begin VB.Label Label4 
+         BackColor       =   &H00FF0000&
+         Caption         =   "Fecha hasta(*):"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00FFFFFF&
+         Height          =   375
+         Left            =   120
+         TabIndex        =   33
+         Top             =   720
+         Width           =   1695
+      End
+      Begin VB.Label Label3 
+         BackColor       =   &H00FF0000&
+         Caption         =   "Fecha desde(*):"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00FFFFFF&
+         Height          =   495
+         Left            =   120
+         TabIndex        =   32
+         Top             =   240
+         Width           =   1695
       End
    End
    Begin VB.Frame Frame7 
       BackColor       =   &H00E0E0E0&
       Caption         =   "Moneda"
-      Height          =   615
-      Left            =   7920
+      Height          =   735
+      Left            =   13200
       TabIndex        =   6
       Top             =   120
-      Width           =   2415
+      Width           =   3975
       Begin VB.OptionButton O_dolares 
          BackColor       =   &H00E0E0E0&
          Caption         =   "U$s"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Left            =   1320
          TabIndex        =   8
@@ -242,6 +406,15 @@ Begin VB.Form con_saldosprov
       Begin VB.OptionButton O_pesos 
          BackColor       =   &H00E0E0E0&
          Caption         =   "Pesos"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Left            =   120
          TabIndex        =   7
@@ -254,9 +427,9 @@ Begin VB.Form con_saldosprov
       BackColor       =   &H00E0E0E0&
       Caption         =   "Funciones"
       Height          =   975
-      Left            =   10080
+      Left            =   15600
       TabIndex        =   3
-      Top             =   6960
+      Top             =   7920
       Width           =   1575
       Begin VB.CommandButton btnsale 
          Cancel          =   -1  'True
@@ -284,59 +457,77 @@ Begin VB.Form con_saldosprov
    End
    Begin MSComctlLib.StatusBar StatusBar1 
       Align           =   2  'Align Bottom
-      Height          =   255
+      Height          =   405
       Left            =   0
       TabIndex        =   2
-      Top             =   8070
-      Width           =   11880
-      _ExtentX        =   20955
-      _ExtentY        =   450
+      Top             =   9030
+      Width           =   17760
+      _ExtentX        =   31327
+      _ExtentY        =   714
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
          NumPanels       =   4
          BeginProperty Panel1 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Alignment       =   1
-            Object.Width           =   7056
-            MinWidth        =   7056
+            Object.Width           =   19403
+            MinWidth        =   19403
             Text            =   "Cliente"
             TextSave        =   "Cliente"
          EndProperty
          BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Alignment       =   1
-            Object.Width           =   8820
-            MinWidth        =   8820
+            Object.Width           =   3528
+            MinWidth        =   3528
             Text            =   "Sistema"
             TextSave        =   "Sistema"
          EndProperty
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "28/02/2024"
+            TextSave        =   "02/03/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "05:14 p.m."
+            TextSave        =   "12:15 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
    End
    Begin MSFlexGridLib.MSFlexGrid msf1 
-      Height          =   4695
+      Height          =   5055
       Left            =   360
       TabIndex        =   16
-      Top             =   2280
-      Width           =   11535
-      _ExtentX        =   20346
-      _ExtentY        =   8281
+      Top             =   2760
+      Width           =   16935
+      _ExtentX        =   29871
+      _ExtentY        =   8916
       _Version        =   393216
       AllowUserResizing=   1
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Segoe UI"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
    End
    Begin VB.Label Label5 
       BackColor       =   &H00E0E0E0&
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       ForeColor       =   &H000000FF&
       Height          =   495
-      Left            =   10560
+      Left            =   16560
       TabIndex        =   20
       Top             =   1440
       Width           =   1215
@@ -462,13 +653,14 @@ If Not rs1.EOF And Not rs1.BOF Then
   End If
   
   msf1.Refresh
+  linea = "____________________________________________________________"
   
   If Check1 = 0 Then
-      msf1.AddItem "" & Chr$(9) & "" & Chr$(9) & "________________" & Chr$(9) & "________________" & Chr$(9) & "________________" & Chr$(9) & "________________"
-      msf1.AddItem "" & Chr$(9) & "Total Proveedores: " & r & Chr$(9) & Format$(saf, "#####0.00") & Chr$(9) & Format$(df, "######0.00") & Chr$(9) & Format$(hf, "######0.00") & Chr$(9) & Format$(sf, "######0.00")
+      msf1.AddItem "" & Chr$(9) & "" & Chr$(9) & linea & Chr$(9) & linea & Chr$(9) & linea & Chr$(9) & linea
+      msf1.AddItem "" & Chr$(9) & "Total Proveedores: " & r & Chr$(9) & Format$(saf, "#,##0.00") & Chr$(9) & Format$(df, "#,##0.00") & Chr$(9) & Format$(hf, "#,##0.00") & Chr$(9) & Format$(sf, "#,##0.00")
   Else
-      msf1.AddItem "" & Chr$(9) & "" & Chr$(9) & "________________" & Chr$(9) & "________________" & Chr$(9) & "________________" & Chr$(9) & "________________" & Chr$(9) & "________________"
-      msf1.AddItem "" & Chr$(9) & "Total Proveedores: " & r & Chr$(9) & Format$(saf, "#####0.00") & Chr$(9) & Format$(df, "######0.00") & Chr$(9) & Format$(hf, "######0.00") & Chr$(9) & Format$(sf, "######0.00") & Chr$(9) & Format$(sof, "######0.00")
+      msf1.AddItem "" & Chr$(9) & "" & Chr$(9) & linea & Chr$(9) & linea & Chr$(9) & linea & Chr$(9) & linea & Chr$(9) & linea
+      msf1.AddItem "" & Chr$(9) & "Total Proveedores: " & r & Chr$(9) & Format$(saf, "#,##0.00") & Chr$(9) & Format$(df, "#,##0.00") & Chr$(9) & Format$(hf, "#,##0.00") & Chr$(9) & Format$(sf, "#,##0.00") & Chr$(9) & Format$(sof, "#,##0.00")
   End If
 
 End If
@@ -553,7 +745,7 @@ Sub agrega(r As Integer)
     hf = hf + cl_prov.HABER
     sf = sf + cl_prov.Saldoprov
     If Check1 = 0 Then
-      msf1.AddItem cl_prov.idprov & Chr$(9) & cl_prov.razonsocial & Chr$(9) & Format$(saldoant, "#####0.00") & Chr$(9) & Format$(cl_prov.DEBE, "#####0.00") & Chr$(9) & Format$(cl_prov.HABER, "#####0.00") & Chr$(9) & Format$(cl_prov.Saldoprov, "######0.00")
+      msf1.AddItem cl_prov.idprov & Chr$(9) & cl_prov.razonsocial & Chr$(9) & Format$(saldoant, "#,##0.00") & Chr$(9) & Format$(cl_prov.DEBE, "#,##0.00") & Chr$(9) & Format$(cl_prov.HABER, "#,##0.00") & Chr$(9) & Format$(cl_prov.Saldoprov, "#,##0.00")
     Else
         d = cl_prov.DEBE
         h = cl_prov.HABER
@@ -563,7 +755,7 @@ Sub agrega(r As Integer)
         Else
           so = cl_prov.saldo(True, t_fecha2, True, c_zona.ItemData(c_zona.ListIndex))
         End If
-        msf1.AddItem cl_prov.idprov & Chr$(9) & cl_prov.razonsocial & Chr$(9) & Format$(saldoant, "#####0.00") & Chr$(9) & Format$(d, "######0.00") & Chr$(9) & Format$(h, "######0.00") & Chr$(9) & Format$(s, "######0.00") & Chr$(9) & Format$(so, "######0.00")
+        msf1.AddItem cl_prov.idprov & Chr$(9) & cl_prov.razonsocial & Chr$(9) & Format$(saldoant, "#,##0.00") & Chr$(9) & Format$(d, "#,##0.00") & Chr$(9) & Format$(h, "#,##0.00") & Chr$(9) & Format$(s, "#,##0.00") & Chr$(9) & Format$(so, "#,##0.00")
         sof = sof + so
     End If
 End Sub
@@ -574,7 +766,7 @@ Sub agrega2(r As Integer)
     hf = hf + cl_prov.HABER
     sf = sf + cl_prov.saldoprovv
     If Check1 = 0 Then
-      msf1.AddItem cl_prov.idprov & Chr$(9) & cl_prov.razonsocial & Chr$(9) & Format$(saldoant, "#####0.00") & Chr$(9) & Format$(cl_prov.DEBE, "#####0.00") & Chr$(9) & Format$(cl_prov.HABER, "#####0.00") & Chr$(9) & Format$(cl_prov.saldoprovv, "######0.00")
+      msf1.AddItem cl_prov.idprov & Chr$(9) & cl_prov.razonsocial & Chr$(9) & Format$(saldoant, "#,##0.00") & Chr$(9) & Format$(cl_prov.DEBE, "#,##0.00") & Chr$(9) & Format$(cl_prov.HABER, "#,##0.00") & Chr$(9) & Format$(cl_prov.saldoprovv, "#,##0.00")
     Else
         d = cl_prov.DEBE
         h = cl_prov.HABER
@@ -584,7 +776,7 @@ Sub agrega2(r As Integer)
         Else
           so = cl_prov.saldov(True, t_fecha2, True, c_zona)
         End If
-        msf1.AddItem cl_prov.idprov & Chr$(9) & cl_prov.razonsocial & Chr$(9) & Format$(saldoant, "#####0.00") & Chr$(9) & Format$(d, "######0.00") & Chr$(9) & Format$(h, "######0.00") & Chr$(9) & Format$(s, "######0.00") & Chr$(9) & Format$(so, "######0.00")
+        msf1.AddItem cl_prov.idprov & Chr$(9) & cl_prov.razonsocial & Chr$(9) & Format$(saldoant, "#,##0.00") & Chr$(9) & Format$(d, "#,##0.00") & Chr$(9) & Format$(h, "#,##0.00") & Chr$(9) & Format$(s, "#,##0.00") & Chr$(9) & Format$(so, "#,##0.00")
         sof = sof + so
     End If
 End Sub
@@ -617,13 +809,13 @@ If Check1 = 0 Then
   msf1.clear
   msf1.Rows = 1
   msf1.Cols = 7
-  msf1.ColWidth(0) = 500
-  msf1.ColWidth(1) = 4000
-  msf1.ColWidth(2) = 1200
-  msf1.ColWidth(3) = 1200
-  msf1.ColWidth(4) = 1200
-  msf1.ColWidth(5) = 1200
-  msf1.ColWidth(6) = 500
+  msf1.ColWidth(0) = 1000
+  msf1.ColWidth(1) = 6000
+  msf1.ColWidth(2) = 2100
+  msf1.ColWidth(3) = 2100
+  msf1.ColWidth(4) = 2100
+  msf1.ColWidth(5) = 2100
+  msf1.ColWidth(6) = 700
     msf1.TextMatrix(0, 0) = "Id."
   msf1.TextMatrix(0, 1) = "Proveedor"
   msf1.TextMatrix(0, 2) = "Saldo Ant."
@@ -649,13 +841,13 @@ Else
   msf1.Rows = 1
   msf1.Cols = 8
   msf1.ColWidth(0) = 500
-  msf1.ColWidth(1) = 4000
-  msf1.ColWidth(2) = 1100
-  msf1.ColWidth(3) = 1100
-  msf1.ColWidth(4) = 1100
-  msf1.ColWidth(5) = 1100
-  msf1.ColWidth(6) = 1100
-  msf1.ColWidth(7) = 300
+  msf1.ColWidth(1) = 5000
+  msf1.ColWidth(2) = 2100
+  msf1.ColWidth(3) = 2100
+  msf1.ColWidth(4) = 2100
+  msf1.ColWidth(5) = 2100
+  msf1.ColWidth(6) = 2100
+  msf1.ColWidth(7) = 500
   msf1.TextMatrix(0, 0) = "Id."
   msf1.TextMatrix(0, 1) = "Proveedor"
   msf1.TextMatrix(0, 2) = "Saldo Ant."

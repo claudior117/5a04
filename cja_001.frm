@@ -316,7 +316,7 @@ Begin VB.Form cja_cajadiaria
       BackColor       =   14737632
       BorderStyle     =   1
       Appearance      =   1
-      StartOfWeek     =   172949505
+      StartOfWeek     =   116588545
       CurrentDate     =   39157
    End
    Begin VB.Frame Frame2 
@@ -469,12 +469,12 @@ Begin VB.Form cja_cajadiaria
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "28/02/2024"
+            TextSave        =   "02/03/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "05:14 p.m."
+            TextSave        =   "12:15 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1

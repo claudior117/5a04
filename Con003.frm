@@ -5,14 +5,14 @@ Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form con_ivacompras 
    BackColor       =   &H00E0E0E0&
    Caption         =   "SUBDIARIO DE IVA COMPRAS"
-   ClientHeight    =   8490
+   ClientHeight    =   9435
    ClientLeft      =   165
    ClientTop       =   555
-   ClientWidth     =   11880
+   ClientWidth     =   18165
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
-   ScaleHeight     =   8490
-   ScaleWidth      =   11880
+   ScaleHeight     =   9435
+   ScaleWidth      =   18165
    StartUpPosition =   3  'Windows Default
    Begin VB.Frame Frame2 
       BackColor       =   &H00E0E0E0&
@@ -20,23 +20,32 @@ Begin VB.Form con_ivacompras
       Height          =   855
       Left            =   120
       TabIndex        =   13
-      Top             =   7200
-      Width           =   3255
+      Top             =   7920
+      Width           =   5895
       Begin VB.CheckBox Check1 
          BackColor       =   &H00E0E0E0&
          Caption         =   "Muestra totales por Tasa"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   195
          Left            =   240
          TabIndex        =   14
          Top             =   360
-         Width           =   2535
+         Width           =   5295
       End
    End
    Begin MSComCtl2.MonthView cal1 
       Height          =   2370
-      Left            =   3240
+      Left            =   3720
       TabIndex        =   9
-      Top             =   240
+      Top             =   1320
       Width           =   2595
       _ExtentX        =   4577
       _ExtentY        =   4180
@@ -44,7 +53,7 @@ Begin VB.Form con_ivacompras
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   172949505
+      StartOfWeek     =   116588545
       CurrentDate     =   38750
    End
    Begin VB.Frame Frame3 
@@ -53,75 +62,129 @@ Begin VB.Form con_ivacompras
       Left            =   240
       TabIndex        =   6
       Top             =   120
-      Width           =   7455
+      Width           =   17655
       Begin VB.TextBox t_p 
          BorderStyle     =   0  'None
-         Height          =   285
-         Left            =   5760
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   405
+         Left            =   15840
          MaxLength       =   10
          TabIndex        =   11
-         Top             =   240
+         Top             =   360
          Width           =   1335
       End
       Begin VB.TextBox t_fecha2 
          BorderStyle     =   0  'None
-         Height          =   285
-         Left            =   1680
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   405
+         Left            =   2400
          MaxLength       =   10
          TabIndex        =   1
          Top             =   720
-         Width           =   1335
+         Width           =   2175
       End
       Begin VB.TextBox t_fecha 
          BorderStyle     =   0  'None
-         Height          =   285
-         Left            =   1680
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   405
+         Left            =   2400
          MaxLength       =   10
          TabIndex        =   0
          Top             =   240
-         Width           =   1335
+         Width           =   2175
       End
       Begin VB.Label Label2 
          Alignment       =   1  'Right Justify
          BackColor       =   &H00800080&
-         Caption         =   "Nro. página inicial:"
+         Caption         =   "Número página inicial:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
-         Height          =   255
-         Left            =   4200
+         Height          =   375
+         Left            =   13320
          TabIndex        =   12
-         Top             =   240
-         Width           =   1455
+         Top             =   360
+         Width           =   2415
       End
       Begin VB.Label Label1 
          Alignment       =   1  'Right Justify
          BackColor       =   &H00800080&
          Caption         =   "Fecha Hasta:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
-         Height          =   255
-         Left            =   120
+         Height          =   375
+         Left            =   240
          TabIndex        =   8
          Top             =   720
-         Width           =   1455
+         Width           =   1935
       End
       Begin VB.Label Label3 
          Alignment       =   1  'Right Justify
          BackColor       =   &H00800080&
          Caption         =   "Fecha Desde:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
-         Height          =   495
-         Left            =   120
+         Height          =   615
+         Left            =   240
          TabIndex        =   7
          Top             =   240
-         Width           =   1455
+         Width           =   1935
       End
    End
    Begin VB.Frame Frame1 
       BackColor       =   &H00E0E0E0&
       Caption         =   "Funciones"
       Height          =   975
-      Left            =   9720
+      Left            =   15840
       TabIndex        =   3
-      Top             =   7320
+      Top             =   7920
       Width           =   1575
       Begin VB.CommandButton btnsale 
          Cancel          =   -1  'True
@@ -149,52 +212,63 @@ Begin VB.Form con_ivacompras
    End
    Begin MSComctlLib.StatusBar StatusBar1 
       Align           =   2  'Align Bottom
-      Height          =   255
+      Height          =   405
       Left            =   0
       TabIndex        =   2
-      Top             =   8235
-      Width           =   11880
-      _ExtentX        =   20955
-      _ExtentY        =   450
+      Top             =   9030
+      Width           =   18165
+      _ExtentX        =   32041
+      _ExtentY        =   714
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
          NumPanels       =   4
          BeginProperty Panel1 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Alignment       =   1
-            Object.Width           =   7056
-            MinWidth        =   7056
+            Object.Width           =   19403
+            MinWidth        =   19403
             Text            =   "Cliente"
             TextSave        =   "Cliente"
          EndProperty
          BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Alignment       =   1
-            Object.Width           =   8820
-            MinWidth        =   8820
+            Object.Width           =   3528
+            MinWidth        =   3528
             Text            =   "Sistema"
             TextSave        =   "Sistema"
          EndProperty
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "28/02/2024"
+            TextSave        =   "02/03/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "05:14 p.m."
+            TextSave        =   "12:15 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
    End
    Begin MSFlexGridLib.MSFlexGrid msf1 
-      Height          =   5535
+      Height          =   6135
       Left            =   0
       TabIndex        =   10
       Top             =   1560
-      Width           =   11895
-      _ExtentX        =   20981
-      _ExtentY        =   9763
+      Width           =   18015
+      _ExtentX        =   31776
+      _ExtentY        =   10821
       _Version        =   393216
+      Cols            =   5
+      FixedCols       =   2
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Segoe UI"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
    End
 End
 Attribute VB_Name = "con_ivacompras"
@@ -291,17 +365,17 @@ Sub carga()
      tng = tng + Val(ng)
      trp = trp + Val(rp)
      
-     msf1.AddItem F & Chr(9) & rs("proveedor05") & Chr(9) & rs("cuit05") & " " & rs("g3.abreviatura") & Chr(9) & tc & " " & nc & Chr(9) & s & Chr(9) & rp & Chr(9) & i & Chr(9) & ng & Chr(9) & t & Chr(9) & Format$(rs("num_int"), "00000")
+     msf1.AddItem F & Chr(9) & rs("proveedor05") & Chr(9) & rs("cuit05") & " " & rs("g3.abreviatura") & Chr(9) & tc & " " & nc & Chr(9) & Format$(Val(s), "#,##0.00") & Chr(9) & Format$(Val(rp), "#,##0.00") & Chr(9) & Format$(Val(i), "#,##0.00") & Chr(9) & Format$(Val(ng), "#,##0.00") & Chr(9) & Format$(Val(t), "#,##0.00") & Chr(9) & Format$(rs("num_int"), "00000")
 
     rs.MoveNext
   Wend
   msf1.AddItem " " & Chr(9) & " " & Chr(9) & " " & Chr(9) & "" & Chr(9) & "______________________" & Chr(9) & "______________________" & Chr(9) & "______________________" & Chr(9) & "______________________" & Chr(9) & "______________________"
-  msf1.AddItem " " & Chr(9) & " " & Chr(9) & " " & Chr(9) & "Totales:" & Chr(9) & Format$(ts, "######0.00") & Chr(9) & Format$(trp, "######0.00") & Chr(9) & Format$(ti, "######0.00") & Chr(9) & Format$(tng, "######0.00") & Chr(9) & Format$(tt, "######0.00")
+  msf1.AddItem " " & Chr(9) & " " & Chr(9) & " " & Chr(9) & "Totales:" & Chr(9) & Format$(ts, "#,##0.00") & Chr(9) & Format$(trp, "#,##0.00") & Chr(9) & Format$(ti, "#,##0.00") & Chr(9) & Format$(tng, "#,##0.00") & Chr(9) & Format$(tt, "#,##0.00")
   msf1.AddItem " "
   msf1.AddItem " "
-  msf1.AddItem " " & Chr(9) & " " & Chr(9) & " " & Chr(9) & "Total Db. Fiscal  :" & Chr(9) & Format$(tdbf, "######0.00")
-  msf1.AddItem " " & Chr(9) & " " & Chr(9) & " " & Chr(9) & "Total Cr. Fiscal  :" & Chr(9) & Format$(tcrf, "######0.00")
-  msf1.AddItem " " & Chr(9) & " " & Chr(9) & " " & Chr(9) & "Total Ret/Perc Iva:" & Chr(9) & Format$(trp, "######0.00")
+  msf1.AddItem " " & Chr(9) & " " & Chr(9) & " " & Chr(9) & "Total Db. Fiscal  :" & Chr(9) & Format$(tdbf, "#,##0.00")
+  msf1.AddItem " " & Chr(9) & " " & Chr(9) & " " & Chr(9) & "Total Cr. Fiscal  :" & Chr(9) & Format$(tcrf, "#,##0.00")
+  msf1.AddItem " " & Chr(9) & " " & Chr(9) & " " & Chr(9) & "Total Ret/Perc Iva:" & Chr(9) & Format$(trp, "#,##0.00")
    
  salto = 0
  If Check1 = 1 Then
@@ -385,7 +459,7 @@ Sub portasa()
       rs.MoveNext
  
     Else
-       msf1.AddItem " " & Chr$(9) & " " & Chr$(9) & " " & Chr$(9) & "Tasa " & tasa & "%" & Chr$(9) & Format$(nd, "######0.00") & Chr$(9) & " " & Chr$(9) & Format$(id, "######0.00") & Chr$(9) & " " & Chr$(9) & Format$(td, "######0.00")
+       msf1.AddItem " " & Chr$(9) & " " & Chr$(9) & " " & Chr$(9) & "Tasa " & tasa & "%" & Chr$(9) & Format$(nd, "#,##0.00") & Chr$(9) & " " & Chr$(9) & Format$(id, "#,##0.00") & Chr$(9) & " " & Chr$(9) & Format$(td, "#,##0.00")
        tasa = rs("tasa_iva")
        nf = nf + nd
        if2 = if2 + id
@@ -398,9 +472,9 @@ Sub portasa()
   nf = nf + nd
   if2 = if2 + id
   tf = nf + if2 + tng + trp
-  msf1.AddItem " " & Chr$(9) & " " & Chr$(9) & " " & Chr$(9) & "Tasa " & tasa & "%" & Chr$(9) & Format$(nd, "######0.00") & Chr$(9) & " " & Chr$(9) & Format$(id, "######0.00") & Chr$(9) & " " & Chr$(9) & Format$(td, "######0.00")
+  msf1.AddItem " " & Chr$(9) & " " & Chr$(9) & " " & Chr$(9) & "Tasa " & tasa & "%" & Chr$(9) & Format$(nd, "#,##0.00") & Chr$(9) & " " & Chr$(9) & Format$(id, "#,##0.00") & Chr$(9) & " " & Chr$(9) & Format$(td, "#,##0.00")
   msf1.AddItem " " & Chr(9) & " " & Chr(9) & " " & Chr$(9) & " " & Chr$(9) & "______________________" & Chr$(9) & "______________________" & Chr$(9) & "______________________" & Chr$(9) & "______________________" & Chr$(9) & "______________________"
-  msf1.AddItem " " & Chr(9) & " " & Chr(9) & " " & Chr$(9) & "Totales:" & Chr(9) & Format$(nf, "######0.00") & Chr$(9) & Format$(trp, "#####0.00") & Chr$(9) & Format$(if2, "######0.00") & Chr$(9) & Format$(tng, "#####0.00") & Chr$(9) & Format$(tf, "######0.00")
+  msf1.AddItem " " & Chr(9) & " " & Chr(9) & " " & Chr$(9) & "Totales:" & Chr(9) & Format$(nf, "#,##0.00") & Chr$(9) & Format$(trp, "#,##0.00") & Chr$(9) & Format$(if2, "#,##0.00") & Chr$(9) & Format$(tng, "#,##0.00") & Chr$(9) & Format$(tf, "#,##0.00")
   Set rs = Nothing
  End If
   msf1.AddItem " "
@@ -475,7 +549,7 @@ Sub portasa()
       rs.MoveNext
  
     Else
-       msf1.AddItem " " & Chr$(9) & " " & Chr$(9) & " " & Chr$(9) & "Tasa " & tasa & "%" & Chr$(9) & Format$(nd, "######0.00") & Chr$(9) & " " & Chr$(9) & Format$(id, "######0.00") & Chr$(9) & " " & Chr$(9) & Format$(td, "######0.00")
+       msf1.AddItem " " & Chr$(9) & " " & Chr$(9) & " " & Chr$(9) & "Tasa " & tasa & "%" & Chr$(9) & Format$(nd, "#,##0.00") & Chr$(9) & " " & Chr$(9) & Format$(id, "#,##0.00") & Chr$(9) & " " & Chr$(9) & Format$(td, "#,##0.00")
        tasa = rs("tasa_iva")
        nf = nf + nd
        if2 = if2 + id
@@ -488,9 +562,9 @@ Sub portasa()
   nf = nf + nd
   if2 = if2 + id
   tf = nf + if2 + tng + trp
-  msf1.AddItem " " & Chr$(9) & " " & Chr$(9) & " " & Chr$(9) & "Tasa " & tasa & "%" & Chr$(9) & Format$(nd, "######0.00") & Chr$(9) & " " & Chr$(9) & Format$(id, "######0.00") & Chr$(9) & " " & Chr$(9) & Format$(td, "######0.00")
+  msf1.AddItem " " & Chr$(9) & " " & Chr$(9) & " " & Chr$(9) & "Tasa " & tasa & "%" & Chr$(9) & Format$(nd, "#,##0.00") & Chr$(9) & " " & Chr$(9) & Format$(id, "#,##0.00") & Chr$(9) & " " & Chr$(9) & Format$(td, "#,##0.00")
   msf1.AddItem " " & Chr(9) & " " & Chr(9) & " " & Chr$(9) & " " & Chr$(9) & "______________________" & Chr$(9) & "______________________" & Chr$(9) & "______________________" & Chr$(9) & "______________________" & Chr$(9) & "______________________"
-  msf1.AddItem " " & Chr(9) & " " & Chr(9) & " " & Chr$(9) & "Totales:" & Chr(9) & Format$(nf, "######0.00") & Chr$(9) & Format$(trp, "#####0.00") & Chr$(9) & Format$(if2, "######0.00") & Chr$(9) & Format$(tng, "#####0.00") & Chr$(9) & Format$(tf, "######0.00")
+  msf1.AddItem " " & Chr(9) & " " & Chr(9) & " " & Chr$(9) & "Totales:" & Chr(9) & Format$(nf, "#,##0.00") & Chr$(9) & Format$(trp, "#,##0.00") & Chr$(9) & Format$(if2, "#,##0.00") & Chr$(9) & Format$(tng, "#,##0.00") & Chr$(9) & Format$(tf, "#,##0.00")
   Set rs = Nothing
  End If
  
@@ -549,15 +623,15 @@ Sub armagrid()
 msf1.clear
 msf1.Rows = 1
 msf1.Cols = 10
-msf1.ColWidth(0) = 900
-msf1.ColWidth(1) = 3000
-msf1.ColWidth(2) = 1800
-msf1.ColWidth(3) = 2200
-msf1.ColWidth(4) = 1100
-msf1.ColWidth(5) = 1100
-msf1.ColWidth(6) = 1100
-msf1.ColWidth(7) = 1100
-msf1.ColWidth(8) = 1100
+msf1.ColWidth(0) = 1200
+msf1.ColWidth(1) = 4500
+msf1.ColWidth(2) = 2000
+msf1.ColWidth(3) = 2500
+msf1.ColWidth(4) = 2100
+msf1.ColWidth(5) = 1800
+msf1.ColWidth(6) = 2000
+msf1.ColWidth(7) = 2100
+msf1.ColWidth(8) = 2100
 msf1.ColWidth(9) = 1000
 
 

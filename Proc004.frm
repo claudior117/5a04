@@ -3,76 +3,94 @@ Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form cc_detalle 
    BackColor       =   &H00E0E0E0&
    Caption         =   "COMPROBANTE DE COMPRA"
-   ClientHeight    =   8715
+   ClientHeight    =   9435
    ClientLeft      =   75
    ClientTop       =   360
-   ClientWidth     =   12975
+   ClientWidth     =   17760
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
    MinButton       =   0   'False
-   ScaleHeight     =   8715
-   ScaleWidth      =   12975
+   ScaleHeight     =   9435
+   ScaleWidth      =   17760
    StartUpPosition =   3  'Windows Default
    Begin VB.Frame Frame2 
       Caption         =   "Archivo Electronico"
-      Height          =   735
+      Height          =   1095
       Left            =   120
       TabIndex        =   17
-      Top             =   6480
-      Width           =   12615
+      Top             =   8040
+      Width           =   13335
       Begin VB.CommandButton Command1 
          Caption         =   "Ver o Modificar"
          Height          =   375
          Left            =   11400
          TabIndex        =   19
-         Top             =   240
-         Width           =   1095
+         Top             =   360
+         Width           =   1455
       End
       Begin VB.TextBox t_path 
          Height          =   405
          Left            =   240
          TabIndex        =   18
-         Top             =   240
+         Top             =   360
          Width           =   10935
       End
    End
    Begin VB.ListBox List1 
       BeginProperty Font 
          Name            =   "Courier New"
-         Size            =   9
+         Size            =   11.25
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   5010
+      Height          =   6180
       Left            =   0
       TabIndex        =   0
       Top             =   1440
-      Width           =   12855
+      Width           =   17295
    End
    Begin VB.Frame CUIT 
       BackColor       =   &H00E0E0E0&
       Enabled         =   0   'False
-      Height          =   1215
+      Height          =   1335
       Left            =   0
       TabIndex        =   9
       Top             =   0
-      Width           =   11655
+      Width           =   17295
       Begin VB.TextBox t_numint 
          BorderStyle     =   0  'None
-         Height          =   285
-         Left            =   10200
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   405
+         Left            =   15240
          MaxLength       =   10
          TabIndex        =   15
          Top             =   720
-         Width           =   1215
+         Width           =   1815
       End
       Begin VB.TextBox t_tipocomp 
          BorderStyle     =   0  'None
-         Height          =   285
-         Left            =   9000
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   405
+         Left            =   14400
          MaxLength       =   6
          TabIndex        =   14
          Top             =   720
@@ -80,43 +98,88 @@ Begin VB.Form cc_detalle
       End
       Begin VB.TextBox t_numcomp 
          BorderStyle     =   0  'None
-         Height          =   285
-         Left            =   6960
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   405
+         Left            =   10800
          MaxLength       =   8
          TabIndex        =   12
          Top             =   720
-         Width           =   1455
+         Width           =   2415
       End
       Begin VB.TextBox t_letra 
          BorderStyle     =   0  'None
-         Height          =   285
-         Left            =   5520
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   405
+         Left            =   8880
          MaxLength       =   6
          TabIndex        =   3
          Top             =   720
-         Width           =   495
+         Width           =   735
       End
       Begin VB.TextBox t_sucursal 
          BorderStyle     =   0  'None
-         Height          =   285
-         Left            =   6120
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   405
+         Left            =   9720
          MaxLength       =   6
          TabIndex        =   4
          Top             =   720
-         Width           =   735
+         Width           =   975
       End
       Begin VB.TextBox t_prov 
          BorderStyle     =   0  'None
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   405
          Left            =   960
-         MaxLength       =   10
+         MaxLength       =   81
          TabIndex        =   2
          Top             =   720
-         Width           =   3495
+         Width           =   7095
       End
       Begin VB.TextBox t_idprov 
          BorderStyle     =   0  'None
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   405
          Left            =   120
          MaxLength       =   10
          TabIndex        =   1
@@ -126,51 +189,87 @@ Begin VB.Form cc_detalle
       Begin VB.Label Label2 
          BackColor       =   &H00800080&
          Caption         =   "Numero Interno"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
          Height          =   375
-         Left            =   10200
+         Left            =   15240
          TabIndex        =   16
-         Top             =   240
-         Width           =   1215
+         Top             =   360
+         Width           =   1815
       End
       Begin VB.Label Label1 
          BackColor       =   &H00800080&
          Caption         =   "Tipo"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
          Height          =   375
-         Left            =   9000
+         Left            =   14400
          TabIndex        =   13
-         Top             =   240
+         Top             =   360
          Width           =   735
       End
       Begin VB.Label Label4 
          BackColor       =   &H00800080&
          Caption         =   "Comprobante:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
          Height          =   375
-         Left            =   5520
+         Left            =   8880
          TabIndex        =   11
-         Top             =   240
-         Width           =   2895
+         Top             =   360
+         Width           =   4335
       End
       Begin VB.Label Label3 
          BackColor       =   &H00800080&
          Caption         =   "Proveedor"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
          Height          =   375
          Left            =   120
          TabIndex        =   10
-         Top             =   240
-         Width           =   4335
+         Top             =   360
+         Width           =   7935
       End
    End
    Begin VB.Frame Frame1 
       BackColor       =   &H00E0E0E0&
       Caption         =   "Funciones"
       Height          =   975
-      Left            =   11280
+      Left            =   15600
       TabIndex        =   6
-      Top             =   7440
+      Top             =   7920
       Width           =   1575
       Begin VB.CommandButton btnsale 
          Cancel          =   -1  'True
@@ -201,9 +300,9 @@ Begin VB.Form cc_detalle
       Height          =   255
       Left            =   0
       TabIndex        =   5
-      Top             =   8460
-      Width           =   12975
-      _ExtentX        =   22886
+      Top             =   9180
+      Width           =   17760
+      _ExtentX        =   31327
       _ExtentY        =   450
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
@@ -719,12 +818,12 @@ Sub PAGOS()
      rs1.Open q, cn1
      While Not rs1.EOF
          F = Format$(rs1("fecha_dif"), "dd/mm/yyyy")
-         fp = Format$(rs1("id_formapago"), "000") & " " & Format$(Left$(rs1("formapago"), 10), "@@@@@@@@@@!")
+         FP = Format$(rs1("id_formapago"), "000") & " " & Format$(Left$(rs1("formapago"), 10), "@@@@@@@@@@!")
          nch = Format$(rs1("num_ch"), "0000000000")
          b = Format$(Left$(rs1("detalle_banco"), 25), ">@@@@@@@@@@@@@@@@@@@@@@@@@!")
          t = Format$(Left$(rs1("titular"), 25), ">@@@@@@@@@@@@@@@@@@@@@@@@@!")
          i = Format$(rs1("importe"), "######0.00")
-         List1.AddItem fp & "  " & nch & "  " & F & "  " & b & "  " & t & "  " & i
+         List1.AddItem FP & "  " & nch & "  " & F & "  " & b & "  " & t & "  " & i
          rs1.MoveNext
      Wend
      Set rs1 = Nothing
@@ -736,8 +835,8 @@ End Sub
 Private Sub Form_Load()
 
 Call barraesag(Me)
-List1.FontName = "Courier new"
-List1.FontSize = 9
+'List1.FontName = "Courier new"
+'List1.FontSize = 9
 Load gen_path
 Load vta_listaprecios4
 
@@ -752,7 +851,7 @@ End Sub
 
 Private Sub List1_GotFocus()
 
-Me.StatusBar1.Panels.Item(1) = "[F3] Modifica - [F4]Historial Prod. [F5] Imprime Comp. - [F6] Exporta Texto - [F7] Imprime - [F8] Borra  - [ESC] Termina "
+Me.StatusBar1.Panels.item(1) = "[F3] Modifica - [F4]Historial Prod. [F5] Imprime Comp. - [F6] Exporta Texto - [F7] Imprime - [F8] Borra  - [ESC] Termina "
 
 End Sub
 
@@ -777,12 +876,12 @@ End If
 
 If KeyCode = vbKeyF4 Then 'historial producto
  Call nivel_acceso(2)
- Item = Val(Mid$(List1.List(List1.ListIndex), 1, 5))
+ item = Val(Mid$(List1.List(List1.ListIndex), 1, 5))
  
  If para.id_grupo_modulo_actual >= 5 Then
-  If Item > 1 Then
+  If item > 1 Then
      
-     vta_listaprecios4.t_idprod = Item
+     vta_listaprecios4.t_idprod = item
      vta_listaprecios4.Option1 = True
      vta_listaprecios4.Show
    End If
@@ -862,7 +961,7 @@ If KeyCode = vbKeyF3 Then
         cambia_estado_pago.t_subtotal = cl_comp.subtotal
         cambia_estado_pago.t_nograv = cl_comp.nograbado
         cambia_estado_pago.t_iva = cl_comp.iva
-        cambia_estado_pago.t_total = cl_comp.total
+        cambia_estado_pago.T_TOTAL = cl_comp.total
         cambia_estado_pago.T_total2 = cl_comp.total_om
         cambia_estado_pago.c_zona = cl_comp.zona
         cambia_estado_pago.c_cuenta.ListIndex = buscaindice(cambia_estado_pago.c_cuenta, cl_comp.idcuenta)
