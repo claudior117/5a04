@@ -152,7 +152,7 @@ Begin VB.Form vta_movprodcli
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   176947201
+      StartOfWeek     =   178126849
       CurrentDate     =   38750
    End
    Begin VB.Frame Frame3 
@@ -269,7 +269,7 @@ Begin VB.Form vta_movprodcli
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:29 a.m."
+            TextSave        =   "05:30 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1

@@ -245,7 +245,7 @@ Begin VB.Form con_saldosprov
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   176947201
+      StartOfWeek     =   178061313
       CurrentDate     =   38803
    End
    Begin VB.Frame Frame2 
@@ -489,7 +489,7 @@ Begin VB.Form con_saldosprov
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:29 a.m."
+            TextSave        =   "05:29 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -657,10 +657,10 @@ If Not rs1.EOF And Not rs1.BOF Then
   
   If Check1 = 0 Then
       msf1.AddItem "" & Chr$(9) & "" & Chr$(9) & linea & Chr$(9) & linea & Chr$(9) & linea & Chr$(9) & linea
-      msf1.AddItem "" & Chr$(9) & "Total Proveedores: " & r & Chr$(9) & Format$(saf, "#,##0.00") & Chr$(9) & Format$(df, "#,##0.00") & Chr$(9) & Format$(hf, "#,##0.00") & Chr$(9) & Format$(sf, "#,##0.00")
+      msf1.AddItem "" & Chr$(9) & "Total Proveedores: " & r & Chr$(9) & Format$(saf, para.formato_numerico) & Chr$(9) & Format$(df, para.formato_numerico) & Chr$(9) & Format$(hf, para.formato_numerico) & Chr$(9) & Format$(sf, para.formato_numerico)
   Else
       msf1.AddItem "" & Chr$(9) & "" & Chr$(9) & linea & Chr$(9) & linea & Chr$(9) & linea & Chr$(9) & linea & Chr$(9) & linea
-      msf1.AddItem "" & Chr$(9) & "Total Proveedores: " & r & Chr$(9) & Format$(saf, "#,##0.00") & Chr$(9) & Format$(df, "#,##0.00") & Chr$(9) & Format$(hf, "#,##0.00") & Chr$(9) & Format$(sf, "#,##0.00") & Chr$(9) & Format$(sof, "#,##0.00")
+      msf1.AddItem "" & Chr$(9) & "Total Proveedores: " & r & Chr$(9) & Format$(saf, para.formato_numerico) & Chr$(9) & Format$(df, para.formato_numerico) & Chr$(9) & Format$(hf, para.formato_numerico) & Chr$(9) & Format$(sf, para.formato_numerico) & Chr$(9) & Format$(sof, para.formato_numerico)
   End If
 
 End If
@@ -745,7 +745,7 @@ Sub agrega(r As Integer)
     hf = hf + cl_prov.HABER
     sf = sf + cl_prov.Saldoprov
     If Check1 = 0 Then
-      msf1.AddItem cl_prov.idprov & Chr$(9) & cl_prov.razonsocial & Chr$(9) & Format$(saldoant, "#,##0.00") & Chr$(9) & Format$(cl_prov.DEBE, "#,##0.00") & Chr$(9) & Format$(cl_prov.HABER, "#,##0.00") & Chr$(9) & Format$(cl_prov.Saldoprov, "#,##0.00")
+      msf1.AddItem cl_prov.idprov & Chr$(9) & cl_prov.razonsocial & Chr$(9) & Format$(saldoant, para.formato_numerico) & Chr$(9) & Format$(cl_prov.DEBE, para.formato_numerico) & Chr$(9) & Format$(cl_prov.HABER, para.formato_numerico) & Chr$(9) & Format$(cl_prov.Saldoprov, para.formato_numerico)
     Else
         d = cl_prov.DEBE
         h = cl_prov.HABER
@@ -755,7 +755,7 @@ Sub agrega(r As Integer)
         Else
           so = cl_prov.saldo(True, t_fecha2, True, c_zona.ItemData(c_zona.ListIndex))
         End If
-        msf1.AddItem cl_prov.idprov & Chr$(9) & cl_prov.razonsocial & Chr$(9) & Format$(saldoant, "#,##0.00") & Chr$(9) & Format$(d, "#,##0.00") & Chr$(9) & Format$(h, "#,##0.00") & Chr$(9) & Format$(s, "#,##0.00") & Chr$(9) & Format$(so, "#,##0.00")
+        msf1.AddItem cl_prov.idprov & Chr$(9) & cl_prov.razonsocial & Chr$(9) & Format$(saldoant, para.formato_numerico) & Chr$(9) & Format$(d, para.formato_numerico) & Chr$(9) & Format$(h, para.formato_numerico) & Chr$(9) & Format$(s, para.formato_numerico) & Chr$(9) & Format$(so, para.formato_numerico)
         sof = sof + so
     End If
 End Sub
@@ -766,7 +766,7 @@ Sub agrega2(r As Integer)
     hf = hf + cl_prov.HABER
     sf = sf + cl_prov.saldoprovv
     If Check1 = 0 Then
-      msf1.AddItem cl_prov.idprov & Chr$(9) & cl_prov.razonsocial & Chr$(9) & Format$(saldoant, "#,##0.00") & Chr$(9) & Format$(cl_prov.DEBE, "#,##0.00") & Chr$(9) & Format$(cl_prov.HABER, "#,##0.00") & Chr$(9) & Format$(cl_prov.saldoprovv, "#,##0.00")
+      msf1.AddItem cl_prov.idprov & Chr$(9) & cl_prov.razonsocial & Chr$(9) & Format$(saldoant, para.formato_numerico) & Chr$(9) & Format$(cl_prov.DEBE, para.formato_numerico) & Chr$(9) & Format$(cl_prov.HABER, para.formato_numerico) & Chr$(9) & Format$(cl_prov.saldoprovv, para.formato_numerico)
     Else
         d = cl_prov.DEBE
         h = cl_prov.HABER
@@ -776,7 +776,7 @@ Sub agrega2(r As Integer)
         Else
           so = cl_prov.saldov(True, t_fecha2, True, c_zona)
         End If
-        msf1.AddItem cl_prov.idprov & Chr$(9) & cl_prov.razonsocial & Chr$(9) & Format$(saldoant, "#,##0.00") & Chr$(9) & Format$(d, "#,##0.00") & Chr$(9) & Format$(h, "#,##0.00") & Chr$(9) & Format$(s, "#,##0.00") & Chr$(9) & Format$(so, "#,##0.00")
+        msf1.AddItem cl_prov.idprov & Chr$(9) & cl_prov.razonsocial & Chr$(9) & Format$(saldoant, para.formato_numerico) & Chr$(9) & Format$(d, para.formato_numerico) & Chr$(9) & Format$(h, para.formato_numerico) & Chr$(9) & Format$(s, para.formato_numerico) & Chr$(9) & Format$(so, para.formato_numerico)
         sof = sof + so
     End If
 End Sub

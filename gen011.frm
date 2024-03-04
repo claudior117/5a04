@@ -1,12 +1,12 @@
 VERSION 5.00
 Begin VB.Form gen_parametrosusuarios 
    Caption         =   "Parametros por usuarios "
-   ClientHeight    =   6375
+   ClientHeight    =   7545
    ClientLeft      =   60
    ClientTop       =   450
    ClientWidth     =   7020
    LinkTopic       =   "Form1"
-   ScaleHeight     =   6375
+   ScaleHeight     =   7545
    ScaleWidth      =   7020
    StartUpPosition =   3  'Windows Default
    Begin VB.Frame Frame8 
@@ -14,7 +14,7 @@ Begin VB.Form gen_parametrosusuarios
       Height          =   855
       Left            =   120
       TabIndex        =   17
-      Top             =   5280
+      Top             =   6600
       Width           =   4695
       Begin VB.Label Label23 
          Caption         =   "Si realiza cambios en la configuración, deberá salir del Sistema y volver a Ingresar para un correcto funcionamiento. "
@@ -28,9 +28,9 @@ Begin VB.Form gen_parametrosusuarios
    Begin VB.Frame Frame3 
       Caption         =   "Funciones"
       Height          =   975
-      Left            =   4800
+      Left            =   5040
       TabIndex        =   6
-      Top             =   5160
+      Top             =   6480
       Width           =   1575
       Begin VB.CommandButton btnacepta 
          Height          =   615
@@ -58,16 +58,24 @@ Begin VB.Form gen_parametrosusuarios
    End
    Begin VB.Frame Frame2 
       Caption         =   "Parametros"
-      Height          =   4095
+      Height          =   4935
       Left            =   120
       TabIndex        =   4
       Top             =   960
       Width           =   6375
+      Begin VB.CheckBox Check4 
+         Caption         =   "Usa separador de miles en números "
+         Height          =   255
+         Left            =   240
+         TabIndex        =   24
+         Top             =   1320
+         Width           =   4335
+      End
       Begin VB.TextBox t_sucvta 
          Height          =   285
-         Left            =   3000
+         Left            =   240
          TabIndex        =   22
-         Top             =   1320
+         Top             =   2160
          Width           =   735
       End
       Begin VB.CheckBox Check3 
@@ -84,7 +92,7 @@ Begin VB.Form gen_parametrosusuarios
          Left            =   1920
          List            =   "gen011.frx":1111
          TabIndex        =   19
-         Top             =   3360
+         Top             =   4320
          Width           =   3855
       End
       Begin VB.ComboBox c_estilo 
@@ -93,7 +101,7 @@ Begin VB.Form gen_parametrosusuarios
          Left            =   1920
          List            =   "gen011.frx":1151
          TabIndex        =   15
-         Top             =   2880
+         Top             =   3840
          Width           =   3855
       End
       Begin VB.ComboBox c_tlp 
@@ -102,7 +110,7 @@ Begin VB.Form gen_parametrosusuarios
          Left            =   1920
          List            =   "gen011.frx":118F
          TabIndex        =   13
-         Top             =   2400
+         Top             =   3360
          Width           =   3855
       End
       Begin VB.ComboBox c_tipoprecio 
@@ -111,14 +119,14 @@ Begin VB.Form gen_parametrosusuarios
          Left            =   1920
          List            =   "gen011.frx":11BA
          TabIndex        =   11
-         Top             =   1920
+         Top             =   2880
          Width           =   3855
       End
       Begin VB.TextBox t_tl 
          Height          =   285
          Left            =   240
          TabIndex        =   0
-         Top             =   1320
+         Top             =   1800
          Width           =   735
       End
       Begin VB.CheckBox Check2 
@@ -140,9 +148,9 @@ Begin VB.Form gen_parametrosusuarios
       Begin VB.Label Label5 
          Caption         =   "Punto Venta Incio"
          Height          =   255
-         Left            =   3960
+         Left            =   1200
          TabIndex        =   23
-         Top             =   1320
+         Top             =   2160
          Width           =   2175
       End
       Begin VB.Label Label4 
@@ -152,7 +160,7 @@ Begin VB.Form gen_parametrosusuarios
          Height          =   375
          Left            =   120
          TabIndex        =   20
-         Top             =   3360
+         Top             =   4320
          Width           =   1695
       End
       Begin VB.Label Label3 
@@ -162,7 +170,7 @@ Begin VB.Form gen_parametrosusuarios
          Height          =   495
          Left            =   120
          TabIndex        =   16
-         Top             =   2880
+         Top             =   3840
          Width           =   1695
       End
       Begin VB.Label Label2 
@@ -172,7 +180,7 @@ Begin VB.Form gen_parametrosusuarios
          Height          =   495
          Left            =   120
          TabIndex        =   14
-         Top             =   2400
+         Top             =   3360
          Width           =   1695
       End
       Begin VB.Label Label21 
@@ -182,7 +190,7 @@ Begin VB.Form gen_parametrosusuarios
          Height          =   495
          Left            =   120
          TabIndex        =   12
-         Top             =   1920
+         Top             =   2880
          Width           =   1695
       End
       Begin VB.Label Label1 
@@ -190,8 +198,8 @@ Begin VB.Form gen_parametrosusuarios
          Height          =   255
          Left            =   1200
          TabIndex        =   10
-         Top             =   1320
-         Width           =   2175
+         Top             =   1800
+         Width           =   1815
       End
    End
    Begin VB.Frame Frame1 
@@ -229,7 +237,7 @@ Private Sub btnacepta_Click()
 J = MsgBox("Actualiza Parametros", 4)
 If J = 6 Then
 q = "SELECT * FROM G1 WHERE id_usuario = " & Val(t_id)
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 rs.Open q, cn1, adOpenDynamic, adLockOptimistic
 If Not rs.EOF And Not rs.BOF Then
    If Check1 = 1 Then
@@ -252,9 +260,18 @@ If Not rs.EOF And Not rs.BOF Then
      c3 = "N"
    End If
 
+
+   If Check4 = 1 Then
+     c4 = "S"
+   Else
+     c4 = "N"
+   End If
+   
    rs("imprime_pie_reportes") = c2
    para.imprime_pie_reportes = c2
    rs("imprime_cabecera_reportes") = c3
+   rs("usa_separador_miles") = c4
+   para.usa_separador_miles = c4
    rs("tipo_lista_precios") = Val(t_tl)
    para.tipolistaprecios = Val(t_tl)
    rs("tipo_precio_venta") = c_tipoprecio.ListIndex
@@ -324,11 +341,17 @@ Else
   Check3 = 0
 End If
 
+If para.usa_separador_miles = "S" Then
+  Check4 = 1
+Else
+  Check4 = 0
+End If
+
 t_tl = para.tipolistaprecios
 c_tipoprecio.ListIndex = para.tipoprecioventa
 t_sucvta = para.punto_venta_usuario
 
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select * from g1 where [id_usuario] = " & para.id_usuario
 rs.MaxRecords = 1
 rs.Open q, cn1

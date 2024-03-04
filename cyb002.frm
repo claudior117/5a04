@@ -648,7 +648,7 @@ End If
 End Sub
 Sub graba()
 
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select * from g0 where [sucursal] = 0"
 rs.Open q, cn1, adOpenDynamic, adLockOptimistic
 If Not rs.EOF And Not rs.BOF Then
@@ -709,7 +709,7 @@ If Not rs.EOF And Not rs.BOF Then
   
   rs.Update
   
-  Set rs1 = New adodb.Recordset
+  Set rs1 = New ADODB.Recordset
   q = "select * from cyb_01 where [id_forma_pago] = 1"
   rs1.Open q, cn1, adOpenDynamic, adLockOptimistic
   If Not rs1.EOF And Not rs1.BOF Then
@@ -748,7 +748,7 @@ If Not rs.EOF And Not rs.BOF Then
   para.muestrasaldofactventa = t_muestrasaldo
   If Check1 = 1 Then
     q = "select * from g1"
-    Set rs1 = New adodb.Recordset
+    Set rs1 = New ADODB.Recordset
     rs1.Open q, cn1, adOpenDynamic, adLockOptimistic
     While Not rs1.EOF
       rs1("tipo_precio_venta") = c_tipoprecio.ListIndex
@@ -783,7 +783,7 @@ t_numfact = para.numeracion_comun_Fact_nc
 t_minretib = para.minimo_retib
 t_tasaiva = para.tasageneral
 t_fechacorte = para.fechacorte
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select * from g0 where [sucursal] = 0"
 rs.Open q, cn1
 If Not rs.EOF And Not rs.BOF Then

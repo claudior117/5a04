@@ -53,7 +53,7 @@ Begin VB.Form con_ivacompras
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   176947201
+      StartOfWeek     =   178061313
       CurrentDate     =   38750
    End
    Begin VB.Frame Frame3 
@@ -244,7 +244,7 @@ Begin VB.Form con_ivacompras
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:29 a.m."
+            TextSave        =   "05:29 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -365,17 +365,17 @@ Sub carga()
      tng = tng + Val(ng)
      trp = trp + Val(rp)
      
-     msf1.AddItem F & Chr(9) & rs("proveedor05") & Chr(9) & rs("cuit05") & " " & rs("g3.abreviatura") & Chr(9) & tc & " " & nc & Chr(9) & Format$(Val(s), "#,##0.00") & Chr(9) & Format$(Val(rp), "#,##0.00") & Chr(9) & Format$(Val(i), "#,##0.00") & Chr(9) & Format$(Val(ng), "#,##0.00") & Chr(9) & Format$(Val(t), "#,##0.00") & Chr(9) & Format$(rs("num_int"), "00000")
+     msf1.AddItem F & Chr(9) & rs("proveedor05") & Chr(9) & rs("cuit05") & " " & rs("g3.abreviatura") & Chr(9) & tc & " " & nc & Chr(9) & Format$(Val(s), para.formato_numerico) & Chr(9) & Format$(Val(rp), para.formato_numerico) & Chr(9) & Format$(Val(i), para.formato_numerico) & Chr(9) & Format$(Val(ng), para.formato_numerico) & Chr(9) & Format$(Val(t), para.formato_numerico) & Chr(9) & Format$(rs("num_int"), "00000")
 
     rs.MoveNext
   Wend
   msf1.AddItem " " & Chr(9) & " " & Chr(9) & " " & Chr(9) & "" & Chr(9) & "______________________" & Chr(9) & "______________________" & Chr(9) & "______________________" & Chr(9) & "______________________" & Chr(9) & "______________________"
-  msf1.AddItem " " & Chr(9) & " " & Chr(9) & " " & Chr(9) & "Totales:" & Chr(9) & Format$(ts, "#,##0.00") & Chr(9) & Format$(trp, "#,##0.00") & Chr(9) & Format$(ti, "#,##0.00") & Chr(9) & Format$(tng, "#,##0.00") & Chr(9) & Format$(tt, "#,##0.00")
+  msf1.AddItem " " & Chr(9) & " " & Chr(9) & " " & Chr(9) & "Totales:" & Chr(9) & Format$(ts, para.formato_numerico) & Chr(9) & Format$(trp, para.formato_numerico) & Chr(9) & Format$(ti, para.formato_numerico) & Chr(9) & Format$(tng, para.formato_numerico) & Chr(9) & Format$(tt, para.formato_numerico)
   msf1.AddItem " "
   msf1.AddItem " "
-  msf1.AddItem " " & Chr(9) & " " & Chr(9) & " " & Chr(9) & "Total Db. Fiscal  :" & Chr(9) & Format$(tdbf, "#,##0.00")
-  msf1.AddItem " " & Chr(9) & " " & Chr(9) & " " & Chr(9) & "Total Cr. Fiscal  :" & Chr(9) & Format$(tcrf, "#,##0.00")
-  msf1.AddItem " " & Chr(9) & " " & Chr(9) & " " & Chr(9) & "Total Ret/Perc Iva:" & Chr(9) & Format$(trp, "#,##0.00")
+  msf1.AddItem " " & Chr(9) & " " & Chr(9) & " " & Chr(9) & "Total Db. Fiscal  :" & Chr(9) & Format$(tdbf, para.formato_numerico)
+  msf1.AddItem " " & Chr(9) & " " & Chr(9) & " " & Chr(9) & "Total Cr. Fiscal  :" & Chr(9) & Format$(tcrf, para.formato_numerico)
+  msf1.AddItem " " & Chr(9) & " " & Chr(9) & " " & Chr(9) & "Total Ret/Perc Iva:" & Chr(9) & Format$(trp, para.formato_numerico)
    
  salto = 0
  If Check1 = 1 Then
@@ -459,7 +459,7 @@ Sub portasa()
       rs.MoveNext
  
     Else
-       msf1.AddItem " " & Chr$(9) & " " & Chr$(9) & " " & Chr$(9) & "Tasa " & tasa & "%" & Chr$(9) & Format$(nd, "#,##0.00") & Chr$(9) & " " & Chr$(9) & Format$(id, "#,##0.00") & Chr$(9) & " " & Chr$(9) & Format$(td, "#,##0.00")
+       msf1.AddItem " " & Chr$(9) & " " & Chr$(9) & " " & Chr$(9) & "Tasa " & tasa & "%" & Chr$(9) & Format$(nd, para.formato_numerico) & Chr$(9) & " " & Chr$(9) & Format$(id, para.formato_numerico) & Chr$(9) & " " & Chr$(9) & Format$(td, para.formato_numerico)
        tasa = rs("tasa_iva")
        nf = nf + nd
        if2 = if2 + id
@@ -472,9 +472,9 @@ Sub portasa()
   nf = nf + nd
   if2 = if2 + id
   tf = nf + if2 + tng + trp
-  msf1.AddItem " " & Chr$(9) & " " & Chr$(9) & " " & Chr$(9) & "Tasa " & tasa & "%" & Chr$(9) & Format$(nd, "#,##0.00") & Chr$(9) & " " & Chr$(9) & Format$(id, "#,##0.00") & Chr$(9) & " " & Chr$(9) & Format$(td, "#,##0.00")
+  msf1.AddItem " " & Chr$(9) & " " & Chr$(9) & " " & Chr$(9) & "Tasa " & tasa & "%" & Chr$(9) & Format$(nd, para.formato_numerico) & Chr$(9) & " " & Chr$(9) & Format$(id, para.formato_numerico) & Chr$(9) & " " & Chr$(9) & Format$(td, para.formato_numerico)
   msf1.AddItem " " & Chr(9) & " " & Chr(9) & " " & Chr$(9) & " " & Chr$(9) & "______________________" & Chr$(9) & "______________________" & Chr$(9) & "______________________" & Chr$(9) & "______________________" & Chr$(9) & "______________________"
-  msf1.AddItem " " & Chr(9) & " " & Chr(9) & " " & Chr$(9) & "Totales:" & Chr(9) & Format$(nf, "#,##0.00") & Chr$(9) & Format$(trp, "#,##0.00") & Chr$(9) & Format$(if2, "#,##0.00") & Chr$(9) & Format$(tng, "#,##0.00") & Chr$(9) & Format$(tf, "#,##0.00")
+  msf1.AddItem " " & Chr(9) & " " & Chr(9) & " " & Chr$(9) & "Totales:" & Chr(9) & Format$(nf, para.formato_numerico) & Chr$(9) & Format$(trp, para.formato_numerico) & Chr$(9) & Format$(if2, para.formato_numerico) & Chr$(9) & Format$(tng, para.formato_numerico) & Chr$(9) & Format$(tf, para.formato_numerico)
   Set rs = Nothing
  End If
   msf1.AddItem " "
@@ -549,7 +549,7 @@ Sub portasa()
       rs.MoveNext
  
     Else
-       msf1.AddItem " " & Chr$(9) & " " & Chr$(9) & " " & Chr$(9) & "Tasa " & tasa & "%" & Chr$(9) & Format$(nd, "#,##0.00") & Chr$(9) & " " & Chr$(9) & Format$(id, "#,##0.00") & Chr$(9) & " " & Chr$(9) & Format$(td, "#,##0.00")
+       msf1.AddItem " " & Chr$(9) & " " & Chr$(9) & " " & Chr$(9) & "Tasa " & tasa & "%" & Chr$(9) & Format$(nd, para.formato_numerico) & Chr$(9) & " " & Chr$(9) & Format$(id, para.formato_numerico) & Chr$(9) & " " & Chr$(9) & Format$(td, para.formato_numerico)
        tasa = rs("tasa_iva")
        nf = nf + nd
        if2 = if2 + id
@@ -562,9 +562,9 @@ Sub portasa()
   nf = nf + nd
   if2 = if2 + id
   tf = nf + if2 + tng + trp
-  msf1.AddItem " " & Chr$(9) & " " & Chr$(9) & " " & Chr$(9) & "Tasa " & tasa & "%" & Chr$(9) & Format$(nd, "#,##0.00") & Chr$(9) & " " & Chr$(9) & Format$(id, "#,##0.00") & Chr$(9) & " " & Chr$(9) & Format$(td, "#,##0.00")
+  msf1.AddItem " " & Chr$(9) & " " & Chr$(9) & " " & Chr$(9) & "Tasa " & tasa & "%" & Chr$(9) & Format$(nd, para.formato_numerico) & Chr$(9) & " " & Chr$(9) & Format$(id, para.formato_numerico) & Chr$(9) & " " & Chr$(9) & Format$(td, para.formato_numerico)
   msf1.AddItem " " & Chr(9) & " " & Chr(9) & " " & Chr$(9) & " " & Chr$(9) & "______________________" & Chr$(9) & "______________________" & Chr$(9) & "______________________" & Chr$(9) & "______________________" & Chr$(9) & "______________________"
-  msf1.AddItem " " & Chr(9) & " " & Chr(9) & " " & Chr$(9) & "Totales:" & Chr(9) & Format$(nf, "#,##0.00") & Chr$(9) & Format$(trp, "#,##0.00") & Chr$(9) & Format$(if2, "#,##0.00") & Chr$(9) & Format$(tng, "#,##0.00") & Chr$(9) & Format$(tf, "#,##0.00")
+  msf1.AddItem " " & Chr(9) & " " & Chr(9) & " " & Chr$(9) & "Totales:" & Chr(9) & Format$(nf, para.formato_numerico) & Chr$(9) & Format$(trp, para.formato_numerico) & Chr$(9) & Format$(if2, para.formato_numerico) & Chr$(9) & Format$(tng, para.formato_numerico) & Chr$(9) & Format$(tf, para.formato_numerico)
   Set rs = Nothing
  End If
  

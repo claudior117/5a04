@@ -95,7 +95,7 @@ Begin VB.Form con_estadocuenta
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   176947201
+      StartOfWeek     =   178061313
       CurrentDate     =   38754
    End
    Begin MSFlexGridLib.MSFlexGrid msf1 
@@ -279,7 +279,7 @@ Begin VB.Form con_estadocuenta
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:29 a.m."
+            TextSave        =   "05:29 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -416,25 +416,25 @@ Sub carga()
       End If
      End If
      If rs("a5.ctacte") = "D" Then
-       d = Format$(t, "##,#0.00")
+       d = Format$(t, "#0.00")
        h = ""
-       dao = Format$(T2, "##,#0.00")
+       dao = Format$(T2, "#0.00")
        hao = ""
      Else
-       h = Format$(t, "##,#0.00")
+       h = Format$(t, "#0.00")
        d = ""
-       hao = Format$(T2, "##,#0.00")
+       hao = Format$(T2, "#0.00")
        dao = ""
      
      End If
-     s = Format$(Val(s) + Val(d) - Val(h), "##,#0.00")
-     sao = Format$(Val(sao) + Val(dao) - Val(hao), "##,#0.00")
+     s = Format$(Val(s) + Val(d) - Val(h), "#0.00")
+     sao = Format$(Val(sao) + Val(dao) - Val(hao), "#0.00")
      ni = rs("num_int")
      o = rs("obs")
      If Check1 = 0 Then
-       msf1.AddItem F & Chr(9) & CTC & Chr(9) & tc & Chr(9) & nc & Chr(9) & d & Chr(9) & h & Chr(9) & s & Chr(9) & o & Chr(9) & ni
+       msf1.AddItem F & Chr(9) & CTC & Chr(9) & tc & Chr(9) & nc & Chr(9) & Format$(Val(d), para.formato_numerico) & Chr(9) & Format$(Val(h), para.formato_numerico) & Chr(9) & Format$(Val(s), para.formato_numerico) & Chr(9) & o & Chr(9) & ni
      Else
-        msf1.AddItem F & Chr(9) & CTC & Chr(9) & tc & Chr(9) & nc & Chr(9) & d & Chr(9) & h & Chr(9) & s & Chr(9) & sao & Chr(9) & o & Chr(9) & ni
+        msf1.AddItem F & Chr(9) & CTC & Chr(9) & tc & Chr(9) & nc & Chr(9) & Format$(Val(d), para.formato_numerico) & Chr(9) & Format$(Val(h), para.formato_numerico) & Chr(9) & Format$(Val(s), para.formato_numerico) & Chr(9) & Format$(Val(sao), para.formato_numerico) & Chr(9) & o & Chr(9) & ni
      End If
     rs.MoveNext
   Wend

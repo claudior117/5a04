@@ -76,6 +76,8 @@ Public Type varudt 'se crea una estructura para los parametros
    idsistema As Integer
    punto_venta_usuario As Integer
    tipo_iva_empresa As Integer
+   usa_separador_miles As String
+   formato_numerico As String
  End Type
 
 

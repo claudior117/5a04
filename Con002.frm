@@ -382,12 +382,12 @@ Begin VB.Form con_vercomp
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "02/03/2024"
+            TextSave        =   "04/03/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "11:14 a.m."
+            TextSave        =   "05:26 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -505,7 +505,7 @@ Sub carga(par As Integer)
      Else
        tp = "CTACTE"
      End If
-     msf1.AddItem F & Chr(9) & cp & Chr(9) & p & Chr(9) & CTC & Chr(9) & tc & Chr(9) & nc & Chr(9) & d & Chr(9) & rs("estado_pago") & Chr(9) & rs("num_int") & Chr(9) & rs("Moneda") & Chr(9) & Format$(rs("subtotal"), "#0.00") & Chr(9) & Format$(rs("a5.iva"), "#0.00") & Chr(9) & Format$(rs("no_grabado"), "#0.00") & Chr(9) & Format$(rs("percep_ret"), "#0.00") & Chr(9) & Format$(tp, "#0.00")
+     msf1.AddItem F & Chr(9) & cp & Chr(9) & p & Chr(9) & CTC & Chr(9) & tc & Chr(9) & nc & Chr(9) & Format$(Val(d), para.formato_numerico) & Chr(9) & rs("estado_pago") & Chr(9) & rs("num_int") & Chr(9) & rs("Moneda") & Chr(9) & Format$(rs("subtotal"), para.formato_numerico) & Chr(9) & Format$(rs("a5.iva"), para.formato_numerico) & Chr(9) & Format$(rs("no_grabado"), para.formato_numerico) & Chr(9) & Format$(rs("percep_ret"), para.formato_numerico) & Chr(9) & tp
 
     rs.MoveNext
     pb = pb + 1
@@ -514,7 +514,7 @@ Sub carga(par As Integer)
     End If
   Wend
   msf1.AddItem ""
-  msf1.AddItem "" & Chr(9) & "" & Chr(9) & "" & Chr(9) & "" & Chr(9) & "" & Chr(9) & "Totales:" & Chr(9) & Format$(t, "##,#0.00") & Chr(9) & ""
+  msf1.AddItem "" & Chr(9) & "" & Chr(9) & "" & Chr(9) & "" & Chr(9) & "" & Chr(9) & "Totales:" & Chr(9) & Format$(t, para.formato_numerico) & Chr(9) & ""
  espere.Hide
    
 End Sub
@@ -616,12 +616,12 @@ Sub carga2(par As Integer)
        t = t - Val(d)
      End If
      ni = rs("a5.num_int")
-     msf1.AddItem F & Chr(9) & cp & Chr(9) & p & Chr(9) & CTC & Chr(9) & tc & Chr(9) & nc & Chr(9) & d & Chr(9) & rs("estado_pago") & Chr(9) & rs("a5.num_int") & Chr(9) & rs("Moneda") & Chr(9) & Format$(rs("subtotal"), "######0.00") & Chr(9) & Format$(rs("a5.iva"), "######0.00") & Chr(9) & Format$(rs("no_grabado"), "######0.00") & Chr(9) & Format$(rs("percep_ret"), "######0.00")
+     msf1.AddItem F & Chr(9) & cp & Chr(9) & p & Chr(9) & CTC & Chr(9) & tc & Chr(9) & nc & Chr(9) & Format$(Val(d), para.formato_numerico) & Chr(9) & rs("estado_pago") & Chr(9) & rs("a5.num_int") & Chr(9) & rs("Moneda") & Chr(9) & Format$(rs("subtotal"), para.formato_numerico) & Chr(9) & Format$(rs("a5.iva"), para.formato_numerico) & Chr(9) & Format$(rs("no_grabado"), para.formato_numerico) & Chr(9) & Format$(rs("percep_ret"), para.formato_numerico)
     rs.MoveNext
     pb = pb + 1
   Wend
   msf1.AddItem ""
-  msf1.AddItem "" & Chr(9) & "" & Chr(9) & "" & Chr(9) & "" & Chr(9) & "" & Chr(9) & "Totales:" & Chr(9) & Format$(t, "#####0.00") & Chr(9) & ""
+  msf1.AddItem "" & Chr(9) & "" & Chr(9) & "" & Chr(9) & "" & Chr(9) & "" & Chr(9) & "Totales:" & Chr(9) & Format$(t, para.formato_numerico) & Chr(9) & ""
   espere.Hide
 End Sub
 

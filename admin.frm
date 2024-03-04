@@ -192,7 +192,15 @@ If c_usuario.ListIndex >= 0 Then
      para.imprime_pie_reportes = rs("imprime_pie_reportes")
      para.tipolistaprecios = rs("tipo_lista_precios")
      para.imprime_cabecera_reportes = rs("imprime_cabecera_reportes")
-     
+     para.usa_separador_miles = rs("usa_separador_miles")
+     Set rs = Nothing
+
+
+      If para.usa_separador_miles = "N" Then
+         para.formato_numerico = "#0.00"
+      Else
+         para.formato_numerico = "#,##0.00"
+      End If
      
      Set rs = New ADODB.Recordset
      q = "select * from g0 where [sucursal] = 0"
@@ -364,7 +372,7 @@ End Sub
 Sub entrar()
         'para.empresa = "geser" 'command$
         'fotosv   sistema2
-        para.empresa = "luisag" 'prueba
+        para.empresa = "" 'prueba
         Call LEEINI
         X = Shell(App.Path & "\tools\confreg.exe")
         Call carga_usuarios_ini(c_usuario)
