@@ -454,12 +454,12 @@ Begin VB.Form inicio
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "28/02/2024"
+            TextSave        =   "04/03/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "06:16 p.m."
+            TextSave        =   "10:21 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -958,30 +958,6 @@ e1:
 
 End Sub
 
-
-Private Sub Form_Resize()
-Text5 = Me.Width
-Text6 = Me.Height
-
-If Me.Width > 14000 Then
-   Me.Width = 14000
-End If
-
-If Me.Width < 12120 Then
-   Me.Width = 12120
-End If
-
-
-If Me.Height > 10000 Then
-   Me.Height = 10000
-End If
-
-If Me.Height < 9060 Then
-   Me.Height = 9060
-End If
-
-
-End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
 Unload vta_listaprecios

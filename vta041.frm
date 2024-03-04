@@ -87,7 +87,7 @@ Begin VB.Form vta_retyperc_realizadas
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   116588545
+      StartOfWeek     =   176947201
       CurrentDate     =   38750
    End
    Begin VB.Frame Frame3 
@@ -199,12 +199,12 @@ Begin VB.Form vta_retyperc_realizadas
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "02/03/2024"
+            TextSave        =   "04/03/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "12:15 p.m."
+            TextSave        =   "10:29 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
