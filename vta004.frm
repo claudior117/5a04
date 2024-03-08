@@ -5,21 +5,21 @@ Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form vta_estadocuenta 
    BackColor       =   &H00E0E0E0&
    Caption         =   "ESTADO DE CUENTA POR CLIENTES"
-   ClientHeight    =   8490
+   ClientHeight    =   9435
    ClientLeft      =   165
    ClientTop       =   555
-   ClientWidth     =   11880
+   ClientWidth     =   18165
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
-   ScaleHeight     =   8490
-   ScaleWidth      =   11880
+   ScaleHeight     =   9435
+   ScaleWidth      =   18165
    StartUpPosition =   3  'Windows Default
    Begin VB.Frame Frame7 
       BackColor       =   &H00E0E0E0&
       Height          =   615
-      Left            =   240
+      Left            =   360
       TabIndex        =   25
-      Top             =   7440
+      Top             =   8280
       Width           =   7575
       Begin VB.OptionButton Option7 
          BackColor       =   &H00E0E0E0&
@@ -51,13 +51,22 @@ Begin VB.Form vta_estadocuenta
    End
    Begin VB.Frame Frame6 
       BackColor       =   &H00E0E0E0&
-      Height          =   615
-      Left            =   240
+      Height          =   735
+      Left            =   8160
       TabIndex        =   22
-      Top             =   1200
+      Top             =   840
       Width           =   3735
       Begin VB.ComboBox c_sucursal 
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Left            =   2160
          TabIndex        =   23
          Top             =   240
@@ -68,7 +77,7 @@ Begin VB.Form vta_estadocuenta
          BackColor       =   &H00800080&
          Caption         =   "Punto Venta:"
          ForeColor       =   &H00FFFFFF&
-         Height          =   255
+         Height          =   375
          Left            =   120
          TabIndex        =   24
          Top             =   240
@@ -78,15 +87,15 @@ Begin VB.Form vta_estadocuenta
    Begin VB.Frame Frame4 
       BackColor       =   &H00E0E0E0&
       Height          =   495
-      Left            =   8640
+      Left            =   13080
       TabIndex        =   19
       Top             =   1440
-      Width           =   2535
+      Width           =   4815
       Begin VB.CheckBox Check1 
          BackColor       =   &H00E0E0E0&
          Caption         =   "Muestra Saldo en U$s"
          Height          =   315
-         Left            =   120
+         Left            =   360
          TabIndex        =   20
          Top             =   120
          Width           =   2175
@@ -94,61 +103,63 @@ Begin VB.Form vta_estadocuenta
    End
    Begin VB.Frame Frame5 
       BackColor       =   &H00E0E0E0&
-      Height          =   615
-      Left            =   8640
+      Caption         =   "Moneda"
+      Height          =   735
+      Left            =   13080
       TabIndex        =   14
-      Top             =   840
-      Width           =   3135
+      Top             =   720
+      Width           =   4815
       Begin VB.OptionButton Option4 
          BackColor       =   &H00E0E0E0&
          Caption         =   "Pesos($)"
          Height          =   375
-         Left            =   120
+         Left            =   240
          TabIndex        =   16
-         Top             =   120
+         Top             =   240
          Width           =   1335
       End
       Begin VB.OptionButton Option3 
          BackColor       =   &H00E0E0E0&
          Caption         =   "Dolares(U$s)"
          Height          =   375
-         Left            =   1680
+         Left            =   2760
          TabIndex        =   15
-         Top             =   120
+         Top             =   240
          Width           =   1335
       End
    End
    Begin VB.Frame Frame2 
       BackColor       =   &H00E0E0E0&
-      Height          =   855
-      Left            =   8640
+      Caption         =   "Origen"
+      Height          =   735
+      Left            =   13080
       TabIndex        =   11
       Top             =   0
-      Width           =   3135
+      Width           =   4815
       Begin VB.OptionButton Option2 
          BackColor       =   &H00E0E0E0&
          Caption         =   "Fecha vencimiento"
-         Height          =   495
-         Left            =   1680
+         Height          =   375
+         Left            =   2760
          TabIndex        =   13
          Top             =   240
-         Width           =   1335
+         Width           =   1935
       End
       Begin VB.OptionButton Option1 
          BackColor       =   &H00E0E0E0&
          Caption         =   "Fecha Comprobante"
-         Height          =   495
+         Height          =   375
          Left            =   120
          TabIndex        =   12
          Top             =   240
-         Width           =   1335
+         Width           =   2055
       End
    End
    Begin MSComCtl2.MonthView cal1 
       Height          =   2370
-      Left            =   3600
+      Left            =   5040
       TabIndex        =   10
-      Top             =   240
+      Top             =   960
       Width           =   2595
       _ExtentX        =   4577
       _ExtentY        =   4180
@@ -156,79 +167,115 @@ Begin VB.Form vta_estadocuenta
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   178126849
+      StartOfWeek     =   172818433
       CurrentDate     =   38754
    End
    Begin MSFlexGridLib.MSFlexGrid msf1 
-      Height          =   5295
+      Height          =   5895
       Left            =   240
       TabIndex        =   2
-      Top             =   1920
-      Width           =   11535
-      _ExtentX        =   20346
-      _ExtentY        =   9340
+      Top             =   2040
+      Width           =   17775
+      _ExtentX        =   31353
+      _ExtentY        =   10398
       _Version        =   393216
       AllowUserResizing=   1
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Segoe UI"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
    End
    Begin VB.Frame Frame3 
       BackColor       =   &H00E0E0E0&
-      Height          =   1215
+      Height          =   1815
       Left            =   240
       TabIndex        =   7
       Top             =   0
-      Width           =   8295
+      Width           =   12735
       Begin VB.CommandButton Command5 
-         Height          =   255
-         Left            =   7080
+         Height          =   495
+         Left            =   12000
          Picture         =   "vta004.frx":0000
          Style           =   1  'Graphical
          TabIndex        =   21
          Top             =   240
-         Width           =   255
+         Width           =   495
       End
       Begin VB.TextBox t_fecha2 
          BorderStyle     =   0  'None
-         Height          =   285
-         Left            =   6600
+         Height          =   405
+         Left            =   2160
          MaxLength       =   10
          TabIndex        =   17
-         Top             =   720
-         Width           =   1575
+         Top             =   1200
+         Width           =   2415
       End
       Begin VB.TextBox t_fecha 
          BorderStyle     =   0  'None
-         Height          =   285
+         Height          =   405
          Left            =   2160
          MaxLength       =   10
          TabIndex        =   1
          Top             =   720
-         Width           =   1575
+         Width           =   2415
       End
       Begin VB.ComboBox c_prov 
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   420
          Left            =   2160
          TabIndex        =   0
          Text            =   "c_prov"
          Top             =   240
-         Width           =   4815
+         Width           =   9495
       End
       Begin VB.Label Label1 
          Alignment       =   1  'Right Justify
          BackColor       =   &H00800080&
          Caption         =   "Fecha Hasta:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
-         Height          =   255
-         Left            =   4560
+         Height          =   375
+         Left            =   120
          TabIndex        =   18
-         Top             =   720
+         Top             =   1200
          Width           =   1935
       End
       Begin VB.Label Label3 
          Alignment       =   1  'Right Justify
          BackColor       =   &H00800080&
          Caption         =   "Fecha Desde:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
-         Height          =   255
+         Height          =   495
          Left            =   120
          TabIndex        =   9
          Top             =   720
@@ -238,6 +285,15 @@ Begin VB.Form vta_estadocuenta
          Alignment       =   1  'Right Justify
          BackColor       =   &H00800080&
          Caption         =   "Cliente:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
          Height          =   495
          Left            =   120
@@ -250,9 +306,9 @@ Begin VB.Form vta_estadocuenta
       BackColor       =   &H00E0E0E0&
       Caption         =   "Funciones"
       Height          =   975
-      Left            =   9720
+      Left            =   16200
       TabIndex        =   4
-      Top             =   7320
+      Top             =   7920
       Width           =   1575
       Begin VB.CommandButton btnsale 
          Cancel          =   -1  'True
@@ -280,13 +336,13 @@ Begin VB.Form vta_estadocuenta
    End
    Begin MSComctlLib.StatusBar StatusBar1 
       Align           =   2  'Align Bottom
-      Height          =   255
+      Height          =   405
       Left            =   0
       TabIndex        =   3
-      Top             =   8235
-      Width           =   11880
-      _ExtentX        =   20955
-      _ExtentY        =   450
+      Top             =   9030
+      Width           =   18165
+      _ExtentX        =   32041
+      _ExtentY        =   714
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
          NumPanels       =   3
@@ -300,12 +356,12 @@ Begin VB.Form vta_estadocuenta
          BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "04/03/2024"
+            TextSave        =   "08/03/2024"
          EndProperty
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "05:30 p.m."
+            TextSave        =   "12:38 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -393,9 +449,9 @@ Sub carga()
   saldoanterior = sa
   saldoanterioro = sao
   If Check1 = 0 Then
-    msf1.AddItem t_fecha & Chr(9) & "" & Chr(9) & "Saldo Ant." & Chr(9) & "" & Chr(9) & Format$(da, "######0.00") & Chr(9) & Format$(ha, "######0.00") & Chr(9) & Format$(sa, "######0.00")
+    msf1.AddItem t_fecha & Chr(9) & "" & Chr(9) & "Saldo Ant." & Chr(9) & "" & Chr(9) & Format$(da, para.formato_numerico) & Chr(9) & Format$(ha, para.formato_numerico) & Chr(9) & Format$(sa, para.formato_numerico)
   Else
-    msf1.AddItem t_fecha & Chr(9) & "" & Chr(9) & "Saldo Ant." & Chr(9) & "" & Chr(9) & Format$(da, "######0.00") & Chr(9) & Format$(ha, "######0.00") & Chr(9) & Format$(sa, "######0.00") & Chr(9) & Format$(sao, "######0.00")
+    msf1.AddItem t_fecha & Chr(9) & "" & Chr(9) & "Saldo Ant." & Chr(9) & "" & Chr(9) & Format$(da, "######0.00") & Chr(9) & Format$(ha, para.formato_numerico) & Chr(9) & Format$(sa, para.formato_numerico) & Chr(9) & Format$(sao, para.formato_numerico)
   End If
   
   
@@ -516,9 +572,9 @@ Sub carga()
        End If
      End If
      If Check1 = 0 Then
-       msf1.AddItem F & Chr(9) & CTC & Chr(9) & tc & Chr(9) & nc & Chr(9) & d & Chr(9) & h & Chr(9) & s & Chr(9) & o & Chr(9) & ep & Chr(9) & ni
+       msf1.AddItem F & Chr(9) & CTC & Chr(9) & tc & Chr(9) & nc & Chr(9) & Format$(Val(d), para.formato_numerico) & Chr(9) & Format$(Val(h), para.formato_numerico) & Chr(9) & Format$(Val(s), para.formato_numerico) & Chr(9) & Format$(Val(o), para.formato_numerico) & Chr(9) & ep & Chr(9) & ni
      Else
-        msf1.AddItem F & Chr(9) & CTC & Chr(9) & tc & Chr(9) & nc & Chr(9) & d & Chr(9) & h & Chr(9) & s & Chr(9) & s2 & Chr(9) & o & Chr(9) & ep & Chr(9) & ni
+        msf1.AddItem F & Chr(9) & CTC & Chr(9) & tc & Chr(9) & nc & Chr(9) & Format$(Val(d), para.formato_numerico) & Chr(9) & Format$(Val(h), para.formato_numerico) & Chr(9) & Format$(Val(s), para.formato_numerico) & Chr(9) & Format$(Val(s2), para.formato_numerico) & Chr(9) & Format$(Val(o), para.formato_numerico) & Chr(9) & ep & Chr(9) & ni
      End If
    rs.MoveNext
   Wend
@@ -540,15 +596,15 @@ If Check1 = 0 Then
   msf1.clear
   msf1.Rows = 1
   msf1.Cols = 11
-  msf1.ColWidth(0) = 1300
-  msf1.ColWidth(1) = 500
-  msf1.ColWidth(2) = 1500
-  msf1.ColWidth(3) = 1700
-  msf1.ColWidth(4) = 1200
-  msf1.ColWidth(5) = 1200
-  msf1.ColWidth(6) = 1200
-  msf1.ColWidth(7) = 3000
-  msf1.ColWidth(8) = 800
+  msf1.ColWidth(0) = 1500
+  msf1.ColWidth(1) = 800
+  msf1.ColWidth(2) = 2500
+  msf1.ColWidth(3) = 2300
+  msf1.ColWidth(4) = 1700
+  msf1.ColWidth(5) = 1700
+  msf1.ColWidth(6) = 1700
+  msf1.ColWidth(7) = 2700
+  msf1.ColWidth(8) = 1100
   msf1.ColWidth(9) = 1000
   msf1.ColWidth(10) = 500
   msf1.TextMatrix(0, 0) = "Fecha"

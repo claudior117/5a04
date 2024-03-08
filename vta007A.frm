@@ -4,76 +4,94 @@ Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form vta_recibo1 
    BackColor       =   &H00C0C0C0&
    Caption         =   "COMPROBANTES PENDIENTES DE PAGO"
-   ClientHeight    =   4965
+   ClientHeight    =   6345
    ClientLeft      =   75
    ClientTop       =   360
-   ClientWidth     =   11280
+   ClientWidth     =   15765
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
    PaletteMode     =   1  'UseZOrder
-   ScaleHeight     =   4965
-   ScaleWidth      =   11280
+   ScaleHeight     =   6345
+   ScaleWidth      =   15765
    StartUpPosition =   1  'CenterOwner
    Begin VB.Frame Frame2 
-      Height          =   975
+      Height          =   855
       Left            =   120
       TabIndex        =   6
-      Top             =   3600
-      Width           =   6855
+      Top             =   4920
+      Width           =   9255
       Begin VB.Label Label1 
          Caption         =   "Todos los saldos y cancelaciones son en $. En caso  de ser comprobantes en U$s se convertiran segun cotizacion original."
-         Height          =   615
+         Height          =   375
          Left            =   240
          TabIndex        =   7
          Top             =   240
-         Width           =   6375
+         Width           =   8895
       End
    End
    Begin VB.Frame Frame3 
       BackColor       =   &H8000000A&
-      Height          =   615
-      Left            =   7440
+      Height          =   855
+      Left            =   10080
       TabIndex        =   3
-      Top             =   3600
-      Width           =   3495
+      Top             =   4920
+      Width           =   5055
       Begin VB.TextBox T_APAGAR 
-         Height          =   285
-         Left            =   1680
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   435
+         Left            =   2160
          TabIndex        =   4
          Top             =   240
-         Width           =   1695
+         Width           =   2775
       End
       Begin VB.Label Label2 
          BackColor       =   &H000080FF&
          Caption         =   "TOTAL A PAGAR"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FF0000&
-         Height          =   255
+         Height          =   495
          Left            =   120
          TabIndex        =   5
          Top             =   240
-         Width           =   1455
+         Width           =   1935
       End
    End
    Begin VB.Frame Frame1 
       BackColor       =   &H00E0E0E0&
       Caption         =   "Comprobantes a Aplicar"
-      Height          =   3495
+      Height          =   4815
       Left            =   0
       TabIndex        =   1
       Top             =   0
-      Width           =   11175
+      Width           =   15615
       Begin MSFlexGridLib.MSFlexGrid msf1 
-         Height          =   3135
+         Height          =   4335
          Left            =   240
          TabIndex        =   2
          Top             =   240
-         Width           =   10695
-         _ExtentX        =   18865
-         _ExtentY        =   5530
+         Width           =   15135
+         _ExtentX        =   26696
+         _ExtentY        =   7646
          _Version        =   393216
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Size            =   9.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -84,28 +102,37 @@ Begin VB.Form vta_recibo1
    End
    Begin MSComctlLib.StatusBar StatusBar1 
       Align           =   2  'Align Bottom
-      Height          =   255
+      Height          =   405
       Left            =   0
       TabIndex        =   0
-      Top             =   4710
-      Width           =   11280
-      _ExtentX        =   19897
-      _ExtentY        =   450
+      Top             =   5940
+      Width           =   15765
+      _ExtentX        =   27808
+      _ExtentY        =   714
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
          NumPanels       =   2
          BeginProperty Panel1 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Alignment       =   1
-            Object.Width           =   2646
-            MinWidth        =   2646
+            Object.Width           =   8819
+            MinWidth        =   8819
             Text            =   "Cliente"
             TextSave        =   "Cliente"
          EndProperty
          BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Alignment       =   1
-            Object.Width           =   13229
-            MinWidth        =   13229
+            Object.Width           =   17639
+            MinWidth        =   17639
          EndProperty
+      EndProperty
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
       EndProperty
       OLEDropMode     =   1
    End
@@ -141,16 +168,16 @@ Sub armagrid()
 msf1.clear
 msf1.Rows = 1
 msf1.Cols = 10
-msf1.ColWidth(0) = 300
-msf1.ColWidth(1) = 1100
-msf1.ColWidth(2) = 2200
-msf1.ColWidth(3) = 1100
-msf1.ColWidth(4) = 900
-msf1.ColWidth(5) = 1100
-msf1.ColWidth(6) = 1100
+msf1.ColWidth(0) = 500
+msf1.ColWidth(1) = 1300
+msf1.ColWidth(2) = 2500
+msf1.ColWidth(3) = 1700
+msf1.ColWidth(4) = 1100
+msf1.ColWidth(5) = 1700
+msf1.ColWidth(6) = 1600
 msf1.ColWidth(7) = 500
-msf1.ColWidth(8) = 1000
-msf1.ColWidth(9) = 1000
+msf1.ColWidth(8) = 1700
+msf1.ColWidth(9) = 1700
 
 msf1.TextMatrix(0, 0) = ""
 msf1.TextMatrix(0, 1) = "Fecha"
@@ -182,8 +209,8 @@ Wend
 End Sub
 
 Private Sub Form_Load()
-Call barraesag(Me)
-
+'Call barraesag(Me)
+Me.StatusBar1.Panels.item(1) = "Agregar comprobantes a recibo"
 End Sub
 
   

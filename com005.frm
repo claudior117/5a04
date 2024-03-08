@@ -80,7 +80,7 @@ Begin VB.Form com_vencimientos
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   178126849
+      StartOfWeek     =   172818433
       CurrentDate     =   38803
    End
    Begin VB.Frame Frame4 
@@ -198,12 +198,12 @@ Begin VB.Form com_vencimientos
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "04/03/2024"
+            TextSave        =   "08/03/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "05:30 p.m."
+            TextSave        =   "12:38 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1

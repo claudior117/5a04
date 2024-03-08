@@ -7,10 +7,10 @@ Begin VB.Form vta_recibo
    BackColor       =   &H00E0E0E0&
    BorderStyle     =   1  'Fixed Single
    Caption         =   "RECIBO"
-   ClientHeight    =   8415
+   ClientHeight    =   9585
    ClientLeft      =   330
    ClientTop       =   705
-   ClientWidth     =   11955
+   ClientWidth     =   17910
    BeginProperty Font 
       Name            =   "MS Sans Serif"
       Size            =   8.25
@@ -24,20 +24,20 @@ Begin VB.Form vta_recibo
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
    PaletteMode     =   1  'UseZOrder
-   ScaleHeight     =   8415
-   ScaleWidth      =   11955
+   ScaleHeight     =   9585
+   ScaleWidth      =   17910
    Begin VB.Frame Frame8 
       Caption         =   "Saldo"
       Height          =   855
-      Left            =   9240
-      TabIndex        =   49
-      Top             =   1440
+      Left            =   15240
+      TabIndex        =   47
+      Top             =   1320
       Width           =   2415
       Begin VB.TextBox t_saldo21 
          Height          =   375
          Left            =   240
          Locked          =   -1  'True
-         TabIndex        =   50
+         TabIndex        =   48
          Top             =   240
          Width           =   1935
       End
@@ -45,15 +45,15 @@ Begin VB.Form vta_recibo
    Begin VB.Frame Frame2 
       Caption         =   "Frame2"
       Height          =   1335
-      Left            =   9240
-      TabIndex        =   42
+      Left            =   15240
+      TabIndex        =   40
       Top             =   0
       Visible         =   0   'False
       Width           =   2415
       Begin VB.TextBox t_numintnc 
          Height          =   285
          Left            =   120
-         TabIndex        =   48
+         TabIndex        =   46
          Text            =   "Text1"
          Top             =   960
          Width           =   1095
@@ -61,7 +61,7 @@ Begin VB.Form vta_recibo
       Begin VB.TextBox t_totalnc 
          Height          =   285
          Left            =   1560
-         TabIndex        =   47
+         TabIndex        =   45
          Text            =   "Text1"
          Top             =   960
          Width           =   1215
@@ -69,7 +69,7 @@ Begin VB.Form vta_recibo
       Begin VB.TextBox t_ivanc 
          Height          =   285
          Left            =   1560
-         TabIndex        =   46
+         TabIndex        =   44
          Text            =   "Text1"
          Top             =   600
          Width           =   1215
@@ -77,7 +77,7 @@ Begin VB.Form vta_recibo
       Begin VB.TextBox t_subtotalnc 
          Height          =   285
          Left            =   1560
-         TabIndex        =   45
+         TabIndex        =   43
          Text            =   "Text1"
          Top             =   240
          Width           =   1215
@@ -85,7 +85,7 @@ Begin VB.Form vta_recibo
       Begin VB.TextBox t_numnc 
          Height          =   285
          Left            =   120
-         TabIndex        =   44
+         TabIndex        =   42
          Text            =   "Text1"
          Top             =   600
          Width           =   1095
@@ -93,7 +93,7 @@ Begin VB.Form vta_recibo
       Begin VB.TextBox t_sucnc 
          Height          =   285
          Left            =   120
-         TabIndex        =   43
+         TabIndex        =   41
          Text            =   "Text1"
          Top             =   240
          Width           =   1215
@@ -102,8 +102,8 @@ Begin VB.Form vta_recibo
    Begin VB.Frame Frame13 
       BackColor       =   &H00E0E0E0&
       Height          =   495
-      Left            =   5160
-      TabIndex        =   39
+      Left            =   10320
+      TabIndex        =   37
       Top             =   720
       Width           =   3855
       Begin VB.CheckBox Check1 
@@ -111,7 +111,7 @@ Begin VB.Form vta_recibo
          Caption         =   "Solo Cuenta U$s"
          Height          =   315
          Left            =   120
-         TabIndex        =   41
+         TabIndex        =   39
          Top             =   120
          Width           =   1935
       End
@@ -120,14 +120,14 @@ Begin VB.Form vta_recibo
          Caption         =   "Solo Cuenta $"
          Height          =   315
          Left            =   2160
-         TabIndex        =   40
+         TabIndex        =   38
          Top             =   120
          Width           =   1575
       End
    End
    Begin EPSON_Impresora_Fiscal.PrinterFiscal epson1 
-      Left            =   10920
-      Top             =   6240
+      Left            =   17400
+      Top             =   8280
       _ExtentX        =   847
       _ExtentY        =   847
    End
@@ -135,9 +135,9 @@ Begin VB.Form vta_recibo
       BackColor       =   &H00E0E0E0&
       Caption         =   "Funciones"
       Height          =   975
-      Left            =   10320
+      Left            =   15720
       TabIndex        =   33
-      Top             =   6960
+      Top             =   8040
       Width           =   1575
       Begin VB.CommandButton confirma 
          Height          =   615
@@ -165,16 +165,16 @@ Begin VB.Form vta_recibo
    End
    Begin VB.Frame Frame6 
       BackColor       =   &H00E0E0E0&
-      Height          =   1695
+      Height          =   1815
       Left            =   120
       TabIndex        =   25
-      Top             =   6240
-      Width           =   9495
+      Top             =   7200
+      Width           =   15135
       Begin VB.TextBox t_retenciones 
          Appearance      =   0  'Flat
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -182,18 +182,18 @@ Begin VB.Form vta_recibo
             Strikethrough   =   0   'False
          EndProperty
          Height          =   405
-         Left            =   6000
+         Left            =   3840
          Locked          =   -1  'True
-         MaxLength       =   10
+         MaxLength       =   21
          TabIndex        =   7
-         Top             =   240
-         Width           =   1215
+         Top             =   720
+         Width           =   2175
       End
       Begin VB.TextBox fdolar 
          Appearance      =   0  'Flat
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -201,17 +201,17 @@ Begin VB.Form vta_recibo
             Strikethrough   =   0   'False
          EndProperty
          Height          =   405
-         Left            =   5280
-         MaxLength       =   8
+         Left            =   9720
+         MaxLength       =   15
          TabIndex        =   9
-         Top             =   720
-         Width           =   975
+         Top             =   240
+         Width           =   1575
       End
       Begin VB.TextBox Detalle 
          Appearance      =   0  'Flat
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Size            =   9.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -219,17 +219,17 @@ Begin VB.Form vta_recibo
             Strikethrough   =   0   'False
          EndProperty
          Height          =   405
-         Left            =   2040
+         Left            =   9720
          MaxLength       =   99
          TabIndex        =   11
          Top             =   1200
-         Width           =   7335
+         Width           =   5295
       End
       Begin VB.TextBox t_pago 
          Appearance      =   0  'Flat
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -237,18 +237,18 @@ Begin VB.Form vta_recibo
             Strikethrough   =   0   'False
          EndProperty
          Height          =   405
-         Left            =   2040
+         Left            =   3840
          Locked          =   -1  'True
-         MaxLength       =   10
+         MaxLength       =   21
          TabIndex        =   6
          Top             =   240
-         Width           =   1575
+         Width           =   2175
       End
       Begin VB.TextBox total 
          Appearance      =   0  'Flat
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -256,17 +256,17 @@ Begin VB.Form vta_recibo
             Strikethrough   =   0   'False
          EndProperty
          Height          =   405
-         Left            =   2040
-         MaxLength       =   12
+         Left            =   3840
+         MaxLength       =   21
          TabIndex        =   8
-         Top             =   720
-         Width           =   1575
+         Top             =   1200
+         Width           =   2175
       End
       Begin VB.TextBox t_totald 
          Appearance      =   0  'Flat
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -274,85 +274,137 @@ Begin VB.Form vta_recibo
             Strikethrough   =   0   'False
          EndProperty
          Height          =   405
-         Left            =   8040
-         MaxLength       =   8
+         Left            =   9720
+         MaxLength       =   21
          TabIndex        =   10
          Top             =   720
-         Width           =   1335
+         Width           =   2055
       End
       Begin VB.Label Label3 
-         Alignment       =   2  'Center
          Appearance      =   0  'Flat
          BackColor       =   &H00808000&
-         Caption         =   "Total Retenciones Aplicadas"
+         Caption         =   "Total Retenciones Aplicadas:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
-         Height          =   375
-         Left            =   4080
+         Height          =   495
+         Left            =   120
          TabIndex        =   36
-         Top             =   240
-         Width           =   1815
+         Top             =   720
+         Width           =   3615
       End
       Begin VB.Label Label28 
          Alignment       =   1  'Right Justify
          Appearance      =   0  'Flat
          BackColor       =   &H00FF0000&
          Caption         =   "Cotiz. U$s:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
-         Height          =   375
-         Left            =   4080
+         Height          =   495
+         Left            =   7440
          TabIndex        =   30
-         Top             =   720
-         Width           =   1095
+         Top             =   240
+         Width           =   2175
       End
       Begin VB.Label Label7 
          Alignment       =   1  'Right Justify
          Appearance      =   0  'Flat
          BackColor       =   &H00808000&
          Caption         =   "En concepto  de:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
          Height          =   375
-         Left            =   120
+         Left            =   7440
          TabIndex        =   29
          Top             =   1200
-         Width           =   1815
+         Width           =   2175
       End
       Begin VB.Label Label6 
-         Alignment       =   2  'Center
          Appearance      =   0  'Flat
          BackColor       =   &H00808000&
-         Caption         =   "Total Comprobantes Aplicados"
+         Caption         =   "Total Comprobantes Aplicados:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
          Height          =   495
          Left            =   120
          TabIndex        =   28
          Top             =   240
-         Width           =   1815
+         Width           =   3615
       End
       Begin VB.Label Label5 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
          BackColor       =   &H00FF0000&
-         Caption         =   "Total a ingresar en cuenta cliente"
+         Caption         =   "Total a ingresar en cuenta cliente:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
-         Height          =   495
+         Height          =   375
          Index           =   8
          Left            =   120
          TabIndex        =   27
-         Top             =   720
-         Width           =   1815
+         Top             =   1200
+         Width           =   3615
       End
       Begin VB.Label Label5 
          Alignment       =   1  'Right Justify
          Appearance      =   0  'Flat
          BackColor       =   &H00FF0000&
          Caption         =   "Total U$s:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
-         Height          =   375
+         Height          =   495
          Index           =   1
-         Left            =   6720
+         Left            =   7440
          TabIndex        =   26
          Top             =   720
-         Width           =   1215
+         Width           =   2175
       End
    End
    Begin VB.Frame Frame4 
@@ -361,22 +413,31 @@ Begin VB.Form vta_recibo
       Left            =   120
       TabIndex        =   22
       Top             =   0
-      Width           =   9015
+      Width           =   14655
       Begin VB.ComboBox c_sucursal 
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          ItemData        =   "vta007.frx":1104
-         Left            =   7200
+         Left            =   12120
          List            =   "vta007.frx":1106
          Style           =   2  'Dropdown List
          TabIndex        =   31
          Top             =   240
-         Width           =   1695
+         Width           =   1935
       End
       Begin VB.TextBox t_numop 
          Appearance      =   0  'Flat
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -384,17 +445,17 @@ Begin VB.Form vta_recibo
             Strikethrough   =   0   'False
          EndProperty
          Height          =   405
-         Left            =   3120
+         Left            =   3600
          MaxLength       =   8
          TabIndex        =   1
          Top             =   240
-         Width           =   1575
+         Width           =   2655
       End
       Begin VB.TextBox t_fecha 
          Appearance      =   0  'Flat
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -405,14 +466,14 @@ Begin VB.Form vta_recibo
          Left            =   2040
          MaxLength       =   10
          TabIndex        =   2
-         Top             =   720
-         Width           =   1455
+         Top             =   840
+         Width           =   1935
       End
       Begin VB.TextBox sucursal 
          Appearance      =   0  'Flat
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -425,24 +486,42 @@ Begin VB.Form vta_recibo
          MaxLength       =   4
          TabIndex        =   0
          Top             =   240
-         Width           =   855
+         Width           =   1455
       End
       Begin VB.Label Label8 
          Alignment       =   1  'Right Justify
          BackColor       =   &H00800080&
          Caption         =   "Punto Venta:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
-         Height          =   255
-         Left            =   5640
+         Height          =   375
+         Left            =   10200
          TabIndex        =   32
          Top             =   240
-         Width           =   1455
+         Width           =   1695
       End
       Begin VB.Label Label2 
          Alignment       =   1  'Right Justify
          Appearance      =   0  'Flat
          BackColor       =   &H00808000&
          Caption         =   "Nro Recibo:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
          Height          =   615
          Left            =   120
@@ -455,6 +534,15 @@ Begin VB.Form vta_recibo
          Appearance      =   0  'Flat
          BackColor       =   &H00808000&
          Caption         =   "Fecha:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
          Height          =   375
          Left            =   120
@@ -466,39 +554,23 @@ Begin VB.Form vta_recibo
    Begin VB.Frame Frame1 
       BackColor       =   &H00E0E0E0&
       Caption         =   "Comprobantes a Aplicar"
-      Height          =   1695
+      Height          =   2295
       Left            =   120
       TabIndex        =   16
-      Top             =   2400
-      Width           =   11655
-      Begin VB.CommandButton Command2 
-         Caption         =   "Facturar"
-         Height          =   195
-         Left            =   10560
-         TabIndex        =   38
-         Top             =   360
-         Width           =   975
-      End
-      Begin VB.CommandButton Command1 
-         Caption         =   "Ret."
-         Height          =   195
-         Left            =   10560
-         TabIndex        =   37
-         Top             =   720
-         Width           =   975
-      End
+      Top             =   2520
+      Width           =   17535
       Begin MSFlexGridLib.MSFlexGrid msf1 
-         Height          =   1335
+         Height          =   1935
          Left            =   120
          TabIndex        =   4
          Top             =   240
-         Width           =   10335
-         _ExtentX        =   18230
-         _ExtentY        =   2355
+         Width           =   17055
+         _ExtentX        =   30083
+         _ExtentY        =   3413
          _Version        =   393216
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Size            =   9.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -513,58 +585,58 @@ Begin VB.Form vta_recibo
       Height          =   2175
       Left            =   120
       TabIndex        =   15
-      Top             =   4080
-      Width           =   11655
+      Top             =   4920
+      Width           =   17655
       Begin VB.TextBox t_diferencia 
          Appearance      =   0  'Flat
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   345
-         Left            =   10320
+         Height          =   465
+         Left            =   15120
          Locked          =   -1  'True
          MaxLength       =   12
          TabIndex        =   19
-         Top             =   1500
-         Width           =   1215
+         Top             =   1560
+         Width           =   2415
       End
       Begin VB.TextBox t_ingresado 
          Appearance      =   0  'Flat
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   360
-         Left            =   10320
+         Height          =   480
+         Left            =   15120
          Locked          =   -1  'True
          MaxLength       =   12
          TabIndex        =   17
-         Top             =   600
-         Width           =   1215
+         Top             =   480
+         Width           =   2415
       End
       Begin MSFlexGridLib.MSFlexGrid msf2 
          Height          =   1815
          Left            =   120
          TabIndex        =   5
          Top             =   240
-         Width           =   10095
-         _ExtentX        =   17806
+         Width           =   14415
+         _ExtentX        =   25426
          _ExtentY        =   3201
          _Version        =   393216
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Size            =   9.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -577,26 +649,44 @@ Begin VB.Form vta_recibo
          Appearance      =   0  'Flat
          BackColor       =   &H000000C0&
          Caption         =   "Diferencia"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
-         Height          =   255
+         Height          =   375
          Index           =   3
-         Left            =   10320
+         Left            =   15120
          TabIndex        =   20
          Top             =   1200
-         Width           =   1215
+         Width           =   2415
       End
       Begin VB.Label Label5 
-         Alignment       =   1  'Right Justify
+         Alignment       =   2  'Center
          Appearance      =   0  'Flat
          BackColor       =   &H00808000&
-         Caption         =   "Total Ing."
+         Caption         =   "Total Ingresado"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Index           =   0
-         Left            =   10320
+         Left            =   15120
          TabIndex        =   18
          Top             =   240
-         Width           =   1215
+         Width           =   2415
       End
    End
    Begin VB.Frame Frame3 
@@ -604,19 +694,19 @@ Begin VB.Form vta_recibo
       BackColor       =   &H00E0E0E0&
       Caption         =   "Cliente"
       ForeColor       =   &H80000008&
-      Height          =   855
+      Height          =   975
       Left            =   120
       TabIndex        =   12
       Top             =   1440
-      Width           =   9015
+      Width           =   14655
       Begin VB.CommandButton Command5 
-         Height          =   255
-         Left            =   8520
+         Height          =   375
+         Left            =   13440
          Picture         =   "vta007.frx":1108
          Style           =   1  'Graphical
          TabIndex        =   21
          Top             =   240
-         Width           =   255
+         Width           =   615
       End
       Begin VB.ComboBox denominACION 
          Appearance      =   0  'Flat
@@ -634,14 +724,23 @@ Begin VB.Form vta_recibo
          Sorted          =   -1  'True
          TabIndex        =   3
          Top             =   240
-         Width           =   6495
+         Width           =   11295
       End
       Begin VB.Label Label4 
          Appearance      =   0  'Flat
          BackColor       =   &H00808000&
          Caption         =   "Razon Social"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
-         Height          =   375
+         Height          =   495
          Left            =   120
          TabIndex        =   13
          Top             =   240
@@ -650,39 +749,39 @@ Begin VB.Form vta_recibo
    End
    Begin MSComctlLib.StatusBar StatusBar1 
       Align           =   2  'Align Bottom
-      Height          =   255
+      Height          =   405
       Left            =   0
       TabIndex        =   14
-      Top             =   8160
-      Width           =   11955
-      _ExtentX        =   21087
-      _ExtentY        =   450
+      Top             =   9180
+      Width           =   17910
+      _ExtentX        =   31591
+      _ExtentY        =   714
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
          NumPanels       =   4
          BeginProperty Panel1 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Alignment       =   1
-            Object.Width           =   4410
-            MinWidth        =   4410
+            Object.Width           =   3528
+            MinWidth        =   3528
             Text            =   "Cliente"
             TextSave        =   "Cliente"
          EndProperty
          BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Alignment       =   1
-            Object.Width           =   11465
-            MinWidth        =   11465
+            Object.Width           =   21167
+            MinWidth        =   21167
             Text            =   "Sistema"
             TextSave        =   "Sistema"
          EndProperty
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "08/11/2023"
+            TextSave        =   "08/03/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "05:11 p.m."
+            TextSave        =   "12:06 p.m."
          EndProperty
       EndProperty
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -1336,15 +1435,15 @@ Sub armagrid()
 msf1.clear
 msf1.Rows = 1
 msf1.Cols = 9
-msf1.ColWidth(0) = 1200
-msf1.ColWidth(1) = 2500
-msf1.ColWidth(2) = 1100
+msf1.ColWidth(0) = 1500
+msf1.ColWidth(1) = 4500
+msf1.ColWidth(2) = 1700
 msf1.ColWidth(3) = 1100
-msf1.ColWidth(4) = 1100
-msf1.ColWidth(5) = 1100
+msf1.ColWidth(4) = 1700
+msf1.ColWidth(5) = 1700
 msf1.ColWidth(6) = 500
-msf1.ColWidth(7) = 1100
-msf1.ColWidth(8) = 1100
+msf1.ColWidth(7) = 1700
+msf1.ColWidth(8) = 1700
 msf1.TextMatrix(0, 0) = "Fecha"
 msf1.TextMatrix(0, 1) = "Comprobante"
 msf1.TextMatrix(0, 2) = "Total $"
@@ -1355,20 +1454,27 @@ msf1.TextMatrix(0, 6) = "Tipo"
 msf1.TextMatrix(0, 7) = "Saldo $"
 msf1.TextMatrix(0, 8) = "Aplicar $"
 
+
+msf1.ColAlignment(2) = 9
+msf1.ColAlignment(4) = 9
+msf1.ColAlignment(5) = 9
+msf1.ColAlignment(7) = 9
+msf1.ColAlignment(8) = 9
+
 End Sub
 
 Sub armagrid2()
 msf2.clear
 msf2.Rows = 1
 msf2.Cols = 10
-msf2.ColWidth(0) = 600
-msf2.ColWidth(1) = 1200
-msf2.ColWidth(2) = 1200
-msf2.ColWidth(3) = 2500
-msf2.ColWidth(4) = 1700
-msf2.ColWidth(5) = 1700
-msf2.ColWidth(6) = 1000
-msf2.ColWidth(7) = 1000
+msf2.ColWidth(0) = 800
+msf2.ColWidth(1) = 2100
+msf2.ColWidth(2) = 1500
+msf2.ColWidth(3) = 4000
+msf2.ColWidth(4) = 2100
+msf2.ColWidth(5) = 2100
+msf2.ColWidth(6) = 1700
+msf2.ColWidth(7) = 1300
 msf2.ColWidth(8) = 1000
 msf2.ColWidth(9) = 1000
 

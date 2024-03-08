@@ -7,48 +7,66 @@ Begin VB.Form vta_recibo3
    ClientHeight    =   2175
    ClientLeft      =   60
    ClientTop       =   345
-   ClientWidth     =   10590
+   ClientWidth     =   12570
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    PaletteMode     =   1  'UseZOrder
    ScaleHeight     =   2175
-   ScaleWidth      =   10590
+   ScaleWidth      =   12570
    StartUpPosition =   1  'CenterOwner
    Begin VB.TextBox t_modulo 
       Height          =   285
-      Left            =   9360
+      Left            =   11280
       TabIndex        =   9
       Text            =   "Text1"
-      Top             =   480
+      Top             =   120
       Visible         =   0   'False
       Width           =   735
    End
    Begin VB.Frame Frame4 
       BackColor       =   &H00C0C0C0&
-      Height          =   1575
+      Height          =   1455
       Left            =   240
       TabIndex        =   4
       Top             =   120
-      Width           =   8655
+      Width           =   12135
       Begin VB.TextBox t_importe 
          BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   405
-         Left            =   7200
-         MaxLength       =   10
+         Left            =   9840
+         MaxLength       =   21
          TabIndex        =   2
-         Top             =   840
-         Width           =   1215
+         Top             =   720
+         Width           =   2175
       End
       Begin VB.TextBox t_detalle 
          BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   405
-         Left            =   3360
+         Left            =   4800
          MaxLength       =   50
          TabIndex        =   1
-         Top             =   840
-         Width           =   3735
+         Top             =   720
+         Width           =   4935
       End
       Begin VB.ComboBox c_fp 
          BeginProperty Font 
@@ -61,92 +79,120 @@ Begin VB.Form vta_recibo3
             Strikethrough   =   0   'False
          EndProperty
          Height          =   420
-         Left            =   1320
+         Left            =   1440
          TabIndex        =   0
          Text            =   "c_prod"
-         Top             =   840
-         Width           =   1935
+         Top             =   720
+         Width           =   3255
       End
       Begin VB.TextBox t_fp 
          BorderStyle     =   0  'None
          Enabled         =   0   'False
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   405
          Left            =   360
          MaxLength       =   8
          TabIndex        =   5
-         Top             =   840
-         Width           =   855
+         Top             =   720
+         Width           =   975
       End
       Begin VB.Label Label5 
          Alignment       =   2  'Center
          BackColor       =   &H000000C0&
          Caption         =   "Importe"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
          Height          =   375
-         Left            =   7080
+         Left            =   9840
          TabIndex        =   8
          Top             =   240
-         Width           =   1335
+         Width           =   2175
       End
       Begin VB.Label Label3 
          Alignment       =   2  'Center
          BackColor       =   &H000000C0&
          Caption         =   "Detalle"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
          Height          =   375
-         Left            =   3360
+         Left            =   4800
          TabIndex        =   7
          Top             =   240
-         Width           =   3735
+         Width           =   5055
       End
       Begin VB.Label Label2 
          Alignment       =   2  'Center
          BackColor       =   &H000000C0&
          Caption         =   "Forma Pago"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
          Height          =   375
          Left            =   360
          TabIndex        =   6
          Top             =   240
-         Width           =   3015
+         Width           =   4575
       End
    End
    Begin MSComctlLib.StatusBar StatusBar1 
       Align           =   2  'Align Bottom
-      Height          =   255
+      Height          =   405
       Left            =   0
       TabIndex        =   3
-      Top             =   1920
-      Width           =   10590
-      _ExtentX        =   18680
-      _ExtentY        =   450
+      Top             =   1770
+      Width           =   12570
+      _ExtentX        =   22172
+      _ExtentY        =   714
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
-         NumPanels       =   4
+         NumPanels       =   1
          BeginProperty Panel1 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Alignment       =   1
-            Object.Width           =   7056
-            MinWidth        =   7056
+            Object.Width           =   21167
+            MinWidth        =   21167
             Text            =   "Cliente"
             TextSave        =   "Cliente"
          EndProperty
-         BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
-            Alignment       =   1
-            Object.Width           =   8820
-            MinWidth        =   8820
-            Text            =   "Sistema"
-            TextSave        =   "Sistema"
-         EndProperty
-         BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
-            Style           =   6
-            Alignment       =   1
-            TextSave        =   "23/11/2020"
-         EndProperty
-         BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
-            Style           =   5
-            Alignment       =   1
-            TextSave        =   "10:08 a.m."
-         EndProperty
+      EndProperty
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
       EndProperty
       OLEDropMode     =   1
    End
@@ -172,7 +218,7 @@ Sub modifrenglon()
   Else
     ip = Format$(c_fp.ItemData(c_fp.ListIndex), "000")
   End If
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   q = "select * from cyb_01  where [id_forma_pago] = " & Val(ip)
   rs.MaxRecords = 1
   rs.Open q, cn1

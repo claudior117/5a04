@@ -2690,7 +2690,7 @@ If h = 6 Then
    
    cn1.BeginTrans
      
-    q = "update g1 set [usa_separador_miles]='N'"
+    q = "update g1 set [usa_separador_miles]='S'"
     cn1.Execute q
     
     
