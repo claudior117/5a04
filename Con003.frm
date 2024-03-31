@@ -46,14 +46,14 @@ Begin VB.Form con_ivacompras
       Left            =   3720
       TabIndex        =   9
       Top             =   1320
-      Width           =   2595
-      _ExtentX        =   4577
+      Width           =   2490
+      _ExtentX        =   4392
       _ExtentY        =   4180
       _Version        =   393216
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   172818433
+      StartOfWeek     =   114491393
       CurrentDate     =   38750
    End
    Begin VB.Frame Frame3 
@@ -239,12 +239,12 @@ Begin VB.Form con_ivacompras
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "08/03/2024"
+            TextSave        =   "31/03/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "12:38 p.m."
+            TextSave        =   "11:34 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -716,7 +716,7 @@ Sub imprimegrid_l()
      If linea <= lph And msf1.TextMatrix(Fila, 0) <> "*" Then
        Text = ""
        For col = 0 To 8   'columnas
-           tamañocol = Int(msf1.ColWidth(col) / 100)
+           tamañocol = Int(msf1.ColWidth(col) / 150)
            item = Space$(tamañocol)
            If msf1.ColAlignment(col) = 1 Then 'izq textos
               LSet item = msf1.TextMatrix(Fila, col)
