@@ -969,12 +969,12 @@ Begin VB.Form vta_facturacion
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "02/03/2024"
+            TextSave        =   "01/04/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "08:41 p.m."
+            TextSave        =   "12:01 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -1247,22 +1247,24 @@ Sub electronica()
                
                If Val(t_perc) > 0 Then
                    'Agrego percepcion
-                   X = 0
+                   X = 1
                    While X < ABM_COMP_COMPRA2.msf1.Rows
-                    id = Val(vta_facturacion2.msf1.TextMatrix(X, 6))
-                    Desc = vta_facturacion2.msf1.TextMatrix(X, 2)
-                    importe = Val(vta_facturacion2.msf1.TextMatrix(X, 3))
-                    alic = Val(vta_facturacion2.msf1.TextMatrix(X, 7))
-                    If alic > 0 Then
-                      base_imp = (importe * 100) / alic
-                    Else
-                      base_imp = 0
-                    End If
-                    ok = WSFEv1.AgregarTributo(id, Desc, base_imp, alic, importe)
+                    id = Val(ABM_COMP_COMPRA2.msf1.TextMatrix(X, 6))
+                    Desc = ABM_COMP_COMPRA2.msf1.TextMatrix(X, 2)
+                    importe = Val(ABM_COMP_COMPRA2.msf1.TextMatrix(X, 3))
+                    alic = Val(ABM_COMP_COMPRA2.msf1.TextMatrix(X, 7))
+                    baseimp = Val(ABM_COMP_COMPRA2.msf1.TextMatrix(X, 8))
+                  
+                  
+                    MsgBox (baseimp)
+                    MsgBox (alic)
+                    MsgBox (importe)
+                  
+                    ok = WSFEv1.AgregarTributo(6, "Perc 5329", baseimp, alic, importe)
                      X = X + 1
                    Wend
       
-              End If
+               End If
                 
                 
                                 
@@ -4495,18 +4497,19 @@ If t_letra = "A" Then
          End If
       Next i
       
-      ret5328 = tot5328 * tasa5328 / 100
-      ret5329 = tot5329 * tasa5329 / 100
-      pt = ret5328 + ret5329
+      ret5328 = Format$(Val(Format$(tot5328, "#######0.00")) * tasa5328 / 100, "#######0.00")
+      ret5329 = Format$(Val(Format$(tot5329, "#######0.00")) * tasa5329 / 100, "#######0.00")
+      pt = Val(ret5328) + Val(ret5329)
                     
       If retmin <= pt Then
          'agrega en percepciones 5329 3%
-         If (ret5329) > 0 Then
+         If Val(ret5329) > 0 Then
             X = 0
             encontro = 0
             While X < ABM_COMP_COMPRA2.msf1.Rows
               If Val(ABM_COMP_COMPRA2.msf1.TextMatrix(X, 1)) = 5329 Then
                  ABM_COMP_COMPRA2.msf1.TextMatrix(X, 3) = ret5329
+                 ABM_COMP_COMPRA2.msf1.TextMatrix(X, 8) = Format$(tot5329, "#######0.00")
                  X = ABM_COMP_COMPRA2.msf1.Rows
                  encontro = 1
               End If
@@ -4514,7 +4517,7 @@ If t_letra = "A" Then
             Wend
             
            If encontro = 0 Then
-                  ABM_COMP_COMPRA2.msf1.AddItem ABM_COMP_COMPRA2.msf1.Rows & Chr(9) & 5329 & Chr(9) & "Perc. RG5329 3%" & Chr(9) & ret5329 & Chr(9) & cuenta & Chr(9) & "Art Limpieza" & Chr(9) & idtributo & Chr(9) & tasa5329
+                  ABM_COMP_COMPRA2.msf1.AddItem ABM_COMP_COMPRA2.msf1.Rows & Chr(9) & 5329 & Chr(9) & "Perc. RG5329" & Chr(9) & ret5329 & Chr(9) & cuenta & Chr(9) & "Art Limpieza" & Chr(9) & 6 & Chr(9) & tasa5329
            End If
         End If
         
@@ -4526,6 +4529,8 @@ If t_letra = "A" Then
             While X < ABM_COMP_COMPRA2.msf1.Rows
               If Val(ABM_COMP_COMPRA2.msf1.TextMatrix(X, 1)) = 5328 Then
                  ABM_COMP_COMPRA2.msf1.TextMatrix(X, 3) = ret5328
+                 ABM_COMP_COMPRA2.msf1.TextMatrix(X, 8) = Format$(tot5328, "#######0.00")
+                 
                  X = ABM_COMP_COMPRA2.msf1.Rows
                  encontro = 1
               End If
@@ -4533,7 +4538,7 @@ If t_letra = "A" Then
             Wend
             
            If encontro = 0 Then
-                  ABM_COMP_COMPRA2.msf1.AddItem ABM_COMP_COMPRA2.msf1.Rows & Chr(9) & 5328 & Chr(9) & "Perc. RG5329 1.5%" & Chr(9) & ret5328 & Chr(9) & cuenta & Chr(9) & "Art Limpieza" & Chr(9) & idtributo & Chr(9) & tasa5328
+                  ABM_COMP_COMPRA2.msf1.AddItem ABM_COMP_COMPRA2.msf1.Rows & Chr(9) & 5328 & Chr(9) & "Perc. RG5329" & Chr(9) & ret5328 & Chr(9) & cuenta & Chr(9) & "Art Limpieza" & Chr(9) & 6 & Chr(9) & tasa5328
            End If
         End If
         

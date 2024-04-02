@@ -1,0 +1,13 @@
+Homologacion:
+wsaa -> https://wsaahomo.afip.gov.ar/ws/services/LoginCms?wsdl
+wsfe -> https://wswhomo.afip.gov.ar/wsfe/service.asmx
+
+Produccion: 
+wsaa -> https://wsaa.afip.gov.ar/ws/services/LoginCms?wsdl
+wsfe -> https://servicios1.afip.gov.ar/wsfev1/service.asmx?WSDL
+
+Proyecto homologacion HOMO
+
+Certificados Sartori Lucas
+
+Bases de Datos de center clean

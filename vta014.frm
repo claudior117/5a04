@@ -444,7 +444,7 @@ If Not rs.EOF And Not rs.BOF Then
         'si el importe del remito es 0 totma el de la b.d.
         If rs1("id_producto") > 1 And (rs1("pu") = 0 Or Check1 = 1) Then
              Set rs3 = New ADODB.Recordset
-             q = "select [pu], [impuesto], [moneda], [tasa], [precio_final] from a2, g4 where [id_producto] = " & rs1("id_producto") & " and [cod_tasaiva] = [id_tasaiva]"
+             q = "select [pu], [impuesto], [moneda], [tasa], [precio_final], percibe_5329 from a2, g4 where [id_producto] = " & rs1("id_producto") & " and [cod_tasaiva] = [id_tasaiva]"
              rs3.Open q, cn1
              If Not rs3.EOF And Not rs3.BOF Then
                                   
@@ -458,6 +458,7 @@ If Not rs.EOF And Not rs.BOF Then
                           I2 = Format(I2 + r, "#####0.00")
                           f2 = Format(I2 * (1 + (ti / 100)), "#####0.00")
                          End If
+                         percibe5329 = rs3("percibe_5329")
                          
               Else
                         I2 = 0
@@ -465,6 +466,7 @@ If Not rs.EOF And Not rs.BOF Then
                         MONEDALINEA = monedar
                         ti = 0
                         f2 = 0
+                        percibe_5329 = "N"
               End If
               'Set rs3 = Nothing
          Else
@@ -473,6 +475,17 @@ If Not rs.EOF And Not rs.BOF Then
                 MONEDALINEA = monedar
                 ti = rs1("TASAIVA")
                 f2 = rs1("pu_final")
+                If rs1("id_producto") > 1 Then
+                    Set rs3 = New ADODB.Recordset
+                    q = "select percibe_5329 from a2 where [id_producto] = " & rs1("id_producto")
+                    rs3.Open q, cn1
+                    If Not rs3.EOF And Not rs3.BOF Then
+                      percibe5329 = rs3("percibe_5329")
+                    Else
+                     percibe5329 = "N"
+                    End If
+                End If
+         
          End If
 
          Call CONVIERTEMONEDA
@@ -501,7 +514,7 @@ If Not rs.EOF And Not rs.BOF Then
         III = Format$(IMPINTERNO3, "###0.000")
         ubica = vta_facturacion.msf1.Rows - 1
         F = Format$(final2, "######0.00")
-        vta_facturacion.msf1.AddItem ubica & Chr$(9) & cp & Chr$(9) & dp & Chr$(9) & ct & Chr$(9) & u & Chr$(9) & pu & Chr$(9) & dt & Chr$(9) & im & Chr$(9) & F
+        vta_facturacion.msf1.AddItem ubica & Chr$(9) & cp & Chr$(9) & dp & Chr$(9) & ct & Chr$(9) & u & Chr$(9) & pu & Chr$(9) & dt & Chr$(9) & im & Chr$(9) & F & Chr$(9) & Chr$(9) & Chr$(9) & Chr$(9) & percibe5329
      
      rs1.MoveNext
     Wend

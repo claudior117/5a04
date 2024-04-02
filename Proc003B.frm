@@ -31,7 +31,6 @@ Begin VB.Form ABM_COMP_COMPRA2
             Object.Width           =   15875
             MinWidth        =   15875
             TextSave        =   ""
-            Key             =   ""
             Object.Tag             =   ""
          EndProperty
       EndProperty
@@ -253,7 +252,7 @@ Sub armagrid()
 'armar grilla
 msf1.clear
 msf1.Rows = 1
-msf1.Cols = 8
+msf1.Cols = 9
 msf1.ColWidth(0) = 700
 msf1.ColWidth(1) = 1000
 msf1.ColWidth(2) = 3000
@@ -262,6 +261,7 @@ msf1.ColWidth(4) = 1600
 msf1.ColWidth(5) = 3000
 msf1.ColWidth(6) = 600
 msf1.ColWidth(7) = 1000
+msf1.ColWidth(8) = 2100
 msf1.TextMatrix(0, 0) = "Reng."
 msf1.TextMatrix(0, 1) = "Id.Perc."
 msf1.TextMatrix(0, 2) = "Detalle"
@@ -270,7 +270,7 @@ msf1.TextMatrix(0, 4) = "Cuenta"
 msf1.TextMatrix(0, 5) = "Concepto perc."
 msf1.TextMatrix(0, 6) = "Cod."
 msf1.TextMatrix(0, 7) = "Tasa"
-
+msf1.TextMatrix(0, 8) = "Base Imp"
 
 End Sub
 
