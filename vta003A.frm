@@ -969,12 +969,12 @@ Begin VB.Form vta_facturacion
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "01/04/2024"
+            TextSave        =   "02/04/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "12:01 p.m."
+            TextSave        =   "04:21 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -1100,7 +1100,7 @@ Sub electronica()
                         q = "select minimo_informar_cons_final from g0 where sucursal= 0"
                         rs3.Open q, cn1
                         If Not rs3.EOF And Not rs3.BOF Then
-                           If Val(t_total) < rs3("minimo_informar_cons_final") Then 'minimo de consumidor final sin informar datos
+                           If Val(T_TOTAL) < rs3("minimo_informar_cons_final") Then 'minimo de consumidor final sin informar datos
                                tipo_doc = 99
                                CUIT2 = "0"
                            Else
@@ -1118,14 +1118,14 @@ Sub electronica()
                      cbt_hasta = cbte_nro
                      
                      If t_letra <> "C" Then
-                        imp_total = t_total
+                        imp_total = T_TOTAL
                         imp_tot_conc = t_nograbado
                         imp_neto = t_subtotal
                         imp_iva = t_iva
-                        imp_trib = "0.00"
+                        imp_trib = t_perc
                         imp_op_ex = "0.00"
                      Else
-                        imp_total = t_total
+                        imp_total = T_TOTAL
                         imp_tot_conc = "0.00"
                         imp_neto = t_subtotal
                         imp_iva = "0.00"
@@ -1195,10 +1195,13 @@ Sub electronica()
                       Set rs31 = New ADODB.Recordset
                       q = "select * from g0 where [sucursal] = 0"
                       rs31.Open q, cn1
+                      cbu = Format$(rs31("cbu"), "0000000000000000000000")
+                      alias2 = rs31("alias")
+                      
                       
                       'parametros
-                      ok = WSFEv1.AgregarOpcional(2101, rs31("cbu")) 'cbu
-                      ok = WSFEv1.AgregarOpcional(2102, rs31("alias")) 'alias
+                      ok = WSFEv1.AgregarOpcional(2101, cbu) 'cbu
+                      ok = WSFEv1.AgregarOpcional(2102, alias2) 'alias
                       ok = WSFEv1.AgregarOpcional(27, mtransf) 'transmisión (desde el 01/04/2021)
                       
                       Set rs31 = Nothing
@@ -1249,17 +1252,11 @@ Sub electronica()
                    'Agrego percepcion
                    X = 1
                    While X < ABM_COMP_COMPRA2.msf1.Rows
-                    id = Val(ABM_COMP_COMPRA2.msf1.TextMatrix(X, 6))
+                    id = Format$(Val(ABM_COMP_COMPRA2.msf1.TextMatrix(X, 6)), "#0")
                     Desc = ABM_COMP_COMPRA2.msf1.TextMatrix(X, 2)
-                    importe = Val(ABM_COMP_COMPRA2.msf1.TextMatrix(X, 3))
-                    alic = Val(ABM_COMP_COMPRA2.msf1.TextMatrix(X, 7))
-                    baseimp = Val(ABM_COMP_COMPRA2.msf1.TextMatrix(X, 8))
-                  
-                  
-                    MsgBox (baseimp)
-                    MsgBox (alic)
-                    MsgBox (importe)
-                  
+                    importe = Format$(Val(ABM_COMP_COMPRA2.msf1.TextMatrix(X, 3)), "#########0.00")
+                    alic = Format$(Val(ABM_COMP_COMPRA2.msf1.TextMatrix(X, 7)), "#0.0")
+                    baseimp = Format$(Val(ABM_COMP_COMPRA2.msf1.TextMatrix(X, 8)), "########0.00")
                     ok = WSFEv1.AgregarTributo(6, "Perc 5329", baseimp, alic, importe)
                      X = X + 1
                    Wend
@@ -1419,7 +1416,7 @@ Sub limpia()
    t_nograbado = ""
    t_perc = ""
    t_iva = ""
-   t_total = ""
+   T_TOTAL = ""
    Option1 = True
    
 End Sub
@@ -1503,7 +1500,7 @@ Sub carga()
      t_nograbado = Format$(rs("impuestos"), "######0.00")
      t_perc = Format$(rs("perc_iva") + rs("perc_gan") + rs("perc_ib"), "######0.00")
      t_iva = Format$(rs("iva"), "######0.00")
-     t_total = Format$(rs("total"), "######0.00")
+     T_TOTAL = Format$(rs("total"), "######0.00")
      If Not IsNull(rs("observaciones")) Then
             t_observaciones = rs("observaciones")
      Else
@@ -1594,7 +1591,7 @@ Sub carga2()
      t_nograbado = Format$(rs("impuestos"), "######0.00")
      t_perc = Format$(rs("perc_iva") + rs("perc_gan") + rs("perc_ib"), "######0.00")
      t_iva = Format$(rs("iva"), "######0.00")
-     t_total = Format$(rs("total"), "######0.00")
+     T_TOTAL = Format$(rs("total"), "######0.00")
      If Not IsNull(rs("observaciones")) Then
             t_observaciones = rs("observaciones")
      Else
@@ -1709,7 +1706,7 @@ Sub carga3()
      t_nograbado = Format$(rs("impuestos"), "######0.00")
      t_perc = Format$(rs("perc_iva") + rs("perc_gan") + rs("perc_ib"), "######0.00")
      t_iva = Format$(rs("iva"), "######0.00")
-     t_total = Format$(rs("total"), "######0.00")
+     T_TOTAL = Format$(rs("total"), "######0.00")
      If Not IsNull(rs("observaciones")) Then
             t_observaciones = rs("observaciones")
      Else
@@ -1772,11 +1769,11 @@ If Option2 = True Then
            J = MsgBox("No ha ingresado forma de pago, acepta pago total en Efectivo", 4)
            If J = 6 Then
               'pone forma de pago efectivo
-              vta_formapago.msf2.AddItem "001" & Chr(9) & 1 & Chr(9) & "-" & Chr(9) & "Efectivo $" & Chr(9) & "-" & Chr(9) & "-" & Chr(9) & Format$(Val(t_total), "######0.00") & Chr(9) & Format$(t_fecha, "DD/MM/YYYY") & Chr(9) & "" & Chr(9) & para.cuenta_caja
+              vta_formapago.msf2.AddItem "001" & Chr(9) & 1 & Chr(9) & "-" & Chr(9) & "Efectivo $" & Chr(9) & "-" & Chr(9) & "-" & Chr(9) & Format$(Val(T_TOTAL), "######0.00") & Chr(9) & Format$(t_fecha, "DD/MM/YYYY") & Chr(9) & "" & Chr(9) & para.cuenta_caja
               Call iniciagraba
            Else
               vta_formapago.Show
-              vta_formapago.t_total = t_total
+              vta_formapago.T_TOTAL = T_TOTAL
            End If
        Else
           MsgBox ("El pago ingresado no coincide con el total del comprobante")
@@ -1811,7 +1808,7 @@ vc = True
 If vta_facturacion.c_tipocomp.ListIndex = 0 Then
     If vta_facturacion.Option4 Then
      'pesos
-     tpl = Val(vta_facturacion.t_total)
+     tpl = Val(vta_facturacion.T_TOTAL)
     Else
      tpl = Val(vta_facturacion.T_total2)
     End If
@@ -1836,7 +1833,7 @@ Sub iniciagraba()
 
 
 
-If Val(t_total) > 0 Then
+If Val(T_TOTAL) > 0 Then
   If c_tipocomp.ItemData(c_tipocomp.ListIndex) = 25 And t_letra <> "E" Then
     MsgBox ("Para realizar Facturas de Pro Forma es necesario que el cliente sea de Exportacion")
     c_tipocomp.SetFocus
@@ -1955,7 +1952,7 @@ If Option4 = True Then
     If resulta Then
         espere.ProgressBar1.Value = 5
         espere.Label1 = "Espere... Grabando Comprobante Fiscal"
-        If Val(t_total) <= 0 Or Val(t_numcomp) <= 0 Then
+        If Val(T_TOTAL) <= 0 Or Val(t_numcomp) <= 0 Then
           seguir = False
           estadograba = 1
         Else
@@ -2237,13 +2234,13 @@ espere.Label1 = "Espere... Imprimiendo Productos"
   
   t_subtotal = Fiscaltf.subtotal.MontoNeto
   t_iva = Fiscaltf.subtotal.MontoIVA
-  t_total = Fiscaltf.subtotal.MontoVentas
+  T_TOTAL = Fiscaltf.subtotal.MontoVentas
  
   
   
   If Option2 = True Then 'contado
   
-    resto = Val(t_total)
+    resto = Val(T_TOTAL)
   For i = 1 To fsc_formapago.msf2.Rows - 1
      td = Left$(RTrim$(fsc_formapago.msf2.TextMatrix(i, 2)), 15)
      mp = Format$(Val(fsc_formapago.msf2.TextMatrix(i, 6)), "######0.00")
@@ -2278,7 +2275,7 @@ espere.Label1 = "Espere... Imprimiendo Productos"
   
   Else
     td = "Cta. Cte. Nro. " & Format$(c_prov.ItemData(c_prov.ListIndex), "00000")
-    mp = Val(t_total)
+    mp = Val(T_TOTAL)
     dp = "T"
     If Not Fiscaltf.ImprimirPago2g(td, Format$(mp, "######0.00"), "", IFUniversal.CuentaCorriente, 1, "", "") Then
        Err.Raise Fiscaltf.Error, "", Fiscaltf.ErrorDesc
@@ -2522,20 +2519,20 @@ espere.Label1 = "Espere... Imprimiendo Productos"
   If Option2 = True Then 'contado
   
      td = Left$(RTrim$(vta_formapago.msf2.TextMatrix(1, 1)) & " " & RTrim$(vta_formapago.msf2.TextMatrix(1, 3)), caracteresmax)
-    mp = Format$(Val(t_total) * 100, "00000000")
+    mp = Format$(Val(T_TOTAL) * 100, "00000000")
     dp = "T"
     If rk Then
-       rk = epson1.SendInvoicePayment(td, Format$(Val(t_total) * 100, "00000000"), "T")
+       rk = epson1.SendInvoicePayment(td, Format$(Val(T_TOTAL) * 100, "00000000"), "T")
      Else
        Call verificaerrfiscal(epson1.FiscalStatus, epson1.PrinterStatus)
      End If
   
   Else
     td = "Cta. Cte. Nro. " & Format$(c_prov.ItemData(c_prov.ListIndex), "00000")
-    mp = Format$(Val(t_total) * 100, "00000000")
+    mp = Format$(Val(T_TOTAL) * 100, "00000000")
     dp = "T"
     If rk Then
-       rk = epson1.SendInvoicePayment("Cta. Cte. Nro. " & Format$(c_prov.ItemData(c_prov.ListIndex), "00000"), Format$(Val(t_total) * 100, "00000000"), "T")
+       rk = epson1.SendInvoicePayment("Cta. Cte. Nro. " & Format$(c_prov.ItemData(c_prov.ListIndex), "00000"), Format$(Val(T_TOTAL) * 100, "00000000"), "T")
      Else
        Call verificaerrfiscal(epson1.FiscalStatus, epson1.PrinterStatus)
      End If
@@ -2553,7 +2550,7 @@ espere.Label1 = "Espere... Cerrando Comprobante Fiscal"
  If rk Then
       t_subtotal = Format$(Val(epson1.AnswerField_10) / 100, "######0.00")
       t_iva = Format$(Val(epson1.AnswerField_6) / 100, "####0.00")
-      t_total = Format$(Val(epson1.AnswerField_5) / 100, "######0.00")
+      T_TOTAL = Format$(Val(epson1.AnswerField_5) / 100, "######0.00")
  Else
      Call verificaerrfiscal(epson1.FiscalStatus, epson1.PrinterStatus)
  End If
@@ -2847,7 +2844,7 @@ End Sub
 Private Sub Command8_Click()
  
   vta_formapago.Show
-  vta_formapago.t_total = t_total
+  vta_formapago.T_TOTAL = T_TOTAL
  
 End Sub
 
@@ -3531,7 +3528,7 @@ Sub graba()
          cp = "0000-00000000"
          contado = "N"
          If Option4 = True Then
-            ssi = Val(t_total)
+            ssi = Val(T_TOTAL)
          Else
             ssi = Val(T_total2)
          End If
@@ -3615,7 +3612,7 @@ Sub graba()
 
 
 QUERY = QUERY & " VALUES (" & numint & ", " & Val(t_sucursal) & ", " & Val(t_numcomp) & ", '" & t_letra & "', " & c_tipocomp.ItemData(c_tipocomp.ListIndex) & _
-", " & idcli & ", '" & t_fecha & "', " & para.id_usuario & ", " & Val(t_subtotal) & ", " & Val(t_nograbado) & ", " & Val(t_iva) & ", " & Val(t_total) & _
+", " & idcli & ", '" & t_fecha & "', " & para.id_usuario & ", " & Val(t_subtotal) & ", " & Val(t_nograbado) & ", " & Val(t_iva) & ", " & Val(T_TOTAL) & _
 ", 'A', " & cuentaact & ", '" & cl_compvta.STOCK & "', '" & ubicacionctacte & "', '" & cl_compvta.grabado & "', '" & ep & "', '" & cp & "', '" & t_observaciones & _
 " ', " & Val(t_cotizacion) & ", " & T2 & ", '" & moneda & "', " & c_vend.ItemData(c_vend.ListIndex) & ", '" & cl_compvta.venta & "', '" & contado & "', " & Val(t_perc)
 
@@ -3701,8 +3698,8 @@ Next i
      'actualizo percepciones
      If Val(t_perc) > 0 Then
         For i = 1 To ABM_COMP_COMPRA2.msf1.Rows - 1
-          QUERY = "INSERT INTO vta_016([num_int], [secuencia], [id_percepcion], [importe], [id_cuenta], [cod_regimen])"
-          QUERY = QUERY & " VALUES (" & numint & ", " & i & ", " & ABM_COMP_COMPRA2.msf1.TextMatrix(i, 1) & ", " & ABM_COMP_COMPRA2.msf1.TextMatrix(i, 3) & ", " & ABM_COMP_COMPRA2.msf1.TextMatrix(i, 4) & ", " & ABM_COMP_COMPRA2.msf1.TextMatrix(i, 6) & ")"
+          QUERY = "INSERT INTO vta_016([num_int], [secuencia], [id_percepcion], [importe], [id_cuenta], [cod_regimen], [base_imponible], [alicuota])"
+          QUERY = QUERY & " VALUES (" & numint & ", " & i & ", " & ABM_COMP_COMPRA2.msf1.TextMatrix(i, 1) & ", " & ABM_COMP_COMPRA2.msf1.TextMatrix(i, 3) & ", " & ABM_COMP_COMPRA2.msf1.TextMatrix(i, 4) & ", " & Val(ABM_COMP_COMPRA2.msf1.TextMatrix(i, 6)) & ", " & Val(ABM_COMP_COMPRA2.msf1.TextMatrix(i, 8)) & ", " & ABM_COMP_COMPRA2.msf1.TextMatrix(i, 7) & ")"
           cn1.Execute QUERY
         Next i
       End If
@@ -3736,7 +3733,7 @@ Next i
            tot = Val(T_total2)
            m = Val(t_cotizacion)
          Else
-           tot = Val(t_total)
+           tot = Val(T_TOTAL)
            m = 1
          End If
          
@@ -3809,7 +3806,7 @@ Next i
          If cl_compvta.grabado <> "N" Then
            importe = Val(t_subtotal) * m
          Else
-           importe = Val(t_total) * m
+           importe = Val(T_TOTAL) * m
          End If
          QUERY = "INSERT INTO c_03([num_interno], [renglon], [id_cuenta], [ubicacion], [importe], [descripcion])"
          QUERY = QUERY & " VALUES (" & numintcgr & ", " & ic & ", " & cuentaact & ", '" & u2 & "', " & Format(importe, "######0.00") & ", '" & "Ventas" & "')"
@@ -3960,7 +3957,7 @@ For i = 0 To Val(t_cantcuotas) - 1
   cp = "0000-00000000"
   contado = "N"
   If Option4 = True Then
-      ssi = Val(t_total)
+      ssi = Val(T_TOTAL)
       moneda = "P"
       cm = Val(t_valorcuota)
       cotram = Val(t_valorcuota) / Val(t_cotizacion)
@@ -4052,13 +4049,13 @@ Sub generapagare(ni21)
   cp = "0000-00000000"
   contado = "S"
   If Option4 = True Then
-      ssi = Val(t_total)
+      ssi = Val(T_TOTAL)
       moneda = "P"
       cotram = Val(T_total2)
     Else
       ssi = Val(T_total2)
       moneda = "D"
-      cotram = Val(t_total)
+      cotram = Val(T_TOTAL)
     
   End If
   
@@ -4236,12 +4233,12 @@ End If
   
 If Val(t_cantcuotas) > Val(t_cuotas_sininteres) Then
   'aplica interes
-  interes = Format((Val(t_cantcuotas) * Val(t_interes_cuota) * Val(t_total)) / 100, "#######0.00")
+  interes = Format((Val(t_cantcuotas) * Val(t_interes_cuota) * Val(T_TOTAL)) / 100, "#######0.00")
 Else
   interes = 0
 End If
   
-t_valorcuota = Format$((Val(t_total) + interes) / Val(t_cantcuotas), "######0.00")
+t_valorcuota = Format$((Val(T_TOTAL) + interes) / Val(t_cantcuotas), "######0.00")
 
 End Sub
 
@@ -4413,18 +4410,18 @@ t_nograbado = Format$(Val(t_nograbado), "######0.00")
 t_subtotal = Format$(neto, "######0.00")
 t_iva = Format$(iva, "######0.00")
 t_perciva = Format$(Val(t_perciva), "######0.00")
-t_total = Format$(Val(t_subtotal) + Val(t_nograbado) + Val(t_perc) + Val(t_iva) + Val(t_perciva), "######0.00")
+T_TOTAL = Format$(Val(t_subtotal) + Val(t_nograbado) + Val(t_perc) + Val(t_iva) + Val(t_perciva), "######0.00")
 If Option4 = True Then
  If Val(t_cotizacion) < 1 Then
    t_cotizacion = 1
  End If
- T_total2 = Format$(Val(t_total) / Val(t_cotizacion), "#####0.00")
+ T_total2 = Format$(Val(T_TOTAL) / Val(t_cotizacion), "#####0.00")
 Else
-  T_total2 = Format$(Val(t_total) * Val(t_cotizacion), "#####0.00")
+  T_total2 = Format$(Val(T_TOTAL) * Val(t_cotizacion), "#####0.00")
 End If
 
 If c_tipocomp.ItemData(c_tipocomp.ListIndex) = 36 Then
-   t_valorcuota = Format$(Val(t_total) / Val(t_cantcuotas), "######0.00")
+   t_valorcuota = Format$(Val(T_TOTAL) / Val(t_cantcuotas), "######0.00")
 End If
 
 End Sub
@@ -4629,7 +4626,7 @@ Call inicia
 End Sub
 
 Private Sub t_total_LostFocus()
-t_total = Format$(t_total, "######0.00")
+T_TOTAL = Format$(T_TOTAL, "######0.00")
 End Sub
 
 Private Sub T_total2_KeyPress(KeyAscii As Integer)

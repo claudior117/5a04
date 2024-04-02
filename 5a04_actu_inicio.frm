@@ -120,7 +120,7 @@ Begin VB.Form actu_inicio
    Begin VB.Label Label3 
       Alignment       =   2  'Center
       BackColor       =   &H0000FFFF&
-      Caption         =   "227"
+      Caption         =   "228"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   18
@@ -334,6 +334,8 @@ Case Is = 215
     Call actu226 'resolucion minima pantalla 1024x768
 Case Is = 227
     Call actu227
+Case Is = 228
+    Call actu228
 
  Case Is = 999
    Call actu999
@@ -2758,6 +2760,55 @@ Resume Next
 
 End Sub
 
+
+
+Sub actu228()
+'percepciones rg5329 parte 2
+h = MsgBox("Actualizacion 228(Percepciones RG5329 parte 2) . ¿Esta seguro que quiere actualizar?  ", 4)
+If h = 6 Then
+  
+     
+  espere.Show
+  espere.Refresh
+    
+   cn1.BeginTrans
+     
+     q = "alter table vta_016 add column [base_imponible] Double, [alicuota] Double"
+     cn1.Execute q
+     
+   cn1.CommitTrans
+   
+   
+   cn1.BeginTrans
+     
+    q = "update vta_016 set [base_imponible]=0, [alicuota] = 1"
+    cn1.Execute q
+    
+    
+    
+    q = "update g0 set  [actualizacion]=228"
+    q = q & " where [sucursal]=0 "
+    cn1.Execute q
+   
+    
+  cn1.CommitTrans
+    
+   
+  MsgBox ("Proceso terminado.  Redimencionar campo ALIAS en G0 a Text (20)")
+   
+   
+   
+ Unload espere
+  
+End If
+
+Exit Sub
+
+
+err1:
+Resume Next
+
+End Sub
 
 
 

@@ -125,7 +125,7 @@ respuesta = True
     
     ' Llamo a un servicio nulo, para obtener el estado del servidor (opcional)
     WSFEv1.Dummy
-    'ControlarExcepcion WSFEv1
+    ControlarExcepcion WSFEv1
     Debug.Print "appserver status", WSFEv1.AppServerStatus
     Debug.Print "dbserver status", WSFEv1.DbServerStatus
     Debug.Print "authserver status", WSFEv1.AuthServerStatus

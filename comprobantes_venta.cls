@@ -3048,7 +3048,7 @@ Public Sub generapdf(ByVal c As Integer)
     imp_tot_conc = "0.00"
     imp_neto = Format$(Me.subtotal + Me.descuento, "#####0.00")
     imp_iva = Format$(Me.iva, "#####0.00")
-    imp_trib = ""
+    imp_trib = Format$(Me.perciva)
     imp_op_ex = ""
     imp_subtotal = Format$(Me.subtotal, "#####0.00")
    
@@ -3116,7 +3116,7 @@ Public Sub generapdf(ByVal c As Integer)
     'pyfepdf.AgregarCmpAsoc(tipo, pto_vta, nro)
     
     
-    ' Agrego subtotales de IVA (uno por alicuota)
+   ' Agrego subtotales de IVA (uno por alicuota)
    Set rs = New ADODB.Recordset
    q = "Select * from vta_09, g4 where [num_int] = " & Me.numint & " and tasa_iva = tasa"
    rs.Open q, cn1
@@ -3130,17 +3130,25 @@ Public Sub generapdf(ByVal c As Integer)
     Wend
     
     
+    
+   ' Agrego percepciones
+   Set rs = New ADODB.Recordset
+   q = "Select detalle, base_imponible, cod_regimen, alicuota, importe from vta_016, i_01 where [num_int] = " & Me.numint & " and id_percepcion=id_impuesto"
+   rs.Open q, cn1
+    While Not rs.EOF
+    tributo_id = Format$(rs("cod_regimen"), "00")        ' codigo para 99-otros tributos
+    Desc = rs("detalle") & "(" & Format$(rs("base_imponible"), "#######0.00") & ") " & Format$(rs("alicuota"), "#0.0") & "%"
+    base_imp = Format$(rs("base_imponible"), "#########0.00")
+    alicuota = Format$(rs("alicuota"), "#0.0")
+    importe = Format$(rs("importe"), "#######0.00")
+    ok = PyFEPDF.AgregarTributo(tributo_id, Desc, base_imp, alic, importe)
+    rs.MoveNext
+    Wend
+    
         
     
-    ' Agregar cada impuesto (por ej. IIBB, retenciones, percepciones, etc.):
-    'tributo_id = 99         ' codigo para 99-otros tributos
-    'Desc = "Impuesto Municipal Matanza"
-    'base_imp = "100.00"     ' importe sujeto a este tributo
-    'alic = "1.00"           ' alicuota (porcentaje) de este tributo
-    'importe = "1.00"        ' importe liquidado de este tributo
-    'ok = PyFEPDF.AgregarTributo(tributo_id, Desc, base_imp, alic, importe)
 
-    ' Agrego detalles de cada item de la factura:
+' Agrego detalles de cada item de la factura:
 Set rs = New ADODB.Recordset
 q = "Select * from vta_03, g4 where [num_int] = " & Me.numint & " and tasaiva = tasa"
 rs.Open q, cn1
