@@ -969,12 +969,12 @@ Begin VB.Form vta_facturacion
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "02/04/2024"
+            TextSave        =   "30/04/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "04:21 p.m."
+            TextSave        =   "04:08 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -1834,11 +1834,11 @@ Sub iniciagraba()
 
 
 If Val(T_TOTAL) > 0 Then
-  If c_tipocomp.ItemData(c_tipocomp.ListIndex) = 25 And t_letra <> "E" Then
-    MsgBox ("Para realizar Facturas de Pro Forma es necesario que el cliente sea de Exportacion")
-    c_tipocomp.SetFocus
-    Exit Sub
-  End If
+  'If c_tipocomp.ItemData(c_tipocomp.ListIndex) = 25 And t_letra <> "E" Then
+  '  MsgBox ("Para realizar Facturas de Pro Forma es necesario que el cliente sea de Exportacion")
+  '  c_tipocomp.SetFocus
+  '  Exit Sub
+  'End If
 
 
  Call mensaje
@@ -3700,6 +3700,7 @@ Next i
         For i = 1 To ABM_COMP_COMPRA2.msf1.Rows - 1
           QUERY = "INSERT INTO vta_016([num_int], [secuencia], [id_percepcion], [importe], [id_cuenta], [cod_regimen], [base_imponible], [alicuota])"
           QUERY = QUERY & " VALUES (" & numint & ", " & i & ", " & ABM_COMP_COMPRA2.msf1.TextMatrix(i, 1) & ", " & ABM_COMP_COMPRA2.msf1.TextMatrix(i, 3) & ", " & ABM_COMP_COMPRA2.msf1.TextMatrix(i, 4) & ", " & Val(ABM_COMP_COMPRA2.msf1.TextMatrix(i, 6)) & ", " & Val(ABM_COMP_COMPRA2.msf1.TextMatrix(i, 8)) & ", " & ABM_COMP_COMPRA2.msf1.TextMatrix(i, 7) & ")"
+          MsgBox (QUERY)
           cn1.Execute QUERY
         Next i
       End If

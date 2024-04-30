@@ -2628,7 +2628,7 @@ If h = 6 Then
      cn1.Execute q
      
    
-     q = "alter table I_01 add column [id_otrostributos] int, [tasa_i1] double, [id_cuenta_i1] long"
+     q = "alter table I_01 add column [id_otrostributos] int, [tasa_i1] double"
      cn1.Execute q
      
      
