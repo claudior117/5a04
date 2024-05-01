@@ -120,7 +120,7 @@ Begin VB.Form actu_inicio
    Begin VB.Label Label3 
       Alignment       =   2  'Center
       BackColor       =   &H0000FFFF&
-      Caption         =   "228"
+      Caption         =   "229"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   18
@@ -336,7 +336,8 @@ Case Is = 227
     Call actu227
 Case Is = 228
     Call actu228
-
+Case Is = 229
+    Call actu229
  Case Is = 999
    Call actu999
    
@@ -2795,6 +2796,38 @@ If h = 6 Then
     
    
   MsgBox ("Proceso terminado.  Redimencionar campo ALIAS en G0 a Text (20)")
+   
+   
+   
+ Unload espere
+  
+End If
+
+Exit Sub
+
+
+err1:
+Resume Next
+
+End Sub
+
+
+Sub actu229()
+'Soluciona problema con percepciones de venta. Pasa todos los codigos de percepcion a la tabla I_01
+h = MsgBox("Actualizacion 229(Percepciones Venta) . ¿Esta seguro que quiere actualizar?  ", 4)
+If h = 6 Then
+  espere.Show
+  espere.Refresh
+   cn1.BeginTrans
+    q = "update g0 set  [actualizacion]=229"
+    q = q & " where [sucursal]=0 "
+    cn1.Execute q
+   
+    
+  cn1.CommitTrans
+    
+   
+  MsgBox ("Proceso terminado.  Agregar en tabla I_01 los codigos de percepcion que aparecen en la tabla A12(con el mismo codigo)")
    
    
    

@@ -37,7 +37,7 @@ Public a_estado_o(4) As String 'estado obras
 Public Const lineacompleta = "--------------------------------------------------------------------------------------"
 Sub carga_marcas(c As ComboBox)
  'marcas
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select * from a10 order by descripcion"
 rs.Open q, cn1
 Call llena_combo(rs, "descripcion", "id_marca", c, True)
@@ -48,7 +48,7 @@ End Sub
 
 Sub carga_alicuotaiva(c As ComboBox)
  'marcas
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select * from g4"
 rs.Open q, cn1
 Call llena_combo(rs, "tasa", "id_tasaiva", c, True)
@@ -58,7 +58,7 @@ Set rs = Nothing
 End Sub
 Sub carga_camiones(c As ComboBox, ByVal t As Long)
 't es el codigo de transporte 0 todos
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select [id_camion], [camion], [chofer], [dominio] from a17"
 If t > 0 Then
   q = q & " where [id_transporte] = " & t
@@ -85,7 +85,7 @@ Function verificaperiodo(ByVal F As String) As String
 
   p = Val(Mid$(Format$(F, "dd/mm/yyyy"), 7, 4) & Mid$(Format$(F, "dd/mm/yyyy"), 4, 2))
   q = "select [estado] from a14 where [id_periodo] = " & p
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   rs.MaxRecords = 1
   rs.Open q, cn1
   If Not rs.BOF And Not rs.EOF Then
@@ -109,7 +109,7 @@ Function verificaperiodog(ByVal F As String) As String
 'devuelve A Abierto  C Cerrado
 p = Val(Mid$(Format$(F, "dd/mm/yyyy"), 7, 4) & Mid$(Format$(F, "dd/mm/yyyy"), 4, 2))
 q = "select [estado] from g10 where [periodo] = " & p
-Set rsx = New adodb.Recordset
+Set rsx = New ADODB.Recordset
 rsx.MaxRecords = 1
 rsx.Open q, cn1
 If Not rsx.BOF And Not rsx.EOF Then
@@ -128,7 +128,7 @@ Sub borracontabilidad(ByVal nro As Long, ByVal m As String)
 
       'contabilidad
       
-      Set rsm = New adodb.Recordset
+      Set rsm = New ADODB.Recordset
       q = "select * from c_02 where [num_mov_int] = " & nro & " and [modulo] = '" & m & "'"
       rsm.Open q, cn1
       If Not rsm.EOF And Not rsm.BOF Then
@@ -154,12 +154,12 @@ Sub borracontabilidad2(ByVal nro As Long, ByVal m As String)
 
       'contabilidad
       
-      Set rsm = New adodb.Recordset
+      Set rsm = New ADODB.Recordset
       q = "select * from c_02 where [num_mov_int] = " & nro & " and [modulo] = '" & m & "'"
       rsm.Open q, cn1, adOpenDynamic, adLockOptimistic
       If Not rsm.EOF And Not rsm.BOF Then
         q = "select * from c_03 where [num_interno] = " & rsm("num_interno")
-        Set rsm2 = New adodb.Recordset
+        Set rsm2 = New ADODB.Recordset
         rsm2.Open q, cn1, adOpenDynamic, adLockOptimistic
         While Not rsm2.EOF
           rsm2.Delete
@@ -178,7 +178,7 @@ Sub carga_percepciones(c As ComboBox, tipo As String)
  'marcas
 q = "select * from a12"
 tipo = Format$(tipo, ">@")
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 If tipo = "P" Or tipo = "R" Then
     q = q & " where [tipo12] = '" & tipo & "'"
 End If
@@ -190,9 +190,20 @@ Set rs = Nothing
 
 End Sub
 
+
+Sub carga_percepciones_venta(c As ComboBox)
+q = "select * from I_01 order by detalle"
+Set rs = New ADODB.Recordset
+rs.Open q, cn1
+Call llena_combo(rs, "detalle", "id_impuesto", c, True)
+Set rs = Nothing
+
+End Sub
+
+
 Sub carga_deptos_venta(c As ComboBox)
 'departamentos
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select * from a9 order by descripcion"
 rs.Open q, cn1
 Call llena_combo(rs, "descripcion", "id_departamento", c, True)
@@ -203,7 +214,7 @@ End Sub
 
 Sub carga_actividades(c As ComboBox)
 'departamentos
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select [id_actividad], [descripcion] from g8 "
 rs.Open q, cn1
 Call llena_combo(rs, "descripcion", "id_actividad", c, True)
@@ -214,7 +225,7 @@ End Sub
 
 Sub carga_regimen_retvta(c As ComboBox, ByVal impuesto As Integer)
 'impuestos: 217 ret ganancia / 767 ret iva / 736 ret suss / 1 ret ib
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select [descripcion], [regimen] from i_04 where [impuesto] = " & impuesto
 rs.Open q, cn1
 Call llena_combo(rs, "descripcion", "regimen", c, True)
@@ -225,7 +236,7 @@ End Sub
 
 Sub carga_grupos(c As ComboBox)
 'grupos
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select * from a8 order by descripcion"
 rs.Open q, cn1
 Call llena_combo(rs, "descripcion", "id_grupo", c, True)
@@ -280,11 +291,11 @@ End Sub
 Sub carga_usuarios_ini(c As ComboBox)
   c.clear
   'On Error GoTo manerr
-  Set cn1 = New adodb.Connection
+  Set cn1 = New ADODB.Connection
   gconexion = "Provider=Microsoft.Jet.oledb.4.0;Data Source=" & App.Path & "\dat\5a04.mdb;User id=" & "claudio" & ";password=0969" & ";" & "Jet OLEDB:System database=" & App.Path & "\SEG\system2.mdw;"
   cn1.Open gconexion
   
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select * from g1 order by [usuario]"
 rs.Open q, cn1
 While Not rs.EOF
@@ -309,7 +320,7 @@ End Sub
 Sub carga_usuarios(c As ComboBox)
 c.clear
 
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select * from g1 "
 rs.Open q, cn1
 While Not rs.EOF
@@ -336,7 +347,7 @@ End Sub
 Function activaobra(ByVal i As Long) As Integer
 'devuelve 1 si la actrivacion fue correcta o 0 si no se pudo
 On Error GoTo e1
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select * from g0 where [sucursal] = 0"
 rs.Open q, cn1, adOpenStatic, adLockOptimistic
 rs("id_obraactual") = i
@@ -350,7 +361,7 @@ e1:
   activaobra = 0
 End Function
 Sub carga_tipoiva(c As ComboBox)
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select * from g3"
 rs.Open q, cn1
 c.clear
@@ -379,7 +390,7 @@ End Sub
 
 
 Sub carga_tasaib(c As ComboBox)
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select [id_tasaib], [tasaib] from g12 order by [id_tasaib]"
 rs.Open q, cn1
 c.clear
@@ -397,7 +408,7 @@ End Sub
 
 
 Sub carga_vendedores(c As ComboBox)
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select [id_vendedor], [denominacion] from vta_05 order by [denominacion]"
 rs.Open q, cn1
 c.clear
@@ -415,7 +426,7 @@ End Sub
 Sub carga_impuestos(c As ComboBox, ByVal i As Integer)
 'i = cod. de impuesto
 
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select * from i_02 where [id_impuesto] = " & i
 rs.Open q, cn1
 c.clear
@@ -433,7 +444,7 @@ End Sub
 Sub carga_impuesto(c As ComboBox)
 'impuesto
 
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select * from i_01  "
 rs.Open q, cn1
 c.clear
@@ -458,7 +469,7 @@ If IsMissing(caja) Then
   caja = "T"
 End If
 
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select [id_cuenta], [descripcion], [tipo_cuentacaja] from c_01"
 co = " where "
 If tipo <> "S" Then
@@ -501,7 +512,7 @@ End Sub
 Sub carga_formas_pago(c As ComboBox, ByVal tipo As String)
 'tipo = "B" Bancos(<=50)   "O" Otras (<20) "T" Otras con ch. terc.(<=20)   S "Todas"  y = otras sin las 1234
 'C solo mueven caja
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select [id_forma_pago], [descripcion] from cyb_01"
 Select Case tipo
 Case Is = "B"
@@ -537,7 +548,7 @@ For i = 0 To 9
 Next i
 
 
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select * from g4"
 rs.Open q, cn1
 While Not rs.EOF
@@ -548,7 +559,7 @@ Set rs = Nothing
 End Sub
 
 Sub carga_tipoib(c As ComboBox)
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select * from g6"
 rs.Open q, cn1
 c.clear
@@ -564,7 +575,7 @@ Set rs = Nothing
 
 End Sub
 Sub carga_tipocomp(c As ComboBox)
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select [id_tipo_comp], [descripcion] from g2"
 rs.Open q, cn1
 c.clear
@@ -580,7 +591,7 @@ Set rs = Nothing
 End Sub
 
 Sub carga_provincias(c As ComboBox)
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select * from g9 order by [provincia]"
 rs.Open q, cn1
 c.clear
@@ -596,7 +607,7 @@ Set rs = Nothing
 End Sub
 
 Sub carga_tipocompprod(c As ComboBox)
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select [id_tipocomp], [descripcion] from pro_03"
 rs.Open q, cn1
 c.clear
@@ -612,7 +623,7 @@ Set rs = Nothing
 End Sub
 
 Sub carga_unidad(c As ComboBox)
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select * from g5"
 rs.Open q, cn1
 c.clear
@@ -628,7 +639,7 @@ Set rs = Nothing
 End Sub
 
 Sub carga_dbcrbanco(c As ComboBox)
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select * from cyb_07 order by [descripcion]"
 rs.Open q, cn1
 c.clear
@@ -644,7 +655,7 @@ Set rs = Nothing
 End Sub
 
 Sub carga_clientes(c As ComboBox)
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select [id_cliente], [denominacion] from vta_01 order by denominacion"
 rs.Open q, cn1
 c.clear
@@ -679,7 +690,7 @@ Set rs = Nothing
 End Sub
 
 Sub carga_clientesprov(c As ComboBox)
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select [id_cliente], [denominacion]  from vta_01 where [id_proveedor] > 1 order by denominacion"
 rs.Open q, cn1
 c.clear
@@ -701,7 +712,7 @@ End Sub
 
 
 Sub carga_piezas(c As ComboBox)
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select [id_pieza], [descripcion] from pro_06"
 q = q & " order by [descripcion]"
 rs.Open q, cn1
@@ -721,7 +732,7 @@ Set rs = Nothing
 End Sub
 
 Sub carga_SUCURSALES(c As ComboBox)
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select * from vta_06 order by [SUCURSAL]"
 rs.Open q, cn1
 c.clear
@@ -746,7 +757,7 @@ Set rs = Nothing
 End Sub
 
 Sub carga_empleados(c As ComboBox)
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select [id_legajo], [denominacion] from emp_01 where [estado] = 'A' order by denominacion"
 rs.Open q, cn1
 c.clear
@@ -762,7 +773,7 @@ Set rs = Nothing
 End Sub
 
 Sub carga_periodos(c As ComboBox)
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select * from c_10 where [id_periodo] > 0 "
 rs.Open q, cn1
 c.clear
@@ -779,7 +790,7 @@ End Sub
 
 Sub carga_obras(c As ComboBox, estado As String)
 'T TERMINADAS  E EN EJECUCION  S SUSPENDIDAS  O OTRAS  A TODAS
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select * from a4"
 If estado <> "A" Then
   q = q & " where [estado] = '" & estado & "'"
@@ -802,7 +813,7 @@ Set rs = Nothing
 End Sub
 
 Sub carga_productos(c As ComboBox)
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select [id_producto], [descripcion] from a2 order by descripcion"
 rs.Open q, cn1
 c.clear
@@ -817,7 +828,7 @@ c.ListIndex = 0
 Set rs = Nothing
 End Sub
 Sub carga_proveedores(c As ComboBox)
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select [id_proveedor], [denominacion] from a1 order by denominacion"
 rs.Open q, cn1
 c.clear
@@ -833,7 +844,7 @@ Set rs = Nothing
 End Sub
 
 Sub carga_transporte(c As ComboBox)
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select [id_proveedor], [denominacion] from a1 where [transporte] = 'S' order by denominacion"
 rs.Open q, cn1
 c.clear
@@ -850,7 +861,7 @@ Set rs = Nothing
 End Sub
 
 Sub carga_mov_banco(c As ComboBox)
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select [id_tipomov], [descripcion] from cyb_06  order by descripcion"
 rs.Open q, cn1
 c.clear

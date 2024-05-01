@@ -372,6 +372,7 @@ Form=vta065.frm
 Form=vta063.frm
 Form=VTA016.frm
 Form=vta006.frm
+Form=vta071.frm
 IconForm="admin"
 Startup="admin"
 HelpFile=""

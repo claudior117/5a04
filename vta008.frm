@@ -399,7 +399,7 @@ q = "select num_int, abreviatura, fecha, sucursal_INGRESO, vta_02.id_cliente, cl
      List1.AddItem ""
      List1.AddItem ""
      Set rs2 = New ADODB.Recordset
-     q = "select * from vta_016, a12 where [num_int] = " & Val(t_numint) & " and vta_016.id_percepcion = a12.id_percepcion"
+     q = "select * from vta_016, I_01 where [num_int] = " & Val(t_numint) & " and id_percepcion = id_impuesto"
      rs2.Open q, cn1
      p = 0
      While Not rs2.EOF
@@ -410,7 +410,7 @@ q = "select num_int, abreviatura, fecha, sucursal_INGRESO, vta_02.id_cliente, cl
           List1.AddItem "-------------------------------------"
           p = 1
         End If
-        List1.AddItem Format$(rs2("descripcion"), "@@@@@@@@@@@@@@@@@@@@@@@@@!") & "  " & Format$(rs2("importe"), "#######0.00")
+        List1.AddItem Format$(rs2("detalle"), "@@@@@@@@@@@@@@@@@@@@@@@@@!") & "  " & Format$(rs2("importe"), "#######0.00")
         rs2.MoveNext
       Wend
      Set rs2 = Nothing

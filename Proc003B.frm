@@ -7,12 +7,12 @@ Begin VB.Form ABM_COMP_COMPRA2
    ClientHeight    =   6180
    ClientLeft      =   75
    ClientTop       =   360
-   ClientWidth     =   13425
+   ClientWidth     =   14760
    ControlBox      =   0   'False
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
    ScaleHeight     =   6180
-   ScaleWidth      =   13425
+   ScaleWidth      =   14760
    StartUpPosition =   3  'Windows Default
    Begin ComctlLib.StatusBar StatusBar1 
       Align           =   2  'Align Bottom
@@ -20,8 +20,8 @@ Begin VB.Form ABM_COMP_COMPRA2
       Left            =   0
       TabIndex        =   11
       Top             =   5775
-      Width           =   13425
-      _ExtentX        =   23680
+      Width           =   14760
+      _ExtentX        =   26035
       _ExtentY        =   714
       SimpleText      =   ""
       _Version        =   327682
@@ -30,7 +30,7 @@ Begin VB.Form ABM_COMP_COMPRA2
          BeginProperty Panel1 {0713E89F-850A-101B-AFC0-4210102A8DA7} 
             Object.Width           =   15875
             MinWidth        =   15875
-            TextSave        =   ""
+            Key             =   ""
             Object.Tag             =   ""
          EndProperty
       EndProperty
@@ -61,7 +61,24 @@ Begin VB.Form ABM_COMP_COMPRA2
       Left            =   240
       TabIndex        =   1
       Top             =   0
-      Width           =   12975
+      Width           =   14415
+      Begin VB.TextBox t_alicuota 
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   405
+         Left            =   12840
+         MaxLength       =   21
+         TabIndex        =   13
+         Top             =   840
+         Width           =   1335
+      End
       Begin VB.ComboBox c_concepto 
          BeginProperty Font 
             Name            =   "MS Sans Serif"
@@ -127,6 +144,26 @@ Begin VB.Form ABM_COMP_COMPRA2
          TabIndex        =   2
          Top             =   840
          Width           =   855
+      End
+      Begin VB.Label Label5 
+         Alignment       =   2  'Center
+         BackColor       =   &H00800000&
+         Caption         =   "Alicuota"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00FFFFFF&
+         Height          =   495
+         Left            =   12600
+         TabIndex        =   12
+         Top             =   240
+         Width           =   1695
       End
       Begin VB.Label Label4 
          Alignment       =   2  'Center
@@ -213,8 +250,8 @@ Begin VB.Form ABM_COMP_COMPRA2
       Left            =   240
       TabIndex        =   0
       Top             =   1560
-      Width           =   13095
-      _ExtentX        =   23098
+      Width           =   14415
+      _ExtentX        =   25426
       _ExtentY        =   6376
       _Version        =   393216
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -278,9 +315,9 @@ End Sub
  
 Private Sub c_concepto_KeyPress(KeyAscii As Integer)
 If KeyAscii = 13 And c_concepto.ListIndex >= 0 Then
-  If Val(t_importe) > 0 Then
-    Call cargarenglon
-  End If
+  t_alicuota.SetFocus
+  
+  
 End If
 
 If KeyAscii = 27 Then
@@ -291,6 +328,7 @@ End Sub
 
 Private Sub c_perc_KeyPress(KeyAscii As Integer)
 If KeyAscii = 13 Then
+  
   t_importe.SetFocus
 End If
 
@@ -507,6 +545,18 @@ End Sub
 
 Sub sacatotales()
 
+End Sub
+
+Private Sub t_alicuota_KeyPress(KeyAscii As Integer)
+If KeyAscii = 13 Then
+  If Val(t_importe) > 0 Then
+    Call cargarenglon
+  End If
+End If
+
+If KeyAscii = 27 Then
+  Frame1.Visible = False
+End If
 End Sub
 
 Private Sub t_importe_KeyPress(KeyAscii As Integer)

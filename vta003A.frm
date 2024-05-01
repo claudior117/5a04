@@ -969,12 +969,12 @@ Begin VB.Form vta_facturacion
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "30/04/2024"
+            TextSave        =   "01/05/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "04:08 p.m."
+            TextSave        =   "09:54 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -1730,18 +1730,17 @@ Sub carga3()
    
    'cargo percepciones
      Set rs2 = New ADODB.Recordset
-     q = "select vta_016.id_percepcion, descripcion, importe, vta_016.id_cuenta  from vta_016, a12 where [num_int] = " & rs("num_int") & " and vta_016.id_percepcion = a12.id_percepcion"
+     q = "select vta_016.*, detalle from vta_016, I_01 where [num_int] = " & rs("num_int") & " and id_percepcion = id_impuesto"
      rs2.Open q, cn1
     
-     ABM_COMP_COMPRA2.armagrid
+     vta_facturacion_perc.armagrid
      i = 1
      While Not rs2.EOF
-       ABM_COMP_COMPRA2.msf1.AddItem i & Chr$(9) & rs2("id_percepcion") & Chr$(9) & rs2("descripcion") & Chr$(9) & rs2("importe") & Chr$(9) & rs2("id_cuenta")
+       vta_facturacion_perc.msf1.AddItem i & Chr$(9) & rs2("id_percepcion") & Chr$(9) & rs2("detalle") & Chr$(9) & rs2("base_imponible") & Chr$(9) & rs2("alicuota") & Chr$(9) & rs2("importe") & Chr$(9) & rs2("cod_regimen") & Chr$(9) & rs2("id_cuenta")
        rs2.MoveNext
        i = i + 1
      Wend
      Set rs2 = Nothing
-      
       
       Set rs = Nothing
    
@@ -2832,8 +2831,7 @@ vta_clientes.Show
 End Sub
 
 Private Sub Command6_Click()
-ABM_COMP_COMPRA2.t_modulo = "P"
-ABM_COMP_COMPRA2.Show
+vta_facturacion_perc.Show
 End Sub
 
 Private Sub Command7_Click()
@@ -3356,7 +3354,7 @@ Load vta_facturacion1
 Load vta_selremitos
 Load vta_selcomp
 Load vta_facturacion2
-Load ABM_COMP_COMPRA2
+Load vta_facturacion_perc
 
 Frame11.Visible = False
 
@@ -3697,14 +3695,14 @@ Next i
      
      'actualizo percepciones
      If Val(t_perc) > 0 Then
-        For i = 1 To ABM_COMP_COMPRA2.msf1.Rows - 1
+        For i = 1 To vta_facturacion_perc.msf1.Rows - 1
           QUERY = "INSERT INTO vta_016([num_int], [secuencia], [id_percepcion], [importe], [id_cuenta], [cod_regimen], [base_imponible], [alicuota])"
-          QUERY = QUERY & " VALUES (" & numint & ", " & i & ", " & ABM_COMP_COMPRA2.msf1.TextMatrix(i, 1) & ", " & ABM_COMP_COMPRA2.msf1.TextMatrix(i, 3) & ", " & ABM_COMP_COMPRA2.msf1.TextMatrix(i, 4) & ", " & Val(ABM_COMP_COMPRA2.msf1.TextMatrix(i, 6)) & ", " & Val(ABM_COMP_COMPRA2.msf1.TextMatrix(i, 8)) & ", " & ABM_COMP_COMPRA2.msf1.TextMatrix(i, 7) & ")"
-          MsgBox (QUERY)
+          QUERY = QUERY & " VALUES (" & numint & ", " & i & ", " & vta_facturacion_perc.msf1.TextMatrix(i, 1) & ", " & vta_facturacion_perc.msf1.TextMatrix(i, 5) & ", " & vta_facturacion_perc.msf1.TextMatrix(i, 7) & ", " & Val(vta_facturacion_perc.msf1.TextMatrix(i, 6)) & ", " & Val(vta_facturacion_perc.msf1.TextMatrix(i, 3)) & ", " & Val(vta_facturacion_perc.msf1.TextMatrix(i, 4)) & ")"
+          
           cn1.Execute QUERY
         Next i
       End If
-      ABM_COMP_COMPRA2.armagrid
+      vta_facturacion_perc.armagrid
      
      
      If Option2 = True Then
@@ -4393,10 +4391,10 @@ Sub sacatotales()
 
 
 'busco perc
-If ABM_COMP_COMPRA2.msf1.Rows > 1 Then
+If vta_facturacion_perc.msf1.Rows > 1 Then
   t = 0
-  For i = 1 To ABM_COMP_COMPRA2.msf1.Rows - 1
-    t = t + Val(ABM_COMP_COMPRA2.msf1.TextMatrix(i, 3))
+  For i = 1 To vta_facturacion_perc.msf1.Rows - 1
+    t = t + Val(vta_facturacion_perc.msf1.TextMatrix(i, 5))
   Next i
   t_perc = Format$(t, "######0.00")
 Else
