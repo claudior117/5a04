@@ -167,7 +167,7 @@ Begin VB.Form vta_estadocuenta
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   205455361
+      StartOfWeek     =   173277185
       CurrentDate     =   38754
    End
    Begin MSFlexGridLib.MSFlexGrid msf1 
@@ -356,12 +356,12 @@ Begin VB.Form vta_estadocuenta
          BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "02/05/2024"
+            TextSave        =   "10/05/2024"
          EndProperty
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "06:32 p.m."
+            TextSave        =   "10:09 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -572,9 +572,9 @@ Sub carga()
        End If
      End If
      If Check1 = 0 Then
-       msf1.AddItem F & Chr(9) & CTC & Chr(9) & tc & Chr(9) & nc & Chr(9) & Format$(Val(d), para.formato_numerico) & Chr(9) & Format$(Val(h), para.formato_numerico) & Chr(9) & Format$(Val(s), para.formato_numerico) & Chr(9) & Format$(Val(o), para.formato_numerico) & Chr(9) & ep & Chr(9) & ni
+       msf1.AddItem F & Chr(9) & CTC & Chr(9) & tc & Chr(9) & nc & Chr(9) & Format$(Val(d), para.formato_numerico) & Chr(9) & Format$(Val(h), para.formato_numerico) & Chr(9) & Format$(Val(s), para.formato_numerico) & Chr(9) & o & Chr(9) & ep & Chr(9) & ni
      Else
-        msf1.AddItem F & Chr(9) & CTC & Chr(9) & tc & Chr(9) & nc & Chr(9) & Format$(Val(d), para.formato_numerico) & Chr(9) & Format$(Val(h), para.formato_numerico) & Chr(9) & Format$(Val(s), para.formato_numerico) & Chr(9) & Format$(Val(s2), para.formato_numerico) & Chr(9) & Format$(Val(o), para.formato_numerico) & Chr(9) & ep & Chr(9) & ni
+        msf1.AddItem F & Chr(9) & CTC & Chr(9) & tc & Chr(9) & nc & Chr(9) & Format$(Val(d), para.formato_numerico) & Chr(9) & Format$(Val(h), para.formato_numerico) & Chr(9) & Format$(Val(s), para.formato_numerico) & Chr(9) & Format$(Val(s2), para.formato_numerico) & Chr(9) & o & Chr(9) & ep & Chr(9) & ni
      End If
    rs.MoveNext
   Wend
