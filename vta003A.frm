@@ -969,12 +969,12 @@ Begin VB.Form vta_facturacion
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "10/05/2024"
+            TextSave        =   "13/05/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:03 a.m."
+            TextSave        =   "10:23 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -1135,13 +1135,14 @@ Sub electronica()
                      
                      End If
                      fecha_cbte = fecha
-                     If Option1 = True Then
+                    
+                        If Option1 = True Then
                           'cc 10 dias a partir factura
                           fechapago = DateValue(t_fecha) + 10
-                    Else
+                        Else
                           fechapago = ""
-                    End If
-                     
+                        End If
+                    
                      
                      
                    
@@ -1167,17 +1168,23 @@ Sub electronica()
                     
                     If c_tipocomp.ItemData(c_tipocomp.ListIndex) >= 30 And c_tipocomp.ItemData(c_tipocomp.ListIndex) <= 32 Then
                       'fc nC Nd Credito electrobnica MIPYME
-                      fecha_venc_pago = Format(t_fechavto, "yyyymmdd")
+                      
+                      
                       If c_transferencia.ListIndex = 0 Then
                         mtransf = "SCA"
                       Else
                        mtransf = "ADC"
                       End If
-                    Else
-                        fecha_venc_pago = ""
+                    
                     End If
                     
                     
+                    If (c_tipocomp.ItemData(c_tipocomp.ListIndex) = 30) Then
+                      'fecha vencimiento pago solo factura credito electronica
+                      fecha_venc_pago = Format(t_fechavto, "yyyymmdd")
+                    Else
+                      fecha_venc_pago = ""
+                   End If
                     
         
                     ok = WSFEv1.CrearFactura(concepto, tipo_doc, CUIT2, tipo_cbte, punto_vta, _
