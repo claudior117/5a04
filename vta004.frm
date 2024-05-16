@@ -167,7 +167,7 @@ Begin VB.Form vta_estadocuenta
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   176291841
+      StartOfWeek     =   114360321
       CurrentDate     =   38754
    End
    Begin MSFlexGridLib.MSFlexGrid msf1 
@@ -356,12 +356,12 @@ Begin VB.Form vta_estadocuenta
          BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "13/05/2024"
+            TextSave        =   "16/05/2024"
          EndProperty
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "03:41 p.m."
+            TextSave        =   "05:54 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -451,7 +451,7 @@ Sub carga()
   If Check1 = 0 Then
     msf1.AddItem t_fecha & Chr(9) & "" & Chr(9) & "Saldo Ant." & Chr(9) & "" & Chr(9) & Format$(da, para.formato_numerico) & Chr(9) & Format$(ha, para.formato_numerico) & Chr(9) & Format$(sa, para.formato_numerico)
   Else
-    msf1.AddItem t_fecha & Chr(9) & "" & Chr(9) & "Saldo Ant." & Chr(9) & "" & Chr(9) & Format$(da, "######0.00") & Chr(9) & Format$(ha, para.formato_numerico) & Chr(9) & Format$(sa, para.formato_numerico) & Chr(9) & Format$(sao, para.formato_numerico)
+    msf1.AddItem t_fecha & Chr(9) & "" & Chr(9) & "Saldo Ant." & Chr(9) & "" & Chr(9) & Format$(da, para.formato_numerico) & Chr(9) & Format$(ha, para.formato_numerico) & Chr(9) & Format$(sa, para.formato_numerico) & Chr(9) & Format$(sao, para.formato_numerico)
   End If
   
   

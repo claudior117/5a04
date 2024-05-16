@@ -5,14 +5,14 @@ Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form con_retperc 
    BackColor       =   &H00E0E0E0&
    Caption         =   "INFORME DE RETENCIONES Y PERCEPCIONES DE COMPRA"
-   ClientHeight    =   8490
+   ClientHeight    =   9435
    ClientLeft      =   165
    ClientTop       =   555
-   ClientWidth     =   11880
+   ClientWidth     =   18165
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
-   ScaleHeight     =   8490
-   ScaleWidth      =   11880
+   ScaleHeight     =   9435
+   ScaleWidth      =   18165
    StartUpPosition =   3  'Windows Default
    Begin VB.Frame Frame2 
       BackColor       =   &H00E0E0E0&
@@ -20,20 +20,38 @@ Begin VB.Form con_retperc
       Left            =   6240
       TabIndex        =   11
       Top             =   120
-      Width           =   4935
+      Width           =   7575
       Begin VB.ComboBox c_tipo 
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          ItemData        =   "Con009.frx":0000
          Left            =   1680
          List            =   "Con009.frx":000D
          TabIndex        =   13
          Text            =   "Combo1"
          Top             =   240
-         Width           =   3015
+         Width           =   5175
       End
       Begin VB.Label Label2 
          BackColor       =   &H00800080&
          Caption         =   "Tipo:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
          Height          =   375
          Left            =   240
@@ -44,9 +62,9 @@ Begin VB.Form con_retperc
    End
    Begin MSComCtl2.MonthView cal1 
       Height          =   2370
-      Left            =   2880
+      Left            =   4080
       TabIndex        =   9
-      Top             =   600
+      Top             =   1200
       Width           =   2595
       _ExtentX        =   4577
       _ExtentY        =   4180
@@ -54,7 +72,7 @@ Begin VB.Form con_retperc
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   176291841
+      StartOfWeek     =   114360321
       CurrentDate     =   38750
    End
    Begin VB.Frame Frame3 
@@ -63,55 +81,91 @@ Begin VB.Form con_retperc
       Left            =   240
       TabIndex        =   6
       Top             =   120
-      Width           =   3615
+      Width           =   5295
       Begin VB.TextBox t_fecha2 
          BorderStyle     =   0  'None
-         Height          =   285
-         Left            =   1680
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   405
+         Left            =   3000
          MaxLength       =   10
          TabIndex        =   1
          Top             =   720
-         Width           =   1335
+         Width           =   1815
       End
       Begin VB.TextBox t_fecha 
          BorderStyle     =   0  'None
-         Height          =   285
-         Left            =   1680
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   405
+         Left            =   3000
          MaxLength       =   10
          TabIndex        =   0
          Top             =   240
-         Width           =   1335
+         Width           =   1815
       End
       Begin VB.Label Label1 
          Alignment       =   1  'Right Justify
          BackColor       =   &H00800080&
          Caption         =   "Fecha Hasta:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
-         Height          =   255
+         Height          =   375
          Left            =   120
          TabIndex        =   8
          Top             =   720
-         Width           =   1455
+         Width           =   2655
       End
       Begin VB.Label Label3 
          Alignment       =   1  'Right Justify
          BackColor       =   &H00800080&
          Caption         =   "Fecha Desde:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
          Height          =   495
          Left            =   120
          TabIndex        =   7
          Top             =   240
-         Width           =   1455
+         Width           =   2655
       End
    End
    Begin VB.Frame Frame1 
       BackColor       =   &H00E0E0E0&
       Caption         =   "Funciones"
       Height          =   975
-      Left            =   9720
+      Left            =   14880
       TabIndex        =   3
-      Top             =   7320
+      Top             =   8040
       Width           =   1575
       Begin VB.CommandButton btnsale 
          Cancel          =   -1  'True
@@ -142,49 +196,58 @@ Begin VB.Form con_retperc
       Height          =   255
       Left            =   0
       TabIndex        =   2
-      Top             =   8235
-      Width           =   11880
-      _ExtentX        =   20955
+      Top             =   9180
+      Width           =   18165
+      _ExtentX        =   32041
       _ExtentY        =   450
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
          NumPanels       =   4
          BeginProperty Panel1 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Alignment       =   1
-            Object.Width           =   7056
-            MinWidth        =   7056
+            Object.Width           =   14111
+            MinWidth        =   14111
             Text            =   "Cliente"
             TextSave        =   "Cliente"
          EndProperty
          BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Alignment       =   1
-            Object.Width           =   8820
-            MinWidth        =   8820
+            Object.Width           =   12347
+            MinWidth        =   12347
             Text            =   "Sistema"
             TextSave        =   "Sistema"
          EndProperty
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "13/05/2024"
+            TextSave        =   "16/05/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "03:41 p.m."
+            TextSave        =   "05:53 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
    End
    Begin MSFlexGridLib.MSFlexGrid msf1 
-      Height          =   5535
-      Left            =   0
+      Height          =   6255
+      Left            =   360
       TabIndex        =   10
       Top             =   1560
-      Width           =   11895
-      _ExtentX        =   20981
-      _ExtentY        =   9763
+      Width           =   17685
+      _ExtentX        =   31194
+      _ExtentY        =   11033
       _Version        =   393216
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Segoe UI"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
    End
 End
 Attribute VB_Name = "con_retperc"
@@ -253,22 +316,22 @@ While Not rs1.EOF
         c5 = rs("cotiz_dolar")
      End If
      
-     t = Format$(rs("total") * c5, "######0.00")
+     t = rs("total") * c5
      
      tt = tt + Val(t)
      
-     msf1.AddItem F & Chr(9) & rs("proveedor05") & Chr(9) & rs("cuit05") & " " & rs("g3.abreviatura") & Chr(9) & tc & " " & nc & Chr(9) & t & Chr(9) & Format$(rs("num_int"), "00000")
+     msf1.AddItem F & Chr(9) & rs("proveedor05") & Chr(9) & rs("cuit05") & " " & rs("g3.abreviatura") & Chr(9) & tc & " " & nc & Chr(9) & Format$(t, para.formato_numerico) & Chr(9) & Format$(rs("num_int"), "00000")
      rs.MoveNext
   Wend
   If p > 0 Then
     msf1.AddItem " " & Chr(9) & " " & Chr(9) & " " & Chr(9) & "" & Chr(9) & "______________________"
-    msf1.AddItem " " & Chr(9) & " " & Chr(9) & " " & Chr(9) & "Totales:" & Chr(9) & Format$(tt, "######0.00")
+    msf1.AddItem " " & Chr(9) & " " & Chr(9) & " " & Chr(9) & "Totales:" & Chr(9) & Format$(tt, para.formato_numerico)
     tr = tr + tt
   End If
   rs1.MoveNext
 Wend
 msf1.AddItem " "
-msf1.AddItem " " & Chr(9) & " TOTALE DE RETENCIONES ------------>" & Chr(9) & " " & Chr(9) & "" & Chr(9) & Format$(tr, "######0.00")
+msf1.AddItem " " & Chr(9) & " TOTALE DE RETENCIONES ------------>" & Chr(9) & " " & Chr(9) & "" & Chr(9) & Format$(tr, para.formato_numerico)
 
 End Sub
 
@@ -315,18 +378,18 @@ While Not rs1.EOF
      End If
      tt = tt + Val(t)
      
-     msf1.AddItem F & Chr(9) & rs("proveedor05") & Chr(9) & rs("cuit05") & " " & rs("g3.abreviatura") & Chr(9) & tc & " " & nc & Chr(9) & t & Chr(9) & Format$(rs("A5.num_int"), "00000")
+     msf1.AddItem F & Chr(9) & rs("proveedor05") & Chr(9) & rs("cuit05") & " " & rs("g3.abreviatura") & Chr(9) & tc & " " & nc & Chr(9) & Format$(t, para.formato_numerico) & Chr(9) & Format$(rs("A5.num_int"), "00000")
      rs.MoveNext
   Wend
   If p > 0 Then
     msf1.AddItem " " & Chr(9) & " " & Chr(9) & " " & Chr(9) & "" & Chr(9) & "______________________"
-    msf1.AddItem " " & Chr(9) & " " & Chr(9) & " " & Chr(9) & "Totales:" & Chr(9) & Format$(tt, "######0.00")
+    msf1.AddItem " " & Chr(9) & " " & Chr(9) & " " & Chr(9) & "Totales:" & Chr(9) & Format$(tt, para.formato_numerico)
     tr = tr + tt
   End If
   rs1.MoveNext
 Wend
 msf1.AddItem " "
-msf1.AddItem " " & Chr(9) & " TOTAL DE PERCEPCIONES ------------>" & Chr(9) & " " & Chr(9) & "" & Chr(9) & Format$(tr, "######0.00")
+msf1.AddItem " " & Chr(9) & " TOTAL DE PERCEPCIONES ------------>" & Chr(9) & " " & Chr(9) & "" & Chr(9) & Format$(tr, para.formato_numerico)
 
 
 End Sub
@@ -367,12 +430,12 @@ Sub armagrid()
 msf1.clear
 msf1.Rows = 1
 msf1.Cols = 6
-msf1.ColWidth(0) = 900
-msf1.ColWidth(1) = 5000
-msf1.ColWidth(2) = 1800
-msf1.ColWidth(3) = 2200
-msf1.ColWidth(4) = 1100
-msf1.ColWidth(5) = 1100
+msf1.ColWidth(0) = 1300
+msf1.ColWidth(1) = 7000
+msf1.ColWidth(2) = 2300
+msf1.ColWidth(3) = 3200
+msf1.ColWidth(4) = 2100
+msf1.ColWidth(5) = 2100
 
 
 msf1.TextMatrix(0, 0) = "Fecha"

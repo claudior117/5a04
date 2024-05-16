@@ -6,78 +6,132 @@ Begin VB.Form vta_retyperc_realizadas
    BackColor       =   &H00E0E0E0&
    BorderStyle     =   1  'Fixed Single
    Caption         =   "INFORME DE PERCEPCIONES REALIZADAS"
-   ClientHeight    =   8895
+   ClientHeight    =   9585
    ClientLeft      =   60
    ClientTop       =   345
-   ClientWidth     =   12180
+   ClientWidth     =   18315
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
    MinButton       =   0   'False
-   ScaleHeight     =   8895
-   ScaleWidth      =   12180
+   ScaleHeight     =   9585
+   ScaleWidth      =   18315
    StartUpPosition =   3  'Windows Default
    Begin VB.Frame Frame2 
       BackColor       =   &H00E0E0E0&
-      Height          =   1575
+      Height          =   1815
       Left            =   7080
       TabIndex        =   11
       Top             =   0
-      Width           =   4695
+      Width           =   8175
       Begin VB.ComboBox c_imp 
-         Height          =   315
-         Left            =   1440
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Left            =   2160
          TabIndex        =   17
          Top             =   1200
-         Width           =   3135
+         Width           =   5535
       End
       Begin VB.ComboBox c_cli 
-         Height          =   315
-         Left            =   1440
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Left            =   2160
          TabIndex        =   15
          Top             =   720
-         Width           =   3135
+         Width           =   5535
       End
       Begin VB.ComboBox c_comp 
-         Height          =   315
-         Left            =   1440
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Left            =   2160
          TabIndex        =   13
          Top             =   240
-         Width           =   3135
+         Width           =   5535
       End
       Begin VB.Label Label5 
          BackColor       =   &H00C00000&
          Caption         =   "Impuesto:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
-         Height          =   255
+         Height          =   375
          Left            =   120
          TabIndex        =   16
          Top             =   1200
-         Width           =   1215
+         Width           =   1935
       End
       Begin VB.Label Label4 
          BackColor       =   &H00C00000&
          Caption         =   "Cliente:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
          Height          =   495
          Left            =   120
          TabIndex        =   14
          Top             =   720
-         Width           =   1215
+         Width           =   1935
       End
       Begin VB.Label Label2 
          BackColor       =   &H00C00000&
          Caption         =   "Comprobantes:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
          Height          =   495
          Left            =   120
          TabIndex        =   12
          Top             =   240
-         Width           =   1215
+         Width           =   1935
       End
    End
    Begin MSComCtl2.MonthView cal1 
       Height          =   2370
-      Left            =   3720
+      Left            =   4680
       TabIndex        =   9
       Top             =   120
       Width           =   2595
@@ -87,7 +141,7 @@ Begin VB.Form vta_retyperc_realizadas
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   176291841
+      StartOfWeek     =   114884609
       CurrentDate     =   38750
    End
    Begin VB.Frame Frame3 
@@ -96,55 +150,73 @@ Begin VB.Form vta_retyperc_realizadas
       Left            =   240
       TabIndex        =   6
       Top             =   120
-      Width           =   3255
+      Width           =   4335
       Begin VB.TextBox t_fecha2 
          BorderStyle     =   0  'None
-         Height          =   285
-         Left            =   1680
+         Height          =   405
+         Left            =   2400
          MaxLength       =   10
          TabIndex        =   1
          Top             =   720
-         Width           =   1335
+         Width           =   1815
       End
       Begin VB.TextBox t_fecha 
          BorderStyle     =   0  'None
-         Height          =   285
-         Left            =   1680
+         Height          =   405
+         Left            =   2400
          MaxLength       =   10
          TabIndex        =   0
          Top             =   240
-         Width           =   1335
+         Width           =   1815
       End
       Begin VB.Label Label1 
          Alignment       =   1  'Right Justify
          BackColor       =   &H00800080&
          Caption         =   "Fecha Hasta:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
-         Height          =   255
+         Height          =   375
          Left            =   120
          TabIndex        =   8
          Top             =   720
-         Width           =   1455
+         Width           =   2055
       End
       Begin VB.Label Label3 
          Alignment       =   1  'Right Justify
          BackColor       =   &H00800080&
          Caption         =   "Fecha Desde:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
          Height          =   495
          Left            =   120
          TabIndex        =   7
          Top             =   240
-         Width           =   1455
+         Width           =   2055
       End
    End
    Begin VB.Frame Frame1 
       BackColor       =   &H00E0E0E0&
       Caption         =   "Funciones"
       Height          =   975
-      Left            =   9720
+      Left            =   16440
       TabIndex        =   3
-      Top             =   7320
+      Top             =   8280
       Width           =   1575
       Begin VB.CommandButton btnsale 
          Cancel          =   -1  'True
@@ -175,48 +247,48 @@ Begin VB.Form vta_retyperc_realizadas
       Height          =   255
       Left            =   0
       TabIndex        =   2
-      Top             =   8640
-      Width           =   12180
-      _ExtentX        =   21484
+      Top             =   9330
+      Width           =   18315
+      _ExtentX        =   32306
       _ExtentY        =   450
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
          NumPanels       =   4
          BeginProperty Panel1 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Alignment       =   1
-            Object.Width           =   7056
-            MinWidth        =   7056
+            Object.Width           =   14111
+            MinWidth        =   14111
             Text            =   "Cliente"
             TextSave        =   "Cliente"
          EndProperty
          BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Alignment       =   1
-            Object.Width           =   8820
-            MinWidth        =   8820
+            Object.Width           =   12347
+            MinWidth        =   12347
             Text            =   "Sistema"
             TextSave        =   "Sistema"
          EndProperty
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "13/05/2024"
+            TextSave        =   "16/05/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "03:41 p.m."
+            TextSave        =   "05:53 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
    End
    Begin MSFlexGridLib.MSFlexGrid msf1 
-      Height          =   5535
+      Height          =   6135
       Left            =   0
       TabIndex        =   10
-      Top             =   1560
-      Width           =   11895
-      _ExtentX        =   20981
-      _ExtentY        =   9763
+      Top             =   1920
+      Width           =   18135
+      _ExtentX        =   31988
+      _ExtentY        =   10821
       _Version        =   393216
    End
 End
@@ -288,12 +360,12 @@ If (c_comp.ListIndex = 0 Or c_comp.ListIndex = 1) And (c_imp.ListIndex = 0 Or c_
      ti = ti + Val(i)
      sa = sa + Val(s)
      ia = ia + Val(i)
-     msf1.AddItem F & Chr(9) & "" & Chr$(9) & rs("denominacion") & Chr$(9) & c & Chr(9) & tc & " " & nc & Chr(9) & s & Chr(9) & i & Chr(9) & Format$(rs("num_int"), "00000")
+     msf1.AddItem F & Chr(9) & "" & Chr$(9) & rs("denominacion") & Chr$(9) & c & Chr(9) & tc & " " & nc & Chr(9) & Format$(Val(s), para.formato_numerico) & Chr(9) & Format$(Val(i), para.formato_numerico) & Chr(9) & Format$(rs("num_int"), "00000")
     rs.MoveNext
   Wend
   If ti > 0 Then
      msf1.AddItem " " & Chr(9) & " " & Chr(9) & " " & Chr(9) & " " & Chr(9) & "" & Chr(9) & "______________________" & Chr(9) & "______________________"
-     msf1.AddItem "" & Chr(9) & "" & Chr(9) & "Total Percepciones IB " & Chr(9) & " " & Chr$(9) & Chr(9) & Format$(sa, "######0.00") & Chr$(9) & Format$(ia, "######0.00")
+     msf1.AddItem "" & Chr(9) & "" & Chr(9) & "Total Percepciones IB " & Chr(9) & " " & Chr$(9) & Chr(9) & Format$(sa, para.formato_numerico) & Chr$(9) & Format$(ia, para.formato_numerico)
      msf1.AddItem ""
   End If
   Set rs = Nothing
@@ -341,12 +413,12 @@ If (c_comp.ListIndex = 0 Or c_comp.ListIndex = 1) And (c_imp.ListIndex = 0 Or c_
      ti = ti + Val(i)
      sa = sa + Val(s)
      ia = ia + Val(i)
-     msf1.AddItem F & Chr(9) & "" & Chr$(9) & rs("denominacion") & Chr$(9) & c & Chr(9) & tc & " " & nc & Chr(9) & s & Chr(9) & i & Chr(9) & Format$(rs("num_int"), "00000")
+     msf1.AddItem F & Chr(9) & "" & Chr$(9) & rs("denominacion") & Chr$(9) & c & Chr(9) & tc & " " & nc & Chr(9) & Format$(Val(s), para.formato_numerico) & Chr(9) & Format$(Val(i), para.formato_numerico) & Chr(9) & Format$(rs("num_int"), "00000")
     rs.MoveNext
   Wend
   If ti > 0 Then
      msf1.AddItem " " & Chr(9) & " " & Chr(9) & " " & Chr(9) & " " & Chr(9) & "" & Chr(9) & "______________________" & Chr(9) & "______________________"
-     msf1.AddItem "" & Chr(9) & "" & Chr(9) & "Total Percepciones IVA " & " " & Chr(9) & Chr$(9) & Chr(9) & Format$(sa, "######0.00") & Chr$(9) & Format$(ia, "######0.00")
+     msf1.AddItem "" & Chr(9) & "" & Chr(9) & "Total Percepciones IVA " & " " & Chr(9) & Chr$(9) & Chr(9) & Format$(sa, para.formato_numerico) & Chr$(9) & Format$(ia, para.formato_numerico)
      msf1.AddItem ""
   End If
   Set rs = Nothing
@@ -394,12 +466,12 @@ If (c_comp.ListIndex = 0 Or c_comp.ListIndex = 1) And (c_imp.ListIndex = 0 Or c_
      ti = ti + Val(i)
      sa = sa + Val(s)
      ia = ia + Val(i)
-     msf1.AddItem F & Chr(9) & "" & Chr$(9) & rs("denominacion") & Chr(9) & c & Chr$(9) & tc & " " & nc & Chr(9) & s & Chr(9) & i & Chr(9) & Format$(rs("num_int"), "00000")
+     msf1.AddItem F & Chr(9) & "" & Chr$(9) & rs("denominacion") & Chr(9) & c & Chr$(9) & tc & " " & nc & Chr(9) & Format$(Val(s), para.formato_numerico) & Chr(9) & Format$(Val(i), para.formato_numerico) & Chr(9) & Format$(rs("num_int"), "00000")
     rs.MoveNext
   Wend
   If ti > 0 Then
      msf1.AddItem " " & Chr(9) & " " & Chr(9) & " " & Chr(9) & " " & Chr(9) & "" & Chr(9) & "______________________" & Chr(9) & "______________________"
-     msf1.AddItem "" & Chr(9) & "" & Chr(9) & "Total Percepciones IB " & Chr(9) & Chr$(9) & Chr(9) & Format$(sa, "######0.00") & Chr$(9) & Format$(ia, "######0.00")
+     msf1.AddItem "" & Chr(9) & "" & Chr(9) & "Total Percepciones IB " & Chr(9) & Chr$(9) & Chr(9) & Format$(sa, para.formato_numerico) & Chr$(9) & Format$(ia, para.formato_numerico)
      msf1.AddItem ""
   End If
   Set rs = Nothing
@@ -452,7 +524,7 @@ If (c_comp.ListIndex = 0 Or c_comp.ListIndex = 2) And (c_imp.ListIndex = 0 Or c_
      ti = ti + Val(i)
      sa = sa + Val(s)
      ia = ia + Val(i)
-     msf1.AddItem F & Chr(9) & "" & Chr$(9) & rs("denominacion") & Chr(9) & c & Chr$(9) & tc & " " & nc & Chr(9) & s & Chr(9) & i & Chr(9) & Format$(rs("num_int"), "00000")
+     msf1.AddItem F & Chr(9) & "" & Chr$(9) & rs("denominacion") & Chr(9) & c & Chr$(9) & tc & " " & nc & Chr(9) & Format$(Val(s), para.formato_numerico) & Chr(9) & Format$(Val(i), para.formato_numerico) & Chr(9) & Format$(rs("num_int"), "00000")
 
 
      rs.MoveNext
@@ -491,14 +563,14 @@ If (c_comp.ListIndex = 0 Or c_comp.ListIndex = 2) And (c_imp.ListIndex = 0 Or c_
      ti = ti + Val(i)
      sa = sa + Val(s)
      ia = ia + Val(i)
-     msf1.AddItem F & Chr(9) & "" & Chr$(9) & rs("cliente02") & Chr(9) & c & Chr$(9) & tc & " " & nc & Chr(9) & s & Chr(9) & i & Chr(9) & Format$(rs("vta_02.num_int"), "00000")
+     msf1.AddItem F & Chr(9) & "" & Chr$(9) & rs("cliente02") & Chr(9) & c & Chr$(9) & tc & " " & nc & Chr(9) & Format$(Val(s), para.formato_numerico) & Chr(9) & Format$(Val(i), para.formato_numerico) & Chr(9) & Format$(rs("vta_02.num_int"), "00000")
      rs.MoveNext
      
   Wend
 Set rs = Nothing
 If ti > 0 Then
      msf1.AddItem " " & Chr(9) & Chr(9) & " " & Chr(9) & " " & Chr(9) & "" & Chr(9) & "______________________" & Chr(9) & "______________________"
-     msf1.AddItem "" & Chr(9) & "" & Chr(9) & "Total Retenciones IB " & Chr(9) & Chr$(9) & Chr(9) & Format$(sa, "######0.00") & Chr$(9) & Format$(ia, "######0.00")
+     msf1.AddItem "" & Chr(9) & "" & Chr(9) & "Total Retenciones IB " & Chr(9) & Chr$(9) & Chr(9) & Format$(sa, para.formato_numerico) & Chr$(9) & Format$(ia, para.formato_numerico)
      msf1.AddItem ""
   End If
 End If
@@ -545,7 +617,7 @@ If (c_comp.ListIndex = 0 Or c_comp.ListIndex = 2) And (c_imp.ListIndex = 0 Or c_
      ti = ti + Val(i)
      sa = sa + Val(s)
      ia = ia + Val(i)
-     msf1.AddItem F & Chr(9) & "" & Chr$(9) & rs("denominacion") & Chr(9) & c & Chr$(9) & tc & " " & nc & Chr(9) & s & Chr(9) & i & Chr(9) & Format$(rs("num_int"), "00000")
+     msf1.AddItem F & Chr(9) & "" & Chr$(9) & rs("denominacion") & Chr(9) & c & Chr$(9) & tc & " " & nc & Chr(9) & Format$(Val(s), para.formato_numerico) & Chr(9) & Format$(Val(i), para.formato_numerico) & Chr(9) & Format$(rs("num_int"), "00000")
     rs.MoveNext
   Wend
   Set rs = Nothing
@@ -583,14 +655,14 @@ If (c_comp.ListIndex = 0 Or c_comp.ListIndex = 2) And (c_imp.ListIndex = 0 Or c_
      ti = ti + Val(i)
      sa = sa + Val(s)
      ia = ia + Val(i)
-     msf1.AddItem F & Chr(9) & "" & Chr$(9) & rs("cliente02") & Chr(9) & c & Chr$(9) & tc & " " & nc & Chr(9) & s & Chr(9) & i & Chr(9) & Format$(rs("vta_02.num_int"), "00000")
+     msf1.AddItem F & Chr(9) & "" & Chr$(9) & rs("cliente02") & Chr(9) & c & Chr$(9) & tc & " " & nc & Chr(9) & Format$(Val(s), para.formato_numerico) & Chr(9) & Format$(Val(i), para.formato_numerico) & Chr(9) & Format$(rs("vta_02.num_int"), "00000")
      rs.MoveNext
      
   Wend
 Set rs = Nothing
 If ti > 0 Then
      msf1.AddItem " " & Chr(9) & Chr(9) & " " & Chr(9) & " " & Chr(9) & "" & Chr(9) & "______________________" & Chr(9) & "______________________"
-     msf1.AddItem "" & Chr(9) & "" & Chr(9) & "Total Retenciones Iva " & Chr(9) & Chr$(9) & Chr(9) & Format$(sa, "######0.00") & Chr$(9) & Format$(ia, "######0.00")
+     msf1.AddItem "" & Chr(9) & "" & Chr(9) & "Total Retenciones Iva " & Chr(9) & Chr$(9) & Chr(9) & Format$(sa, para.formato_numerico) & Chr$(9) & Format$(ia, para.formato_numerico)
      msf1.AddItem ""
   End If
 
@@ -638,7 +710,7 @@ If (c_comp.ListIndex = 0 Or c_comp.ListIndex = 2) And (c_imp.ListIndex = 0 Or c_
      ti = ti + Val(i)
      sa = sa + Val(s)
      ia = ia + Val(i)
-     msf1.AddItem F & Chr(9) & "" & Chr$(9) & rs("denominacion") & Chr(9) & c & Chr$(9) & tc & " " & nc & Chr(9) & s & Chr(9) & i & Chr(9) & Format$(rs("num_int"), "00000")
+     msf1.AddItem F & Chr(9) & "" & Chr$(9) & rs("denominacion") & Chr(9) & c & Chr$(9) & tc & " " & nc & Chr(9) & Format$(Val(s), para.formato_numerico) & Chr(9) & Format$(Val(i), para.formato_numerico) & Chr(9) & Format$(rs("num_int"), "00000")
     rs.MoveNext
   Wend
   Set rs = Nothing
@@ -676,14 +748,14 @@ If (c_comp.ListIndex = 0 Or c_comp.ListIndex = 2) And (c_imp.ListIndex = 0 Or c_
      ti = ti + Val(i)
      sa = sa + Val(s)
      ia = ia + Val(i)
-     msf1.AddItem F & Chr(9) & "" & Chr$(9) & rs("cliente02") & Chr(9) & c & Chr$(9) & tc & " " & nc & Chr(9) & s & Chr(9) & i & Chr(9) & Format$(rs("vta_02.num_int"), "00000")
+     msf1.AddItem F & Chr(9) & "" & Chr$(9) & rs("cliente02") & Chr(9) & c & Chr$(9) & tc & " " & nc & Chr(9) & Format$(Val(s), para.formato_numerico) & Chr(9) & Format$(Val(i), para.formato_numerico) & Chr(9) & Format$(rs("vta_02.num_int"), "00000")
      rs.MoveNext
      
   Wend
 Set rs = Nothing
 If ti > 0 Then
      msf1.AddItem " " & Chr(9) & Chr(9) & " " & Chr(9) & " " & Chr(9) & "" & Chr(9) & "______________________" & Chr(9) & "______________________"
-     msf1.AddItem "" & Chr(9) & "" & Chr(9) & "Total Retenciones Gan." & Chr(9) & Chr$(9) & Chr(9) & Format$(sa, "######0.00") & Chr$(9) & Format$(ia, "######0.00")
+     msf1.AddItem "" & Chr(9) & "" & Chr(9) & "Total Retenciones Gan." & Chr(9) & Chr$(9) & Chr(9) & Format$(sa, para.formato_numerico) & Chr$(9) & Format$(ia, para.formato_numerico)
      msf1.AddItem ""
   End If
 
@@ -732,7 +804,7 @@ If (c_comp.ListIndex = 0 Or c_comp.ListIndex = 2) And (c_imp.ListIndex = 0 Or c_
      ti = ti + Val(i)
      sa = sa + Val(s)
      ia = ia + Val(i)
-     msf1.AddItem F & Chr(9) & "" & Chr$(9) & rs("denominacion") & Chr(9) & c & Chr$(9) & tc & " " & nc & Chr(9) & s & Chr(9) & i & Chr(9) & Format$(rs("num_int"), "00000")
+     msf1.AddItem F & Chr(9) & "" & Chr$(9) & rs("denominacion") & Chr(9) & c & Chr$(9) & tc & " " & nc & Chr(9) & Format$(Val(s), para.formato_numerico) & Chr(9) & Format$(Val(i), para.formato_numerico) & Chr(9) & Format$(rs("num_int"), "00000")
     rs.MoveNext
   Wend
   Set rs = Nothing
@@ -770,14 +842,14 @@ Set rs = New ADODB.Recordset
      ti = ti + Val(i)
      sa = sa + Val(s)
      ia = ia + Val(i)
-     msf1.AddItem F & Chr(9) & "" & Chr$(9) & rs("cliente02") & Chr(9) & c & Chr$(9) & tc & " " & nc & Chr(9) & s & Chr(9) & i & Chr(9) & Format$(rs("vta_02.num_int"), "00000")
+     msf1.AddItem F & Chr(9) & "" & Chr$(9) & rs("cliente02") & Chr(9) & c & Chr$(9) & tc & " " & nc & Chr(9) & Format$(Val(s), para.formato_numerico) & Chr(9) & Format$(Val(i), para.formato_numerico) & Chr(9) & Format$(rs("vta_02.num_int"), "00000")
      rs.MoveNext
      
   Wend
 Set rs = Nothing
 If ti > 0 Then
      msf1.AddItem " " & Chr(9) & Chr(9) & " " & Chr(9) & " " & Chr(9) & "" & Chr(9) & "______________________" & Chr(9) & "______________________"
-     msf1.AddItem "" & Chr(9) & "" & Chr(9) & "Total Retenciones Seg.Social " & Chr(9) & Chr$(9) & Chr(9) & Format$(sa, "######0.00") & Chr$(9) & Format$(ia, "######0.00")
+     msf1.AddItem "" & Chr(9) & "" & Chr(9) & "Total Retenciones Seg.Social " & Chr(9) & Chr$(9) & Chr(9) & Format$(sa, para.formato_numerico) & Chr$(9) & Format$(ia, para.formato_numerico)
      msf1.AddItem ""
   End If
 
@@ -834,14 +906,14 @@ Sub armagrid()
 msf1.clear
 msf1.Rows = 1
 msf1.Cols = 9
-msf1.ColWidth(0) = 900
-msf1.ColWidth(1) = 1700
-msf1.ColWidth(2) = 2700
-msf1.ColWidth(3) = 1500
-msf1.ColWidth(4) = 2500
-msf1.ColWidth(5) = 1100
-msf1.ColWidth(6) = 1100
-msf1.ColWidth(7) = 1100
+msf1.ColWidth(0) = 1300
+msf1.ColWidth(1) = 2100
+msf1.ColWidth(2) = 3300
+msf1.ColWidth(3) = 1900
+msf1.ColWidth(4) = 3300
+msf1.ColWidth(5) = 2100
+msf1.ColWidth(6) = 2100
+msf1.ColWidth(7) = 2100
 msf1.ColWidth(8) = 500
 
 
