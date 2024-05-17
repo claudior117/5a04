@@ -5,21 +5,21 @@ Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form cyb_estadocuenta 
    BackColor       =   &H00E0E0E0&
    Caption         =   "ESTADO DE CUENTA BANCARIA"
-   ClientHeight    =   8490
+   ClientHeight    =   9435
    ClientLeft      =   165
    ClientTop       =   555
-   ClientWidth     =   11880
+   ClientWidth     =   18165
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
-   ScaleHeight     =   8490
-   ScaleWidth      =   11880
+   ScaleHeight     =   9435
+   ScaleWidth      =   18165
    StartUpPosition =   3  'Windows Default
    Begin VB.Frame Frame5 
       Caption         =   "Tools"
       Height          =   735
       Left            =   240
       TabIndex        =   19
-      Top             =   7200
+      Top             =   8160
       Width           =   5655
       Begin VB.CommandButton Command3 
          Caption         =   "Depositos"
@@ -50,62 +50,98 @@ Begin VB.Form cyb_estadocuenta
       BackColor       =   &H00E0E0E0&
       Caption         =   "Mostrar movimientos segun estado conciliacion:"
       Height          =   735
-      Left            =   7680
+      Left            =   11400
       TabIndex        =   15
-      Top             =   840
-      Width           =   3975
+      Top             =   960
+      Width           =   6615
       Begin VB.ComboBox c_concilia 
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          ItemData        =   "CYB009.frx":0000
          Left            =   120
          List            =   "CYB009.frx":000D
          TabIndex        =   16
          Text            =   "Combo1"
          Top             =   240
-         Width           =   3375
+         Width           =   6375
       End
    End
    Begin VB.Frame Frame2 
       BackColor       =   &H00E0E0E0&
       Caption         =   "Ordenados por:"
       Height          =   855
-      Left            =   7680
+      Left            =   11400
       TabIndex        =   11
       Top             =   0
-      Width           =   3975
+      Width           =   6615
       Begin VB.OptionButton Option3 
          BackColor       =   &H00E0E0E0&
-         Caption         =   "Fecha Acreditacion"
+         Caption         =   "Fecha Acreditación"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   495
-         Left            =   2640
+         Left            =   4320
          TabIndex        =   14
          Top             =   240
-         Width           =   1215
+         Width           =   2175
       End
       Begin VB.OptionButton Option2 
          BackColor       =   &H00E0E0E0&
          Caption         =   "Fecha Diferida"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   495
-         Left            =   1440
+         Left            =   2160
          TabIndex        =   13
          Top             =   240
-         Width           =   1095
+         Width           =   1815
       End
       Begin VB.OptionButton Option1 
          BackColor       =   &H00E0E0E0&
-         Caption         =   "Fecha Emision"
+         Caption         =   "Fecha Emisión"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   495
          Left            =   120
          TabIndex        =   12
          Top             =   240
-         Width           =   1095
+         Width           =   1935
       End
    End
    Begin MSComCtl2.MonthView cal1 
       Height          =   2370
-      Left            =   4560
+      Left            =   8280
       TabIndex        =   10
-      Top             =   120
+      Top             =   0
       Width           =   2595
       _ExtentX        =   4577
       _ExtentY        =   4180
@@ -113,25 +149,25 @@ Begin VB.Form cyb_estadocuenta
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   176291841
+      StartOfWeek     =   116195329
       CurrentDate     =   38754
    End
    Begin MSFlexGridLib.MSFlexGrid msf1 
-      Height          =   5295
+      Height          =   5895
       Left            =   240
       TabIndex        =   2
-      Top             =   1680
-      Width           =   11535
-      _ExtentX        =   20346
-      _ExtentY        =   9340
+      Top             =   2040
+      Width           =   17775
+      _ExtentX        =   31353
+      _ExtentY        =   10398
       _Version        =   393216
       FixedCols       =   0
       FocusRect       =   0
       HighLight       =   2
       SelectionMode   =   1
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Name            =   "Segoe UI"
+         Size            =   9.75
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
@@ -141,54 +177,99 @@ Begin VB.Form cyb_estadocuenta
    End
    Begin VB.Frame Frame3 
       BackColor       =   &H00E0E0E0&
-      Height          =   1575
+      Height          =   1815
       Left            =   240
       TabIndex        =   7
       Top             =   0
-      Width           =   7215
+      Width           =   9375
       Begin VB.TextBox t_fecha2 
          BorderStyle     =   0  'None
-         Height          =   285
-         Left            =   2160
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   405
+         Left            =   2280
          MaxLength       =   10
          TabIndex        =   17
-         Top             =   1080
-         Width           =   1575
+         Top             =   1200
+         Width           =   1935
       End
       Begin VB.TextBox t_fecha 
          BorderStyle     =   0  'None
-         Height          =   285
-         Left            =   2160
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   405
+         Left            =   2280
          MaxLength       =   10
          TabIndex        =   1
          Top             =   720
-         Width           =   1575
+         Width           =   1935
       End
       Begin VB.ComboBox c_banco 
-         Height          =   315
-         Left            =   2160
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Left            =   2280
          Style           =   2  'Dropdown List
          TabIndex        =   0
          Top             =   240
-         Width           =   4815
+         Width           =   6735
       End
       Begin VB.Label Label1 
          Alignment       =   1  'Right Justify
          BackColor       =   &H00800080&
          Caption         =   "Fecha Hasta:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
-         Height          =   255
+         Height          =   495
          Left            =   120
          TabIndex        =   18
-         Top             =   1080
+         Top             =   1200
          Width           =   1935
       End
       Begin VB.Label Label3 
          Alignment       =   1  'Right Justify
          BackColor       =   &H00800080&
          Caption         =   "Fecha Desde:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
-         Height          =   375
+         Height          =   495
          Left            =   120
          TabIndex        =   9
          Top             =   720
@@ -198,6 +279,15 @@ Begin VB.Form cyb_estadocuenta
          Alignment       =   1  'Right Justify
          BackColor       =   &H00800080&
          Caption         =   "Banco:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
          Height          =   495
          Left            =   120
@@ -210,9 +300,9 @@ Begin VB.Form cyb_estadocuenta
       BackColor       =   &H00E0E0E0&
       Caption         =   "Funciones"
       Height          =   975
-      Left            =   9720
+      Left            =   16320
       TabIndex        =   4
-      Top             =   7320
+      Top             =   8040
       Width           =   1575
       Begin VB.CommandButton btnsale 
          Cancel          =   -1  'True
@@ -243,9 +333,9 @@ Begin VB.Form cyb_estadocuenta
       Height          =   255
       Left            =   0
       TabIndex        =   3
-      Top             =   8235
-      Width           =   11880
-      _ExtentX        =   20955
+      Top             =   9180
+      Width           =   18165
+      _ExtentX        =   32041
       _ExtentY        =   450
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
@@ -259,20 +349,20 @@ Begin VB.Form cyb_estadocuenta
          EndProperty
          BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Alignment       =   1
-            Object.Width           =   17639
-            MinWidth        =   17639
+            Object.Width           =   31750
+            MinWidth        =   31750
             Text            =   "Sistema"
             TextSave        =   "Sistema"
          EndProperty
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "13/05/2024"
+            TextSave        =   "17/05/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "03:41 p.m."
+            TextSave        =   "05:24 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -330,7 +420,7 @@ Sub carga()
   
   
   saldoanterior = sa
-  msf1.AddItem t_fecha & Chr(9) & Chr(9) & Chr(9) & Format$(da, "######0.00") & Chr(9) & Format$(ha, "######0.00") & Chr(9) & Format$(sa, "######0.00") & Chr(9) & "Saldo Inicial"
+  msf1.AddItem t_fecha & Chr(9) & Chr(9) & Chr(9) & Format$(da, para.formato_numerico) & Chr(9) & Format$(ha, para.formato_numerico) & Chr(9) & Format$(sa, para.formato_numerico) & Chr(9) & "Saldo Inicial"
   
   q = "select [fecha], [fecha_dif], [num_mov_banco], [abreviatura], cyb_04.[ubicacion], [importe], [detalle], [entro], [fecha_acreed], [num_comp], cyb_04.[id_tipomov] from cyb_04, cyb_06 where [id_banco] = " & c_banco.ItemData(c_banco.ListIndex) & " and cyb_04.[id_tipomov] = cyb_06.[id_tipomov]"
   Select Case c_concilia.ListIndex
@@ -401,7 +491,7 @@ Sub carga()
        fa = rs("fecha_acreed")
      End If
      nc = Format$(rs("num_comp"), "0000000000")
-     msf1.AddItem fd & Chr(9) & t & Chr(9) & nc & Chr(9) & d & Chr(9) & h & Chr(9) & s & Chr(9) & o & Chr$(9) & rs("entro") & Chr$(9) & fa & Chr(9) & F & Chr(9) & ni & Chr(9) & rs("id_tipomov")
+     msf1.AddItem fd & Chr(9) & t & Chr(9) & nc & Chr(9) & Format$(Val(d), para.formato_numerico) & Chr(9) & Format$(Val(h), para.formato_numerico) & Chr(9) & Format$(Val(s), para.formato_numerico) & Chr(9) & o & Chr$(9) & rs("entro") & Chr$(9) & fa & Chr(9) & F & Chr(9) & ni & Chr(9) & rs("id_tipomov")
      
     rs.MoveNext
   Wend
@@ -421,16 +511,16 @@ Sub armagrid()
 msf1.clear
 msf1.Rows = 1
 msf1.Cols = 12
-msf1.ColWidth(0) = 1100
-msf1.ColWidth(1) = 1200
-msf1.ColWidth(2) = 1200
-msf1.ColWidth(3) = 1100
-msf1.ColWidth(4) = 1100
-msf1.ColWidth(5) = 1300
-msf1.ColWidth(6) = 4900
-msf1.ColWidth(7) = 600
-msf1.ColWidth(8) = 1100
-msf1.ColWidth(9) = 1100
+msf1.ColWidth(0) = 2100
+msf1.ColWidth(1) = 2300
+msf1.ColWidth(2) = 2100
+msf1.ColWidth(3) = 2300
+msf1.ColWidth(4) = 2300
+msf1.ColWidth(5) = 2300
+msf1.ColWidth(6) = 5600
+msf1.ColWidth(7) = 700
+msf1.ColWidth(8) = 2100
+msf1.ColWidth(9) = 2100
 msf1.ColWidth(10) = 800
 msf1.ColWidth(11) = 800
 msf1.TextMatrix(0, 0) = "Fecha Dif."
@@ -445,6 +535,15 @@ msf1.TextMatrix(0, 8) = "Fecha Acred."
 msf1.TextMatrix(0, 9) = "Fecha Op."
 msf1.TextMatrix(0, 10) = "Nro. Int"
 msf1.TextMatrix(0, 11) = "Tipo Op."
+
+
+ For i = 0 To 5
+    msf1.ColAlignment(i) = 9
+  Next i
+  For i = 6 To 11
+    msf1.ColAlignment(i) = 1
+  Next i
+  
 End Sub
 
 

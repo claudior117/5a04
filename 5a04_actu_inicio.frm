@@ -120,7 +120,7 @@ Begin VB.Form actu_inicio
    Begin VB.Label Label3 
       Alignment       =   2  'Center
       BackColor       =   &H0000FFFF&
-      Caption         =   "229"
+      Caption         =   "230"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   18
@@ -338,6 +338,8 @@ Case Is = 228
     Call actu228
 Case Is = 229
     Call actu229
+Case Is = 230
+    Call actu230
  Case Is = 999
    Call actu999
    
@@ -2843,6 +2845,44 @@ Resume Next
 
 End Sub
 
+
+
+Sub actu230()
+'Soluciona problema con percepciones de venta. Pasa todos los codigos de percepcion a la tabla I_01
+h = MsgBox("Actualizacion 230(Agrega codigos Percepciones Venta) . ¿Esta seguro que quiere actualizar?  ", 4)
+If h = 6 Then
+  espere.Show
+  espere.Refresh
+   cn1.BeginTrans
+   
+   
+    q = "alter table i_01 add column [tipo_i1] Text(1), [impuesto_i1] Text(5) "
+     cn1.Execute q
+   
+   
+    q = "update g0 set  [actualizacion]=230"
+    q = q & " where [sucursal]=0 "
+    cn1.Execute q
+   
+    
+  cn1.CommitTrans
+    
+   
+  MsgBox ("Proceso terminado.  Modifique tabla I_01 Tipo: P Percepciones, R Retenciones - Impuesto: IVA-IBBA-GAN")
+   
+   
+   
+ Unload espere
+  
+End If
+
+Exit Sub
+
+
+err1:
+Resume Next
+
+End Sub
 
 
 Sub actu221()

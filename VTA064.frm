@@ -5,7 +5,7 @@ Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form vta_perc 
    BackColor       =   &H00E0E0E0&
    BorderStyle     =   1  'Fixed Single
-   Caption         =   "PERCEPCIONES POR VENTAS"
+   Caption         =   "PERCEPCIONES REALIZADAS por VENTAS"
    ClientHeight    =   9585
    ClientLeft      =   60
    ClientTop       =   345
@@ -106,7 +106,7 @@ Begin VB.Form vta_perc
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   114360321
+      StartOfWeek     =   116195329
       CurrentDate     =   38750
    End
    Begin VB.Frame Frame3 
@@ -254,12 +254,12 @@ Begin VB.Form vta_perc
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "16/05/2024"
+            TextSave        =   "17/05/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "05:53 p.m."
+            TextSave        =   "05:24 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -297,62 +297,7 @@ Const l = "-------------------------------------------"
 Sub carga()
 Call armagrid
 
-q = "select * from a12 where tipo12 = 'P'"
-c = " and "
-If c_imp.ListIndex > 0 Then
-  Select Case c_imp.ListIndex
-   Case Is = 1
-     'iva
-     tp = "I"
-     dr = "IVA "
-   Case Is = 2
-     'ib
-     tp = "B"
-      dr = "INGRESOS BRUTOS "
-   Case Is = 3
-     'gan
-     tp = "G"
-      dr = "GANANCIAS "
-     
-   Case Is = 4
-        'suss
-     tp = "S"
-      dr = "SUSS "
-     
-   Case Is = 5
-        'otros
-     tp = "O"
-      dr = "OTROS "
-   End Select
-   
-   q = q & " and impuesto12 = '" & tp & "'"
-   
- End If
-
- If c_concepto.ListIndex > 0 Then
-   q = q & " and id_percepcion = " & c_concepto.ItemData(c_concepto.ListIndex)
- End If
-
- q = q & " order by [impuesto12], [id_percepcion]"
- 
-Set rs = New ADODB.Recordset
-rs.Open q, cn1
-tt = 0
-ti = 0
-tcp = 0
-timp = ""
-codper = 0
-v = 0
-While Not rs.EOF
-    
-    If codper <> rs("id_percepcion") Or v = 0 Then
-     msf1.AddItem ""
-     msf1.AddItem "     " & Chr(9) & rs("descripcion")
-     codper = rs("id_percepcion")
-     v = 1
-    End If
- 
-    q = "select * from vta_02, vta_016 where vta_02.num_int = vta_016.num_int and vta_016.id_percepcion = " & rs("id_percepcion")
+q = "select * from vta_02, vta_016, i_01 where vta_02.num_int = vta_016.num_int and id_percepcion = id_impuesto and tipo_i1 = 'P'"
     
     If IsDate(t_fecha) Then
      q = q & " and datevalue([fecha]) >= datevalue('" & t_fecha & "')"
@@ -361,22 +306,35 @@ While Not rs.EOF
     If IsDate(t_fecha2) Then
       q = q & " and  datevalue([fecha]) <= datevalue('" & t_fecha2 & "')"
     End If
- 
     
+    
+   If c_concepto.ListIndex > 0 Then
+      q = q & " and  id_impuesto = " & c_concepto.ItemData(c_concepto.ListIndex)
+   End If
+      
+      
+   If c_imp.ListIndex > 0 Then
+      q = q & " and  impuesto_i1 = '" & c_imp & "'"
+   End If
+   
+   q = q & " order by fecha, id_impuesto"
     
     Set rs2 = New ADODB.Recordset
     rs2.Open q, cn1
     tcp = 0
     t = "0"
+    bi = 0
+    ali = 0
     While Not rs2.EOF
-        F = Format$(rs2("fecha"), "dd/mm/yy")
+        F = Format$(rs2("fecha"), "dd/mm/yyyy")
         nc = rs2("letra") & " " & Format$(rs2("sucursal"), "0000") & "-" & Format$(rs2("num_comp"), "00000000")
         If rs2("moneda") = "P" Then
            c5 = 1
         Else
            c5 = rs2("cotiz_dolar")
         End If
-        
+        bi = rs2("base_imponible")
+        ali = rs2("alicuota")
         If rs2("grabado") = "S" Then
           t = Format$(rs2("importe") * c5, "######0.00")
         Else
@@ -385,23 +343,13 @@ While Not rs.EOF
         tcodperc = tcodperc + Val(t)
         ti = ti + Val(t)
         tt = tt + Val(t)
-        msf1.AddItem F & Chr(9) & "" & Chr$(9) & rs2("cliente02") & Chr(9) & rs2("cuit02") & " " & Chr(9) & " " & nc & Chr(9) & "" & Chr(9) & Format$(t, para.formato_numerico) & Chr(9) & Format$(rs2("vta_02.num_int"), "00000")
+        msf1.AddItem F & Chr(9) & rs2("detalle") & Chr$(9) & rs2("cliente02") & Chr(9) & rs2("cuit02") & " " & Chr(9) & " " & nc & Chr(9) & Format$(bi, para.formato_numerico) & Chr(9) & Format$(ali, para.formato_numerico) & Chr(9) & Format$(t, para.formato_numerico) & Chr(9) & Format$(rs2("vta_02.num_int"), "00000")
         rs2.MoveNext
 
     Wend
     Set rs2 = Nothing
     
-    If t <> "0" Then
-        'totales por codigo
-        msf1.AddItem "" & Chr(9) & "" & Chr(9) & "" & Chr(9) & "" & Chr(9) & "" & Chr(9) & "" & Chr(9) & "======================"
-        msf1.AddItem "" & Chr(9) & "" & Chr(9) & "" & Chr(9) & "" & Chr(9) & "Total " & rs("descripcion") & Chr$(9) & "" & Chr(9) & Format$(ti, para.formato_numerico)
-        msf1.AddItem ""
-    End If
-    ti = 0
-        
-    rs.MoveNext
- Wend
-  msf1.AddItem "" & Chr(9) & "" & Chr(9) & "" & Chr(9) & "" & Chr(9) & "TOTAL PERCEPCIONES " & Chr$(9) & "" & Chr(9) & Format$(tt, para.formato_numerico)
+    msf1.AddItem "" & Chr(9) & "" & Chr(9) & "" & Chr(9) & "" & Chr(9) & "TOTAL PERCEPCIONES " & Chr$(9) & "" & Chr(9) & Chr(9) & Format$(tt, para.formato_numerico)
          
        
 
@@ -465,15 +413,15 @@ Sub armagrid()
 msf1.clear
 msf1.Rows = 1
 msf1.Cols = 9
-msf1.ColWidth(0) = 1300
+msf1.ColWidth(0) = 1500
 msf1.ColWidth(1) = 2200
 msf1.ColWidth(2) = 3100
 msf1.ColWidth(3) = 2000
-msf1.ColWidth(4) = 3500
-msf1.ColWidth(5) = 2300
-msf1.ColWidth(6) = 2300
-msf1.ColWidth(7) = 2300
-msf1.ColWidth(8) = 700
+msf1.ColWidth(4) = 3300
+msf1.ColWidth(5) = 2100
+msf1.ColWidth(6) = 1500
+msf1.ColWidth(7) = 2100
+msf1.ColWidth(8) = 2300
 
 
 
@@ -482,10 +430,10 @@ msf1.TextMatrix(0, 1) = "Tipo Impuesto"
 msf1.TextMatrix(0, 2) = "Cliente"
 msf1.TextMatrix(0, 3) = "Cuit"
 msf1.TextMatrix(0, 4) = "Tipo y Nro.Comprob."
-msf1.TextMatrix(0, 5) = "Imponible"
-msf1.TextMatrix(0, 6) = "Impuesto"
-msf1.TextMatrix(0, 7) = "Num.Int."
-msf1.TextMatrix(0, 8) = "Modulo "
+msf1.TextMatrix(0, 5) = "BaseImp."
+msf1.TextMatrix(0, 6) = "Alicuota"
+msf1.TextMatrix(0, 7) = "Impuesto"
+msf1.TextMatrix(0, 8) = "Num.Int."
 
 For i = 0 To 4
   msf1.ColAlignment(i) = 1 'izq
@@ -501,7 +449,7 @@ Call barraesag(Me)
 cal1.Visible = False
 Call armagrid
 Call cargaret
-Call carga_percepciones(c_concepto, "P")
+Call carga_percepciones_venta(c_concepto)
 c_concepto.AddItem "<Todos>", 0
 c_concepto.ListIndex = 0
 
@@ -511,11 +459,10 @@ Sub cargaret()
 'impuestos
 c_imp.clear
 c_imp.AddItem "<Todos>", 0
-c_imp.AddItem "Iva", 1
-c_imp.AddItem "Ing.Brutos", 2
-c_imp.AddItem "Ganancias", 3
-c_imp.AddItem "Seg. Social", 4
-c_imp.AddItem "Otros", 5
+c_imp.AddItem "IVA", 1
+c_imp.AddItem "IBBA", 2
+c_imp.AddItem "GAN", 3
+c_imp.AddItem "SEGSO", 4
 c_imp.ListIndex = 0
 
 End Sub
@@ -531,19 +478,18 @@ If KeyCode = vbKeyF7 Then
   Dim c(15) As Double
   J = MsgBox("Prepare Impresora y confirme", 4)
   If J = 6 Then
-    c(0) = 8
-    c(1) = 0
-    c(2) = 1
-    c(3) = 2
-    c(4) = 3
-    c(5) = 4
-    c(6) = 5
-    c(7) = 6
-    c(8) = 7
-    For i = 9 To 14
+    c(0) = 0
+    c(1) = 1
+    c(2) = 2
+    c(3) = 3
+    c(4) = 4
+    c(5) = 5
+    c(6) = 6
+    c(7) = 7
+    For i = 8 To 14
       c(i) = -1
     Next i
-    Call imprimegrid(msf1, c(), "LISTADO DE RETENCIONES y PERCEPCIONES RECIBIDAS por VENTAS", "", "Periodo: " & t_fecha & " : " & t_fecha2, "", 95, 6, True, False)
+    Call imprimegrid(msf1, c(), "LISTADO DE PERCEPCIONES REALIZADAS por VENTAS", "", "Periodo: " & t_fecha & " : " & t_fecha2, " Impuesto:" & c_concepto & " ** " & c_imp & "**", 95, 6, True, False)
   End If
 
 End If

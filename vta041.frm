@@ -5,7 +5,7 @@ Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form vta_retyperc_realizadas 
    BackColor       =   &H00E0E0E0&
    BorderStyle     =   1  'Fixed Single
-   Caption         =   "INFORME DE PERCEPCIONES REALIZADAS"
+   Caption         =   "INFORME DE PERCEPCIONES REALIZADAS(No Usar)"
    ClientHeight    =   9585
    ClientLeft      =   60
    ClientTop       =   345
@@ -66,7 +66,9 @@ Begin VB.Form vta_retyperc_realizadas
             Strikethrough   =   0   'False
          EndProperty
          Height          =   360
+         ItemData        =   "vta041.frx":0000
          Left            =   2160
+         List            =   "vta041.frx":0002
          TabIndex        =   13
          Top             =   240
          Width           =   5535
@@ -141,7 +143,7 @@ Begin VB.Form vta_retyperc_realizadas
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   114884609
+      StartOfWeek     =   116195329
       CurrentDate     =   38750
    End
    Begin VB.Frame Frame3 
@@ -222,7 +224,7 @@ Begin VB.Form vta_retyperc_realizadas
          Cancel          =   -1  'True
          Height          =   615
          Left            =   840
-         Picture         =   "vta041.frx":0000
+         Picture         =   "vta041.frx":0004
          Style           =   1  'Graphical
          TabIndex        =   5
          ToolTipText     =   "Salir sin Modificar"
@@ -233,7 +235,7 @@ Begin VB.Form vta_retyperc_realizadas
       Begin VB.CommandButton btnacepta 
          Height          =   615
          Left            =   120
-         Picture         =   "vta041.frx":0882
+         Picture         =   "vta041.frx":0886
          Style           =   1  'Graphical
          TabIndex        =   4
          ToolTipText     =   "Renueva Lista de Clientes"
@@ -271,12 +273,12 @@ Begin VB.Form vta_retyperc_realizadas
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "16/05/2024"
+            TextSave        =   "17/05/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "05:53 p.m."
+            TextSave        =   "05:24 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -349,7 +351,7 @@ If (c_comp.ListIndex = 0 Or c_comp.ListIndex = 1) And (c_imp.ListIndex = 0 Or c_
        c5 = rs("cotizacion_dolar")
      End If
      c = rs("cuit")
-     If rs("vta_02.id_tipocomp") <> 3 Then
+     If rs("vta_06.iva") = "S" Then
       i = Format$(rs("perc_ib") * c5, "######0.00")
       s = Format$(rs("subtotal") * c5, "######0.00")
      Else
@@ -406,9 +408,16 @@ If (c_comp.ListIndex = 0 Or c_comp.ListIndex = 1) And (c_imp.ListIndex = 0 Or c_
      Else
        c5 = rs("cotizacion_dolar")
      End If
+     If rs("vta_06.iva") = "S" Then
+      i = Format$(rs("perc_iva") * c5, "######0.00")
+      s = Format$(rs("subtotal") * c5, "######0.00")
+     Else
+      i = Format$(-rs("perc_iva") * c5, "######0.00")
+      s = Format$(-rs("subtotal") * c5, "######0.00")
+     End If
+     
+     
      c = rs("cuit")
-     i = Format$(rs("perc_iva") * c5, "######0.00")
-     s = Format$(rs("subtotal") * c5, "######0.00")
      ts = ts + Val(s)
      ti = ti + Val(i)
      sa = sa + Val(s)
@@ -449,7 +458,7 @@ If (c_comp.ListIndex = 0 Or c_comp.ListIndex = 1) And (c_imp.ListIndex = 0 Or c_
   While Not rs.EOF
      If p = 0 Then
        p = 1
-       msf1.AddItem " " & Chr(9) & "Percepcion IB"
+       msf1.AddItem " " & Chr(9) & "Percepcion GAN"
      End If
      F = Format$(rs("fecha"), "dd/mm/yy")
      tc = rs("abreviatura")
@@ -459,9 +468,16 @@ If (c_comp.ListIndex = 0 Or c_comp.ListIndex = 1) And (c_imp.ListIndex = 0 Or c_
      Else
        c5 = rs("cotizacion_dolar")
      End If
+     
+       If rs("vta_06.iva") = "S" Then
+      i = Format$(rs("perc_gan") * c5, "######0.00")
+      s = Format$(rs("subtotal") * c5, "######0.00")
+     Else
+      i = Format$(-rs("perc_gan") * c5, "######0.00")
+      s = Format$(-rs("subtotal") * c5, "######0.00")
+     End If
+   
      c = rs("cuit")
-     i = Format$(rs("perc_ib") * c5, "######0.00")
-     s = Format$(rs("subtotal") * c5, "######0.00")
      ts = ts + Val(s)
      ti = ti + Val(i)
      sa = sa + Val(s)
@@ -476,387 +492,6 @@ If (c_comp.ListIndex = 0 Or c_comp.ListIndex = 1) And (c_imp.ListIndex = 0 Or c_
   End If
   Set rs = Nothing
 End If
-
-
-End Sub
-Sub buscaret()
-'seleccionar todos los comprobantes comprobantes
-'retenciones ingresos brutos
-
-If (c_comp.ListIndex = 0 Or c_comp.ListIndex = 2) And (c_imp.ListIndex = 0 Or c_imp.ListIndex = 2) Then
-  q = "select * from VTA_02, vta_06, VTA_01 where  vta_02.[id_tipocomp] = vta_06.[id_tipocomp] and VTA_02.[id_CLIENTE] = VTA_01.[id_CLIENTE] and vta_02.[sucursal] = vta_06.[sucursal] "
-  c = " and "
-  
-  If IsDate(t_fecha) Then
-     q = q & c & " datevalue([fecha]) >= datevalue('" & t_fecha & "')"
-  End If
-  
-  If IsDate(t_fecha2) Then
-     q = q & c & " datevalue([fecha]) <= datevalue('" & t_fecha2 & "')"
-  End If
-  q = q & " and vta_02.[id_tipocomp] = 100"
-  q = q & " order by [fecha]"
-  
-  Set rs = New ADODB.Recordset
-  rs.Open q, cn1
-  tr = 0
-  ti = 0
-  ts = 0
-  p = 0
-  ta = 0
-  While Not rs.EOF
-     If p = 0 Then
-       p = 1
-       msf1.AddItem " " & Chr(9) & "Retenciones IB"
-     End If
-     F = Format$(rs("fecha"), "dd/mm/yy")
-     tc = rs("abreviatura")
-     nc = rs("letra") & " " & Format$(rs("vta_02.sucursal"), "0000") & "-" & Format$(rs("num_comp"), "00000000")
-     If rs("vta_02.moneda") = "P" Then
-       c5 = 1
-     Else
-       c5 = rs("cotizacion_dolar")
-     End If
-     c = rs("cuit")
-     i = Format$(rs("total") * c5, "######0.00")
-     s = Format$(rs("subtotal") * c5, "######0.00")
-     ts = ts + Val(s)
-     ti = ti + Val(i)
-     sa = sa + Val(s)
-     ia = ia + Val(i)
-     msf1.AddItem F & Chr(9) & "" & Chr$(9) & rs("denominacion") & Chr(9) & c & Chr$(9) & tc & " " & nc & Chr(9) & Format$(Val(s), para.formato_numerico) & Chr(9) & Format$(Val(i), para.formato_numerico) & Chr(9) & Format$(rs("num_int"), "00000")
-
-
-     rs.MoveNext
-  Wend
-  Set rs = Nothing
-    
-  Set rs = New ADODB.Recordset
-  q = "select * from a12, vta_012, vta_02, vta_06 where [impuesto12] = 'B' and [tipo12] = 'R' and [id_retencion] = [id_percepcion] and vta_012.[num_int] = vta_02.[num_int] and vta_02.[id_tipocomp] = vta_06.[id_tipocomp] and vta_02.[sucursal] = vta_06.[sucursal] "
-  c = " and "
-  If IsDate(t_fecha) Then
-     q = q & c & " datevalue([fecha]) >= datevalue('" & t_fecha & "')"
-  End If
-  
-  If IsDate(t_fecha2) Then
-     q = q & c & " datevalue([fecha]) <= datevalue('" & t_fecha2 & "')"
-  End If
-  q = q & " order by [fecha]"
-  rs.Open q, cn1
-  While Not rs.EOF
-     If p = 0 Then
-       p = 1
-       msf1.AddItem " " & Chr(9) & "Retenciones IB"
-     End If
-     F = Format$(rs("fecha"), "dd/mm/yy")
-     tc = rs("abreviatura")
-     nc = rs("letra") & " " & Format$(rs("vta_02.sucursal"), "0000") & "-" & Format$(rs("num_comp"), "00000000")
-     If rs("vta_02.moneda") = "P" Then
-       c5 = 1
-     Else
-       c5 = rs("cotizacion_dolar")
-     End If
-     c = rs("cuit02")
-     i = Format$(rs("importe") * c5, "######0.00")
-     s = Format$(rs("subtotal") * c5, "######0.00")
-     ts = ts + Val(s)
-     ti = ti + Val(i)
-     sa = sa + Val(s)
-     ia = ia + Val(i)
-     msf1.AddItem F & Chr(9) & "" & Chr$(9) & rs("cliente02") & Chr(9) & c & Chr$(9) & tc & " " & nc & Chr(9) & Format$(Val(s), para.formato_numerico) & Chr(9) & Format$(Val(i), para.formato_numerico) & Chr(9) & Format$(rs("vta_02.num_int"), "00000")
-     rs.MoveNext
-     
-  Wend
-Set rs = Nothing
-If ti > 0 Then
-     msf1.AddItem " " & Chr(9) & Chr(9) & " " & Chr(9) & " " & Chr(9) & "" & Chr(9) & "______________________" & Chr(9) & "______________________"
-     msf1.AddItem "" & Chr(9) & "" & Chr(9) & "Total Retenciones IB " & Chr(9) & Chr$(9) & Chr(9) & Format$(sa, para.formato_numerico) & Chr$(9) & Format$(ia, para.formato_numerico)
-     msf1.AddItem ""
-  End If
-End If
-
-
-If (c_comp.ListIndex = 0 Or c_comp.ListIndex = 2) And (c_imp.ListIndex = 0 Or c_imp.ListIndex = 1) Then
-  q = "select * from VTA_02, vta_06, VTA_01 where  vta_02.[id_tipocomp] = vta_06.[id_tipocomp] and VTA_02.[id_CLIENTE] = VTA_01.[id_CLIENTE] "
-  c = " and "
-  
-  If IsDate(t_fecha) Then
-     q = q & c & " datevalue([fecha]) >= datevalue('" & t_fecha & "')"
-  End If
-  
-  If IsDate(t_fecha2) Then
-     q = q & c & " datevalue([fecha]) <= datevalue('" & t_fecha2 & "')"
-  End If
-  q = q & " and vta_02.[id_tipocomp] = 101"
-  q = q & " order by [fecha]"
-  
-  Set rs = New ADODB.Recordset
-  rs.Open q, cn1
-  tr = 0
-  ti = 0
-  ts = 0
-  p = 0
-  ta = 0
-  While Not rs.EOF
-     If p = 0 Then
-       p = 1
-       msf1.AddItem " " & Chr(9) & "Retenciones IVA"
-     End If
-     F = Format$(rs("fecha"), "dd/mm/yy")
-     tc = rs("abreviatura")
-     nc = rs("letra") & " " & Format$(rs("vta_02.sucursal"), "0000") & "-" & Format$(rs("num_comp"), "00000000")
-     If rs("vta_02.moneda") = "P" Then
-       c5 = 1
-     Else
-       c5 = rs("cotizacion_dolar")
-     End If
-     c = rs("cuit")
-     i = Format$(rs("total") * c5, "######0.00")
-     s = Format$(rs("subtotal") * c5, "######0.00")
-     ts = ts + Val(s)
-     ti = ti + Val(i)
-     sa = sa + Val(s)
-     ia = ia + Val(i)
-     msf1.AddItem F & Chr(9) & "" & Chr$(9) & rs("denominacion") & Chr(9) & c & Chr$(9) & tc & " " & nc & Chr(9) & Format$(Val(s), para.formato_numerico) & Chr(9) & Format$(Val(i), para.formato_numerico) & Chr(9) & Format$(rs("num_int"), "00000")
-    rs.MoveNext
-  Wend
-  Set rs = Nothing
-
-
-  Set rs = New ADODB.Recordset
-  q = "select * from a12, vta_012, vta_02, vta_06 where [impuesto12] = 'I' and [tipo12] = 'R' and [id_retencion] = [id_percepcion] and vta_012.[num_int] = vta_02.[num_int] and vta_02.[id_tipocomp] = vta_06.[id_tipocomp] and vta_02.[sucursal] = vta_06.[sucursal] "
-  c = " and "
-  If IsDate(t_fecha) Then
-     q = q & c & " datevalue([fecha]) >= datevalue('" & t_fecha & "')"
-  End If
-  
-  If IsDate(t_fecha2) Then
-     q = q & c & " datevalue([fecha]) <= datevalue('" & t_fecha2 & "')"
-  End If
-  q = q & " order by [fecha]"
-  rs.Open q, cn1
-  While Not rs.EOF
-     If p = 0 Then
-       p = 1
-       msf1.AddItem " " & Chr(9) & "Retenciones IB"
-     End If
-     F = Format$(rs("fecha"), "dd/mm/yy")
-     tc = rs("abreviatura")
-     nc = rs("letra") & " " & Format$(rs("vta_02.sucursal"), "0000") & "-" & Format$(rs("num_comp"), "00000000")
-     If rs("vta_02.moneda") = "P" Then
-       c5 = 1
-     Else
-       c5 = rs("cotizacion_dolar")
-     End If
-     c = rs("cuit02")
-     i = Format$(rs("importe") * c5, "######0.00")
-     s = Format$(rs("subtotal") * c5, "######0.00")
-     ts = ts + Val(s)
-     ti = ti + Val(i)
-     sa = sa + Val(s)
-     ia = ia + Val(i)
-     msf1.AddItem F & Chr(9) & "" & Chr$(9) & rs("cliente02") & Chr(9) & c & Chr$(9) & tc & " " & nc & Chr(9) & Format$(Val(s), para.formato_numerico) & Chr(9) & Format$(Val(i), para.formato_numerico) & Chr(9) & Format$(rs("vta_02.num_int"), "00000")
-     rs.MoveNext
-     
-  Wend
-Set rs = Nothing
-If ti > 0 Then
-     msf1.AddItem " " & Chr(9) & Chr(9) & " " & Chr(9) & " " & Chr(9) & "" & Chr(9) & "______________________" & Chr(9) & "______________________"
-     msf1.AddItem "" & Chr(9) & "" & Chr(9) & "Total Retenciones Iva " & Chr(9) & Chr$(9) & Chr(9) & Format$(sa, para.formato_numerico) & Chr$(9) & Format$(ia, para.formato_numerico)
-     msf1.AddItem ""
-  End If
-
-End If
-
-
-If (c_comp.ListIndex = 0 Or c_comp.ListIndex = 2) And (c_imp.ListIndex = 0 Or c_imp.ListIndex = 3) Then
-  q = "select * from VTA_02, vta_06, VTA_01 where  vta_02.[id_tipocomp] = vta_06.[id_tipocomp] and VTA_02.[id_CLIENTE] = VTA_01.[id_CLIENTE] and vta_02.[sucursal] = vta_06.[sucursal] "
-  c = " and "
-  
-  If IsDate(t_fecha) Then
-     q = q & c & " datevalue([fecha]) >= datevalue('" & t_fecha & "')"
-  End If
-  
-  If IsDate(t_fecha2) Then
-     q = q & c & " datevalue([fecha]) <= datevalue('" & t_fecha2 & "')"
-  End If
-  q = q & " and vta_02.[id_tipocomp] = 102"
-  q = q & " order by [fecha]"
-  
-  Set rs = New ADODB.Recordset
-  rs.Open q, cn1
-  tr = 0
-  ti = 0
-  ts = 0
-  p = 0
-  ta = 0
-  While Not rs.EOF
-     If p = 0 Then
-       p = 1
-       msf1.AddItem " " & Chr(9) & "Retenciones Ganancias"
-     End If
-     F = Format$(rs("fecha"), "dd/mm/yy")
-     tc = rs("abreviatura")
-     nc = rs("letra") & " " & Format$(rs("vta_02.sucursal"), "0000") & "-" & Format$(rs("num_comp"), "00000000")
-     If rs("vta_02.moneda") = "P" Then
-       c5 = 1
-     Else
-       c5 = rs("cotizacion_dolar")
-     End If
-     c = rs("cuit")
-     i = Format$(rs("total") * c5, "######0.00")
-     s = Format$(rs("subtotal") * c5, "######0.00")
-     ts = ts + Val(s)
-     ti = ti + Val(i)
-     sa = sa + Val(s)
-     ia = ia + Val(i)
-     msf1.AddItem F & Chr(9) & "" & Chr$(9) & rs("denominacion") & Chr(9) & c & Chr$(9) & tc & " " & nc & Chr(9) & Format$(Val(s), para.formato_numerico) & Chr(9) & Format$(Val(i), para.formato_numerico) & Chr(9) & Format$(rs("num_int"), "00000")
-    rs.MoveNext
-  Wend
-  Set rs = Nothing
-
-
-  Set rs = New ADODB.Recordset
-  q = "select * from a12, vta_012, vta_02, vta_06 where [impuesto12] = 'G' and [tipo12] = 'R' and [id_retencion] = [id_percepcion] and vta_012.[num_int] = vta_02.[num_int] and vta_02.[id_tipocomp] = vta_06.[id_tipocomp] and vta_02.[sucursal] = vta_06.[sucursal] "
-  c = " and "
-  If IsDate(t_fecha) Then
-     q = q & c & " datevalue([fecha]) >= datevalue('" & t_fecha & "')"
-  End If
-  
-  If IsDate(t_fecha2) Then
-     q = q & c & " datevalue([fecha]) <= datevalue('" & t_fecha2 & "')"
-  End If
-  q = q & " order by [fecha]"
-  rs.Open q, cn1
-  While Not rs.EOF
-     If p = 0 Then
-       p = 1
-       msf1.AddItem " " & Chr(9) & "Retenciones Ganancias"
-     End If
-     F = Format$(rs("fecha"), "dd/mm/yy")
-     tc = rs("abreviatura")
-     nc = rs("letra") & " " & Format$(rs("vta_02.sucursal"), "0000") & "-" & Format$(rs("num_comp"), "00000000")
-     If rs("vta_02.moneda") = "P" Then
-       c5 = 1
-     Else
-       c5 = rs("cotizacion_dolar")
-     End If
-     c = rs("cuit02")
-     i = Format$(rs("importe") * c5, "######0.00")
-     s = Format$(rs("subtotal") * c5, "######0.00")
-     ts = ts + Val(s)
-     ti = ti + Val(i)
-     sa = sa + Val(s)
-     ia = ia + Val(i)
-     msf1.AddItem F & Chr(9) & "" & Chr$(9) & rs("cliente02") & Chr(9) & c & Chr$(9) & tc & " " & nc & Chr(9) & Format$(Val(s), para.formato_numerico) & Chr(9) & Format$(Val(i), para.formato_numerico) & Chr(9) & Format$(rs("vta_02.num_int"), "00000")
-     rs.MoveNext
-     
-  Wend
-Set rs = Nothing
-If ti > 0 Then
-     msf1.AddItem " " & Chr(9) & Chr(9) & " " & Chr(9) & " " & Chr(9) & "" & Chr(9) & "______________________" & Chr(9) & "______________________"
-     msf1.AddItem "" & Chr(9) & "" & Chr(9) & "Total Retenciones Gan." & Chr(9) & Chr$(9) & Chr(9) & Format$(sa, para.formato_numerico) & Chr$(9) & Format$(ia, para.formato_numerico)
-     msf1.AddItem ""
-  End If
-
-
-End If
-
-
-If (c_comp.ListIndex = 0 Or c_comp.ListIndex = 2) And (c_imp.ListIndex = 0 Or c_imp.ListIndex = 4) Then
-  q = "select * from VTA_02, vta_06, VTA_01 where  vta_02.[id_tipocomp] = vta_06.[id_tipocomp] and VTA_02.[id_CLIENTE] = VTA_01.[id_CLIENTE] and vta_02.[sucursal] = vta_06.[sucursal]"
-  c = " and "
-  
-  If IsDate(t_fecha) Then
-     q = q & c & " datevalue([fecha]) >= datevalue('" & t_fecha & "')"
-  End If
-  
-  If IsDate(t_fecha2) Then
-     q = q & c & " datevalue([fecha]) <= datevalue('" & t_fecha2 & "')"
-  End If
-  q = q & " and vta_02.[id_tipocomp] = 103"
-  q = q & " order by [fecha]"
-  
-  Set rs = New ADODB.Recordset
-  rs.Open q, cn1
-  tr = 0
-  ti = 0
-  ts = 0
-  p = 0
-  ta = 0
-  While Not rs.EOF
-     If p = 0 Then
-       p = 1
-       msf1.AddItem " " & Chr(9) & "Retenciones Seg.Social"
-     End If
-     F = Format$(rs("fecha"), "dd/mm/yy")
-     tc = rs("abreviatura")
-     nc = rs("letra") & " " & Format$(rs("vta_02.sucursal"), "0000") & "-" & Format$(rs("num_comp"), "00000000")
-     If rs("vta_02.moneda") = "P" Then
-       c5 = 1
-     Else
-       c5 = rs("cotizacion_dolar")
-     End If
-     c = rs("cuit")
-     i = Format$(rs("perc_ib") * c5, "######0.00")
-     s = Format$(rs("subtotal") * c5, "######0.00")
-     ts = ts + Val(s)
-     ti = ti + Val(i)
-     sa = sa + Val(s)
-     ia = ia + Val(i)
-     msf1.AddItem F & Chr(9) & "" & Chr$(9) & rs("denominacion") & Chr(9) & c & Chr$(9) & tc & " " & nc & Chr(9) & Format$(Val(s), para.formato_numerico) & Chr(9) & Format$(Val(i), para.formato_numerico) & Chr(9) & Format$(rs("num_int"), "00000")
-    rs.MoveNext
-  Wend
-  Set rs = Nothing
-
-
-Set rs = New ADODB.Recordset
-  q = "select * from a12, vta_012, vta_02, vta_06 where [impuesto12] = 'S' and [tipo12] = 'R' and [id_retencion] = [id_percepcion] and vta_012.[num_int] = vta_02.[num_int] and vta_02.[id_tipocomp] = vta_06.[id_tipocomp] and vta_02.[sucursal] = vta_06.[sucursal] "
-  c = " and "
-  If IsDate(t_fecha) Then
-     q = q & c & " datevalue([fecha]) >= datevalue('" & t_fecha & "')"
-  End If
-  
-  If IsDate(t_fecha2) Then
-     q = q & c & " datevalue([fecha]) <= datevalue('" & t_fecha2 & "')"
-  End If
-  q = q & " order by [fecha]"
-  rs.Open q, cn1
-  While Not rs.EOF
-     If p = 0 Then
-       p = 1
-       msf1.AddItem " " & Chr(9) & "Retenciones Seg. Social"
-     End If
-     F = Format$(rs("fecha"), "dd/mm/yy")
-     tc = rs("abreviatura")
-     nc = rs("letra") & " " & Format$(rs("vta_02.sucursal"), "0000") & "-" & Format$(rs("num_comp"), "00000000")
-     If rs("vta_02.moneda") = "P" Then
-       c5 = 1
-     Else
-       c5 = rs("cotizacion_dolar")
-     End If
-     c = rs("cuit02")
-     i = Format$(rs("importe") * c5, "######0.00")
-     s = Format$(rs("subtotal") * c5, "######0.00")
-     ts = ts + Val(s)
-     ti = ti + Val(i)
-     sa = sa + Val(s)
-     ia = ia + Val(i)
-     msf1.AddItem F & Chr(9) & "" & Chr$(9) & rs("cliente02") & Chr(9) & c & Chr$(9) & tc & " " & nc & Chr(9) & Format$(Val(s), para.formato_numerico) & Chr(9) & Format$(Val(i), para.formato_numerico) & Chr(9) & Format$(rs("vta_02.num_int"), "00000")
-     rs.MoveNext
-     
-  Wend
-Set rs = Nothing
-If ti > 0 Then
-     msf1.AddItem " " & Chr(9) & Chr(9) & " " & Chr(9) & " " & Chr(9) & "" & Chr(9) & "______________________" & Chr(9) & "______________________"
-     msf1.AddItem "" & Chr(9) & "" & Chr(9) & "Total Retenciones Seg.Social " & Chr(9) & Chr$(9) & Chr(9) & Format$(sa, para.formato_numerico) & Chr$(9) & Format$(ia, para.formato_numerico)
-     msf1.AddItem ""
-  End If
-
-
-End If
-
-
 
 
 End Sub
@@ -960,7 +595,7 @@ c_imp.ListIndex = 0
 c_comp.clear
 c_comp.AddItem "<Todos>", 0
 c_comp.AddItem "Percepciones", 1
-c_comp.AddItem "Retenciones", 2
+
 c_comp.ListIndex = 0
 End Sub
 

@@ -570,12 +570,12 @@ Begin VB.Form inicio_vta
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "25/11/2023"
+            TextSave        =   "17/05/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "08:30 p.m."
+            TextSave        =   "09:41 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -931,10 +931,10 @@ Begin VB.Form inicio_vta
             Caption         =   "Informe de Ret. y Perc.recibidas"
          End
          Begin VB.Menu M_retypercvtas 
-            Caption         =   "Percepciones Realizadas"
+            Caption         =   "Percepciones Realizadas por Ventas"
          End
          Begin VB.Menu M_vtaper 
-            Caption         =   "Percepciones por Ventas(Nuevo)  "
+            Caption         =   "Percepciones Realizadas por Ventas(Nuevo)  "
          End
          Begin VB.Menu M_posicioniva 
             Caption         =   "Posicion frente al IVA"

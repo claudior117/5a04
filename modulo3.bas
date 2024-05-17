@@ -192,7 +192,7 @@ End Sub
 
 
 Sub carga_percepciones_venta(c As ComboBox)
-q = "select * from I_01 order by detalle"
+q = "select * from I_01 where tipo_i1= 'P' order by detalle"
 Set rs = New ADODB.Recordset
 rs.Open q, cn1
 Call llena_combo(rs, "detalle", "id_impuesto", c, True)
