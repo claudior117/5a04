@@ -80,7 +80,7 @@ Begin VB.Form con_subdiarioc
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   176291841
+      StartOfWeek     =   114032641
       CurrentDate     =   38750
    End
    Begin VB.Frame Frame3 
@@ -246,12 +246,12 @@ Begin VB.Form con_subdiarioc
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "13/05/2024"
+            TextSave        =   "20/05/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "03:41 p.m."
+            TextSave        =   "10:12 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -312,7 +312,7 @@ Sub carga()
    q = q & " order by [a5.id_cuenta], [fecha] "
   End If
   
-  Set rs = New ADODB.Recordset
+  Set rs = New adodb.Recordset
   rs.Open q, cn1
   tt = 0
   ti = 0

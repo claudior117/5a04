@@ -26,7 +26,7 @@ Begin VB.Form con_busca_comp_apoc
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   176291841
+      StartOfWeek     =   114032641
       CurrentDate     =   38754
    End
    Begin MSFlexGridLib.MSFlexGrid msf1 
@@ -158,12 +158,12 @@ Begin VB.Form con_busca_comp_apoc
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "13/05/2024"
+            TextSave        =   "20/05/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "03:41 p.m."
+            TextSave        =   "10:12 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -182,7 +182,7 @@ Sub carga()
   espere.Show
   espere.Refresh
   q = "select * from fa order by [cuit]"
-  Set rs = New ADODB.Recordset
+  Set rs = New adodb.Recordset
   rs.Open q, cnib
   r = 0
   While Not rs.EOF
@@ -201,7 +201,7 @@ Sub carga()
       End If
       q = q & " order by [fecha] "
     
-      Set rs1 = New ADODB.Recordset
+      Set rs1 = New adodb.Recordset
       rs1.Open q, cn1
       t = 0
       While Not rs1.EOF

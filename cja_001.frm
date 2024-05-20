@@ -316,7 +316,7 @@ Begin VB.Form cja_cajadiaria
       BackColor       =   14737632
       BorderStyle     =   1
       Appearance      =   1
-      StartOfWeek     =   176291841
+      StartOfWeek     =   114032641
       CurrentDate     =   39157
    End
    Begin VB.Frame Frame2 
@@ -469,12 +469,12 @@ Begin VB.Form cja_cajadiaria
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "13/05/2024"
+            TextSave        =   "20/05/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "03:41 p.m."
+            TextSave        =   "10:12 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -627,7 +627,7 @@ Select Case KeyCode
 End Sub
 Sub cambiaestado()
  q = "select * from  cyb_09 where datevalue([fecha]) = datevalue('" & t_fecha & "')"
- Set rs = New ADODB.Recordset
+ Set rs = New adodb.Recordset
  rs.Open q, cn1, adOpenDynamic, adLockOptimistic
  If Not rs.EOF And Not rs.BOF Then
    'existe
@@ -817,7 +817,7 @@ Sub limpia()
   End If
   
   
-       Set rs2 = New ADODB.Recordset
+       Set rs2 = New adodb.Recordset
        k = "select * from c_01 where [id_cuenta] = " & c_n1.ItemData(c_n1.ListIndex)
        rs2.Open k, cn1
        If Not rs2.EOF And Not rs2.BOF Then
@@ -854,7 +854,7 @@ Sub limpia()
   
   'sub ingresos
   q = "SELECT * FROM cyb_01 where [caja] = 'S'"
-  Set rs2 = New ADODB.Recordset
+  Set rs2 = New adodb.Recordset
   rs2.Open q, cn1
   ti = 0
   te = 0
@@ -881,7 +881,7 @@ Sub limpia()
        
        q = q & " order by [num_mov_caja]"
          
-       Set rs = New ADODB.Recordset
+       Set rs = New adodb.Recordset
        rs.Open q, cn1
        tci = 0
        tce = 0
@@ -892,7 +892,7 @@ Sub limpia()
        While Not rs.EOF
           d = rs("cyb_05.descripcion")
           o = rs("operacion")
-          Set rs3 = New ADODB.Recordset
+          Set rs3 = New adodb.Recordset
           q = "select * from c_01 where [id_cuenta] = " & rs("id_cuenta_contra")
           rs3.Open q, cn1
           If Not rs3.EOF And Not rs3.BOF Then
@@ -1002,7 +1002,7 @@ Sub limpia2()
   End If
   
   
-       Set rs2 = New ADODB.Recordset
+       Set rs2 = New adodb.Recordset
        k = "select * from c_01 where [id_cuenta] = " & c_n1.ItemData(c_n1.ListIndex)
        rs2.Open k, cn1
        If Not rs2.EOF And Not rs2.BOF Then
@@ -1038,7 +1038,7 @@ Sub limpia2()
   
   'sub ingresos
   q = "SELECT * FROM cyb_01 where [caja] = 'S'"
-  Set rs2 = New ADODB.Recordset
+  Set rs2 = New adodb.Recordset
   rs2.Open q, cn1
   ti = 0
   te = 0
@@ -1065,7 +1065,7 @@ Sub limpia2()
        
        q = q & " order by [id_cuenta_contra], [num_mov_caja]"
          
-       Set rs = New ADODB.Recordset
+       Set rs = New adodb.Recordset
        rs.Open q, cn1
        tci = 0
        tce = 0
@@ -1077,7 +1077,7 @@ Sub limpia2()
        While Not rs.EOF
           d = rs("cyb_05.descripcion")
           o = rs("operacion")
-          Set rs3 = New ADODB.Recordset
+          Set rs3 = New adodb.Recordset
           q = "select * from c_01 where [id_cuenta] = " & rs("id_cuenta_contra")
           rs3.Open q, cn1
           If Not rs3.EOF And Not rs3.BOF Then
@@ -1294,7 +1294,7 @@ End Sub
 Sub carga(ByVal n)
       cyb_movcaja.t_numint = n
       q = "SELECT * FROM cyb_05 WHERE [num_mov_caja] = " & n
-      Set rs = New ADODB.Recordset
+      Set rs = New adodb.Recordset
       rs.Open q, cn1
       If Not rs.EOF And Not rs.BOF Then
          cyb_movcaja.limpia

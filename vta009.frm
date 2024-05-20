@@ -274,7 +274,7 @@ Begin VB.Form vta_saldoscli
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   176291841
+      StartOfWeek     =   114032641
       CurrentDate     =   38803
    End
    Begin VB.Frame Frame2 
@@ -414,12 +414,12 @@ Begin VB.Form vta_saldoscli
          BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "13/05/2024"
+            TextSave        =   "20/05/2024"
          EndProperty
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "03:41 p.m."
+            TextSave        =   "10:12 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -495,7 +495,7 @@ Call armagrid
 Load espere
 
 pb = 1
-Set rs1 = New ADODB.Recordset
+Set rs1 = New adodb.Recordset
 QUERY = "select * from VTA_01 where [id_cliente] > 1"
 X = " and "
 
@@ -668,7 +668,7 @@ Else 'fecha vto
     QUERY = QUERY & " and datevalue(fecha_vto) <= " & "DateValue('" & t_fecha2 & "') "
     QUERY = QUERY & " and  [cta_cte] <> " & "'N'" & " and [contado] = " & "'N'"
 End If
-Set rs2 = New ADODB.Recordset
+Set rs2 = New adodb.Recordset
 rs2.Open QUERY, cn1
 While Not rs2.EOF
   Set cl_compvta = New comprobantes_venta
@@ -712,7 +712,7 @@ End Sub
 
 Sub muestradetalle(ByVal numint)
 q = "select * from vta_03 where [num_int] = " & numint
-Set rs4 = New ADODB.Recordset
+Set rs4 = New adodb.Recordset
 rs4.Open q, cn1
 While Not rs4.EOF
    det = Format$(Left$(rs4("descripcion"), 40), "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@!") & "(" & Format$(rs4("cantidad"), "####0.00") & rs4("tunidad") & ")"
@@ -725,7 +725,7 @@ End Sub
 
 Sub muestradetallerbo(ByVal numint)
 q = "select * from vta_010, vta_02 where [num_int_rbo] = " & numint & " and [num_int_comp] = [num_int]"
-Set rs4 = New ADODB.Recordset
+Set rs4 = New adodb.Recordset
 rs4.Open q, cn1
 While Not rs4.EOF
    det = Format$(rs4("sucursal"), "0000") & Format$(rs4("num_comp"), "00000000") & "      (" & Format$(rs4("importe_pagado"), "#####0.00") & ")"

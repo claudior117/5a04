@@ -245,7 +245,7 @@ Begin VB.Form con_saldosprov
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   176291841
+      StartOfWeek     =   114032641
       CurrentDate     =   38803
    End
    Begin VB.Frame Frame2 
@@ -484,12 +484,12 @@ Begin VB.Form con_saldosprov
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "13/05/2024"
+            TextSave        =   "20/05/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "03:41 p.m."
+            TextSave        =   "10:12 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -588,7 +588,7 @@ Load espere
 espere.Show
 espere.Refresh
 pb = 1
-Set rs1 = New ADODB.Recordset
+Set rs1 = New adodb.Recordset
 QUERY = "select * from A1 where [id_proveedor] > 1"
 X = " and "
 
@@ -679,7 +679,7 @@ Load espere
 espere.Show
 espere.Refresh
 pb = 1
-Set rs1 = New ADODB.Recordset
+Set rs1 = New adodb.Recordset
 QUERY = "select * from A1 where [id_proveedor] > 1 "
 X = " and "
 

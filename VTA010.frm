@@ -116,7 +116,7 @@ Begin VB.Form vta_ivaventas
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   176291841
+      StartOfWeek     =   114032641
       CurrentDate     =   38750
    End
    Begin VB.Frame Frame3 
@@ -248,12 +248,12 @@ Begin VB.Form vta_ivaventas
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "13/05/2024"
+            TextSave        =   "20/05/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "03:41 p.m."
+            TextSave        =   "10:12 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -297,7 +297,7 @@ Sub carga()
     q = q & c & " [sucursal_ingreso] = " & Val(c_sucursal)
   End If
   q = q & " order by [fecha], [letra], [num_comp]"
-  Set rs = New ADODB.Recordset
+  Set rs = New adodb.Recordset
   
   rs.Open q, cn1
   tt = 0
@@ -335,7 +335,7 @@ Sub carga()
      
        If (rs("vta_02.id_tipocomp") >= 205 And rs("vta_02.id_tipocomp") <= 207) Or rs("vta_02.id_tipocomp") = 400 Then  'venta directa ty liq. cereal
             q = "select * from vta_012, a12 where [id_retencion] = [id_percepcion] and [num_int] = " & rs("num_int")
-            Set rs1 = New ADODB.Recordset
+            Set rs1 = New adodb.Recordset
             rs1.Open q, cn1
             ret_iva = 0
             ret_otras = 0
@@ -429,7 +429,7 @@ Sub cargaf()
     q = q & c & " and [sucursal_ingreso] = " & Val(c_sucursal)
   End If
   q = q & " order by [fecha], [letra], [num_comp]"
-  Set rs = New ADODB.Recordset
+  Set rs = New adodb.Recordset
   
   rs.Open q, cn1
   tt = 0
@@ -440,7 +440,7 @@ Sub cargaf()
   While Not rs.EOF
     If rs("vta_02.id_tipocomp") = 300 Then 'z
          'busco todas las fact/Nc/Nd del Z para restar al total y cagar el z en el listado
-        Set rs1 = New ADODB.Recordset
+        Set rs1 = New adodb.Recordset
         q = "select [subtotal], [iva], [total] from vta_02 where [id_tipocomp] = 1 and [grabado] <> 'N' and [num_z] = " & rs("num_comp")
         rs1.Open q, cn1
         stf = 0
@@ -455,7 +455,7 @@ Sub cargaf()
         Set rs1 = Nothing
     
         'busco los tique para sacar el rpimero y el ultimo
-        Set rs1 = New ADODB.Recordset
+        Set rs1 = New adodb.Recordset
         q = "select [num_comp] from vta_02 where [id_tipocomp] = 310 and [grabado] <> 'N' and [num_z] = " & rs("num_comp") & " order by [num_comp]"
         rs1.Open q, cn1, adOpenDynamic, adLockOptimistic
         If Not rs1.EOF And Not rs1.BOF Then
@@ -575,7 +575,7 @@ Sub portasa()
   End If
   
   q = q & " order by [tasa_iva]"
-  Set rs = New ADODB.Recordset
+  Set rs = New adodb.Recordset
   rs.Open q, cn1
   nt = 0
   nd = 0
@@ -671,7 +671,7 @@ Sub portasa()
   End If
   
   q = q & " order by [tasa_iva]"
-  Set rs = New ADODB.Recordset
+  Set rs = New adodb.Recordset
   rs.Open q, cn1
   nt = 0
   nd = 0
@@ -779,7 +779,7 @@ Sub porpv()
   End If
   
   q = q & " order by [sucursal_ingreso]"
-  Set rs = New ADODB.Recordset
+  Set rs = New adodb.Recordset
   rs.Open q, cn1
   nt = 0
   nd = 0
@@ -854,7 +854,7 @@ End Sub
 Sub ivafinal()
  'calcula el iva por actividad/tipo de iva/tasa
  
- Set rs = New ADODB.Recordset
+ Set rs = New adodb.Recordset
  q = "select * from g8" 'actividades
  rs.Open q, cn1
  msf1.AddItem " "
@@ -869,12 +869,12 @@ Sub ivafinal()
    it2 = 0
    tt2 = 0
    msf1.AddItem " " & Chr$(9) & "Totales " & rs("descripcion")
-   Set rs1 = New ADODB.Recordset
+   Set rs1 = New adodb.Recordset
    q = "select * from g3" 'tipos de iva
    rs1.Open q, cn1
    While Not rs1.EOF
      abreviatura = rs1("abreviatura")
-     Set rs2 = New ADODB.Recordset
+     Set rs2 = New adodb.Recordset
      q = "select * from g4" 'tasas de iva
      rs2.Open q, cn1
      While Not rs2.EOF
@@ -890,7 +890,7 @@ Sub ivafinal()
           q = q & c & " datevalue([fecha]) <= datevalue('" & t_fecha2 & "')"
         End If
         
-        Set rsF = New ADODB.Recordset
+        Set rsF = New adodb.Recordset
         rsF.Open q, cn1
         nt = 0
         IT = 0
@@ -1020,7 +1020,7 @@ End If
 If c_sucursal.ListIndex > 0 Then
     qm = qm & c & " and [sucursal_ingreso] = " & Val(c_sucursal)
 End If
-Set rs2 = New ADODB.Recordset
+Set rs2 = New adodb.Recordset
 rs2.Open qm, cn1
 a = 1
 While Not rs2.EOF

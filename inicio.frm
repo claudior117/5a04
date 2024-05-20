@@ -454,12 +454,12 @@ Begin VB.Form inicio
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "04/03/2024"
+            TextSave        =   "20/05/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:21 a.m."
+            TextSave        =   "10:07 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -580,7 +580,10 @@ Begin VB.Form inicio
             Caption         =   "Actualizar Padron de Embargados por  ARBA"
          End
          Begin VB.Menu M_retibweb 
-            Caption         =   "Genera Retenciones IB realizadas para presentacion WEB"
+            Caption         =   "Genera Retenciones IBBA realizadas para presentacion WEB"
+         End
+         Begin VB.Menu M_peribweb 
+            Caption         =   "Genera Percepciones IBBA realizadas para presentación WEB"
          End
          Begin VB.Menu M_generaib2 
             Caption         =   "Generar ret. y  perc. IB para aplic. IB MEN/BIM"
@@ -701,7 +704,7 @@ For i = 4 To 11
 Next i
 sc = sc + Val(Mid$(glo.CUIT, 13, 1))
 
-Set rs = New ADODB.Recordset
+Set rs = New adodb.Recordset
 q = "select [habilitacion] from g0 where [sucursal] = 0"
 rs.Open q, cn1
 If Val(Mid$(rs("habilitacion"), 5, 2)) = sc Then
@@ -1197,6 +1200,10 @@ Call nivel_acceso(1)
 If para.id_grupo_modulo_actual > 8 Then
  gen_parametrosusuarios.Show
 End If
+End Sub
+
+Private Sub M_peribweb_Click()
+gen_exportaPercibweb.Show
 End Sub
 
 Private Sub m_programa_Click()

@@ -106,7 +106,7 @@ Begin VB.Form vta_perc
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   116195329
+      StartOfWeek     =   114032641
       CurrentDate     =   38750
    End
    Begin VB.Frame Frame3 
@@ -254,12 +254,12 @@ Begin VB.Form vta_perc
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "17/05/2024"
+            TextSave        =   "20/05/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "05:24 p.m."
+            TextSave        =   "10:12 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -319,7 +319,7 @@ q = "select * from vta_02, vta_016, i_01 where vta_02.num_int = vta_016.num_int 
    
    q = q & " order by fecha, id_impuesto"
     
-    Set rs2 = New ADODB.Recordset
+    Set rs2 = New adodb.Recordset
     rs2.Open q, cn1
     tcp = 0
     t = "0"
