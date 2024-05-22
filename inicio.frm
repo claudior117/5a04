@@ -454,12 +454,12 @@ Begin VB.Form inicio
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "20/05/2024"
+            TextSave        =   "22/05/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:07 a.m."
+            TextSave        =   "10:27 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -680,9 +680,18 @@ Attribute VB_Exposed = False
 'FIXIT: Utilice Option Explicit para evitar la creación implícita de variables de tipo Variant.     FixIT90210ae-R383-H1984
 
 Private Sub btnsale_Click()
- End
+ Call terminarysalir
 End Sub
 
+Sub terminarysalir()
+    Dim Formulario As Form
+    For Each Formulario In Forms
+      Unload Formulario
+    Next
+    
+    End
+
+End Sub
 
 Sub HABILITACION()
 'numeros de modulos 5732 ----> Todo sin fiscal
@@ -928,13 +937,7 @@ End Sub
 
 
 
-Private Sub Command7_Click()
-F = "04/08/2022"
-f2 = DateValue(F) + (2 * 30)
-MsgBox (f2)
 
-
-End Sub
 
 Private Sub Form_Activate()
 Call barraesag(Me)
@@ -963,7 +966,7 @@ End Sub
 
 
 Private Sub Form_Unload(Cancel As Integer)
-Unload vta_listaprecios
+Call terminarysalir
 End Sub
 
 Private Sub Genciticom_Click()

@@ -41,7 +41,7 @@ Begin VB.Form con_busca_comp_apoc_excel
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   114032641
+      StartOfWeek     =   111804417
       CurrentDate     =   38754
    End
    Begin MSFlexGridLib.MSFlexGrid msf1 
@@ -173,12 +173,12 @@ Begin VB.Form con_busca_comp_apoc_excel
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "20/05/2024"
+            TextSave        =   "21/05/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:12 a.m."
+            TextSave        =   "07:14 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
