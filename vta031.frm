@@ -215,7 +215,7 @@ msf1.TextMatrix(0, 4) = "Comprobante"
 msf1.TextMatrix(0, 5) = "Cuit"
 msf1.TextMatrix(0, 6) = "Cliente"
 msf1.TextMatrix(0, 7) = "Observaciones"
-msf1.TextMatrix(0, 8) = "Precep"
+msf1.TextMatrix(0, 8) = "Otras_Perc"
 
 
 
@@ -281,7 +281,7 @@ If FileColl.Count > 0 Then
         Open a0 For Input As #1
         Line Input #1, l
         F = Mid$(l, 8, 2) & "/" & Mid$(l, 6, 2) & "/" & Mid$(l, 2, 4)
-        tc = Val(Mid$(l, 10, 2))
+        tc = Val(Mid$(l, 10, 3))
         Select Case tc
           Case Is = 1
             letra = "A"
@@ -331,6 +331,31 @@ If FileColl.Count > 0 Then
             letra = "E"
             cc = 3
             dc = "Nc.  "
+           Case Is = 201
+            letra = "A"
+            cc = 30
+            dc = "FCE  "
+          Case Is = 202
+            letra = "A"
+            cc = 31
+            dc = "NdCE "
+          Case Is = 203
+            letra = "A"
+            cc = 32
+            dc = "NcCE "
+          Case Is = 206
+            letra = "B"
+            cc = 30
+            dc = "FCE  "
+          Case Is = 207
+            letra = "B"
+            cc = 31
+            dc = "NdCE "
+          Case Is = 208
+            letra = "B"
+            cc = 32
+            dc = "NcCE "
+          
           Case Else
             estado = "ERR"
             Detalle = Detalle & " Comprobante no soportado por el sistema. "
@@ -338,14 +363,27 @@ If FileColl.Count > 0 Then
             cc = 1
             dc = "Error"
           End Select
-          comp = dc & " " & letra & Mid$(l, 13, 4) & "-" & Mid$(l, 17, 8)
-          suc = Mid$(l, 13, 4)
-          NUM = Mid$(l, 17, 8)
+          
+          
+          If tc < 100 Then
+              comp = dc & " " & letra & Mid$(l, 13, 4) & "-" & Mid$(l, 17, 8)
+              suc = Mid$(l, 13, 4)
+              NUM = Mid$(l, 17, 8)
+              CUIT = Mid$(l, 38, 11)
+          Else
+              comp = dc & " " & letra & Mid$(l, 14, 4) & "-" & Mid$(l, 18, 8)
+              suc = Mid$(l, 14, 4)
+              NUM = Mid$(l, 18, 8)
+              CUIT = Mid$(l, 39, 11)
+          
+          End If
+        
+        
         Close #1
        
         'busco si el comprobante no fue cargado
         q = "select * from vta_02 where [id_tipocomp] = " & cc & " and [letra] = '" & letra & "' and [sucursal] = " & Val(suc) & " and [num_comp] = " & NUM
-        Set rs = New ADODB.Recordset
+        Set rs = New adodb.Recordset
         rs.Open q, cn1
         If Not rs.EOF And Not rs.BOF Then
             estado = "ERR"
@@ -355,8 +393,8 @@ If FileColl.Count > 0 Then
         
         
         
-        CUIT = Mid$(l, 38, 11)
-        Set rs = New ADODB.Recordset
+        
+        Set rs = New adodb.Recordset
         q = "select * from vta_01 where [cuit] = '" & CUIT & "'" ' "' or [cuit] = '" & Format$(CUIT, "@@-@@@@@@@@-@") & "'"
         rs.Open q, cn1
         If Not rs.EOF And Not rs.BOF Then
@@ -449,7 +487,7 @@ Sub graba(ByVal r As Integer)
   Open a0 For Input As #1
   Line Input #1, l
         F = Mid$(l, 8, 2) & "/" & Mid$(l, 6, 2) & "/" & Mid$(l, 2, 4)
-        tc = Val(Mid$(l, 10, 2))
+        tc = Val(Mid$(l, 10, 3))
         Select Case tc
           Case Is = 1
             letra = "A"
@@ -499,6 +537,33 @@ Sub graba(ByVal r As Integer)
             letra = "E"
             cc = 3
             dc = "Nc.  "
+          Case Is = 201
+            letra = "A"
+            cc = 30
+            dc = "FCE  "
+          Case Is = 202
+            letra = "A"
+            cc = 31
+            dc = "NdCE "
+          Case Is = 203
+            letra = "A"
+            cc = 32
+            dc = "NcCE "
+          Case Is = 206
+            letra = "B"
+            cc = 30
+            dc = "FCE  "
+          Case Is = 207
+            letra = "B"
+            cc = 31
+            dc = "NdCE "
+          Case Is = 208
+            letra = "B"
+            cc = 32
+            dc = "NcCE "
+  
+            
+            
           Case Else
             estado = "ERR"
             Detalle = Detalle & " Comprobante no soportado por el sistema. "
@@ -506,13 +571,42 @@ Sub graba(ByVal r As Integer)
             cc = 1
             dc = "Error"
           End Select
-          comp = dc & " " & letra & Mid$(l, 13, 4) & "-" & Mid$(l, 17, 8)
-          suc = Mid$(l, 13, 4)
-          NUM = Mid$(l, 17, 8)
+          
+          
+          If tc < 100 Then
+           comp = dc & " " & letra & Mid$(l, 13, 4) & "-" & Mid$(l, 17, 8)
+           suc = Mid$(l, 13, 4)
+           NUM = Mid$(l, 17, 8)
+           CUIT = Mid$(l, 38, 11)
+            total = Val(Mid$(l, 79, 13) & "." & Mid$(l, 92, 2))
+            subtotal = Val(Mid$(l, 109, 13) & "." & Mid$(l, 122, 2))
+            iva = Val(Mid$(l, 124, 13) & "." & Mid$(l, 137, 2)) + Val(Mid$(l, 139, 13) & "." & Mid$(l, 152, 2))
+            nograbado = Val(Mid$(l, 94, 13) & "." & Mid$(l, 107, 2)) + Val(Mid$(l, 139, 13) & "." & Mid$(l, 152, 2))
+            cotizacion = Val(Mid$(l, 249, 4) & "." & Mid$(l, 253, 6))
+            percib = Val(Mid$(l, 184, 13) & "." & Mid$(l, 197, 2))
+            moneda = Mid$(l, 246, 3)
+            
+          
+          Else
+           comp = dc & " " & letra & Mid$(l, 14, 4) & "-" & Mid$(l, 18, 8)
+           suc = Mid$(l, 14, 4)
+           NUM = Mid$(l, 18, 8)
+           CUIT = Mid$(l, 39, 11)
+            total = Val(Mid$(l, 80, 13) & "." & Mid$(l, 93, 2))
+            subtotal = Val(Mid$(l, 110, 13) & "." & Mid$(l, 123, 2))
+            iva = Val(Mid$(l, 125, 13) & "." & Mid$(l, 138, 2)) + Val(Mid$(l, 140, 13) & "." & Mid$(l, 153, 2))
+            nograbado = Val(Mid$(l, 95, 13) & "." & Mid$(l, 108, 2)) + Val(Mid$(l, 140, 13) & "." & Mid$(l, 153, 2))
+            cotizacion = Val(Mid$(l, 250, 4) & "." & Mid$(l, 254, 6))
+            percib = Val(Mid$(l, 185, 13) & "." & Mid$(l, 198, 2))
+            moneda = Mid$(l, 247, 3)
+            
+           
+          End If
+        
         Close #1
        
-        CUIT = Mid$(l, 38, 11)
-        Set rs = New ADODB.Recordset
+        
+        Set rs = New adodb.Recordset
         q = "select * from vta_01 where [cuit] = '" & CUIT & "'" ' "' or [cuit] = '" & Format$(CUIT, "@@-@@@@@@@@-@") & "'"
         rs.Open q, cn1
         If Not rs.EOF And Not rs.BOF Then
@@ -525,14 +619,6 @@ Sub graba(ByVal r As Integer)
   
   
     
- total = Val(Mid$(l, 79, 13) & "." & Mid$(l, 92, 2))
- subtotal = Val(Mid$(l, 109, 13) & "." & Mid$(l, 122, 2))
- iva = Val(Mid$(l, 124, 13) & "." & Mid$(l, 137, 2)) + Val(Mid$(l, 139, 13) & "." & Mid$(l, 152, 2))
- nograbado = Val(Mid$(l, 94, 13) & "." & Mid$(l, 107, 2)) + Val(Mid$(l, 139, 13) & "." & Mid$(l, 152, 2))
- cotizacion = Val(Mid$(l, 249, 4) & "." & Mid$(l, 253, 6))
- percib = Val(Mid$(l, 184, 13) & "." & Mid$(l, 197, 2))
- moneda = Mid$(l, 246, 3)
- 
  
  
  If percib > 0 Then
@@ -572,7 +658,7 @@ End If
       
       
       
-  Set rs = New ADODB.Recordset
+  Set rs = New adodb.Recordset
   q = "select * from g8 where [id_actividad] = " & c_actividad.ItemData(c_actividad.ListIndex)
   rs.Open q, cn1
   If Not rs.EOF And Not rs.BOF Then
@@ -621,9 +707,30 @@ QUERY = QUERY & " VALUES (" & numint & ", " & Val(suc) & ", " & Val(NUM) & ", '"
   r = 1
   While Not EOF(1)
    Line Input #1, m
-   cantidad = Val(Mid$(m, 32, 7) & "." & Mid$(m, 39, 5))
-   codunidad = Val(Mid$(m, 44, 2))
-   Set rs = New ADODB.Recordset
+   tc = Val(Mid$(l, 1, 3))
+   If tc < 100 Then
+        cantidad = Val(Mid$(m, 32, 7) & "." & Mid$(m, 39, 5))
+        codunidad = Val(Mid$(m, 44, 2))
+        pu = Val(Mid$(m, 46, 13) & "." & Mid$(m, 59, 3))
+        iva = Val(Mid$(m, 93, 13) & "." & Mid$(m, 106, 2))
+        tasaiva = Val(Mid$(m, 108, 3) & "." & Mid$(m, 111, 2))
+        importe = pu * cantidad
+        texto = Mid$(m, 117, Len(m) - 117)
+   Else
+        cantidad = Val(Mid$(m, 33, 7) & "." & Mid$(m, 40, 5))
+        codunidad = Val(Mid$(m, 45, 2))
+        pu = Val(Mid$(m, 47, 13) & "." & Mid$(m, 60, 3))
+        iva = Val(Mid$(m, 94, 13) & "." & Mid$(m, 107, 2))
+        tasaiva = Val(Mid$(m, 109, 3) & "." & Mid$(m, 112, 2))
+        importe = pu * cantidad
+        texto = Mid$(m, 118, Len(m) - 118)
+   
+   
+   
+   End If
+   
+   
+   Set rs = New adodb.Recordset
    q = "select * from g5 where [cod_afip] = " & codunidad
    rs.Open q, cn1
    If Not rs.EOF And Not rs.BOF Then
@@ -632,30 +739,26 @@ QUERY = QUERY & " VALUES (" & numint & ", " & Val(suc) & ", " & Val(NUM) & ", '"
      unidad3 = "Unidad"
    End If
    Set rs = Nothing
-   pu = Val(Mid$(m, 46, 13) & "." & Mid$(m, 59, 3))
-   iva = Val(Mid$(m, 93, 13) & "." & Mid$(m, 106, 2))
-   tasaiva = Val(Mid$(m, 108, 3) & "." & Mid$(m, 111, 2))
-   importe = pu * cantidad
-   texto = Mid$(m, 117, Len(m) - 117)
-   puf = Format(pu * (1 + (tasaiva / 100)), "######0.00")
+      puf = Format(pu * (1 + (tasaiva / 100)), "######0.00")
    cp = ""
    i = 0
    While i >= 0
-     If Mid$(m, 125 + i, 1) <> "-" Then
-      cp = cp & Mid$(m, 125 + i, 1)
-        If i > 8 Then
-          i = -1
-        Else
-          i = i + 1
-        End If
-     Else
-       i = -1
-     End If
-     
+      If Mid$(m, 125 + i, 1) <> "-" Then
+           cp = cp & Mid$(m, 125 + i, 1)
+             If i > 8 Then
+               i = -1
+             Else
+               i = i + 1
+             End If
+          Else
+            i = -1
+          End If
+          
    Wend
+
    
    If Val(cp) > 0 Then
-     Set rs = New ADODB.Recordset
+     Set rs = New adodb.Recordset
      q = "select * from a2 where [id_producto] = " & Val(cp)
      rs.MaxRecords = 1
      rs.Open q, cn1
@@ -684,17 +787,27 @@ QUERY = QUERY & " VALUES (" & numint & ", " & Val(suc) & ", " & Val(NUM) & ", '"
   
   
   
-  If tp = "XXX" Then
+  If tp = "S" Then
     'agrego percepciones venta
        Open a2 For Input As #2
        secuencia = 1
        While Not EOF(2)
             Line Input #2, w
+             tipoperc = Val(Mid$(w, 25, 2))
+             Select Case tipoperc
+               Case Is = 2  'ibba
+                  tpp = 2
+               Case Is = 17 'ib salta
+                  tpp = 4
+               Case Else
+                  tpp = 2
+             End Select
+             
+             totalperc = Val(Mid$(w, 27, 13) & "." & Mid$(l, 40, 2))
                    
-                   
-            QUERY = "INSERT INTO vta_016([num_int], [secuencia], [id_percepcion], [importe], [id_cuenta], [cod_regimen])"
-            QUERY = QUERY & " VALUES (" & numint & ", " & secuencia & ", " & ABM_COMP_COMPRA2.msf1.TextMatrix(i, 1) & ", " & ABM_COMP_COMPRA2.msf1.TextMatrix(i, 3) & ", " & ABM_COMP_COMPRA2.msf1.TextMatrix(i, 4) & ", " & ABM_COMP_COMPRA2.msf1.TextMatrix(i, 6) & ")"
-            cn1.Execute QUERY
+                QUERY = "INSERT INTO vta_016([num_int], [secuencia], [id_percepcion], [importe], [id_cuenta], [cod_regimen], [base_imponible], [alicuota])"
+                QUERY = QUERY & " VALUES (" & numint & ", " & secuencia & ", " & tpp & ", " & totalperc & ", 0, 0," & subtotal & ",0)"
+                cn1.Execute QUERY
             
             secuencia = secuencia + 1
     
@@ -750,12 +863,16 @@ Call camino
 Call armagrid
 Call carga_actividades(c_actividad)
 c_actividad.ListIndex = 0
-
+Call barraesag(Me)
 End Sub
 
 
 
 
+
+Private Sub msf1_GotFocus()
+StatusBar1.Panels.item(1) = "[Barra Espaciadora] Selecciona Comprobante - [F2] Agrega Descripcion"
+End Sub
 
 Private Sub msf1_KeyDown(KeyCode As Integer, Shift As Integer)
 If KeyCode = vbKeySpace Then
@@ -767,6 +884,15 @@ If KeyCode = vbKeySpace Then
      Else
         MsgBox ("El comprobante tiene error, no se puede importar")
      End If
+  End If
+End If
+
+
+If KeyCode = vbKeyF2 Then
+  t = InputBox$("Importa Facturas Electronicas", "Agregar Observacion", msf1.TextMatrix(msf1.Row, 7))
+  If t <> "" Then
+    msf1.TextMatrix(msf1.Row, 7) = t
+    
   End If
 End If
 
@@ -799,3 +925,6 @@ End If
 End Sub
 
 
+Private Sub msf1_LostFocus()
+Call barraesag(Me)
+End Sub
