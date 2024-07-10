@@ -1,6 +1,6 @@
 VERSION 5.00
-Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFlxGrd.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "mscomctl.OCX"
 Begin VB.Form vta_facte1 
    BackColor       =   &H00E0E0E0&
    Caption         =   "IMPORTAR FACTURAS ELECTRONICAS DESDE DUPLICADO DIGITAL (R.G. 1361)"
@@ -481,7 +481,7 @@ Sub graba(ByVal r As Integer)
 
   a0 = t_camino & msf1.TextMatrix(r, 2)
   a1 = t_camino & Mid$(msf1.TextMatrix(r, 2), 1, 29) & "DETALLE.TXT"
-  a2 = t_camino & Mid$(msf1.TextMatrix(r, 2), 1, 29) & "OTRAS_PERCP.TXT"
+  a2 = t_camino & Mid$(msf1.TextMatrix(r, 2), 1, 29) & "OTRAS_PERCEP.TXT"
   tp = msf1.TextMatrix(r, 8)
   
   Open a0 For Input As #1
@@ -580,11 +580,14 @@ Sub graba(ByVal r As Integer)
            CUIT = Mid$(l, 38, 11)
             total = Val(Mid$(l, 79, 13) & "." & Mid$(l, 92, 2))
             subtotal = Val(Mid$(l, 109, 13) & "." & Mid$(l, 122, 2))
-            iva = Val(Mid$(l, 124, 13) & "." & Mid$(l, 137, 2)) + Val(Mid$(l, 139, 13) & "." & Mid$(l, 152, 2))
-            nograbado = Val(Mid$(l, 94, 13) & "." & Mid$(l, 107, 2)) + Val(Mid$(l, 139, 13) & "." & Mid$(l, 152, 2))
+            'iva = Val(Mid$(l, 124, 13) & "." & Mid$(l, 137, 2)) + Val(Mid$(l, 139, 13) & "." & Mid$(l, 152, 2))
+            'nograbado = Val(Mid$(l, 94, 13) & "." & Mid$(l, 107, 2)) + Val(Mid$(l, 139, 13) & "." & Mid$(l, 152, 2))
+            iva = Val(Mid$(l, 124, 13) & "." & Mid$(l, 137, 2))
+            nograbado = Val(Mid$(l, 94, 13) & "." & Mid$(l, 107, 2))
             cotizacion = Val(Mid$(l, 249, 4) & "." & Mid$(l, 253, 6))
-            percib = Val(Mid$(l, 184, 13) & "." & Mid$(l, 197, 2))
+            percib = Val(Mid$(l, 184, 13) & "." & Mid$(l, 197, 2)) 'percepciones ib ba
             moneda = Mid$(l, 246, 3)
+            otrasperc = Val(Mid$(l, 139, 13) & "." & Mid$(l, 152, 2))
             
           
           Else
@@ -594,12 +597,14 @@ Sub graba(ByVal r As Integer)
            CUIT = Mid$(l, 39, 11)
             total = Val(Mid$(l, 80, 13) & "." & Mid$(l, 93, 2))
             subtotal = Val(Mid$(l, 110, 13) & "." & Mid$(l, 123, 2))
-            iva = Val(Mid$(l, 125, 13) & "." & Mid$(l, 138, 2)) + Val(Mid$(l, 140, 13) & "." & Mid$(l, 153, 2))
-            nograbado = Val(Mid$(l, 95, 13) & "." & Mid$(l, 108, 2)) + Val(Mid$(l, 140, 13) & "." & Mid$(l, 153, 2))
+            'iva = Val(Mid$(l, 125, 13) & "." & Mid$(l, 138, 2)) + Val(Mid$(l, 140, 13) & "." & Mid$(l, 153, 2))
+            'nograbado = Val(Mid$(l, 95, 13) & "." & Mid$(l, 108, 2)) + Val(Mid$(l, 140, 13) & "." & Mid$(l, 153, 2))
+            iva = Val(Mid$(l, 125, 13) & "." & Mid$(l, 138, 2))
+            nograbado = Val(Mid$(l, 95, 13) & "." & Mid$(l, 108, 2))
             cotizacion = Val(Mid$(l, 250, 4) & "." & Mid$(l, 254, 6))
             percib = Val(Mid$(l, 185, 13) & "." & Mid$(l, 198, 2))
             moneda = Mid$(l, 247, 3)
-            
+            otrasperc = Val(Mid$(l, 140, 13) & "." & Mid$(l, 153, 2))
            
           End If
         
@@ -691,7 +696,7 @@ End If
 QUERY = QUERY & " VALUES (" & numint & ", " & Val(suc) & ", " & Val(NUM) & ", '" & letra & "', " & cc & _
 ", " & idcli & ", '" & F & "', " & para.id_usuario & ", " & subtotal & ", " & nograbado & ", " & iva & ", " & total & _
 ", 'A', " & cuentaact & ", '" & cl_compvta.STOCK & "', '" & cl_compvta.ctacte & "', '" & cl_compvta.grabado & "', '" & ep & "', '" & cp & "', 'Dup.Digital" & _
-" ', " & cotizacion & ", " & Format(totalotramoneda, "#####0.00") & ", '" & moneda & "', 0, '" & cl_compvta.venta & "', '" & contado & "', " & percib & _
+" ', " & cotizacion & ", " & Format(totalotramoneda, "#####0.00") & ", '" & moneda & "', 0, '" & cl_compvta.venta & "', '" & contado & "', " & percib + otrasperc & _
 ", 0, " & Val(t_perciva) & ", " & codact & ", " & tpercib & ", " & Val(t_alicuotaperciva) & ", 0, '" & F & "', 0, 0, ' ', ' ', ' ', 0, " & Val(suc) & _
 ", '" & Left$(cli, 50) & "', '" & Left$(Dire, 50) & "', '" & Left$(CUIT, 20) & "', '" & Left$(Loca, 50) & "', " & tiporespiva & ", " & total & ")"
 
@@ -787,32 +792,52 @@ QUERY = QUERY & " VALUES (" & numint & ", " & Val(suc) & ", " & Val(NUM) & ", '"
   
   
   
+  
+  
+  'percepciones
+  secuencia = 1
+  If percib > 0 Then
+          'agrego percepcion ibba
+          QUERY = "INSERT INTO vta_016([num_int], [secuencia], [id_percepcion], [importe], [id_cuenta], [cod_regimen], [base_imponible], [alicuota])"
+          QUERY = QUERY & " VALUES (" & numint & ", " & secuencia & ", " & 2 & ", " & percib & ", 0, 0," & subtotal & ",0)"
+          cn1.Execute QUERY
+           
+          secuencia = secuencia + 1
+  End If
   If tp = "S" Then
-    'agrego percepciones venta
-       Open a2 For Input As #2
-       secuencia = 1
-       While Not EOF(2)
-            Line Input #2, w
-             tipoperc = Val(Mid$(w, 25, 2))
+    'agrego el resto de las percepciones desde el archivo otras_perc.txt
+         
+       Open a2 For Input As #3
+       While Not EOF(3)
+       
+            Line Input #3, w
+             If tc < 100 Then
+                tipoperc = Val(Mid$(w, 25, 2))
+                totalperc = Val(Mid$(w, 80, 13) & "." & Mid$(l, 94, 2))
+             Else
+                tipoperc = Val(Mid$(w, 26, 2))
+                totalperc = Val(Mid$(w, 81, 13) & "." & Mid$(l, 95, 2))
+             End If
+             
              Select Case tipoperc
                Case Is = 2  'ibba
                   tpp = 2
                Case Is = 17 'ib salta
                   tpp = 4
                Case Else
-                  tpp = 2
+                  tpp = 4
              End Select
              
-             totalperc = Val(Mid$(w, 27, 13) & "." & Mid$(l, 40, 2))
                    
                 QUERY = "INSERT INTO vta_016([num_int], [secuencia], [id_percepcion], [importe], [id_cuenta], [cod_regimen], [base_imponible], [alicuota])"
                 QUERY = QUERY & " VALUES (" & numint & ", " & secuencia & ", " & tpp & ", " & totalperc & ", 0, 0," & subtotal & ",0)"
+                MsgBox (QUERY)
                 cn1.Execute QUERY
             
             secuencia = secuencia + 1
     
       Wend
-  
+      Close #3
   End If
   
   

@@ -1,8 +1,8 @@
 VERSION 5.00
-Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCT2.OCX"
-Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
+Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomct2.ocx"
+Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFlxGrd.ocx"
 Object = "{0A6BE9FC-5039-11D5-98EC-0800460222F0}#1.0#0"; "IFEpson.ocx"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "mscomctl.OCX"
 Begin VB.Form vta_facturacion 
    BackColor       =   &H00E0E0E0&
    Caption         =   "FACTURACION"
@@ -21,12 +21,12 @@ Begin VB.Form vta_facturacion
       Left            =   240
       TabIndex        =   83
       Top             =   7440
-      Width           =   6015
+      Width           =   6375
       Begin VB.TextBox t_fechacuota1 
          Alignment       =   2  'Center
          BorderStyle     =   0  'None
          Height          =   285
-         Left            =   2400
+         Left            =   2760
          MaxLength       =   10
          TabIndex        =   80
          Top             =   480
@@ -35,28 +35,26 @@ Begin VB.Form vta_facturacion
       Begin VB.TextBox t_cuotas_sininteres 
          Alignment       =   2  'Center
          BorderStyle     =   0  'None
-         Enabled         =   0   'False
          Height          =   285
          Left            =   120
          MaxLength       =   10
          TabIndex        =   88
          Top             =   480
-         Width           =   735
+         Width           =   855
       End
       Begin VB.TextBox t_interes_cuota 
          Alignment       =   2  'Center
          BorderStyle     =   0  'None
-         Enabled         =   0   'False
          Height          =   285
-         Left            =   960
+         Left            =   1440
          MaxLength       =   10
          TabIndex        =   87
          Top             =   480
-         Width           =   735
+         Width           =   855
       End
       Begin MSComCtl2.UpDown UpDown1 
          Height          =   375
-         Left            =   4440
+         Left            =   4800
          TabIndex        =   86
          Top             =   480
          Width           =   255
@@ -69,7 +67,7 @@ Begin VB.Form vta_facturacion
          Alignment       =   2  'Center
          BorderStyle     =   0  'None
          Height          =   285
-         Left            =   4800
+         Left            =   5160
          MaxLength       =   10
          TabIndex        =   82
          Top             =   480
@@ -79,11 +77,22 @@ Begin VB.Form vta_facturacion
          Alignment       =   2  'Center
          BorderStyle     =   0  'None
          Height          =   285
-         Left            =   3600
+         Left            =   3960
          MaxLength       =   10
          TabIndex        =   81
          Top             =   480
          Width           =   855
+      End
+      Begin MSComCtl2.UpDown UpDown2 
+         Height          =   375
+         Left            =   960
+         TabIndex        =   93
+         Top             =   480
+         Width           =   255
+         _ExtentX        =   450
+         _ExtentY        =   661
+         _Version        =   393216
+         Enabled         =   -1  'True
       End
       Begin VB.Label Label25 
          Alignment       =   2  'Center
@@ -91,7 +100,7 @@ Begin VB.Form vta_facturacion
          Caption         =   "Fecha cuota1"
          ForeColor       =   &H00FFFFFF&
          Height          =   255
-         Left            =   2400
+         Left            =   2640
          TabIndex        =   91
          Top             =   240
          Width           =   1215
@@ -99,24 +108,24 @@ Begin VB.Form vta_facturacion
       Begin VB.Label Label24 
          Alignment       =   2  'Center
          BackColor       =   &H00008000&
-         Caption         =   "Sin Int."
-         ForeColor       =   &H00FFFFFF&
+         Caption         =   "Cuotas Sin Int."
+         ForeColor       =   &H00FFFF00&
          Height          =   255
          Left            =   120
          TabIndex        =   90
          Top             =   240
-         Width           =   855
+         Width           =   1215
       End
       Begin VB.Label Label18 
          Alignment       =   2  'Center
          BackColor       =   &H00008000&
-         Caption         =   "Interes"
-         ForeColor       =   &H00FFFFFF&
+         Caption         =   "Interes Mensual"
+         ForeColor       =   &H00FFFF00&
          Height          =   255
-         Left            =   960
+         Left            =   1320
          TabIndex        =   89
          Top             =   240
-         Width           =   735
+         Width           =   1215
       End
       Begin VB.Label Label17 
          Alignment       =   2  'Center
@@ -124,7 +133,7 @@ Begin VB.Form vta_facturacion
          Caption         =   "Valor Cuota"
          ForeColor       =   &H00FFFFFF&
          Height          =   255
-         Left            =   4560
+         Left            =   4920
          TabIndex        =   85
          Top             =   240
          Width           =   1335
@@ -135,7 +144,7 @@ Begin VB.Form vta_facturacion
          Caption         =   "Cant.Cuotas"
          ForeColor       =   &H00FFFFFF&
          Height          =   255
-         Left            =   3600
+         Left            =   3840
          TabIndex        =   84
          Top             =   240
          Width           =   1095
@@ -969,12 +978,12 @@ Begin VB.Form vta_facturacion
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "13/05/2024"
+            TextSave        =   "10/07/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:23 a.m."
+            TextSave        =   "08:59 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -1096,7 +1105,7 @@ Sub electronica()
                        tipo_doc = 80
                        CUIT2 = RTrim$(vta_clientes.t_cuit)
                      Else
-                        Set rs3 = New ADODB.Recordset
+                        Set rs3 = New adodb.Recordset
                         q = "select minimo_informar_cons_final from g0 where sucursal= 0"
                         rs3.Open q, cn1
                         If Not rs3.EOF And Not rs3.BOF Then
@@ -1200,7 +1209,7 @@ Sub electronica()
                       
                       
                       
-                      Set rs31 = New ADODB.Recordset
+                      Set rs31 = New adodb.Recordset
                       q = "select * from g0 where [sucursal] = 0"
                       rs31.Open q, cn1
                       cbu = Format$(rs31("cbu"), "0000000000000000000000")
@@ -1406,7 +1415,7 @@ Sub ControlarExcepcion_fe(obj As Object)
 End Sub
 
 Sub iniciacomp()
-Set rs = New ADODB.Recordset
+Set rs = New adodb.Recordset
 q = "select [imprime_desc_extra], [cant_lineas] from vta_06 where [sucursal] = " & Val(t_sucursal) & " and [id_tipocomp] = " & c_tipocomp.ItemData(c_tipocomp.ListIndex)
 rs.Open q, cn1
 If Not rs.EOF And Not rs.BOF Then
@@ -1476,7 +1485,7 @@ Frame11.Visible = True
 
 End Sub
 Sub carga()
-  Set rs = New ADODB.Recordset
+  Set rs = New adodb.Recordset
   q = "select [fecha], [fecha_vto], [cotizacion_dolar], [id_cliente], [num_int], [id_vendedor], [subtotal], [impuestos], [total], [perc_ib], [perc_gan], [perc_iva], [iva], " & _
   " [contado], [cliente02], [direccion02], [cuit02], [localidad02], [id_tipo_iva02], [observaciones] from vta_02 where [sucursal] = " & Val(t_sucursal) & " and letra = '" & t_letra & "' and [id_tipocomp] = " & c_tipocomp.ItemData(c_tipocomp.ListIndex) & " and [num_comp] = " & Val(t_numcomp)
   rs.MaxRecords = 1
@@ -1490,7 +1499,7 @@ Sub carga()
      
      c_prov.ListIndex = buscaindice(c_prov, rs("id_cliente"))
      
-     Set rs1 = New ADODB.Recordset
+     Set rs1 = New adodb.Recordset
      q = "select [id_producto], [descripcion], [cantidad], [unidad], [pu], [tasaiva], [importe], [pu_final], [tasaib], [num_int], [renglon] from vta_03 where [num_int] = " & rs("num_int")
      rs1.Open q, cn1
      Call armagrid
@@ -1498,7 +1507,7 @@ Sub carga()
         r = msf1.Rows
         msf1.AddItem r & Chr(9) & Format$(rs1("id_producto"), "00000") & Chr(9) & rs1("descripcion") & Chr(9) & rs1("cantidad") & Chr(9) & rs1("unidad") & Chr$(9) & Format$(rs1("pu"), "######0.00") & Chr(9) & rs1("tasaiva") & Chr(9) & rs1("importe") & Chr(9) & rs1("pu_final") & Chr(9) & rs1("tasaib")
         
-        Set rs2 = New ADODB.Recordset
+        Set rs2 = New adodb.Recordset
         q = "select [desc_ext], [cant_lineas] from vta_015 where [num_int] = " & rs1("num_int") & " and [renglon] = " & rs1("renglon")
         rs2.Open q, cn1
         If Not rs2.EOF And Not rs2.BOF Then
@@ -1551,7 +1560,7 @@ Sub carga()
 End Sub
 
 Sub carga2()
-  Set rs = New ADODB.Recordset
+  Set rs = New adodb.Recordset
   If para.numeracion_comun_Fact_nc = "S" Then
       q = "select [num_int] from vta_02 where  [id_tipocomp] = 1 and [sucursal]= " & Val(t_sucursal) & " and [letra]= '" & t_letra & "' and [num_comp]= " & Val(t_numcomp)
   Else
@@ -1569,7 +1578,7 @@ Sub carga2()
  If ni <> 0 Then
      MsgBox ("Comprobante Existente")
      EXISTE = "S"
-     Set rs = New ADODB.Recordset
+     Set rs = New adodb.Recordset
      q = "select [fecha], [fecha_vto], [cotizacion_dolar], [id_cliente], [num_int], [id_vendedor], [subtotal], [impuestos], [total], [perc_ib], [perc_gan], [perc_iva], [iva], " & _
      " [contado], [cliente02], [direccion02], [cuit02], [localidad02], [id_tipo_iva02], [observaciones] from vta_02 where [num_int] = " & ni
      rs.MaxRecords = 1
@@ -1581,7 +1590,7 @@ Sub carga2()
      
      c_prov.ListIndex = buscaindice(c_prov, rs("id_cliente"))
      
-     Set rs1 = New ADODB.Recordset
+     Set rs1 = New adodb.Recordset
      q = "select [id_producto], [descripcion], [cantidad], [tunidad], [pu], [tasaiva], [importe], [pu_final], [tasaib], [num_int], [renglon] from vta_03 where [num_int] = " & rs("num_int")
      rs1.Open q, cn1
      Call armagrid
@@ -1589,7 +1598,7 @@ Sub carga2()
         r = msf1.Rows
         msf1.AddItem r & Chr(9) & Format$(rs1("id_producto"), "00000") & Chr(9) & rs1("descripcion") & Chr(9) & rs1("cantidad") & Chr(9) & rs1("tunidad") & Chr$(9) & Format$(rs1("pu"), "######0.00") & Chr(9) & rs1("tasaiva") & Chr(9) & rs1("importe") & Chr(9) & rs1("pu_final") & Chr(9) & rs1("tasaib")
         
-        Set rs2 = New ADODB.Recordset
+        Set rs2 = New adodb.Recordset
         q = "select [desc_ext], [cant_lineas] from vta_015 where [num_int] = " & rs1("num_int") & " and [renglon] = " & rs1("renglon")
         rs2.Open q, cn1
         If Not rs2.EOF And Not rs2.BOF Then
@@ -1631,7 +1640,7 @@ Sub carga2()
   
    
    'cargo percepciones
-     Set rs2 = New ADODB.Recordset
+     Set rs2 = New adodb.Recordset
      q = "select vta_016.id_percepcion, descripcion, importe, vta_016.id_cuenta  from vta_016, a12 where [num_int] = " & rs("num_int") & " and vta_016.id_percepcion = a12.id_percepcion"
      rs2.Open q, cn1
     
@@ -1656,7 +1665,7 @@ Sub carga2()
 End Sub
 
 Sub carga3()
-  Set rs = New ADODB.Recordset
+  Set rs = New adodb.Recordset
   q = "select [num_int], [id_tipocomp], [sucursal], [letra]  from vta_02 where  [num_comp]= " & Val(t_numcomp)
   rs.Open q, cn1
   ni = 0
@@ -1684,7 +1693,7 @@ Sub carga3()
  If ni <> 0 Then
      MsgBox ("Comprobante Existente")
      EXISTE = "S"
-     Set rs = New ADODB.Recordset
+     Set rs = New adodb.Recordset
      q = "select [fecha], [fecha_vto], [cotizacion_dolar], [id_cliente], [num_int], [id_vendedor], [subtotal], [impuestos], [total], [perc_ib], [perc_gan], [perc_iva], [iva], " & _
      " [contado], [cliente02], [direccion02], [cuit02], [localidad02], [id_tipo_iva02], [observaciones] from vta_02 where [num_int] = " & ni
      rs.MaxRecords = 1
@@ -1696,7 +1705,7 @@ Sub carga3()
      
      c_prov.ListIndex = buscaindice(c_prov, rs("id_cliente"))
      
-     Set rs1 = New ADODB.Recordset
+     Set rs1 = New adodb.Recordset
      q = "select [id_producto], [descripcion], [cantidad], [tunidad], [pu], [tasaiva], [importe], [pu_final], [tasaib], [num_int], [renglon] from vta_03 where [num_int] = " & rs("num_int")
      rs1.Open q, cn1
      Call armagrid
@@ -1704,7 +1713,7 @@ Sub carga3()
         r = msf1.Rows
         msf1.AddItem r & Chr(9) & Format$(rs1("id_producto"), "00000") & Chr(9) & rs1("descripcion") & Chr(9) & rs1("cantidad") & Chr(9) & rs1("tunidad") & Chr$(9) & Format$(rs1("pu"), "######0.00") & Chr(9) & rs1("tasaiva") & Chr(9) & rs1("importe") & Chr(9) & rs1("pu_final") & Chr(9) & rs1("tasaib")
         
-        Set rs2 = New ADODB.Recordset
+        Set rs2 = New adodb.Recordset
         q = "select [desc_ext], [cant_lineas] from vta_015 where [num_int] = " & rs1("num_int") & " and [renglon] = " & rs1("renglon")
         rs2.Open q, cn1
         If Not rs2.EOF And Not rs2.BOF Then
@@ -1746,7 +1755,7 @@ Sub carga3()
   
    
    'cargo percepciones
-     Set rs2 = New ADODB.Recordset
+     Set rs2 = New adodb.Recordset
      q = "select vta_016.*, detalle from vta_016, I_01 where [num_int] = " & rs("num_int") & " and id_percepcion = id_impuesto"
      rs2.Open q, cn1
     
@@ -1972,7 +1981,7 @@ If Option4 = True Then
           seguir = False
           estadograba = 1
         Else
-            Set rs = New ADODB.Recordset
+            Set rs = New adodb.Recordset
             q = " select * from vta_02 where [sucursal] = " & Val(t_sucursal) & " and letra = '" & t_letra & "' and [id_tipocomp] = " & c_tipocomp.ItemData(c_tipocomp.ListIndex) & " and [num_comp] = " & Val(t_numcomp)
             rs.Open q, cn1
             If Not rs.BOF And Not rs.EOF Then
@@ -2001,7 +2010,7 @@ If Option4 = True Then
   End If
 Else
   'graba pero no emite
-   Set rs = New ADODB.Recordset
+   Set rs = New adodb.Recordset
    q = " select * from vta_02 where [sucursal] = " & Val(t_sucursal) & " and letra = '" & t_letra & "' and [id_tipocomp] = " & c_tipocomp.ItemData(c_tipocomp.ListIndex) & " and [num_comp] = " & Val(t_numcomp)
    rs.Open q, cn1
    If Not rs.BOF And Not rs.EOF Then
@@ -2109,7 +2118,7 @@ Set cl_fiscal = Nothing
 
 'copias
 'cantidad copias
-Set rs = New ADODB.Recordset
+Set rs = New adodb.Recordset
 q = "select * from vta_06 where [sucursal] = " & Val(t_sucursal) & " and  [id_tipocomp] = " & 10
 rs.Open q, cn1
 If Not rs.EOF And Not rs.BOF Then
@@ -2590,7 +2599,7 @@ End Function
 
 
 Sub normal()
-  Set rs = New ADODB.Recordset
+  Set rs = New adodb.Recordset
   q = "select num_int from vta_02 where [sucursal] = " & Val(t_sucursal) & " and letra = '" & t_letra & "' and [id_tipocomp] = " & c_tipocomp.ItemData(c_tipocomp.ListIndex) & " and [num_comp] = " & Val(t_numcomp)
   rs.Open q, cn1
   If Not rs.BOF And Not rs.EOF Then
@@ -2787,7 +2796,7 @@ Call habilitaplandepago
 End Sub
 
 Private Sub Check2_LostFocus()
-Set rs = New ADODB.Recordset
+Set rs = New adodb.Recordset
 q = "select [imprime_desc_extra] from vta_06 where [sucursal] = " & Val(t_sucursal) & " and [id_tipocomp] = " & c_tipocomp.ItemData(c_tipocomp.ListIndex)
 rs.Open q, cn1, adOpenDynamic, adLockOptimistic
 If Not rs.EOF And Not rs.BOF Then
@@ -2897,7 +2906,7 @@ Sub grabaformapago()
          
          If Val(vta_formapago.msf2.TextMatrix(i, 0)) = 4 Then
                 q = "select * from cyb_04"
-                Set rs = New ADODB.Recordset
+                Set rs = New adodb.Recordset
                 rs.Open q, cn1, adOpenDynamic, adLockOptimistic
                 rs.AddNew
                  rs("id_banco") = Val(vta_formapago.msf2.TextMatrix(i, 8))
@@ -2920,7 +2929,7 @@ Sub grabaformapago()
          
          
          q = "select caja, id_cuenta_cont from cyb_01 where [id_forma_pago] = " & Val(vta_formapago.msf2.TextMatrix(i, 0))
-         Set rs = New ADODB.Recordset
+         Set rs = New adodb.Recordset
          rs.Open q, cn1
          If Not rs.EOF And Not rs.BOF Then
           If rs("CAJA") = "S" Then
@@ -3002,7 +3011,7 @@ Sub habilitaplandepago()
     Option1 = True
   End If
   
-  Set rs0 = New ADODB.Recordset
+  Set rs0 = New adodb.Recordset
   q = "select cuotas_sininteres, interes_cuota  from g0 where sucursal=0"
   rs0.Open q, cn1
   If Not rs0.EOF And Not rs0.BOF Then
@@ -3033,12 +3042,12 @@ For J = 1 To msf1.Rows - 1
    If vta_selremitos.msf1.TextMatrix(i, 0) = "**" Then
      nir = Val(vta_selremitos.msf1.TextMatrix(i, 4))
      q = "SELECT * FROM VTA_02 WHERE [NUM_INT] = " & nir
-     Set rs = New ADODB.Recordset
+     Set rs = New adodb.Recordset
      rs.Open q, cn1, adOpenDynamic, adLockOptimistic
      If Not rs.EOF And Not rs.BOF Then
         'busco el producto en el remito
         q = "select * from vta_03 where [num_int] = " & nir & " and [id_producto] = " & codprodant
-        Set rs1 = New ADODB.Recordset
+        Set rs1 = New adodb.Recordset
         rs1.Open q, cn1, adOpenDynamic, adLockOptimistic
         While Not rs1.EOF
              'si encontre el producto en el remito
@@ -3082,7 +3091,7 @@ Next J
           nir = Val(vta_selremitos.msf1.TextMatrix(i, 4))
           If verificaremito(nir) = 0 Then
              q = "SELECT * FROM VTA_02 WHERE [NUM_INT] = " & nir
-             Set rs = New ADODB.Recordset
+             Set rs = New adodb.Recordset
              rs.Open q, cn1, adOpenDynamic, adLockOptimistic
              If Not rs.EOF And Not rs.BOF Then
                 rs("estado") = "F"
@@ -3110,7 +3119,7 @@ For J = 1 To msf1.Rows - 1
    If vta_selremitos.msf1.TextMatrix(i, 0) = "**" Then
      nir = Val(vta_selremitos.msf1.TextMatrix(i, 4))
      q = "select cantidad from vta_03 where [num_int] = " & nir & " and [id_producto] = " & codprodant
-     Set rs1 = New ADODB.Recordset
+     Set rs1 = New adodb.Recordset
      rs1.Open q, cn1, adOpenDynamic, adLockOptimistic
      While Not rs1.EOF
              'si encontre el producto en el remito
@@ -3148,7 +3157,7 @@ Next J
           nir = Val(vta_selremitos.msf1.TextMatrix(i, 4))
           If verificaremito(nir) = 0 Then
              q = "SELECT estado FROM VTA_02 WHERE [NUM_INT] = " & nir
-             Set rs = New ADODB.Recordset
+             Set rs = New adodb.Recordset
              rs.Open q, cn1, adOpenDynamic, adLockOptimistic
              If Not rs.EOF And Not rs.BOF Then
                 rs("estado") = "F"
@@ -3168,7 +3177,7 @@ End Sub
 
 Function verificaremito(ByVal n As Long) As Integer
 q = "select id_producto, cantidad from vta_03 where [num_int] = " & n
-Set rs1 = New ADODB.Recordset
+Set rs1 = New adodb.Recordset
 rs1.Open q, cn1
 p = 0
 While Not rs1.EOF
@@ -3338,7 +3347,7 @@ Call carga_SUCURSALES(c_sucursal)
 
 
 
-Set rs = New ADODB.Recordset
+Set rs = New adodb.Recordset
 q = "select * from vta_06 where [sucursal] = " & glo.sucursal & " and  [id_tipocomp] <= 40 order by descripcion"
 rs.Open q, cn1
 Call llena_combo(rs, "descripcion", "id_tipocomp", c_tipocomp, True)
@@ -3352,7 +3361,7 @@ c_tipocomp.ListIndex = buscaindice(c_tipocomp, 1)
 Frame14.Visible = False
 Frame11.Visible = True
 
-Set rs = New ADODB.Recordset
+Set rs = New adodb.Recordset
 q = "select * from vta_05 order by [denominacion]"
 rs.Open q, cn1
 Call llena_combo(rs, "denominacion", "id_vendedor", c_vend, True)
@@ -3395,7 +3404,7 @@ End If
 Set cl_fiscal = Nothing
 
 
-Set rs = New ADODB.Recordset
+Set rs = New adodb.Recordset
 q = "select [tipo_control_limite_credito] from g0 where [sucursal] = 0"
 rs.Open q, cn1
 If Not rs.EOF And Not rs.BOF Then
@@ -3566,7 +3575,7 @@ Sub graba()
       End If
       
       
-      Set rs = New ADODB.Recordset
+      Set rs = New adodb.Recordset
       q = "select id_actividad, alicuota_ib, cuenta_contable_venta from g8 where [id_actividad] = " & c_actividad.ItemData(c_actividad.ListIndex)
       rs.Open q, cn1
       If Not rs.EOF And Not rs.BOF Then
@@ -4326,7 +4335,13 @@ End If
 
 End Sub
 
+Private Sub t_interes_cuota_LostFocus()
+  t_interes_cuota = Format$(Val(t_interes_cuota), "##0.0")
+  Call calculacuotas
+End Sub
+
 Private Sub t_iva_LostFocus()
+
 Call sacatotales
 
 End Sub
@@ -4372,7 +4387,7 @@ End Sub
 
 Private Sub t_porcdescuento_LostFocus()
   If Val(t_porcdescuento) > 0 Then
-    Set rs = New ADODB.Recordset
+    Set rs = New adodb.Recordset
     q = "select * from g0 where [sucursal] = 0"
     rs.Open q, cn1
     d1 = rs("descuento1")
@@ -4453,7 +4468,7 @@ t_perc = "0.00"
 'percepcion general IBBA
 q = "select * from i_01 where [id_impuesto] = 1"
 'MsgBox (q)
-Set rs2 = New ADODB.Recordset
+Set rs2 = New adodb.Recordset
 rs2.Open q, cn1
 If Not rs2.EOF And Not rs2.BOF Then
  impmin = rs2("importe_minimo_sujeto_ret")
@@ -4485,7 +4500,7 @@ Set rs2 = Nothing
 'peercepcion Iva 5329 alimentos y limpieza
 If t_letra = "A" Then
     q = "select * from i_01 where [id_impuesto] >= 5328  and [id_impuesto] <= 5329 and   calcula = 'S'"
-    Set rs2 = New ADODB.Recordset
+    Set rs2 = New adodb.Recordset
     rs2.Open q, cn1
     If Not rs2.EOF And Not rs2.BOF Then
       'calcula retencion
@@ -4572,7 +4587,7 @@ End If
 
 If Check1 = 1 Then
   'calcula perciva rg 2459
-   Set rs2 = New ADODB.Recordset
+   Set rs2 = New adodb.Recordset
    q = "select alicuota_i, alicuota_n, importe_minimo_sujeto_ret, retencion-minima from  i_01, i_02 where i_01.[id_impuesto] = i_02.[id_impuesto] and i_01.[id_impuesto] = 2"
    rs2.Open q, cn1
    If Not rs2.EOF And Not rs2.BOF Then
@@ -4681,5 +4696,17 @@ End Sub
 
 Private Sub UpDown1_UpClick()
   t_cantcuotas = Val(t_cantcuotas) + 1
+  Call calculacuotas
+End Sub
+
+Private Sub UpDown2_DownClick()
+If Val(t_cuotas_sininteres) > 0 Then
+  t_cuotas_sininteres = Val(t_cuotas_sininteres) - 1
+  Call calculacuotas
+End If
+End Sub
+
+Private Sub UpDown2_UpClick()
+ t_cuotas_sininteres = Val(t_cuotas_sininteres) + 1
   Call calculacuotas
 End Sub

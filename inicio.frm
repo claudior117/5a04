@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "mscomctl.OCX"
 Begin VB.Form inicio 
    BackColor       =   &H00E0E0E0&
    Caption         =   "MODULO PRINCIPAL SISTEMA DE GESTION INTEGRADO PARA EMPRESAS"
@@ -454,12 +454,12 @@ Begin VB.Form inicio
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "22/05/2024"
+            TextSave        =   "30/06/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:27 a.m."
+            TextSave        =   "05:08 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -876,14 +876,14 @@ If Val(Mid$(rs("habilitacion"), 5, 2)) = sc Then
               
        para.fiscal = 0
    
-   Case Is = 7422 ' todo sin fiscal
+   Case Is = 7422 ' todo sin fiscal (agropecuario )
        Toolbar1.Buttons.item(1).Visible = True
        Toolbar1.Buttons.item(2).Visible = True
        Toolbar1.Buttons.item(3).Visible = True
        Toolbar1.Buttons.item(4).Visible = True
        Toolbar1.Buttons.item(5).Visible = True
        Toolbar1.Buttons.item(6).Visible = False
-       Toolbar1.Buttons.item(7).Visible = False
+       Toolbar1.Buttons.item(7).Visible = True
        Toolbar1.Buttons.item(8).Visible = False
        Toolbar1.Buttons.item(9).Visible = False
        Toolbar1.Buttons.item(10).Visible = False
