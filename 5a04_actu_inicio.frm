@@ -3603,25 +3603,20 @@ End If
 End Sub
 
 Sub actu999()
-'modifica listad de iva vents que puso todos 111111
-h = MsgBox("Actualizacion general . ¿Esta seguro que quiere actualizar? ", 4)
+'corrige error actu 225
+h = MsgBox("Actualizacion general para corregir error 252 . ¿Esta seguro que quiere actualizar? ", 4)
 If h = 6 Then
-espere.Show
-espere.Refresh
-Set rs = New ADODB.Recordset
-q = "select * from vta_02, vta_01 where vta_02.[id_cliente] = vta_01.[id_cliente] and [cuit02] = '11111111111'"
-rs.Open q, cn1, adOpenStatic, adLockOptimistic
-a = 1
-While Not rs.EOF
-    espere.Label1 = "Espere... " & a
-    espere.Label1.Refresh
-    a = a + 1
-    rs("cuit02") = rs("cuit")
-    rs.Update
-    rs.MoveNext
-Wend
-Set rs = Nothing
-Unload espere
+ cn1.BeginTrans
+     
+    q = "update a2 set [percibe_5329]='N'"
+    cn1.Execute q
+    
+  cn1.CommitTrans
+    
+   
+  MsgBox ("Proceso terminado. Verificar articulos para aquellos que deban percibir Iva RG5329 ")
+   
+  
 End If
 End Sub
 

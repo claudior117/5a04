@@ -51,11 +51,27 @@ Begin VB.Form vta_estadocuenta
    End
    Begin VB.Frame Frame6 
       BackColor       =   &H00E0E0E0&
-      Height          =   735
-      Left            =   8160
+      Height          =   1095
+      Left            =   5280
       TabIndex        =   22
-      Top             =   840
-      Width           =   3735
+      Top             =   720
+      Width           =   6615
+      Begin VB.ComboBox c_vendedor 
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Left            =   1560
+         TabIndex        =   29
+         Top             =   600
+         Width           =   4935
+      End
       Begin VB.ComboBox c_sucursal 
          BeginProperty Font 
             Name            =   "MS Sans Serif"
@@ -67,10 +83,21 @@ Begin VB.Form vta_estadocuenta
             Strikethrough   =   0   'False
          EndProperty
          Height          =   360
-         Left            =   2160
+         Left            =   1560
          TabIndex        =   23
          Top             =   240
          Width           =   1455
+      End
+      Begin VB.Label Label5 
+         Alignment       =   1  'Right Justify
+         BackColor       =   &H00800080&
+         Caption         =   "Vendedor"
+         ForeColor       =   &H00FFFFFF&
+         Height          =   375
+         Left            =   120
+         TabIndex        =   30
+         Top             =   600
+         Width           =   1335
       End
       Begin VB.Label Label4 
          Alignment       =   1  'Right Justify
@@ -81,7 +108,7 @@ Begin VB.Form vta_estadocuenta
          Left            =   120
          TabIndex        =   24
          Top             =   240
-         Width           =   1935
+         Width           =   1335
       End
    End
    Begin VB.Frame Frame4 
@@ -157,9 +184,9 @@ Begin VB.Form vta_estadocuenta
    End
    Begin MSComCtl2.MonthView cal1 
       Height          =   2370
-      Left            =   5040
+      Left            =   3240
       TabIndex        =   10
-      Top             =   960
+      Top             =   1800
       Width           =   2595
       _ExtentX        =   4577
       _ExtentY        =   4180
@@ -167,7 +194,7 @@ Begin VB.Form vta_estadocuenta
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   116129793
+      StartOfWeek     =   41680897
       CurrentDate     =   38754
    End
    Begin MSFlexGridLib.MSFlexGrid msf1 
@@ -192,7 +219,7 @@ Begin VB.Form vta_estadocuenta
    End
    Begin VB.Frame Frame3 
       BackColor       =   &H00E0E0E0&
-      Height          =   1815
+      Height          =   2055
       Left            =   240
       TabIndex        =   7
       Top             =   0
@@ -356,12 +383,12 @@ Begin VB.Form vta_estadocuenta
          BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "10/07/2024"
+            TextSave        =   "19/07/2024"
          EndProperty
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "08:47 a.m."
+            TextSave        =   "04:52 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -398,11 +425,18 @@ Sub carga()
         q = q & " and [sucursal_ingreso] = " & Val(c_sucursal)
      End If
      
+      If c_vendedor.ListIndex > 0 Then
+        q = q & " and [id_vendedor] = " & c_vendedor.ItemData(c_vendedor.ListIndex)
+     End If
+     
      If Option1 = True Then
         q = q & " and datevalue([fecha]) < datevalue('" & t_fecha & "')"
      Else
         q = q & " and datevalue([fecha_vto]) < datevalue('" & t_fecha & "')"
      End If
+    
+    
+    
     Set rs = New adodb.Recordset
     rs.Open q, cn1
     While Not rs.EOF
@@ -476,6 +510,10 @@ Sub carga()
         q = q & " and [sucursal_ingreso] = " & Val(c_sucursal)
   End If
      
+      If c_vendedor.ListIndex > 0 Then
+        q = q & " and [id_vendedor] = " & c_vendedor.ItemData(c_vendedor.ListIndex)
+     End If
+        
   If Option1 = True Then
      q = q & " order by [fecha], vta_02.[id_tipocomp], [num_comp]"
   Else
@@ -753,6 +791,12 @@ Call carga_SUCURSALES(c_sucursal)
 c_sucursal.AddItem "<Todas>", 0
 c_sucursal.ListIndex = 0
 t_sucursal = Format$(glo.sucursal, "0000")
+
+
+Call carga_vendedores(c_vendedor)
+c_vendedor.AddItem "<Todos>", 0
+c_vendedor.ListIndex = 0
+
 
 
 Call armagrid

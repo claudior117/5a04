@@ -1,45 +1,96 @@
 VERSION 5.00
-Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFlxGrd.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "mscomctl.OCX"
 Begin VB.Form vta_selremitos 
    BackColor       =   &H00E0E0E0&
    BorderStyle     =   1  'Fixed Single
    Caption         =   "SELECCION DE REMITOS A FACTURAR"
-   ClientHeight    =   6480
+   ClientHeight    =   7380
    ClientLeft      =   0
    ClientTop       =   345
-   ClientWidth     =   6210
+   ClientWidth     =   7245
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    PaletteMode     =   1  'UseZOrder
-   ScaleHeight     =   6480
-   ScaleWidth      =   6210
+   ScaleHeight     =   7380
+   ScaleWidth      =   7245
    StartUpPosition =   1  'CenterOwner
+   Begin VB.Frame Frame6 
+      Height          =   735
+      Left            =   240
+      TabIndex        =   16
+      Top             =   0
+      Width           =   6855
+      Begin VB.CommandButton Command1 
+         Caption         =   "Filtrar"
+         Height          =   375
+         Left            =   5880
+         TabIndex        =   19
+         Top             =   240
+         Width           =   855
+      End
+      Begin VB.ComboBox c_vendedor 
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Left            =   1200
+         TabIndex        =   17
+         Top             =   240
+         Width           =   4455
+      End
+      Begin VB.Label Label5 
+         Alignment       =   2  'Center
+         BackColor       =   &H00800080&
+         Caption         =   "Vendedor"
+         ForeColor       =   &H00FFFFFF&
+         Height          =   375
+         Left            =   120
+         TabIndex        =   18
+         Top             =   240
+         Width           =   975
+      End
+   End
    Begin VB.Frame Frame4 
       BackColor       =   &H00E0E0E0&
       Height          =   615
-      Left            =   120
+      Left            =   240
       TabIndex        =   14
-      Top             =   4320
-      Width           =   4095
+      Top             =   5160
+      Width           =   6855
       Begin VB.CheckBox Check1 
-         Caption         =   "Utiliza Lista de Precios  para Armar Factura"
+         Caption         =   "Utiliza Lista de Precios actual  para Armar Factura"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Left            =   120
          TabIndex        =   15
          ToolTipText     =   $"vta014.frx":0000
          Top             =   240
-         Width           =   3855
+         Width           =   6495
       End
    End
    Begin VB.Frame Frame3 
       BackColor       =   &H00E0E0E0&
       Height          =   615
-      Left            =   120
+      Left            =   240
       TabIndex        =   9
-      Top             =   5520
+      Top             =   6360
       Width           =   4095
       Begin VB.TextBox t_r2 
          Height          =   285
@@ -77,9 +128,9 @@ Begin VB.Form vta_selremitos
    Begin VB.Frame Frame2 
       BackColor       =   &H00E0E0E0&
       Height          =   615
-      Left            =   120
+      Left            =   240
       TabIndex        =   6
-      Top             =   4920
+      Top             =   5760
       Width           =   4095
       Begin VB.TextBox t_seleccionados 
          Height          =   285
@@ -104,16 +155,16 @@ Begin VB.Form vta_selremitos
       Height          =   4215
       Left            =   120
       TabIndex        =   5
-      Top             =   120
-      Width           =   5895
+      Top             =   840
+      Width           =   6975
       Begin MSFlexGridLib.MSFlexGrid msf1 
          Height          =   3855
          Left            =   120
          TabIndex        =   0
          ToolTipText     =   $"vta014.frx":00A7
          Top             =   240
-         Width           =   5655
-         _ExtentX        =   9975
+         Width           =   6615
+         _ExtentX        =   11668
          _ExtentY        =   6800
          _Version        =   393216
          FixedCols       =   0
@@ -121,8 +172,8 @@ Begin VB.Form vta_selremitos
          FillStyle       =   1
          SelectionMode   =   1
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Name            =   "Segoe UI"
+            Size            =   9.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -135,9 +186,9 @@ Begin VB.Form vta_selremitos
       BackColor       =   &H00E0E0E0&
       Caption         =   "Funciones"
       Height          =   975
-      Left            =   4440
+      Left            =   5520
       TabIndex        =   2
-      Top             =   5160
+      Top             =   6000
       Width           =   1575
       Begin VB.CommandButton btnsale 
          Cancel          =   -1  'True
@@ -167,9 +218,9 @@ Begin VB.Form vta_selremitos
       Height          =   255
       Left            =   0
       TabIndex        =   1
-      Top             =   6225
-      Width           =   6210
-      _ExtentX        =   10954
+      Top             =   7125
+      Width           =   7245
+      _ExtentX        =   12779
       _ExtentY        =   450
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
@@ -242,8 +293,8 @@ msf1.FixedCols = 0
 msf1.SelectionMode = flexSelectionByRow
 msf1.FocusRect = flexFocusNone
 msf1.ColWidth(0) = 300
-msf1.ColWidth(1) = 1400
-msf1.ColWidth(2) = 1400
+msf1.ColWidth(1) = 1900
+msf1.ColWidth(2) = 1600
 msf1.ColWidth(3) = 800
 msf1.ColWidth(4) = 1200
 msf1.TextMatrix(0, 1) = "Nro. Comprobante"
@@ -258,6 +309,11 @@ msf1.FocusRect = flexFocusNone
 
 End Sub
 
+Private Sub Command1_Click()
+
+Call carga
+End Sub
+
 Private Sub Form_Activate()
 Call cuenta
 End Sub
@@ -266,7 +322,12 @@ Private Sub Form_Load()
 Load vta_cc_detalle
 Call limpia
 
-Set rs = New ADODB.Recordset
+Call carga_vendedores(c_vendedor)
+c_vendedor.AddItem "<Todos>", 0
+c_vendedor.ListIndex = 0
+
+
+Set rs = New adodb.Recordset
 q = "select [recargo_cc], [precio_remito_factura] from g0 where [sucursal] = 0"
 rs.Open q, cn1
 If Not rs.BOF And Not rs.EOF Then
@@ -282,7 +343,12 @@ End Sub
 Sub carga()
    Call limpia
    q = "select [num_int], [sucursal], [num_comp], [id_tipocomp], [fecha]  from vta_02 where [id_tipocomp] > 40 and [id_tipocomp] < 50  and [id_cliente] = " & vta_facturacion.c_prov.ItemData(vta_facturacion.c_prov.ListIndex) & " and estado = 'S'"
-   Set rs = New ADODB.Recordset
+   
+    If c_vendedor.ListIndex > 0 Then
+        q = q & " and [id_vendedor] = " & c_vendedor.ItemData(c_vendedor.ListIndex)
+     End If
+   
+   Set rs = New adodb.Recordset
    rs.Open q, cn1
    While Not rs.EOF
      nc = Format$(rs("sucursal"), "0000") & "-" & Format$(rs("num_comp"), "00000000")
@@ -397,14 +463,14 @@ Dim J As Single
 
 'BUSCO REMITO
 q = "select [num_int], [moneda], [id_tipocomp] from vta_02 where [num_int] = " & Val(msf1.TextMatrix(k, 4))
-Set rs = New ADODB.Recordset
+Set rs = New adodb.Recordset
 rs.Open q, cn1
 If Not rs.EOF And Not rs.BOF Then
    nms = rs("num_int")
    monedar = rs("moneda")
    'BUSCA PROD. PEND. DE FACTURACION EN EL REMITO
    q = "select [id_producto], [pu], [impuesto], [tasaiva], [pu_final], [cantidad], [descripcion], [tunidad]  from vta_03 where [num_int] = " & nms & " and [cantidad] > 0"
-   Set rs1 = New ADODB.Recordset
+   Set rs1 = New adodb.Recordset
    rs1.Open q, cn1
    While Not rs1.EOF
        
@@ -443,7 +509,7 @@ If Not rs.EOF And Not rs.BOF Then
         'datos en el remito
         'si el importe del remito es 0 totma el de la b.d.
         If rs1("id_producto") > 1 And (rs1("pu") = 0 Or Check1 = 1) Then
-             Set rs3 = New ADODB.Recordset
+             Set rs3 = New adodb.Recordset
              q = "select [pu], [impuesto], [moneda], [tasa], [precio_final], percibe_5329 from a2, g4 where [id_producto] = " & rs1("id_producto") & " and [cod_tasaiva] = [id_tasaiva]"
              rs3.Open q, cn1
              If Not rs3.EOF And Not rs3.BOF Then
@@ -476,7 +542,7 @@ If Not rs.EOF And Not rs.BOF Then
                 ti = rs1("TASAIVA")
                 f2 = rs1("pu_final")
                 If rs1("id_producto") > 1 Then
-                    Set rs3 = New ADODB.Recordset
+                    Set rs3 = New adodb.Recordset
                     q = "select percibe_5329 from a2 where [id_producto] = " & rs1("id_producto")
                     rs3.Open q, cn1
                     If Not rs3.EOF And Not rs3.BOF Then
@@ -536,7 +602,7 @@ Dim J As Single
 'BUSCO REMITO
    'BUSCA PROD. PEND. DE FACTURACION EN EL REMITO
    q = "select vta_03.num_int, vta_03.id_producto, vta_03.pu, a2.pu   from vta_02, vta_03, a2, g4 where vta_02.[num_int] = vta_03.[num_int] and  vta_03.[id_producto] = a2.[id_producto] and [cod_tasaiva] = g4.[id_tasaiva] and vta_02.[num_int] = " & k & " and [cantidad] > 0"
-   Set rs1 = New ADODB.Recordset
+   Set rs1 = New adodb.Recordset
    rs1.Open q, cn1
    nms = rs1("num_int")
    'monedar = rs1("moneda")
@@ -668,7 +734,7 @@ Function BUSCOPRODFACTURA(ByVal cp) As Integer
  BUSCOPRODFACTURA = e
 End Function
 Sub BUSCOPROD()
-Set rs3 = New ADODB.Recordset
+Set rs3 = New adodb.Recordset
 q = "select * from a2 "
 TBA2.Seek "=", dynprod.Fields("cod-producto")
 If Not TBA2.NoMatch Then
