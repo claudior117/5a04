@@ -454,12 +454,12 @@ Begin VB.Form inicio
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "30/06/2024"
+            TextSave        =   "21/07/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "05:08 p.m."
+            TextSave        =   "11:54 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -703,6 +703,8 @@ Sub HABILITACION()
 '                   1723 ----> VETERINARIAS Sin Produccion, Empleados y Contabilidad
 '                   1922 ----> Ventas, Compras, caja, bancos
 '                   8574 ----> Solo Compras
+'                   7422 ----> Agropecuarias
+'                   2191 ----> Todo + Agropecuarias
 
 sc = 0
 For i = 1 To 2
@@ -876,7 +878,7 @@ If Val(Mid$(rs("habilitacion"), 5, 2)) = sc Then
               
        para.fiscal = 0
    
-   Case Is = 7422 ' todo sin fiscal (agropecuario )
+   Case Is = 7422 'agropecuario )
        Toolbar1.Buttons.item(1).Visible = True
        Toolbar1.Buttons.item(2).Visible = True
        Toolbar1.Buttons.item(3).Visible = True
@@ -889,6 +891,21 @@ If Val(Mid$(rs("habilitacion"), 5, 2)) = sc Then
        Toolbar1.Buttons.item(10).Visible = False
        
        para.fiscal = 0
+       
+     Case Is = 2191 ' todo sin fiscal + agropecuario
+       Toolbar1.Buttons.item(1).Visible = True
+       Toolbar1.Buttons.item(2).Visible = True
+       Toolbar1.Buttons.item(3).Visible = True
+       Toolbar1.Buttons.item(4).Visible = True
+       Toolbar1.Buttons.item(5).Visible = True
+       Toolbar1.Buttons.item(6).Visible = True
+       Toolbar1.Buttons.item(7).Visible = True
+       Toolbar1.Buttons.item(8).Visible = True
+       Toolbar1.Buttons.item(9).Visible = True
+       Toolbar1.Buttons.item(10).Visible = True
+       
+       para.fiscal = 0
+       
    
    Case Else
        MsgBox ("Error Inesperado de Habilitacion: E1001 ")
