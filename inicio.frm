@@ -459,7 +459,7 @@ Begin VB.Form inicio
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "11:54 a.m."
+            TextSave        =   "12:19 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -846,7 +846,7 @@ If Val(Mid$(rs("habilitacion"), 5, 2)) = sc Then
        Toolbar1.Buttons.item(10).Visible = False
    
    
-   Case Is = 9999 ' todo
+   Case Is = 9999, Is = 2191 ' todo
        Toolbar1.Buttons.item(1).Visible = True
        Toolbar1.Buttons.item(2).Visible = True
        Toolbar1.Buttons.item(3).Visible = True

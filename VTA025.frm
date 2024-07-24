@@ -151,7 +151,7 @@ Begin VB.Form vta_informevta3
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   111542273
+      StartOfWeek     =   113704961
       CurrentDate     =   38750
    End
    Begin VB.Frame Frame3 
@@ -263,12 +263,12 @@ Begin VB.Form vta_informevta3
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "21/07/2024"
+            TextSave        =   "24/07/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "11:58 a.m."
+            TextSave        =   "05:12 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
