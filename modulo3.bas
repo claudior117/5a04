@@ -423,6 +423,23 @@ c.ListIndex = 0
 Set rs = Nothing
 End Sub
 
+Sub carga_rempredef(c As ComboBox)
+Set rs = New ADODB.Recordset
+q = "select [id_rempredef], [denominacion] from vta_017 order by [denominacion]"
+rs.Open q, cn1
+c.clear
+While Not rs.EOF
+  c.AddItem rs("denominacion")
+'FIXIT: c.ItemData(c.NewIndex property no tiene equivalente en Visual Basic .NET y no se actualizará.     FixIT90210ae-R7593-R67265
+  c.ItemData(c.NewIndex) = rs("id_rempredef")
+  rs.MoveNext
+Wend
+
+c.ListIndex = 0
+Set rs = Nothing
+End Sub
+
+
 Sub carga_impuestos(c As ComboBox, ByVal i As Integer)
 'i = cod. de impuesto
 

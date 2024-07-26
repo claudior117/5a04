@@ -2,6 +2,7 @@ VERSION 5.00
 Object = "{C4847593-972C-11D0-9567-00A0C9273C2A}#8.0#0"; "crviewer.dll"
 Begin VB.Form reportes 
    BorderStyle     =   1  'Fixed Single
+   Caption         =   "shhhhhhhhwo"
    ClientHeight    =   7395
    ClientLeft      =   45
    ClientTop       =   330

@@ -570,12 +570,12 @@ Begin VB.Form inicio_vta
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "21/07/2024"
+            TextSave        =   "25/07/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "11:52 a.m."
+            TextSave        =   "09:53 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -867,6 +867,9 @@ Begin VB.Form inicio_vta
       End
       Begin VB.Menu M_rto 
          Caption         =   "Remitos"
+      End
+      Begin VB.Menu M_rempre 
+         Caption         =   "Remitos Predefinidos"
       End
       Begin VB.Menu M_rbo 
          Caption         =   "Recibos"
@@ -1249,7 +1252,7 @@ Label7 = para.impresora_actual
 End Sub
 Sub actu_fe()
   q = "select * from fe_01 where id= 1"
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   rs.Open q, cn1
   If Not rs.EOF And Not rs.BOF Then
     para.facte_token = rs("token")
@@ -1306,7 +1309,7 @@ End Select
 
 
 q = "SELECT * FROM G1 WHERE id_usuario = " & para.id_usuario
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 rs.Open q, cn1
 If Not rs.EOF And Not rs.BOF Then
   para.tipoprecioventa = rs("tipo_precio_venta")
@@ -1392,7 +1395,7 @@ h = MsgBox("Formatea(numerico sin guines de longitud 11) los cuit de los Cliente
 If h = 6 Then
 espere.Show
 espere.Refresh
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select * from vta_01"
 rs.Open q, cn1, adOpenStatic, adLockOptimistic
 a = 1
@@ -1422,7 +1425,7 @@ h = MsgBox("verifca Cuit en Comprobates   . ¿Esta seguro que quiere actualizar? 
 If h = 6 Then
 espere.Show
 espere.Refresh
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select * from vta_02, vta_01 where vta_02.[id_cliente] > 1 and vta_02.[id_cliente] = vta_01.[id_cliente]"
 rs.Open q, cn1, adOpenStatic, adLockOptimistic
 a = 1
@@ -1592,6 +1595,16 @@ Private Sub M_remitos_Click()
 vta_verremitos.Show
 End Sub
 
+Private Sub M_rempre_Click()
+If para.id_grupo_modulo_actual >= 4 Then
+      vta_remitos_predef.Show
+     
+    
+    Else
+      Call sinpermisos
+    End If
+End Sub
+
 Private Sub M_renueva_Click()
 p = InputBox$("Ingrese periodo mmaaaa", "Renovacion datops clientes en listado de iva", "012013")
 b = 1
@@ -1624,7 +1637,7 @@ If b = 1 Then
     f2 = d & "/" & Mid$(p, 1, 2) & "/" & Mid$(p, 3, 4)
  
 
-    Set rs = New adodb.Recordset
+    Set rs = New ADODB.Recordset
     espere.Show
     espere.Label1 = "Espere...... Actualizando Listado de Iva"
     espere.Refresh
@@ -1715,7 +1728,7 @@ If J = para.password_adm Then
   s = InputBox("Ingrese numero de sucursal a habilitar. CUIDADO si ingresa una sucursal existente se regneraran todos los parametros")
   If Val(s) > 0 Then
    If Val(s) <> glo.sucursal Then
-     Set rs = New adodb.Recordset
+     Set rs = New ADODB.Recordset
      q = "select * from vta_06 where [sucursal] = " & Val(s)
      rs.Open q, cn1, adOpenDynamic, adLockOptimistic
      While Not rs.EOF
@@ -1725,11 +1738,11 @@ If J = para.password_adm Then
      Set rs = Nothing
      
     
-    Set rs = New adodb.Recordset
+    Set rs = New ADODB.Recordset
     q = "select * from vta_06 where [sucursal] = " & glo.sucursal
     rs.Open q, cn1
     While Not rs.EOF
-      Set rs1 = New adodb.Recordset
+      Set rs1 = New ADODB.Recordset
       q = "select * from vta_06 where [sucursal] = " & Val(s) & " and [id_tipocomp] = " & rs("id_tipocomp")
       rs1.Open q, cn1, adOpenStatic, adLockOptimistic
       If rs1.EOF And rs1.BOF Then

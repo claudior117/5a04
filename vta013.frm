@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "mscomctl.OCX"
 Begin VB.Form vta_remitos1 
    BackColor       =   &H00C0C0C0&
    Caption         =   "INGRESO DE ARTICULOS"
@@ -260,12 +260,12 @@ Begin VB.Form vta_remitos1
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "14/11/2023"
+            TextSave        =   "26/07/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "12:28 p.m."
+            TextSave        =   "09:52 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1

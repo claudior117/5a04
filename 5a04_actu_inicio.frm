@@ -120,7 +120,7 @@ Begin VB.Form actu_inicio
    Begin VB.Label Label3 
       Alignment       =   2  'Center
       BackColor       =   &H0000FFFF&
-      Caption         =   "230"
+      Caption         =   "231"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   18
@@ -340,6 +340,8 @@ Case Is = 229
     Call actu229
 Case Is = 230
     Call actu230
+Case Is = 231
+    Call actu231
  Case Is = 999
    Call actu999
    
@@ -2869,6 +2871,29 @@ If h = 6 Then
     
    
   MsgBox ("Proceso terminado.  Modifique tabla I_01 Tipo: P Percepciones, R Retenciones - Impuesto: IVA-IBBA-GAN")
+   
+   
+   
+ Unload espere
+  
+End If
+
+Exit Sub
+
+
+err1:
+Resume Next
+
+End Sub
+
+Sub actu231()
+'remitos predefinidos
+h = MsgBox("Actualizacion 231(Remitos Predefinidos) . ¿Esta seguro que quiere actualizar?  ", 4)
+If h = 6 Then
+  espere.Show
+  espere.Refresh
+   
+  MsgBox ("Proceso terminado.  Importar tablas vta_017 y vta_018")
    
    
    

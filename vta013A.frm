@@ -1,7 +1,7 @@
 VERSION 5.00
-Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
+Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFlxGrd.ocx"
 Object = "{0A6BE9FC-5039-11D5-98EC-0800460222F0}#1.0#0"; "IFEpson.ocx"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "mscomctl.OCX"
 Begin VB.Form vta_remitos 
    BackColor       =   &H00E0E0E0&
    Caption         =   "REMITOS"
@@ -18,7 +18,7 @@ Begin VB.Form vta_remitos
       BackColor       =   &H00E0E0E0&
       Height          =   495
       Left            =   9120
-      TabIndex        =   63
+      TabIndex        =   64
       Top             =   6840
       Width           =   2655
       Begin VB.CheckBox Check2 
@@ -26,7 +26,7 @@ Begin VB.Form vta_remitos
          Caption         =   "Imprime Descripcion Extra"
          Height          =   255
          Left            =   120
-         TabIndex        =   64
+         TabIndex        =   65
          TabStop         =   0   'False
          Top             =   120
          Width           =   2295
@@ -42,7 +42,7 @@ Begin VB.Form vta_remitos
       BackColor       =   &H00E0E0E0&
       Height          =   975
       Left            =   10080
-      TabIndex        =   56
+      TabIndex        =   57
       Top             =   960
       Width           =   1455
       Begin VB.CommandButton Command4 
@@ -51,7 +51,7 @@ Begin VB.Form vta_remitos
          Left            =   120
          Picture         =   "vta013A.frx":0000
          Style           =   1  'Graphical
-         TabIndex        =   57
+         TabIndex        =   58
          Top             =   240
          Width           =   1215
       End
@@ -61,14 +61,14 @@ Begin VB.Form vta_remitos
       Caption         =   "Contrato de Consignacion"
       Height          =   975
       Left            =   9120
-      TabIndex        =   50
+      TabIndex        =   51
       Top             =   5880
       Width           =   2655
       Begin VB.TextBox t_fechac 
          Height          =   285
          Left            =   1080
          MaxLength       =   10
-         TabIndex        =   52
+         TabIndex        =   53
          Top             =   240
          Width           =   1335
       End
@@ -76,7 +76,7 @@ Begin VB.Form vta_remitos
          Caption         =   "Imprimir"
          Height          =   255
          Left            =   120
-         TabIndex        =   51
+         TabIndex        =   52
          Top             =   600
          Width           =   2415
       End
@@ -85,7 +85,7 @@ Begin VB.Form vta_remitos
          Caption         =   "Fecha:"
          Height          =   255
          Left            =   240
-         TabIndex        =   53
+         TabIndex        =   54
          Top             =   240
          Width           =   615
       End
@@ -94,7 +94,7 @@ Begin VB.Form vta_remitos
       BackColor       =   &H00E0E0E0&
       Height          =   855
       Left            =   10080
-      TabIndex        =   40
+      TabIndex        =   41
       Top             =   0
       Width           =   1455
       Begin VB.OptionButton Option4 
@@ -102,7 +102,7 @@ Begin VB.Form vta_remitos
          Caption         =   "Pesos"
          Height          =   255
          Left            =   120
-         TabIndex        =   42
+         TabIndex        =   43
          Top             =   120
          Width           =   975
       End
@@ -111,7 +111,7 @@ Begin VB.Form vta_remitos
          Caption         =   "U$s"
          Height          =   255
          Left            =   120
-         TabIndex        =   41
+         TabIndex        =   42
          Top             =   480
          Width           =   855
       End
@@ -120,7 +120,7 @@ Begin VB.Form vta_remitos
       BackColor       =   &H00E0E0E0&
       Height          =   1335
       Left            =   9600
-      TabIndex        =   37
+      TabIndex        =   38
       Top             =   3240
       Visible         =   0   'False
       Width           =   2535
@@ -129,7 +129,7 @@ Begin VB.Form vta_remitos
          Height          =   405
          Left            =   960
          MaxLength       =   3
-         TabIndex        =   62
+         TabIndex        =   63
          Top             =   720
          Width           =   615
       End
@@ -138,7 +138,7 @@ Begin VB.Form vta_remitos
          Height          =   405
          Left            =   1680
          MaxLength       =   1
-         TabIndex        =   60
+         TabIndex        =   61
          Top             =   720
          Width           =   615
       End
@@ -147,7 +147,7 @@ Begin VB.Form vta_remitos
          Height          =   405
          Left            =   1680
          MaxLength       =   1
-         TabIndex        =   38
+         TabIndex        =   39
          Top             =   240
          Width           =   615
       End
@@ -158,7 +158,7 @@ Begin VB.Form vta_remitos
          ForeColor       =   &H00FFFFFF&
          Height          =   375
          Left            =   120
-         TabIndex        =   39
+         TabIndex        =   40
          Top             =   240
          Width           =   1335
       End
@@ -168,7 +168,7 @@ Begin VB.Form vta_remitos
       Caption         =   "Totales del Comprobante"
       Height          =   2295
       Left            =   240
-      TabIndex        =   30
+      TabIndex        =   31
       Top             =   6000
       Width           =   8775
       Begin VB.TextBox t_valor 
@@ -176,7 +176,7 @@ Begin VB.Form vta_remitos
          Height          =   285
          Left            =   7200
          MaxLength       =   10
-         TabIndex        =   12
+         TabIndex        =   13
          Top             =   720
          Width           =   855
       End
@@ -185,7 +185,7 @@ Begin VB.Form vta_remitos
          Height          =   285
          Left            =   4320
          MaxLength       =   10
-         TabIndex        =   11
+         TabIndex        =   12
          Top             =   720
          Width           =   855
       End
@@ -194,7 +194,7 @@ Begin VB.Form vta_remitos
          Height          =   285
          Left            =   2880
          MaxLength       =   8
-         TabIndex        =   16
+         TabIndex        =   17
          Top             =   1920
          Width           =   615
       End
@@ -203,7 +203,7 @@ Begin VB.Form vta_remitos
          Left            =   7800
          Picture         =   "vta013A.frx":030A
          Style           =   1  'Graphical
-         TabIndex        =   48
+         TabIndex        =   49
          Top             =   240
          Width           =   735
       End
@@ -212,7 +212,7 @@ Begin VB.Form vta_remitos
          Height          =   285
          Left            =   1560
          MaxLength       =   50
-         TabIndex        =   13
+         TabIndex        =   14
          Top             =   1080
          Width           =   5535
       End
@@ -221,7 +221,7 @@ Begin VB.Form vta_remitos
          Height          =   285
          Left            =   7440
          MaxLength       =   10
-         TabIndex        =   44
+         TabIndex        =   45
          Top             =   1920
          Width           =   1095
       End
@@ -230,14 +230,14 @@ Begin VB.Form vta_remitos
          Height          =   285
          Left            =   1560
          MaxLength       =   10
-         TabIndex        =   10
+         TabIndex        =   11
          Top             =   720
          Width           =   855
       End
       Begin VB.ComboBox c_vend 
          Height          =   315
          Left            =   1560
-         TabIndex        =   9
+         TabIndex        =   10
          Top             =   240
          Width           =   6015
       End
@@ -246,7 +246,7 @@ Begin VB.Form vta_remitos
          Height          =   285
          Left            =   6240
          MaxLength       =   10
-         TabIndex        =   19
+         TabIndex        =   20
          Top             =   1920
          Width           =   1095
       End
@@ -255,7 +255,7 @@ Begin VB.Form vta_remitos
          Height          =   285
          Left            =   5040
          MaxLength       =   10
-         TabIndex        =   18
+         TabIndex        =   19
          Top             =   1920
          Width           =   1095
       End
@@ -264,7 +264,7 @@ Begin VB.Form vta_remitos
          Height          =   285
          Left            =   3600
          MaxLength       =   10
-         TabIndex        =   17
+         TabIndex        =   18
          Top             =   1920
          Width           =   1095
       End
@@ -273,7 +273,7 @@ Begin VB.Form vta_remitos
          Height          =   285
          Left            =   1560
          MaxLength       =   10
-         TabIndex        =   15
+         TabIndex        =   16
          Top             =   1920
          Width           =   1095
       End
@@ -282,7 +282,7 @@ Begin VB.Form vta_remitos
          Height          =   285
          Left            =   240
          MaxLength       =   10
-         TabIndex        =   14
+         TabIndex        =   15
          Top             =   1920
          Width           =   1095
       End
@@ -293,7 +293,7 @@ Begin VB.Form vta_remitos
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   5880
-         TabIndex        =   55
+         TabIndex        =   56
          Top             =   720
          Width           =   1215
       End
@@ -304,7 +304,7 @@ Begin VB.Form vta_remitos
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   3120
-         TabIndex        =   54
+         TabIndex        =   55
          Top             =   720
          Width           =   1095
       End
@@ -315,7 +315,7 @@ Begin VB.Form vta_remitos
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   2880
-         TabIndex        =   49
+         TabIndex        =   50
          Top             =   1680
          Width           =   615
       End
@@ -326,7 +326,7 @@ Begin VB.Form vta_remitos
          ForeColor       =   &H00FFFFFF&
          Height          =   375
          Left            =   120
-         TabIndex        =   46
+         TabIndex        =   47
          Top             =   1080
          Width           =   1335
       End
@@ -337,7 +337,7 @@ Begin VB.Form vta_remitos
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   7440
-         TabIndex        =   45
+         TabIndex        =   46
          Top             =   1680
          Width           =   1095
       End
@@ -348,7 +348,7 @@ Begin VB.Form vta_remitos
          ForeColor       =   &H00FFFFFF&
          Height          =   375
          Left            =   120
-         TabIndex        =   43
+         TabIndex        =   44
          Top             =   720
          Width           =   1335
       End
@@ -359,7 +359,7 @@ Begin VB.Form vta_remitos
          ForeColor       =   &H00FFFFFF&
          Height          =   495
          Left            =   120
-         TabIndex        =   36
+         TabIndex        =   37
          Top             =   240
          Width           =   1335
       End
@@ -370,7 +370,7 @@ Begin VB.Form vta_remitos
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   6240
-         TabIndex        =   35
+         TabIndex        =   36
          Top             =   1680
          Width           =   1095
       End
@@ -381,7 +381,7 @@ Begin VB.Form vta_remitos
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   5040
-         TabIndex        =   34
+         TabIndex        =   35
          Top             =   1680
          Width           =   1095
       End
@@ -392,7 +392,7 @@ Begin VB.Form vta_remitos
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   3600
-         TabIndex        =   33
+         TabIndex        =   34
          Top             =   1680
          Width           =   1095
       End
@@ -403,7 +403,7 @@ Begin VB.Form vta_remitos
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   1560
-         TabIndex        =   32
+         TabIndex        =   33
          Top             =   1680
          Width           =   1095
       End
@@ -414,28 +414,35 @@ Begin VB.Form vta_remitos
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   240
-         TabIndex        =   31
+         TabIndex        =   32
          Top             =   1680
          Width           =   1095
       End
    End
    Begin MSFlexGridLib.MSFlexGrid msf1 
-      Height          =   3735
+      Height          =   3615
       Left            =   240
-      TabIndex        =   8
-      Top             =   2280
+      TabIndex        =   9
+      Top             =   2400
       Width           =   11055
       _ExtentX        =   19500
-      _ExtentY        =   6588
+      _ExtentY        =   6376
       _Version        =   393216
    End
    Begin VB.Frame Frame3 
       BackColor       =   &H00E0E0E0&
-      Height          =   2175
+      Height          =   2295
       Left            =   240
-      TabIndex        =   25
+      TabIndex        =   26
       Top             =   0
       Width           =   9735
+      Begin VB.ComboBox c_predef 
+         Height          =   315
+         Left            =   2160
+         TabIndex        =   8
+         Top             =   1920
+         Width           =   7095
+      End
       Begin VB.TextBox t_enviara 
          BorderStyle     =   0  'None
          Height          =   285
@@ -478,7 +485,7 @@ Begin VB.Form vta_remitos
          Left            =   8880
          Picture         =   "vta013A.frx":0413
          Style           =   1  'Graphical
-         TabIndex        =   58
+         TabIndex        =   59
          Top             =   720
          Width           =   255
       End
@@ -487,7 +494,7 @@ Begin VB.Form vta_remitos
          Left            =   8040
          Picture         =   "vta013A.frx":0785
          Style           =   1  'Graphical
-         TabIndex        =   47
+         TabIndex        =   48
          Top             =   720
          Width           =   735
       End
@@ -506,7 +513,7 @@ Begin VB.Form vta_remitos
          Left            =   2160
          Locked          =   -1  'True
          MaxLength       =   1
-         TabIndex        =   20
+         TabIndex        =   21
          Top             =   1200
          Width           =   375
       End
@@ -574,6 +581,17 @@ Begin VB.Form vta_remitos
          Top             =   720
          Width           =   5775
       End
+      Begin VB.Label Label22 
+         Alignment       =   1  'Right Justify
+         BackColor       =   &H00FF0000&
+         Caption         =   "Predefinido"
+         ForeColor       =   &H00FFFFFF&
+         Height          =   375
+         Left            =   120
+         TabIndex        =   67
+         Top             =   1920
+         Width           =   1935
+      End
       Begin VB.Label Label21 
          Alignment       =   1  'Right Justify
          BackColor       =   &H00FF0000&
@@ -581,7 +599,7 @@ Begin VB.Form vta_remitos
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   5640
-         TabIndex        =   65
+         TabIndex        =   66
          Top             =   1200
          Width           =   855
       End
@@ -592,7 +610,7 @@ Begin VB.Form vta_remitos
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   6120
-         TabIndex        =   61
+         TabIndex        =   62
          Top             =   240
          Width           =   1455
       End
@@ -603,7 +621,7 @@ Begin VB.Form vta_remitos
          ForeColor       =   &H00FFFFFF&
          Height          =   255
          Left            =   8160
-         TabIndex        =   59
+         TabIndex        =   60
          Top             =   1200
          Width           =   735
       End
@@ -614,7 +632,7 @@ Begin VB.Form vta_remitos
          ForeColor       =   &H00FFFFFF&
          Height          =   495
          Left            =   120
-         TabIndex        =   29
+         TabIndex        =   30
          Top             =   240
          Width           =   1935
       End
@@ -623,9 +641,9 @@ Begin VB.Form vta_remitos
          BackColor       =   &H00FF0000&
          Caption         =   "Enviar a:"
          ForeColor       =   &H00FFFFFF&
-         Height          =   255
+         Height          =   375
          Left            =   120
-         TabIndex        =   28
+         TabIndex        =   29
          Top             =   1560
          Width           =   1935
       End
@@ -636,7 +654,7 @@ Begin VB.Form vta_remitos
          ForeColor       =   &H00FFFFFF&
          Height          =   375
          Left            =   120
-         TabIndex        =   27
+         TabIndex        =   28
          Top             =   1200
          Width           =   1935
       End
@@ -647,7 +665,7 @@ Begin VB.Form vta_remitos
          ForeColor       =   &H00FFFFFF&
          Height          =   495
          Left            =   120
-         TabIndex        =   26
+         TabIndex        =   27
          Top             =   720
          Width           =   1935
       End
@@ -657,7 +675,7 @@ Begin VB.Form vta_remitos
       Caption         =   "Funciones"
       Height          =   975
       Left            =   9720
-      TabIndex        =   22
+      TabIndex        =   23
       Top             =   7320
       Width           =   1575
       Begin VB.CommandButton btnsale 
@@ -666,7 +684,7 @@ Begin VB.Form vta_remitos
          Left            =   840
          Picture         =   "vta013A.frx":088E
          Style           =   1  'Graphical
-         TabIndex        =   24
+         TabIndex        =   25
          ToolTipText     =   "Salir sin Modificar"
          Top             =   240
          UseMaskColor    =   -1  'True
@@ -677,7 +695,7 @@ Begin VB.Form vta_remitos
          Left            =   120
          Picture         =   "vta013A.frx":1110
          Style           =   1  'Graphical
-         TabIndex        =   23
+         TabIndex        =   24
          ToolTipText     =   "Renueva Lista de Clientes"
          Top             =   240
          UseMaskColor    =   -1  'True
@@ -688,7 +706,7 @@ Begin VB.Form vta_remitos
       Align           =   2  'Align Bottom
       Height          =   255
       Left            =   0
-      TabIndex        =   21
+      TabIndex        =   22
       Top             =   8340
       Width           =   11880
       _ExtentX        =   20955
@@ -713,12 +731,12 @@ Begin VB.Form vta_remitos
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "21/12/2023"
+            TextSave        =   "26/07/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:30 a.m."
+            TextSave        =   "10:03 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -778,7 +796,7 @@ Sub limpia()
    t_nograbado = ""
    t_perc = ""
    t_iva = ""
-   T_TOTAL = ""
+   t_total = ""
    Option1 = True
    vta_transporte.limpia
 End Sub
@@ -806,7 +824,7 @@ Sub carga(ni)
      t_nograbado = Format$(rs("impuestos"), "######0.00")
      t_perc = Format$(rs("perc_iva") + rs("perc_gan") + rs("perc_ib"), "######0.00")
      t_iva = Format$(rs("iva"), "######0.00")
-     T_TOTAL = Format$(rs("total"), "######0.00")
+     t_total = Format$(rs("total"), "######0.00")
      t_bultos = rs("total_bultos")
      t_valor = rs("valor_declarado")
      t_observaciones = rs("observaciones")
@@ -952,6 +970,46 @@ msf1.TextMatrix(0, 10) = "PU Final"
 End Sub
 
 
+Private Sub c_predef_LostFocus()
+If c_predef.ItemData(c_predef.ListIndex) > 1 Then
+   Call agregapredefinido
+End If
+End Sub
+Sub agregapredefinido()
+Call armagrid
+Set rs1 = New ADODB.Recordset
+q = " select * from vta_018, a2, g5, g4 where [id_rempredef] = " & c_predef.ItemData(c_predef.ListIndex) & " and vta_018.id_producto = a2.id_producto and a2.id_unidad = g5.id_unidad and cod_tasaiva=id_tasaiva"
+rs1.Open q, cn1
+r = msf1.Rows
+While Not rs1.EOF
+      ip = Val(rs1("vta_018.id_producto"))
+       d = rs1("a2.descripcion")
+       cu = Format$(rs1("cantidad"), "######0.00")
+       ti = Format$(rs1("tasa"), "####0.00")
+        u = Left$(rs1("unidad"), 8)
+        b = Format$(1, "#####0")
+  If para.tipoprecioventa = 1 Then
+    pu = Format$(rs1("pu") / (1 + Val(ti) / 100), "#####0.000")
+    im = Format$(Val(pu) * Val(cu), "#####0.00")
+    puf = Format$(rs1("precio_final"), "#####0.00")
+  Else
+    pu = Format$(rs1("pu"), "#####0.000")
+    im = Format$(Val(pu) * Val(cu), "#####0.00")
+    puf = Format$(Val(t_pu) * (1 + Val(ti) / 100), "#####0.00")
+ End If
+      
+        
+      msf1.AddItem r & Chr(9) & Format$(ip, "00000") & Chr(9) & d & Chr(9) & cu & Chr(9) & u & Chr(9) & pu & Chr(9) & ti & Chr(9) & b & Chr(9) & im & Chr$(9) & 0 & Chr$(9) & puf
+ 
+      rs1.MoveNext
+     Wend
+     Set rs1 = Nothing
+ Call renumera
+
+
+
+
+End Sub
 Private Sub c_prov_LostFocus()
 If c_prov.ListIndex < 0 Then
   If Val(c_prov) > 0 Then
@@ -1266,7 +1324,7 @@ End Sub
 
 Private Sub Form_KeyPress(KeyAscii As Integer)
 If KeyAscii = 13 Then
- Call TabEnter2(Me, 19)
+ Call TabEnter2(Me, 20)
 End If
 
 
@@ -1281,6 +1339,8 @@ c_prov.ListIndex = 0
 Call carga_SUCURSALES(c_sucursal)
 c_sucursal.ListIndex = buscaindice(c_sucursal, glo.sucursal)
 
+Call carga_rempredef(c_predef)
+c_predef.ListIndex = 0
 
 Set rs = New ADODB.Recordset
 q = "select * from vta_06 where [sucursal] = " & glo.sucursal & " and  [id_tipocomp] > 40  and [id_tipocomp] < 50 "
@@ -1328,7 +1388,7 @@ Unload vta_clientes
 End Sub
 
 Private Sub msf1_GotFocus()
-Me.StatusBar1.Panels.item(2) = "[INS] Agrega - [ENTER] Modifica - [F3] Lote/Vto - [F5] Elimina - [F9] Graba"
+Me.StatusBar1.Panels.item(2) = "[INS] Agrega - [ENTER] Modifica - [F3] Lote/Vto - [F5] Elimina - [F6]Predefinidos - [F9]Graba"
 If msf1.Rows > 1 Then
   msf1.FocusRect = flexFocusNone
 Else
@@ -1359,10 +1419,14 @@ End If
 
 If KeyCode = vbKeyF9 Then
   Call renumera
-  Call sacatotales
+  Call CALCULATOTALES
 
   Frame2.Enabled = True
   c_vend.SetFocus
+End If
+
+If KeyCode = vbKeyF6 Then
+  vta_remitos2.Show
 End If
 
 If KeyCode = vbKeyInsert Then
@@ -1440,7 +1504,7 @@ Sub graba()
 "[cae], [cae_vence], [tipo_op], [numint_asociado])"
 
 QUERY = QUERY & " VALUES (" & numint & ", " & Val(t_sucursal) & ", " & Val(t_numcomp) & ", '" & t_letra & "', " & c_tipocomp.ItemData(c_tipocomp.ListIndex) & ", " & c_prov.ItemData(c_prov.ListIndex) & _
-", '" & t_fecha & "', " & para.id_usuario & ", " & Val(t_subtotal) & ", " & Val(t_nograbado) & ", " & Val(t_iva) & ", " & Val(T_TOTAL) & ", '" & estado & "', " & para.cuenta_ventas & ", '" & t_stock & "', '" & _
+", '" & t_fecha & "', " & para.id_usuario & ", " & Val(t_subtotal) & ", " & Val(t_nograbado) & ", " & Val(t_iva) & ", " & Val(t_total) & ", '" & estado & "', " & para.cuenta_ventas & ", '" & t_stock & "', '" & _
 cl_compvta.ctacte & "', '" & cl_compvta.grabado & "', '" & ep & "', '" & cp & "', '" & t_observaciones & " ', " & Val(t_cotizacion) & ", " & Val(T_total2) & ", '" & moneda & "', " & c_vend.ItemData(c_vend.ListIndex) & _
 ", '" & cl_compvta.venta & "', '" & contado & "', " & Val(t_perc) & ", 0, 0, " & Val(t_bultos) & ", " & Val(t_valor) & ", '" & vta_transporte.t_transp & "', '" & vta_transporte.t_direccion & "', '" & vta_transporte.t_cuit & _
 "', " & Val(vta_transporte.t_id) & ", '" & t_fecha & "', 0, " & Val(c_sucursal) & ", '" & Left$(cl_cli.razonsocial, 50) & "', '" & _
@@ -1610,13 +1674,13 @@ Left$(cl_cli.direccion, 50) & "', '" & Left$(cl_cli.CUIT, 20) & "', '" & Left$(c
          
          'grabo asiento
          QUERY = "INSERT INTO c_02([num_interno], [fecha], [descripcion], [modulo], [num_mov_int], [debe], [haber], [id_USUARIO], [observaciones])"
-         QUERY = QUERY & " VALUES (" & numintcgr & " ,'" & t_fecha & "', '[Ventas] " & cl_compvta.abreviatura & " " & t_letra & Format$(Val(t_sucursal), "0000") & "-" & Format$(Val(t_numcomp), "00000000") & "', 'V', " & numint & ", " & Val(T_TOTAL) & ", " & Val(T_TOTAL) & ", " & para.id_usuario & ", '" & Left$(RTrim$(c_prov), 50) & "')"
+         QUERY = QUERY & " VALUES (" & numintcgr & " ,'" & t_fecha & "', '[Ventas] " & cl_compvta.abreviatura & " " & t_letra & Format$(Val(t_sucursal), "0000") & "-" & Format$(Val(t_numcomp), "00000000") & "', 'V', " & numint & ", " & Val(t_total) & ", " & Val(t_total) & ", " & para.id_usuario & ", '" & Left$(RTrim$(c_prov), 50) & "')"
          cn1.Execute QUERY
       
          ic = 1
          'cuenta madre ctacte o caja
          QUERY = "INSERT INTO c_03([num_interno], [renglon], [id_cuenta], [ubicacion], [importe], [descripcion])"
-         QUERY = QUERY & " VALUES (" & numintcgr & ", " & ic & ", " & cta & ", '" & u1 & "', " & Val(T_TOTAL) & ", '" & dcta & "')"
+         QUERY = QUERY & " VALUES (" & numintcgr & ", " & ic & ", " & cta & ", '" & u1 & "', " & Val(t_total) & ", '" & dcta & "')"
          
          cn1.Execute QUERY
          ic = ic + 1
@@ -1829,19 +1893,23 @@ Private Sub t_subtotal_LostFocus()
 Call sacatotales
 End Sub
 Sub sacatotales()
-t_subtotal = Format$(Val(t_subtotal), "######0.00")
+neto = Val(t_subtotal)
+t_descuento = Format$(Val(t_descuento), "######0.00")
+t_subtotal2 = Format$(neto + Val(t_descuento), "######0.00")
 t_nograbado = Format$(Val(t_nograbado), "######0.00")
-t_perc = Format$(Val(t_perc), "######0.00")
+t_subtotal = Format$(neto, "######0.00")
 t_iva = Format$(Val(t_iva), "######0.00")
-T_TOTAL = Format$(Val(t_subtotal) + Val(t_nograbado) + Val(t_perc) + Val(t_iva), "######0.00")
-'t_valor = t_total
-t_bultos = Format$(Val(t_bultos), "####0")
+t_perciva = Format$(Val(t_perciva), "######0.00")
+t_total = Format$(Val(t_subtotal) + Val(t_nograbado) + Val(t_perc) + Val(t_iva) + Val(t_perciva), "######0.00")
 If Option4 = True Then
-  T_total2 = Format$(Val(T_TOTAL) / Val(t_cotizacion), "#####0.00")
-  
+ If Val(t_cotizacion) < 1 Then
+   t_cotizacion = 1
+ End If
+ T_total2 = Format$(Val(t_total) / Val(t_cotizacion), "#####0.00")
 Else
-  T_total2 = Format$(Val(T_TOTAL) * Val(t_cotizacion), "#####0.00")
+  T_total2 = Format$(Val(t_total) * Val(t_cotizacion), "#####0.00")
 End If
+
 End Sub
 
 Private Sub t_sucursal_LostFocus()
@@ -1855,5 +1923,5 @@ End If
 End Sub
 
 Private Sub t_total_LostFocus()
-T_TOTAL = Format$(T_TOTAL, "######0.00")
+t_total = Format$(t_total, "######0.00")
 End Sub
