@@ -78,14 +78,14 @@ Begin VB.Form cyb_cajadiaria
       Left            =   5760
       TabIndex        =   21
       Top             =   120
-      Width           =   2595
-      _ExtentX        =   4577
+      Width           =   2490
+      _ExtentX        =   4392
       _ExtentY        =   4180
       _Version        =   393216
       ForeColor       =   -2147483630
       BackColor       =   12632256
       Appearance      =   1
-      StartOfWeek     =   113704961
+      StartOfWeek     =   115736577
       CurrentDate     =   38750
    End
    Begin VB.Frame Frame6 
@@ -350,12 +350,12 @@ Begin VB.Form cyb_cajadiaria
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "24/07/2024"
+            TextSave        =   "31/07/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "05:12 p.m."
+            TextSave        =   "10:05 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -385,11 +385,11 @@ End Sub
 Sub saldoi()
  t = 0
  i = Space$(10)
- Set rs = New adodb.Recordset
+ Set rs = New ADODB.Recordset
  q = "select * from cyb_01 where [caja] = 'S'"
  rs.Open q, cn1
  While Not rs.EOF
-    Set rs1 = New adodb.Recordset
+    Set rs1 = New ADODB.Recordset
     q = "select * from cyb_05 where [id_forma_pago] = " & rs("id_forma_pago") & " and datevalue([fecha]) < datevalue('" & t_fecha & "')"
     rs1.Open q, cn1
     si2 = 0
@@ -418,11 +418,11 @@ Sub entradas()
  te = 0
  ts = 0
  i = Space$(10)
- Set rs = New adodb.Recordset
+ Set rs = New ADODB.Recordset
  q = "select * from cyb_01 where [caja] = 'S'"
  rs.Open q, cn1
  While Not rs.EOF
-    Set rs1 = New adodb.Recordset
+    Set rs1 = New ADODB.Recordset
     q = "select * from cyb_05 where [id_forma_pago] = " & rs("id_forma_pago") & " and datevalue([fecha]) = datevalue('" & t_fecha & "')"
     rs1.Open q, cn1
     e = 0
@@ -478,11 +478,11 @@ End Sub
 Sub saldof()
  te = 0
  i = Space$(10)
- Set rs = New adodb.Recordset
+ Set rs = New ADODB.Recordset
  q = "select * from cyb_01 where [caja] = 'S'"
  rs.Open q, cn1
  While Not rs.EOF
-    Set rs1 = New adodb.Recordset
+    Set rs1 = New ADODB.Recordset
     q = "select * from cyb_05 where [id_forma_pago] = " & rs("id_forma_pago") & " and datevalue([fecha]) <= datevalue('" & t_fecha & "')"
     rs1.Open q, cn1
     sd = 0

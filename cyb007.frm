@@ -327,12 +327,12 @@ Begin VB.Form cyb_chpropios
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "24/07/2024"
+            TextSave        =   "31/07/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "05:12 p.m."
+            TextSave        =   "10:05 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -342,14 +342,14 @@ Begin VB.Form cyb_chpropios
       Left            =   3480
       TabIndex        =   11
       Top             =   0
-      Width           =   2595
-      _ExtentX        =   4577
+      Width           =   2490
+      _ExtentX        =   4392
       _ExtentY        =   4180
       _Version        =   393216
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   113704961
+      StartOfWeek     =   115736577
       CurrentDate     =   38754
    End
    Begin MSFlexGridLib.MSFlexGrid msf1 
@@ -471,7 +471,7 @@ End Sub
 Private Sub carga()
 Call armagrid
 
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 
 q = "select * from cyb_02, cyb_01 where [id_banco] = [id_forma_pago] "
 c = " and "
@@ -528,14 +528,14 @@ Else
 End If
 
 rs.Open q, cn1
-Set rs1 = New adodb.Recordset
+Set rs1 = New ADODB.Recordset
 ich = 0
 cch = 0
 While Not rs.EOF
      Label6 = cch
      Label6.Refresh
      If rs("num_int_op") > 0 Then
-        Set rs1 = New adodb.Recordset
+        Set rs1 = New ADODB.Recordset
         q = "select * from a5 where [num_int] = " & rs("num_int_op")
         rs1.Open q, cn1
         If Not rs1.EOF And Not rs1.BOF Then
@@ -551,7 +551,7 @@ While Not rs.EOF
      m = "S"
      e = " "
      If rs("num_mov_banco") > 0 Then
-        Set rs1 = New adodb.Recordset
+        Set rs1 = New ADODB.Recordset
         q = "select [entro] from cyb_04 where [num_mov_banco] = " & rs("num_mov_banco")
         rs1.Open q, cn1
         If Not rs1.EOF And Not rs1.BOF Then
@@ -647,7 +647,7 @@ If KeyAscii = 13 Then
   F = msf1.Row
   If F >= 1 Then
      Load cyb_chpropios2
-     Set rs = New adodb.Recordset
+     Set rs = New ADODB.Recordset
      q = "select * from cyb_02, cyb_01 where [id_banco] = " & Val(msf1.TextMatrix(F, 9)) & " and [num_cheque] = " & Val(msf1.TextMatrix(F, 0)) & " and [id_banco] = [id_forma_pago] "
      'MsgBox (q)
      rs.Open q, cn1
@@ -659,7 +659,7 @@ If KeyAscii = 13 Then
        cyb_chpropios2.t_chequera = rs("id_chequera")
        cyb_chpropios2.t_estado = rs("estado")
        'debo buscar movimiento
-        Set rs1 = New adodb.Recordset
+        Set rs1 = New ADODB.Recordset
         q = "select * from cyb_04 where [num_mov_banco] = " & rs("num_mov_banco")
         rs1.Open q, cn1
         If Not rs1.BOF And Not rs1.EOF Then

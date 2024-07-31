@@ -159,14 +159,14 @@ Begin VB.Form gen_posicioniva
       Left            =   3720
       TabIndex        =   11
       Top             =   1800
-      Width           =   2595
-      _ExtentX        =   4577
+      Width           =   2490
+      _ExtentX        =   4392
       _ExtentY        =   4180
       _Version        =   393216
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   113704961
+      StartOfWeek     =   115736577
       CurrentDate     =   38750
    End
    Begin VB.Frame Frame3 
@@ -278,12 +278,12 @@ Begin VB.Form gen_posicioniva
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "24/07/2024"
+            TextSave        =   "31/07/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "05:12 p.m."
+            TextSave        =   "10:05 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -347,7 +347,7 @@ ret_iva = 0
     q = q & c & " and [sucursal_ingreso] = " & Val(c_sucursal)
   End If
   q = q & " order by [fecha], [letra], [num_comp]"
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   rs.Open q, cn1
   
   For i = 0 To 8
@@ -377,7 +377,7 @@ ret_iva = 0
        
         If rs("id_tipocomp") >= 205 And rs("id_tipocomp") <= 207 Then 'venta directa
             q = "select * from vta_012, a12 where [id_retencion] = [id_percepcion] and [num_int] = " & rs("num_int")
-            Set rs1 = New adodb.Recordset
+            Set rs1 = New ADODB.Recordset
             rs1.Open q, cn1
             r_iva = 0
             r_otras = 0
@@ -449,7 +449,7 @@ ret_iva = 0
      q = q & c & " datevalue([fecha]) <= datevalue('" & t_fecha2 & "')"
   End If
   
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   rs.Open q, cn1
   tt = 0
   ti = 0
@@ -471,7 +471,7 @@ ret_iva = 0
      
      If rs("percep_ret") <> 0 Then
         q = "select * from a13 where [num_int] = " & rs("num_int")
-        Set rs1 = New adodb.Recordset
+        Set rs1 = New ADODB.Recordset
         rs1.Open q, cn1
         While Not rs1.EOF
           If rs1("id_percepcion") = 1 Then 'iva
@@ -595,7 +595,7 @@ ret_iva = 0
     q = q & c & " and [sucursal_ingreso] = " & Val(c_sucursal)
   End If
   q = q & " order by [fecha], [letra], [num_comp]"
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   rs.Open q, cn1
   
   For i = 0 To 8
@@ -626,7 +626,7 @@ ret_iva = 0
        
         If rs("id_tipocomp") >= 205 And rs("id_tipocomp") <= 207 Then 'venta directa
             q = "select * from vta_012, a12 where [id_retencion] = [id_percepcion] and [num_int] = " & rs("num_int")
-            Set rs1 = New adodb.Recordset
+            Set rs1 = New ADODB.Recordset
             rs1.Open q, cn1
             r_iva = 0
             r_otras = 0
@@ -696,7 +696,7 @@ ret_iva = 0
      q = q & c & " datevalue([fecha]) <= datevalue('" & t_fecha2 & "')"
   End If
   
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   rs.Open q, cn1
   tt = 0
   ti = 0
@@ -718,7 +718,7 @@ ret_iva = 0
      
      If rs("percep_ret") <> 0 Then
         q = "select * from a13 where [num_int] = " & rs("num_int")
-        Set rs1 = New adodb.Recordset
+        Set rs1 = New ADODB.Recordset
         rs1.Open q, cn1
         While Not rs1.EOF
           If rs1("id_percepcion") = 1 Then 'iva
@@ -862,7 +862,7 @@ End If
 If c_sucursal.ListIndex > 0 Then
     qm = qm & c & " and [sucursal_ingreso] = " & Val(c_sucursal)
 End If
-Set rs2 = New adodb.Recordset
+Set rs2 = New ADODB.Recordset
 rs2.Open qm, cn1
 a = 1
 While Not rs2.EOF

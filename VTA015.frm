@@ -94,14 +94,14 @@ Begin VB.Form vta_ib
       Left            =   3720
       TabIndex        =   9
       Top             =   120
-      Width           =   2595
-      _ExtentX        =   4577
+      Width           =   2490
+      _ExtentX        =   4392
       _ExtentY        =   4180
       _Version        =   393216
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   113704961
+      StartOfWeek     =   115736577
       CurrentDate     =   38750
    End
    Begin VB.Frame Frame3 
@@ -213,12 +213,12 @@ Begin VB.Form vta_ib
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "24/07/2024"
+            TextSave        =   "31/07/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "05:12 p.m."
+            TextSave        =   "10:05 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -257,7 +257,7 @@ Sub carga()
   If c_acti.ListIndex > 0 Then
     q = q & " where [id_actividad] = " & c_acti.ItemData(c_acti.ListIndex)
   End If
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   rs.Open q, cn1
   tr = 0
   ti = 0
@@ -281,7 +281,7 @@ Sub carga()
     
     q = q & " order by [id_tasaib], [fecha], [letra], [num_comp]"
   
-    Set rs1 = New adodb.Recordset
+    Set rs1 = New ADODB.Recordset
     rs1.Open q, cn1
 
     p = 0
@@ -289,7 +289,7 @@ Sub carga()
      If p = 0 Then
         
        a = rs1("id_tasaib")
-       Set rs2 = New adodb.Recordset
+       Set rs2 = New ADODB.Recordset
        q = "select * from g12 where [id_tasaib] = " & a
        rs2.Open q, cn1
        If Not rs2.EOF And Not rs2.BOF Then
@@ -393,7 +393,7 @@ Sub carga3()
     
     q = q & " order by  [fecha], [letra], [num_comp]"
   
-    Set rs1 = New adodb.Recordset
+    Set rs1 = New ADODB.Recordset
     rs1.Open q, cn1
 
     p = 0
@@ -474,7 +474,7 @@ Sub carga2()
   If c_acti.ListIndex > 0 Then
     q = q & " where [id_actividad] = " & c_acti.ItemData(c_acti.ListIndex)
   End If
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   rs.Open q, cn1
   tr = 0
   ti = 0
@@ -499,7 +499,7 @@ Sub carga2()
     
     q = q & " order by [id_tasaib]"
   
-    Set rs1 = New adodb.Recordset
+    Set rs1 = New ADODB.Recordset
     rs1.Open q, cn1
 
     p = 0
@@ -514,7 +514,7 @@ Sub carga2()
      End If
      If a <> rs1("id_tasaib") Then
        't = (s * a / 100)
-       Set rs2 = New adodb.Recordset
+       Set rs2 = New ADODB.Recordset
        q = "select * from g12 where [id_tasaib] = " & a
        rs2.Open q, cn1
        If Not rs2.EOF And Not rs2.BOF Then
@@ -560,7 +560,7 @@ Sub carga2()
 
       ts = ts + s
       ti = ti + ib
-      Set rs2 = New adodb.Recordset
+      Set rs2 = New ADODB.Recordset
       q = "select * from g12 where [id_tasaib] = " & a
       rs2.Open q, cn1
       If Not rs2.EOF And Not rs2.BOF Then
@@ -599,7 +599,7 @@ End Sub
 
 Function buscaperc() As Double
 
-Set rs1 = New adodb.Recordset
+Set rs1 = New ADODB.Recordset
 q = "select * from a12 where [tipo12] = 'P' and [impuesto12] = 'B'"
 rs1.Open q, cn1
 totperc = 0
@@ -618,7 +618,7 @@ While Not rs1.EOF
  End If
  q = q & " order by [fecha]"
  'MsgBox (q)
- Set rs = New adodb.Recordset
+ Set rs = New ADODB.Recordset
  rs.Open q, cn1
  tt = 0
  While Not rs.EOF
@@ -658,7 +658,7 @@ c = " and "
      q = q & c & " datevalue([fecha]) <= datevalue('" & t_fecha2 & "')"
   End If
   
-  Set rs1 = New adodb.Recordset
+  Set rs1 = New ADODB.Recordset
   rs1.Open q, cn1
   r = 0
   While Not rs1.EOF
@@ -695,7 +695,7 @@ c = " and "
      q = q & c & " datevalue([fecha]) <= datevalue('" & t_fecha2 & "')"
   End If
   
-  Set rs1 = New adodb.Recordset
+  Set rs1 = New ADODB.Recordset
   rs1.Open q, cn1
   r = 0
   While Not rs1.EOF
@@ -888,7 +888,7 @@ If KeyCode = vbKeyF3 Then
   If ni > 0 And r > 0 Then
     J = MsgBox("Actualiza tasa IB para Item", 4)
     If J = 6 Then
-      Set rs = New adodb.Recordset
+      Set rs = New ADODB.Recordset
       q = "select g12.[tasaib], vta_03.[tasaib] from vta_03, a2, g12 where [num_int] = " & ni & " and [renglon] = " & r & " and vta_03.[id_producto] = a2.[id_producto] and a2.[id_tasaib] = g12.[id_tasaib]"
       rs.Open q, cn1, adOpenDynamic, adLockOptimistic
       If Not rs.EOF And Not rs.BOF Then

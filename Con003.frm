@@ -46,14 +46,14 @@ Begin VB.Form con_ivacompras
       Left            =   3720
       TabIndex        =   9
       Top             =   1320
-      Width           =   2595
-      _ExtentX        =   4577
+      Width           =   2490
+      _ExtentX        =   4392
       _ExtentY        =   4180
       _Version        =   393216
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   113704961
+      StartOfWeek     =   115736577
       CurrentDate     =   38750
    End
    Begin VB.Frame Frame3 
@@ -239,12 +239,12 @@ Begin VB.Form con_ivacompras
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "24/07/2024"
+            TextSave        =   "31/07/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "05:12 p.m."
+            TextSave        =   "10:05 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -294,7 +294,7 @@ Sub carga()
   
   q = q & " order by [fecha]"
   
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   rs.Open q, cn1
   tt = 0
   ti = 0
@@ -315,7 +315,7 @@ Sub carga()
      
      If rs("percep_ret") <> 0 Then
         q = "select * from a13, a12 where a13.[id_percepcion] = a12.[id_percepcion] and [num_int] = " & rs("num_int")
-        Set rs1 = New adodb.Recordset
+        Set rs1 = New ADODB.Recordset
         rs1.Open q, cn1
         perc_iva = 0
         perc_otras = 0
@@ -406,7 +406,7 @@ Sub portasa()
   End If
   
   q = q & " order by [tasa_iva]"
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   rs.Open q, cn1
   nt = 0
   nd = 0
@@ -495,7 +495,7 @@ Sub portasa()
   
   
   q = q & " order by [tasa_iva]"
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   rs.Open q, cn1
   nt = 0
   nd = 0

@@ -65,14 +65,14 @@ Begin VB.Form con_retperc
       Left            =   4080
       TabIndex        =   9
       Top             =   1200
-      Width           =   2595
-      _ExtentX        =   4577
+      Width           =   2490
+      _ExtentX        =   4392
       _ExtentY        =   4180
       _Version        =   393216
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   113704961
+      StartOfWeek     =   115736577
       CurrentDate     =   38750
    End
    Begin VB.Frame Frame3 
@@ -220,12 +220,12 @@ Begin VB.Form con_retperc
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "24/07/2024"
+            TextSave        =   "31/07/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "05:12 p.m."
+            TextSave        =   "10:05 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -284,7 +284,7 @@ Sub ret()
 msf1.AddItem "" & Chr$(9) & "************ RETENCIONES ************"
 msf1.AddItem ""
 
-Set rs1 = New adodb.Recordset
+Set rs1 = New ADODB.Recordset
 q = "select * from g2 where [id_tipo_comp] >= 95 and [id_tipo_comp] < 100"
 rs1.Open q, cn1
 tr = 0
@@ -299,7 +299,7 @@ While Not rs1.EOF
      q = q & c & " datevalue([fecha]) <= datevalue('" & t_fecha2 & "')"
  End If
  q = q & " order by [fecha]"
- Set rs = New adodb.Recordset
+ Set rs = New ADODB.Recordset
  rs.Open q, cn1
  tt = 0
  While Not rs.EOF
@@ -339,7 +339,7 @@ Sub perc()
 msf1.AddItem "" & Chr$(9) & "************ PERCEPCIONES ************"
 msf1.AddItem ""
 
-Set rs1 = New adodb.Recordset
+Set rs1 = New ADODB.Recordset
 q = "select * from A12 where [tipo12] = 'P' and [impuesto12] = 'I'"
 rs1.Open q, cn1
 tr = 0
@@ -354,7 +354,7 @@ While Not rs1.EOF
      q = q & c & " datevalue([fecha]) <= datevalue('" & t_fecha2 & "')"
  End If
  q = q & " order by [fecha]"
- Set rs = New adodb.Recordset
+ Set rs = New ADODB.Recordset
  rs.Open q, cn1
  tt = 0
  While Not rs.EOF

@@ -19,14 +19,14 @@ Begin VB.Form con_ley23966
       Left            =   4320
       TabIndex        =   8
       Top             =   120
-      Width           =   2595
-      _ExtentX        =   4577
+      Width           =   2490
+      _ExtentX        =   4392
       _ExtentY        =   4180
       _Version        =   393216
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   113704961
+      StartOfWeek     =   115736577
       CurrentDate     =   38754
    End
    Begin MSFlexGridLib.MSFlexGrid msf1 
@@ -158,12 +158,12 @@ Begin VB.Form con_ley23966
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "24/07/2024"
+            TextSave        =   "31/07/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "05:12 p.m."
+            TextSave        =   "10:05 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -185,7 +185,7 @@ Sub carga()
   T2 = 0
   If t_fecha <> "" Then
      q = "select * from a19 where datevalue([fecha]) < datevalue('" & t_fecha & "')"
-     Set rs = New adodb.Recordset
+     Set rs = New ADODB.Recordset
      rs.Open q, cn1
      While Not rs.EOF
        t = rs("importe")
@@ -214,7 +214,7 @@ Sub carga()
   End If
   q = q & " order by [fecha] "
     
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   rs.Open q, cn1
   s = sa
   While Not rs.EOF
@@ -226,7 +226,7 @@ Sub carga()
        l = Format$(rs("litros"), "####0.00")
        ii = Format$(rs("pu_impuesto_int"), "##0.0000")
         
-       Set rs1 = New adodb.Recordset
+       Set rs1 = New ADODB.Recordset
        q = "select [letra], [num_comprobante], [sucursal] from a5 where [num_int] = " & rs("num_int")
        rs1.Open q, cn1
        If Not rs1.EOF And Not rs1.BOF Then
@@ -405,7 +405,7 @@ If KeyCode = vbKeyF8 Then
    J = MsgBox("Confirma Eliminar Subsidio Nro." & msf1.TextMatrix(msf1.RowSel, 8) & ". Nota: Solo se borra el subsidio y no el comprobante", 4)
    If J = 6 Then
       indice = Val(msf1.TextMatrix(msf1.RowSel, 8))
-      Set rs = New adodb.Recordset
+      Set rs = New ADODB.Recordset
       q = "select * from a19 where [num_int] = " & indice
       rs.Open q, cn1, adOpenDynamic, adLockOptimistic
       If Not rs.EOF And Not rs.BOF Then
