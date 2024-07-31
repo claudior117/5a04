@@ -2893,6 +2893,13 @@ If h = 6 Then
   espere.Show
   espere.Refresh
    
+   cn1.BeginTrans
+   q = "update g0 set  [actualizacion]=231"
+    q = q & " where [sucursal]=0 "
+    cn1.Execute q
+   
+    
+  cn1.CommitTrans
   MsgBox ("Proceso terminado.  Importar tablas vta_017 y vta_018")
    
    

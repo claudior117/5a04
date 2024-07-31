@@ -454,12 +454,12 @@ Begin VB.Form inicio
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "21/07/2024"
+            TextSave        =   "26/07/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "12:19 p.m."
+            TextSave        =   "04:20 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -715,7 +715,7 @@ For i = 4 To 11
 Next i
 sc = sc + Val(Mid$(glo.CUIT, 13, 1))
 
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select [habilitacion] from g0 where [sucursal] = 0"
 rs.Open q, cn1
 If Val(Mid$(rs("habilitacion"), 5, 2)) = sc Then

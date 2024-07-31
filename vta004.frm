@@ -194,7 +194,7 @@ Begin VB.Form vta_estadocuenta
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   113704961
+      StartOfWeek     =   108527617
       CurrentDate     =   38754
    End
    Begin MSFlexGridLib.MSFlexGrid msf1 
@@ -383,12 +383,12 @@ Begin VB.Form vta_estadocuenta
          BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "24/07/2024"
+            TextSave        =   "26/07/2024"
          EndProperty
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "05:12 p.m."
+            TextSave        =   "10:25 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -437,7 +437,7 @@ Sub carga()
     
     
     
-    Set rs = New adodb.Recordset
+    Set rs = New ADODB.Recordset
     rs.Open q, cn1
     While Not rs.EOF
        If Option4 = True Then
@@ -520,7 +520,7 @@ Sub carga()
       q = q & " order by [fecha_vto], vta_02.[id_tipocomp], [num_comp]"
   End If
     
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   rs.Open q, cn1
   s = sa
   s2 = sao
@@ -810,7 +810,7 @@ Else
 End If
 Load vta_clientes
 
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select * from g1 where [id_usuario]  = " & para.id_usuario
 rs.Open q, cn1
 If Not rs.EOF And Not rs.BOF Then
@@ -883,7 +883,7 @@ Sub imprime()
       ie2 = False
     End If
 
-     Set rs = New adodb.Recordset
+     Set rs = New ADODB.Recordset
      q = "select * from g0 where [sucursal] = 0"
      rs.Open q, cn1
      If Not rs.EOF And Not rs.BOF Then

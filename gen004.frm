@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "mscomctl.OCX"
 Begin VB.Form gen_migrardatos 
    BackColor       =   &H00C0C0C0&
    BorderStyle     =   1  'Fixed Single
@@ -277,12 +277,12 @@ Begin VB.Form gen_migrardatos
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "10/04/2023"
+            TextSave        =   "26/07/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:28 a.m."
+            TextSave        =   "04:18 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -705,7 +705,7 @@ Sub productos2()
          rs1("fecha_actu_precio_venta") = Format$(rs("fecha"), "dd/mm/yyyy")
          rs1("id_anterior") = rs("basico")
          rs1("emite_etiqueta") = "N"
-         rs1("texto_central") = rs("texto-central-etiqueta") & " "
+         rs1("texto_central") = "*" 'rs("texto-central-etiqueta") & " "
          If rs("vigente") = "S" Then
            rs1("vigente") = True
          Else
@@ -2844,12 +2844,14 @@ End Sub
 Private Sub Command4_Click()
 J = MsgBox("Confirma depurar productos", 4)
 If J = 6 Then
+  
+  
   Set rs = New ADODB.Recordset
   q = "select * from a2 "
   rs.Open q, cn1, adOpenDynamic, adLockOptimistic
   While Not rs.EOF
    If IsNull(rs("costoreal")) Then
-      rs("costoreal") = 0
+      rs("num_int_ult_compra") = 0
    End If
    
    If IsNull(rs("dolar_ult_compra")) Then
@@ -2866,6 +2868,10 @@ If J = 6 Then
    
    If IsNull(rs("medida")) Then
       rs("medida") = "*"
+   End If
+   
+   If IsNull(rs("percibe_5329")) Then
+      rs("percibe_5329") = "N"
    End If
    
    
