@@ -292,7 +292,7 @@ Sub imprimirrto4(ByVal c As Integer)
  Printer.Print
  Printer.Print
  Printer.Print
- Set rs = New adodb.Recordset
+ Set rs = New ADODB.Recordset
  q = "Select * from vta_03 where [num_int] = " & Me.numint
  rs.Open q, cn1
  l = 0
@@ -1048,7 +1048,7 @@ End Property
 
 
 Public Sub ACTUALIZA_NUMERADOR()
-   Set rs = New adodb.Recordset
+   Set rs = New ADODB.Recordset
    q = "select ULT_NUM_a, ULT_NUM_b, ULT_NUM_c, ULT_NUM_e from vta_06 where [sucursal] = " & Me.sucursal & " and  [id_tipocomp] = " & Me.idtipocomp
    rs.Open q, cn1, adOpenStatic, adLockOptimistic
    If Not rs.BOF And Not rs.EOF Then
@@ -1081,7 +1081,7 @@ Public Sub ACTUALIZA_NUMERADOR()
    Set rs = Nothing
    
    If Me.idtipocomp >= 41 And Me.idtipocomp < 50 Then
-       Set rs = New adodb.Recordset
+       Set rs = New ADODB.Recordset
        q = "select * from  vta_06 where [sucursal] = " & Me.sucursal & " and  [id_tipocomp] >= 41 and [id_tipocomp] < 50"
        rs.Open q, cn1, adOpenDynamic, adLockOptimistic
        While Not rs.EOF
@@ -1093,7 +1093,7 @@ Public Sub ACTUALIZA_NUMERADOR()
    End If
    
    If para.numeracion_comun_Fact_nc = "S" And Me.idtipocomp <= 3 Then
-     Set rs = New adodb.Recordset
+     Set rs = New ADODB.Recordset
      q = "select * from vta_06 where [sucursal] = " & Me.sucursal & " and  [id_tipocomp] <= 10"
      rs.Open q, cn1, adOpenStatic, adLockOptimistic
      While Not rs.EOF
@@ -1259,7 +1259,7 @@ End Property
 
 'FIXIT: Declare 'numint' con un tipo de datos de enlace en tiempo de compilación           FixIT90210ae-R1672-R1B8ZE
 Sub cargar2(ByVal numint)
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select * from vta_02, vta_06 where [num_int] = " & numint & " and vta_02.[id_tipocomp] = vta_06.[id_tipocomp] and  vta_02.[sucursal_ingreso] = vta_06.[sucursal]"
 rs.Open q, cn1
 If Not rs.EOF And Not rs.BOF Then
@@ -1362,7 +1362,7 @@ If Not rs.EOF And Not rs.BOF Then
    Me.tipoop = rs("tipo_op")
    
    
-   Set rs2 = New adodb.Recordset
+   Set rs2 = New ADODB.Recordset
    q = "select * from g3 where [cod_tipoiva] = " & Me.idtipoiva
    rs2.Open q, cn1
    If Not rs2.EOF And Not rs2.BOF Then
@@ -1373,7 +1373,7 @@ If Not rs.EOF And Not rs.BOF Then
    Set rs2 = Nothing
      
    'tipocompafip
-   Set rs2 = New adodb.Recordset
+   Set rs2 = New ADODB.Recordset
    q = "select * from vta_06 where [sucursal] = " & Me.sucursal & " and [id_tipocomp]=" & Me.idtipocomp
    rs2.Open q, cn1
    If Not rs2.EOF And Not rs2.BOF Then
@@ -1402,7 +1402,7 @@ Sub borrocomp()
 b = 1
 If Me.contado = "S" Then
   q = "select num_int_rbo from cyb_03 where [num_int_rbo] = " & Me.numint & " and [estado] <> 'C'"
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   rs.Open q, cn1
   If Not rs.BOF And Not rs.EOF Then
     MsgBox ("Para poder eliminar el Comprobante de Contado todos los cheques ingresados deben estar en Cartera")
@@ -1417,7 +1417,7 @@ If b = 1 Then
       cn1.BeginTrans
       If Me.STOCK <> "N" Then
         q = "select id_producto, cantidad from vta_03 where [num_int] = " & Me.numint & " and [id_producto] > 1 "
-        Set rs = New adodb.Recordset
+        Set rs = New ADODB.Recordset
         rs.Open q, cn1
         While Not rs.EOF
           If Me.STOCK = "E" Then
@@ -1483,7 +1483,7 @@ If b = 1 Then
       
       
       q = "select num_interno from c_02 where [modulo] = 'V' and [num_mov_int] = " & Me.numint
-      Set rs = New adodb.Recordset
+      Set rs = New ADODB.Recordset
       rs.Open q, cn1
       If Not rs.EOF And Not rs.BOF Then
         nic = rs("num_interno")
@@ -1503,7 +1503,7 @@ If b = 1 Then
       
      'busco remitos en facturas
      q = "select id_factura from vta_08 where [id_factura] = " & Me.numint
-     Set rs = New adodb.Recordset
+     Set rs = New ADODB.Recordset
      rs.Open q, cn1
      If Not rs.EOF And Not rs.BOF Then
        J = MsgBox("Este comprobante tiene remitos asociados, una vez terminada la operacíon de borrado deberá verificar el estado de los mismos")
@@ -1532,7 +1532,7 @@ Select Case Me.idtipocomp
  Case Is = 50
     'borro rbo
      q = "select estado from cyb_09 where datevalue([fecha]) = datevalue('" & Me.fecha & "')"
-     Set rs = New adodb.Recordset
+     Set rs = New ADODB.Recordset
      rs.Open q, cn1
      If Not rs.EOF And Not rs.BOF Then
        If rs("estado") = "A" Then
@@ -1727,7 +1727,7 @@ If Val(l) > 0 And Val(l) <= 5 Then
    Printer.Print Tab(10); "Forma de Pago       Num.Ch.    Detalle/Banco               Fecha Dif.    Importe  Sucursal"
 'FIXIT: El Asistente para actualización no actualiza el objeto Printer ni la colección Printers a Visual Basic .NET.     FixIT90210ae-R5481-H1984
    Printer.Print Tab(10); "----------------------------------------------------------------------------------------------"
-   Set rs = New adodb.Recordset
+   Set rs = New ADODB.Recordset
    q = "Select * from vta_04 where [num_int] = " & Me.numint
    rs.Open q, cn1
    i = Space$(10)
@@ -1764,12 +1764,12 @@ If Val(l) > 0 And Val(l) <= 5 Then
    Printer.Print Tab(10); "Fecha        Comprobante            Importe   Obs."
 'FIXIT: El Asistente para actualización no actualiza el objeto Printer ni la colección Printers a Visual Basic .NET.     FixIT90210ae-R5481-H1984
    Printer.Print Tab(10); "-------------------------------------------------------"
-   Set rs = New adodb.Recordset
+   Set rs = New ADODB.Recordset
    q = "Select * from vta_02 where [estado_pago] = 'P' and [recibo_pago] = '" & Format$(Me.sucursal, "0000") & "-" & Format$(Me.numcomp, "00000000") & "' AND [ID_TIPOCOMP] <= 10 "
    rs.Open q, cn1
    TCOMP = 0
    While Not rs.EOF
-    Set rs1 = New adodb.Recordset
+    Set rs1 = New ADODB.Recordset
     q = "select * from vta_06 where [id_tipocomp] = " & rs("id_tipocomp") & " and [sucursal] = " & rs("sucursal_INGRESO")
     rs1.Open q, cn1
     If Not rs1.EOF And Not rs1.BOF Then
@@ -1814,12 +1814,12 @@ If Val(l) > 0 And Val(l) <= 5 Then
    Printer.Print Tab(10); "Fecha        Retencion              Importe   Obs."
 'FIXIT: El Asistente para actualización no actualiza el objeto Printer ni la colección Printers a Visual Basic .NET.     FixIT90210ae-R5481-H1984
    Printer.Print Tab(10); "-------------------------------------------------------"
-   Set rs = New adodb.Recordset
+   Set rs = New ADODB.Recordset
    q = "Select * from vta_02 where [estado_pago] = 'P' and [recibo_pago] = '" & Format$(Me.sucursal, "0000") & "-" & Format$(Me.numcomp, "00000000") & "' AND [ID_TIPOCOMP] >= 100 "
    rs.Open q, cn1
    TRET = 0
    While Not rs.EOF
-    Set rs1 = New adodb.Recordset
+    Set rs1 = New ADODB.Recordset
     q = "select * from vta_06 where [id_tipocomp] = " & rs("id_tipocomp") & " and [sucursal] = " & rs("sucursal_INGRESO")
     rs1.Open q, cn1
     If Not rs1.EOF And Not rs1.BOF Then
@@ -1940,7 +1940,7 @@ If Val(l) > 0 And Val(l) <= 5 Then
    Printer.Print Tab(10); "----------------------------------------------------------------------------------------------"
    Printer.Print Tab(10); "Forma de Pago       Num.Ch.    Detalle/Banco               Fecha Dif.    Importe  Sucursal"
    Printer.Print Tab(10); "----------------------------------------------------------------------------------------------"
-   Set rs = New adodb.Recordset
+   Set rs = New ADODB.Recordset
    q = "Select * from vta_04 where [num_int] = " & Me.numint
    rs.Open q, cn1
    i = Space$(10)
@@ -1968,12 +1968,12 @@ If Val(l) > 0 And Val(l) <= 5 Then
    Printer.Print Tab(10); "-------------------------------------------------------"
    Printer.Print Tab(10); "Fecha        Comprobante            Importe   Obs."
    Printer.Print Tab(10); "-------------------------------------------------------"
-   Set rs = New adodb.Recordset
+   Set rs = New ADODB.Recordset
    q = "Select * from vta_02 where [estado_pago] = 'P' and [recibo_pago] = '" & Format$(Me.sucursal, "0000") & "-" & Format$(Me.numcomp, "00000000") & "' AND [ID_TIPOCOMP] <= 10 "
    rs.Open q, cn1
    TCOMP = 0
    While Not rs.EOF
-    Set rs1 = New adodb.Recordset
+    Set rs1 = New ADODB.Recordset
     q = "select * from vta_06 where [id_tipocomp] = " & rs("id_tipocomp") & " and [sucursal] = " & rs("sucursal_INGRESO")
     rs1.Open q, cn1
     If Not rs1.EOF And Not rs1.BOF Then
@@ -2051,7 +2051,7 @@ If Val(l) > 0 And Val(l) <= 5 Then
    Printer.Print Tab(10); "----------------------------------------------------------------------------------------------"
    Printer.Print Tab(10); "Forma de Pago       Num.Ch.    Detalle/Banco               Fecha Dif.    Importe  Sucursal"
    Printer.Print Tab(10); "----------------------------------------------------------------------------------------------"
-   Set rs = New adodb.Recordset
+   Set rs = New ADODB.Recordset
    q = "Select * from vta_04 where [num_int] = " & Me.numint
    rs.Open q, cn1
    i = Space$(10)
@@ -2078,12 +2078,12 @@ If Val(l) > 0 And Val(l) <= 5 Then
    Printer.Print Tab(10); "-------------------------------------------------------"
    Printer.Print Tab(10); "Fecha        Comprobante            Importe   Obs."
    Printer.Print Tab(10); "-------------------------------------------------------"
-   Set rs = New adodb.Recordset
+   Set rs = New ADODB.Recordset
    q = "Select * from vta_02 where [estado_pago] = 'P' and [recibo_pago] = '" & Format$(Me.sucursal, "0000") & "-" & Format$(Me.numcomp, "00000000") & "' AND [ID_TIPOCOMP] <= 10 "
    rs.Open q, cn1
    TCOMP = 0
    While Not rs.EOF
-    Set rs1 = New adodb.Recordset
+    Set rs1 = New ADODB.Recordset
     q = "select * from vta_06 where [id_tipocomp] = " & rs("id_tipocomp") & " and [sucursal] = " & rs("sucursal_INGRESO")
     rs1.Open q, cn1
     If Not rs1.EOF And Not rs1.BOF Then
@@ -2119,12 +2119,12 @@ If Val(l) > 0 And Val(l) <= 5 Then
    Printer.Print Tab(10); "-------------------------------------------------------"
    Printer.Print Tab(10); "Fecha        Retencion              Importe   Obs."
    Printer.Print Tab(10); "-------------------------------------------------------"
-   Set rs = New adodb.Recordset
+   Set rs = New ADODB.Recordset
    q = "Select * from vta_02 where [estado_pago] = 'P' and [recibo_pago] = '" & Format$(Me.sucursal, "0000") & "-" & Format$(Me.numcomp, "00000000") & "' AND [ID_TIPOCOMP] >= 100 "
    rs.Open q, cn1
    TRET = 0
    While Not rs.EOF
-    Set rs1 = New adodb.Recordset
+    Set rs1 = New ADODB.Recordset
     q = "select * from vta_06 where [id_tipocomp] = " & rs("id_tipocomp") & " and [sucursal] = " & rs("sucursal_INGRESO")
     rs1.Open q, cn1
     If Not rs1.EOF And Not rs1.BOF Then
@@ -2256,7 +2256,7 @@ If Val(l) > 0 And Val(l) <= 5 Then
    Printer.Print Tab(13); "----------------------------------------------------------------------------------------------"
    Printer.Print Tab(13); "Forma de Pago       Num.Ch.    Detalle/Banco               Fecha Dif.    Importe  Sucursal"
    Printer.Print Tab(13); "----------------------------------------------------------------------------------------------"
-   Set rs = New adodb.Recordset
+   Set rs = New ADODB.Recordset
    q = "Select * from vta_04 where [num_int] = " & Me.numint
    rs.Open q, cn1
    i = Space$(10)
@@ -2284,11 +2284,11 @@ If Val(l) > 0 And Val(l) <= 5 Then
    Printer.Print Tab(13); "-------------------------------------------------------"
    Printer.Print Tab(13); "Fecha        Comprobante               Importe     Obs."
    Printer.Print Tab(13); "-------------------------------------------------------"
-   Set rs = New adodb.Recordset
+   Set rs = New ADODB.Recordset
    q = "Select * from vta_02 where [estado_pago] = 'P' and [recibo_pago] = '" & Format$(Me.sucursal, "0000") & "-" & Format$(Me.numcomp, "00000000") & "'"
    rs.Open q, cn1
    While Not rs.EOF
-    Set rs1 = New adodb.Recordset
+    Set rs1 = New ADODB.Recordset
     q = "select * from vta_06 where [sucursal] = " & rs("sucursal_ingreso") & " and [id_tipocomp] = " & rs("id_tipocomp")
     rs1.Open q, cn1
     If Not rs1.EOF And Not rs1.BOF Then
@@ -2532,7 +2532,7 @@ If Val(l) > 0 And Val(l) <= 5 Then
    Printer.Print Tab(12); "Forma de Pago       Num.Ch.    Detalle/Banco               Fecha Dif.    Importe  Sucursal    "
 'FIXIT: El Asistente para actualización no actualiza el objeto Printer ni la colección Printers a Visual Basic .NET.     FixIT90210ae-R5481-H1984
    Printer.Print Tab(12); "----------------------------------------------------------------------------------------------"
-   Set rs = New adodb.Recordset
+   Set rs = New ADODB.Recordset
    q = "Select * from vta_04 where [num_int] = " & Me.numint
    rs.Open q, cn1
    i = Space$(10)
@@ -2573,11 +2573,11 @@ If Val(l) > 0 And Val(l) <= 5 Then
    Printer.Print Tab(12); "Fecha        Comprobante               Importe     Obs."
 'FIXIT: El Asistente para actualización no actualiza el objeto Printer ni la colección Printers a Visual Basic .NET.     FixIT90210ae-R5481-H1984
    Printer.Print Tab(12); "-------------------------------------------------------"
-   Set rs = New adodb.Recordset
+   Set rs = New ADODB.Recordset
    q = "Select * from vta_010 where [num_int_rbo] = " & Me.numint
    rs.Open q, cn1
    While Not rs.EOF
-    Set rs1 = New adodb.Recordset
+    Set rs1 = New ADODB.Recordset
     q = "select * from vta_02, vta_06 where [num_int] = " & rs("num_int_comp") & " and vta_02.[id_tipocomp] = vta_06.[id_tipocomp] and  vta_02.[sucursal_ingreso] = vta_06.[sucursal]"
     rs1.Open q, cn1
     If Not rs1.EOF And Not rs1.BOF Then
@@ -2849,7 +2849,7 @@ Printer.PaintPicture gen_logo.Picture1.Picture, 0, 0
    Printer.Print Tab(12); "Forma de Pago       Num.Ch.    Detalle/Banco                                  Fecha Dif.    Importe  "
 'FIXIT: El Asistente para actualización no actualiza el objeto Printer ni la colección Printers a Visual Basic .NET.     FixIT90210ae-R5481-H1984
    Printer.Print Tab(12); "-----------------------------------------------------------------------------------------------------"
-   Set rs = New adodb.Recordset
+   Set rs = New ADODB.Recordset
    q = "Select * from vta_04 where [num_int] = " & Me.numint
    rs.Open q, cn1
    i = Space$(10)
@@ -2893,11 +2893,11 @@ Printer.PaintPicture gen_logo.Picture1.Picture, 0, 0
    Printer.Print Tab(12); "Fecha        Comprobante               Imp.Aplic.    Obs."
 'FIXIT: El Asistente para actualización no actualiza el objeto Printer ni la colección Printers a Visual Basic .NET.     FixIT90210ae-R5481-H1984
    Printer.Print Tab(12); "-------------------------------------------------------"
-   Set rs = New adodb.Recordset
+   Set rs = New ADODB.Recordset
    q = "Select * from vta_010 where [num_int_rbo] = " & Me.numint
    rs.Open q, cn1
    While Not rs.EOF
-    Set rs1 = New adodb.Recordset
+    Set rs1 = New ADODB.Recordset
     q = "select * from vta_02, vta_06 where [num_int] = " & rs("num_int_comp") & " and vta_02.[id_tipocomp] = vta_06.[id_tipocomp] and  vta_02.[sucursal_ingreso] = vta_06.[sucursal]"
     rs1.Open q, cn1
     If Not rs1.EOF And Not rs1.BOF Then
@@ -2980,7 +2980,7 @@ Public Sub generapdf(ByVal c As Integer)
  If c > 0 And c < 4 Then
   
     
-    Set rs = New adodb.Recordset
+    Set rs = New ADODB.Recordset
     q = "select dias_pago_cc, path_facturas from fe_01 where id = 1"
     rs.Open q, cn1
     If Not rs.EOF And Not rs.BOF Then
@@ -3117,7 +3117,7 @@ Public Sub generapdf(ByVal c As Integer)
     
     
    ' Agrego subtotales de IVA (uno por alicuota)
-   Set rs = New adodb.Recordset
+   Set rs = New ADODB.Recordset
    q = "Select * from vta_09, g4 where [num_int] = " & Me.numint & " and tasa_iva = tasa"
    rs.Open q, cn1
     While Not rs.EOF
@@ -3132,7 +3132,7 @@ Public Sub generapdf(ByVal c As Integer)
     
     
    ' Agrego percepciones
-   Set rs = New adodb.Recordset
+   Set rs = New ADODB.Recordset
    q = "Select detalle, base_imponible, cod_regimen, alicuota, importe from vta_016, i_01 where [num_int] = " & Me.numint & " and id_percepcion=id_impuesto"
    rs.Open q, cn1
     While Not rs.EOF
@@ -3149,7 +3149,7 @@ Public Sub generapdf(ByVal c As Integer)
     
 
 ' Agrego detalles de cada item de la factura:
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "Select * from vta_03, g4 where [num_int] = " & Me.numint & " and tasaiva = tasa"
 rs.Open q, cn1
 While Not rs.EOF
@@ -3188,7 +3188,7 @@ While Not rs.EOF
  Wend
  Set rs = Nothing
   
- Set rs = New adodb.Recordset
+ Set rs = New ADODB.Recordset
  q = "select * from g0 where sucursal = 0"
  rs.Open q, cn1
  If Not rs.EOF And Not rs.BOF Then
@@ -3232,7 +3232,7 @@ While Not rs.EOF
         ' Agrego remiros asociados en facturas:
         
         'BUSCO REMITOS
-        Set rsr = New adodb.Recordset
+        Set rsr = New ADODB.Recordset
         q = "select * from vta_08, vta_02 where [id_factura] = " & Me.numint & " and [id_remito] = [num_int]"
         rsr.Open q, cn1
         tr = ""
@@ -3350,7 +3350,7 @@ While Not rs.EOF
     'asociar pdf con comprobante
     
     
-     Set rs21 = New adodb.Recordset
+     Set rs21 = New ADODB.Recordset
      q = "select * from vta_014 where [num_int] = " & Me.numint
      
      rs21.Open q, cn1, adOpenDynamic, adLockOptimistic
@@ -3416,7 +3416,7 @@ Public Sub imprimir()
 'W la calera (fotos)
 'T tique no fiscal
 
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select cant_copias_a, cant_copias_b, cant_copias_c, cant_copias_e, formato, imprime_desc_extra from vta_06 where [sucursal] = " & Me.sucursal & " and  [id_tipocomp] = " & Me.idtipocomp
 rs.Open q, cn1
 If Not rs.EOF And Not rs.BOF Then
@@ -3674,7 +3674,7 @@ Sub formatoT(c As Integer)
  
  'arma lista de remitos
   rtos = ""
-  Set rs2 = New adodb.Recordset
+  Set rs2 = New ADODB.Recordset
   q = "select * from vta_08, vta_02 where id_factura = " & Me.numint & " and id_remito = num_int"
   rs2.Open q, cn1
   While Not rs2.EOF
@@ -3763,7 +3763,7 @@ For Y = 1 To Val(lc)
  Printer.Print "  Cant. Uni Codigo Articulo"
  Printer.Print Tab(30); "P.U    IMPORTE"
  Printer.Print "================================================================================================="
- Set rs = New adodb.Recordset
+ Set rs = New ADODB.Recordset
  q = "Select * from vta_03 where [num_int] = " & Me.numint
  rs.Open q, cn1
  l = 0
@@ -3861,7 +3861,7 @@ For Y = 1 To Val(lc)
  Printer.Print "  Cant. Uni Codigo Articulo"
  Printer.Print Tab(30); "P.U    IMPORTE"
  Printer.Print "================================================================================================="
- Set rs = New adodb.Recordset
+ Set rs = New ADODB.Recordset
  q = "Select * from vta_03 where [num_int] = " & Me.numint
  rs.Open q, cn1
  l = 0
@@ -3995,7 +3995,7 @@ If Val(l) > 0 And Val(l) <= 5 Then
    Printer.Print "---------------------------------------------------------------"
    Printer.Print "Tipo       Num.Ch.    Detalle/Banco   Fecha Dif. Importe  "
    Printer.Print "---------------------------------------------------------------"
-   Set rs = New adodb.Recordset
+   Set rs = New ADODB.Recordset
    q = "Select * from vta_04 where [num_int] = " & Me.numint
    rs.Open q, cn1
    i = Space$(10)
@@ -4022,12 +4022,12 @@ If Val(l) > 0 And Val(l) <= 5 Then
    Printer.Print "-------------------------------------------------------"
    Printer.Print "Fecha        Comprobante            Importe   Obs."
    Printer.Print "-------------------------------------------------------"
-   Set rs = New adodb.Recordset
+   Set rs = New ADODB.Recordset
    q = "Select * from vta_02 where [estado_pago] = 'P' and [recibo_pago] = '" & Format$(Me.sucursal, "0000") & "-" & Format$(Me.numcomp, "00000000") & "' AND [ID_TIPOCOMP] <= 10 "
    rs.Open q, cn1
    TCOMP = 0
    While Not rs.EOF
-    Set rs1 = New adodb.Recordset
+    Set rs1 = New ADODB.Recordset
     q = "select * from vta_06 where [id_tipocomp] = " & rs("id_tipocomp") & " and [sucursal] = " & rs("sucursal_INGRESO")
     rs1.Open q, cn1
     If Not rs1.EOF And Not rs1.BOF Then
@@ -4126,7 +4126,7 @@ If cl_cli.id > 0 Then
     Print #1,
     'Print #1,
     q = "select * from vta_08, vta_02 where [id_factura] = " & Me.numint & " and [id_remito] = [num_int]"
-    Set rs = New adodb.Recordset
+    Set rs = New ADODB.Recordset
     rs.Open q, cn1
     tr = " "
     While Not rs.EOF
@@ -4151,7 +4151,7 @@ If cl_cli.id > 0 Then
     Print #1,
     Print #1,
     
-    Set rs = New adodb.Recordset
+    Set rs = New ADODB.Recordset
     q = "Select * from vta_03 where [num_int] = " & Me.numint
     rs.Open q, cn1
     k = 0
@@ -4268,7 +4268,7 @@ cl_cli.carga (Me.idcliente)
 
 
 If cl_cli.id > 0 Then
- Set rsr = New adodb.Recordset
+ Set rsr = New ADODB.Recordset
  q = "select * from vta_08, vta_02 where [id_factura] = " & Me.numint & " and [id_remito] = [num_int]"
  rsr.Open q, cn1
  tr = ""
@@ -4471,7 +4471,7 @@ If Val(lw) > 0 And Val(lw) <= 5 Then
     Printer.Print
 'FIXIT: El Asistente para actualización no actualiza el objeto Printer ni la colección Printers a Visual Basic .NET.     FixIT90210ae-R5481-H1984
     Printer.Print
-    Set rs = New adodb.Recordset
+    Set rs = New ADODB.Recordset
     q = "Select * from vta_03 where [num_int] = " & Me.numint
     rs.Open q, cn1
     cp2 = Space$(6)
@@ -4747,7 +4747,7 @@ cl_cli.carga (Me.idcliente)
 
 
 If cl_cli.id > 0 Then
- Set rsr = New adodb.Recordset
+ Set rsr = New ADODB.Recordset
  q = "select * from vta_08, vta_02 where [id_factura] = " & Me.numint & " and [id_remito] = [num_int]"
  rsr.Open q, cn1
  tr = ""
@@ -4947,7 +4947,7 @@ If Val(lw) > 0 And Val(lw) <= 5 Then
     Printer.FontBold = False
 'FIXIT: El Asistente para actualización no actualiza el objeto Printer ni la colección Printers a Visual Basic .NET.     FixIT90210ae-R5481-H1984
     Printer.Print
-    Set rs = New adodb.Recordset
+    Set rs = New ADODB.Recordset
     q = "Select * from vta_03 where [num_int] = " & Me.numint
     rs.Open q, cn1
     l = 0
@@ -5139,7 +5139,7 @@ cl_cli.carga (Me.idcliente)
 
 
 If cl_cli.id > 0 Then
- Set rsr = New adodb.Recordset
+ Set rsr = New ADODB.Recordset
  q = "select * from vta_08, vta_02 where [id_factura] = " & Me.numint & " and [id_remito] = [num_int]"
  rsr.Open q, cn1
  tr = ""
@@ -5272,7 +5272,7 @@ If Val(lw) > 0 And Val(lw) <= 5 Then
     Printer.Print
 'FIXIT: El Asistente para actualización no actualiza el objeto Printer ni la colección Printers a Visual Basic .NET.     FixIT90210ae-R5481-H1984
     Printer.Print
-    Set rs = New adodb.Recordset
+    Set rs = New ADODB.Recordset
     q = "Select * from vta_03 where [num_int] = " & Me.numint
     rs.Open q, cn1
     l = 0
@@ -5474,7 +5474,7 @@ For Y = 1 To Val(l)
  Printer.Print "      ==============================================================================="
  Printer.Print "      Cantidad   Unidad   Codigo    Articulo                                 "
  Printer.Print "      ==============================================================================="
- Set rs = New adodb.Recordset
+ Set rs = New ADODB.Recordset
  q = "Select * from vta_03 where [num_int] = " & Me.numint
  rs.Open q, cn1
  l = 0
@@ -5496,7 +5496,7 @@ For Y = 1 To Val(l)
     
     'imprime extra
      If Me.imprimedescextra = "S" Then
-       Set rs1 = New adodb.Recordset
+       Set rs1 = New ADODB.Recordset
        q = "select * from vta_015 where [num_int] = " & Me.numint & " and [renglon] = " & rs("renglon")
        rs1.Open q, cn1
        If Not rs1.EOF And Not rs1.BOF Then
@@ -5639,7 +5639,7 @@ For Y = 1 To Val(l)
  Printer.Print "      ==============================================================================================="
  Printer.Print "       Cant. Unidad   Codigo  Articulo                                             PU       IMPORTE  "
  Printer.Print "      =============================================================================================="
- Set rs = New adodb.Recordset
+ Set rs = New ADODB.Recordset
  q = "Select * from vta_03 where [num_int] = " & Me.numint
  rs.Open q, cn1
  l = 0
@@ -5805,7 +5805,7 @@ For Y = 1 To Val(l)
  Printer.Print "      ================================================================================================="
  Printer.Print "      Cant.  Unidad  Codigo  Articulo                                              P.U    IMPORTE"
  Printer.Print "      ================================================================================================="
- Set rs = New adodb.Recordset
+ Set rs = New ADODB.Recordset
  q = "Select * from vta_03 where [num_int] = " & Me.numint
  rs.Open q, cn1
  l = 0
@@ -5969,7 +5969,7 @@ For Y = 1 To Val(l)
  Printer.Print "      ================================================================================================="
  Printer.Print "      Cant.  Unidad  Codigo  Articulo                                              P.U    IMPORTE"
  Printer.Print "      ================================================================================================="
- Set rs = New adodb.Recordset
+ Set rs = New ADODB.Recordset
  q = "Select * from vta_03 where [num_int] = " & Me.numint
  rs.Open q, cn1
  l = 0
@@ -6130,7 +6130,7 @@ For Y = 1 To Val(l)
  Printer.Print "      ================================================================================================="
  Printer.Print "      Cant.  Unidad  Codigo  Articulo                                              P.U    IMPORTE"
  Printer.Print "      ================================================================================================="
- Set rs = New adodb.Recordset
+ Set rs = New ADODB.Recordset
  q = "Select * from vta_03 where [num_int] = " & Me.numint
  rs.Open q, cn1
  l = 0
@@ -6287,7 +6287,7 @@ For Y = 1 To Val(l)
  Printer.Print "      ================================================================================================="
  Printer.Print "      Cant.  Unidad  Codigo  Articulo                                              P.U    IMPORTE"
  Printer.Print "      ================================================================================================="
- Set rs = New adodb.Recordset
+ Set rs = New ADODB.Recordset
  q = "Select * from vta_03 where [num_int] = " & Me.numint
  rs.Open q, cn1
  l = 0
@@ -6445,7 +6445,7 @@ For Y = 1 To Val(l)
  Printer.Print "      ================================================================================================="
  Printer.Print "      Cant.  Unidad  Codigo  Articulo                                              P.U    IMPORTE"
  Printer.Print "      ================================================================================================="
- Set rs = New adodb.Recordset
+ Set rs = New ADODB.Recordset
  q = "Select * from vta_03 where [num_int] = " & Me.numint
  rs.Open q, cn1
  l = 0
@@ -6604,7 +6604,7 @@ For Y = 1 To Val(l)
  Printer.Print "      ================================================================================================="
  Printer.Print "      Cant.  Unidad  Codigo  Articulo                                              P.U    IMPORTE"
  Printer.Print "      ================================================================================================="
- Set rs = New adodb.Recordset
+ Set rs = New ADODB.Recordset
  q = "Select * from vta_03 where [num_int] = " & Me.numint
  rs.Open q, cn1
  l = 0
@@ -6671,7 +6671,7 @@ Sub formatoW(ByVal c As Integer)
  
  'arma lista de remitos
   rtos = ""
-  Set rs2 = New adodb.Recordset
+  Set rs2 = New ADODB.Recordset
   q = "select * from vta_08, vta_02 where id_factura = " & Me.numint & " and id_remito = num_int"
   rs2.Open q, cn1
   While Not rs2.EOF
@@ -6751,7 +6751,7 @@ For Y = 1 To Val(lc)
  Printer.Print "      ================================================================================================="
  Printer.Print "      Cant.  Unidad  Codigo  Articulo                                              P.U    IMPORTE"
  Printer.Print "      ================================================================================================="
- Set rs = New adodb.Recordset
+ Set rs = New ADODB.Recordset
  q = "Select * from vta_03 where [num_int] = " & Me.numint
  rs.Open q, cn1
  l = 0
@@ -6881,7 +6881,7 @@ For Y = 1 To Val(lc)
  Printer.Print "================================================================================================="
  Printer.Print "  Cant. Uni Codigo Articulo"
  Printer.Print "================================================================================================="
- Set rs = New adodb.Recordset
+ Set rs = New ADODB.Recordset
  q = "Select * from vta_03 where [num_int] = " & Me.numint
  rs.Open q, cn1
  l = 0
@@ -7037,7 +7037,7 @@ For Y = 1 To Val(l)
  Printer.Print "      ================================================================================================="
  Printer.Print "      Cant.  Unidad  Codigo  Articulo                                              "
  Printer.Print "      ================================================================================================="
- Set rs = New adodb.Recordset
+ Set rs = New ADODB.Recordset
  q = "Select * from vta_03 where [num_int] = " & Me.numint
  rs.Open q, cn1
  l = 0
@@ -7166,7 +7166,7 @@ For Y = 1 To Val(lc)
  Printer.Print "      ================================================================================================="
  Printer.Print "      Cant.  Unidad  Codigo  Articulo                                              "
  Printer.Print "      ================================================================================================="
- Set rs = New adodb.Recordset
+ Set rs = New ADODB.Recordset
  q = "Select * from vta_03 where [num_int] = " & Me.numint
  rs.Open q, cn1
  l = 0
@@ -7263,12 +7263,12 @@ For J = 1 To c
  p1 = 0
  p2 = 0
  'forma de pago
- Set rs = New adodb.Recordset
+ Set rs = New ADODB.Recordset
  q = "Select * from vta_04 where [num_int] = " & Me.numint
  rs.Open q, cn1
  i = Space$(10)
  
- Set rs2 = New adodb.Recordset
+ Set rs2 = New ADODB.Recordset
  q = "Select * from vta_02 where [estado_pago] = 'P' and [recibo_pago] = '" & Format$(Me.sucursal, "0000") & "-" & Format$(Me.numcomp, "00000000") & "' AND [ID_TIPOCOMP] <= 10 "
  rs2.Open q, cn1
 
@@ -7475,7 +7475,7 @@ If Val(l) > 0 And Val(l) <= 5 Then
    Printer.Print Tab(12); "Forma de Pago       Num.Ch.    Detalle/Banco               Fecha Dif.    Importe  Sucursal"
 'FIXIT: El Asistente para actualización no actualiza el objeto Printer ni la colección Printers a Visual Basic .NET.     FixIT90210ae-R5481-H1984
    Printer.Print Tab(12); "----------------------------------------------------------------------------------------------"
-   Set rs = New adodb.Recordset
+   Set rs = New ADODB.Recordset
    q = "Select * from vta_04 where [num_int] = " & Me.numint
    rs.Open q, cn1
    i = Space$(10)
@@ -7511,12 +7511,12 @@ If Val(l) > 0 And Val(l) <= 5 Then
    Printer.Print Tab(12); "Fecha        Comprobante            Importe   Obs."
 'FIXIT: El Asistente para actualización no actualiza el objeto Printer ni la colección Printers a Visual Basic .NET.     FixIT90210ae-R5481-H1984
    Printer.Print Tab(12); "-------------------------------------------------------"
-   Set rs = New adodb.Recordset
+   Set rs = New ADODB.Recordset
    q = "Select * from vta_02 where [estado_pago] = 'P' and [recibo_pago] = '" & Format$(Me.sucursal, "0000") & "-" & Format$(Me.numcomp, "00000000") & "' AND [ID_TIPOCOMP] <= 10 "
    rs.Open q, cn1
    TCOMP = 0
    While Not rs.EOF
-    Set rs1 = New adodb.Recordset
+    Set rs1 = New ADODB.Recordset
     q = "select * from vta_06 where [id_tipocomp] = " & rs("id_tipocomp") & " and [sucursal] = " & rs("sucursal_INGRESO")
     rs1.Open q, cn1
     If Not rs1.EOF And Not rs1.BOF Then
@@ -7560,12 +7560,12 @@ If Val(l) > 0 And Val(l) <= 5 Then
    Printer.Print Tab(12); "Fecha        Retencion              Importe   Obs."
 'FIXIT: El Asistente para actualización no actualiza el objeto Printer ni la colección Printers a Visual Basic .NET.     FixIT90210ae-R5481-H1984
    Printer.Print Tab(12); "-------------------------------------------------------"
-   Set rs = New adodb.Recordset
+   Set rs = New ADODB.Recordset
    q = "Select * from vta_02 where [estado_pago] = 'P' and [recibo_pago] = '" & Format$(Me.sucursal, "0000") & "-" & Format$(Me.numcomp, "00000000") & "' AND [ID_TIPOCOMP] >= 100 "
    rs.Open q, cn1
    TRET = 0
    While Not rs.EOF
-    Set rs1 = New adodb.Recordset
+    Set rs1 = New ADODB.Recordset
     q = "select * from vta_06 where [id_tipocomp] = " & rs("id_tipocomp") & " and [sucursal] = " & rs("sucursal_INGRESO")
     rs1.Open q, cn1
     If Not rs1.EOF And Not rs1.BOF Then
@@ -7675,7 +7675,7 @@ Sub imprimirrto8(ByVal c As Integer)
  Printer.Print
  Printer.Print
 ' Printer.Print
-   Set rs = New adodb.Recordset
+   Set rs = New ADODB.Recordset
    q = "Select * from vta_03 where [num_int] = " & Me.numint
    rs.Open q, cn1
    cant = Space$(10)
@@ -7708,7 +7708,7 @@ Sub imprimirrto8(ByVal c As Integer)
      End If
     'imprime extra
      If Me.imprimedescextra = "S" Then
-       Set rs1 = New adodb.Recordset
+       Set rs1 = New ADODB.Recordset
        q = "select * from vta_015 where [num_int] = " & Me.numint & " and [renglon] = " & rs("renglon")
        rs1.Open q, cn1
        If Not rs1.EOF And Not rs1.BOF Then
@@ -7771,6 +7771,25 @@ End Sub
 Sub imprimirrto7(ByVal c As Integer)
 'formato en hoja A4 en blanco grafica  valorizado con nombre de cuadrilla
 'isabel boneto
+
+'para separar el iva
+Dim tasaiva(10)
+Dim netoiva(10)
+'inicializa arrays
+For i = 0 To 9
+   tasaiva(i) = 0
+   netoiva(i) = 0
+Next
+q = "select * from g4 order by tasa"
+Set rs = New ADODB.Recordset
+rs.Open q, cn1
+i = 0
+While Not rs.EOF
+ tasaiva(i) = rs("tasa")
+ i = i + 1
+ rs.MoveNext
+Wend
+
  If Me.idtipocomp = 45 Then
    comp = "REMITO  "
  Else
@@ -7803,7 +7822,7 @@ For Y = 1 To Val(l)
  nc = Format$(Me.CUIT, "@@@@@@@@@@@@@@@@!")
  
  'vendedor que es la cuadrilla
- Set rs = New adodb.Recordset
+ Set rs = New ADODB.Recordset
  q = "Select * from vta_05 where [id_vendedor] = " & Me.idvendedor
  rs.Open q, cn1
  If Not rs.EOF And Not rs.BOF Then
@@ -7819,16 +7838,13 @@ Set rs = Nothing
  Printer.Print Tab(4); "Cuit:" & glo.CUIT
  Printer.Print Tab(4); "______________________________________________________________________________________"
  Printer.Print
- Printer.Print
  Printer.FontSize = 16
  Printer.Print Spc(30); comp;
  Printer.FontSize = 12
  Printer.Print "(Documento no valido como Factura)"
  Printer.Print
- Printer.Print
  Printer.Print Spc(80); " Fecha.....: " & Format$(Me.fecha)
  Printer.Print Spc(80); " Nro.......: "; Me.letra; Spc(1); Format$(Me.sucursal, "0000"); "-"; Format$(Me.numcomp, "00000000")
- Printer.Print
  Printer.Print
  Printer.FontSize = 12
  Printer.FontBold = False
@@ -7860,12 +7876,11 @@ Set rs = Nothing
  Printer.Print
  Printer.FontName = "Courier New"
  Printer.FontSize = "9"
- Printer.Print
- Printer.Print
- Printer.Print "      ==============================================================================================="
- Printer.Print "       Cant. Unidad   Codigo  Articulo                                             PU       IMPORTE  "
- Printer.Print "      =============================================================================================="
- Set rs = New adodb.Recordset
+ 
+ Printer.Print "  =========================================================================================================="
+ Printer.Print "      Cant. Unidad   Codigo  Articulo                                             PU    %iva       IMPORTE  "
+ Printer.Print "  =========================================================================================================="
+ Set rs = New ADODB.Recordset
  q = "Select * from vta_03 where [num_int] = " & Me.numint
  rs.Open q, cn1
  l = 0
@@ -7877,18 +7892,29 @@ Set rs = Nothing
     tu = Space$(8)
     im = Space$(10)
     pu = Space$(10)
+    ti = Space$(5)
     If rs("cantidad_original") > 0 Then
       RSet cant = Format$(rs("cantidad_original"), "######0.00")
       RSet cp2 = Format$(rs("id_producto"), "00000")
       tu = Format$(rs("tunidad"), "@@@@@@@@!")
-      RSet pu = Format$(rs("PU_FINAL"), "#####0.00")
+      RSet pu = Format$(rs("PU"), "#####0.00")
       RSet im = Format$(Val(pu) * Val(cant), "######0.00")
+      RSet ti = Format$(rs("tasaiva"), "##0.0")
     End If
-    Printer.Print Tab(2); cant; "  "; tu; "  "; cp2; Spc(2);
+    Printer.Print cant; "  "; tu; "  "; cp2; Spc(2);
     Printer.FontBold = True
     Printer.Print d;
     Printer.FontBold = False
-    Printer.Print Spc(2); pu; Spc(2); im
+    Printer.Print Spc(2); pu; Spc(2); ti; "%"; Spc(2); im
+    'agrupa Iva
+    For i = 0 To 9
+       If tasaiva(i) = rs("tasaiva") Then
+          'netoiva(i) = netoiva(i) + (Val(im) * rs("tasaiva") / 100)
+          netoiva(i) = netoiva(i) + (Val(im) * rs("tasaiva") / 100)
+         i = 9
+       End If
+    Next i
+    
     rs.MoveNext
     l = l + 1
  Wend
@@ -7899,38 +7925,56 @@ For ó = l To Me.cant_lineas
   Printer.Print
 Next ó
 
-For ó = 1 To 2
+
   Printer.Print
-Next ó
+
 Printer.FontSize = 11
+s = 0
 Printer.Print Tab(8); "***************************************"
-Printer.Print Tab(8); "Total a Facturar  $"; asteriscos(Format$(Me.total, "#####0.00"), 12)
+Printer.Print Tab(8); "Subtotal  $"; asteriscos(Format$(Me.subtotal, para.formato_numerico), 12)
+'ajusta rendondeo
+'===========================
+s = Me.subtotal
+For i = 0 To 9
+  If netoiva(i) > 0 Then
+    s = s + Val(Format$(netoiva(i), "#######0.00"))
+  
+  End If
+Next
+
+If s <> Me.total Then
+  ajuste = Me.total - s
+Else
+  ajuste = 0
+End If
+'================================
+pasada = 0
+For i = 0 To 9
+  If netoiva(i) > 0 Then
+    If pasada = 0 Then 'le agrego el ajuste a la primer tasa de iva
+       netoiva(i) = netoiva(i) + ajuste
+       pasada = 1
+    End If
+    
+    Printer.Print Tab(8); "Iva "; Format$(tasaiva(i), "##0.0"); "% $"; asteriscos(Format$(netoiva(i), para.formato_numerico), 12)
+  
+  End If
+Next
+Printer.Print Tab(8); "Total     $"; asteriscos(Format$(Me.total, para.formato_numerico), 12)
 Printer.Print Tab(8); "***************************************"
 Printer.FontSize = 10
-Printer.Print
-Printer.Print
+
 Printer.Print
 Printer.Print Tab(9); "Nota: " & Me.observaciones
-Printer.Print
-Printer.Print
-Printer.Print
 Printer.Print
 Printer.Print
 Printer.Print Spc(55); "________________________________"
 Printer.Print Spc(55); "          Recibi Conforme"
 Printer.Print
-Printer.Print
-Printer.Print
+
 Printer.FontSize = 8
  
-  Set cl_usuarios = New usuarios
-   cl_usuarios.cargar (Me.idusuario)
-   If cl_usuarios.idusuario > 0 Then
-        Printer.Print Tab(2); "Emitido por: " & cl_usuarios.denominACION
-   Else
-        Printer.Print
-   End If
-   Set cl_usuarios = Nothing
+
    If Y < c Then
       Printer.NewPage
    End If
@@ -8028,7 +8072,7 @@ If Val(h) > 0 And Val(h) <= 6 Then
  Printer.Print
  Printer.Print
  Printer.Print
- Set rs = New adodb.Recordset
+ Set rs = New ADODB.Recordset
  q = "Select * from vta_03 where [num_int] = " & Me.numint
  rs.Open q, cn1
  l = 0
@@ -8237,7 +8281,7 @@ If Val(lw) > 0 And Val(lw) <= 5 Then
 'FIXIT: El Asistente para actualización no actualiza el objeto Printer ni la colección Printers a Visual Basic .NET.     FixIT90210ae-R5481-H1984
     Printer.FontBold = False
     
-    Set rs = New adodb.Recordset
+    Set rs = New ADODB.Recordset
     q = "Select * from vta_03 where [num_int] = " & Me.numint
     rs.Open q, cn1
     cp2 = Space$(3)
@@ -8451,7 +8495,7 @@ If Val(lw) > 0 And Val(lw) <= 5 Then
     Printer.FontSize = 11
     Printer.FontBold = False
     
-    Set rs = New adodb.Recordset
+    Set rs = New ADODB.Recordset
     q = "Select * from vta_03 where [num_int] = " & Me.numint
     rs.Open q, cn1
     cp2 = Space$(3)
@@ -8550,7 +8594,7 @@ For Y = 1 To Val(l)
  Printer.Print "      ==============================================================================="
  Printer.Print "      Cantidad   Unidad   Nro.Bulto Articulo/Pieza                           "
  Printer.Print "      ==============================================================================="
- Set rs = New adodb.Recordset
+ Set rs = New ADODB.Recordset
  q = "Select * from vta_03 where [num_int] = " & Me.numint
  rs.Open q, cn1
  l = 0
@@ -8572,7 +8616,7 @@ For Y = 1 To Val(l)
     
     'imprime extra
      If Me.imprimedescextra = "S" Then
-       Set rs1 = New adodb.Recordset
+       Set rs1 = New ADODB.Recordset
        q = "select * from vta_015 where [num_int] = " & Me.numint & " and [renglon] = " & rs("renglon")
        rs1.Open q, cn1
        If Not rs1.EOF And Not rs1.BOF Then
@@ -8908,7 +8952,7 @@ If cl_cli.id > 0 Then
    Printer.FontName = "Courier New"
 'FIXIT: El Asistente para actualización no actualiza el objeto Printer ni la colección Printers a Visual Basic .NET.     FixIT90210ae-R5481-H1984
    Printer.FontSize = 10
-   Set rs = New adodb.Recordset
+   Set rs = New ADODB.Recordset
    q = "Select * from vta_03 where [num_int] = " & Me.numint
    rs.Open q, cn1
    i = Space$(10)
@@ -8993,7 +9037,7 @@ Sub formato6(ByVal c As Integer)
 Set cl_cli = New Clientes
 cl_cli.carga (Me.idcliente)
 
-Set rsr = New adodb.Recordset
+Set rsr = New ADODB.Recordset
  q = "SELECT [tasa_financiera] from g0 where [sucursal] = 0"
  rsr.Open q, cn1
  cf = Format$(rsr("tasa_financiera"), "#0.00")
@@ -9058,7 +9102,7 @@ If cl_cli.id > 0 Then
    Printer.Print
    Printer.FontName = "Courier New"
    Printer.FontSize = 10
-   Set rs = New adodb.Recordset
+   Set rs = New ADODB.Recordset
    q = "Select * from vta_03 where [num_int] = " & Me.numint
    rs.Open q, cn1
    i = Space$(10)
@@ -9099,7 +9143,7 @@ If cl_cli.id > 0 Then
    Next X
    
    q = "select * from vta_08, vta_02 where [id_factura] = " & Me.numint & " and [id_remito] = [num_int]"
-   Set rs = New adodb.Recordset
+   Set rs = New ADODB.Recordset
    rs.Open q, cn1
    tr = "Remitos: "
    While Not rs.EOF
@@ -9323,7 +9367,7 @@ Sub formato4A(ByVal c As Integer)
  Printer.Print
  Printer.Print
  Printer.Print
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
    q = "Select * from vta_03 where [num_int] = " & Me.numint
    rs.Open q, cn1
    cant = Space$(10)
@@ -9571,7 +9615,7 @@ Printer.FontName = "Sans Serif"
 Printer.FontBold = False
 Printer.FontSize = 6
 
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "Select * from vta_03 where [num_int] = " & Me.numint
 rs.Open q, cn1
 cant = Space$(10)
@@ -9638,7 +9682,7 @@ Printer.CurrentY = 20.3
 Printer.Print "Importe"
 
 'ivas
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "Select * from vta_09 where [num_int] = " & Me.numint
 rs.Open q, cn1
 i = Space$(10)
@@ -9958,7 +10002,7 @@ Printer.FontName = "Sans Serif"
 Printer.FontBold = False
 Printer.FontSize = 6
 
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "Select * from vta_03 where [num_int] = " & Me.numint
 rs.Open q, cn1
 cant = Space$(10)
@@ -10070,7 +10114,7 @@ End Function
 Sub formato5(ByVal c As Integer)
  Dim a(5) As String
  
- Set rsr = New adodb.Recordset
+ Set rsr = New ADODB.Recordset
  q = "select * from vta_08, vta_02 where [id_factura] = " & Me.numint & " and [id_remito] = [num_int]"
  rsr.Open q, cn1
  tr = ""
@@ -10160,7 +10204,7 @@ Sub formato5(ByVal c As Integer)
  Printer.Print
  Printer.Print
 ' Printer.Print
-   Set rs = New adodb.Recordset
+   Set rs = New ADODB.Recordset
    q = "Select * from vta_03 where [num_int] = " & Me.numint
    rs.Open q, cn1
    cant = Space$(10)
@@ -10199,7 +10243,7 @@ Sub formato5(ByVal c As Integer)
  
     'imprime extra
      If Me.imprimedescextra = "S" Then
-       Set rs1 = New adodb.Recordset
+       Set rs1 = New ADODB.Recordset
        q = "select * from vta_015 where [num_int] = " & Me.numint & " and [renglon] = " & rs("renglon")
        rs1.Open q, cn1
        If Not rs1.EOF And Not rs1.BOF Then
@@ -10288,7 +10332,7 @@ End Sub
 Sub formato_A(ByVal c As Integer)
  Dim a(5) As String
  
- Set rsr = New adodb.Recordset
+ Set rsr = New ADODB.Recordset
  q = "select * from vta_08, vta_02 where [id_factura] = " & Me.numint & " and [id_remito] = [num_int]"
  rsr.Open q, cn1
  tr = ""
@@ -10387,7 +10431,7 @@ Sub formato_A(ByVal c As Integer)
  Printer.Print
  Printer.Print
 ' Printer.Print
-   Set rs = New adodb.Recordset
+   Set rs = New ADODB.Recordset
    q = "Select * from vta_03 where [num_int] = " & Me.numint & " order by [renglon]"
    rs.Open q, cn1
    cant = Space$(10)
@@ -10426,7 +10470,7 @@ Sub formato_A(ByVal c As Integer)
  
     'imprime extra
      If Me.imprimedescextra = "S" Then
-       Set rs1 = New adodb.Recordset
+       Set rs1 = New ADODB.Recordset
        q = "select * from vta_015 where [num_int] = " & Me.numint & " and [renglon] = " & rs("renglon")
        rs1.Open q, cn1
        If Not rs1.EOF And Not rs1.BOF Then
@@ -10580,7 +10624,7 @@ Sub imprimirpresup_A(ByVal c As Integer)
  Printer.Print
  Printer.Print
 ' Printer.Print
-   Set rs = New adodb.Recordset
+   Set rs = New ADODB.Recordset
    q = "Select * from vta_03 where [num_int] = " & Me.numint & " order by [renglon]"
    rs.Open q, cn1
    cant = Space$(10)
@@ -10614,7 +10658,7 @@ Sub imprimirpresup_A(ByVal c As Integer)
  
     'imprime extra
      If Me.imprimedescextra = "S" Then
-       Set rs1 = New adodb.Recordset
+       Set rs1 = New ADODB.Recordset
        q = "select * from vta_015 where [num_int] = " & Me.numint & " and [renglon] = " & rs("renglon")
        rs1.Open q, cn1
        If Not rs1.EOF And Not rs1.BOF Then
@@ -10747,7 +10791,7 @@ Sub imprimirrto_A(ByVal c As Integer)
  Printer.Print
  Printer.Print
 ' Printer.Print
-   Set rs = New adodb.Recordset
+   Set rs = New ADODB.Recordset
    q = "Select * from vta_03 where [num_int] = " & Me.numint
    rs.Open q, cn1
    cant = Space$(10)
@@ -10773,7 +10817,7 @@ Sub imprimirrto_A(ByVal c As Integer)
     
     'imprime extra
      If Me.imprimedescextra = "S" Then
-       Set rs1 = New adodb.Recordset
+       Set rs1 = New ADODB.Recordset
        q = "select * from vta_015 where [num_int] = " & Me.numint & " and [renglon] = " & rs("renglon")
        rs1.Open q, cn1
        If Not rs1.EOF And Not rs1.BOF Then
@@ -10890,7 +10934,7 @@ Sub imprimirrto_B(ByVal c As Integer)
  Printer.FontSize = 20
  Printer.Print
  Printer.FontSize = 10
-   Set rs = New adodb.Recordset
+   Set rs = New ADODB.Recordset
    q = "Select * from vta_03 where [num_int] = " & Me.numint
    rs.Open q, cn1
    cant = Space$(10)
@@ -10918,7 +10962,7 @@ Sub imprimirrto_B(ByVal c As Integer)
     
     'imprime extra
      If Me.imprimedescextra = "S" Then
-       Set rs1 = New adodb.Recordset
+       Set rs1 = New ADODB.Recordset
        q = "select * from vta_015 where [num_int] = " & Me.numint & " and [renglon] = " & rs("renglon")
        rs1.Open q, cn1
        If Not rs1.EOF And Not rs1.BOF Then
@@ -11037,7 +11081,7 @@ Sub imprimirrto5(ByVal c As Integer)
  Printer.Print
  Printer.Print
 ' Printer.Print
-   Set rs = New adodb.Recordset
+   Set rs = New ADODB.Recordset
    q = "Select * from vta_03 where [num_int] = " & Me.numint
    rs.Open q, cn1
    cant = Space$(10)
@@ -11063,7 +11107,7 @@ Sub imprimirrto5(ByVal c As Integer)
     
     'imprime extra
      If Me.imprimedescextra = "S" Then
-       Set rs1 = New adodb.Recordset
+       Set rs1 = New ADODB.Recordset
        q = "select * from vta_015 where [num_int] = " & Me.numint & " and [renglon] = " & rs("renglon")
        rs1.Open q, cn1
        If Not rs1.EOF And Not rs1.BOF Then
@@ -11116,14 +11160,14 @@ Sub formato8(ByVal c As Integer)
  'los vasquitos
  Dim a(5) As String
  
- Set rsr = New adodb.Recordset
+ Set rsr = New ADODB.Recordset
  q = "SELECT [tasa_financiera] from g0 where [sucursal] = 0"
  rsr.Open q, cn1
  cf = Format$(rsr("tasa_financiera"), "#0.00")
  Set rsr = Nothing
  
  
- Set rsr = New adodb.Recordset
+ Set rsr = New ADODB.Recordset
  q = "select * from vta_08, vta_02 where [id_factura] = " & Me.numint & " and [id_remito] = [num_int]"
  rsr.Open q, cn1
  tr = ""
@@ -11199,7 +11243,7 @@ Sub formato8(ByVal c As Integer)
  Printer.Print
  'Printer.Print
 ' Printer.Print
-   Set rs = New adodb.Recordset
+   Set rs = New ADODB.Recordset
    q = "Select * from vta_03 where [num_int] = " & Me.numint
    rs.Open q, cn1
    cant = Space$(10)
@@ -11239,7 +11283,7 @@ Sub formato8(ByVal c As Integer)
  
     'imprime extra
      If Me.imprimedescextra = "S" Then
-       Set rs1 = New adodb.Recordset
+       Set rs1 = New ADODB.Recordset
        q = "select * from vta_015 where [num_int] = " & Me.numint & " and [renglon] = " & rs("renglon")
        rs1.Open q, cn1
        If Not rs1.EOF And Not rs1.BOF Then
@@ -11390,7 +11434,7 @@ Sub BORRoRBO()
       
  'primero verifico que los ch. recibidos estan en cartera
  q = "select num_int_rbo from cyb_03 where [num_int_rbo] = " & Me.numint & " and [estado] <> 'C'"
- Set rs = New adodb.Recordset
+ Set rs = New ADODB.Recordset
  rs.Open q, cn1
  If Not rs.BOF And Not rs.EOF Then
     MsgBox ("Para poder eliminar el Recibo todos los cheques ingresados deben estar en Cartera")
@@ -11434,7 +11478,7 @@ Sub BORRoRBO()
       
       
       q = "select num_interno from c_02 where [modulo] = 'V' and [num_mov_int] = " & Me.numint
-      Set rs = New adodb.Recordset
+      Set rs = New ADODB.Recordset
       rs.Open q, cn1
       If Not rs.EOF And Not rs.BOF Then
         nic = rs("num_interno")
@@ -11452,12 +11496,12 @@ Sub BORRoRBO()
       End If
        
       
-      Set rs = New adodb.Recordset
+      Set rs = New ADODB.Recordset
       q = "select num_int_comp, importe_pagado from vta_010 where [num_int_rbo] = " & Me.numint
       rs.Open q, cn1, adOpenDynamic, adLockOptimistic
       While Not rs.EOF
          nic = rs("num_int_comp")
-         Set rs2 = New adodb.Recordset
+         Set rs2 = New ADODB.Recordset
          q = "select [estado_pago], [saldo_impago02], [recibo_pago] from vta_02 where [num_int] = " & nic
          rs2.Open q, cn1, adOpenDynamic, adLockOptimistic
          If Not rs2.EOF And Not rs2.BOF Then
@@ -11494,7 +11538,7 @@ Public Sub actual(ByVal TIPOCOMP As Integer)
 'SACA LOS DATOS DE UN COMPROBANTE QUE SE ESTA POR CREAR
 'STOCK, CTACTE
 
- Set rs = New adodb.Recordset
+ Set rs = New ADODB.Recordset
  q = "select stock, ctacte, iva, abreviatura, venta, propio, contabilidad, tipo_impresora, cant_lineas,imprime_desc_extra, cod_afip_a, cod_afip_b, cod_afip_c  from vta_06 where [sucursal] = " & Me.sucursal & " and  [id_tipocomp] = " & TIPOCOMP
  rs.MaxRecords = 1
  rs.Open q, cn1
@@ -11546,7 +11590,7 @@ Public Sub actual2(ByVal TIPOCOMP As Integer, ByVal suc As Integer)
 'SACA LOS DATOS DE UN COMPROBANTE QUE SE ESTA POR CREAR
 'STOCK, CTACTE
 
- Set rs = New adodb.Recordset
+ Set rs = New ADODB.Recordset
  q = "select stock, ctacte, iva, abreviatura, venta, propio, contabilidad, tipo_impresora, cant_lineas,imprime_desc_extra, cod_afip_a, cod_afip_b, cod_afip_c  from vta_06 where [sucursal] = " & suc & " and  [id_tipocomp] = " & TIPOCOMP
  rs.MaxRecords = 1
  rs.Open q, cn1
@@ -11589,7 +11633,7 @@ Set rs = Nothing
 
 End Sub
 Sub SACANUMCOMP()
-   Set rs = New adodb.Recordset
+   Set rs = New ADODB.Recordset
    q = "select [ult_num_a], [ult_num_b], [ult_num_c], [ult_num_e] from vta_06 where [sucursal] = " & Me.sucursal & " and [id_tipocomp] = " & Me.idtipocomp
    rs.MaxRecords = 1
    rs.Open q, cn1, adOpenStatic, adLockOptimistic
