@@ -1,8 +1,8 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "mscomctl.OCX"
 Begin VB.Form gen_exportasicore 
    BackColor       =   &H00E0E0E0&
-   Caption         =   "PROCESO PARA GENERAR RETENCIONES EN EL SICORE"
+   Caption         =   "PROCESO PARA GENERAR RETENCIONES GANANCIAS EN EL SICORE"
    ClientHeight    =   6420
    ClientLeft      =   75
    ClientTop       =   420
@@ -253,7 +253,7 @@ If verifica Then
        fechac = Format$(rs2("fecha"), "dd/mm/yyyy")
        numc = Format$(sop, "0000") & Format$(nop, "00000000") & "    "
        impc = Format(rs2("total"), "0000000000000.00")
-       codi = "217"
+       codi = "0217"
        codr = Format(rs("a5.id_codretgan"), "000")
        codo = 1
        base = Format(rs("monto_suj_ret"), "00000000000.00")
