@@ -1,7 +1,7 @@
 VERSION 5.00
-Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
-Object = "{FE0065C0-1B7B-11CF-9D53-00AA003C9CB6}#1.1#0"; "COMCT232.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFlxGrd.ocx"
+Object = "{FE0065C0-1B7B-11CF-9D53-00AA003C9CB6}#1.1#0"; "ComCt232.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "mscomctl.OCX"
 Begin VB.Form vta_listaprecios_3 
    AutoRedraw      =   -1  'True
    BackColor       =   &H00C0C0C0&
@@ -1049,7 +1049,7 @@ Sub muestra2()
      vta_listaprecios2.t_tipocarga = rs2("tipo_carga_tique")
      vta_listaprecios2.c_tasaib.ListIndex = buscaindice(vta_listaprecios2!c_tasaib, rs2("id_tasaib"))
      vta_listaprecios2.t_idprodprov = rs2("id_prod_prov")
-     vta_listaprecios2.t_percibe5329 = rs("percibe_5329")
+     vta_listaprecios2.t_percibe5329 = rs2("percibe_5329")
      
      If rs2("vigente") = True Then
       vta_listaprecios2.Check1 = 1
