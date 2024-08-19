@@ -383,7 +383,7 @@ If FileColl.Count > 0 Then
        
         'busco si el comprobante no fue cargado
         q = "select * from vta_02 where [id_tipocomp] = " & cc & " and [letra] = '" & letra & "' and [sucursal] = " & Val(suc) & " and [num_comp] = " & NUM
-        Set rs = New adodb.Recordset
+        Set rs = New ADODB.Recordset
         rs.Open q, cn1
         If Not rs.EOF And Not rs.BOF Then
             estado = "ERR"
@@ -394,7 +394,7 @@ If FileColl.Count > 0 Then
         
         
         
-        Set rs = New adodb.Recordset
+        Set rs = New ADODB.Recordset
         q = "select * from vta_01 where [cuit] = '" & CUIT & "'" ' "' or [cuit] = '" & Format$(CUIT, "@@-@@@@@@@@-@") & "'"
         rs.Open q, cn1
         If Not rs.EOF And Not rs.BOF Then
@@ -611,7 +611,7 @@ Sub graba(ByVal r As Integer)
         Close #1
        
         
-        Set rs = New adodb.Recordset
+        Set rs = New ADODB.Recordset
         q = "select * from vta_01 where [cuit] = '" & CUIT & "'" ' "' or [cuit] = '" & Format$(CUIT, "@@-@@@@@@@@-@") & "'"
         rs.Open q, cn1
         If Not rs.EOF And Not rs.BOF Then
@@ -663,7 +663,7 @@ End If
       
       
       
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   q = "select * from g8 where [id_actividad] = " & c_actividad.ItemData(c_actividad.ListIndex)
   rs.Open q, cn1
   If Not rs.EOF And Not rs.BOF Then
@@ -705,104 +705,18 @@ QUERY = QUERY & " VALUES (" & numint & ", " & Val(suc) & ", " & Val(NUM) & ", '"
        cn1.Execute QUERY
       
       Set cl_cli = Nothing
-           
-'actualizo producots
-
-  Open a1 For Input As #1
-  r = 1
-  While Not EOF(1)
-   Line Input #1, m
-   tc = Val(Mid$(l, 1, 3))
-   If tc < 100 Then
-        cantidad = Val(Mid$(m, 32, 7) & "." & Mid$(m, 39, 5))
-        codunidad = Val(Mid$(m, 44, 2))
-        pu = Val(Mid$(m, 46, 13) & "." & Mid$(m, 59, 3))
-        iva = Val(Mid$(m, 93, 13) & "." & Mid$(m, 106, 2))
-        tasaiva = Val(Mid$(m, 108, 3) & "." & Mid$(m, 111, 2))
-        importe = pu * cantidad
-        texto = Mid$(m, 117, Len(m) - 117)
-   Else
-        cantidad = Val(Mid$(m, 33, 7) & "." & Mid$(m, 40, 5))
-        codunidad = Val(Mid$(m, 45, 2))
-        pu = Val(Mid$(m, 47, 13) & "." & Mid$(m, 60, 3))
-        iva = Val(Mid$(m, 94, 13) & "." & Mid$(m, 107, 2))
-        tasaiva = Val(Mid$(m, 109, 3) & "." & Mid$(m, 112, 2))
-        importe = pu * cantidad
-        texto = Mid$(m, 118, Len(m) - 118)
-   
-   
-   
-   End If
-   
-   
-   Set rs = New adodb.Recordset
-   q = "select * from g5 where [cod_afip] = " & codunidad
-   rs.Open q, cn1
-   If Not rs.EOF And Not rs.BOF Then
-     unidad3 = rs("unidad")
-   Else
-     unidad3 = "Unidad"
-   End If
-   Set rs = Nothing
-      puf = Format(pu * (1 + (tasaiva / 100)), "######0.00")
-   cp = ""
-   i = 0
-   While i >= 0
-      If Mid$(m, 125 + i, 1) <> "-" Then
-           cp = cp & Mid$(m, 125 + i, 1)
-             If i > 8 Then
-               i = -1
-             Else
-               i = i + 1
-             End If
-          Else
-            i = -1
-          End If
-          
-   Wend
-
-   
-   If Val(cp) > 0 Then
-     Set rs = New adodb.Recordset
-     q = "select * from a2 where [id_producto] = " & Val(cp)
-     rs.MaxRecords = 1
-     rs.Open q, cn1
-     If Not rs.EOF And Not rs.BOF Then
-        codprod = rs("id_producto")
-        
-     Else
-       codprod = 1
-     End If
-     Set rs = Nothing
-   Else
-     codprod = 1
-   End If
-     
-   QUERY = "INSERT INTO vta_03([num_int], [RENGLON], [id_producto], [descripcion], [cantidad], [pu], [importe], [tasaiva], [impuesto], [costo], [cantidad_original], [tunidad], [pu_final])"
-   QUERY = QUERY & " VALUES (" & numint & ", " & r & ", " & codprod & ", '" & Left$(RTrim$(texto), 50) & " ', " & cantidad & ", " & pu & ", " & importe & ", " & tasaiva & ", 0, 0, " & cantidad & ", '" & Left$(unidad3, 8) & "', " & puf & ")"
-  
-   cn1.Execute QUERY
-  
-   If Len(RTrim$(texto)) > 50 Then
-     'grabo desc extra
-     QUERY = "INSERT INTO vta_015([num_int], [RENGLON], [desc_ext], [cant_lineas])"
-     QUERY = QUERY & " VALUES (" & numint & ", " & r & ", '" & Left$(Mid$(texto, 51, Len(texto) - 50), 50) & "', 1)"
-     cn1.Execute QUERY
-   End If
-  
-  
-  
-  
-  
-  'percepciones
-  secuencia = 1
+      
+      
+      
+      'percepciones
+  secuencia_perc = 1
   If percib > 0 Then
           'agrego percepcion ibba
           QUERY = "INSERT INTO vta_016([num_int], [secuencia], [id_percepcion], [importe], [id_cuenta], [cod_regimen], [base_imponible], [alicuota])"
-          QUERY = QUERY & " VALUES (" & numint & ", " & secuencia & ", " & 2 & ", " & percib & ", 0, 0," & subtotal & ",0)"
+          QUERY = QUERY & " VALUES (" & numint & ", " & secuencia_perc & ", " & 2 & ", " & percib & ", 0, 0," & subtotal & ",0)"
           cn1.Execute QUERY
            
-          secuencia = secuencia + 1
+          secuencia_perc = secuencia_perc + 1
   End If
   If tp = "S" Then
     'agrego el resto de las percepciones desde el archivo otras_perc.txt
@@ -834,11 +748,104 @@ QUERY = QUERY & " VALUES (" & numint & ", " & Val(suc) & ", " & Val(NUM) & ", '"
                 MsgBox (QUERY)
                 cn1.Execute QUERY
             
-            secuencia = secuencia + 1
+            secuencia_perc = secuencia_perc + 1
     
       Wend
       Close #3
   End If
+      
+      
+      
+           
+'actualizo producots
+
+  Open a1 For Input As #1
+  r = 1
+  While Not EOF(1)
+   Line Input #1, m
+   tc = Val(Mid$(l, 1, 3))
+   If tc < 100 Then
+        cantidad = Val(Mid$(m, 32, 7) & "." & Mid$(m, 39, 5))
+        codunidad = Val(Mid$(m, 44, 2))
+        pu = Val(Mid$(m, 46, 13) & "." & Mid$(m, 59, 3))
+        iva = Val(Mid$(m, 93, 13) & "." & Mid$(m, 106, 2))
+        tasaiva = Val(Mid$(m, 108, 3) & "." & Mid$(m, 111, 2))
+        importe = pu * cantidad
+        texto = Mid$(m, 117, Len(m) - 117)
+   Else
+        cantidad = Val(Mid$(m, 33, 7) & "." & Mid$(m, 40, 5))
+        codunidad = Val(Mid$(m, 45, 2))
+        pu = Val(Mid$(m, 47, 13) & "." & Mid$(m, 60, 3))
+        iva = Val(Mid$(m, 94, 13) & "." & Mid$(m, 107, 2))
+        tasaiva = Val(Mid$(m, 109, 3) & "." & Mid$(m, 112, 2))
+        importe = pu * cantidad
+        texto = Mid$(m, 118, Len(m) - 118)
+   
+   
+   
+   End If
+   
+   
+   Set rs = New ADODB.Recordset
+   q = "select * from g5 where [cod_afip] = " & codunidad
+   rs.Open q, cn1
+   If Not rs.EOF And Not rs.BOF Then
+     unidad3 = rs("unidad")
+   Else
+     unidad3 = "Unidad"
+   End If
+   Set rs = Nothing
+      puf = Format(pu * (1 + (tasaiva / 100)), "######0.00")
+   cp = ""
+   i = 0
+   While i >= 0
+      If Mid$(m, 125 + i, 1) <> "-" Then
+           cp = cp & Mid$(m, 125 + i, 1)
+             If i > 8 Then
+               i = -1
+             Else
+               i = i + 1
+             End If
+          Else
+            i = -1
+          End If
+          
+   Wend
+
+   
+   If Val(cp) > 0 Then
+     Set rs = New ADODB.Recordset
+     q = "select * from a2 where [id_producto] = " & Val(cp)
+     rs.MaxRecords = 1
+     rs.Open q, cn1
+     If Not rs.EOF And Not rs.BOF Then
+        codprod = rs("id_producto")
+        
+     Else
+       codprod = 1
+     End If
+     Set rs = Nothing
+   Else
+     codprod = 1
+   End If
+     
+   QUERY = "INSERT INTO vta_03([num_int], [RENGLON], [id_producto], [descripcion], [cantidad], [pu], [importe], [tasaiva], [impuesto], [costo], [cantidad_original], [tunidad], [pu_final])"
+   QUERY = QUERY & " VALUES (" & numint & ", " & r & ", " & codprod & ", '" & Left$(RTrim$(texto), 50) & " ', " & cantidad & ", " & pu & ", " & importe & ", " & tasaiva & ", 0, 0, " & cantidad & ", '" & Left$(unidad3, 8) & "', " & puf & ")"
+  
+   cn1.Execute QUERY
+  
+   If Len(RTrim$(texto)) > 50 Then
+     'grabo desc extra
+     QUERY = "INSERT INTO vta_015([num_int], [RENGLON], [desc_ext], [cant_lineas])"
+     QUERY = QUERY & " VALUES (" & numint & ", " & r & ", '" & Left$(Mid$(texto, 51, Len(texto) - 50), 50) & "', 1)"
+     cn1.Execute QUERY
+   End If
+  
+  
+  
+  
+  
+  
   
   
   r = r + 1
