@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "mscomctl.OCX"
 Begin VB.Form vta_cambia_estado_pago 
    BackColor       =   &H00E0E0E0&
    Caption         =   "CAMBIA DATOS EN COMPROBANTES DE VENTA"
@@ -632,12 +632,12 @@ Begin VB.Form vta_cambia_estado_pago
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "27/05/2022"
+            TextSave        =   "21/08/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:47 a.m."
+            TextSave        =   "11:33 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -675,7 +675,7 @@ If J = 6 Then
       If T_newestado = "S" Then
         'verifico existencia del recibo
          Set rs = New ADODB.Recordset
-         q = "select * from vta_02 where [sucursal] = " & Val(t_sucursal) & " and [num_comp] = " & Val(t_numcomp) & " and [letra] = 'R' and [id_tipocomp] = 50  and [id_cliente] = " & Val(T_IDPROV)
+         q = "select * from vta_02 where [sucursal] = " & Val(t_sucursal) & " and [num_comp] = " & Val(t_numcomp) & " and [letra] = 'R' and [id_tipocomp] = 50  and [id_cliente] = " & Val(t_idprov)
          rs.Open q, cn1
          If Not rs.BOF And Not rs.EOF Then
              nir = rs("num_int")
@@ -745,7 +745,7 @@ If Not rs1.BOF And Not rs1.EOF Then
         rs1.Update
         
         QUERY = "INSERT INTO g11([detalle], [id_usuario], [modulo], [num_int_comp], [fecha_hora], [obs], [id_operacion], [id_clipro])"
-        QUERY = QUERY & " VALUES ('Cambia estado pago NI:" & t_id & "', " & para.id_usuario & ", 'V', " & Val(t_id) & ", '" & Now & "', 'Nuevo estado " & T_newestado & "', 3, " & Val(T_IDPROV) & ")"
+        QUERY = QUERY & " VALUES ('Cambia estado pago NI:" & t_id & "', " & para.id_usuario & ", 'V', " & Val(t_id) & ", '" & Now & "', 'Nuevo estado " & T_newestado & "', 3, " & Val(t_idprov) & ")"
         cn1.BeginTrans
          cn1.Execute QUERY
         cn1.CommitTrans
@@ -771,7 +771,7 @@ If Not rs1.BOF And Not rs1.EOF Then
           rs1.Update
         
         QUERY = "INSERT INTO g11([detalle], [id_usuario], [modulo], [num_int_comp], [fecha_hora], [obs], [id_operacion], [id_clipro])"
-        QUERY = QUERY & " VALUES ('Cambia estado Cancelacion Pro forma NI:" & t_id & "', " & para.id_usuario & ", 'V', " & Val(t_id) & ", '" & Now & "', 'Nuevo estado " & t_newestadoc & "', 3, " & Val(T_IDPROV) & ")"
+        QUERY = QUERY & " VALUES ('Cambia estado Cancelacion Pro forma NI:" & t_id & "', " & para.id_usuario & ", 'V', " & Val(t_id) & ", '" & Now & "', 'Nuevo estado " & t_newestadoc & "', 3, " & Val(t_idprov) & ")"
         cn1.BeginTrans
          cn1.Execute QUERY
         cn1.CommitTrans
@@ -799,7 +799,7 @@ If Not rs1.BOF And Not rs1.EOF Then
           rs1.Update
         
         QUERY = "INSERT INTO g11([detalle], [id_usuario], [modulo], [num_int_comp], [fecha_hora], [obs], [id_operacion], [id_clipro])"
-        QUERY = QUERY & " VALUES ('Cambia estado pago comprobante:" & t_id & "', " & para.id_usuario & ", 'V', " & Val(t_id) & ", '" & Now & "', 'Nuevo estado " & t_newestadoc & "', 3, " & Val(T_IDPROV) & ")"
+        QUERY = QUERY & " VALUES ('Cambia estado pago comprobante:" & t_id & "', " & para.id_usuario & ", 'V', " & Val(t_id) & ", '" & Now & "', 'Nuevo estado " & t_newestadoc & "', 3, " & Val(t_idprov) & ")"
         cn1.BeginTrans
          cn1.Execute QUERY
         cn1.CommitTrans
@@ -856,7 +856,7 @@ If Not rs1.BOF And Not rs1.EOF Then
  
        
        QUERY = "INSERT INTO g11([detalle], [id_usuario], [modulo], [num_int_comp], [fecha_hora], [obs], [id_operacion], [id_clipro])"
-       QUERY = QUERY & " VALUES ('Cambia estado facturacion NI:" & t_id & "', " & para.id_usuario & ", 'V', " & Val(t_id) & ", '" & Now & "', 'Nuevo estado " & t_newestado2 & "', 3, " & Val(T_IDPROV) & ")"
+       QUERY = QUERY & " VALUES ('Cambia estado facturacion NI:" & t_id & "', " & para.id_usuario & ", 'V', " & Val(t_id) & ", '" & Now & "', 'Nuevo estado " & t_newestado2 & "', 24, " & Val(t_idprov) & ")"
        cn1.BeginTrans
        cn1.Execute QUERY
        cn1.CommitTrans
@@ -887,7 +887,7 @@ If J = 6 Then
         'comprobate pago
         'verifico existencia del recibo
          Set rs = New ADODB.Recordset
-         q = "select * from vta_02 where [sucursal] = " & Val(t_sucursal) & " and [num_comp] = " & Val(t_numcomp) & " and [letra] = 'R' and [id_tipocomp] = 50  and [id_cliente] = " & Val(T_IDPROV)
+         q = "select * from vta_02 where [sucursal] = " & Val(t_sucursal) & " and [num_comp] = " & Val(t_numcomp) & " and [letra] = 'R' and [id_tipocomp] = 50  and [id_cliente] = " & Val(t_idprov)
          rs.Open q, cn1
          If Not rs.BOF And Not rs.EOF Then
              nir = rs("num_int")
@@ -932,7 +932,7 @@ If J = 6 Then
        rs1.Update
    
        QUERY = "INSERT INTO g11([detalle], [id_usuario], [modulo], [num_int_comp], [fecha_hora], [obs], [id_operacion], [id_clipro])"
-       QUERY = QUERY & " VALUES ('Cambia estado (obs) NI:" & t_id & "', " & para.id_usuario & ", 'V', " & Val(t_id) & ", '" & Now & "', '" & Left$(t_obs, 50) & "', 3, " & Val(T_IDPROV) & ")"
+       QUERY = QUERY & " VALUES ('Cambia estado (obs) NI:" & t_id & "', " & para.id_usuario & ", 'V', " & Val(t_id) & ", '" & Now & "', '" & Left$(t_obs, 50) & "', 25, " & Val(t_idprov) & ")"
 
        cn1.BeginTrans
        cn1.Execute QUERY
@@ -1020,14 +1020,14 @@ If J = 6 Then
        rs("cotizacion_dolar") = Val(t_cotizacion)
        rs("iva") = Val(t_iva)
        rs("impuestos") = Val(t_nograv)
-       rs("total") = Val(t_total)
-       rs("total_otra_moneda") = Val(t_total2)
+       rs("total") = Val(T_TOTAL)
+       rs("total_otra_moneda") = Val(T_total2)
        rs.Update
     End If
     Set rs = Nothing
  
        QUERY = "INSERT INTO g11([detalle], [id_usuario], [modulo], [num_int_comp], [fecha_hora], [obs], [id_operacion], [id_clipro])"
-       QUERY = QUERY & " VALUES ('Cambia Importes facturacion NI:" & t_id & "', " & para.id_usuario & ", 'V', " & Val(t_id) & ", '" & Now & "', ' ', 22, " & Val(T_IDPROV) & ")"
+       QUERY = QUERY & " VALUES ('Cambia Importes facturacion NI:" & t_id & "', " & para.id_usuario & ", 'V', " & Val(t_id) & ", '" & Now & "', ' ', 22, " & Val(t_idprov) & ")"
        cn1.BeginTrans
        cn1.Execute QUERY
        cn1.CommitTrans

@@ -378,6 +378,7 @@ Form=vta073.frm
 Form=vta073A.frm
 Form=vta074.frm
 Form=vta074A.frm
+Form=gen_043.frm
 IconForm="admin"
 Startup="admin"
 HelpFile=""

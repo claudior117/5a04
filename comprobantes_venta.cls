@@ -3416,6 +3416,13 @@ Public Sub imprimir()
 'W la calera (fotos)
 'T tique no fiscal
 
+QUERY = "INSERT INTO g11([detalle], [id_usuario], [modulo], [num_int_comp], [fecha_hora], [obs], [id_operacion], [id_clipro])"
+        QUERY = QUERY & " VALUES ('Imprimir/Reimprimir Comp Venta NI:" & Me.numint & "', " & para.id_usuario & ", 'V', " & Me.numint & ", '" & Now & "', '" & Me.razonsocial & "(" & Me.sucursal & "-" & Me.numcomp & ")', 26, " & Me.idcliente & ")"
+        cn1.BeginTrans
+         cn1.Execute QUERY
+        cn1.CommitTrans
+
+
 Set rs = New ADODB.Recordset
 q = "select cant_copias_a, cant_copias_b, cant_copias_c, cant_copias_e, formato, imprime_desc_extra from vta_06 where [sucursal] = " & Me.sucursal & " and  [id_tipocomp] = " & Me.idtipocomp
 rs.Open q, cn1

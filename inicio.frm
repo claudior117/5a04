@@ -454,12 +454,12 @@ Begin VB.Form inicio
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "26/07/2024"
+            TextSave        =   "22/08/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "04:20 p.m."
+            TextSave        =   "10:39 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -667,6 +667,9 @@ Begin VB.Form inicio
       Begin VB.Menu M_sumasysaldos 
          Caption         =   "Balance comprobacion Sumas y Saldos"
       End
+   End
+   Begin VB.Menu M_logs 
+      Caption         =   "&Logs"
    End
    Begin VB.Menu M_salir 
       Caption         =   "Salir"
@@ -1178,6 +1181,19 @@ Private Sub M_lidv_Click()
 Call nivel_acceso(1)
 If para.id_grupo_modulo_actual > 6 Then
   gen_libroivadigitalV.Show
+Else
+  Call sinpermisos
+End If
+End Sub
+
+Private Sub M_logs_Click()
+Call nivel_acceso(1)
+nivelventas = para.id_grupo_modulo_actual
+Call nivel_acceso(2)
+nivelcompras = para.id_grupo_modulo_actual
+'solo administradores ventas = 9 y compras = 9
+If nivelventas + nivelcompras = 18 Then
+   log_verlogs.Show
 Else
   Call sinpermisos
 End If
