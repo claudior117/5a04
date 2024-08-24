@@ -2646,7 +2646,7 @@ If h = 6 Then
     q = "update a2 set [percibe_5329]='N'"
     cn1.Execute q
     
-    q = "update i_01 set [id_otrostributos]=99, tasa_i1=0, [id_cuenta_i1] = 110302"
+    q = "update i_01 set [id_otrostributos]=99, [tasa_i1]=0, [id_cuenta_i1] = 110302"
     cn1.Execute q
     
     
