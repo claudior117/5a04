@@ -1,6 +1,6 @@
 VERSION 5.00
-Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFlxGrd.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "mscomctl.OCX"
 Begin VB.Form ABM_OC 
    BackColor       =   &H00E0E0E0&
    Caption         =   "EMITIR ORDEN DE COMPRA"
@@ -515,12 +515,12 @@ Begin VB.Form ABM_OC
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "29/08/2013"
+            TextSave        =   "25/08/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "17:59"
+            TextSave        =   "10:50 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -749,14 +749,14 @@ Sub sacatotales()
 t_subtotal = Format$(Val(t_subtotal), "######0.00")
 t_nograbado = Format$(Val(t_nograbado), "######0.00")
 t_iva = Format$(Val(t_iva), "######0.00")
-t_total = Format$(Val(t_subtotal) + Val(t_nograbado) + Val(t_perc) + Val(t_iva), "######0.00")
+T_TOTAL = Format$(Val(t_subtotal) + Val(t_nograbado) + Val(t_perc) + Val(t_iva), "######0.00")
 If Option4 = True Then
  If Val(t_cotiz) <= 1 Then
   t_cotiz = para.cotizacion
  End If
-  t_dolares = Format$(Val(t_total) / Val(t_cotiz), "#####0.00")
+  t_dolares = Format$(Val(T_TOTAL) / Val(t_cotiz), "#####0.00")
 Else
-  t_dolares = Format$(Val(t_total) * Val(t_cotiz), "#####0.00")
+  t_dolares = Format$(Val(T_TOTAL) * Val(t_cotiz), "#####0.00")
 End If
 End Sub
 
@@ -809,7 +809,7 @@ Set rs = Nothing
 
 End Sub
 Private Sub msf1_GotFocus()
-Me.StatusBar1.Panels.Item(2) = "[INS] Agrega Art.- [ENTER] Modifica Art. - [F5] Saca Art. - [F9] Continua - [F3] Sol.Mat.Prod. - [F4] Faltantes - [F6] Desc.Extra"
+Me.StatusBar1.Panels.item(2) = "[INS] Agrega Art.- [ENTER] Modifica Art. - [F5] Saca Art. - [F9] Continua - [F3] Sol.Mat.Prod. - [F4] Faltantes - [F6] Desc.Extra"
 If msf1.Rows > 1 Then
   msf1.FocusRect = flexFocusNone
 Else
@@ -969,9 +969,9 @@ QUERY = "INSERT INTO a5([num_int], [sucursal], [num_comprobante], [letra], [id_t
 "[fecha_prob_entrega], [fecha_recepcion], [estado], [ID_CODRETGAN], [ID_CUENTA], [STOCK], [CTACTE], [grabado], [estado_pago], [num_op], [obs], [condiciones], [info_contacto], " & _
 "[moneda], [cotiz_dolar], [contado], [fecha_vto], [compra], [proveedor05], [cuit05], [zona], [saldo_impago], [pagos_realizados], [pago_actual], [minimo_no_imp])"
 QUERY = QUERY & " VALUES (" & numint & ", " & Val(t_sucursal) & ", " & Val(t_numoc) & ", 'O', 65, " & c_prov.ItemData(c_prov.ListIndex) & ", '" & t_fecha & "', " & para.id_usuario & _
- ", " & Val(t_subtotal) & ", " & Val(t_iva) & ", " & Val(t_nograbado) & ", 0, " & Val(t_total) & ",'" & t_fechaprob & "', '" & t_fechaprob & "', 'P', 0, 0, '" & STOCK & "', '" & ctacte & "', '" & _
-cl_comp.grabado & "', 'X', '0000-00000000'" & ", '" & t_obs & "', '" & t_condiciones & "', '" & infocontacto & "', '" & moneda & "', " & Val(t_cotiz) & ", 'S', '" & t_fecha & "', 'N', '" & _
-prov0 & "', " & cuit0 & ", 1, 0, 0, 0, 0)"
+ ", " & Val(t_subtotal) & ", " & Val(t_iva) & ", " & Val(t_nograbado) & ", 0, " & Val(T_TOTAL) & ",'" & t_fechaprob & "', '" & t_fechaprob & "', 'P', 0, 0, '" & STOCK & "', '" & ctacte & "', '" & _
+cl_comp.grabado & "', 'X', '0000-00000000'" & ", '" & Left$(t_obs, 80) & "', '" & Left$(t_condiciones, 80) & "', '" & Left$(infocontacto, 80) & "', '" & moneda & "', " & Val(t_cotiz) & ", 'S', '" & t_fecha & "', 'N', '" & _
+Left$(prov0, 50) & "', " & cuit0 & ", 1, 0, 0, 0, 0)"
             
       
       cn1.Execute QUERY
@@ -1076,6 +1076,15 @@ prov0 & "', " & cuit0 & ", 1, 0, 0, 0, 0)"
       
       Next i
       
+      
+        nc = Format$(Val(t_sucursal), "0000") & "-" & Format$(Val(t_numoc), "00000000")
+      
+       QUERY = "INSERT INTO g11([detalle], [id_usuario], [modulo], [num_int_comp], [fecha_hora], [obs], [id_operacion], [id_clipro])"
+       QUERY = QUERY & " VALUES ('Emite Orden de Compra:" & numint & "', " & para.id_usuario & ", 'C', " & numint & ", '" & Now & "', '[" & nc & "', 105, " & c_prov.ItemData(c_prov.ListIndex) & ")"
+       cn1.Execute QUERY
+      
+      
+      
       cn1.CommitTrans
       Set rs = Nothing
       
@@ -1121,7 +1130,7 @@ If KeyAscii = 13 Then
     abm_oc1.t_obs = msf1.TextMatrix(msf1.Row, 4)
     abm_oc1.t_pu = msf1.TextMatrix(msf1.Row, 6)
     abm_oc1.t_unidad = msf1.TextMatrix(msf1.Row, 7)
-    abm_oc1.c_obra.ListIndex = buscaindice(abm_oc1.c_obra, Val(msf1.TextMatrix(msf1.Row, 11)))
+    abm_oc1.C_OBRA.ListIndex = buscaindice(abm_oc1.C_OBRA, Val(msf1.TextMatrix(msf1.Row, 11)))
     abm_oc1.t_renglonrf = msf1.TextMatrix(msf1.Row, 12)
     abm_oc1.Show
    Else

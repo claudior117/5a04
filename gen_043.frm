@@ -62,7 +62,7 @@ Begin VB.Form log_verlogs
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   180027393
+      StartOfWeek     =   39911425
       CurrentDate     =   38754
    End
    Begin MSFlexGridLib.MSFlexGrid msf1 
@@ -388,12 +388,12 @@ Begin VB.Form log_verlogs
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "22/08/2024"
+            TextSave        =   "24/08/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:42 a.m."
+            TextSave        =   "08:21 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -452,11 +452,41 @@ Sub carga()
   rs.Open q, cn1
   t = 0
   reg = 0
+  
   While Not rs.EOF
      F = rs("fecha_hora")
    
+     Select Case rs("g11.modulo")
+      Case Is = "V"
+       q = "select denominacion from vta_01 where id_cliente = " & rs("id_clipro")
+       Set rs1 = New ADODB.Recordset
+       rs1.Open q, cn1
+       If Not rs1.EOF And Not rs1.BOF Then
+          ente = rs1("denominacion")
+       Else
+          ente = "No encotrado"
+       End If
+       Set rs1 = Nothing
+      
+      Case Is = "C"
+       q = " select denominacion from a1 where id_proveedor = " & rs("id_clipro")
+        Set rs1 = New ADODB.Recordset
+       rs1.Open q, cn1
+       If Not rs1.EOF And Not rs1.BOF Then
+          ente = rs1("denominacion")
+       Else
+          ente = "No encotrado"
+       End If
+       Set rs1 = Nothing
+      
+      
+      Case Else
+        ente = "*"
+      End Select
+      
+   
     
-     msf1.AddItem F & Chr(9) & rs("detalle") & Chr(9) & rs("g11.modulo") & Chr(9) & rs("usuario") & Chr(9) & rs("num_int_comp") & Chr(9) & rs("obs") & Chr(9) & rs("descripcion")
+     msf1.AddItem F & Chr(9) & rs("detalle") & Chr(9) & rs("g11.modulo") & Chr(9) & rs("usuario") & Chr(9) & rs("num_int_comp") & Chr(9) & rs("obs") & Chr(9) & rs("descripcion") & Chr(9) & ente
      reg = reg + 1
      Label5 = reg
      Label5.Refresh

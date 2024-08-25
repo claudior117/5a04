@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "mscomctl.OCX"
 Begin VB.Form com_config_comp1 
    BackColor       =   &H00E0E0E0&
    BorderStyle     =   1  'Fixed Single
@@ -618,12 +618,12 @@ Begin VB.Form com_config_comp1
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "27/02/2015"
+            TextSave        =   "25/08/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "09:41"
+            TextSave        =   "11:13 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -657,6 +657,14 @@ If J = 6 Then
       QUERY = QUERY & " where [id_tipo_comp] = " & Val(t_id)
       cn1.BeginTrans
       cn1.Execute QUERY
+      
+      
+       QUERY = "INSERT INTO g11([detalle], [id_usuario], [modulo], [num_int_comp], [fecha_hora], [obs], [id_operacion], [id_clipro])"
+       QUERY = QUERY & " VALUES ('Modifica configuracion comprobante:" & t_id & "', " & para.id_usuario & ", 'C', " & Val(t_id) & ", '" & Now & "', '[" & t_abrevia & "', 106, 1)"
+       cn1.Execute QUERY
+      
+      
+      
       cn1.CommitTrans
    
    

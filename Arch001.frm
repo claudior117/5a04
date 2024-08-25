@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "mscomctl.OCX"
 Begin VB.Form abm_prov1 
    BackColor       =   &H00E0E0E0&
    BorderStyle     =   1  'Fixed Single
@@ -784,12 +784,12 @@ Begin VB.Form abm_prov1
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "11/03/2015"
+            TextSave        =   "24/08/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "09:18"
+            TextSave        =   "08:20 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -863,6 +863,11 @@ QUERY = "update a1 set  [Denominacion]='" & t_descripcion & "' , [direccion]='" 
 "' , [te_contacto] = '" & t_tecontacto & "' , [email_contacto] = '" & t_emailcontacto & "' , [id_codretib] = " & c_retib.ItemData(c_retib.ListIndex) & " , [alicuota_retib] = " & Val(t_alicuotaretib) & _
 " , [transporte] = '" & t_transp & "' , [id_provincia]=" & c_provincia.ItemData(c_provincia.ListIndex) & ", [id_cuenta_a1]=" & c_cuenta.ItemData(c_cuenta.ListIndex)
 QUERY = QUERY & " where [id_proveedor]= " & Val(t_id)
+      
+       
+      
+      
+      
       cn1.BeginTrans
       cn1.Execute QUERY
       cn1.CommitTrans
@@ -1026,7 +1031,7 @@ Private Sub t_fecha_vto_exepcion_LostFocus()
 End Sub
 
 Private Sub t_inscgan_GotFocus()
-StatusBar1.Panels.Item(2) = "[S] Inscripto - [N] No Inscripto - [E] Exento"
+StatusBar1.Panels.item(2) = "[S] Inscripto - [N] No Inscripto - [E] Exento"
 
 End Sub
 

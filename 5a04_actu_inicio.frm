@@ -120,7 +120,7 @@ Begin VB.Form actu_inicio
    Begin VB.Label Label3 
       Alignment       =   2  'Center
       BackColor       =   &H0000FFFF&
-      Caption         =   "232"
+      Caption         =   "233"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   18
@@ -344,6 +344,8 @@ Case Is = 231
     Call actu231
 Case Is = 232
     Call actu232
+Case Is = 233
+    Call actu233
  Case Is = 999
    Call actu999
    
@@ -2939,6 +2941,55 @@ If h = 6 Then
  Unload espere
   
 End If
+
+Exit Sub
+
+
+err1:
+Resume Next
+
+End Sub
+
+
+Sub actu233()
+'corrige oc
+h = MsgBox("Actualizacion 233. Verificar si existe el campo tipo04 en PRO_04 ¿Existe?  ", 4)
+
+  espere.Show
+  espere.Refresh
+   
+   cn1.BeginTrans
+   q = "update g0 set  [actualizacion]=233"
+    q = q & " where [sucursal]=0 "
+    cn1.Execute q
+   
+    
+  cn1.CommitTrans
+  
+  If h <> 6 Then
+    cn1.BeginTrans
+    q = "alter table pro_04 add column [tipo04] int "
+     cn1.Execute q
+    cn1.CommitTrans
+  
+      cn1.BeginTrans
+     q = "update pro_04 set  [tipo04]=1"
+   
+     cn1.Execute q
+    cn1.CommitTrans
+  
+  
+  
+  
+  End If
+  
+  
+  MsgBox ("Proceso terminado. Renovar tabla G15")
+   
+   
+   
+ Unload espere
+  
 
 Exit Sub
 

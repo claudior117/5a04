@@ -890,12 +890,12 @@ Begin VB.Form op
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "05/07/2024"
+            TextSave        =   "25/08/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "09:43 a.m."
+            TextSave        =   "10:27 a.m."
          EndProperty
       EndProperty
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -954,7 +954,7 @@ Dim gnumintop As Long
 Private Function calcularetgan(ByVal cc, ByVal ig) As Double
 If T_CALCULARETGAN = "S" Then
  q = "select * from i_01 where [id_impuesto] = 217"
- Set rs2 = New adodb.Recordset
+ Set rs2 = New ADODB.Recordset
  rs2.Open q, cn1
  If Not rs2.EOF And Not rs2.BOF Then
    If rs2("calcula") = "S" Then
@@ -974,7 +974,7 @@ If T_CALCULARETGAN = "S" Then
         rg_alicuota = 0
         impnosujret = 0
 
-        Set rs = New adodb.Recordset
+        Set rs = New ADODB.Recordset
         q = "select * from ret_01 where [id_proveedor] = " & denominACION.ItemData(denominACION.ListIndex) & " and [id_retgan] = " & cc & " and [mes] = " & m & " and [año] = " & a
         rs.Open q, cn1
         If Not rs.BOF And Not rs.EOF Then
@@ -988,7 +988,7 @@ If T_CALCULARETGAN = "S" Then
 
 
         q = "select * from i_02 where [id_impuesto] = 217 and [id_concepto] = " & cc
-        Set rs = New adodb.Recordset
+        Set rs = New ADODB.Recordset
         rs.Open q, cn1
         If Not rs.BOF And Not rs.EOF Then
            If ig = "S" Then
@@ -1017,7 +1017,7 @@ If T_CALCULARETGAN = "S" Then
            t_ret = (excedente * rg_alicuota / 100) - retmes
        Else
            'por tabla
-          Set rs = New adodb.Recordset
+          Set rs = New ADODB.Recordset
         q = "select * from i_03 where [id_impuesto] = 217 order by [secuencia]"
         rs.Open q, cn1, adOpenStatic, adLockReadOnly
         While Not rs.EOF
@@ -1057,7 +1057,7 @@ id = Space$(10)
 iss = Space$(10)
 QUERY = "select [ctacte], [moneda], [total], [subtotal], [total_d], [letra], [sucursal], [num_comprobante], [fecha], [id_codretgan], [id_tipocomp], [num_int], [id_codretib], [id_cuenta], [cotiz_dolar], [saldo_impago] from a5 where  [id_proveedor] = " & denominACION.ItemData(denominACION.ListIndex) & " and [estado_pago] = 'N' and  [ctacte] <> 'N' and [contado] = 'N' and (id_tipocomp <= 30 or id_tipocomp = 400) "
 QUERY = QUERY & " order by fecha"
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 rs.Open QUERY, cn1
 While Not rs.EOF
    If rs("ctacte") = "D" Then
@@ -1162,7 +1162,7 @@ If verificaperiodog(t_fecha) = "A" Then
    MsgBox ("El periodo para el cual se deseas ingresar el comprobante esta CERRADO!!!!!")
   Else
     q = "select * from a5 where  [num_comprobante] = " & Val(t_numop) & " and [sucursal] = " & Val(sucursal) & " and [id_tipocomp] = 50"
-    Set rso = New adodb.Recordset
+    Set rso = New ADODB.Recordset
     rso.MaxRecords = 1
     rso.Open q, cn1
     If Not rso.BOF And Not rso.EOF Then
@@ -1429,7 +1429,7 @@ QUERY = QUERY & " VALUES (" & numint & ", " & Val(sucursal) & ", " & Val(t_numop
 
         
        If Val(msf2.TextMatrix(i, 0)) = 3 Then 'ch. terceros
-        Set rs = New adodb.Recordset
+        Set rs = New ADODB.Recordset
         q = "select [estado], [destino], [num_int_op], [fecha_salida], [tipo_salida] from cyb_03 where [num_interno] = " & Val(msf2.TextMatrix(i, 8))
         rs.MaxRecords = 1
         rs.Open q, cn1, adOpenDynamic, adLockOptimistic
@@ -1464,7 +1464,7 @@ QUERY = QUERY & " VALUES (" & numint & ", " & Val(sucursal) & ", " & Val(t_numop
 
         
         
-        Set rs = New adodb.Recordset
+        Set rs = New ADODB.Recordset
         q = "select [estado], [fecha_dif], [fecha_emision], [destino], [importe], [num_int_op], [num_mov_banco] from cyb_02 where [id_banco] = " & Val(msf2.TextMatrix(i, 0)) & " and [num_cheque] = " & Val(msf2.TextMatrix(i, 2))
         rs.MaxRecords = 1
         rs.Open q, cn1, adOpenDynamic, adLockOptimistic
@@ -1513,7 +1513,7 @@ QUERY = QUERY & " VALUES (" & numint & ", " & Val(sucursal) & ", " & Val(t_numop
 
       
       
-      Set rs = New adodb.Recordset
+      Set rs = New ADODB.Recordset
       q = "select [caja] from cyb_01 where [id_forma_pago] = " & Val(msf2.TextMatrix(i, 0))
       rs.MaxRecords = 1
       rs.Open q, cn1
@@ -1534,7 +1534,7 @@ QUERY = QUERY & " VALUES (" & numint & ", " & Val(sucursal) & ", " & Val(t_numop
       'actualiza comprobantes aplicados
       
       For i = 1 To msf1.Rows - 1
-        Set rs = New adodb.Recordset
+        Set rs = New ADODB.Recordset
         q = "select [num_int], [estado_pago], [num_op], [saldo_impago], [id_tipocomp] from a5 where [num_int] = " & Val(msf1.TextMatrix(i, 4))
         rs.MaxRecords = 1
         rs.Open q, cn1, adOpenDynamic, adLockOptimistic
@@ -1551,7 +1551,7 @@ QUERY = QUERY & " VALUES (" & numint & ", " & Val(sucursal) & ", " & Val(t_numop
           rs("num_op") = Format$(Val(sucursal), "0000") & "-" & Format$(t_numop, "00000000")
           rs.Update
         
-          Set rs2 = New adodb.Recordset
+          Set rs2 = New ADODB.Recordset
           q = "select * from a15"
           rs2.Open q, cn1, adOpenDynamic, adLockOptimistic
           rs2.AddNew
@@ -1569,7 +1569,7 @@ QUERY = QUERY & " VALUES (" & numint & ", " & Val(sucursal) & ", " & Val(t_numop
         
       
       'actualizo acumulador retencion gan.
-      Set rs = New adodb.Recordset
+      Set rs = New ADODB.Recordset
       q = "select * from ret_01 where [id_proveedor] = " & denominACION.ItemData(denominACION.ListIndex) & " and [id_retgan] = " & Val(t_crg) & " and [mes] = " & Val(Mid$(t_fecha, 4, 2)) & " and [año] = " & Val(Mid$(t_fecha, 7, 4))
       rs.MaxRecords = 1
       rs.Open q, cn1, adOpenDynamic, adLockOptimistic
@@ -1601,7 +1601,7 @@ QUERY = QUERY & " VALUES (" & numint & ", " & Val(sucursal) & ", " & Val(t_numop
            u2 = "D"
          End If
          
-         Set rs = New adodb.Recordset
+         Set rs = New ADODB.Recordset
          q = "select [descripcion] from c_01 where [id_cuenta] = " & cta
          rs.MaxRecords = 1
          rs.Open q, cn1
@@ -1634,6 +1634,14 @@ QUERY = QUERY & " VALUES (" & numint & ", " & Val(sucursal) & ", " & Val(t_numop
          Next i
        End If
       End If
+      
+      
+       nc = Format$(Val(sucursal), "0000") & "-" & Format$(Val(t_numop), "00000000")
+      
+       QUERY = "INSERT INTO g11([detalle], [id_usuario], [modulo], [num_int_comp], [fecha_hora], [obs], [id_operacion], [id_clipro])"
+       QUERY = QUERY & " VALUES ('Orden de pago:" & numint & "', " & para.id_usuario & ", 'C', " & numint & ", '" & Now & "', '[" & nc & "', 102, " & denominACION.ItemData(denominACION.ListIndex) & ")"
+       cn1.Execute QUERY
+    
       
       cn1.CommitTrans
         
@@ -1722,7 +1730,7 @@ Sub grabaretencionib()
            u2 = "D"
          End If
          
-         Set rs = New adodb.Recordset
+         Set rs = New ADODB.Recordset
          q = "select [descripcion] from c_01 where [id_cuenta] = " & cta
          rs.MaxRecords = 1
          rs.Open q, cn1
@@ -1749,6 +1757,15 @@ Sub grabaretencionib()
          cn1.Execute QUERY
        End If
      End If
+     
+     
+       nc = Format$(Val(t_sucursal), "0000") & "-" & Format$(numret, "00000000")
+      
+       QUERY = "INSERT INTO g11([detalle], [id_usuario], [modulo], [num_int_comp], [fecha_hora], [obs], [id_operacion], [id_clipro])"
+       QUERY = QUERY & " VALUES ('Emite Retencion IB:" & numint & "', " & para.id_usuario & ", 'C', " & numint & ", '" & Now & "', '[" & nc & "', 104, " & denominACION.ItemData(denominACION.ListIndex) & ")"
+       cn1.Execute QUERY
+     
+     
      cn1.CommitTrans
       
             
@@ -1798,7 +1815,7 @@ Private Sub grabaretencion()
            u2 = "D"
          End If
          
-         Set rs = New adodb.Recordset
+         Set rs = New ADODB.Recordset
          q = "select [descripcion] from c_01 where [id_cuenta] = " & cta
          rs.MaxRecords = 1
          rs.Open q, cn1
@@ -1825,6 +1842,12 @@ Private Sub grabaretencion()
          cn1.Execute QUERY
        End If
       End If
+      
+      nc = Format$(Val(t_sucursal), "0000") & "-" & Format$(numret, "00000000")
+      
+       QUERY = "INSERT INTO g11([detalle], [id_usuario], [modulo], [num_int_comp], [fecha_hora], [obs], [id_operacion], [id_clipro])"
+       QUERY = QUERY & " VALUES ('Emite Retencion Ganancias:" & numint & "', " & para.id_usuario & ", 'C', " & numint & ", '" & Now & "', '[" & nc & "', 103, " & denominACION.ItemData(denominACION.ListIndex) & ")"
+       cn1.Execute QUERY
       
       cn1.CommitTrans
       
@@ -1858,12 +1881,12 @@ Private Sub IMPRIMERETG(ByVal n As Double)
 
 
 Dim gf1 As String
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = "select * from a5, a1, g1 where [num_int] = " & n & " and a5.[id_proveedor] = a1.[id_proveedor] and a5.[id_usuario] = g1.[id_usuario]"
 rs.MaxRecords = 1
 rs.Open q, cn1
 If Not rs.BOF And Not rs.EOF Then
-     Set rs2 = New adodb.Recordset
+     Set rs2 = New ADODB.Recordset
      q = "select [copias] from g2 where [id_tipo_comp] = " & rs("id_tipocomp")
      rs2.MaxRecords = 1
      rs2.Open q, cn1
@@ -2200,7 +2223,7 @@ Sub calcularetib()
 t_retib = "0.00"
 If t_CALCULARETIB = "S" Then
  q = "select * from i_01 where [id_impuesto] = 50"
- Set rs2 = New adodb.Recordset
+ Set rs2 = New ADODB.Recordset
  rs2.Open q, cn1
  
  If Not rs2.EOF And Not rs2.BOF Then
@@ -2231,7 +2254,7 @@ phoy = Val(t_neto)
 r = calcularetgan(codretgan, cl_prov.inscriptogan)
 
 
-Set rs = New adodb.Recordset
+Set rs = New ADODB.Recordset
 q = " SELECT * FROM i_01 where [id_impuesto] = 217"
 rs.Open q, cn1
 If Not rs.BOF And Not rs.EOF Then
@@ -2336,7 +2359,7 @@ Private Sub t_numop_LostFocus()
        fdolar = para.cotizacion
   Else
       q = "select [num_int] from a5 where [sucursal] = " & Val(sucursal) & " and [num_comprobante] = " & Val(t_numop) & " and [id_tipocomp] = 50"
-      Set rs = New adodb.Recordset
+      Set rs = New ADODB.Recordset
       rs.MaxRecords = 1
       rs.Open q, cn1
       If Not rs.BOF And Not rs.EOF Then
