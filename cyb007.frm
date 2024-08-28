@@ -332,7 +332,7 @@ Begin VB.Form cyb_chpropios
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:51 a.m."
+            TextSave        =   "11:57 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -349,7 +349,7 @@ Begin VB.Form cyb_chpropios
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   181010433
+      StartOfWeek     =   38666241
       CurrentDate     =   38754
    End
    Begin MSFlexGridLib.MSFlexGrid msf1 

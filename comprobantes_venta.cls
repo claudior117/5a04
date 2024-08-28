@@ -3771,7 +3771,7 @@ For Y = 1 To Val(lc)
  Printer.Print Tab(30); "P.U    IMPORTE"
  Printer.Print "================================================================================================="
  Set rs = New ADODB.Recordset
- q = "Select * from vta_03 where [num_int] = " & Me.numint
+ q = "Select * from vta_03 where [num_int] = " & Me.numint & " order by [renglon]"
  rs.Open q, cn1
  l = 0
  While Not rs.EOF
@@ -4159,7 +4159,7 @@ If cl_cli.id > 0 Then
     Print #1,
     
     Set rs = New ADODB.Recordset
-    q = "Select * from vta_03 where [num_int] = " & Me.numint
+    q = "Select * from vta_03 where [num_int] = " & Me.numint & " order by [renglon]"
     rs.Open q, cn1
     k = 0
     While Not rs.EOF
@@ -4479,7 +4479,7 @@ If Val(lw) > 0 And Val(lw) <= 5 Then
 'FIXIT: El Asistente para actualización no actualiza el objeto Printer ni la colección Printers a Visual Basic .NET.     FixIT90210ae-R5481-H1984
     Printer.Print
     Set rs = New ADODB.Recordset
-    q = "Select * from vta_03 where [num_int] = " & Me.numint
+    q = "Select * from vta_03 where [num_int] = " & Me.numint & " order by [renglon]"
     rs.Open q, cn1
     cp2 = Space$(6)
     cant = Space$(8)
@@ -4955,7 +4955,7 @@ If Val(lw) > 0 And Val(lw) <= 5 Then
 'FIXIT: El Asistente para actualización no actualiza el objeto Printer ni la colección Printers a Visual Basic .NET.     FixIT90210ae-R5481-H1984
     Printer.Print
     Set rs = New ADODB.Recordset
-    q = "Select * from vta_03 where [num_int] = " & Me.numint
+    q = "Select * from vta_03 where [num_int] = " & Me.numint & " order by [renglon]"
     rs.Open q, cn1
     l = 0
     While Not rs.EOF
@@ -5280,7 +5280,7 @@ If Val(lw) > 0 And Val(lw) <= 5 Then
 'FIXIT: El Asistente para actualización no actualiza el objeto Printer ni la colección Printers a Visual Basic .NET.     FixIT90210ae-R5481-H1984
     Printer.Print
     Set rs = New ADODB.Recordset
-    q = "Select * from vta_03 where [num_int] = " & Me.numint
+    q = "Select * from vta_03 where [num_int] = " & Me.numint & " order by [renglon]"
     rs.Open q, cn1
     l = 0
     While Not rs.EOF
@@ -6295,7 +6295,7 @@ For Y = 1 To Val(l)
  Printer.Print "      Cant.  Unidad  Codigo  Articulo                                              P.U    IMPORTE"
  Printer.Print "      ================================================================================================="
  Set rs = New ADODB.Recordset
- q = "Select * from vta_03 where [num_int] = " & Me.numint
+ q = "Select * from vta_03 where [num_int] = " & Me.numint & " order by [renglon]"
  rs.Open q, cn1
  l = 0
  While Not rs.EOF
@@ -6453,7 +6453,7 @@ For Y = 1 To Val(l)
  Printer.Print "      Cant.  Unidad  Codigo  Articulo                                              P.U    IMPORTE"
  Printer.Print "      ================================================================================================="
  Set rs = New ADODB.Recordset
- q = "Select * from vta_03 where [num_int] = " & Me.numint
+ q = "Select * from vta_03 where [num_int] = " & Me.numint & " order by [renglon]"
  rs.Open q, cn1
  l = 0
  While Not rs.EOF
@@ -6612,7 +6612,7 @@ For Y = 1 To Val(l)
  Printer.Print "      Cant.  Unidad  Codigo  Articulo                                              P.U    IMPORTE"
  Printer.Print "      ================================================================================================="
  Set rs = New ADODB.Recordset
- q = "Select * from vta_03 where [num_int] = " & Me.numint
+ q = "Select * from vta_03 where [num_int] = " & Me.numint & " order by [renglon]"
  rs.Open q, cn1
  l = 0
  While Not rs.EOF
@@ -6759,7 +6759,7 @@ For Y = 1 To Val(lc)
  Printer.Print "      Cant.  Unidad  Codigo  Articulo                                              P.U    IMPORTE"
  Printer.Print "      ================================================================================================="
  Set rs = New ADODB.Recordset
- q = "Select * from vta_03 where [num_int] = " & Me.numint
+ q = "Select * from vta_03 where [num_int] = " & Me.numint & " order by [renglon]"
  rs.Open q, cn1
  l = 0
  While Not rs.EOF
@@ -8960,7 +8960,7 @@ If cl_cli.id > 0 Then
 'FIXIT: El Asistente para actualización no actualiza el objeto Printer ni la colección Printers a Visual Basic .NET.     FixIT90210ae-R5481-H1984
    Printer.FontSize = 10
    Set rs = New ADODB.Recordset
-   q = "Select * from vta_03 where [num_int] = " & Me.numint
+   q = "Select * from vta_03 where [num_int] = " & Me.numint & " order by [renglon]"
    rs.Open q, cn1
    i = Space$(10)
    t = Space$(4)
@@ -9110,7 +9110,7 @@ If cl_cli.id > 0 Then
    Printer.FontName = "Courier New"
    Printer.FontSize = 10
    Set rs = New ADODB.Recordset
-   q = "Select * from vta_03 where [num_int] = " & Me.numint
+   q = "Select * from vta_03 where [num_int] = " & Me.numint & " order by [renglon]"
    rs.Open q, cn1
    i = Space$(10)
    t = Space$(4)
@@ -9375,7 +9375,7 @@ Sub formato4A(ByVal c As Integer)
  Printer.Print
  Printer.Print
   Set rs = New ADODB.Recordset
-   q = "Select * from vta_03 where [num_int] = " & Me.numint
+   q = "Select * from vta_03 where [num_int] = " & Me.numint & " order by [renglon]"
    rs.Open q, cn1
    cant = Space$(10)
    l = 0
@@ -9623,7 +9623,7 @@ Printer.FontBold = False
 Printer.FontSize = 6
 
 Set rs = New ADODB.Recordset
-q = "Select * from vta_03 where [num_int] = " & Me.numint
+q = "Select * from vta_03 where [num_int] = " & Me.numint & " order by [renglon]"
 rs.Open q, cn1
 cant = Space$(10)
 l = 0
@@ -10212,7 +10212,7 @@ Sub formato5(ByVal c As Integer)
  Printer.Print
 ' Printer.Print
    Set rs = New ADODB.Recordset
-   q = "Select * from vta_03 where [num_int] = " & Me.numint
+   q = "Select * from vta_03 where [num_int] = " & Me.numint & " order by [renglon]"
    rs.Open q, cn1
    cant = Space$(10)
    l = 0
@@ -11251,7 +11251,7 @@ Sub formato8(ByVal c As Integer)
  'Printer.Print
 ' Printer.Print
    Set rs = New ADODB.Recordset
-   q = "Select * from vta_03 where [num_int] = " & Me.numint
+   q = "Select * from vta_03 where [num_int] = " & Me.numint & " order by [renglon]"
    rs.Open q, cn1
    cant = Space$(10)
    l = 0

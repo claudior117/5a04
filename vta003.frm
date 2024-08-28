@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "mscomctl.OCX"
 Begin VB.Form vta_facturacion1 
    BackColor       =   &H00C0C0C0&
    BorderStyle     =   1  'Fixed Single
@@ -265,12 +265,12 @@ Begin VB.Form vta_facturacion1
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "02/03/2024"
+            TextSave        =   "28/08/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "08:46 p.m."
+            TextSave        =   "11:52 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -371,7 +371,13 @@ If KeyCode = vbKeyF6 And t_renglon = "" Then
   c_tasa.ListIndex = 1
   t_ip = 1
   t_cantidad = "1.00"
-  t_pu = Format$(-Val(vta_facturacion.t_subtotal) * d1 / 100, "######0.00")
+  If para.tipoprecioventa = 1 Then
+        t_pu = Format$(-Val(vta_facturacion.T_TOTAL) * d1 / 100, "######0.00")
+  Else
+         t_pu = Format$(-Val(vta_facturacion.t_subtotal) * d1 / 100, "######0.00")
+  End If
+  
+  
   t_importe = t_pu
   
 End If
@@ -388,7 +394,11 @@ If KeyCode = vbKeyF7 And t_renglon = "" Then
   c_tasa.ListIndex = 1
   t_ip = 1
   t_cantidad = "1.00"
-  t_pu = Format$(-Val(vta_facturacion.t_subtotal) * d2 / 100, "######0.00")
+  If para.tipoprecioventa = 1 Then
+    t_pu = Format$(-Val(vta_facturacion.T_TOTAL) * d2 / 100, "######0.00")
+  Else
+     t_pu = Format$(-Val(vta_facturacion.t_subtotal) * d2 / 100, "######0.00")
+  End If
   t_importe = t_pu
 
 End If
