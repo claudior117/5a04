@@ -3417,7 +3417,7 @@ Public Sub imprimir()
 'T tique no fiscal
 
 QUERY = "INSERT INTO g11([detalle], [id_usuario], [modulo], [num_int_comp], [fecha_hora], [obs], [id_operacion], [id_clipro])"
-        QUERY = QUERY & " VALUES ('Imprimir/Reimprimir Comp Venta NI:" & Me.numint & "', " & para.id_usuario & ", 'V', " & Me.numint & ", '" & Now & "', '" & Me.razonsocial & "(" & Me.sucursal & "-" & Me.numcomp & ")', 26, " & Me.idcliente & ")"
+        QUERY = QUERY & " VALUES ('Imprimir/Reimprimir Comp Venta NI:" & Me.numint & "', " & para.id_usuario & ", 'V', " & Me.numint & ", '" & Now & "', '" & Left$(Me.razonsocial, 35) & "(" & Me.sucursal & "-" & Me.numcomp & ")', 26, " & Me.idcliente & ")"
         cn1.BeginTrans
          cn1.Execute QUERY
         cn1.CommitTrans
