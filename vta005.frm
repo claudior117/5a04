@@ -5,21 +5,21 @@ Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "mscomctl.OCX"
 Begin VB.Form vta_vercomp 
    BackColor       =   &H00E0E0E0&
    Caption         =   "COMPROBANTES EMITIDOS"
-   ClientHeight    =   8490
+   ClientHeight    =   9435
    ClientLeft      =   165
    ClientTop       =   555
-   ClientWidth     =   11880
+   ClientWidth     =   18165
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
-   ScaleHeight     =   8490
-   ScaleWidth      =   11880
+   ScaleHeight     =   9435
+   ScaleWidth      =   18165
    StartUpPosition =   3  'Windows Default
    Begin VB.Frame Frame8 
       BackColor       =   &H00E0E0E0&
       Height          =   615
       Left            =   5400
       TabIndex        =   42
-      Top             =   7560
+      Top             =   8400
       Width           =   2895
       Begin VB.ComboBox c_moneda 
          Height          =   315
@@ -49,7 +49,7 @@ Begin VB.Form vta_vercomp
       Height          =   615
       Left            =   5400
       TabIndex        =   39
-      Top             =   6960
+      Top             =   7800
       Width           =   2895
       Begin VB.CheckBox Check2 
          BackColor       =   &H00E0E0E0&
@@ -76,7 +76,7 @@ Begin VB.Form vta_vercomp
       Height          =   615
       Left            =   2640
       TabIndex        =   37
-      Top             =   7560
+      Top             =   8400
       Width           =   2655
       Begin VB.ComboBox c_v 
          Height          =   315
@@ -93,9 +93,9 @@ Begin VB.Form vta_vercomp
       BackColor       =   &H00E0E0E0&
       Caption         =   "Cambiar"
       Height          =   975
-      Left            =   8400
+      Left            =   10680
       TabIndex        =   32
-      Top             =   7200
+      Top             =   7920
       Width           =   1095
       Begin VB.CommandButton Command1 
          Height          =   495
@@ -113,7 +113,7 @@ Begin VB.Form vta_vercomp
       Height          =   615
       Left            =   240
       TabIndex        =   25
-      Top             =   7560
+      Top             =   8400
       Width           =   2295
       Begin VB.OptionButton Option3 
          BackColor       =   &H00E0E0E0&
@@ -140,7 +140,7 @@ Begin VB.Form vta_vercomp
       Height          =   615
       Left            =   240
       TabIndex        =   15
-      Top             =   6960
+      Top             =   7800
       Width           =   5055
       Begin VB.OptionButton Option1 
          BackColor       =   &H00E0E0E0&
@@ -198,155 +198,321 @@ Begin VB.Form vta_vercomp
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   38666241
+      StartOfWeek     =   115671041
       CurrentDate     =   38754
    End
    Begin MSFlexGridLib.MSFlexGrid msf1 
-      Height          =   5295
+      Height          =   5655
       Left            =   240
       TabIndex        =   4
-      Top             =   1680
-      Width           =   11535
-      _ExtentX        =   20346
-      _ExtentY        =   9340
+      Top             =   2040
+      Width           =   17535
+      _ExtentX        =   30930
+      _ExtentY        =   9975
       _Version        =   393216
+      Cols            =   8
+      FixedCols       =   3
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Segoe UI"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
    End
    Begin VB.Frame Frame3 
       BackColor       =   &H00E0E0E0&
-      Height          =   1575
+      Height          =   1935
       Left            =   240
       TabIndex        =   9
       Top             =   0
-      Width           =   11535
+      Width           =   17415
+      Begin VB.TextBox t_obs 
+         BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   285
+         Left            =   7680
+         MaxLength       =   30
+         TabIndex        =   45
+         Top             =   1200
+         Width           =   3615
+      End
       Begin VB.ComboBox c_c 
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          ItemData        =   "vta005.frx":036C
-         Left            =   9240
+         Left            =   13920
          List            =   "vta005.frx":0379
          Style           =   2  'Dropdown List
          TabIndex        =   35
-         Top             =   1200
-         Width           =   2175
+         Top             =   1440
+         Width           =   3255
       End
       Begin VB.TextBox t_cliente 
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   285
-         Left            =   5280
+         Left            =   8280
          TabIndex        =   34
          Top             =   240
          Width           =   1935
       End
       Begin VB.ComboBox c_estadopago 
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          ItemData        =   "vta005.frx":0397
-         Left            =   9240
+         Left            =   13920
          List            =   "vta005.frx":03A4
          Style           =   2  'Dropdown List
          TabIndex        =   30
-         Top             =   840
-         Width           =   2175
+         Top             =   960
+         Width           =   3255
       End
       Begin VB.ComboBox c_suc 
-         Height          =   315
-         Left            =   9240
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Left            =   13920
          Style           =   2  'Dropdown List
          TabIndex        =   28
          Top             =   480
-         Width           =   2175
+         Width           =   3255
       End
       Begin VB.ComboBox c_vend 
-         Height          =   315
-         Left            =   1320
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Left            =   1680
          TabIndex        =   23
          Text            =   "c"
          Top             =   1200
          Width           =   3975
       End
       Begin VB.CommandButton Command5 
-         Height          =   255
-         Left            =   7320
+         Height          =   375
+         Left            =   10320
          Picture         =   "vta005.frx":03C1
          Style           =   1  'Graphical
          TabIndex        =   22
          Top             =   240
-         Width           =   255
+         Width           =   375
       End
       Begin VB.ComboBox c_tipocomp 
-         Height          =   315
-         Left            =   9240
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Left            =   13920
          Style           =   2  'Dropdown List
          TabIndex        =   1
          Top             =   120
-         Width           =   2175
+         Width           =   3255
       End
       Begin VB.TextBox t_fecha2 
          BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   285
-         Left            =   4080
+         Left            =   5520
          MaxLength       =   10
          TabIndex        =   3
          Top             =   720
-         Width           =   1335
+         Width           =   1695
       End
       Begin VB.TextBox t_fecha 
          BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   285
-         Left            =   1320
+         Left            =   1680
          MaxLength       =   10
          TabIndex        =   2
          Top             =   720
-         Width           =   1215
+         Width           =   1575
       End
       Begin VB.ComboBox c_prov 
-         Height          =   315
-         Left            =   1320
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Left            =   1680
          TabIndex        =   0
          Text            =   "c_prov"
          Top             =   240
-         Width           =   3855
+         Width           =   6375
+      End
+      Begin VB.Label Label11 
+         Alignment       =   1  'Right Justify
+         BackColor       =   &H00800080&
+         Caption         =   "Observaciones:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00FFFFFF&
+         Height          =   255
+         Left            =   6000
+         TabIndex        =   46
+         Top             =   1200
+         Width           =   1575
       End
       Begin VB.Label Label9 
          Alignment       =   1  'Right Justify
          BackColor       =   &H00800080&
          Caption         =   "Contado o Ctacte:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
          Height          =   375
-         Left            =   7680
+         Left            =   11640
          TabIndex        =   36
-         Top             =   1200
-         Width           =   1455
+         Top             =   1440
+         Width           =   2175
       End
       Begin VB.Label Label8 
          Alignment       =   1  'Right Justify
          BackColor       =   &H00800080&
          Caption         =   "Estado Pago:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
-         Height          =   375
-         Left            =   7680
+         Height          =   495
+         Left            =   11640
          TabIndex        =   31
-         Top             =   840
-         Width           =   1455
+         Top             =   960
+         Width           =   2175
       End
       Begin VB.Label Label7 
          Alignment       =   1  'Right Justify
          BackColor       =   &H00800080&
          Caption         =   "Sucursal:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
-         Height          =   375
-         Left            =   7680
+         Height          =   495
+         Left            =   11640
          TabIndex        =   29
          Top             =   480
-         Width           =   1455
+         Width           =   2175
       End
       Begin VB.Label Label6 
          Alignment       =   1  'Right Justify
          BackColor       =   &H00800080&
          Caption         =   "Vendedor:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
-         Height          =   255
+         Height          =   375
          Left            =   120
          TabIndex        =   24
          Top             =   1200
-         Width           =   1095
+         Width           =   1455
       End
       Begin VB.Label Label5 
          BackColor       =   &H00E0E0E0&
@@ -361,54 +527,90 @@ Begin VB.Form vta_vercomp
          Alignment       =   1  'Right Justify
          BackColor       =   &H00800080&
          Caption         =   "Tipo Comprobante:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
          Height          =   375
-         Left            =   7680
+         Left            =   11640
          TabIndex        =   13
          Top             =   120
-         Width           =   1455
+         Width           =   2175
       End
       Begin VB.Label Label1 
          Alignment       =   1  'Right Justify
          BackColor       =   &H00800080&
          Caption         =   "Fecha Hasta:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
          Height          =   255
-         Left            =   2880
+         Left            =   3840
          TabIndex        =   12
          Top             =   720
-         Width           =   1215
+         Width           =   1575
       End
       Begin VB.Label Label3 
          Alignment       =   1  'Right Justify
          BackColor       =   &H00800080&
          Caption         =   "Fecha Desde:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
          Height          =   495
          Left            =   120
          TabIndex        =   11
          Top             =   720
-         Width           =   1095
+         Width           =   1455
       End
       Begin VB.Label Label2 
          Alignment       =   1  'Right Justify
          BackColor       =   &H00800080&
          Caption         =   "Cliente:"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00FFFFFF&
          Height          =   495
          Left            =   120
          TabIndex        =   10
          Top             =   240
-         Width           =   1095
+         Width           =   1455
       End
    End
    Begin VB.Frame Frame1 
       BackColor       =   &H00E0E0E0&
       Caption         =   "Funciones"
       Height          =   975
-      Left            =   9720
+      Left            =   16080
       TabIndex        =   6
-      Top             =   7200
+      Top             =   8040
       Width           =   1575
       Begin VB.CommandButton btnsale 
          Cancel          =   -1  'True
@@ -439,37 +641,46 @@ Begin VB.Form vta_vercomp
       Height          =   255
       Left            =   0
       TabIndex        =   5
-      Top             =   8235
-      Width           =   11880
-      _ExtentX        =   20955
+      Top             =   9180
+      Width           =   18165
+      _ExtentX        =   32041
       _ExtentY        =   450
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
          NumPanels       =   4
          BeginProperty Panel1 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Alignment       =   1
-            Object.Width           =   2646
-            MinWidth        =   2646
+            Object.Width           =   12347
+            MinWidth        =   12347
             Text            =   "Cliente"
             TextSave        =   "Cliente"
          EndProperty
          BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Alignment       =   1
-            Object.Width           =   13229
-            MinWidth        =   13229
+            Object.Width           =   12347
+            MinWidth        =   12347
             Text            =   "Sistema"
             TextSave        =   "Sistema"
          EndProperty
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "28/08/2024"
+            TextSave        =   "07/10/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "11:57 a.m."
+            TextSave        =   "10:13 a.m."
          EndProperty
+      EndProperty
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
       EndProperty
       OLEDropMode     =   1
    End
@@ -544,6 +755,10 @@ Sub carga()
 
   If t_cliente <> "" Then
     q = q & c & " [cliente02] like '%" & t_cliente & "%'"
+  End If
+    
+  If t_obs <> "" Then
+    q = q & c & " vta_02.[observaciones] like '%" & t_obs & "%'"
   End If
     
   If Option1 = False Then
@@ -644,21 +859,21 @@ Sub armagrid()
 msf1.clear
 msf1.Rows = 1
 msf1.Cols = 15
-msf1.ColWidth(0) = 1300
+msf1.ColWidth(0) = 1700
 msf1.ColWidth(1) = 700 'cod prov
-msf1.ColWidth(2) = 3500
+msf1.ColWidth(2) = 4500
 msf1.ColWidth(3) = 500
 msf1.ColWidth(4) = 1700
-msf1.ColWidth(5) = 1700
-msf1.ColWidth(6) = 1200
+msf1.ColWidth(5) = 2000
+msf1.ColWidth(6) = 2100
 msf1.ColWidth(7) = 500
 msf1.ColWidth(8) = 1000
 msf1.ColWidth(9) = 700
 msf1.ColWidth(10) = 700
-msf1.ColWidth(11) = 2500
+msf1.ColWidth(11) = 4500
 msf1.ColWidth(12) = 700
-msf1.ColWidth(13) = 1200
-msf1.ColWidth(14) = 1200
+msf1.ColWidth(13) = 2100
+msf1.ColWidth(14) = 2000
 
 
 msf1.TextMatrix(0, 0) = "Fecha"
@@ -927,4 +1142,8 @@ End Sub
 
 Private Sub t_importe_GotFocus()
 t_importe = ""
+End Sub
+
+Private Sub t_obs_GotFocus()
+t_obs = ""
 End Sub
