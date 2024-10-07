@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "mscomctl.OCX"
 Begin VB.Form vta_cc_detalle 
    BackColor       =   &H00E0E0E0&
    Caption         =   "COMPROBANTE DE VENTA(DETALLE)"
@@ -607,7 +607,7 @@ Sub remitos()
      List1.AddItem l1
      
      Set rs1 = New ADODB.Recordset
-     q = "select cantidad_original, cantidad, pu, id_producto, descripcion, importe, tasaiva from vta_03 where [num_int] = " & Val(t_numint)
+     q = "select cantidad_original, cantidad, pu, id_producto, descripcion, importe, tasaiva from vta_03 where [num_int] = " & Val(t_numint) & " order by [renglon]"
      rs1.Open q, cn1
      co = Space$(9)
      cf = Space$(9)
@@ -645,7 +645,7 @@ Sub COMPROBANTES()
      List1.AddItem l1
      
      Set rs1 = New ADODB.Recordset
-     q = "select cantidad, pu_final, pu, importe,id_producto, descripcion, tasaiva, tasaib, renglon from vta_03 where [num_int] = " & Val(t_numint)
+     q = "select cantidad, pu_final, pu, importe,id_producto, descripcion, tasaiva, tasaib, renglon from vta_03 where [num_int] = " & Val(t_numint) & " order by [renglon]"
      rs1.Open q, cn1
      c = Space$(7)
      p = Space$(10)

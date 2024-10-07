@@ -1,6 +1,6 @@
 VERSION 5.00
-Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFlxGrd.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "mscomctl.OCX"
 Begin VB.Form abm_asientos0 
    BackColor       =   &H00E0E0E0&
    Caption         =   "ASIENTOS CONTABLES"
@@ -282,12 +282,12 @@ Begin VB.Form abm_asientos0
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "27/02/2015"
+            TextSave        =   "27/09/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "09:41"
+            TextSave        =   "09:21 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -372,7 +372,7 @@ End Sub
 Sub LLENACAMPOS()
 'On Error GoTo ERROR1
 q = "select * from c_11 where [id_asiento] = " & Val(msf1.TextMatrix(msf1.Row, 0))
-Set rs = New ADODB.Recordset
+Set rs = New adodb.Recordset
 rs.Open q, cn1
 If Not rs.EOF And Not rs.BOF Then
   abm_asientos.t_id = rs("id_asiento")
@@ -382,7 +382,7 @@ If Not rs.EOF And Not rs.BOF Then
   abm_asientos.armagrid
   abm_asientos.armagrid2
   q = "select * from c_12, c_01 where [id_asiento] = " & Val(msf1.TextMatrix(msf1.Row, 0)) & " and c_12.[id_cuenta] = c_01.[id_cuenta]  order by [secuencia]"
-  Set rs1 = New ADODB.Recordset
+  Set rs1 = New adodb.Recordset
   rs1.Open q, cn1
   While Not rs1.EOF
     If rs1("ubicacion") = "D" Then
@@ -447,15 +447,17 @@ End If
 End Sub
 Sub renumera()
 q = "select * from c_11 where [id_periodo] = " & c_periodo.ItemData(c_periodo.ListIndex) & " order by [fecha], [num_asiento]"
-Set rs = New ADODB.Recordset
+Set rs = New adodb.Recordset
 rs.Open q, cn1, adOpenDynamic, adLockOptimistic
-p = 0
+mes = 0
 s = 1
 While Not rs.EOF
-  pa = Val(Mid$(Format$(rs("num_asiento"), "000000000"), 1, 6))
-  If pa <> p Then
+  a = Mid$(Format$(rs("fecha"), "dd/mm/yyyy"), 7, 4)
+  m = Mid$(Format$(rs("fecha"), "dd/mm/yyyy"), 4, 2)
+  pa = Val(Format$(a, "0000") & Format$(m, "00"))
+  If Val(m) <> mes Then
      s = 1
-     p = pa
+     mes = Val(m)
   End If
   na = Val(Format$(pa, "000000") & Format$(s, "000"))
   rs("num_asiento") = na
@@ -528,7 +530,7 @@ Else
 End If
 
 Call armagrid
-Set rs = New ADODB.Recordset
+Set rs = New adodb.Recordset
 rs.Open q, cn1
 t = 0
 ca = 0
