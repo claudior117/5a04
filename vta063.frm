@@ -1,7 +1,7 @@
 VERSION 5.00
 Object = "{0A6BE9FC-5039-11D5-98EC-0800460222F0}#1.0#0"; "IFEpson.ocx"
-Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "ComDlg32.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "mscomctl.OCX"
 Begin VB.Form vta_cargaprod_listaprov 
    BackColor       =   &H00E0E0E0&
    Caption         =   "AGREGA Productos desde LISTA DE PRECIOS DEL PROVEEDOR en EXCEL"
@@ -298,6 +298,15 @@ Begin VB.Form vta_cargaprod_listaprov
       TabIndex        =   9
       Top             =   0
       Width           =   7815
+      Begin VB.CheckBox incluye_codprodprov 
+         BackColor       =   &H00E0E0E0&
+         Caption         =   "al final entre astericos"
+         Height          =   255
+         Left            =   5160
+         TabIndex        =   52
+         Top             =   1800
+         Width           =   2295
+      End
       Begin VB.ComboBox c_moneda 
          Height          =   315
          ItemData        =   "vta063.frx":0014
@@ -370,12 +379,23 @@ Begin VB.Form vta_cargaprod_listaprov
          Top             =   240
          Width           =   6015
       End
+      Begin VB.Label Label18 
+         Alignment       =   1  'Right Justify
+         BackColor       =   &H00800080&
+         Caption         =   "Incluye cod. prod. proveedor en desc."
+         ForeColor       =   &H00FFFFFF&
+         Height          =   375
+         Left            =   3480
+         TabIndex        =   51
+         Top             =   1680
+         Width           =   1575
+      End
       Begin VB.Label Label16 
          Alignment       =   1  'Right Justify
          BackColor       =   &H00800080&
          Caption         =   "Moneda:"
          ForeColor       =   &H00FFFFFF&
-         Height          =   255
+         Height          =   495
          Left            =   3480
          TabIndex        =   48
          Top             =   1200
@@ -520,12 +540,12 @@ Begin VB.Form vta_cargaprod_listaprov
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "15/06/2023"
+            TextSave        =   "08/10/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "11:50 a.m."
+            TextSave        =   "09:55 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -709,7 +729,13 @@ Sub actualiza()
                pvsi = Format(Val(pvsi) * para.cotizacion, "######0.0")
             End If
          End If
-         rs("descripcion") = Left$(Desc, 150)
+         
+         If incluye_codprodprov = 1 Then
+           agregadesc = " *" & CODIGO & "*"
+         Else
+           agregadesc = ""
+         End If
+         rs("descripcion") = Left$(Desc, 150 - Len(agregadesc)) & agregadesc
          rs("id_grupo") = 1
          rs("id_departamento") = 1
          rs("id_marca") = 1
@@ -756,7 +782,7 @@ Sub actualiza()
          rs("talle") = "*"
          rs("color") = "*"
          rs("medida") = "*"
-        
+         rs("percibe_5329") = "N"
         
         
         

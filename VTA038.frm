@@ -102,7 +102,7 @@ Begin VB.Form vta_citi
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   38666241
+      StartOfWeek     =   175964161
       CurrentDate     =   38750
    End
    Begin VB.Frame Frame3 
@@ -214,12 +214,12 @@ Begin VB.Form vta_citi
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "28/08/2024"
+            TextSave        =   "08/10/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "11:57 a.m."
+            TextSave        =   "09:11 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
