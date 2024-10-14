@@ -763,7 +763,7 @@ QUERY = QUERY & " VALUES (" & numint & ", " & Val(suc) & ", " & Val(NUM) & ", '"
   r = 1
   While Not EOF(1)
    Line Input #1, m
-   tc = Val(Mid$(l, 1, 3))
+   'tc = Val(Mid$(l, 1, 3))
    If tc < 100 Then
         cantidad = Val(Mid$(m, 32, 7) & "." & Mid$(m, 39, 5))
         codunidad = Val(Mid$(m, 44, 2))
