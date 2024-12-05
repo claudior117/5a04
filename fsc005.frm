@@ -1,20 +1,20 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "mscomctl.OCX"
 Begin VB.Form fsc_tiqueNF1 
    BackColor       =   &H0000C000&
    BorderStyle     =   1  'Fixed Single
    Caption         =   "INGRESO DE ARTICULOS"
-   ClientHeight    =   1605
+   ClientHeight    =   1935
    ClientLeft      =   165
    ClientTop       =   435
-   ClientWidth     =   12150
+   ClientWidth     =   15915
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    PaletteMode     =   1  'UseZOrder
-   ScaleHeight     =   1605
-   ScaleWidth      =   12150
+   ScaleHeight     =   1935
+   ScaleWidth      =   15915
    StartUpPosition =   1  'CenterOwner
    Begin VB.TextBox t_tasaib 
       BorderStyle     =   0  'None
@@ -22,25 +22,25 @@ Begin VB.Form fsc_tiqueNF1
       Height          =   405
       Left            =   10800
       MaxLength       =   8
-      TabIndex        =   20
+      TabIndex        =   19
       Top             =   1200
       Visible         =   0   'False
       Width           =   855
    End
    Begin VB.Frame Frame4 
       BackColor       =   &H0000C000&
-      Height          =   975
+      Height          =   1335
       Left            =   240
       TabIndex        =   8
       Top             =   120
-      Width           =   11775
+      Width           =   15615
       Begin VB.TextBox t_tipo 
          BorderStyle     =   0  'None
          Enabled         =   0   'False
          Height          =   405
          Left            =   4200
          MaxLength       =   5
-         TabIndex        =   19
+         TabIndex        =   18
          Top             =   1320
          Visible         =   0   'False
          Width           =   855
@@ -48,29 +48,20 @@ Begin VB.Form fsc_tiqueNF1
       Begin VB.TextBox t_unidad 
          BorderStyle     =   0  'None
          BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   12
+            Name            =   "Segoe UI"
+            Size            =   9.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   405
-         Left            =   7440
+         Height          =   525
+         Left            =   9600
          MaxLength       =   5
          TabIndex        =   3
-         Top             =   480
-         Width           =   735
-      End
-      Begin VB.CommandButton Command1 
-         Height          =   375
-         Left            =   120
-         Picture         =   "fsc005.frx":0000
-         Style           =   1  'Graphical
-         TabIndex        =   17
-         Top             =   480
-         Width           =   495
+         Top             =   720
+         Width           =   1095
       End
       Begin VB.TextBox t_ip 
          BorderStyle     =   0  'None
@@ -86,60 +77,60 @@ Begin VB.Form fsc_tiqueNF1
       Begin VB.TextBox t_detalle 
          BorderStyle     =   0  'None
          BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   12
+            Name            =   "Segoe UI"
+            Size            =   13.5
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   405
-         Left            =   1680
+         Height          =   525
+         Left            =   2280
          MaxLength       =   49
          TabIndex        =   1
-         Top             =   480
-         Width           =   4695
+         Top             =   720
+         Width           =   5775
       End
       Begin VB.TextBox t_basico 
          BorderStyle     =   0  'None
          BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   12
+            Name            =   "Segoe UI"
+            Size            =   13.5
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   405
-         Left            =   720
+         Height          =   495
+         Left            =   120
          MaxLength       =   20
          TabIndex        =   0
-         Top             =   480
-         Width           =   855
+         Top             =   720
+         Width           =   2055
       End
       Begin VB.TextBox t_importe 
          BorderStyle     =   0  'None
          BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   12
+            Name            =   "Segoe UI"
+            Size            =   13.5
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   405
-         Left            =   10680
+         Height          =   525
+         Left            =   13800
          MaxLength       =   11
          TabIndex        =   6
-         Top             =   480
-         Width           =   975
+         Top             =   720
+         Width           =   1695
       End
       Begin VB.ComboBox c_tasa 
          BeginProperty Font 
-            Name            =   "MS Sans Serif"
+            Name            =   "Segoe UI"
             Size            =   12
             Charset         =   0
             Weight          =   400
@@ -147,48 +138,48 @@ Begin VB.Form fsc_tiqueNF1
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   420
-         Left            =   9360
+         Height          =   435
+         Left            =   12480
          Style           =   2  'Dropdown List
          TabIndex        =   5
-         Top             =   480
+         Top             =   720
          Width           =   1215
       End
       Begin VB.TextBox t_pu 
          BorderStyle     =   0  'None
          BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   12
+            Name            =   "Segoe UI"
+            Size            =   13.5
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   405
-         Left            =   8280
+         Height          =   555
+         Left            =   10800
          MaxLength       =   10
          TabIndex        =   4
-         Top             =   480
-         Width           =   975
+         Top             =   720
+         Width           =   1575
       End
       Begin VB.TextBox t_cantidad 
          BorderStyle     =   0  'None
          BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   12
+            Name            =   "Segoe UI"
+            Size            =   13.5
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   405
-         Left            =   6480
+         Height          =   525
+         Left            =   8280
          MaxLength       =   8
          TabIndex        =   2
-         Top             =   480
-         Width           =   855
+         Top             =   720
+         Width           =   1215
       End
       Begin VB.TextBox t_renglon 
          BorderStyle     =   0  'None
@@ -207,7 +198,7 @@ Begin VB.Form fsc_tiqueNF1
          Caption         =   "Unidad"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Size            =   13.5
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
@@ -215,11 +206,11 @@ Begin VB.Form fsc_tiqueNF1
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H0000FFFF&
-         Height          =   255
-         Left            =   7320
-         TabIndex        =   18
+         Height          =   495
+         Left            =   9600
+         TabIndex        =   17
          Top             =   240
-         Width           =   975
+         Width           =   1095
       End
       Begin VB.Label Label6 
          Alignment       =   2  'Center
@@ -227,7 +218,7 @@ Begin VB.Form fsc_tiqueNF1
          Caption         =   "Basico"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Size            =   13.5
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
@@ -235,11 +226,11 @@ Begin VB.Form fsc_tiqueNF1
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H0000FFFF&
-         Height          =   255
+         Height          =   495
          Left            =   720
          TabIndex        =   15
          Top             =   240
-         Width           =   855
+         Width           =   1335
       End
       Begin VB.Label Label5 
          Alignment       =   2  'Center
@@ -247,7 +238,7 @@ Begin VB.Form fsc_tiqueNF1
          Caption         =   "Importe"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Size            =   13.5
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
@@ -255,11 +246,11 @@ Begin VB.Form fsc_tiqueNF1
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H0000FFFF&
-         Height          =   255
-         Left            =   10560
+         Height          =   495
+         Left            =   13800
          TabIndex        =   14
          Top             =   240
-         Width           =   1095
+         Width           =   1695
       End
       Begin VB.Label Label4 
          Alignment       =   2  'Center
@@ -267,7 +258,7 @@ Begin VB.Form fsc_tiqueNF1
          Caption         =   "Tasa Iva"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Size            =   13.5
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
@@ -275,8 +266,8 @@ Begin VB.Form fsc_tiqueNF1
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H0000FFFF&
-         Height          =   255
-         Left            =   9240
+         Height          =   495
+         Left            =   12480
          TabIndex        =   13
          Top             =   240
          Width           =   1335
@@ -287,7 +278,7 @@ Begin VB.Form fsc_tiqueNF1
          Caption         =   "Pu"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Size            =   13.5
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
@@ -295,8 +286,8 @@ Begin VB.Form fsc_tiqueNF1
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H0000FFFF&
-         Height          =   255
-         Left            =   8280
+         Height          =   375
+         Left            =   11160
          TabIndex        =   12
          Top             =   240
          Width           =   975
@@ -307,7 +298,7 @@ Begin VB.Form fsc_tiqueNF1
          Caption         =   "Cantidad"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Size            =   13.5
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
@@ -315,11 +306,11 @@ Begin VB.Form fsc_tiqueNF1
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H0000FFFF&
-         Height          =   255
-         Left            =   6360
+         Height          =   495
+         Left            =   8160
          TabIndex        =   11
          Top             =   240
-         Width           =   975
+         Width           =   1455
       End
       Begin VB.Label Label2 
          Alignment       =   2  'Center
@@ -327,7 +318,7 @@ Begin VB.Form fsc_tiqueNF1
          Caption         =   "Detalle"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Size            =   13.5
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
@@ -335,11 +326,11 @@ Begin VB.Form fsc_tiqueNF1
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H0000FFFF&
-         Height          =   255
+         Height          =   495
          Left            =   1560
          TabIndex        =   10
          Top             =   240
-         Width           =   4815
+         Width           =   6375
       End
    End
    Begin MSComctlLib.StatusBar StatusBar1 
@@ -347,36 +338,36 @@ Begin VB.Form fsc_tiqueNF1
       Height          =   375
       Left            =   0
       TabIndex        =   7
-      Top             =   1230
-      Width           =   12150
-      _ExtentX        =   21431
+      Top             =   1560
+      Width           =   15915
+      _ExtentX        =   28072
       _ExtentY        =   661
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
          NumPanels       =   4
          BeginProperty Panel1 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Alignment       =   1
-            Object.Width           =   3528
-            MinWidth        =   3528
+            Object.Width           =   176
+            MinWidth        =   176
             Text            =   "Cliente"
             TextSave        =   "Cliente"
          EndProperty
          BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Alignment       =   1
-            Object.Width           =   12347
-            MinWidth        =   12347
+            Object.Width           =   17639
+            MinWidth        =   17639
             Text            =   "Sistema"
             TextSave        =   "Sistema"
          EndProperty
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "10/12/2021"
+            TextSave        =   "05/12/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "09:53 a.m."
+            TextSave        =   "06:53 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -398,9 +389,7 @@ If c_tasa.ListIndex < 0 Then
 End If
 End Sub
 
-Private Sub Command1_Click()
-ABM_PROD.Show
-End Sub
+
 
 Private Sub Form_Activate()
 
@@ -430,7 +419,7 @@ End Select
 End Sub
 
 Private Sub Form_Load()
-Call barraesag(Me)
+
 
 For i = 0 To 9
   c_tasa.AddItem para.tasaiva(i)
@@ -525,7 +514,14 @@ If IsNumeric(t_basico) Then
     If Len(t_basico) <= 5 Then
        Call busca("I") 'busca por id. producto
     Else
+      If (Mid$(t_basico, 1, 2)) <> "21" Then
        Call busca("B") 'busca por cod. barra
+      Else
+       Call busca("P")
+          'busca por cod. barra y devuelve precio
+       
+      End If
+    
     End If
     
  End If
@@ -537,20 +533,37 @@ Sub busca(tipo As String)
 'tipo = I por id_producto tipo = B por cod_barra
 Set rs = New ADODB.Recordset
 q = "select * from a2, g5, g12 where a2.[id_unidad] = g5.[id_unidad] and a2.[id_tasaib] = g12.[id_tasaib]  "
-If tipo = "I" Then
+
+Select Case tipo
+Case Is = "I"
   q = q & " and [id_producto] = " & Val(t_basico)
-Else
+Case Is = "B"
   q = q & " and [cod_barra] = '" & RTrim$(t_basico) & "'"
-End If
+Case Is = "P"
+  cp = Val(Mid$(t_basico, 3, 2))
+  q = q & " and [id_producto] = " & cp
+End Select
+
 rs.MaxRecords = 1
 rs.Open q, cn1
 If Not rs.BOF And Not rs.EOF Then
   t_detalle = rs("descripcion")
-  If para.tipoprecioventa = 1 Then
-    t_pu = rs("precio_final")
+  c_tasa.ListIndex = rs("cod_tasaiva")
+  t_ip = rs("id_producto")
+  t_unidad = rs("unidad")
+  t_tasaib = rs("tasaib")
+  If tipo <> "P" Then
+    If para.tipoprecioventa = 1 Then
+     t_pu = rs("precio_final")
+    Else
+     t_pu = rs("pu")
+    End If
   Else
-    t_pu = rs("pu")
+    t_pu = Format$(Val(Mid$(t_basico, 5, 6) & "." & Mid$(t_basico, 11, 2)), "#######0.00")
+    t_ip = Format$(cp, "00000")
+    
   End If
+  
   c_tasa.ListIndex = rs("cod_tasaiva")
   t_ip = rs("id_producto")
   t_unidad = rs("unidad")

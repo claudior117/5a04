@@ -1,16 +1,16 @@
 VERSION 5.00
-Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFlxGrd.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "mscomctl.OCX"
 Begin VB.Form fsc_tiqueNF 
    BackColor       =   &H00E0E0E0&
    Caption         =   "TIQUE NO FISCAL"
-   ClientHeight    =   8490
+   ClientHeight    =   9435
    ClientLeft      =   300
    ClientTop       =   450
-   ClientWidth     =   11880
+   ClientWidth     =   16755
    LinkTopic       =   "Form1"
-   ScaleHeight     =   8490
-   ScaleWidth      =   11880
+   ScaleHeight     =   9435
+   ScaleWidth      =   16755
    StartUpPosition =   2  'CenterScreen
    Begin VB.Frame Frame5 
       BackColor       =   &H00E0E0E0&
@@ -60,29 +60,29 @@ Begin VB.Form fsc_tiqueNF
    End
    Begin VB.Frame Frame2 
       BackColor       =   &H00E0E0E0&
-      Height          =   735
-      Left            =   8760
+      Height          =   1215
+      Left            =   12600
       TabIndex        =   22
       Top             =   0
-      Width           =   3015
+      Width           =   3615
       Begin VB.TextBox t_fecha 
          BorderStyle     =   0  'None
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   12
+            Size            =   13.5
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   405
+         Height          =   525
          Left            =   1440
          Locked          =   -1  'True
          MaxLength       =   10
          TabIndex        =   23
-         Top             =   240
-         Width           =   1455
+         Top             =   360
+         Width           =   2055
       End
       Begin VB.Label Label3 
          Alignment       =   2  'Center
@@ -90,7 +90,7 @@ Begin VB.Form fsc_tiqueNF
          Caption         =   "Fecha:"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   12
+            Size            =   13.5
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -98,10 +98,10 @@ Begin VB.Form fsc_tiqueNF
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H00FFFFFF&
-         Height          =   375
+         Height          =   495
          Left            =   120
          TabIndex        =   24
-         Top             =   240
+         Top             =   360
          Width           =   1215
       End
    End
@@ -109,9 +109,9 @@ Begin VB.Form fsc_tiqueNF
       BackColor       =   &H00E0E0E0&
       Caption         =   "Impresora Fiscal"
       Height          =   735
-      Left            =   120
+      Left            =   240
       TabIndex        =   20
-      Top             =   7320
+      Top             =   8280
       Width           =   5895
       Begin VB.TextBox t_impfiscal 
          Enabled         =   0   'False
@@ -125,10 +125,10 @@ Begin VB.Form fsc_tiqueNF
    Begin VB.Frame Frame9 
       BackColor       =   &H00E0E0E0&
       Height          =   1695
-      Left            =   7320
+      Left            =   10320
       TabIndex        =   17
-      Top             =   6480
-      Width           =   4455
+      Top             =   7440
+      Width           =   5655
       Begin VB.TextBox t_total 
          Alignment       =   2  'Center
          BorderStyle     =   0  'None
@@ -147,7 +147,7 @@ Begin VB.Form fsc_tiqueNF
          MaxLength       =   10
          TabIndex        =   6
          Top             =   720
-         Width           =   3855
+         Width           =   5415
       End
       Begin VB.Label Label9 
          Alignment       =   2  'Center
@@ -163,11 +163,11 @@ Begin VB.Form fsc_tiqueNF
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H00FFFFFF&
-         Height          =   375
+         Height          =   495
          Left            =   120
          TabIndex        =   18
          Top             =   240
-         Width           =   3855
+         Width           =   5415
       End
    End
    Begin VB.Frame Frame8 
@@ -290,16 +290,16 @@ Begin VB.Form fsc_tiqueNF
       End
    End
    Begin MSFlexGridLib.MSFlexGrid msf1 
-      Height          =   4815
+      Height          =   5775
       Left            =   120
       TabIndex        =   2
       Top             =   1560
-      Width           =   11655
-      _ExtentX        =   20558
-      _ExtentY        =   8493
+      Width           =   16335
+      _ExtentX        =   28813
+      _ExtentY        =   10186
       _Version        =   393216
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "MS Sans Serif"
+         Name            =   "Segoe UI"
          Size            =   12
          Charset         =   0
          Weight          =   400
@@ -314,14 +314,14 @@ Begin VB.Form fsc_tiqueNF
       Left            =   120
       TabIndex        =   9
       Top             =   0
-      Width           =   5655
+      Width           =   7335
       Begin VB.TextBox t_letra 
          Alignment       =   2  'Center
          BorderStyle     =   0  'None
          Enabled         =   0   'False
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   18
+            Size            =   13.5
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -329,18 +329,18 @@ Begin VB.Form fsc_tiqueNF
             Strikethrough   =   0   'False
          EndProperty
          Height          =   525
-         Left            =   2160
+         Left            =   2400
          Locked          =   -1  'True
          MaxLength       =   1
          TabIndex        =   7
          Top             =   360
-         Width           =   375
+         Width           =   615
       End
       Begin VB.TextBox t_numcomp 
          BorderStyle     =   0  'None
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   18
+            Size            =   13.5
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -348,12 +348,12 @@ Begin VB.Form fsc_tiqueNF
             Strikethrough   =   0   'False
          EndProperty
          Height          =   525
-         Left            =   3720
+         Left            =   4680
          Locked          =   -1  'True
          MaxLength       =   8
          TabIndex        =   0
          Top             =   360
-         Width           =   1815
+         Width           =   2535
       End
       Begin VB.TextBox t_sucursal 
          Alignment       =   2  'Center
@@ -361,7 +361,7 @@ Begin VB.Form fsc_tiqueNF
          Enabled         =   0   'False
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   18
+            Size            =   13.5
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -369,12 +369,12 @@ Begin VB.Form fsc_tiqueNF
             Strikethrough   =   0   'False
          EndProperty
          Height          =   525
-         Left            =   2640
+         Left            =   3120
          Locked          =   -1  'True
          MaxLength       =   4
          TabIndex        =   1
          Top             =   360
-         Width           =   975
+         Width           =   1455
       End
       Begin VB.Label Label1 
          Alignment       =   2  'Center
@@ -382,7 +382,7 @@ Begin VB.Form fsc_tiqueNF
          Caption         =   "Comprobante:"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   12
+            Size            =   13.5
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -394,7 +394,7 @@ Begin VB.Form fsc_tiqueNF
          Left            =   120
          TabIndex        =   10
          Top             =   360
-         Width           =   1935
+         Width           =   2175
       End
    End
    Begin MSComctlLib.StatusBar StatusBar1 
@@ -402,9 +402,9 @@ Begin VB.Form fsc_tiqueNF
       Height          =   255
       Left            =   0
       TabIndex        =   8
-      Top             =   8235
-      Width           =   11880
-      _ExtentX        =   20955
+      Top             =   9180
+      Width           =   16755
+      _ExtentX        =   29554
       _ExtentY        =   450
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
@@ -422,7 +422,7 @@ Begin VB.Form fsc_tiqueNF
       BackColor       =   &H0000FFFF&
       BeginProperty Font 
          Name            =   "MS Sans Serif"
-         Size            =   12
+         Size            =   13.5
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
@@ -430,12 +430,12 @@ Begin VB.Form fsc_tiqueNF
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   &H000000FF&
-      Height          =   615
-      Left            =   6120
+      Height          =   495
+      Left            =   7680
       TabIndex        =   30
       Top             =   120
       Visible         =   0   'False
-      Width           =   2295
+      Width           =   4455
    End
 End
 Attribute VB_Name = "fsc_tiqueNF"
@@ -466,7 +466,7 @@ Sub limpia()
    t_nograbado = ""
    t_perc = ""
    t_iva = ""
-   t_total = ""
+   T_TOTAL = ""
    Option1 = True
    
 End Sub
@@ -565,14 +565,14 @@ Sub armagrid()
 msf1.clear
 msf1.Rows = 1
 msf1.Cols = 11
-msf1.ColWidth(0) = 500
-msf1.ColWidth(1) = 1000
-msf1.ColWidth(2) = 5000
-msf1.ColWidth(3) = 1100
-msf1.ColWidth(4) = 900
-msf1.ColWidth(5) = 1100
-msf1.ColWidth(6) = 900
-msf1.ColWidth(7) = 1100
+msf1.ColWidth(0) = 900
+msf1.ColWidth(1) = 1500
+msf1.ColWidth(2) = 7000
+msf1.ColWidth(3) = 1300
+msf1.ColWidth(4) = 1000
+msf1.ColWidth(5) = 1700
+msf1.ColWidth(6) = 1100
+msf1.ColWidth(7) = 1700
 msf1.ColWidth(8) = 1100
 msf1.ColWidth(9) = 1100
 msf1.ColWidth(10) = 1100
@@ -679,7 +679,7 @@ For i = 1 To msf1.Rows - 1
       Wend
 
 Next i
-t_total = t
+T_TOTAL = t
 t_subtotal = tin
 t_iva = t - tin
   
@@ -716,8 +716,8 @@ Sub cargarenglon2(t As String)
     u = " "
   End If
   
-  r = msf1.Rows
-  msf1.AddItem r & Chr(9) & Format$(ip, "00000") & Chr(9) & d & Chr(9) & cu & Chr(9) & u & Chr$(9) & puf & Chr(9) & ti & Chr(9) & im & Chr(9) & pu & Chr(9) & (puf - pu) & Chr$(9) & t_tasaib
+  renglon = msf1.Rows
+  msf1.AddItem renglon & Chr(9) & Format$(ip, "00000") & Chr(9) & d & Chr(9) & cu & Chr(9) & u & Chr$(9) & puf & Chr(9) & ti & Chr(9) & im & Chr(9) & pu & Chr(9) & (puf - pu) & Chr$(9) & t_tasaib
     
   CALCULATOTALES
   sacatotales
@@ -814,11 +814,11 @@ If KeyCode = vbKeyF4 Then
 If KeyCode = vbKeyF9 Then
   Call CALCULATOTALES
   Call sacatotales
-  If Val(t_total) > 0 Then
+  If Val(T_TOTAL) > 0 Then
    'J = MsgBox("Cierra Tiquet", 4)
    'If J = 6 Then
      Call renumera
-     fsc_tiqueNF2.t_total = t_total
+     fsc_tiqueNF2.T_TOTAL = T_TOTAL
      fsc_tiqueNF2.Show
      fsc_tiqueNF2.Refresh
    'End If
@@ -831,10 +831,10 @@ End If
 
  
 If KeyCode = vbKeyF6 Then
- If msf1.Rows > 1 And Val(t_total) > 0 Then
+ If msf1.Rows > 1 And Val(T_TOTAL) > 0 Then
    J = InputBox$("Ingrese % a  bonificar, luego el tique se cerrará", " % BONICICACION", "")
    If Val(J) > 0 And Val(J) < 100 Then
-          dto = (Val(t_total) * Val(J)) / 100
+          dto = (Val(T_TOTAL) * Val(J)) / 100
           r = msf1.Rows
           msf1.AddItem r & Chr(9) & Format$(1, "00000") & Chr(9) & "Bonificación " & J & "%" & Chr(9) & 1 & Chr(9) & " " & Chr$(9) & Format$(-Val(dto), "######0.00") & Chr(9) & 0 & Chr(9) & Format$(-Val(dto), "######0.00") & Chr(9) & Format$(-Val(dto), "######0.00") & Chr(9) & 0 & Chr$(9) & 0
            Call CALCULATOTALES
@@ -859,7 +859,7 @@ End Sub
 
 Sub cierratique2()
 Dim r As Boolean
-If estadotique = "A" And Val(t_total) > 0 Then
+If estadotique = "A" And Val(T_TOTAL) > 0 Then
   'cierro tique
   espere.Show
   espere.Label1 = "Espere Actualizando Contadores...."
@@ -934,8 +934,8 @@ Sub graba()
     "[alicuota_perc_iva], [canje_cereal], [fecha_vto], [total_bultos], [valor_declarado], [transporte], [direccion_transp], [cuit_transp], [perc_ss], [sucursal_ingreso], [cliente02], [direccion02], [cuit02], [localidad02], [id_tipo_iva02], [saldo_impago02], [num_z])"
 
     QUERY = QUERY & " VALUES (" & numint & ", " & Val(t_sucursal) & ", " & Val(t_numcomp) & ", '" & t_letra & "', 310, 1" & _
-    ", '" & t_fecha & "', " & para.id_usuario & ", " & Val(t_subtotal) & ", " & Val(t_nograbado) & ", " & Val(t_iva) & ", " & Val(t_total) & ", 'A', " & cuentaact & ", '" & cl_compvta.STOCK & "', '" & _
-    cl_compvta.ctacte & "', '" & cl_compvta.grabado & "', '" & ep & "', '0000-00000000', 'Tq.Ctdo', " & para.cotizacion & ", " & Format(Val(t_total) / para.cotizacion, "######0.00") & ", '" & moneda & "', " & codvend & ", '" & _
+    ", '" & t_fecha & "', " & para.id_usuario & ", " & Val(t_subtotal) & ", " & Val(t_nograbado) & ", " & Val(t_iva) & ", " & Val(T_TOTAL) & ", 'A', " & cuentaact & ", '" & cl_compvta.STOCK & "', '" & _
+    cl_compvta.ctacte & "', '" & cl_compvta.grabado & "', '" & ep & "', '0000-00000000', 'Tq.Ctdo', " & para.cotizacion & ", " & Format(Val(T_TOTAL) / para.cotizacion, "######0.00") & ", '" & moneda & "', " & codvend & ", '" & _
     cl_compvta.venta & "', '" & contado & "', " & Val(t_perc) & ", 0, " & Val(t_perciva) & ", " & codact & ", " & Val(t_alicuotaib) & ", " & Val(t_alicuotaperciva) & ", 0 , '" & t_fecha & "', 0, 0, ' ', ' ', ' ', 0, " & Val(t_sucursal) & ", 'Tique Contado' , ' ', ' ', '00-00000000-0', 3, 0, " & para.z_actual & ")"
     
     cn1.Execute QUERY
@@ -1024,7 +1024,7 @@ Sub graba()
          
          'grabo asiento
          QUERY = "INSERT INTO c_02([num_interno], [fecha], [descripcion], [modulo], [num_mov_int], [debe], [haber], [id_USUARIO], [observaciones])"
-         QUERY = QUERY & " VALUES (" & numintcgr & " ,'" & t_fecha & "', '[Ventas] " & cl_compvta.abreviatura & " " & t_letra & Format$(Val(t_sucursal), "0000") & "-" & Format$(Val(t_numcomp), "00000000") & "', 'V', " & numint & ", " & Val(t_total) & ", " & Val(t_total) & ", " & para.id_usuario & ", 'Tique Ctdo.')"
+         QUERY = QUERY & " VALUES (" & numintcgr & " ,'" & t_fecha & "', '[Ventas] " & cl_compvta.abreviatura & " " & t_letra & Format$(Val(t_sucursal), "0000") & "-" & Format$(Val(t_numcomp), "00000000") & "', 'V', " & numint & ", " & Val(T_TOTAL) & ", " & Val(T_TOTAL) & ", " & para.id_usuario & ", 'Tique Ctdo.')"
          cn1.Execute QUERY
       
          
@@ -1084,7 +1084,7 @@ Sub graba()
          
          'contrapartida
          If cl_compvta.grabado = "N" Then
-           importe = Val(t_total)
+           importe = Val(T_TOTAL)
          Else
            importe = Val(t_subtotal)
          End If
@@ -1183,7 +1183,7 @@ End Sub
 Sub iniciatique()
   Call armagrid
   t_numcomp = ""
-  t_total = ""
+  T_TOTAL = ""
   t_numcomp.Enabled = True
   t_numcomp.SetFocus
 End Sub
@@ -1315,7 +1315,7 @@ t_subtotal = Format$(Val(t_subtotal), "######0.00")
 't_perc = Format$(Val(t_perc), "######0.00")
 t_iva = Format$(Val(t_iva), "######0.00")
 't_perciva = Format$(Val(t_perciva), "######0.00")
-t_total = Format$(Val(t_total), "######0.00")
+T_TOTAL = Format$(Val(T_TOTAL), "######0.00")
 End Sub
 
 Private Sub t_sucursal_GotFocus()
@@ -1327,6 +1327,6 @@ Call inicia
 End Sub
 
 Private Sub t_total_LostFocus()
-t_total = Format$(t_total, "######0.00")
+T_TOTAL = Format$(T_TOTAL, "######0.00")
 End Sub
 

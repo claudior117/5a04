@@ -1,23 +1,23 @@
 VERSION 5.00
-Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFlxGrd.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "mscomctl.OCX"
 Begin VB.Form fsc_tique 
    BackColor       =   &H00E0E0E0&
    Caption         =   "TIQUE FISCAL"
-   ClientHeight    =   8490
+   ClientHeight    =   9435
    ClientLeft      =   300
    ClientTop       =   450
-   ClientWidth     =   11880
+   ClientWidth     =   16815
    LinkTopic       =   "Form1"
-   ScaleHeight     =   8490
-   ScaleWidth      =   11880
+   ScaleHeight     =   9435
+   ScaleWidth      =   16815
    StartUpPosition =   2  'CenterScreen
    Begin VB.TextBox t_copias 
       Height          =   285
-      Left            =   8280
+      Left            =   14880
       TabIndex        =   33
       Text            =   "t_copias"
-      Top             =   1080
+      Top             =   960
       Visible         =   0   'False
       Width           =   1575
    End
@@ -69,29 +69,29 @@ Begin VB.Form fsc_tique
    End
    Begin VB.Frame Frame2 
       BackColor       =   &H00E0E0E0&
-      Height          =   735
-      Left            =   8760
+      Height          =   1095
+      Left            =   12240
       TabIndex        =   22
       Top             =   0
-      Width           =   3015
+      Width           =   4215
       Begin VB.TextBox t_fecha 
          BorderStyle     =   0  'None
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   12
+            Size            =   18
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   405
+         Height          =   525
          Left            =   1440
          Locked          =   -1  'True
          MaxLength       =   10
          TabIndex        =   23
          Top             =   240
-         Width           =   1455
+         Width           =   2535
       End
       Begin VB.Label Label3 
          Alignment       =   2  'Center
@@ -107,7 +107,7 @@ Begin VB.Form fsc_tique
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H00FFFFFF&
-         Height          =   375
+         Height          =   495
          Left            =   120
          TabIndex        =   24
          Top             =   240
@@ -120,7 +120,7 @@ Begin VB.Form fsc_tique
       Height          =   735
       Left            =   360
       TabIndex        =   20
-      Top             =   7320
+      Top             =   8280
       Width           =   5895
       Begin VB.TextBox t_impfiscal 
          Enabled         =   0   'False
@@ -134,9 +134,9 @@ Begin VB.Form fsc_tique
    Begin VB.Frame Frame9 
       BackColor       =   &H00E0E0E0&
       Height          =   1695
-      Left            =   7320
+      Left            =   12120
       TabIndex        =   17
-      Top             =   6480
+      Top             =   7440
       Width           =   4455
       Begin VB.TextBox t_total 
          Alignment       =   2  'Center
@@ -272,9 +272,9 @@ Begin VB.Form fsc_tique
    Begin VB.Frame Frame4 
       BackColor       =   &H00E0E0E0&
       Height          =   735
-      Left            =   6600
+      Left            =   6720
       TabIndex        =   11
-      Top             =   7680
+      Top             =   8280
       Visible         =   0   'False
       Width           =   1815
       Begin VB.TextBox t_funcion 
@@ -299,17 +299,17 @@ Begin VB.Form fsc_tique
       End
    End
    Begin MSFlexGridLib.MSFlexGrid msf1 
-      Height          =   4815
+      Height          =   5775
       Left            =   120
       TabIndex        =   2
       Top             =   1560
-      Width           =   11655
-      _ExtentX        =   20558
-      _ExtentY        =   8493
+      Width           =   16575
+      _ExtentX        =   29236
+      _ExtentY        =   10186
       _Version        =   393216
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "MS Sans Serif"
-         Size            =   12
+         Name            =   "Segoe UI"
+         Size            =   14.25
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
@@ -323,7 +323,7 @@ Begin VB.Form fsc_tique
       Left            =   120
       TabIndex        =   9
       Top             =   0
-      Width           =   5655
+      Width           =   7215
       Begin VB.TextBox t_letra 
          Alignment       =   2  'Center
          BorderStyle     =   0  'None
@@ -343,7 +343,7 @@ Begin VB.Form fsc_tique
          MaxLength       =   1
          TabIndex        =   7
          Top             =   360
-         Width           =   375
+         Width           =   615
       End
       Begin VB.TextBox t_numcomp 
          BorderStyle     =   0  'None
@@ -357,12 +357,12 @@ Begin VB.Form fsc_tique
             Strikethrough   =   0   'False
          EndProperty
          Height          =   525
-         Left            =   3720
+         Left            =   4320
          Locked          =   -1  'True
          MaxLength       =   8
          TabIndex        =   0
          Top             =   360
-         Width           =   1815
+         Width           =   2775
       End
       Begin VB.TextBox t_sucursal 
          Alignment       =   2  'Center
@@ -378,12 +378,12 @@ Begin VB.Form fsc_tique
             Strikethrough   =   0   'False
          EndProperty
          Height          =   525
-         Left            =   2640
+         Left            =   2880
          Locked          =   -1  'True
          MaxLength       =   4
          TabIndex        =   1
          Top             =   360
-         Width           =   975
+         Width           =   1335
       End
       Begin VB.Label Label1 
          Alignment       =   2  'Center
@@ -411,9 +411,9 @@ Begin VB.Form fsc_tique
       Height          =   255
       Left            =   0
       TabIndex        =   8
-      Top             =   8235
-      Width           =   11880
-      _ExtentX        =   20955
+      Top             =   9180
+      Width           =   16815
+      _ExtentX        =   29660
       _ExtentY        =   450
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
@@ -431,7 +431,7 @@ Begin VB.Form fsc_tique
       BackColor       =   &H0000FFFF&
       BeginProperty Font 
          Name            =   "MS Sans Serif"
-         Size            =   12
+         Size            =   13.5
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
@@ -440,11 +440,11 @@ Begin VB.Form fsc_tique
       EndProperty
       ForeColor       =   &H000000FF&
       Height          =   615
-      Left            =   6120
+      Left            =   8280
       TabIndex        =   30
       Top             =   120
       Visible         =   0   'False
-      Width           =   2295
+      Width           =   3375
    End
 End
 Attribute VB_Name = "fsc_tique"
@@ -574,17 +574,17 @@ Sub armagrid()
 msf1.clear
 msf1.Rows = 1
 msf1.Cols = 11
-msf1.ColWidth(0) = 500
-msf1.ColWidth(1) = 700
-msf1.ColWidth(2) = 5000
-msf1.ColWidth(3) = 1100
-msf1.ColWidth(4) = 900
-msf1.ColWidth(5) = 1100
+msf1.ColWidth(0) = 1000
+msf1.ColWidth(1) = 1500
+msf1.ColWidth(2) = 7000
+msf1.ColWidth(3) = 1500
+msf1.ColWidth(4) = 1200
+msf1.ColWidth(5) = 1700
 msf1.ColWidth(6) = 900
-msf1.ColWidth(7) = 1100
-msf1.ColWidth(8) = 1100
-msf1.ColWidth(9) = 1100
-msf1.ColWidth(10) = 1100
+msf1.ColWidth(7) = 1700
+msf1.ColWidth(8) = 1700
+msf1.ColWidth(9) = 1700
+msf1.ColWidth(10) = 1700
 msf1.TextMatrix(0, 0) = "Reng."
 msf1.TextMatrix(0, 1) = "Id.Prod."
 msf1.TextMatrix(0, 2) = "Detalle"
@@ -756,8 +756,9 @@ End If
 
 If exito = 1 Then
   'If fsc_tique1.t = "A" Then
-    r = msf1.Rows
-    msf1.AddItem r & Chr(9) & Format$(ip, "00000") & Chr(9) & d & Chr(9) & cu & Chr(9) & u & Chr$(9) & puf & Chr(9) & ti & Chr(9) & im & Chr(9) & pu & Chr(9) & (puf - pu) & Chr$(9) & t_tasaib
+    reng = msf1.Rows
+    
+    msf1.AddItem reng & Chr(9) & Format$(fsc_tique1.t_ip, "00000") & Chr(9) & d & Chr(9) & cu & Chr(9) & u & Chr$(9) & puf & Chr(9) & ti & Chr(9) & im & Chr(9) & pu & Chr(9) & (puf - pu) & Chr$(9) & t_tasaib
     
   'Else
   '  r = t_renglon
@@ -837,7 +838,7 @@ Unload fsc_formapago
 End Sub
 
 Private Sub msf1_GotFocus()
-Me.StatusBar1.Panels.item(1) = "[INS] Agrega Fiscal - [F6] Bonif. Final en % - [F9] Cerrar Tique - [F4] Cancela Tique  "
+Me.StatusBar1.Panels.item(1) = "[INS]Agrega - [F5]Revertir venta - [F6]Bonif. Final en % - [F9]Cerrar Tique - [F4]Cancela Tique  "
 If msf1.Rows > 1 Then
   msf1.FocusRect = flexFocusNone
 Else
@@ -874,35 +875,81 @@ If KeyCode = vbKeyF5 Then
  If msf1.Rows > 1 Then
    J = MsgBox("Revierte articulo del Ticket", 4)
    If J = 6 Then
-          r2 = msf1.Row
-          ip = "(" & msf1.TextMatrix(r2, 1) & ")"
-          d = msf1.TextMatrix(r2, 2)
-          cu = Format$(-Val(msf1.TextMatrix(r2, 3)), "#####0.000")
-          ti = Format$(msf1.TextMatrix(r2, 6), "####0.00")
-          u = RTrim$(msf1.TextMatrix(r2, 4))
-          puf = Format$(Val(msf1.TextMatrix(r2, 5)), "#####0.00")
+                
+          
+          R2 = msf1.Row
+          ip = msf1.TextMatrix(R2, 1)
+          d = msf1.TextMatrix(R2, 2)
+          cu = Format$(-Val(msf1.TextMatrix(R2, 3)), "#####0.000")
+          ti = Format$(msf1.TextMatrix(R2, 6), "####0.00")
+          u = RTrim$(msf1.TextMatrix(R2, 4))
+          puf = Format$(Val(msf1.TextMatrix(R2, 5)), "#####0.00")
+          
+          pu = Format$(Val(msf1.TextMatrix(R2, 8)), "#####0.000")
+          iva = Format$(Val(msf1.TextMatrix(R2, 9)), "#####0.000")
+          tib = Format$(Val(msf1.TextMatrix(R2, 10)), "#####0.00")
+          
           
 
-     If Not Fiscaltq.ImprimirItem2g(d, cu, puf, ti, 0, IFUniversal.Gravado, "0", 1, ip, "", IFUniversal.unidad) Then
-        Err.Raise Fiscaltq.Error, "", Fiscaltq.ErrorDesc
-        exito = 0
-     End If
+          If gprueba = 0 Then
 
+                 If Not Fiscaltq.ImprimirItem2g(d, cu, puf, ti, 0, IFUniversal.Gravado, "0", 1, ip, "", IFUniversal.unidad) Then
+                    Err.Raise Fiscaltq.Error, "", Fiscaltq.ErrorDesc
+                    exito = 0
+                 End If
+            
+            
+                If r = True Then
+                  If msf1.Rows > 2 Then
+                    msf1.RemoveItem (msf1.Row)
+                    Call renumera
+                  Else
+                    Call armagrid
+                  End If
+               End If
+         Else
+             'sucursal prueba
+             
+              'reng = msf1.Rows
+            
+              'puf = Format$(Val(puf), "######0.00")
+              'cu = Format$(Val(cu), "#####0.000")
+              'im = Format$(Val(puf) * Val(cu), "#######0.00")
+              'If Val(cu) < 0 Then
+              '  msf1.AddItem reng & Chr(9) & Format$(ip, "00000") & Chr(9) & d & Chr(9) & cu & Chr(9) & u & Chr$(9) & Format$(Val(puf), "######0.00") & Chr(9) & ti & Chr(9) & im & Chr(9) & pu & Chr(9) & iva & Chr$(9) & tib
+              'Else
+              '  MsgBox ("No se puede revertir una reversion")
+              'End If
+         
+               
+                If msf1.Rows > 2 Then
+                    R2 = msf1.Row
+                    If R2 + 1 < msf1.Rows Then
+                        If Val(msf1.TextMatrix(R2 + 1, 0)) = 0 Then
+                            msf1.RemoveItem (R2 + 1)
+                        End If
+                    End If
+                    If msf1.Rows > 2 Then
+                        msf1.RemoveItem (R2)
+                    Else
+                        Call armagrid
+                    End If
+                    Call renumera
+                Else
+                    Call armagrid
+   
+                End If
+                Call CALCULATOTALES
 
-    If r = True Then
-      If msf1.Rows > 2 Then
-        msf1.RemoveItem (msf1.Row)
-        Call renumera
-      Else
-        Call armagrid
+         
+         End If
       End If
+    
     Else
       MsgBox ("Imposible revertir este articulo")
     End If
-  End If
   Call CALCULATOTALES
  End If
-End If
 
 
 If KeyCode = vbKeyF4 Then

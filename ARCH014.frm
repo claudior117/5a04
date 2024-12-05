@@ -29,7 +29,7 @@ Begin VB.Form gen_agenda1
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   175964162
+      StartOfWeek     =   174784514
       CurrentDate     =   39637
    End
    Begin VB.Frame Frame3 
@@ -280,12 +280,12 @@ Begin VB.Form gen_agenda1
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "08/10/2024"
+            TextSave        =   "05/12/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "09:11 a.m."
+            TextSave        =   "04:36 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
