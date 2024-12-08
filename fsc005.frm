@@ -20,10 +20,10 @@ Begin VB.Form fsc_tiqueNF1
       BorderStyle     =   0  'None
       Enabled         =   0   'False
       Height          =   405
-      Left            =   10800
+      Left            =   9600
       MaxLength       =   8
       TabIndex        =   19
-      Top             =   1200
+      Top             =   1440
       Visible         =   0   'False
       Width           =   855
    End
@@ -103,7 +103,7 @@ Begin VB.Form fsc_tiqueNF1
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   495
+         Height          =   525
          Left            =   120
          MaxLength       =   20
          TabIndex        =   0
@@ -156,7 +156,7 @@ Begin VB.Form fsc_tiqueNF1
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   555
+         Height          =   525
          Left            =   10800
          MaxLength       =   10
          TabIndex        =   4
@@ -362,12 +362,12 @@ Begin VB.Form fsc_tiqueNF1
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "05/12/2024"
+            TextSave        =   "06/12/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "06:53 p.m."
+            TextSave        =   "10:59 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1

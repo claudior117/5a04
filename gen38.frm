@@ -98,6 +98,8 @@ Select Case t_llamada
    Case Is = "6"
    gen_cf.t_carpeta = t_carpeta
    
+    Case Is = "7"
+   vta_exportaplu.t_carpeta = t_carpeta
    
    
 End Select

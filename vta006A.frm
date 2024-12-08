@@ -1,28 +1,28 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "mscomctl.OCX"
 Begin VB.Form vta_listaprecios2 
    BackColor       =   &H00C0C0C0&
    BorderStyle     =   1  'Fixed Single
    Caption         =   "LISTA DE PRECIOS"
-   ClientHeight    =   8895
+   ClientHeight    =   9585
    ClientLeft      =   60
    ClientTop       =   345
-   ClientWidth     =   12120
+   ClientWidth     =   14910
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
    MinButton       =   0   'False
    PaletteMode     =   1  'UseZOrder
-   ScaleHeight     =   8895
-   ScaleWidth      =   12120
+   ScaleHeight     =   9585
+   ScaleWidth      =   14910
    StartUpPosition =   1  'CenterOwner
    Begin VB.TextBox t_percibe5329 
       Appearance      =   0  'Flat
       BorderStyle     =   0  'None
       Height          =   285
-      Left            =   8160
+      Left            =   9360
       MaxLength       =   1
       TabIndex        =   110
-      Top             =   2640
+      Top             =   2760
       Width           =   375
    End
    Begin VB.Frame Frame9 
@@ -31,7 +31,7 @@ Begin VB.Form vta_listaprecios2
       Height          =   735
       Left            =   240
       TabIndex        =   83
-      Top             =   7440
+      Top             =   8280
       Width           =   4095
       Begin VB.CommandButton Command8 
          Caption         =   "Ultimas otras Compras y Ventas"
@@ -53,10 +53,10 @@ Begin VB.Form vta_listaprecios2
    End
    Begin VB.TextBox t_linea 
       Height          =   375
-      Left            =   7200
+      Left            =   12120
       TabIndex        =   82
       Text            =   "Text1"
-      Top             =   7560
+      Top             =   6360
       Visible         =   0   'False
       Width           =   1455
    End
@@ -64,9 +64,9 @@ Begin VB.Form vta_listaprecios2
       BackColor       =   &H00C0C0C0&
       Caption         =   "Contadores"
       Height          =   1455
-      Left            =   6720
+      Left            =   7920
       TabIndex        =   63
-      Top             =   1080
+      Top             =   1200
       Width           =   1815
       Begin VB.TextBox t_pedidos 
          Appearance      =   0  'Flat
@@ -135,7 +135,7 @@ Begin VB.Form vta_listaprecios2
       Height          =   1815
       Left            =   9960
       TabIndex        =   60
-      Top             =   5520
+      Top             =   6360
       Width           =   1695
       Begin VB.TextBox t_fechaactuc 
          Appearance      =   0  'Flat
@@ -186,7 +186,7 @@ Begin VB.Form vta_listaprecios2
       Height          =   1095
       Left            =   240
       TabIndex        =   54
-      Top             =   6240
+      Top             =   6960
       Width           =   9375
       Begin VB.TextBox t_cotizultcom 
          Appearance      =   0  'Flat
@@ -257,7 +257,7 @@ Begin VB.Form vta_listaprecios2
       Height          =   615
       Left            =   240
       TabIndex        =   51
-      Top             =   5520
+      Top             =   6360
       Width           =   7815
       Begin VB.TextBox t_observaciones 
          Appearance      =   0  'Flat
@@ -284,9 +284,9 @@ Begin VB.Form vta_listaprecios2
       BackColor       =   &H00C0C0C0&
       Caption         =   "Varios"
       Height          =   2055
-      Left            =   8640
+      Left            =   11640
       TabIndex        =   40
-      Top             =   1080
+      Top             =   1200
       Width           =   3255
       Begin VB.TextBox t_moneda 
          Appearance      =   0  'Flat
@@ -411,7 +411,7 @@ Begin VB.Form vta_listaprecios2
       Height          =   2295
       Left            =   240
       TabIndex        =   19
-      Top             =   3120
+      Top             =   3960
       Width           =   11655
       Begin VB.Frame Frame7 
          BackColor       =   &H00E0E0E0&
@@ -871,9 +871,9 @@ Begin VB.Form vta_listaprecios2
    Begin VB.Frame Frame3 
       BackColor       =   &H00C0C0C0&
       Height          =   735
-      Left            =   9120
+      Left            =   12120
       TabIndex        =   17
-      Top             =   7440
+      Top             =   8280
       Width           =   2655
       Begin VB.CommandButton Command4 
          Caption         =   "&Salir"
@@ -898,12 +898,23 @@ Begin VB.Form vta_listaprecios2
       Left            =   240
       TabIndex        =   10
       Top             =   120
-      Width           =   11655
+      Width           =   14055
+      Begin VB.TextBox t_plu 
+         Appearance      =   0  'Flat
+         BorderStyle     =   0  'None
+         Height          =   285
+         Left            =   13200
+         MaxLength       =   10
+         TabIndex        =   112
+         ToolTipText     =   "[M]manual - [A] Automatica"
+         Top             =   240
+         Width           =   615
+      End
       Begin VB.TextBox t_medida 
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
          Height          =   285
-         Left            =   10440
+         Left            =   11160
          MaxLength       =   34
          TabIndex        =   108
          ToolTipText     =   "[M]manual - [A] Automatica"
@@ -914,7 +925,7 @@ Begin VB.Form vta_listaprecios2
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
          Height          =   285
-         Left            =   8760
+         Left            =   9360
          MaxLength       =   24
          TabIndex        =   106
          ToolTipText     =   "[M]manual - [A] Automatica"
@@ -925,7 +936,7 @@ Begin VB.Form vta_listaprecios2
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
          Height          =   285
-         Left            =   7560
+         Left            =   7800
          MaxLength       =   10
          TabIndex        =   104
          ToolTipText     =   "[M]manual - [A] Automatica"
@@ -936,7 +947,7 @@ Begin VB.Form vta_listaprecios2
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
          Height          =   285
-         Left            =   6480
+         Left            =   7200
          MaxLength       =   1
          TabIndex        =   86
          ToolTipText     =   "[M]manual - [A] Automatica"
@@ -945,7 +956,7 @@ Begin VB.Form vta_listaprecios2
       End
       Begin VB.CheckBox Check1 
          Height          =   255
-         Left            =   7680
+         Left            =   8520
          TabIndex        =   78
          Top             =   240
          Width           =   255
@@ -954,7 +965,7 @@ Begin VB.Form vta_listaprecios2
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
          Height          =   285
-         Left            =   9360
+         Left            =   10080
          MaxLength       =   19
          TabIndex        =   76
          Top             =   240
@@ -979,7 +990,7 @@ Begin VB.Form vta_listaprecios2
          MaxLength       =   20
          TabIndex        =   12
          Top             =   240
-         Width           =   1335
+         Width           =   1935
       End
       Begin VB.TextBox t_detalle 
          Appearance      =   0  'Flat
@@ -991,12 +1002,22 @@ Begin VB.Form vta_listaprecios2
          Top             =   600
          Width           =   5175
       End
+      Begin VB.Label Label44 
+         BackColor       =   &H00800000&
+         Caption         =   "PLU"
+         ForeColor       =   &H00FFFFFF&
+         Height          =   255
+         Left            =   12600
+         TabIndex        =   113
+         Top             =   240
+         Width           =   615
+      End
       Begin VB.Label Label42 
          BackColor       =   &H00800000&
          Caption         =   "Medida"
          ForeColor       =   &H00FFFFFF&
          Height          =   255
-         Left            =   9840
+         Left            =   10560
          TabIndex        =   109
          Top             =   600
          Width           =   615
@@ -1006,7 +1027,7 @@ Begin VB.Form vta_listaprecios2
          Caption         =   "Color"
          ForeColor       =   &H00FFFFFF&
          Height          =   255
-         Left            =   8280
+         Left            =   8880
          TabIndex        =   107
          Top             =   600
          Width           =   495
@@ -1016,7 +1037,7 @@ Begin VB.Form vta_listaprecios2
          Caption         =   "Talle"
          ForeColor       =   &H00FFFFFF&
          Height          =   255
-         Left            =   6960
+         Left            =   7200
          TabIndex        =   105
          Top             =   600
          Width           =   615
@@ -1026,7 +1047,7 @@ Begin VB.Form vta_listaprecios2
          Caption         =   "Carga Tique"
          ForeColor       =   &H00FFFFFF&
          Height          =   255
-         Left            =   5520
+         Left            =   6240
          TabIndex        =   87
          Top             =   240
          Width           =   975
@@ -1036,7 +1057,7 @@ Begin VB.Form vta_listaprecios2
          Caption         =   "Vigente"
          ForeColor       =   &H00FFFFFF&
          Height          =   255
-         Left            =   6960
+         Left            =   7920
          TabIndex        =   79
          Top             =   240
          Width           =   615
@@ -1046,7 +1067,7 @@ Begin VB.Form vta_listaprecios2
          Caption         =   "Abreviatura"
          ForeColor       =   &H00FFFFFF&
          Height          =   255
-         Left            =   8280
+         Left            =   9000
          TabIndex        =   77
          Top             =   240
          Width           =   975
@@ -1088,7 +1109,7 @@ Begin VB.Form vta_listaprecios2
       Left            =   240
       TabIndex        =   1
       Top             =   1080
-      Width           =   6375
+      Width           =   7335
       Begin VB.TextBox t_idprodprov 
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
@@ -1191,9 +1212,9 @@ Begin VB.Form vta_listaprecios2
       Height          =   360
       Left            =   0
       TabIndex        =   0
-      Top             =   8535
-      Width           =   12120
-      _ExtentX        =   21378
+      Top             =   9225
+      Width           =   14910
+      _ExtentX        =   26300
       _ExtentY        =   635
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
@@ -1215,12 +1236,12 @@ Begin VB.Form vta_listaprecios2
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "29/12/2023"
+            TextSave        =   "08/12/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "11:32 a.m."
+            TextSave        =   "07:29 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -1230,9 +1251,9 @@ Begin VB.Form vta_listaprecios2
       Caption         =   "Percibe 5329"
       ForeColor       =   &H00FFFFFF&
       Height          =   255
-      Left            =   6720
+      Left            =   7800
       TabIndex        =   111
-      Top             =   2640
+      Top             =   2760
       Width           =   1215
    End
 End
@@ -1280,7 +1301,7 @@ If J = 6 Then
    Val(t_dtocompra) & " , [cod_barra]='" & RTrim$(t_codbarra) & "' , [precio_final]=" & Val(t_final) & " , [tasa_imp_interno]=" & Val(t_tasaimpint) & " , [tipo_producto]='" & t_tipo & _
    "' , [moneda]='" & t_moneda & "' , [impuesto]=" & Val(t_impuesto) & " , [observaciones]='" & t_observaciones & "' , [vigente]= " & Check1 & " , [tipo_carga_tique]='" & t_tipocarga & _
    "' , [id_tasaib]=" & c_tasaib.ItemData(c_tasaib.ListIndex) & " , [id_prod_prov]='" & RTrim$(UCase(t_idprodprov)) & "' , [dto_compra2]=" & Val(t_dtocompra2) & ", [dolar_ult_compra]=" & Val(t_cotizultcom) & _
-   " , [talle]= '" & t_talle & " ', [color]= '" & t_color & " ', [medida]= '" & t_medida & " ', [percibe_5329] = '" & t_percibe5329 & "'"
+   " , [talle]= '" & t_talle & " ', [color]= '" & t_color & " ', [medida]= '" & t_medida & " ', [percibe_5329] = '" & t_percibe5329 & "'" & ", [plu] = " & Val(t_plu)
       
       
       
@@ -1292,6 +1313,10 @@ If J = 6 Then
           QUERY = QUERY & " , [fecha_actu_precio_venta]='" & Format$(Now, "dd/mm/yyyy") & "' "
       End If
           
+     If (IsNull(t_textocentral)) Then
+         t_textocentral = " "
+      End If
+     
      QUERY = QUERY & " , [stock]=" & Val(t_stock) & " , [requeridos]=" & Val(t_pedidos) & " , [pedidos]=" & Val(t_oc) & " , [texto_central]='" & RTrim$(t_textocentral) & " '"
      QUERY = QUERY & " where [id_producto]= " & Val(t_basico)
      cn1.BeginTrans

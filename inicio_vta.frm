@@ -570,12 +570,12 @@ Begin VB.Form inicio_vta
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "25/07/2024"
+            TextSave        =   "08/12/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "09:53 a.m."
+            TextSave        =   "07:55 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -1033,6 +1033,9 @@ Begin VB.Form inicio_vta
       Begin VB.Menu M_cambiomemfiscal 
          Caption         =   "Cambio Memoria Fiscal(Pasa comp. de un punto de Venta a otro)"
       End
+      Begin VB.Menu M_exportaplu 
+         Caption         =   "Exporta PLU productos"
+      End
    End
    Begin VB.Menu M_facte 
       Caption         =   "&Factura Electronica"
@@ -1468,6 +1471,16 @@ If para.id_grupo_modulo_actual >= 2 Then
 Else
   Call sinpermisos
 End If
+End Sub
+
+Private Sub M_exportaplu_Click()
+If para.id_grupo_modulo_actual >= 4 Then
+     vta_exportaplu.Show
+    
+    Else
+     Call sinpermisos
+    End If
+
 End Sub
 
 Private Sub M_fact_Click()

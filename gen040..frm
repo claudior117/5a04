@@ -1,7 +1,7 @@
 VERSION 5.00
-Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCT2.OCX"
-Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomct2.ocx"
+Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFlxGrd.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "mscomctl.OCX"
 Begin VB.Form gen_libroivadigitalV 
    BackColor       =   &H00E0E0E0&
    BorderStyle     =   1  'Fixed Single
@@ -95,7 +95,7 @@ Begin VB.Form gen_libroivadigitalV
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   107479041
+      StartOfWeek     =   111935489
       CurrentDate     =   38750
    End
    Begin VB.Frame Frame3 
@@ -207,12 +207,12 @@ Begin VB.Form gen_libroivadigitalV
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "23/02/2021"
+            TextSave        =   "08/12/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "08:12 p.m."
+            TextSave        =   "08:23 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -269,7 +269,7 @@ Sub carga()
   
  q = q & c & "  (vta_02.[id_tipocomp] < 33 or vta_02.[id_tipocomp] > 200)"
   q = q & " order by [fecha], [letra], [num_comp]"
-  Set rs = New adodb.Recordset
+  Set rs = New ADODB.Recordset
   
   rs.Open q, cn1
   tt = 0
@@ -371,7 +371,7 @@ Sub carga()
      pip = rs("perc_ib")
 
      q = "select * from vta_09 where [num_int] = " & rs("num_int")
-     Set rs2 = New adodb.Recordset
+     Set rs2 = New ADODB.Recordset
      rs2.Open q, cn1
      If Not rs2.EOF And Not rs2.BOF Then
            cr = rs2.GetRows
@@ -462,7 +462,7 @@ End If
 If c_sucursal.ListIndex > 0 Then
     qm = qm & c & " and [sucursal_ingreso] = " & Val(c_sucursal)
 End If
-Set rs2 = New adodb.Recordset
+Set rs2 = New ADODB.Recordset
 rs2.Open qm, cn1
 a = 1
 While Not rs2.EOF

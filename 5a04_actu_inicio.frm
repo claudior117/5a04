@@ -120,7 +120,7 @@ Begin VB.Form actu_inicio
    Begin VB.Label Label3 
       Alignment       =   2  'Center
       BackColor       =   &H0000FFFF&
-      Caption         =   "233"
+      Caption         =   "234"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   18
@@ -346,6 +346,9 @@ Case Is = 232
     Call actu232
 Case Is = 233
     Call actu233
+Case Is = 234
+    Call actu234
+ 
  Case Is = 999
    Call actu999
    
@@ -2998,6 +3001,49 @@ err1:
 Resume Next
 
 End Sub
+
+
+Sub actu234()
+'corrige oc
+h = MsgBox("Actualizacion 234. Agrega PLU", 4)
+
+  espere.Show
+  espere.Refresh
+   
+   cn1.BeginTrans
+   
+     q = "alter table A2 add column [plu] Int default 0 "
+     cn1.Execute q
+      
+ 
+   
+   
+   q = "update g0 set  [actualizacion]=234"
+    q = q & " where [sucursal]=0 "
+    cn1.Execute q
+   
+   
+   
+    q = "update a2 set plu = 0"
+    cn1.Execute q
+  cn1.CommitTrans
+  
+  MsgBox ("Proceso terminado.")
+   
+   
+   
+ Unload espere
+  
+
+Exit Sub
+
+
+err1:
+Resume Next
+
+End Sub
+
+
 
 
 Sub actu221()

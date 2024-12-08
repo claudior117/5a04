@@ -1,6 +1,6 @@
 VERSION 5.00
-Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFlxGrd.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "mscomctl.OCX"
 Begin VB.Form vta_listaprecios 
    AutoRedraw      =   -1  'True
    BackColor       =   &H00C0C0C0&
@@ -1048,6 +1048,7 @@ Sub muestra2()
      vta_listaprecios2.t_idprodprov = rs("id_prod_prov")
      vta_listaprecios2.t_cotizultcom = rs("dolar_ult_compra")
      vta_listaprecios2.t_percibe5329 = rs("percibe_5329")
+     vta_listaprecios2.t_plu = rs("plu")
      
      If rs("vigente") = True Then
       vta_listaprecios2.Check1 = 1

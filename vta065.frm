@@ -1077,6 +1077,7 @@ Sub muestra2()
      vta_listaprecios2.t_color = rs31("color")
      vta_listaprecios2.t_medida = rs31("medida")
      vta_listaprecios2.t_percibe5329 = rs31("percibe_5329")
+      vta_listaprecios2.t_plu = rs("plu")
      
      
      If rs31("vigente") = True Then
