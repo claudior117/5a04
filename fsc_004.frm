@@ -1,6 +1,6 @@
 VERSION 5.00
-Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFlxGrd.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "mscomctl.OCX"
 Begin VB.Form fsc_formapago 
    BackColor       =   &H00E0E0E0&
    Caption         =   "Forma de pago"
@@ -190,7 +190,7 @@ Else
   msf2.FocusRect = flexFocusLight
 End If
 t_ingresado = suma_msflexgrid(msf2, 6)
-t_diferencia = Format$(Val(t_total) - Val(t_ingresado), "######0.00")
+t_diferencia = Format$(Val(T_TOTAL) - Val(t_ingresado), "######0.00")
 
 End Sub
 
@@ -235,7 +235,7 @@ End Sub
 
 Private Sub msf2_KeyPress(KeyAscii As Integer)
 If KeyAscii = 27 Then
-   fsc_tique2.t_ingreso.SetFocus
+   fsc_tiqueNF2.t_ingreso.SetFocus
    Me.Hide
 End If
 End Sub

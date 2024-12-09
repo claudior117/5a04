@@ -4021,6 +4021,17 @@ Printer.FontBold = False
 Printer.Print Tab(15); "****************************"
 Printer.Print
 Printer.Print
+Printer.Print "Forma de Pago:"
+Printer.FontSize = 6
+Set rs2 = New ADODB.Recordset
+q = "select * from vta_04 where num_int = " & Me.numint
+
+rs2.Open q, cn1
+While Not rs2.EOF
+  Printer.Print "     " & RTrim$(Format$(rs2("formapago"), "@@@@@@@@@@@@@@@@@@@@!") & " ->" & Format$(rs2("importe"), "########0.00"))
+  rs2.MoveNext
+Wend
+Printer.Print
 Printer.FontSize = 6
 Printer.Print Tab(11); "(Documento no valido como Factura)"
 

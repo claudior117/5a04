@@ -570,12 +570,12 @@ Begin VB.Form inicio_vta
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "08/12/2024"
+            TextSave        =   "09/12/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "07:55 p.m."
+            TextSave        =   "11:18 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -1241,6 +1241,8 @@ Case Is = 1722 'électrinica
     
     
     Toolbar5.Visible = False
+    
+    Toolbar2.Buttons(6).Visible = True
     
 Case Is = 9999 'todos
     Frame11.Visible = True

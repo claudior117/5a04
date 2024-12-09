@@ -362,12 +362,12 @@ Begin VB.Form fsc_tiqueNF1
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "06/12/2024"
+            TextSave        =   "09/12/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:59 a.m."
+            TextSave        =   "05:22 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -559,7 +559,7 @@ If Not rs.BOF And Not rs.EOF Then
      t_pu = rs("pu")
     End If
   Else
-    t_pu = Format$(Val(Mid$(t_basico, 5, 6) & "." & Mid$(t_basico, 11, 2)), "#######0.00")
+    t_pu = Format$(Val(Mid$(t_basico, 5, 7) & "." & Mid$(t_basico, 12, 1)), "#######0.00")
     t_ip = Format$(cp, "00000")
     
   End If
