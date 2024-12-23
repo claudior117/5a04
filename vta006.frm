@@ -538,7 +538,7 @@ Sub carga()
  Call armagrid
  ct = Space$(10)
  Set rs = New ADODB.Recordset
- q = "select [id_producto], a2.[descripcion],  [precio_final], [pu], [cod_tasaiva], [stock], [tasa], [moneda], [emite_etiqueta], [reg_faltante], [pedidos] from a2, g4 where [cod_tasaiva] = [id_tasaiva]"
+ q = "select [id_producto], a2.[descripcion],[precio_final], [pu], [cod_tasaiva], [stock], [tasa], [moneda], [emite_etiqueta], [reg_faltante], [pedidos], [stock_minimo] from a2, g4 where [cod_tasaiva] = [id_tasaiva]"
  c = " and "
  filtro = 0
  If t_basico <> "" Then
@@ -605,7 +605,6 @@ If c_tasa.ListIndex > 0 Then
  End If
  
   Select Case c_tipo.ListIndex
-  
   Case Is = 1, Is = 2
    q = q & c & "[tipo_producto] = '" & Mid$(c_tipo, 1, 1) & "'"
    c = " and "
@@ -731,15 +730,19 @@ rs.Open q, cn1
     msf1.AddItem b & Chr$(9) & d & Chr$(9) & p & Chr$(9) & c & Chr$(9) & m & Chr$(9) & ti & "%" & Chr$(9) & p2 & Chr$(9) & ee & Chr$(9) & F & Chr$(9) & rs("pedidos")
     t_encontrados = Val(t_encontrados) + 1
     
-   ' If gestilo >= 2 Then
-   '  If ls = 0 Then
-   '   Call cambiacolor("&HFFDEC8", msf1.Rows - 1)
-   '   ls = 1
-   '  Else
-   '   Call cambiacolor("&H80000005", msf1.Rows - 1)
-   '   ls = 0
-   '  End If
-   ' End If
+    If c <= 0 Then
+       msf1.Row = msf1.Rows - 1
+       msf1.col = 3
+       msf1.CellBackColor = vbRed
+    Else
+      If c <= rs("stock_minimo") Then
+        msf1.Row = msf1.Rows - 1
+        msf1.col = 3
+        msf1.CellBackColor = vbYellow
+
+      End If
+    End If
+    
     rs.MoveNext
  Wend
  Set cl_stock = Nothing
@@ -762,11 +765,8 @@ End Sub
 Sub cambiacolor(ByVal c As String, ByVal F As Integer)
  'color
    msf1.Row = F
-   For i = 0 To 9
-    msf1.col = i
-    msf1.CellBackColor = c
-    
-   Next i
+   msf1.col = 3
+   msf1.CellBackColor = c
  End Sub
  
  Sub resalta(ByVal F As Integer)

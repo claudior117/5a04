@@ -85,7 +85,7 @@ Begin VB.Form cyb_cajadiaria
       ForeColor       =   -2147483630
       BackColor       =   12632256
       Appearance      =   1
-      StartOfWeek     =   113704961
+      StartOfWeek     =   112197633
       CurrentDate     =   38750
    End
    Begin VB.Frame Frame6 
@@ -350,12 +350,12 @@ Begin VB.Form cyb_cajadiaria
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "09/12/2024"
+            TextSave        =   "23/12/2024"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "11:38 a.m."
+            TextSave        =   "10:00 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
