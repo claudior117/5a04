@@ -3266,7 +3266,7 @@ While Not rs.EOF
                 
     'remitos
     nombre = "remitos": tipo = "T"           ' "T" texto, "L" lineas, "I" imagen, etc.
-    X1 = 8.7: Y1 = 247: X2 = 300: Y2 = 251   ' coordenadas (en milimetros)
+    X1 = 8.7: Y1 = 247: X2 = 300: Y2 = 250   ' coordenadas (en milimetros)
     Font = "Arial": Size = 7: Bold = 0: Italic = 0: Underline = 0 ' tipo de letra
     foreground = "000000": background = "FFFFFF"    ' colores de frente y fondo
     Align = "I" ' Alineación: Centrado, Izquierda, Derecha
@@ -3281,7 +3281,7 @@ While Not rs.EOF
     
     If Me.idtipoiva = 4 Then
         nombre = "monotributo": tipo = "T"           ' "T" texto, "L" lineas, "I" imagen, etc.
-        X1 = 8.7: Y1 = 252: X2 = 300: Y2 = 256   ' coordenadas (en milimetros)
+        X1 = 8.7: Y1 = 251: X2 = 300: Y2 = 254   ' coordenadas (en milimetros)
         Font = "Arial": Size = 6: Bold = 0: Italic = 0: Underline = 0 ' tipo de letra
         foreground = "000000": background = "FFFFFF"    ' colores de frente y fondo
         Align = "I" ' Alineación: Centrado, Izquierda, Derecha
@@ -3293,6 +3293,50 @@ While Not rs.EOF
                         Align, Text, Priority)
         
     End If
+    
+    'mensaje CF
+    
+    If Me.idtipoiva = 3 Then
+        nombre = "transparencia": tipo = "T"           ' "T" texto, "L" lineas, "I" imagen, etc.
+        X1 = 131: Y1 = 243: X2 = 271: Y2 = 246   ' coordenadas (en milimetros)
+        Font = "Arial": Size = 5: Bold = 1: Italic = 0: Underline = 1 ' tipo de letra
+        foreground = "000000": background = "FFFFFF"    ' colores de frente y fondo
+        Align = "I" ' Alineación: Centrado, Izquierda, Derecha
+        prioridad = 2 ' Orden Z, menor prioridad se dibuja primero (para superposiciones)
+        Text = "Régimen de Transparencia Fiscal al Consumidor(Ley 27743) "
+        ok = PyFEPDF.AgregarCampo(nombre, tipo, X1, Y1, X2, Y2, _
+                        Font, Size, Bold, Italic, Underline, _
+                        foreground, background, _
+                        Align, Text, Priority)
+        
+        nombre = "transparencia_iva": tipo = "T"           ' "T" texto, "L" lineas, "I" imagen, etc.
+        X1 = 131: Y1 = 247: X2 = 271: Y2 = 250   ' coordenadas (en milimetros)
+        Font = "Arial": Size = 5: Bold = 0: Italic = 0: Underline = 0 ' tipo de letra
+        foreground = "000000": background = "FFFFFF"    ' colores de frente y fondo
+        Align = "I" ' Alineación: Centrado, Izquierda, Derecha
+        prioridad = 1 ' Orden Z, menor prioridad se dibuja primero (para superposiciones)
+        Text = "IVA Contenido $: " & imp_iva
+        ok = PyFEPDF.AgregarCampo(nombre, tipo, X1, Y1, X2, Y2, _
+                        Font, Size, Bold, Italic, Underline, _
+                        foreground, background, _
+                        Align, Text, Priority)
+    
+    
+        nombre = "transparencia_otros": tipo = "T"           ' "T" texto, "L" lineas, "I" imagen, etc.
+        X1 = 131: Y1 = 251: X2 = 271: Y2 = 254   ' coordenadas (en milimetros)
+        Font = "Arial": Size = 5: Bold = 0: Italic = 0: Underline = 0 ' tipo de letra
+        foreground = "000000": background = "FFFFFF"    ' colores de frente y fondo
+        Align = "I" ' Alineación: Centrado, Izquierda, Derecha
+        prioridad = 1 ' Orden Z, menor prioridad se dibuja primero (para superposiciones)
+        Text = "Otros impuestos nacionales indirectos $:" & imp_trib
+        ok = PyFEPDF.AgregarCampo(nombre, tipo, X1, Y1, X2, Y2, _
+                        Font, Size, Bold, Italic, Underline, _
+                        foreground, background, _
+                        Align, Text, Priority)
+    
+    
+    End If
+    
     
     
     
@@ -3326,6 +3370,10 @@ While Not rs.EOF
                         Align, Text, Priority)
 
   
+    
+    
+    
+    
     ' Creo plantilla para esta factura (papel A4 vertical):
     papel = "A4" ' o "letter" para carta, "legal" para oficio
     orientacion = "portrait" ' o landscape (apaisado)
