@@ -245,7 +245,7 @@ If c_usuario.ListIndex >= 0 Then
        para.idsistema = rs("id_sistema")
        'define tipo de iva del cliente del sistema (1 fact ay b, el resto factura C)
        para.tipo_iva_empresa = rs("id_tipo_iva")
-       
+       para.version_webservice = rs("version_webservice")
        
         
         Set rs1 = New ADODB.Recordset

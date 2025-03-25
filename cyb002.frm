@@ -1,12 +1,12 @@
 VERSION 5.00
 Begin VB.Form gen_parametros 
    Caption         =   "Definir Cuentas"
-   ClientHeight    =   8625
+   ClientHeight    =   8805
    ClientLeft      =   60
    ClientTop       =   345
    ClientWidth     =   12330
    LinkTopic       =   "Form1"
-   ScaleHeight     =   8625
+   ScaleHeight     =   8805
    ScaleWidth      =   12330
    StartUpPosition =   3  'Windows Default
    Begin VB.CommandButton Command3 
@@ -22,10 +22,10 @@ Begin VB.Form gen_parametros
       Height          =   615
       Left            =   360
       TabIndex        =   22
-      Top             =   7920
+      Top             =   8040
       Width           =   8535
       Begin VB.Label Label23 
-         Caption         =   "Si realiza cambios en la configuracion ,  debera salir del Sistema y volver a Ingresar para un correcto funcionamiento. "
+         Caption         =   "Si realiza cambios en la configuración ,  deberá salir del Sistema y volver a Ingresar para un correcto funcionamiento. "
          Height          =   255
          Left            =   120
          TabIndex        =   23
@@ -92,14 +92,31 @@ Begin VB.Form gen_parametros
    End
    Begin VB.Frame Frame6 
       Caption         =   "Parametros de VENTAS"
-      Height          =   5055
+      Height          =   5175
       Left            =   360
       TabIndex        =   8
       Top             =   2760
-      Width           =   8655
+      Width           =   11175
+      Begin VB.TextBox t_webservice 
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   525
+         Left            =   7680
+         MaxLength       =   1
+         TabIndex        =   61
+         Top             =   2160
+         Width           =   615
+      End
       Begin VB.TextBox t_muestrasaldo 
          Height          =   285
-         Left            =   6000
+         Left            =   7680
          MaxLength       =   1
          TabIndex        =   57
          Top             =   1200
@@ -107,7 +124,7 @@ Begin VB.Form gen_parametros
       End
       Begin VB.TextBox t_ncenrbo 
          Height          =   285
-         Left            =   6000
+         Left            =   7680
          MaxLength       =   1
          TabIndex        =   54
          Top             =   720
@@ -154,7 +171,7 @@ Begin VB.Form gen_parametros
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
          Height          =   285
-         Left            =   6000
+         Left            =   7680
          MaxLength       =   14
          TabIndex        =   44
          Top             =   240
@@ -241,12 +258,23 @@ Begin VB.Form gen_parametros
          Top             =   240
          Width           =   855
       End
+      Begin VB.Label Label7 
+         Alignment       =   2  'Center
+         BackColor       =   &H00800080&
+         Caption         =   "Versión WEBSERVICE ARCA"
+         ForeColor       =   &H00FFFFFF&
+         Height          =   735
+         Left            =   6360
+         TabIndex        =   60
+         Top             =   2040
+         Width           =   1215
+      End
       Begin VB.Label Label6 
          BackColor       =   &H00C00000&
          Caption         =   "Calcula Saldo en Pantalla Factura"
          ForeColor       =   &H00FFFFFF&
          Height          =   495
-         Left            =   4680
+         Left            =   6360
          TabIndex        =   59
          Top             =   1200
          Width           =   1215
@@ -255,7 +283,7 @@ Begin VB.Form gen_parametros
          BackColor       =   &H00E0E0E0&
          Caption         =   "[S] Si   [N] No"
          Height          =   375
-         Left            =   6600
+         Left            =   8280
          TabIndex        =   58
          Top             =   1200
          Width           =   1815
@@ -264,7 +292,7 @@ Begin VB.Form gen_parametros
          BackColor       =   &H00E0E0E0&
          Caption         =   "[S] Si   [N] No"
          Height          =   375
-         Left            =   6600
+         Left            =   8280
          TabIndex        =   56
          Top             =   720
          Width           =   1815
@@ -274,7 +302,7 @@ Begin VB.Form gen_parametros
          Caption         =   "Emite Nc en Recibos"
          ForeColor       =   &H00FFFFFF&
          Height          =   495
-         Left            =   4680
+         Left            =   6360
          TabIndex        =   55
          Top             =   720
          Width           =   1215
@@ -283,7 +311,7 @@ Begin VB.Form gen_parametros
          BackColor       =   &H00C00000&
          Caption         =   "                                Tipo Redondeo"
          ForeColor       =   &H00FFFFFF&
-         Height          =   375
+         Height          =   495
          Left            =   120
          TabIndex        =   53
          Top             =   4560
@@ -324,7 +352,7 @@ Begin VB.Form gen_parametros
          Caption         =   "Tasa Financiera (mensual)"
          ForeColor       =   &H00FFFFFF&
          Height          =   495
-         Left            =   4680
+         Left            =   6360
          TabIndex        =   45
          Top             =   240
          Width           =   1215
@@ -546,10 +574,10 @@ Begin VB.Form gen_parametros
       End
    End
    Begin VB.Frame Frame2 
-      Height          =   735
+      Height          =   615
       Left            =   9120
       TabIndex        =   0
-      Top             =   7680
+      Top             =   8040
       Width           =   2655
       Begin VB.CommandButton Command2 
          Caption         =   "Salir"
@@ -692,8 +720,12 @@ If Not rs.EOF And Not rs.BOF Then
   rs("precio_remito_factura") = Check4
   rs("tipo_redondeo") = c_redondeo.ListIndex
   rs("nc_en_recibo") = t_ncenrbo
-  
-  
+  If Val(t_webservice) >= 3 And Val(t_webservice) <= 4 Then
+     rs("version_webservice") = Val(t_webservice)
+     para.version_webservice = Val(t_webservice)
+  Else
+     MsgBox ("La versión WebService solo puede ser 3 o 4. No se actualizará, verifíquelo!!!")
+  End If
   'rs ("muestra_saldo_fact_venta")
   rs("muestra_saldo_fact_venta") = t_muestrasaldo
   
@@ -818,6 +850,7 @@ If Not rs.EOF And Not rs.BOF Then
   gen_parametros1.c_resultado.ListIndex = buscaindice(gen_parametros1.c_resultado, rs("id_cuenta_resultado_tenencia"))
  t_ncenrbo = rs("nc_en_recibo")
  t_muestrasaldo = rs("muestra_saldo_fact_venta")
+ t_webservice = rs("version_webservice")
  
 End If
 Set rs = Nothing
