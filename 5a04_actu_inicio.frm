@@ -160,7 +160,7 @@ Begin VB.Form actu_inicio
    Begin VB.Label Label3 
       Alignment       =   2  'Center
       BackColor       =   &H0000FFFF&
-      Caption         =   "001"
+      Caption         =   "002"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   18
@@ -202,6 +202,11 @@ If J = "1975" Then
   Select Case Val(x)
   Case Is = 1
     Call actu001
+  Case Is = 2
+    Call actu002
+  
+  
+  
   End Select
    MsgBox ("Proceso Terminado")
    
@@ -256,6 +261,70 @@ err1:
 Resume Next
 
 End Sub
+
+
+Sub actu002()
+'corrige ajustes de stock
+h = MsgBox("Actualizacion 002 Version12 . ¿Esta seguro que quiere actualizar?  ", 4)
+If h = 6 Then
+  
+  espere.Show
+  espere.Refresh
+    
+   cn1.BeginTrans
+     
+     q = "alter table g3 add column [cod_fe] Int  "
+     cn1.Execute q
+     
+  cn1.CommitTrans
+  
+ cn1.BeginTrans
+    
+    q = "update g3 set  [cod_fe]=1 where [cod_tipoiva]=1"
+    cn1.Execute q
+    
+    q = "update g3 set  [cod_fe]=15 where [cod_tipoiva]=2"
+    cn1.Execute q
+    
+    q = "update g3 set  [cod_fe]=5 where [cod_tipoiva]=3"
+    cn1.Execute q
+    
+    q = "update g3 set  [cod_fe]=6 where [cod_tipoiva]=4"
+    cn1.Execute q
+    
+    q = "update g3 set  [cod_fe]=4 where [cod_tipoiva]=5"
+    cn1.Execute q
+    
+    q = "update g3 set  [cod_fe]=1 where [cod_tipoiva]=6"
+    cn1.Execute q
+    
+    q = "update g3 set  [cod_fe]=7 where [cod_tipoiva]=7"
+    cn1.Execute q
+    
+    q = "update g3 set  [cod_fe]=9 where [cod_tipoiva]=8"
+    cn1.Execute q
+    
+    q = "update g0 set  [actualizacion]=002"
+    q = q & " where [sucursal]=0 "
+    cn1.Execute q
+   
+    
+  cn1.CommitTrans
+    
+   
+  
+ Unload espere
+  
+End If
+
+Exit Sub
+
+
+err1:
+Resume Next
+
+End Sub
+
 
 
 

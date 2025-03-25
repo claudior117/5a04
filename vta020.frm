@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "mscomctl.OCX"
 Begin VB.Form vta_clientes 
    BackColor       =   &H00E0E0E0&
    BorderStyle     =   1  'Fixed Single
@@ -16,6 +16,15 @@ Begin VB.Form vta_clientes
    PaletteMode     =   1  'UseZOrder
    ScaleHeight     =   7380
    ScaleWidth      =   6210
+   Begin VB.TextBox t_codfe 
+      Height          =   285
+      Left            =   2160
+      MaxLength       =   2
+      TabIndex        =   45
+      Top             =   6720
+      Visible         =   0   'False
+      Width           =   735
+   End
    Begin VB.TextBox t_codfiscal2 
       Height          =   285
       Left            =   2160
@@ -489,12 +498,13 @@ Sub cambiacli()
      
      t_iva = rs("abreviatura")
      t_codfiscal = rs("cod_fiscal")
-    
+     t_codfe = rs("cod_fe")
     Else
       c_iva.ListIndex = 2
       t_iva = "C.F"
       t_letrafact = "B"
       t_codfiscal = "F"
+      t_codfe = "5"
     End If
     
     If c_iva.ItemData(c_iva.ListIndex) <> 3 Then
@@ -505,6 +515,7 @@ Sub cambiacli()
         t_iva = "C.F"
         t_letrafact = "B"
         t_codfiscal = "F"
+        t_codfe = "5"
        End If
     End If
 
@@ -571,7 +582,7 @@ If Val(t_id) > 0 Then
      t_percibeib = cl_cli.perciveib
      t_idproveedor = cl_cli.idproveedor
      t_limite = cl_cli.limitecredito
-   
+     t_codfe = cl_cli.codfe
    End If
    Set cl_cli = Nothing
 End If

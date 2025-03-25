@@ -54,6 +54,23 @@ Private mvarlimitecredito As Double 'copia local
 Private mvardireccion_local As String 'copia local
 'variables locales para almacenar los valores de las propiedades
 Private mvarcodfiscal2 As Integer 'copia local
+'variables locales para almacenar los valores de las propiedades
+Private mvarcodfe As Integer 'copia local
+Public Property Let codfe(ByVal vData As Integer)
+'se usa al asignar un valor a la propiedad, en la parte izquierda de una asignación.
+'Syntax: X.codfe = 5
+    mvarcodfe = vData
+End Property
+
+
+Public Property Get codfe() As Integer
+'se usa al recuperar un valor de una propiedad, en la parte derecha de una asignación.
+'Syntax: Debug.Print X.codfe
+    codfe = mvarcodfe
+End Property
+
+
+
 Public Property Let codfiscal2(ByVal vData As Integer)
 'se usa al asignar un valor a la propiedad, en la parte izquierda de una asignación.
 'Syntax: X.codfiscal2 = 5
@@ -642,7 +659,7 @@ End Property
 
 Public Sub carga(ByVal ip As Long)
 'On Error GoTo er_carga
-q = "select id_cliente, denominacion, direccion, localidad, provincia, cp, cuit, email, te, id_tipoiva, letra_cliente, descrimina_cliente, abreviatura, id_vendedor, inscripto_operador_granos, percive_ib, id_proveedor, id_prov, cod_fiscal, limite_credito, direccion_local from vta_01, g3 where [id_cliente] = " & ip & " and [id_tipoiva] = [cod_tipoiva]"
+q = "select id_cliente, denominacion, direccion, localidad, provincia, cp, cuit, email, te, id_tipoiva, letra_cliente, descrimina_cliente, abreviatura, id_vendedor, inscripto_operador_granos, percive_ib, id_proveedor, id_prov, cod_fiscal, limite_credito, direccion_local, cod_fe from vta_01, g3 where [id_cliente] = " & ip & " and [id_tipoiva] = [cod_tipoiva]"
 'MsgBox (q)
 Set rs = New ADODB.Recordset
 rs.Open q, cn1
@@ -675,7 +692,7 @@ If Not rs.BOF And Not rs.EOF Then
   Me.codfiscal = rs("cod_fiscal")
   Me.limitecredito = rs("limite_credito")
   Me.direccion_local = rs("direccion_local")
-  'Me.codfiscal2 = rs("cod_fiscal2")
+  Me.codfe = rs("cod_fe")
 Else
   Me.id = 0
 End If
