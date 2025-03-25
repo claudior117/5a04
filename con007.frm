@@ -245,7 +245,7 @@ Begin VB.Form con_saldosprov
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   115343361
+      StartOfWeek     =   113901569
       CurrentDate     =   38803
    End
    Begin VB.Frame Frame2 
@@ -484,12 +484,12 @@ Begin VB.Form con_saldosprov
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "27/12/2024"
+            TextSave        =   "23/01/2025"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:38 a.m."
+            TextSave        =   "09:49 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -894,6 +894,7 @@ Option1 = True
 Option4 = True
 Call carga_zonas(c_zona)
 c_zona.AddItem "<Todas>", 0
+c_zona.ListIndex = 0
 
 End Sub
 

@@ -900,7 +900,8 @@ Sub muestra2()
      vta_listaprecios2.Show
    End If
    Set rs1 = Nothing
-    Call vta_listaprecios2.actualiza
+   
+   Call vta_listaprecios2.actualiza
    
  End If
  

@@ -1236,12 +1236,12 @@ Begin VB.Form vta_listaprecios2
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "08/12/2024"
+            TextSave        =   "23/01/2025"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "07:29 p.m."
+            TextSave        =   "09:26 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -1309,7 +1309,7 @@ If J = 6 Then
           QUERY = QUERY & " , [fecha_ult_compra]='" & Format$(Now, "dd/mm/yyyy") & "' "
       End If
       
-      If Val(t_final) <> Val(t_final.Tag) Then
+      If Val(t_final) <> Val(t_final.Tag) Or Val(t_pu) <> Val(t_pu.Tag) Then
           QUERY = QUERY & " , [fecha_actu_precio_venta]='" & Format$(Now, "dd/mm/yyyy") & "' "
       End If
           
@@ -1507,7 +1507,7 @@ err1:
 End Sub
 
 Private Sub Form_Activate()
-'t_final.SetFocus
+ Call actualiza
 End Sub
 
 Sub actualiza()
@@ -1516,6 +1516,7 @@ t_costo.Tag = Val(t_costo)
 t_final.Tag = Val(t_final)
 t_cotizultcom.Tag = Val(t_cotizultcom)
 t_stock.Tag = Val(t_stock)
+t_pu.Tag = Val(t_pu)
 End Sub
 Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
 If KeyCode = vbKeyF9 Then

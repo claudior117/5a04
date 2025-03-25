@@ -3765,20 +3765,43 @@ End Sub
 
 Sub actu999()
 'corrige error actu 225
-h = MsgBox("Actualizacion general para corregir error 252 . ¿Esta seguro que quiere actualizar? ", 4)
+h = MsgBox("Actualizacion general para corregir error 225 . ¿Esta seguro que quiere actualizar? ", 4)
 If h = 6 Then
- cn1.BeginTrans
      
-    q = "update a2 set [percibe_5329]='N'"
-    cn1.Execute q
+  espere.Show
+  espere.Refresh
     
-  cn1.CommitTrans
-    
+   cn1.BeginTrans
+     
    
-  MsgBox ("Proceso terminado. Verificar articulos para aquellos que deban percibir Iva RG5329 ")
+     q = "alter table I_01 add column [id_cuenta_i1] double"
+     cn1.Execute q
+     
+   cn1.CommitTrans
    
+ 
+   cn1.BeginTrans
+     q = "update I_01 set [id_cuenta_i1] = 110201"
+     cn1.Execute q
+     
+     q = "update A2 set [percibe_5329] = 'N'"
+     cn1.Execute q
+     
+     
+   cn1.CommitTrans
+ 
+ 
+ 
+ Unload espere
   
 End If
+
+Exit Sub
+
+
+err1:
+Resume Next
+
 End Sub
 
 

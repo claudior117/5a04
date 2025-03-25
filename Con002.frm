@@ -1,6 +1,6 @@
 VERSION 5.00
-Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFlxGrd.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "mscomctl.OCX"
 Begin VB.Form con_vercomp 
    BackColor       =   &H00E0E0E0&
    Caption         =   "ADMINISTRADOR DE COMPROBANTES INGRESADOS"
@@ -382,12 +382,12 @@ Begin VB.Form con_vercomp
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "04/03/2024"
+            TextSave        =   "14/01/2025"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "05:26 p.m."
+            TextSave        =   "09:13 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -470,6 +470,7 @@ Sub carga(par As Integer)
   
   
   q = q & o
+  'MsgBox (q)
   Set rs = New ADODB.Recordset
   rs.Open q, cn1, adOpenDynamic, adLockOptimistic, 1
   
