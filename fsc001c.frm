@@ -158,7 +158,8 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 
 Private Sub Command1_Click()
-fsc_formapago.t_total = t_total
+fsc_formapago.T_TOTAL = T_TOTAL
+fsc_formapago.t_modulo = 1
 fsc_formapago.Show
 End Sub
 
@@ -174,8 +175,8 @@ End Sub
 
 Private Sub Form_KeyPress(KeyAscii As Integer)
 If KeyAscii = 13 Then
-   t_total = Format$(Val(t_total), "#####0.00")
-   t_vuelto = Format$(Val(t_ingreso) - Val(t_total), "#####0.00")
+   T_TOTAL = Format$(Val(T_TOTAL), "#####0.00")
+   t_vuelto = Format$(Val(t_ingreso) - Val(T_TOTAL), "#####0.00")
    Frame2.Visible = True
 End If
 
@@ -185,8 +186,8 @@ End If
 End Sub
 
 Private Sub t_ingreso_Change()
-   t_total = Format$(Val(t_total), "#####0.00")
-   t_vuelto = Format$(Val(t_ingreso) - Val(t_total), "#####0.00")
+   T_TOTAL = Format$(Val(T_TOTAL), "#####0.00")
+   t_vuelto = Format$(Val(t_ingreso) - Val(T_TOTAL), "#####0.00")
    Frame2.Visible = True
 End Sub
 
@@ -198,7 +199,7 @@ Private Sub t_ingreso_KeyPress(KeyAscii As Integer)
     Else
        If fsc_formapago.msf2.Rows <= 1 Then
               'pone forma de pago efectivo
-              fsc_formapago.msf2.AddItem "001" & Chr(9) & 1 & Chr(9) & "-" & Chr(9) & "Efectivo $" & Chr(9) & "-" & Chr(9) & "-" & Chr(9) & Format$(Val(t_total), "######0.00") & Chr(9) & Format$(fsc_tique.t_fecha, "DD/MM/YYYY") & Chr(9) & "" & Chr(9) & para.cuenta_caja & Chr(9) & "Pago Efectivo"
+              fsc_formapago.msf2.AddItem "001" & Chr(9) & 1 & Chr(9) & "-" & Chr(9) & "Efectivo $" & Chr(9) & "-" & Chr(9) & "-" & Chr(9) & Format$(Val(T_TOTAL), "######0.00") & Chr(9) & Format$(fsc_tique.t_fecha, "DD/MM/YYYY") & Chr(9) & "" & Chr(9) & para.cuenta_caja & Chr(9) & "Pago Efectivo"
               Call iniciagraba
        Else
           MsgBox ("El pago ingresado no coincide con el total del comprobante")

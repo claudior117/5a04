@@ -159,6 +159,7 @@ Attribute VB_Exposed = False
 
 Private Sub Command1_Click()
 fsc_formapago.T_TOTAL = T_TOTAL
+fsc_formapago.t_modulo = 2
 fsc_formapago.Show
 End Sub
 

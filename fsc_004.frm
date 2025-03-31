@@ -4,15 +4,24 @@ Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "mscomctl.OCX"
 Begin VB.Form fsc_formapago 
    BackColor       =   &H00E0E0E0&
    Caption         =   "Forma de pago"
-   ClientHeight    =   4365
+   ClientHeight    =   4800
    ClientLeft      =   60
    ClientTop       =   450
    ClientWidth     =   11880
    ControlBox      =   0   'False
    LinkTopic       =   "Form1"
-   ScaleHeight     =   4365
+   ScaleHeight     =   4800
    ScaleWidth      =   11880
    StartUpPosition =   3  'Windows Default
+   Begin VB.TextBox t_modulo 
+      Height          =   375
+      Left            =   840
+      TabIndex        =   9
+      Text            =   "Text1"
+      Top             =   4200
+      Visible         =   0   'False
+      Width           =   1815
+   End
    Begin VB.Frame Frame5 
       BackColor       =   &H00E0E0E0&
       Caption         =   "Forma de Pago"
@@ -118,7 +127,7 @@ Begin VB.Form fsc_formapago
       Height          =   255
       Left            =   0
       TabIndex        =   6
-      Top             =   4110
+      Top             =   4545
       Width           =   11880
       _ExtentX        =   20955
       _ExtentY        =   450
@@ -190,7 +199,7 @@ Else
   msf2.FocusRect = flexFocusLight
 End If
 t_ingresado = suma_msflexgrid(msf2, 6)
-t_diferencia = Format$(Val(T_TOTAL) - Val(t_ingresado), "######0.00")
+t_diferencia = Format$(Val(t_total) - Val(t_ingresado), "######0.00")
 
 End Sub
 
@@ -235,7 +244,11 @@ End Sub
 
 Private Sub msf2_KeyPress(KeyAscii As Integer)
 If KeyAscii = 27 Then
+  If t_modulo = 2 Then
    fsc_tiqueNF2.t_ingreso.SetFocus
+  Else
+   fsc_tique2.t_ingreso.SetFocus
+  End If
    Me.Hide
 End If
 End Sub

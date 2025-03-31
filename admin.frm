@@ -372,7 +372,7 @@ End Sub
 Sub entrar()
         'para.empresa = "geser" 'command$
         'fotosv   sistema2
-        para.empresa = "" 'prueba
+        para.empresa = "claudio" 'prueba
         Call LEEINI
         X = Shell(App.Path & "\tools\confreg.exe")
         Call carga_usuarios_ini(c_usuario)

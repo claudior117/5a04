@@ -864,7 +864,7 @@ If KeyCode = vbKeyF2 Then 'historial producto
   
   Else
   
-    MsgBox ("Imposible consultar comprobante en el AFIP")
+    MsgBox ("No es un comprobante electronico generado por Web Service en el AFIP")
   
   
   End If
@@ -1079,7 +1079,7 @@ Sub fe_consulta_comp()
  
  List1.clear
  List1.AddItem "**********************************************************************"
- List1.AddItem " Consultas de comprobantes en el Web Service del afip"
+ List1.AddItem " Consultas de comprobantes en el Web Service de ARCA"
  List1.AddItem "**********************************************************************"
  List1.AddItem ""
  
@@ -1126,57 +1126,68 @@ Sub fe_consulta_comp()
     Debug.Print cbte_nro
     
     
-    cae2 = WSFEv1.CompConsultar(tipo_cbte, punto_vta, cbte_nro) 'cae garbado en el afip
+    c2 = WSFEv1.CompConsultar(tipo_cbte, punto_vta, cbte_nro) 'cae garbado en el afip
+    
+    
     ControlarExcepcion WSFEv1
-
-    List1.AddItem "Fecha Comprobante:" & WSFEv1.FechaCbte
-     List1.AddItem "CAE:" & WSFEv1.cae
-    List1.AddItem "Fecha Vencimiento CAE" & WSFEv1.Vencimiento
-    List1.AddItem "Resultado:" & WSFEv1.Resultado
-    List1.AddItem ""
-    List1.AddItem "########################################"
-    List1.AddItem "Abalisis XML Response"
-    List1.AddItem "########################################"
     
+    If c2 <> "" Then
     
-        ok = WSFEv1.AnalizarXml("XmlResponse")
-        If ok Then
-            
-            List1.AddItem "CbteFch:" & WSFEv1.ObtenerTagXml("CbteFch")
-            List1.AddItem "Moneda:" & WSFEv1.ObtenerTagXml("MonId")
-            List1.AddItem "Cotizacion:" & WSFEv1.ObtenerTagXml("MonCotiz")
-            List1.AddItem "DocTIpo:" & WSFEv1.ObtenerTagXml("DocTipo")
-            List1.AddItem "DocNro:" & WSFEv1.ObtenerTagXml("DocNro")
-            
-            ' ejemplos con arreglos (primer elemento = 0):
-             List1.AddItem "Importe Total:" & WSFEv1.ImpTotal
-            List1.AddItem "Primer IVA (alci id):" & WSFEv1.ObtenerTagXml("Iva", "AlicIva", 0, "Id")
-            List1.AddItem "Primer IVA (importe):" & WSFEv1.ObtenerTagXml("Iva", "AlicIva", 0, "Importe")
-            List1.AddItem "Segundo IVA (alic id):" & WSFEv1.ObtenerTagXml("Iva", "AlicIva", 1, "Id")
-            List1.AddItem "Segundo IVA (importe):" & WSFEv1.ObtenerTagXml("Iva", "AlicIva", 1, "Importe")
-            List1.AddItem "Percepcion IB (ds):" & WSFEv1.ObtenerTagXml("Tributos", "Tributo", 0, "Desc")
-            List1.AddItem "Percepcion Ib (importe):" & WSFEv1.ObtenerTagXml("Tributos", "Tributo", 0, "Importe")
-            List1.AddItem "Percepcion Iva (ds):" & WSFEv1.ObtenerTagXml("Tributos", "Tributo", 1, "Desc")
-            List1.AddItem "Percepcion Iva (importe):" & WSFEv1.ObtenerTagXml("Tributos", "Tributo", 1, "Importe")
-        Else
-            ' hubo error, muestro mensaje
-            Debug.Print WSFEv1.Excepcion
-        End If
-    
-    List1.AddItem ""
-    List1.AddItem "Analisis del CAE"
-    List1.AddItem ""
-    If cae = "" Then
-        List1.AddItem "Error en el CAE"
         
-        ' hubo error, no comparo
-    Else
-    If cae <> cae2 Then
-        List1.AddItem "El CAE del comprobante guardafo localmentedifiere del guardado en el AFIP: " & cae & " vs " & cae2
-    Else
-        List1.AddItem "El CAE de la factura concuerdan con el recuperado de la AFIP"
-    End If
-    End If
+        cae2 = WSFEv1.cae
+        List1.AddItem "########################################"
+        List1.AddItem "¡¡¡¡¡¡¡¡¡¡¡CONSULTA EXITOSA!!!!!!!!!!!"
+        List1.AddItem "########################################"
+        
+
+        List1.AddItem "Fecha Comprobante:" & WSFEv1.FechaCbte
+         List1.AddItem "CAE:" & WSFEv1.cae
+        List1.AddItem "Fecha Vencimiento CAE" & WSFEv1.Vencimiento
+        List1.AddItem "Resultado:" & WSFEv1.Resultado
+        List1.AddItem ""
+        
+        
+        List1.AddItem "########################################"
+        List1.AddItem "Análisis XML Response"
+        List1.AddItem "########################################"
+        
+        
+            ok = WSFEv1.AnalizarXml("XmlResponse")
+            If ok Then
+                
+                List1.AddItem "CbteFch:" & WSFEv1.ObtenerTagXml("CbteFch")
+                List1.AddItem "Moneda:" & WSFEv1.ObtenerTagXml("MonId")
+                List1.AddItem "Cotizacion:" & WSFEv1.ObtenerTagXml("MonCotiz")
+                List1.AddItem "DocTIpo:" & WSFEv1.ObtenerTagXml("DocTipo")
+                List1.AddItem "DocNro:" & WSFEv1.ObtenerTagXml("DocNro")
+                
+                ' ejemplos con arreglos (primer elemento = 0):
+                 List1.AddItem "Importe Total:" & WSFEv1.ImpTotal
+                List1.AddItem "Primer IVA (alci id):" & WSFEv1.ObtenerTagXml("Iva", "AlicIva", 0, "Id")
+                List1.AddItem "Primer IVA (importe):" & WSFEv1.ObtenerTagXml("Iva", "AlicIva", 0, "Importe")
+                List1.AddItem "Segundo IVA (alic id):" & WSFEv1.ObtenerTagXml("Iva", "AlicIva", 1, "Id")
+                List1.AddItem "Segundo IVA (importe):" & WSFEv1.ObtenerTagXml("Iva", "AlicIva", 1, "Importe")
+                List1.AddItem "Percepcion IB (ds):" & WSFEv1.ObtenerTagXml("Tributos", "Tributo", 0, "Desc")
+                List1.AddItem "Percepcion Ib (importe):" & WSFEv1.ObtenerTagXml("Tributos", "Tributo", 0, "Importe")
+                List1.AddItem "Percepcion Iva (ds):" & WSFEv1.ObtenerTagXml("Tributos", "Tributo", 1, "Desc")
+                List1.AddItem "Percepcion Iva (importe):" & WSFEv1.ObtenerTagXml("Tributos", "Tributo", 1, "Importe")
+            Else
+                ' hubo error, muestro mensaje
+                Debug.Print WSFEv1.Excepcion
+            End If
+        
+        Else
+       List1.AddItem "########################################################################"
+       List1.AddItem "¡¡ATENCIÓN: El comprobante no fue encontrado en los servidores de ARCA"
+       List1.AddItem "#########################################################################"
+       List1.AddItem ""
+       List1.AddItem "Esto se puede deber a que hubo un error en la comunicación cuando se estaba generando el comprobante."
+       List1.AddItem "Para solucionarlo debería eliminar el comprobante del sistema y volver a emitirlo"
+
+
+End If
+
+
 End If
 End If
 End Sub

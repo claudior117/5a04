@@ -61,44 +61,44 @@ Begin VB.Form inicio
    End
    Begin VB.Frame Frame4 
       BackColor       =   &H00FFFFFF&
-      Height          =   3495
-      Left            =   9840
+      Height          =   3855
+      Left            =   9720
       TabIndex        =   21
-      Top             =   480
-      Width           =   1575
+      Top             =   360
+      Width           =   1815
+      Begin VB.Image Image3 
+         Height          =   750
+         Left            =   480
+         Picture         =   "inicio.frx":5AC4
+         Top             =   840
+         Width           =   750
+      End
+      Begin VB.Image Image2 
+         Height          =   465
+         Left            =   240
+         Picture         =   "inicio.frx":9E35
+         Top             =   1680
+         Width           =   1320
+      End
       Begin VB.Image Image6 
          Height          =   495
          Left            =   480
-         Picture         =   "inicio.frx":5AC4
-         Top             =   2760
+         Picture         =   "inicio.frx":C24B
+         Top             =   3240
          Width           =   765
       End
       Begin VB.Image Image1 
          Height          =   450
-         Left            =   360
-         Picture         =   "inicio.frx":6075
+         Left            =   480
+         Picture         =   "inicio.frx":C7FC
          Top             =   240
          Width           =   810
-      End
-      Begin VB.Image Image2 
-         Height          =   315
-         Left            =   120
-         Picture         =   "inicio.frx":6653
-         Top             =   840
-         Width           =   1380
-      End
-      Begin VB.Image Image3 
-         Height          =   330
-         Left            =   240
-         Picture         =   "inicio.frx":6C2A
-         Top             =   1320
-         Width           =   1155
       End
       Begin VB.Image Image4 
          Height          =   720
          Left            =   480
-         Picture         =   "inicio.frx":712E
-         Top             =   1800
+         Picture         =   "inicio.frx":CDDA
+         Top             =   2400
          Width           =   720
       End
    End
@@ -115,9 +115,9 @@ Begin VB.Form inicio
          Strikethrough   =   0   'False
       EndProperty
       Height          =   2055
-      Left            =   7680
+      Left            =   7800
       TabIndex        =   18
-      Top             =   4200
+      Top             =   4560
       Width           =   3735
       Begin VB.Label Label5 
          Alignment       =   2  'Center
@@ -142,7 +142,7 @@ Begin VB.Form inicio
       Begin VB.Image Image5 
          Height          =   480
          Left            =   120
-         Picture         =   "inicio.frx":7FF8
+         Picture         =   "inicio.frx":DCA4
          Top             =   360
          Width           =   480
       End
@@ -179,7 +179,7 @@ Begin VB.Form inicio
          Caption         =   "Definir Imp."
          Height          =   735
          Left            =   4560
-         Picture         =   "inicio.frx":8302
+         Picture         =   "inicio.frx":DFAE
          Style           =   1  'Graphical
          TabIndex        =   24
          Top             =   240
@@ -189,7 +189,7 @@ Begin VB.Form inicio
          Caption         =   "Calculadora"
          Height          =   735
          Left            =   2400
-         Picture         =   "inicio.frx":860C
+         Picture         =   "inicio.frx":E2B8
          Style           =   1  'Graphical
          TabIndex        =   23
          Top             =   240
@@ -199,7 +199,7 @@ Begin VB.Form inicio
          Caption         =   "Links"
          Height          =   735
          Left            =   3480
-         Picture         =   "inicio.frx":8916
+         Picture         =   "inicio.frx":E5C2
          Style           =   1  'Graphical
          TabIndex        =   22
          Top             =   240
@@ -209,7 +209,7 @@ Begin VB.Form inicio
          Caption         =   "Calendario"
          Height          =   735
          Left            =   1320
-         Picture         =   "inicio.frx":8D31
+         Picture         =   "inicio.frx":E9DD
          Style           =   1  'Graphical
          TabIndex        =   17
          Top             =   240
@@ -219,7 +219,7 @@ Begin VB.Form inicio
          Caption         =   "Agenda"
          Height          =   735
          Left            =   240
-         Picture         =   "inicio.frx":9177
+         Picture         =   "inicio.frx":EE23
          Style           =   1  'Graphical
          TabIndex        =   16
          Top             =   240
@@ -405,7 +405,7 @@ Begin VB.Form inicio
       Begin VB.CommandButton btnsale 
          Height          =   615
          Left            =   840
-         Picture         =   "inicio.frx":95EE
+         Picture         =   "inicio.frx":F29A
          Style           =   1  'Graphical
          TabIndex        =   3
          ToolTipText     =   "Salir sin Modificar"
@@ -416,7 +416,7 @@ Begin VB.Form inicio
       Begin VB.CommandButton btnacepta 
          Height          =   615
          Left            =   120
-         Picture         =   "inicio.frx":9E70
+         Picture         =   "inicio.frx":FB1C
          Style           =   1  'Graphical
          TabIndex        =   2
          ToolTipText     =   "Renueva Lista de Clientes"
@@ -454,12 +454,12 @@ Begin VB.Form inicio
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "25/03/2025"
+            TextSave        =   "26/03/2025"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "10:31 a.m."
+            TextSave        =   "11:22 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -477,43 +477,43 @@ Begin VB.Form inicio
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
          NumListImages   =   10
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "inicio.frx":A6F2
+            Picture         =   "inicio.frx":1039E
             Key             =   "I1"
          EndProperty
          BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "inicio.frx":AA0C
+            Picture         =   "inicio.frx":106B8
             Key             =   ""
          EndProperty
          BeginProperty ListImage3 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "inicio.frx":AFA1
+            Picture         =   "inicio.frx":10C4D
             Key             =   ""
          EndProperty
          BeginProperty ListImage4 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "inicio.frx":B2BB
+            Picture         =   "inicio.frx":10F67
             Key             =   "I2"
          EndProperty
          BeginProperty ListImage5 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "inicio.frx":B5D5
+            Picture         =   "inicio.frx":11281
             Key             =   ""
          EndProperty
          BeginProperty ListImage6 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "inicio.frx":B8EF
+            Picture         =   "inicio.frx":1159B
             Key             =   ""
          EndProperty
          BeginProperty ListImage7 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "inicio.frx":C1C9
+            Picture         =   "inicio.frx":11E75
             Key             =   ""
          EndProperty
          BeginProperty ListImage8 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "inicio.frx":C4E3
+            Picture         =   "inicio.frx":1218F
             Key             =   ""
          EndProperty
          BeginProperty ListImage9 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "inicio.frx":CD75
+            Picture         =   "inicio.frx":12A21
             Key             =   ""
          EndProperty
          BeginProperty ListImage10 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "inicio.frx":D363
+            Picture         =   "inicio.frx":1300F
             Key             =   ""
          EndProperty
       EndProperty
