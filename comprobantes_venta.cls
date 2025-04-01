@@ -3135,6 +3135,7 @@ Public Sub generapdf(ByVal c As Integer)
    Set rs = New ADODB.Recordset
    q = "Select detalle, base_imponible, cod_regimen, alicuota, importe from vta_016, i_01 where [num_int] = " & Me.numint & " and id_percepcion=id_impuesto"
    rs.Open q, cn1
+   totperc = 0
     While Not rs.EOF
     tributo_id = Format$(rs("cod_regimen"), "00")        ' codigo para 99-otros tributos
     Desc = rs("detalle") & "(" & Format$(rs("base_imponible"), "#######0.00") & ") " & Format$(rs("alicuota"), "#0.0") & "%"
@@ -3143,6 +3144,8 @@ Public Sub generapdf(ByVal c As Integer)
     importe = Format$(rs("importe"), "#######0.00")
     ok = PyFEPDF.AgregarTributo(tributo_id, Desc, base_imp, alic, importe)
     rs.MoveNext
+    
+    totperc = totperc + Val(importe)
     Wend
     
         
@@ -3294,7 +3297,9 @@ While Not rs.EOF
         
     End If
     
-    'mensaje CF
+    
+    
+    'mensaje CF transparencia fiscal
     
     If Me.idtipoiva = 3 Then
         nombre = "transparencia": tipo = "T"           ' "T" texto, "L" lineas, "I" imagen, etc.
