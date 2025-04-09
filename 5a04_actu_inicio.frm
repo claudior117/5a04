@@ -160,7 +160,7 @@ Begin VB.Form actu_inicio
    Begin VB.Label Label3 
       Alignment       =   2  'Center
       BackColor       =   &H0000FFFF&
-      Caption         =   "002"
+      Caption         =   "003"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   18
@@ -204,6 +204,8 @@ If J = "1975" Then
     Call actu001
   Case Is = 2
     Call actu002
+  Case Is = 3
+    Call actu003
   
   
   
@@ -246,6 +248,36 @@ If h = 6 Then
     cn1.Execute q
    
     
+  cn1.CommitTrans
+    
+   
+  
+ Unload espere
+  
+End If
+
+Exit Sub
+
+
+err1:
+Resume Next
+
+End Sub
+
+Sub actu003()
+'corrige REPORTES
+h = MsgBox("Actualizacion 003 Version12. ¿Esta seguro que quiere actualizar?  ", 4)
+If h = 6 Then
+  
+  espere.Show
+  espere.Refresh
+  
+   MsgBox ("Actualizacion tabla reportes. Modifique campo cod_barra como Text(20) en rep/dat/rep.mdb")
+ 
+ cn1.BeginTrans
+    q = "update g0 set  [actualizacion]=003"
+    q = q & " where [sucursal]=0 "
+    cn1.Execute q
   cn1.CommitTrans
     
    

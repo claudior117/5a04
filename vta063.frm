@@ -298,6 +298,14 @@ Begin VB.Form vta_cargaprod_listaprov
       TabIndex        =   9
       Top             =   0
       Width           =   7815
+      Begin VB.CheckBox incluye_codbarra 
+         BackColor       =   &H00E0E0E0&
+         Height          =   255
+         Left            =   5160
+         TabIndex        =   53
+         Top             =   2160
+         Width           =   2295
+      End
       Begin VB.CheckBox incluye_codprodprov 
          BackColor       =   &H00E0E0E0&
          Caption         =   "al final entre astericos"
@@ -379,12 +387,23 @@ Begin VB.Form vta_cargaprod_listaprov
          Top             =   240
          Width           =   6015
       End
+      Begin VB.Label Label19 
+         Alignment       =   1  'Right Justify
+         BackColor       =   &H00800080&
+         Caption         =   "Incluye cod. prod. como cod. barra"
+         ForeColor       =   &H00FFFFFF&
+         Height          =   375
+         Left            =   3480
+         TabIndex        =   54
+         Top             =   2160
+         Width           =   1575
+      End
       Begin VB.Label Label18 
          Alignment       =   1  'Right Justify
          BackColor       =   &H00800080&
          Caption         =   "Incluye cod. prod. proveedor en desc."
          ForeColor       =   &H00FFFFFF&
-         Height          =   375
+         Height          =   495
          Left            =   3480
          TabIndex        =   51
          Top             =   1680
@@ -540,12 +559,12 @@ Begin VB.Form vta_cargaprod_listaprov
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "08/10/2024"
+            TextSave        =   "08/04/2025"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "09:55 a.m."
+            TextSave        =   "10:01 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -756,7 +775,15 @@ Sub actualiza()
          rs("stock_minimo") = 0
          rs("porc_utilidad") = Val(t_utilidad)
          rs("costoreal") = costoreal
-         rs("cod_barra") = 0
+         
+         If incluye_codbarra = 1 Then
+           rs("cod_barra") = CODIGO
+         Else
+           rs("cod_barra") = 0
+         End If
+
+         
+         
          rs("precio_final") = pvf
          rs("tasa_imp_interno") = 0
          rs("tipo_producto") = "P"

@@ -454,12 +454,12 @@ Begin VB.Form inicio
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "26/03/2025"
+            TextSave        =   "08/04/2025"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "11:22 a.m."
+            TextSave        =   "10:11 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
