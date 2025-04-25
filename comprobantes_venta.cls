@@ -3208,7 +3208,7 @@ While Not rs.EOF
     
     ' Agrego datos adicionales fijos:
     ok = PyFEPDF.AgregarDato("logo", "c:\5a04\tools\logo.png")
-    ok = PyFEPDF.AgregarDato("afip", "c:\5a04\tools\afip.png")
+    ok = PyFEPDF.AgregarDato("afip", "c:\5a04\tools\arca.png")
     ok = PyFEPDF.AgregarDato("EMPRESA", glo.nombrecli)
     ok = PyFEPDF.AgregarDato("MEMBRETE1", glo.direccioncli)
     ok = PyFEPDF.AgregarDato("MEMBRETE2", "Rojas")

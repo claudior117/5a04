@@ -160,7 +160,7 @@ Begin VB.Form actu_inicio
    Begin VB.Label Label3 
       Alignment       =   2  'Center
       BackColor       =   &H0000FFFF&
-      Caption         =   "003"
+      Caption         =   "004"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   18
@@ -206,6 +206,8 @@ If J = "1975" Then
     Call actu002
   Case Is = 3
     Call actu003
+  Case Is = 4
+    Call actu004
   
   
   
@@ -294,6 +296,36 @@ Resume Next
 
 End Sub
 
+
+Sub actu004()
+'Agrega logo arca factura electronica
+h = MsgBox("Actualizacion 004 Version12. Logo Arca¿Esta seguro que quiere actualizar?  ", 4)
+If h = 6 Then
+  
+  espere.Show
+  espere.Refresh
+  
+   MsgBox ("Actualizacion logo arca. Copiar archivo arca.png en carpeta tools")
+ 
+ cn1.BeginTrans
+    q = "update g0 set  [actualizacion]=004"
+    q = q & " where [sucursal]=0 "
+    cn1.Execute q
+  cn1.CommitTrans
+    
+   
+  
+ Unload espere
+  
+End If
+
+Exit Sub
+
+
+err1:
+Resume Next
+
+End Sub
 
 Sub actu002()
 'corrige ajustes de stock
