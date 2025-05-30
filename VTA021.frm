@@ -1,7 +1,7 @@
 VERSION 5.00
-Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCT2.OCX"
-Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomct2.ocx"
+Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFlxGrd.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "mscomctl.OCX"
 Begin VB.Form vta_informevta2 
    BackColor       =   &H00E0E0E0&
    BorderStyle     =   1  'Fixed Single
@@ -195,7 +195,7 @@ Begin VB.Form vta_informevta2
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   113836033
+      StartOfWeek     =   111214593
       CurrentDate     =   38750
    End
    Begin VB.Frame Frame3 
@@ -307,12 +307,12 @@ Begin VB.Form vta_informevta2
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "29/04/2022"
+            TextSave        =   "30/04/2025"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "12:34 p.m."
+            TextSave        =   "09:48 a.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -423,8 +423,8 @@ Sub carga()
             tp = tp + (rs2("cantidad"))
             ttp = ttp + (rs2("cantidad"))
           Case Is = 46 'dev
-            td = td + rs2("cantidad")
-            ttd = ttd + rs2("cantidad")
+            td = td + rs2("cantidad_original")
+            ttd = ttd + rs2("cantidad_original")
           Case Else
             Set rs1 = New ADODB.Recordset
             q = "select [venta] from vta_06 where [sucursal] = " & rs2("sucursal_ingreso") & " and [id_tipocomp] = " & rs2("id_tipocomp")
@@ -436,11 +436,11 @@ Sub carga()
             End If
             If v <> "N" Then
              If v = "S" Then
-               tf = tf + rs2("cantidad")
-               ttf = ttf + rs2("cantidad")
+               tf = tf + rs2("cantida_original")
+               ttf = ttf + rs2("cantidad_original")
              Else
-               tf = tf - rs2("cantidad")
-               ttf = ttf - rs2("cantidad")
+               tf = tf - rs2("cantidad_original")
+               ttf = ttf - rs2("cantidad_original")
              End If
            End If
            Set rs1 = Nothing
@@ -569,9 +569,9 @@ Sub carga3()
             ttp = ttp + (rs2("cantidad"))
             trc = trc + rs2("cantidad_original")
           Case Is = 46 'dev
-            td = td + rs2("cantidad")
-            ttd = ttd + rs2("cantidad")
-            tdc = tdc + rs2("cantidad")
+            td = td + rs2("cantidad_original")
+            ttd = ttd + rs2("cantidad_original")
+            tdc = tdc + rs2("cantidad_original")
           Case Else
             Set rs1 = New ADODB.Recordset
             q = "select [venta] from vta_06 where [sucursal] = " & rs2("sucursal_ingreso") & " and [id_tipocomp] = " & rs2("id_tipocomp")
@@ -583,13 +583,13 @@ Sub carga3()
             End If
             If v <> "N" Then
              If v = "S" Then
-               tf = tf + rs2("cantidad")
-               ttf = ttf + rs2("cantidad")
-               tfc = tf + rs2("cantidad")
+               tf = tf + rs2("cantidad_original")
+               ttf = ttf + rs2("cantidad_original")
+               tfc = tf + rs2("cantidad_original")
              Else
-               tf = tf - rs2("cantidad")
-               ttf = ttf - rs2("cantidad")
-               tfc = tfc - rs2("cantidad")
+               tf = tf - rs2("cantidad_original")
+               ttf = ttf - rs2("cantidad_original")
+               tfc = tfc - rs2("cantidad_original")
              End If
            End If
            Set rs1 = Nothing
@@ -709,9 +709,9 @@ Sub carga2()
             d = ""
   
           Case Is = 46 'dev
-            d = Format$(rs22("cantidad"), "#####0.00")
-            td = td + rs22("cantidad")
-            ttd = ttd + rs22("cantidad")
+            d = Format$(rs22("cantidad_original"), "#####0.00")
+            td = td + rs22("cantidad_original")
+            ttd = ttd + rs22("cantidad_original")
             r = ""
             F = ""
             p = ""
@@ -726,11 +726,11 @@ Sub carga2()
             End If
             If v <> "N" Then
              If v = "S" Then
-               tf = tf + rs22("cantidad")
-               ttf = ttf + rs22("cantidad")
+               tf = tf + rs22("cantidad_original")
+               ttf = ttf + rs22("cantidad_original")
              Else
-               tf = tf - rs22("cantidad")
-               ttf = ttf - rs22("cantidad")
+               tf = tf - rs22("cantidad_original")
+               ttf = ttf - rs22("cantidad_original")
              End If
            End If
            Set rs1 = Nothing
@@ -755,7 +755,7 @@ Sub carga2()
 
 End Sub
 Private Sub btnacepta_Click()
-QUERY = "INSERT INTO g11([detalle], [id_usuario], [modulo], [num_int_comp], [fecha_hora], [obs], [id_operacion], [id_clipro])"
+ QUERY = "INSERT INTO g11([detalle], [id_usuario], [modulo], [num_int_comp], [fecha_hora], [obs], [id_operacion], [id_clipro])"
   QUERY = QUERY & " VALUES ('Inf. de Ventas Acum. por prod.(unidades) " & "', " & para.id_usuario & ", 'V', 0, '" & Now & "', ' ', 16, " & 0 & ")"
   cn1.BeginTrans
   cn1.Execute QUERY

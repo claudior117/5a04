@@ -8479,7 +8479,7 @@ If Val(lw) > 0 And Val(lw) <= 5 Then
        d = Format$(Left$(rs("descripcion") & " ", 55), "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@!")
        If rs("cantidad_original") > 0 Then
          RSet cp2 = Format$(rs("id_producto"), "000")
-         RSet cant = Format$(rs("cantidad"), "####0.00")
+         RSet cant = Format$(rs("cantidad_original"), "####0.00")
          RSet pu = Format$(rs("pu"), "#####0.00")
          RSet im = Format$(rs("importe"), "######0.00")
          RSet b = Format$(rs("bultos"), "####0")

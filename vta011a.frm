@@ -1,6 +1,6 @@
 VERSION 5.00
-Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFlxGrd.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "mscomctl.OCX"
 Begin VB.Form vta_COMPVARIOS 
    BackColor       =   &H00E0E0E0&
    BorderStyle     =   1  'Fixed Single
@@ -636,12 +636,12 @@ Begin VB.Form vta_COMPVARIOS
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "05/08/2022"
+            TextSave        =   "30/05/2025"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "04:59 p.m."
+            TextSave        =   "05:10 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -679,7 +679,7 @@ Sub limpia()
    t_nograbado = ""
    t_perc = ""
    t_iva = ""
-   t_total = ""
+   T_TOTAL = ""
    Option1 = True
 End Sub
 Sub carga()
@@ -733,7 +733,7 @@ Sub carga()
      t_nograbado = Format$(rs("impuestos"), "######0.00")
      t_perc = Format$(rs("perc_iva") + rs("perc_gan") + rs("perc_ib"), "######0.00")
      t_iva = Format$(rs("iva"), "######0.00")
-     t_total = Format$(rs("total"), "######0.00")
+     T_TOTAL = Format$(rs("total"), "######0.00")
      Set rs = Nothing
      
      
@@ -1088,9 +1088,9 @@ If t_letra = "A" Then
   t = 0
   For i = 1 To msf1.Rows - 1
       r = Val(msf1.TextMatrix(i, 6))
-      r2 = Val(msf1.TextMatrix(i, 7))
+      R2 = Val(msf1.TextMatrix(i, 7))
       s = s + r
-      t = t + (r2 * Val(msf1.TextMatrix(i, 3)))
+      t = t + (R2 * Val(msf1.TextMatrix(i, 3)))
   
             'agrega en composicion de iva
       X = 1
@@ -1257,7 +1257,7 @@ Sub graba()
          cp = "0000-00000000"
          contado = "N"
          If Option4 = True Then
-           ssi = Val(t_total)
+           ssi = Val(T_TOTAL)
          Else
            ssi = Val(T_total2)
          End If
@@ -1324,7 +1324,7 @@ Sub graba()
 
       
 QUERY = QUERY & " VALUES (" & numint & ", " & Val(t_sucursal) & ", " & Val(t_numcomp) & ", '" & t_letra & "', " & c_tipocomp.ItemData(c_tipocomp.ListIndex) & ", " & _
-c_prov.ItemData(c_prov.ListIndex) & ", '" & t_fecha & "', " & para.id_usuario & ", " & Val(t_subtotal) & ", " & Val(t_nograbado) & ", " & Val(t_iva) & ", " & Val(t_total) & ", 'A', " & _
+c_prov.ItemData(c_prov.ListIndex) & ", '" & t_fecha & "', " & para.id_usuario & ", " & Val(t_subtotal) & ", " & Val(t_nograbado) & ", " & Val(t_iva) & ", " & Val(T_TOTAL) & ", 'A', " & _
 para.cuenta_ventas & ", '" & cl_compvta.STOCK & "', '" & cl_compvta.ctacte & "', '" & cl_compvta.grabado & "', '" & ep & "', '" & cp & "', '" & t_observaciones & " ', " & Val(t_cotizacion) & ", " & _
 tom & ", '" & moneda & "'," & c_vend.ItemData(c_vend.ListIndex) & ", '" & cl_compvta.venta & "', '" & contado & "', " & codact & ", " & alicuotaib & ", 0, 0, '" & t_fechavto & _
 "', 0, 0, ' ', ' ', ' ', 0, " & Val(c_sucursal) & ", '" & Left$(vta_clientes.t_cli, 50) & "', '" & Left$(vta_clientes.t_direccion, 50) & "', '" & Left$(vta_clientes.t_cuit, 20) & "', '" & Left$(vta_clientes.t_localidad, 50) & "', " & tiporespiva & _
@@ -1344,8 +1344,8 @@ tom & ", '" & moneda & "'," & c_vend.ItemData(c_vend.ListIndex) & ", '" & cl_com
           costo = 0
         End If
         
-        QUERY = "INSERT INTO vta_03([num_int], [RENGLON], [id_producto], [descripcion], [cantidad], [pu], [importe], [tasaiva], [impuesto], [costo])"
-        QUERY = QUERY & " VALUES (" & numint & ", " & Val(msf1.TextMatrix(i, 0)) & ", " & Val(msf1.TextMatrix(i, 1)) & ", '" & msf1.TextMatrix(i, 2) & " ', " & Val(msf1.TextMatrix(i, 3)) & ", " & Val(msf1.TextMatrix(i, 4)) & ", " & Val(msf1.TextMatrix(i, 6)) & ", " & Val(msf1.TextMatrix(i, 5)) & ", 0, " & costo & ")"
+        QUERY = "INSERT INTO vta_03([num_int], [RENGLON], [id_producto], [descripcion], [cantidad], [pu], [importe], [tasaiva], [impuesto], [costo], [cantidad_original], [tunidad], [bultos], [pu_final], [tasaib])"
+        QUERY = QUERY & " VALUES (" & numint & ", " & Val(msf1.TextMatrix(i, 0)) & ", " & Val(msf1.TextMatrix(i, 1)) & ", '" & msf1.TextMatrix(i, 2) & " ', " & Val(msf1.TextMatrix(i, 3)) & ", " & Val(msf1.TextMatrix(i, 4)) & ", " & Val(msf1.TextMatrix(i, 6)) & ", " & Val(msf1.TextMatrix(i, 5)) & ", 0, " & costo & "," & Val(msf1.TextMatrix(i, 3)) & ", ' ', 1," & Val(msf1.TextMatrix(i, 7)) & ", 0)"
         cn1.Execute QUERY
       
         If cl_compvta.STOCK <> "N" Then
@@ -1417,9 +1417,9 @@ tom & ", '" & moneda & "'," & c_vend.ItemData(c_vend.ListIndex) & ", '" & cl_com
         If Not rs.BOF And Not rs.EOF Then
           If rs("caja") = "S" Then
             If cl_compvta.ctacte = "H" Then
-              t = -Val(t_total)
+              t = -Val(T_TOTAL)
             Else
-              t = Val(t_total)
+              t = Val(T_TOTAL)
             End If
               
             'grabo mov caja
@@ -1465,14 +1465,14 @@ tom & ", '" & moneda & "'," & c_vend.ItemData(c_vend.ListIndex) & ", '" & cl_com
          
          'grabo asiento
          QUERY = "INSERT INTO c_02([num_interno], [fecha], [descripcion], [modulo], [num_mov_int], [debe], [haber], [id_USUARIO], [observaciones])"
-         QUERY = QUERY & " VALUES (" & numintcgr & " ,'" & t_fecha & "', '[Ventas] " & cl_compvta.abreviatura & " " & t_letra & Format$(Val(t_sucursal), "0000") & "-" & Format$(Val(t_numcomp), "00000000") & "', 'V', " & numint & ", " & Val(t_total) & ", " & Val(t_total) & ", " & para.id_usuario & ", '" & Left$(RTrim$(c_prov), 50) & "')"
+         QUERY = QUERY & " VALUES (" & numintcgr & " ,'" & t_fecha & "', '[Ventas] " & cl_compvta.abreviatura & " " & t_letra & Format$(Val(t_sucursal), "0000") & "-" & Format$(Val(t_numcomp), "00000000") & "', 'V', " & numint & ", " & Val(T_TOTAL) & ", " & Val(T_TOTAL) & ", " & para.id_usuario & ", '" & Left$(RTrim$(c_prov), 50) & "')"
          cn1.Execute QUERY
       
          
          'cuenta madre ctacte o caja
          ic = 1
          QUERY = "INSERT INTO c_03([num_interno], [renglon], [id_cuenta], [ubicacion], [importe], [descripcion])"
-         QUERY = QUERY & " VALUES (" & numintcgr & ", " & ic & ", " & cta & ", '" & u1 & "', " & Val(t_total) & ", '" & dcta & "')"
+         QUERY = QUERY & " VALUES (" & numintcgr & ", " & ic & ", " & cta & ", '" & u1 & "', " & Val(T_TOTAL) & ", '" & dcta & "')"
          
          cn1.Execute QUERY
          ic = ic + 1
@@ -1646,11 +1646,11 @@ t_subtotal = Format$(Val(t_subtotal), "######0.00")
 t_nograbado = Format$(Val(t_nograbado), "######0.00")
 t_perc = Format$(Val(t_perc), "######0.00")
 t_iva = Format$(Val(t_iva), "######0.00")
-t_total = Format$(Val(t_subtotal) + Val(t_nograbado) + Val(t_perc) + Val(t_iva), "######0.00")
+T_TOTAL = Format$(Val(t_subtotal) + Val(t_nograbado) + Val(t_perc) + Val(t_iva), "######0.00")
 If Option4 = True Then
-  T_total2 = Format$(Val(t_total) / Val(t_cotizacion), "#####0.00")
+  T_total2 = Format$(Val(T_TOTAL) / Val(t_cotizacion), "#####0.00")
 Else
-  T_total2 = Format$(Val(t_total) * Val(t_cotizacion), "#####0.00")
+  T_total2 = Format$(Val(T_TOTAL) * Val(t_cotizacion), "#####0.00")
 End If
 End Sub
 
@@ -1670,7 +1670,7 @@ End If
 End Sub
 
 Private Sub t_total_LostFocus()
-t_total = Format$(t_total, "######0.00")
+T_TOTAL = Format$(T_TOTAL, "######0.00")
 End Sub
 
 Private Sub Text1_LostFocus()

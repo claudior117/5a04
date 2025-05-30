@@ -160,7 +160,7 @@ Begin VB.Form actu_inicio
    Begin VB.Label Label3 
       Alignment       =   2  'Center
       BackColor       =   &H0000FFFF&
-      Caption         =   "004"
+      Caption         =   "005"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   18
@@ -208,7 +208,8 @@ If J = "1975" Then
     Call actu003
   Case Is = 4
     Call actu004
-  
+  Case Is = 5
+    Call actu005
   
   
   End Select
@@ -326,6 +327,57 @@ err1:
 Resume Next
 
 End Sub
+
+
+Sub actu005()
+'Corrige Venta directa (205/206/207)
+h = MsgBox("Actualizacion 005 Version12. Corrige cantidades en Venta Directa ¿Esta seguro que quiere actualizar?  ", 4)
+If h = 6 Then
+  
+  espere.Show
+  espere.Refresh
+  
+   
+   Set rs = New ADODB.Recordset
+   q = "select * from vta_02, vta_03 where id_tipocomp >=205 and id_tipocomp <=207 and vta_02.num_int = vta_03.num_int"
+   MsgBox (q)
+   
+   rs.Open q, cn1, adOpenDynamic, adLockOptimistic
+   
+   While Not rs.EOF And Not rs.BOF
+       rs("cantidad_original") = rs("cantidad")
+       rs("tunidad") = " "
+       rs("bultos") = 1
+       rs("pu_final") = rs("pu") + rs("pu") * rs("tasaiva") / 100
+       rs("tasaib") = 0
+       rs.Update
+       rs.MoveNext
+   Wend
+ 
+  Set rs = Nothing
+ 
+ 
+ cn1.BeginTrans
+    q = "update g0 set  [actualizacion]=005"
+    q = q & " where [sucursal]=0 "
+    cn1.Execute q
+  cn1.CommitTrans
+    
+   
+  
+ Unload espere
+  
+End If
+
+Exit Sub
+
+
+err1:
+Resume Next
+
+End Sub
+
+
 
 Sub actu002()
 'corrige ajustes de stock

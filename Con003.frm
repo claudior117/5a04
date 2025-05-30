@@ -53,7 +53,7 @@ Begin VB.Form con_ivacompras
       ForeColor       =   -2147483630
       BackColor       =   14737632
       Appearance      =   1
-      StartOfWeek     =   222429185
+      StartOfWeek     =   106954753
       CurrentDate     =   38750
    End
    Begin VB.Frame Frame3 
@@ -239,12 +239,12 @@ Begin VB.Form con_ivacompras
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "25/04/2025"
+            TextSave        =   "30/05/2025"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "09:00 a.m."
+            TextSave        =   "05:38 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1

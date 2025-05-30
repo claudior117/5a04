@@ -7,14 +7,14 @@ Begin VB.Form inicio_vta
    ClientHeight    =   8190
    ClientLeft      =   90
    ClientTop       =   90
-   ClientWidth     =   12285
+   ClientWidth     =   12915
    FontTransparent =   0   'False
    Icon            =   "inicio_vta.frx":0000
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
    PaletteMode     =   1  'UseZOrder
    ScaleHeight     =   8190
-   ScaleWidth      =   12285
+   ScaleWidth      =   12915
    StartUpPosition =   1  'CenterOwner
    Begin VB.Frame Frame9 
       Caption         =   "FACTURA ELECTRONICA"
@@ -50,16 +50,16 @@ Begin VB.Form inicio_vta
       Left            =   8880
       TabIndex        =   29
       Top             =   1560
-      Width           =   3255
+      Width           =   3855
       Begin MSComctlLib.Toolbar Toolbar8 
          Height          =   870
          Left            =   120
          TabIndex        =   30
          Top             =   240
-         Width           =   2775
-         _ExtentX        =   4895
+         Width           =   3495
+         _ExtentX        =   6165
          _ExtentY        =   1535
-         ButtonWidth     =   2170
+         ButtonWidth     =   2884
          ButtonHeight    =   1429
          Appearance      =   1
          ImageList       =   "ImageList1"
@@ -67,9 +67,8 @@ Begin VB.Form inicio_vta
          BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
             NumButtons      =   2
             BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-               Caption         =   "VTA. DIRECTA"
+               Caption         =   "VTA por TERCEROS"
                Key             =   "B1"
-               ImageIndex      =   6
             EndProperty
             BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
                Caption         =   "LIQ. CEREAL"
@@ -371,7 +370,7 @@ Begin VB.Form inicio_vta
       Left            =   3360
       TabIndex        =   13
       Top             =   120
-      Width           =   8775
+      Width           =   9135
       Begin MSComctlLib.Toolbar Toolbar2 
          Height          =   885
          Left            =   120
@@ -547,8 +546,8 @@ Begin VB.Form inicio_vta
       Left            =   0
       TabIndex        =   0
       Top             =   7935
-      Width           =   12285
-      _ExtentX        =   21669
+      Width           =   12915
+      _ExtentX        =   22781
       _ExtentY        =   450
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
@@ -570,12 +569,12 @@ Begin VB.Form inicio_vta
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "09/12/2024"
+            TextSave        =   "30/05/2025"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "11:18 a.m."
+            TextSave        =   "05:37 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1

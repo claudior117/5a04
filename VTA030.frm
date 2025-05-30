@@ -1,6 +1,6 @@
 VERSION 5.00
-Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFlxGrd.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "mscomctl.OCX"
 Begin VB.Form vta_listaprecios4 
    BackColor       =   &H00E0E0E0&
    BorderStyle     =   1  'Fixed Single
@@ -178,12 +178,12 @@ Begin VB.Form vta_listaprecios4
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   1
-            TextSave        =   "04/04/2022"
+            TextSave        =   "30/05/2025"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   1
-            TextSave        =   "02:24 p.m."
+            TextSave        =   "04:31 p.m."
          EndProperty
       EndProperty
       OLEDropMode     =   1
@@ -273,7 +273,7 @@ Sub carga2()
  espere.Label1 = "Espere...... Buscando Informacion de Ventas"
  espere.Refresh
  Call armagrid
- q = "select * from vta_02, vta_03 where vta_02.[num_int] = vta_03.[num_int]  and  [id_producto] = " & Val(t_idprod)
+ q = "select * from vta_02, vta_03 where vta_02.[num_int] = vta_03.[num_int]  and  [id_producto] = " & Val(t_idprod) & " and venta <> 'N'"
  c = " and "
   
   If IsDate(t_fecha) Then
@@ -297,7 +297,11 @@ Sub carga2()
      pu = Format$(rs("pu"), "#####0.00")
      d = Format$(0, "###0.00")
      ti = Format$(rs("tasaiva"), "##0.0")
-     c = Format$(rs("cantidad"), "#####0.00")
+     If rs("venta") = "S" Then
+       c = Format$(rs("cantidad_original"), "#####0.00")
+     Else
+        c = Format$(-rs("cantidad_original"), "#####0.00")
+     End If
      pd = Format$(rs("pu_final"), "#####0.00")
      CUIT = rs("cuit02")
      msf1.AddItem p & Chr(9) & CUIT & Chr$(9) & F & Chr(9) & pu & Chr(9) & d & Chr(9) & ti & Chr(9) & pd & Chr(9) & c & Chr(9) & m & Chr(9) & nc & Chr(9) & rs("vta_02.num_int")
